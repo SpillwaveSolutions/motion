@@ -1,0 +1,37 @@
+{
+  "name": "motion",
+  "module": "src/main.tsx",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot run src/server.ts",
+    "build": "bun build src/main.tsx --outdir=dist --minify",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.9.6",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.9.1",
+    "@tauri-apps/plugin-dialog": "^2.6.0",
+    "@tauri-apps/plugin-shell": "^2.3.4",
+    "@tiptap/extension-code-block-lowlight": "^3.16.0",
+    "@tiptap/pm": "^3.16.0",
+    "@tiptap/react": "^3.16.0",
+    "@tiptap/starter-kit": "^3.16.0",
+    "@types/marked": "^6.0.0",
+    "@types/turndown": "^5.0.6",
+    "lowlight": "^3.3.0",
+    "marked": "^17.0.1",
+    "mermaid": "^11.12.2",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "turndown": "^7.2.2"
+  }
+}
