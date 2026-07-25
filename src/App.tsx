@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import Editor from "./components/Editor";
 import { storage } from "./lib/storage";
 
@@ -9,13 +9,33 @@ function App() {
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
     const [files, setFiles] = useState<string[]>([]);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    // Get basename for display
+    const getBasename = (path: string) => {
+        return path.split(/[/\\]/).pop() || path;
+    };
+
+    const filteredFiles = useMemo(() => {
+        const q = searchQuery.trim().toLowerCase();
+        if (!q) return files;
+        return files.filter((file) => getBasename(file).toLowerCase().includes(q));
+    }, [files, searchQuery]);
 
     const handleOpenFolder = async () => {
-        const path = await storage.openFolder();
-        if (path) {
-            setWorkspacePath(path);
-            const markdownFiles = await storage.listFiles(path);
-            setFiles(markdownFiles);
+        try {
+            const path = await storage.openFolder();
+            if (path) {
+                setWorkspacePath(path);
+                const markdownFiles = await storage.listFiles(path);
+                setFiles(markdownFiles);
+                setCurrentFilePath(null);
+                setSearchQuery("");
+            }
+        } catch (error) {
+            console.error("Failed to open folder:", error);
+            const message = error instanceof Error ? error.message : String(error);
+            alert(`Error opening folder: ${message}`);
         }
     };
 
@@ -23,9 +43,27 @@ function App() {
         setCurrentFilePath(path);
     };
 
-    // Get basename for display
-    const getBasename = (path: string) => {
-        return path.split(/[/\\]/).pop() || path;
+    const handleNewNote = async () => {
+        if (!workspacePath) {
+            alert("Open a folder first to create a new note.");
+            return;
+        }
+
+        try {
+            const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+            const name = `untitled-${stamp}.md`;
+            const sep = workspacePath.includes("\\") ? "\\" : "/";
+            const path = `${workspacePath.replace(/[/\\]$/, "")}${sep}${name}`;
+            const content = "# New Note\n\n";
+            await storage.writeFile(path, content);
+            setFiles((prev) => [...prev, path].sort((a, b) => a.localeCompare(b)));
+            setCurrentFilePath(path);
+            setSearchQuery("");
+        } catch (error) {
+            console.error("Failed to create note:", error);
+            const message = error instanceof Error ? error.message : String(error);
+            alert(`Error creating note: ${message}`);
+        }
     };
 
     return (
@@ -48,7 +86,13 @@ function App() {
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
-                    <input type="text" placeholder="Search notes... (⌘K)" />
+                    <input
+                        type="text"
+                        placeholder="Search notes..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        aria-label="Search notes"
+                    />
                 </div>
 
                 <div className="view-toggle">
@@ -61,7 +105,12 @@ function App() {
                     <button className="btn btn-secondary" onClick={handleOpenFolder}>
                         Open Folder
                     </button>
-                    <button className="btn btn-primary">
+                    <button
+                        className="btn btn-primary"
+                        onClick={handleNewNote}
+                        disabled={!workspacePath}
+                        title={workspacePath ? "Create a new markdown note" : "Open a folder first"}
+                    >
                         New Note
                     </button>
                 </div>
@@ -80,7 +129,13 @@ function App() {
                         </div>
                     )}
 
-                    {files.map(file => (
+                    {files.length > 0 && filteredFiles.length === 0 && (
+                        <div style={{ padding: 'var(--space-4)', textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
+                            No notes match “{searchQuery}”.
+                        </div>
+                    )}
+
+                    {filteredFiles.map(file => (
                         <div
                             key={file}
                             className={`file-tree-item ${currentFilePath === file ? "active" : ""}`}
