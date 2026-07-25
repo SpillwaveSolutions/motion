@@ -1,30 +1,136 @@
 use std::fs;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
+use std::sync::Mutex;
+use tauri::State;
 
-#[tauri::command]
-fn read_file(path: String) -> Result<String, String> {
-    fs::read_to_string(path).map_err(|e| e.to_string())
+/// Allowed workspace root for custom filesystem commands.
+/// Paths for read/write/list must stay within this directory (after canonicalize).
+struct WorkspaceState {
+    root: Mutex<Option<PathBuf>>,
+}
+
+fn canonicalize_existing(path: &Path) -> Result<PathBuf, String> {
+    fs::canonicalize(path).map_err(|e| format!("Invalid path {}: {e}", path.display()))
+}
+
+/// Resolve a path that may not exist yet (e.g. writing a new file).
+/// Canonicalizes the parent and joins the file name so symlink escapes are caught.
+fn resolve_path(path: &Path) -> Result<PathBuf, String> {
+    if path.exists() {
+        return canonicalize_existing(path);
+    }
+    let parent = path
+        .parent()
+        .filter(|p| !p.as_os_str().is_empty())
+        .ok_or_else(|| "Path has no parent directory".to_string())?;
+    let file_name = path
+        .file_name()
+        .ok_or_else(|| "Path has no file name".to_string())?;
+    let parent_canon = canonicalize_existing(parent)?;
+    Ok(parent_canon.join(file_name))
+}
+
+fn ensure_within_workspace(state: &WorkspaceState, path: &Path) -> Result<PathBuf, String> {
+    let root_guard = state
+        .root
+        .lock()
+        .map_err(|_| "Workspace lock poisoned".to_string())?;
+    let root = root_guard
+        .as_ref()
+        .ok_or_else(|| "No workspace opened. Open a folder first.".to_string())?;
+    let root_canon = canonicalize_existing(root)?;
+    let resolved = resolve_path(path)?;
+
+    if !resolved.starts_with(&root_canon) {
+        return Err("Access denied: path is outside the opened workspace".to_string());
+    }
+    Ok(resolved)
 }
 
 #[tauri::command]
-fn write_file(path: String, content: String) -> Result<(), String> {
-    fs::write(path, content).map_err(|e| e.to_string())
+fn set_workspace(path: String, state: State<'_, WorkspaceState>) -> Result<String, String> {
+    let root = canonicalize_existing(Path::new(&path))?;
+    if !root.is_dir() {
+        return Err("Workspace path is not a directory".to_string());
+    }
+    let display = root.to_string_lossy().into_owned();
+    let mut guard = state
+        .root
+        .lock()
+        .map_err(|_| "Workspace lock poisoned".to_string())?;
+    *guard = Some(root);
+    Ok(display)
 }
 
 #[tauri::command]
-fn list_markdown_files(path: String) -> Result<Vec<String>, String> {
-    let entries = fs::read_dir(path).map_err(|e| e.to_string())?;
-    let files = entries
-        .filter_map(|entry| {
-            let entry = entry.ok()?;
-            let path = entry.path();
-            if path.is_file() && path.extension().and_then(|s| s.to_str()) == Some("md") {
-                Some(path.to_string_lossy().into_owned())
-            } else {
-                None
+fn read_file(path: String, state: State<'_, WorkspaceState>) -> Result<String, String> {
+    let resolved = ensure_within_workspace(&state, Path::new(&path))?;
+    fs::read_to_string(&resolved).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+fn write_file(path: String, content: String, state: State<'_, WorkspaceState>) -> Result<(), String> {
+    let resolved = ensure_within_workspace(&state, Path::new(&path))?;
+    if let Some(parent) = resolved.parent() {
+        // Parent must also lie within the workspace.
+        ensure_within_workspace(&state, parent)?;
+    }
+    fs::write(&resolved, content).map_err(|e| e.to_string())
+}
+
+fn collect_markdown_files(dir: &Path, out: &mut Vec<String>) -> Result<(), String> {
+    let entries = fs::read_dir(dir).map_err(|e| format!("Failed to read {}: {e}", dir.display()))?;
+    for entry in entries {
+        let entry = match entry {
+            Ok(e) => e,
+            Err(e) => {
+                log::warn!("Skipping unreadable directory entry under {}: {e}", dir.display());
+                continue;
             }
-        })
-        .collect();
+        };
+        let path = entry.path();
+        let file_type = match entry.file_type() {
+            Ok(ft) => ft,
+            Err(e) => {
+                log::warn!("Skipping {}: could not read file type: {e}", path.display());
+                continue;
+            }
+        };
+
+        if file_type.is_dir() {
+            let name = path.file_name().and_then(|s| s.to_str()).unwrap_or("");
+            // Skip hidden directories (e.g. .git, .DS_Store folders)
+            if name.starts_with('.') {
+                continue;
+            }
+            collect_markdown_files(&path, out)?;
+        } else if file_type.is_file()
+            && path.extension().and_then(|s| s.to_str()) == Some("md")
+        {
+            out.push(path.to_string_lossy().into_owned());
+        }
+    }
+    Ok(())
+}
+
+#[tauri::command]
+fn list_markdown_files(path: String, state: State<'_, WorkspaceState>) -> Result<Vec<String>, String> {
+    let root = canonicalize_existing(Path::new(&path))?;
+    if !root.is_dir() {
+        return Err("Path is not a directory".to_string());
+    }
+
+    {
+        let mut guard = state
+            .root
+            .lock()
+            .map_err(|_| "Workspace lock poisoned".to_string())?;
+        *guard = Some(root.clone());
+    }
+
+    let mut files = Vec::new();
+    collect_markdown_files(&root, &mut files)?;
+    files.sort();
     Ok(files)
 }
 
@@ -33,6 +139,9 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
+        .manage(WorkspaceState {
+            root: Mutex::new(None),
+        })
         .setup(|app| {
             if cfg!(debug_assertions) {
                 app.handle().plugin(
@@ -44,6 +153,7 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            set_workspace,
             read_file,
             write_file,
             list_markdown_files
@@ -51,4 +161,3 @@ pub fn run() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
-
