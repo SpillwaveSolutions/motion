@@ -2,10 +2,12 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useRef, useState } from "react";
 import mermaid from "mermaid";
+import { sanitizeSvg } from "../../../lib/sanitize";
 
-// Initialize Mermaid with dark theme
+// Initialize Mermaid with dark theme; securityLevel strict reduces XSS surface.
 mermaid.initialize({
     startOnLoad: false,
+    securityLevel: "strict",
     theme: "dark",
     themeVariables: {
         primaryColor: "#58a6ff",
@@ -36,24 +38,40 @@ function MermaidNodeView({ node, updateAttributes }: NodeViewProps) {
     const [editContent, setEditContent] = useState(content);
 
     useEffect(() => {
-        if (!isEditing && containerRef.current) {
-            renderDiagram();
-        }
+        setEditContent(content);
+    }, [content]);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        const renderDiagram = async () => {
+            if (isEditing || !containerRef.current) return;
+
+            try {
+                setError(null);
+                const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
+                const { svg } = await mermaid.render(id, content);
+                if (cancelled || !containerRef.current) return;
+                // Sanitize untrusted Mermaid SVG before innerHTML
+                containerRef.current.innerHTML = sanitizeSvg(svg);
+            } catch (err) {
+                if (cancelled) return;
+                setError(err instanceof Error ? err.message : "Failed to render diagram");
+                if (containerRef.current) {
+                    containerRef.current.innerHTML = "";
+                }
+            }
+        };
+
+        void renderDiagram();
+
+        return () => {
+            cancelled = true;
+            if (containerRef.current) {
+                containerRef.current.innerHTML = "";
+            }
+        };
     }, [content, isEditing]);
-
-    const renderDiagram = async () => {
-        if (!containerRef.current) return;
-
-        try {
-            setError(null);
-            const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
-            const { svg } = await mermaid.render(id, content);
-            containerRef.current.innerHTML = svg;
-        } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to render diagram");
-            containerRef.current.innerHTML = "";
-        }
-    };
 
     const handleSave = () => {
         updateAttributes({ content: editContent });
@@ -202,6 +220,12 @@ const MermaidExtension = Node.create({
         return [
             {
                 tag: 'pre[data-type="mermaid"]',
+                getAttrs: (node) => {
+                    if (typeof node === "string") return false;
+                    const code = (node as HTMLElement).querySelector("code");
+                    const content = code?.textContent ?? node.textContent ?? "";
+                    return { content };
+                },
             },
             {
                 tag: "pre",

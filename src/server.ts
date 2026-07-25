@@ -1,14 +1,15 @@
 /**
  * Bun Development Server for Motion
- * 
+ *
  * Serves the app with CSS inlined and JS as external file.
  */
 
 import { watch } from "fs";
-import { join, dirname } from "path";
+import { join, dirname, resolve, relative, isAbsolute } from "path";
 
 // Get project root (parent of src/)
 const PROJECT_ROOT = dirname(dirname(import.meta.path));
+const PUBLIC_DIR = resolve(PROJECT_ROOT, "public");
 const PORT = 3000;
 
 // Store the latest JS bundle in memory
@@ -82,14 +83,40 @@ ${css}
 </html>`;
 }
 
+/** Ensure a resolved path stays inside the public/ directory (no path traversal). */
+function isInsidePublicDir(candidate: string): boolean {
+    const rel = relative(PUBLIC_DIR, candidate);
+    // empty rel would mean candidate === PUBLIC_DIR (directory itself — not a file we serve)
+    return rel !== "" && !rel.startsWith("..") && !isAbsolute(rel);
+}
+
 // Initial build
 await buildApp();
 
-// Watch for file changes
-const watcher = watch(join(PROJECT_ROOT, "src"), { recursive: true }, async (event, filename) => {
-    if (filename && (filename.endsWith(".ts") || filename.endsWith(".tsx") || filename.endsWith(".css"))) {
+// Debounced rebuild to avoid concurrent races on rapid file changes
+let rebuildTimer: ReturnType<typeof setTimeout> | null = null;
+let rebuildInFlight: Promise<boolean> | null = null;
+
+function scheduleRebuild(filename: string) {
+    if (rebuildTimer) clearTimeout(rebuildTimer);
+    rebuildTimer = setTimeout(async () => {
+        rebuildTimer = null;
+        // Wait for any in-flight rebuild before starting another
+        if (rebuildInFlight) {
+            await rebuildInFlight;
+        }
         console.log(`\n🔄 File changed: ${filename}`);
-        await buildApp();
+        rebuildInFlight = buildApp().finally(() => {
+            rebuildInFlight = null;
+        });
+        await rebuildInFlight;
+    }, 150);
+}
+
+// Watch for file changes
+const watcher = watch(join(PROJECT_ROOT, "src"), { recursive: true }, (_event, filename) => {
+    if (filename && (filename.endsWith(".ts") || filename.endsWith(".tsx") || filename.endsWith(".css"))) {
+        scheduleRebuild(filename);
     }
 });
 
@@ -121,10 +148,19 @@ const server = Bun.serve({
             });
         }
 
-        // Serve static files from public directory
-        const publicFile = Bun.file(join(PROJECT_ROOT, "public", pathname));
-        if (await publicFile.exists()) {
-            return new Response(publicFile);
+        // Serve static files from public directory (path-traversal safe)
+        // Strip leading slashes; reject null bytes and absolute-looking segments.
+        const relativePath = decodeURIComponent(pathname).replace(/^\/+/, "");
+        if (relativePath && !relativePath.includes("\0")) {
+            const candidate = resolve(PUBLIC_DIR, relativePath);
+            if (isInsidePublicDir(candidate)) {
+                const publicFile = Bun.file(candidate);
+                if (await publicFile.exists()) {
+                    return new Response(publicFile);
+                }
+            } else {
+                return new Response("Not Found", { status: 404 });
+            }
         }
 
         // Fallback to index.html for SPA routing
@@ -137,13 +173,14 @@ const server = Bun.serve({
 
 console.log(`
 🚀 Motion dev server running at http://localhost:${PORT}
-   
+
    Watching for changes in src/...
    Press Ctrl+C to stop.
 `);
 
 // Cleanup on exit
 process.on("SIGINT", () => {
+    if (rebuildTimer) clearTimeout(rebuildTimer);
     watcher.close();
     server.stop();
     process.exit(0);

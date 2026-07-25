@@ -7,7 +7,12 @@ import { marked } from "marked";
 import TurndownService from "turndown";
 import Toolbar from "./Toolbar";
 import MermaidExtension from "./extensions/MermaidExtension";
+import { DatasetExtension } from "./extensions/DatasetExtension";
+import { QueryExtension } from "./extensions/QueryExtension";
+import { ImageGenExtension } from "./extensions/ImageGenExtension";
+import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
 import { storage } from "../../lib/storage";
+import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
 
 const lowlight = createLowlight(common);
 
@@ -43,6 +48,28 @@ const welcomeHTML = `
     B -->|Yes| C[Great!]
     B -->|No| D[Debug]
     D --> B</code></pre>
+
+<h2>Data Analysis (Phase 3)</h2>
+<p>Linked local CSV data and SQL queries powered by DuckDB WASM:</p>
+
+<pre data-type="dataset"><code class="language-dataset">source: sample-data.csv
+name: team
+limit: 5</code></pre>
+
+<pre data-type="dataset"><code class="language-dataset">source: sample-events.jsonl
+name: events
+limit: 5</code></pre>
+
+<pre data-type="query"><code class="language-query">sql: SELECT team.name, events.event, events.timestamp FROM team JOIN events ON team.name = events.user ORDER BY events.timestamp DESC</code></pre>
+
+<h2>Generative Features (Phase 4)</h2>
+<p>Create visual assets and diagrams directly from natural language prompts:</p>
+<pre data-type="image-gen"><code class="language-image-gen">prompt: A futuristic cyberpunk city at night with neon signs and flying cars
+src: null</code></pre>
+
+<p>Or generate technical diagrams with Mermaid:</p>
+<pre data-type="diagram-gen"><code class="language-diagram-gen">prompt: A sequence diagram for a login flow
+content: null</code></pre>
 `;
 
 function Editor({ viewMode, filePath }: EditorProps) {
@@ -54,6 +81,10 @@ function Editor({ viewMode, filePath }: EditorProps) {
                 codeBlock: false,
             }),
             MermaidExtension,
+            DatasetExtension,
+            QueryExtension,
+            ImageGenExtension,
+            DiagramGenExtension,
             CodeBlockLowlight.configure({
                 lowlight,
                 defaultLanguage: "typescript",
@@ -101,11 +132,20 @@ function Editor({ viewMode, filePath }: EditorProps) {
                 try {
                     const content = await storage.readFile(filePath);
                     setRawMarkdown(content);
-                    const html = await marked.parse(content);
+                    const rawHtml = await marked.parse(content);
+                    // Sanitize Markdown→HTML before TipTap to prevent XSS from untrusted .md files
+                    const html = sanitizeHtml(
+                        typeof rawHtml === "string" ? rawHtml : String(rawHtml)
+                    );
                     editor.commands.setContent(html);
                 } catch (error) {
                     console.error("Failed to read file:", error);
-                    editor.commands.setContent(`<p style="color: red">Error loading file: ${error}</p>`);
+                    const message =
+                        error instanceof Error ? error.message : String(error);
+                    // Escape as text — never inject the raw error object into HTML
+                    editor.commands.setContent(
+                        `<p style="color: red">Error loading file: ${escapeHtmlText(message)}</p>`
+                    );
                 }
             } else {
                 setRawMarkdown("");
