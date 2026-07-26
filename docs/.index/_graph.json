@@ -3,8 +3,14 @@
  "nodes": {
   "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Install WikiTicket SDD worklog tooling"
+  },
+  "roadmap": {
+   "doc_type": "roadmap",
+   "source": "docs/roadmap.md",
+   "title": "Roadmap",
+   "truth_state": "current"
   }
  },
  "version": 1
