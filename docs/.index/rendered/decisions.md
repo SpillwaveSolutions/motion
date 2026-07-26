@@ -11,3 +11,4 @@ _Why things are the way they are: ADRs (rules adopted) and plans (designs execut
 
 | Plan | Lifecycle | Truth | Date |
 |---|---|---|---|
+| [[Plan-motion-next-phase]] Motion next development phase | planned | current | 2026-07-26 |
