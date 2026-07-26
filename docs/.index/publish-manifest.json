@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "8c5fb1643e15",
+   "render_hash": "44002a329cb5",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "d3182fbfb022",
+   "render_hash": "7ea3602dacd7",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "1c61bb3e6dc0",
+   "render_hash": "95798a976d81",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -61,11 +61,202 @@
    "wiki_key": "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-26T01:27:40Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBH4J746JDANTQKYVSN",
+   "render": "as-is",
+   "render_hash": "2795ac5cf800",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBH4J746JDANTQKYVSN.md",
+   "title": "Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBH4J746JDANTQKYVSN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBH7SW7J03FYN4XZ08J",
+   "render": "as-is",
+   "render_hash": "8091b5df165e",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBH7SW7J03FYN4XZ08J.md",
+   "title": "Sync content on viewMode transitions in Editor/index.tsx, reusing the existing",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBH7SW7J03FYN4XZ08J"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHA5DRP85QQ0EHTAJ6",
+   "render": "as-is",
+   "render_hash": "0ba01b685ab9",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHA5DRP85QQ0EHTAJ6.md",
+   "title": "Give editor extensions a creation UX",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
+   "render": "as-is",
+   "render_hash": "5f09f32cb46a",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
+   "title": "Motion next development phase",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHABFSC9K9NJ90168Q"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHBG53PG8SKVMMNCC4",
+   "render": "as-is",
+   "render_hash": "ee329f4e1fd5",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHBG53PG8SKVMMNCC4.md",
+   "title": "Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHBG53PG8SKVMMNCC4"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHBTXGWG8HREAG8AG9",
+   "render": "as-is",
+   "render_hash": "466471cc7042",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHBTXGWG8HREAG8AG9.md",
+   "title": "\"/\" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHBTXGWG8HREAG8AG9"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHDMXV57V4JZW3PS5K",
+   "render": "as-is",
+   "render_hash": "6a91f4894536",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHDMXV57V4JZW3PS5K.md",
+   "title": "Fix editor mode-desync between WYSIWYG, Markdown, and Split views",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHDMXV57V4JZW3PS5K"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHW4FJK9EGFAQ3XNJX",
+   "render": "as-is",
+   "render_hash": "57874c07abe8",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHW4FJK9EGFAQ3XNJX.md",
+   "title": "Verify and fix the claude CLI system-prompt contract in cliWrappers",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBHZQWH62SK631C3H1K",
+   "render": "as-is",
+   "render_hash": "c339eed86fde",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBHZQWH62SK631C3H1K.md",
+   "title": "Toolbar buttons to insert each of the 5 block extensions, reusing the existing",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBHZQWH62SK631C3H1K"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJ18SB2ZCSFK06BNJ2",
+   "render": "as-is",
+   "render_hash": "722433c06849",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJ18SB2ZCSFK06BNJ2.md",
+   "title": "WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJ5718M3GQPAB76RHS",
+   "render": "as-is",
+   "render_hash": "40ab45443e1c",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJ5718M3GQPAB76RHS.md",
+   "title": "Real diagram generation, and scope a real ImageGen backend",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJ5718M3GQPAB76RHS"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJC07FEQ0FT0KQ302M",
+   "render": "as-is",
+   "render_hash": "9be4e24968e2",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJC07FEQ0FT0KQ302M.md",
+   "title": "Fix web/dev storage mock so Dataset/Query are testable outside Tauri",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJC07FEQ0FT0KQ302M"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJCWMMF7THJZFB6943",
+   "render": "as-is",
+   "render_hash": "e3fb6c5538e1",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJCWMMF7THJZFB6943.md",
+   "title": "Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJCWMMF7THJZFB6943"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJEYPZ9RX0F86490TM",
+   "render": "as-is",
+   "render_hash": "3350dbc95044",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJEYPZ9RX0F86490TM.md",
+   "title": "Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJEYPZ9RX0F86490TM"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJT7FG0G30WYS3YF6Q",
+   "render": "as-is",
+   "render_hash": "7f40afd6674a",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJT7FG0G30WYS3YF6Q.md",
+   "title": "File picker for Dataset's source field, populated from storage.listFiles",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJT7FG0G30WYS3YF6Q"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJV920SFW0MAN9MX9J",
+   "render": "as-is",
+   "render_hash": "44db03832295",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJV920SFW0MAN9MX9J.md",
+   "title": "Wire the per-note enrichment action into the UI",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJV920SFW0MAN9MX9J"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T",
+   "render": "as-is",
+   "render_hash": "4e0f54fe7acf",
+   "source": "docs/.index/rendered/tickets/01KYFZ6RBJZNYDT9AK2V0RA11T.md",
+   "title": "Per-note \"AI Refine\"/\"Generate Summary\" toolbar action backed by ContentInjector",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ6RBJZNYDT9AK2V0RA11T"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYFZ8RGR06XBSG9CH4TEWYJY",
+   "render": "as-is",
+   "render_hash": "dd59761c7406",
+   "source": "docs/.index/rendered/tickets/01KYFZ8RGR06XBSG9CH4TEWYJY.md",
+   "title": "Workspace-level topic clustering + auto TOC/SKILL generation",
+   "truth_state": "open",
+   "wiki_key": "item/01KYFZ8RGR06XBSG9CH4TEWYJY"
+  },
+  {
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-motion-next-phase",
+   "render": "doc+banner",
+   "render_hash": "c0f94212e5c8",
+   "source": "docs/plans/2026-07-26-motion-next-phase.md",
+   "title": "Motion next development phase",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-07-26-motion-next-phase"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-26T19:43:41Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "c93449169270",
+   "render_hash": "2f7656ef7d29",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -73,7 +264,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "bf90917cf238",
+  "render_hash": "621220c02dc0",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

@@ -1,10 +1,272 @@
 {
- "edges": [],
+ "edges": [
+  {
+   "from": "item/01KYFZ6RBH4J746JDANTQKYVSN",
+   "to": "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBH7SW7J03FYN4XZ08J",
+   "to": "item/01KYFZ6RBHDMXV57V4JZW3PS5K",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBHBG53PG8SKVMMNCC4",
+   "to": "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBHBTXGWG8HREAG8AG9",
+   "to": "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBHDMXV57V4JZW3PS5K",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBHZQWH62SK631C3H1K",
+   "to": "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2",
+   "to": "item/01KYFZ6RBJC07FEQ0FT0KQ302M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJC07FEQ0FT0KQ302M",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJCWMMF7THJZFB6943",
+   "to": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJEYPZ9RX0F86490TM",
+   "to": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJT7FG0G30WYS3YF6Q",
+   "to": "item/01KYFZ6RBJC07FEQ0FT0KQ302M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJV920SFW0MAN9MX9J",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYFZ6RBJZNYDT9AK2V0RA11T",
+   "to": "item/01KYFZ6RBJV920SFW0MAN9MX9J",
+   "type": "belongs-to"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBH7SW7J03FYN4XZ08J",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHBG53PG8SKVMMNCC4",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHBTXGWG8HREAG8AG9",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHDMXV57V4JZW3PS5K",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBHZQWH62SK631C3H1K",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJC07FEQ0FT0KQ302M",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJCWMMF7THJZFB6943",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJEYPZ9RX0F86490TM",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJT7FG0G30WYS3YF6Q",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJV920SFW0MAN9MX9J",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-26-motion-next-phase",
+   "to": "item/01KYFZ6RBJZNYDT9AK2V0RA11T",
+   "type": "produces"
+  }
+ ],
  "nodes": {
   "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN": {
    "doc_type": "item",
    "status": "done",
    "title": "Install WikiTicket SDD worklog tooling"
+  },
+  "item/01KYFZ6RBH4J746JDANTQKYVSN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching"
+  },
+  "item/01KYFZ6RBH7SW7J03FYN4XZ08J": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Sync content on viewMode transitions in Editor/index.tsx, reusing the existing"
+  },
+  "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Give editor extensions a creation UX"
+  },
+  "item/01KYFZ6RBHABFSC9K9NJ90168Q": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Motion next development phase"
+  },
+  "item/01KYFZ6RBHBG53PG8SKVMMNCC4": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM"
+  },
+  "item/01KYFZ6RBHBTXGWG8HREAG8AG9": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "\"/\" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,"
+  },
+  "item/01KYFZ6RBHDMXV57V4JZW3PS5K": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Fix editor mode-desync between WYSIWYG, Markdown, and Split views"
+  },
+  "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Verify and fix the claude CLI system-prompt contract in cliWrappers"
+  },
+  "item/01KYFZ6RBHZQWH62SK631C3H1K": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Toolbar buttons to insert each of the 5 block extensions, reusing the existing"
+  },
+  "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches"
+  },
+  "item/01KYFZ6RBJ5718M3GQPAB76RHS": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Real diagram generation, and scope a real ImageGen backend"
+  },
+  "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Fix web/dev storage mock so Dataset/Query are testable outside Tauri"
+  },
+  "item/01KYFZ6RBJCWMMF7THJZFB6943": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,"
+  },
+  "item/01KYFZ6RBJEYPZ9RX0F86490TM": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,"
+  },
+  "item/01KYFZ6RBJT7FG0G30WYS3YF6Q": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "File picker for Dataset's source field, populated from storage.listFiles"
+  },
+  "item/01KYFZ6RBJV920SFW0MAN9MX9J": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Wire the per-note enrichment action into the UI"
+  },
+  "item/01KYFZ6RBJZNYDT9AK2V0RA11T": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Per-note \"AI Refine\"/\"Generate Summary\" toolbar action backed by ContentInjector"
+  },
+  "item/01KYFZ8RGR06XBSG9CH4TEWYJY": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Workspace-level topic clustering + auto TOC/SKILL generation"
+  },
+  "plan/2026-07-26-motion-next-phase": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-07-26-motion-next-phase.md",
+   "title": "Motion next development phase",
+   "truth_state": "current"
   },
   "roadmap": {
    "doc_type": "roadmap",
