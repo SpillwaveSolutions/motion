@@ -1,0 +1,69 @@
+{
+ "pages": [
+  {
+   "frozen": false,
+   "page_name": "Home",
+   "render": "as-is",
+   "render_hash": "8c5fb1643e15",
+   "source": "docs/.index/rendered/home.md",
+   "title": "Home",
+   "truth_state": "current",
+   "wiki_key": "home"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Decisions",
+   "render": "as-is",
+   "render_hash": "d3182fbfb022",
+   "source": "docs/.index/rendered/decisions.md",
+   "title": "Decisions Index",
+   "truth_state": "current",
+   "wiki_key": "index/decisions"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Releases",
+   "render": "as-is",
+   "render_hash": "f45668ba0034",
+   "source": "docs/.index/rendered/releases.md",
+   "title": "Releases Index",
+   "truth_state": "current",
+   "wiki_key": "index/releases"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Status",
+   "render": "as-is",
+   "render_hash": "b8bcebbbbe23",
+   "source": "docs/.index/rendered/status.md",
+   "title": "Status Archive",
+   "truth_state": "current",
+   "wiki_key": "index/status"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Traceability",
+   "render": "as-is",
+   "render_hash": "7072906de5bf",
+   "source": "docs/.index/rendered/traceability.md",
+   "title": "Traceability Index",
+   "truth_state": "current",
+   "wiki_key": "index/traceability"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYDZ4A5HN1AZ7BN8Q2WV3XVN",
+   "render": "as-is",
+   "render_hash": "9845b4091db4",
+   "source": "docs/.index/rendered/tickets/01KYDZ4A5HN1AZ7BN8Q2WV3XVN.md",
+   "title": "Install WikiTicket SDD worklog tooling",
+   "truth_state": "open",
+   "wiki_key": "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN"
+  }
+ ],
+ "sidebar": {
+  "render_hash": "bf90917cf238",
+  "source": "docs/.index/rendered/_Sidebar.md"
+ },
+ "version": 1
+}
