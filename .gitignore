@@ -30,5 +30,9 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # IntelliJ based IDEs
 .idea
 
+# Python bytecode (worklog CLI)
+__pycache__/
+*.pyc
+
 # Finder (MacOS) folder config
 .DS_Store
