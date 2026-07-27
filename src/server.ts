@@ -8,6 +8,7 @@ import { watch } from "fs";
 import { readdir } from "fs/promises";
 import { join, dirname, resolve, relative, isAbsolute } from "path";
 import { callLLM, type ModelProvider } from "./lib/cliWrappers";
+import { generateImage } from "./lib/imageGen";
 
 const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
@@ -173,6 +174,23 @@ const server = Bun.serve({
                     systemPrompt: typeof body.systemPrompt === "string" ? body.systemPrompt : undefined,
                     model: typeof body.model === "string" ? body.model : undefined,
                 });
+                return Response.json(result);
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                return Response.json({ error: message }, { status: 500 });
+            }
+        }
+
+        // Proxy for image generation: imageGen.ts's Bun.spawn only works in a
+        // real Bun process, never in browser-executed React code. Mirrors
+        // run_image_cli on the Tauri side.
+        if (pathname === "/api/image" && req.method === "POST") {
+            try {
+                const body = await req.json();
+                if (typeof body?.prompt !== "string" || !body.prompt) {
+                    return Response.json({ error: "Missing prompt" }, { status: 400 });
+                }
+                const result = await generateImage(body.prompt);
                 return Response.json(result);
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);

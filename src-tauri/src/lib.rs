@@ -1,3 +1,4 @@
+use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::Mutex;
@@ -7,6 +8,7 @@ use tokio::process::Command as TokioCommand;
 use tokio::time::timeout;
 
 const LLM_TIMEOUT_SECS: u64 = 120;
+const IMAGE_TIMEOUT_SECS: u64 = 120;
 
 /// Shells out to an LLM CLI (opencode/claude/qwen), mirroring
 /// cliWrappers.ts's callLLM arg-building for each provider. This is the
@@ -46,6 +48,39 @@ async fn run_llm_cli(
     }
 
     Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
+}
+
+/// Shells out to the `imagen` CLI (wraps Google's Gemini Imagen API) and
+/// returns the generated PNG as a base64 data URI. Tauri-side counterpart to
+/// the dev server's POST /api/image; see imageGen.ts for why this can't run
+/// directly in the webview.
+#[tauri::command]
+async fn run_image_cli(prompt: String) -> Result<String, String> {
+    let tmp_path = std::env::temp_dir().join(format!(
+        "motion-imagegen-{}-{}.png",
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .map(|d| d.as_millis())
+            .unwrap_or(0),
+        std::process::id()
+    ));
+
+    let run = TokioCommand::new("imagen")
+        .args(["generate", &prompt, "-o", &tmp_path.to_string_lossy()])
+        .output();
+    let output = timeout(Duration::from_secs(IMAGE_TIMEOUT_SECS), run)
+        .await
+        .map_err(|_| format!("imagen CLI timed out after {IMAGE_TIMEOUT_SECS}s"))?
+        .map_err(|e| format!("Failed to run imagen: {e}"))?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        return Err(format!("imagen CLI failed: {stderr}"));
+    }
+
+    let bytes = fs::read(&tmp_path).map_err(|e| format!("imagen produced no readable output: {e}"))?;
+    let _ = fs::remove_file(&tmp_path);
+    Ok(format!("data:image/png;base64,{}", BASE64.encode(bytes)))
 }
 
 /// Allowed workspace root for custom filesystem commands.
@@ -230,7 +265,8 @@ pub fn run() {
             write_file,
             list_markdown_files,
             list_data_files,
-            run_llm_cli
+            run_llm_cli,
+            run_image_cli
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

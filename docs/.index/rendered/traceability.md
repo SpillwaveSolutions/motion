@@ -2,6 +2,14 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container
+`01KYJXSYEZ97M9638S91GYZWV0` · status: todo
+- belongs-to: Real diagram generation, and scope a real ImageGen backend
+
+### sanitizeSvg strips Mermaid's HTML-based node labels (foreignObject), leaving diagrams with empty shapes and no text
+`01KYJXSMV02C0PP9H8BKE1PNEZ` · status: done
+- belongs-to: Real diagram generation, and scope a real ImageGen backend
+
 ### TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring
 `01KYJW5XJ5HTG7ESZ7DDDS8W0C` · status: todo
 
@@ -28,7 +36,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,
-`01KYFZ6RBJEYPZ9RX0F86490TM` · status: todo
+`01KYFZ6RBJEYPZ9RX0F86490TM` · status: done
 - belongs-to: Real diagram generation, and scope a real ImageGen backend
 - produced-by: [[Plan-motion-next-phase]]
 
@@ -45,10 +53,12 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Real diagram generation, and scope a real ImageGen backend
-`01KYFZ6RBJ5718M3GQPAB76RHS` · status: in_progress
+`01KYFZ6RBJ5718M3GQPAB76RHS` · status: done
 - belongs-to: Motion next development phase
 - contains: Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,
 - contains: Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,
+- contains: sanitizeSvg strips Mermaid's HTML-based node labels (foreignObject), leaving diagrams with empty shapes and no text
+- contains: Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container
 - produced-by: [[Plan-motion-next-phase]]
 
 ### WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches

@@ -1,8 +1,8 @@
-# Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,
+# Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container
 
-`01KYFZ6RBJEYPZ9RX0F86490TM` · subtask/feature · **done**
+`01KYJXSYEZ97M9638S91GYZWV0` · task/bug · **open**
 
-Decision (user-confirmed): use the locally-installed `imagen` CLI (wraps Google's Gemini Imagen API, already configured with a working API key on this machine).
+Observed while live-verifying the sanitizeSvg fix: when an AI-generated diagram has invalid Mermaid syntax, DiagramGenExtension.tsx correctly catches the error and shows its own inline message, but mermaid.render() itself also has a side effect of appending a bomb-icon error overlay to document.body -- outside any of our React-managed containers, appearing as a stray fixed-position toast unrelated to the failing block's on-screen position.
 
 ## Hierarchy
 
