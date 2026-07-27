@@ -78,7 +78,11 @@ fn write_file(path: String, content: String, state: State<'_, WorkspaceState>) -
     fs::write(&resolved, content).map_err(|e| e.to_string())
 }
 
-fn collect_markdown_files(dir: &Path, out: &mut Vec<String>) -> Result<(), String> {
+fn collect_files_with_extensions(
+    dir: &Path,
+    extensions: &[&str],
+    out: &mut Vec<String>,
+) -> Result<(), String> {
     let entries = fs::read_dir(dir).map_err(|e| format!("Failed to read {}: {e}", dir.display()))?;
     for entry in entries {
         let entry = match entry {
@@ -103,11 +107,13 @@ fn collect_markdown_files(dir: &Path, out: &mut Vec<String>) -> Result<(), Strin
             if name.starts_with('.') {
                 continue;
             }
-            collect_markdown_files(&path, out)?;
-        } else if file_type.is_file()
-            && path.extension().and_then(|s| s.to_str()) == Some("md")
-        {
-            out.push(path.to_string_lossy().into_owned());
+            collect_files_with_extensions(&path, extensions, out)?;
+        } else if file_type.is_file() {
+            if let Some(ext) = path.extension().and_then(|s| s.to_str()) {
+                if extensions.contains(&ext) {
+                    out.push(path.to_string_lossy().into_owned());
+                }
+            }
         }
     }
     Ok(())
@@ -129,7 +135,28 @@ fn list_markdown_files(path: String, state: State<'_, WorkspaceState>) -> Result
     }
 
     let mut files = Vec::new();
-    collect_markdown_files(&root, &mut files)?;
+    collect_files_with_extensions(&root, &["md"], &mut files)?;
+    files.sort();
+    Ok(files)
+}
+
+/// Lists CSV/JSON/JSONL files under the already-opened workspace, for the
+/// Dataset block's source picker. Unlike list_markdown_files, this doesn't
+/// take a path -- it relies on a workspace already having been opened.
+#[tauri::command]
+fn list_data_files(state: State<'_, WorkspaceState>) -> Result<Vec<String>, String> {
+    let root = {
+        let guard = state
+            .root
+            .lock()
+            .map_err(|_| "Workspace lock poisoned".to_string())?;
+        guard
+            .clone()
+            .ok_or_else(|| "No workspace opened. Open a folder first.".to_string())?
+    };
+
+    let mut files = Vec::new();
+    collect_files_with_extensions(&root, &["csv", "json", "jsonl"], &mut files)?;
     files.sort();
     Ok(files)
 }
@@ -156,7 +183,8 @@ pub fn run() {
             set_workspace,
             read_file,
             write_file,
-            list_markdown_files
+            list_markdown_files,
+            list_data_files
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

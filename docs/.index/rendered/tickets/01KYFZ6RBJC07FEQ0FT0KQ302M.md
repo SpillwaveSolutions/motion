@@ -1,6 +1,6 @@
 # Fix web/dev storage mock so Dataset/Query are testable outside Tauri
 
-`01KYFZ6RBJC07FEQ0FT0KQ302M` · task/bug · **in-progress**
+`01KYFZ6RBJC07FEQ0FT0KQ302M` · task/bug · **done**
 
 WebStorage.readFile only returns real content for three hardcoded demo paths; any other
 filename returns a placeholder string.
@@ -12,6 +12,6 @@ filename returns a placeholder string.
 ## Subtasks
 
 - [[Ticket-01KYFZ6RBJ18SB2ZCSFK06BNJ2]] WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches — WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches (done)
-- [[Ticket-01KYFZ6RBJT7FG0G30WYS3YF6Q]] File picker for Dataset's source field, populated from storage.listFiles — File picker for Dataset's source field, populated from storage.listFiles (open)
+- [[Ticket-01KYFZ6RBJT7FG0G30WYS3YF6Q]] File picker for Dataset's source field, populated from storage.listFiles — File picker for Dataset's source field, populated from storage.listFiles (done)
 
-Progress: 1/2 done
+Progress: 2/2 done

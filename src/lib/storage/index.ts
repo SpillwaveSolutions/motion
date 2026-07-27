@@ -6,6 +6,8 @@ export interface StorageProvider {
     listFiles(path: string): Promise<string[]>;
     readFile(path: string): Promise<string>;
     writeFile(path: string, content: string): Promise<void>;
+    /** CSV/JSON/JSONL files in the opened workspace, for the Dataset block's source picker. */
+    listDataFiles(): Promise<string[]>;
 }
 
 export class TauriStorage implements StorageProvider {
@@ -33,6 +35,10 @@ export class TauriStorage implements StorageProvider {
 
     async writeFile(path: string, content: string): Promise<void> {
         await invoke("write_file", { path, content });
+    }
+
+    async listDataFiles(): Promise<string[]> {
+        return await invoke<string[]>("list_data_files");
     }
 }
 
@@ -71,6 +77,13 @@ export class WebStorage implements StorageProvider {
         console.warn(
             `[Motion] WebStorage: write to "${path}" was simulated and did not persist.`
         );
+    }
+
+    async listDataFiles(): Promise<string[]> {
+        const res = await fetch("/api/demo-files");
+        if (!res.ok) return [];
+        const files: string[] = await res.json();
+        return files.filter((f) => /\.(csv|json|jsonl)$/i.test(f));
     }
 }
 
