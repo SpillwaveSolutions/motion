@@ -39,7 +39,8 @@ export class TauriStorage implements StorageProvider {
 export class WebStorage implements StorageProvider {
     constructor() {
         console.warn(
-            "[Motion] WebStorage is active: file reads return mock data and writes do not persist. " +
+            "[Motion] WebStorage is active: reads come from the dev server's public/demo/ " +
+            "workspace (no Tauri filesystem access here); writes do not persist. " +
             "Run inside the Tauri shell for real filesystem access."
         );
     }
@@ -48,20 +49,22 @@ export class WebStorage implements StorageProvider {
         return "web-mock-folder";
     }
 
-    // Mock for web testing/playwright
+    // No Tauri filesystem in a plain browser -- list the real demo workspace
+    // the dev server serves from public/demo/, instead of a hardcoded array
+    // that could drift from what's actually there.
     async listFiles(_path: string): Promise<string[]> {
-        return ["welcome.md", "getting-started.md", "architecture.md", "sample-data.csv", "sample-events.jsonl"];
+        const res = await fetch("/api/demo-files");
+        if (!res.ok) return [];
+        return await res.json();
     }
 
     async readFile(path: string): Promise<string> {
-        if (path.includes("welcome.md")) return "# Welcome\nThis is a mock welcome file.";
-        if (path.includes("sample-data.csv")) {
-            return "id,name,role,experience\n1,Alice,Architect,12\n2,Bob,Author,5\n3,Charlie,Developer,8\n4,Diana,Designer,7\n5,Eve,Manager,10";
+        const filename = path.split("/").pop() ?? path;
+        const res = await fetch(`/demo/${encodeURIComponent(filename)}`);
+        if (!res.ok) {
+            throw new Error(`Failed to read "${path}": ${res.status} ${res.statusText}`);
         }
-        if (path.includes("sample-events.jsonl")) {
-            return '{"event": "login", "user": "alice", "timestamp": "2024-03-20T10:00:00Z"}\n{"event": "view_page", "user": "bob", "timestamp": "2024-03-20T10:05:00Z"}\n{"event": "click_btn", "user": "alice", "timestamp": "2024-03-20T10:10:00Z"}';
-        }
-        return `Content for ${path}`;
+        return await res.text();
     }
 
     async writeFile(path: string, _content: string): Promise<void> {

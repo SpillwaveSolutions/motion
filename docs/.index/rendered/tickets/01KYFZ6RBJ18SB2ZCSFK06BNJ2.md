@@ -1,6 +1,6 @@
 # WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches
 
-`01KYFZ6RBJ18SB2ZCSFK06BNJ2` · subtask/feature · **open**
+`01KYFZ6RBJ18SB2ZCSFK06BNJ2` · subtask/feature · **done**
 
 WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches
 

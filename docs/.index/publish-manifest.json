@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "e4559662e334",
+   "render_hash": "b3890952c3cd",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -94,7 +94,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
    "render": "as-is",
-   "render_hash": "5fb1c76152d7",
+   "render_hash": "090c7c1eb48a",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
    "title": "Motion next development phase",
    "truth_state": "open",
@@ -154,10 +154,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJ18SB2ZCSFK06BNJ2",
    "render": "as-is",
-   "render_hash": "722433c06849",
+   "render_hash": "fb6613d21800",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJ18SB2ZCSFK06BNJ2.md",
    "title": "WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2"
   },
   {
@@ -174,10 +174,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJC07FEQ0FT0KQ302M",
    "render": "as-is",
-   "render_hash": "9be4e24968e2",
+   "render_hash": "32cd07fceea6",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJC07FEQ0FT0KQ302M.md",
    "title": "Fix web/dev storage mock so Dataset/Query are testable outside Tauri",
-   "truth_state": "open",
+   "truth_state": "in-progress",
    "wiki_key": "item/01KYFZ6RBJC07FEQ0FT0KQ302M"
   },
   {
@@ -262,11 +262,11 @@
    "wiki_key": "plan/2026-07-26-motion-next-phase"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T21:58:45Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T22:11:29Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "d8d36f500319",
+   "render_hash": "7800468aec54",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
