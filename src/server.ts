@@ -5,6 +5,7 @@
  */
 
 import { watch } from "fs";
+import { readdir } from "fs/promises";
 import { join, dirname, resolve, relative, isAbsolute } from "path";
 
 // Get project root (parent of src/)
@@ -146,6 +147,20 @@ const server = Bun.serve({
                     "Cache-Control": "no-cache",
                 },
             });
+        }
+
+        // List the demo workspace files WebStorage reads from in a browser
+        // (no Tauri filesystem access there -- these are real files under
+        // public/demo/, not a hardcoded list).
+        if (pathname === "/api/demo-files") {
+            try {
+                const files = (await readdir(join(PUBLIC_DIR, "demo"))).filter(
+                    (f) => !f.startsWith(".")
+                );
+                return Response.json(files, { headers: { "Cache-Control": "no-cache" } });
+            } catch {
+                return Response.json([], { headers: { "Cache-Control": "no-cache" } });
+            }
         }
 
         // Serve static files from public directory (path-traversal safe)

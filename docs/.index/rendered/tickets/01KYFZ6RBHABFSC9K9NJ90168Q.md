@@ -17,7 +17,7 @@ it's a guess. (done)
 - [[Ticket-01KYFZ6RBJ5718M3GQPAB76RHS]] Real diagram generation, and scope a real ImageGen backend — DiagramGenExtension and ImageGenExtension both fully mock generation with a setTimeout and
 keyword-matched fake output; no backend exists for either. (open)
 - [[Ticket-01KYFZ6RBJC07FEQ0FT0KQ302M]] Fix web/dev storage mock so Dataset/Query are testable outside Tauri — WebStorage.readFile only returns real content for three hardcoded demo paths; any other
-filename returns a placeholder string. (open)
+filename returns a placeholder string. (in-progress)
 - [[Ticket-01KYFZ6RBJV920SFW0MAN9MX9J]] Wire the per-note enrichment action into the UI — cliWrappers, TopicRefiner, TOCGenerator, SkillGenerator, and ContentInjector are all real,
 tested, working modules with zero imports from App.tsx or anything under src/components/ — only
 their own test files ever call them. (open)

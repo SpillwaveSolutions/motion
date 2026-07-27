@@ -35,7 +35,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Fix web/dev storage mock so Dataset/Query are testable outside Tauri
-`01KYFZ6RBJC07FEQ0FT0KQ302M` · status: todo
+`01KYFZ6RBJC07FEQ0FT0KQ302M` · status: in_progress
 - belongs-to: Motion next development phase
 - contains: WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches
 - contains: File picker for Dataset's source field, populated from storage.listFiles
@@ -49,7 +49,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches
-`01KYFZ6RBJ18SB2ZCSFK06BNJ2` · status: todo
+`01KYFZ6RBJ18SB2ZCSFK06BNJ2` · status: done
 - belongs-to: Fix web/dev storage mock so Dataset/Query are testable outside Tauri
 - produced-by: [[Plan-motion-next-phase]]
 

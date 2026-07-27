@@ -219,7 +219,7 @@
   },
   "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches"
   },
   "item/01KYFZ6RBJ5718M3GQPAB76RHS": {
@@ -229,7 +229,7 @@
   },
   "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Fix web/dev storage mock so Dataset/Query are testable outside Tauri"
   },
   "item/01KYFZ6RBJCWMMF7THJZFB6943": {
