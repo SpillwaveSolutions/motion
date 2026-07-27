@@ -1,7 +1,52 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::sync::Mutex;
+use std::time::Duration;
 use tauri::State;
+use tokio::process::Command as TokioCommand;
+use tokio::time::timeout;
+
+const LLM_TIMEOUT_SECS: u64 = 120;
+
+/// Shells out to an LLM CLI (opencode/claude/qwen), mirroring
+/// cliWrappers.ts's callLLM arg-building for each provider. This is the
+/// Tauri-side counterpart to the dev server's POST /api/llm -- both exist
+/// because Bun.spawn (what cliWrappers.ts itself uses) only works in a real
+/// Bun process, never in the webview/browser-executed React code that calls
+/// this command.
+#[tauri::command]
+async fn run_llm_cli(
+    provider: String,
+    prompt: String,
+    system_prompt: Option<String>,
+) -> Result<String, String> {
+    let args: Vec<String> = match provider.as_str() {
+        "claude" => {
+            let mut a = vec!["-p".to_string(), prompt];
+            if let Some(sp) = system_prompt {
+                a.push("--system-prompt".to_string());
+                a.push(sp);
+            }
+            a
+        }
+        "opencode" => vec!["--model".to_string(), "gpt-4o".to_string(), "--prompt".to_string(), prompt],
+        "qwen" => vec!["--model".to_string(), "qwen-max".to_string(), "--prompt".to_string(), prompt],
+        _ => return Err(format!("Unsupported provider: {provider}")),
+    };
+
+    let run = TokioCommand::new(&provider).args(&args).output();
+    let output = timeout(Duration::from_secs(LLM_TIMEOUT_SECS), run)
+        .await
+        .map_err(|_| format!("CLI {provider} timed out after {LLM_TIMEOUT_SECS}s"))?
+        .map_err(|e| format!("Failed to run {provider}: {e}"))?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        return Err(format!("CLI {provider} failed: {stderr}"));
+    }
+
+    Ok(String::from_utf8_lossy(&output.stdout).trim().to_string())
+}
 
 /// Allowed workspace root for custom filesystem commands.
 /// Paths for read/write/list must stay within this directory (after canonicalize).
@@ -184,7 +229,8 @@ pub fn run() {
             read_file,
             write_file,
             list_markdown_files,
-            list_data_files
+            list_data_files,
+            run_llm_cli
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

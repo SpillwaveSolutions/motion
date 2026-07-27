@@ -1,6 +1,6 @@
 # Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,
 
-`01KYFZ6RBJCWMMF7THJZFB6943` · subtask/feature · **open**
+`01KYFZ6RBJCWMMF7THJZFB6943` · subtask/feature · **done**
 
 mirroring ContentInjector.verifyCodeBlocks()'s cheap-check-before-accept pattern
 

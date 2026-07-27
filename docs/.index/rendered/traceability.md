@@ -2,6 +2,9 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring
+`01KYJW5XJ5HTG7ESZ7DDDS8W0C` · status: todo
+
 ### Manually verify mode-desync fix in browser (agent-browser)
 `01KYJQ3WF4XJ4D1G7T9WQ3V0TV` · status: done
 
@@ -30,7 +33,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,
-`01KYFZ6RBJCWMMF7THJZFB6943` · status: todo
+`01KYFZ6RBJCWMMF7THJZFB6943` · status: done
 - belongs-to: Real diagram generation, and scope a real ImageGen backend
 - produced-by: [[Plan-motion-next-phase]]
 
@@ -42,7 +45,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Real diagram generation, and scope a real ImageGen backend
-`01KYFZ6RBJ5718M3GQPAB76RHS` · status: todo
+`01KYFZ6RBJ5718M3GQPAB76RHS` · status: in_progress
 - belongs-to: Motion next development phase
 - contains: Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,
 - contains: Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,

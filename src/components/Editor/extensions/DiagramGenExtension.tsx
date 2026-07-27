@@ -3,6 +3,27 @@ import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tip
 import { useEffect, useRef, useState } from "react";
 import mermaid from "mermaid";
 import { sanitizeSvg } from "../../../lib/sanitize";
+import { callLLMFromUI } from "../../../lib/llmClient";
+
+// LLMs asked for "only Mermaid syntax" still often wrap it in a fenced code
+// block anyway -- strip that defensively before validating.
+export function stripCodeFence(text: string): string {
+    const match = /^```(?:mermaid)?\s*\n?([\s\S]*?)\n?```$/.exec(text.trim());
+    return (match ? match[1] ?? text : text).trim();
+}
+
+async function generateMermaidDiagram(userPrompt: string): Promise<string> {
+    const response = await callLLMFromUI("claude", {
+        prompt: `Generate a Mermaid diagram for: ${userPrompt}`,
+        systemPrompt:
+            "You output only valid Mermaid diagram syntax. No markdown code fences, no explanation, no commentary -- just the diagram definition.",
+    });
+    const candidate = stripCodeFence(response.content);
+    // Cheap check before accepting, mirroring ContentInjector.verifyCodeBlocks():
+    // mermaid.parse() throws on invalid syntax without actually rendering anything.
+    await mermaid.parse(candidate);
+    return candidate;
+}
 
 function DiagramGenNodeView({ node, updateAttributes }: NodeViewProps) {
     const { prompt, content } = node.attrs;
@@ -22,6 +43,7 @@ function DiagramGenNodeView({ node, updateAttributes }: NodeViewProps) {
                 const id = `diagram-gen-${Math.random().toString(36).substr(2, 9)}`;
                 const { svg } = await mermaid.render(id, mermaidCode);
                 if (cancelled || !svgRef.current) return;
+                svgRef.current.classList.remove("dataset-error");
                 svgRef.current.innerHTML = sanitizeSvg(svg);
             } catch (err) {
                 console.error("Mermaid render error:", err);
@@ -51,26 +73,20 @@ function DiagramGenNodeView({ node, updateAttributes }: NodeViewProps) {
         setError(null);
 
         try {
-            // In a real implementation, this would call our backend which uses one of the CLIs (gemini, claude, etc.)
-            // For now, we simulate with a mock response
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Mock generated mermaid code based on prompt keywords
-            let mockContent = "graph TD\n    A[Start] --> B[Process]\n    B --> C[End]";
-            if (editPrompt.toLowerCase().includes("flowchart")) {
-                mockContent = "graph LR\n    Step1[Input] --> Step2[Analysis]\n    Step2 --> Step3[Output]";
-            } else if (editPrompt.toLowerCase().includes("sequence")) {
-                mockContent = "sequenceDiagram\n    Alice->>Bob: Hello Bob, how are you?\n    Bob-->>Alice: Jolly good!";
-            }
+            const generated = await generateMermaidDiagram(editPrompt);
 
             updateAttributes({
                 prompt: editPrompt,
-                content: mockContent
+                content: generated
             });
-            setEditContent(mockContent);
+            setEditContent(generated);
             setIsEditing(false);
         } catch (err) {
-            setError("Failed to generate diagram");
+            setError(
+                err instanceof Error
+                    ? `Failed to generate diagram: ${err.message}`
+                    : "Failed to generate diagram"
+            );
         } finally {
             setLoading(false);
         }

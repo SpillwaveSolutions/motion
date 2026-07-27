@@ -9,7 +9,7 @@ describe("TOCGenerator", () => {
             rawOutput: "Enriched TOC content"
         });
 
-        const generator = new TOCGenerator("gemini");
+        const generator = new TOCGenerator("claude");
         const result = await generator.enrichTOC("# TOC", { "Topic": ["Summary"] });
 
         expect(result).toBe("Enriched TOC content");

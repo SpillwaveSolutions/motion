@@ -224,7 +224,7 @@
   },
   "item/01KYFZ6RBJ5718M3GQPAB76RHS": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Real diagram generation, and scope a real ImageGen backend"
   },
   "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
@@ -234,7 +234,7 @@
   },
   "item/01KYFZ6RBJCWMMF7THJZFB6943": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,"
   },
   "item/01KYFZ6RBJEYPZ9RX0F86490TM": {
@@ -266,6 +266,11 @@
    "doc_type": "item",
    "status": "done",
    "title": "Manually verify mode-desync fix in browser (agent-browser)"
+  },
+  "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
