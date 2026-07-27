@@ -1,6 +1,6 @@
 # Sync content on viewMode transitions in Editor/index.tsx, reusing the existing
 
-`01KYFZ6RBH7SW7J03FYN4XZ08J` · subtask/feature · **open**
+`01KYFZ6RBH7SW7J03FYN4XZ08J` · subtask/feature · **done**
 
 marked/turndown/sanitizeHtml calls
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -33,6 +33,16 @@ turndown.addRule("fencedCodeBlock", {
 });
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
+
+// Leaving markdown mode is the only transition that needs an explicit push:
+// wysiwyg/split edits keep rawMarkdown current via onUpdate, but typing in
+// the markdown textarea never touches the editor doc directly.
+export function shouldSyncMarkdownIntoEditor(
+    prevMode: ViewMode | null,
+    nextMode: ViewMode
+): boolean {
+    return prevMode === "markdown" && nextMode !== "markdown";
+}
 
 interface EditorProps {
     viewMode: ViewMode;
@@ -74,6 +84,9 @@ content: null</code></pre>
 
 function Editor({ viewMode, filePath }: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
+    // Tracks the previously active view mode so we can sync content only on
+    // an actual mode transition, not on every render.
+    const prevViewModeRef = useRef<ViewMode | null>(null);
 
     const editor = useEditor({
         extensions: [
@@ -96,32 +109,26 @@ function Editor({ viewMode, filePath }: EditorProps) {
                 class: "tiptap-editor",
             },
         },
+        // Keep rawMarkdown in sync with WYSIWYG/split edits as they happen, so
+        // switching to markdown mode (or the split pane) never shows stale
+        // content and no edits are lost.
+        onUpdate: ({ editor: updatedEditor }) => {
+            setRawMarkdown(turndown.turndown(updatedEditor.getHTML()));
+        },
     });
 
     // Handle saving
     const handleSave = useCallback(async () => {
         if (!editor || !filePath) return;
 
-        let contentToSave = "";
-        if (viewMode === "markdown") {
-            contentToSave = rawMarkdown;
-        } else {
-            const html = editor.getHTML();
-            contentToSave = turndown.turndown(html);
-        }
-
         try {
-            await storage.writeFile(filePath, contentToSave);
+            await storage.writeFile(filePath, rawMarkdown);
             console.log("File saved successfully:", filePath);
-            // If we just saved from WYSIWYG, update rawMarkdown for consistency
-            if (viewMode !== "markdown") {
-                setRawMarkdown(contentToSave);
-            }
         } catch (error) {
             console.error("Failed to save file:", error);
             alert(`Error saving file: ${error}`);
         }
-    }, [editor, filePath, viewMode, rawMarkdown]);
+    }, [editor, filePath, rawMarkdown]);
 
     // Load file content
     useEffect(() => {
@@ -137,24 +144,42 @@ function Editor({ viewMode, filePath }: EditorProps) {
                     const html = sanitizeHtml(
                         typeof rawHtml === "string" ? rawHtml : String(rawHtml)
                     );
-                    editor.commands.setContent(html);
+                    editor.commands.setContent(html, { emitUpdate: false });
                 } catch (error) {
                     console.error("Failed to read file:", error);
                     const message =
                         error instanceof Error ? error.message : String(error);
                     // Escape as text — never inject the raw error object into HTML
                     editor.commands.setContent(
-                        `<p style="color: red">Error loading file: ${escapeHtmlText(message)}</p>`
+                        `<p style="color: red">Error loading file: ${escapeHtmlText(message)}</p>`,
+                        { emitUpdate: false }
                     );
                 }
             } else {
                 setRawMarkdown("");
-                editor.commands.setContent(welcomeHTML);
+                editor.commands.setContent(welcomeHTML, { emitUpdate: false });
             }
         };
 
         loadFile();
     }, [filePath, editor]);
+
+    // Sync markdown-mode edits into the editor doc when leaving markdown mode.
+    // The reverse direction (wysiwyg/split -> markdown) is already covered by
+    // onUpdate keeping rawMarkdown current at all times.
+    useEffect(() => {
+        if (!editor) return;
+        if (shouldSyncMarkdownIntoEditor(prevViewModeRef.current, viewMode)) {
+            (async () => {
+                const rawHtml = await marked.parse(rawMarkdown);
+                const html = sanitizeHtml(
+                    typeof rawHtml === "string" ? rawHtml : String(rawHtml)
+                );
+                editor.commands.setContent(html, { emitUpdate: false });
+            })();
+        }
+        prevViewModeRef.current = viewMode;
+    }, [viewMode, editor]);
 
     // Keyboard shortcut for save
     useEffect(() => {

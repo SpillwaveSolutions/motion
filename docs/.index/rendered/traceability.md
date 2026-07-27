@@ -63,7 +63,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Fix editor mode-desync between WYSIWYG, Markdown, and Split views
-`01KYFZ6RBHDMXV57V4JZW3PS5K` · status: todo
+`01KYFZ6RBHDMXV57V4JZW3PS5K` · status: done
 - belongs-to: Motion next development phase
 - contains: Sync content on viewMode transitions in Editor/index.tsx, reusing the existing
 - produced-by: [[Plan-motion-next-phase]]
@@ -96,7 +96,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Sync content on viewMode transitions in Editor/index.tsx, reusing the existing
-`01KYFZ6RBH7SW7J03FYN4XZ08J` · status: todo
+`01KYFZ6RBH7SW7J03FYN4XZ08J` · status: done
 - belongs-to: Fix editor mode-desync between WYSIWYG, Markdown, and Split views
 - produced-by: [[Plan-motion-next-phase]]
 

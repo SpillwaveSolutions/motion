@@ -11,7 +11,7 @@ are real, working TipTap nodes with zero UI affordance to create one — no slas
 rule, or toolbar button. (open)
 - [[Ticket-01KYFZ6RBHDMXV57V4JZW3PS5K]] Fix editor mode-desync between WYSIWYG, Markdown, and Split views — `src/components/Editor/index.tsx` keeps two independent sources of truth — the TipTap editor
 document and the rawMarkdown string state — that only reconcile in handleSave and the
-file-load effect. (open)
+file-load effect. (done)
 - [[Ticket-01KYFZ6RBHW4FJK9EGFAQ3XNJX]] Verify and fix the claude CLI system-prompt contract in cliWrappers — `src/lib/cliWrappers.ts`'s `claude` case passes `--system <prompt>` with a comment admitting
 it's a guess. (done)
 - [[Ticket-01KYFZ6RBJ5718M3GQPAB76RHS]] Real diagram generation, and scope a real ImageGen backend — DiagramGenExtension and ImageGenExtension both fully mock generation with a setTimeout and
@@ -22,4 +22,4 @@ filename returns a placeholder string. (open)
 tested, working modules with zero imports from App.tsx or anything under src/components/ — only
 their own test files ever call them. (open)
 
-Progress: 1/6 done
+Progress: 2/6 done

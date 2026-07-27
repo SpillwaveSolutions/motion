@@ -1,6 +1,6 @@
 # Fix editor mode-desync between WYSIWYG, Markdown, and Split views
 
-`01KYFZ6RBHDMXV57V4JZW3PS5K` · task/bug · **open**
+`01KYFZ6RBHDMXV57V4JZW3PS5K` · task/bug · **done**
 
 `src/components/Editor/index.tsx` keeps two independent sources of truth — the TipTap editor
 document and the rawMarkdown string state — that only reconcile in handleSave and the
@@ -12,6 +12,6 @@ file-load effect.
 
 ## Subtasks
 
-- [[Ticket-01KYFZ6RBH7SW7J03FYN4XZ08J]] Sync content on viewMode transitions in Editor/index.tsx, reusing the existing — marked/turndown/sanitizeHtml calls (open)
+- [[Ticket-01KYFZ6RBH7SW7J03FYN4XZ08J]] Sync content on viewMode transitions in Editor/index.tsx, reusing the existing — marked/turndown/sanitizeHtml calls (done)
 
-Progress: 0/1 done
+Progress: 1/1 done

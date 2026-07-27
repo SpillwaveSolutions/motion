@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "afe204fd79e0",
+   "render_hash": "1f1134a92415",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -74,10 +74,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBH7SW7J03FYN4XZ08J",
    "render": "as-is",
-   "render_hash": "8091b5df165e",
+   "render_hash": "c48156171680",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBH7SW7J03FYN4XZ08J.md",
    "title": "Sync content on viewMode transitions in Editor/index.tsx, reusing the existing",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBH7SW7J03FYN4XZ08J"
   },
   {
@@ -94,7 +94,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
    "render": "as-is",
-   "render_hash": "becd7ab2e586",
+   "render_hash": "9edf12d804eb",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
    "title": "Motion next development phase",
    "truth_state": "open",
@@ -124,10 +124,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBHDMXV57V4JZW3PS5K",
    "render": "as-is",
-   "render_hash": "6a91f4894536",
+   "render_hash": "a973aefd73b2",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBHDMXV57V4JZW3PS5K.md",
    "title": "Fix editor mode-desync between WYSIWYG, Markdown, and Split views",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBHDMXV57V4JZW3PS5K"
   },
   {
@@ -252,11 +252,11 @@
    "wiki_key": "plan/2026-07-26-motion-next-phase"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T21:01:04Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T21:13:44Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "868be51d074c",
+   "render_hash": "77f617269034",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

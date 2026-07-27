@@ -179,7 +179,7 @@
   },
   "item/01KYFZ6RBH7SW7J03FYN4XZ08J": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Sync content on viewMode transitions in Editor/index.tsx, reusing the existing"
   },
   "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6": {
@@ -204,7 +204,7 @@
   },
   "item/01KYFZ6RBHDMXV57V4JZW3PS5K": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Fix editor mode-desync between WYSIWYG, Markdown, and Split views"
   },
   "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX": {
