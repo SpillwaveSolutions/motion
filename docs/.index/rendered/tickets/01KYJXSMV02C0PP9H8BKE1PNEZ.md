@@ -1,8 +1,8 @@
-# Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,
+# sanitizeSvg strips Mermaid's HTML-based node labels (foreignObject), leaving diagrams with empty shapes and no text
 
-`01KYFZ6RBJEYPZ9RX0F86490TM` · subtask/feature · **done**
+`01KYJXSMV02C0PP9H8BKE1PNEZ` · task/bug · **done**
 
-Decision (user-confirmed): use the locally-installed `imagen` CLI (wraps Google's Gemini Imagen API, already configured with a working API key on this machine).
+DOMPurify's svg-only sanitize profile in src/lib/sanitize.ts hard-excludes the foreignObject tag (a known SVG XSS vector), which is how Mermaid renders flowchart/state-diagram node labels (HTML span/p inside foreignObject, not plain SVG <text>).
 
 ## Hierarchy
 

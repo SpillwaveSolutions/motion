@@ -1,6 +1,7 @@
 import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useState } from "react";
+import { generateImageFromUI } from "../../../lib/imageClient";
 
 function ImageGenNodeView({ node, updateAttributes }: NodeViewProps) {
     const { prompt, src } = node.attrs;
@@ -18,18 +19,17 @@ function ImageGenNodeView({ node, updateAttributes }: NodeViewProps) {
         setError(null);
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            // Mocking a local asset path
-            const mockPath = `/assets/generated_${Date.now()}.png`;
+            const dataUri = await generateImageFromUI(promptToUse);
 
             updateAttributes({
                 prompt: promptToUse,
-                src: mockPath
+                src: dataUri
             });
             if (isRefinement) setRefinement("");
         } catch (err) {
-            setError("Failed to generate image");
+            setError(
+                err instanceof Error ? `Failed to generate image: ${err.message}` : "Failed to generate image"
+            );
         } finally {
             setLoading(false);
         }
@@ -125,10 +125,7 @@ function ImageGenNodeView({ node, updateAttributes }: NodeViewProps) {
                                 border: "1px solid var(--color-border-primary)",
                                 display: "block"
                             }}
-                            onError={(e) => {
-                                // If image fails to load (e.g. mock path), show a stylized placeholder
-                                e.currentTarget.src = `https://placehold.co/800x450/161b22/e6edf3?text=${encodeURIComponent(prompt)}`;
-                            }}
+                            onError={() => setError("Generated image failed to load.")}
                         />
                         {loading && (
                             <div style={{

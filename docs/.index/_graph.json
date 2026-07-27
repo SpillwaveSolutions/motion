@@ -81,6 +81,16 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYJXSMV02C0PP9H8BKE1PNEZ",
+   "to": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYJXSYEZ97M9638S91GYZWV0",
+   "to": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -224,7 +234,7 @@
   },
   "item/01KYFZ6RBJ5718M3GQPAB76RHS": {
    "doc_type": "item",
-   "status": "in_progress",
+   "status": "done",
    "title": "Real diagram generation, and scope a real ImageGen backend"
   },
   "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
@@ -239,7 +249,7 @@
   },
   "item/01KYFZ6RBJEYPZ9RX0F86490TM": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,"
   },
   "item/01KYFZ6RBJT7FG0G30WYS3YF6Q": {
@@ -271,6 +281,16 @@
    "doc_type": "item",
    "status": "todo",
    "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring"
+  },
+  "item/01KYJXSMV02C0PP9H8BKE1PNEZ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "sanitizeSvg strips Mermaid's HTML-based node labels (foreignObject), leaving diagrams with empty shapes and no text"
+  },
+  "item/01KYJXSYEZ97M9638S91GYZWV0": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
