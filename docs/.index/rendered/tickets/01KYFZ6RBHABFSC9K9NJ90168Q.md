@@ -13,7 +13,7 @@ rule, or toolbar button. (open)
 document and the rawMarkdown string state — that only reconcile in handleSave and the
 file-load effect. (open)
 - [[Ticket-01KYFZ6RBHW4FJK9EGFAQ3XNJX]] Verify and fix the claude CLI system-prompt contract in cliWrappers — `src/lib/cliWrappers.ts`'s `claude` case passes `--system <prompt>` with a comment admitting
-it's a guess. (open)
+it's a guess. (done)
 - [[Ticket-01KYFZ6RBJ5718M3GQPAB76RHS]] Real diagram generation, and scope a real ImageGen backend — DiagramGenExtension and ImageGenExtension both fully mock generation with a setTimeout and
 keyword-matched fake output; no backend exists for either. (open)
 - [[Ticket-01KYFZ6RBJC07FEQ0FT0KQ302M]] Fix web/dev storage mock so Dataset/Query are testable outside Tauri — WebStorage.readFile only returns real content for three hardcoded demo paths; any other
@@ -22,4 +22,4 @@ filename returns a placeholder string. (open)
 tested, working modules with zero imports from App.tsx or anything under src/components/ — only
 their own test files ever call them. (open)
 
-Progress: 0/6 done
+Progress: 1/6 done

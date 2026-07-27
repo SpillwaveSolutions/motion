@@ -25,7 +25,7 @@
    ],
    "slug": "motion-next-phase",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
-   "status": "planned",
+   "status": "active",
    "title": "Motion next development phase",
    "truth_state": "current",
    "wiki_key": "plan/2026-07-26-motion-next-phase"
@@ -33,10 +33,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-07-26T19:43:41Z",
+   "generated_at": "2026-07-27T21:01:04Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "dbd4111e",
+   "source_hash": "96a8345c",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki_key": "roadmap"

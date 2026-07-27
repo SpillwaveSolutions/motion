@@ -174,7 +174,7 @@
   },
   "item/01KYFZ6RBH4J746JDANTQKYVSN": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching"
   },
   "item/01KYFZ6RBH7SW7J03FYN4XZ08J": {
@@ -194,7 +194,7 @@
   },
   "item/01KYFZ6RBHBG53PG8SKVMMNCC4": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM"
   },
   "item/01KYFZ6RBHBTXGWG8HREAG8AG9": {
@@ -209,7 +209,7 @@
   },
   "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Verify and fix the claude CLI system-prompt contract in cliWrappers"
   },
   "item/01KYFZ6RBHZQWH62SK631C3H1K": {

@@ -56,7 +56,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Verify and fix the claude CLI system-prompt contract in cliWrappers
-`01KYFZ6RBHW4FJK9EGFAQ3XNJX` · status: todo
+`01KYFZ6RBHW4FJK9EGFAQ3XNJX` · status: done
 - belongs-to: Motion next development phase
 - contains: Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching
 - contains: Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM
@@ -74,7 +74,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM
-`01KYFZ6RBHBG53PG8SKVMMNCC4` · status: todo
+`01KYFZ6RBHBG53PG8SKVMMNCC4` · status: done
 - belongs-to: Verify and fix the claude CLI system-prompt contract in cliWrappers
 - produced-by: [[Plan-motion-next-phase]]
 
@@ -101,7 +101,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching
-`01KYFZ6RBH4J746JDANTQKYVSN` · status: todo
+`01KYFZ6RBH4J746JDANTQKYVSN` · status: done
 - belongs-to: Verify and fix the claude CLI system-prompt contract in cliWrappers
 - produced-by: [[Plan-motion-next-phase]]
 
