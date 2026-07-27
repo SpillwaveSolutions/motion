@@ -30,6 +30,15 @@ function ToolbarButton({
     );
 }
 
+// Atom nodes inserted at the end of the document (or anywhere with no
+// following block) leave a NodeSelection on themselves rather than a text
+// cursor -- the next insertContent call then replaces the selected node
+// instead of adding a new one. Always pairing the insert with a trailing
+// paragraph guarantees a text cursor lands after it, every time.
+function insertBlock(editor: Editor, nodeType: string) {
+    editor.chain().focus().insertContent([{ type: nodeType }, { type: "paragraph" }]).run();
+}
+
 function Toolbar({ editor, onSave }: ToolbarProps) {
     return (
         <div className="editor-toolbar">
@@ -174,6 +183,44 @@ function Toolbar({ editor, onSave }: ToolbarProps) {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="3" y1="12" x2="21" y2="12" />
                 </svg>
+            </ToolbarButton>
+
+            <div className="toolbar-divider" />
+
+            {/* Insert blocks */}
+            <ToolbarButton
+                onClick={() => insertBlock(editor, "mermaid")}
+                title="Insert Mermaid Diagram"
+            >
+                Mermaid
+            </ToolbarButton>
+
+            <ToolbarButton
+                onClick={() => insertBlock(editor, "dataset")}
+                title="Insert Dataset"
+            >
+                Dataset
+            </ToolbarButton>
+
+            <ToolbarButton
+                onClick={() => insertBlock(editor, "query")}
+                title="Insert SQL Query"
+            >
+                Query
+            </ToolbarButton>
+
+            <ToolbarButton
+                onClick={() => insertBlock(editor, "diagramGen")}
+                title="Insert AI Diagram Generation"
+            >
+                AI Diagram
+            </ToolbarButton>
+
+            <ToolbarButton
+                onClick={() => insertBlock(editor, "imageGen")}
+                title="Insert AI Image Generation"
+            >
+                AI Image
             </ToolbarButton>
 
             <div className="toolbar-divider" />

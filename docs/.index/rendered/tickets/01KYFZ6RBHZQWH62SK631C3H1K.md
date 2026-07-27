@@ -1,6 +1,6 @@
 # Toolbar buttons to insert each of the 5 block extensions, reusing the existing
 
-`01KYFZ6RBHZQWH62SK631C3H1K` · subtask/feature · **open**
+`01KYFZ6RBHZQWH62SK631C3H1K` · subtask/feature · **done**
 
 ToolbarButton component pattern in Toolbar.tsx
 
