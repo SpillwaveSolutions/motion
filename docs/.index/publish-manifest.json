@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "1f1134a92415",
+   "render_hash": "03ba260d3de5",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -241,6 +241,16 @@
    "wiki_key": "item/01KYFZ8RGR06XBSG9CH4TEWYJY"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYJQ3WF4XJ4D1G7T9WQ3V0TV",
+   "render": "as-is",
+   "render_hash": "e30e5ccab9a0",
+   "source": "docs/.index/rendered/tickets/01KYJQ3WF4XJ4D1G7T9WQ3V0TV.md",
+   "title": "Manually verify mode-desync fix in browser (agent-browser)",
+   "truth_state": "done",
+   "wiki_key": "item/01KYJQ3WF4XJ4D1G7T9WQ3V0TV"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -252,11 +262,11 @@
    "wiki_key": "plan/2026-07-26-motion-next-phase"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T21:13:44Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T21:19:02Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "77f617269034",
+   "render_hash": "3a8c242e2874",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

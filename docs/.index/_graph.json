@@ -262,6 +262,11 @@
    "status": "todo",
    "title": "Workspace-level topic clustering + auto TOC/SKILL generation"
   },
+  "item/01KYJQ3WF4XJ4D1G7T9WQ3V0TV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Manually verify mode-desync fix in browser (agent-browser)"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
