@@ -1,6 +1,6 @@
 # Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM
 
-`01KYFZ6RBHBG53PG8SKVMMNCC4` · subtask/feature · **open**
+`01KYFZ6RBHBG53PG8SKVMMNCC4` · subtask/feature · **done**
 
 Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM
 

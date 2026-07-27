@@ -1,6 +1,6 @@
 # Verify and fix the claude CLI system-prompt contract in cliWrappers
 
-`01KYFZ6RBHW4FJK9EGFAQ3XNJX` · task/bug · **open**
+`01KYFZ6RBHW4FJK9EGFAQ3XNJX` · task/bug · **done**
 
 `src/lib/cliWrappers.ts`'s `claude` case passes `--system <prompt>` with a comment admitting
 it's a guess.
@@ -12,7 +12,7 @@ it's a guess.
 ## Subtasks
 
 - [[Ticket-01KYFZ6RBH4J746JDANTQKYVSN]] Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching — EnrichmentTools.ts exists; the test re-tests TopicRefiner/SkillGenerator/TOCGenerator under a
-misleading name) (open)
-- [[Ticket-01KYFZ6RBHBG53PG8SKVMMNCC4]] Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM — Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM (open)
+misleading name) (done)
+- [[Ticket-01KYFZ6RBHBG53PG8SKVMMNCC4]] Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM — Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM (done)
 
-Progress: 0/2 done
+Progress: 2/2 done

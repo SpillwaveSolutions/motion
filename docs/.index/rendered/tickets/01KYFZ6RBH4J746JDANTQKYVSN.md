@@ -1,6 +1,6 @@
 # Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching
 
-`01KYFZ6RBH4J746JDANTQKYVSN` · subtask/feature · **open**
+`01KYFZ6RBH4J746JDANTQKYVSN` · subtask/feature · **done**
 
 EnrichmentTools.ts exists; the test re-tests TopicRefiner/SkillGenerator/TOCGenerator under a
 misleading name)

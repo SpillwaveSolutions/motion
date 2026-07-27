@@ -32,9 +32,7 @@ export async function callLLM(provider: ModelProvider, options: LLMOptions): Pro
         case 'claude':
             args = ['-p', options.prompt];
             if (options.systemPrompt) {
-                // Note: Claude Code 2.0.61+ system prompt support via args?
-                // Assuming current version support or passing as part of prompt
-                args.push('--system', options.systemPrompt);
+                args.push('--system-prompt', options.systemPrompt);
             }
             break;
         case 'qwen':
