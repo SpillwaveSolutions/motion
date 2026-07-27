@@ -229,7 +229,7 @@
   },
   "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
    "doc_type": "item",
-   "status": "in_progress",
+   "status": "done",
    "title": "Fix web/dev storage mock so Dataset/Query are testable outside Tauri"
   },
   "item/01KYFZ6RBJCWMMF7THJZFB6943": {
@@ -244,7 +244,7 @@
   },
   "item/01KYFZ6RBJT7FG0G30WYS3YF6Q": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "File picker for Dataset's source field, populated from storage.listFiles"
   },
   "item/01KYFZ6RBJV920SFW0MAN9MX9J": {

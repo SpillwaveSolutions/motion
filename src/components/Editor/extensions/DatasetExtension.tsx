@@ -2,13 +2,19 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useState } from "react";
 import { registerFile, executeQuery, clampLimit, validateIdentifier } from "../../../lib/data/duckdb";
+import { storage } from "../../../lib/storage";
 
-function DatasetNodeView({ node }: NodeViewProps) {
+function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
     const { source, name, limit = 5 } = node.attrs;
     const safeLimit = clampLimit(limit);
     const [data, setData] = useState<any[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [availableFiles, setAvailableFiles] = useState<string[]>([]);
+
+    useEffect(() => {
+        storage.listDataFiles().then(setAvailableFiles).catch(() => setAvailableFiles([]));
+    }, []);
 
     const loadData = async () => {
         if (!source) return;
@@ -36,6 +42,12 @@ function DatasetNodeView({ node }: NodeViewProps) {
         loadData();
     }, [source, name, safeLimit]);
 
+    // Include the current source even if it's not in the listed files (e.g.
+    // set via hand-authored markdown) so picking never silently drops it.
+    const sourceOptions = source && !availableFiles.includes(source)
+        ? [source, ...availableFiles]
+        : availableFiles;
+
     return (
         <NodeViewWrapper className="dataset-block">
             <div className="dataset-header">
@@ -44,7 +56,19 @@ function DatasetNodeView({ node }: NodeViewProps) {
                         <path d="M12 2v20M2 12h20" />
                         <rect x="2" y="2" width="20" height="20" rx="2" />
                     </svg>
-                    Dataset: {source}
+                    Dataset:
+                    <select
+                        className="dataset-source-select"
+                        value={source ?? ""}
+                        onChange={(e) => updateAttributes({ source: e.target.value || null })}
+                    >
+                        <option value="">Select a file...</option>
+                        {sourceOptions.map((file) => (
+                            <option key={file} value={file}>
+                                {file}
+                            </option>
+                        ))}
+                    </select>
                 </span>
                 <button className="btn btn-ghost btn-xs" onClick={loadData}>
                     {loading ? "Loading..." : "Refresh"}
