@@ -72,7 +72,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### "/" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,
-`01KYFZ6RBHBTXGWG8HREAG8AG9` · status: todo
+`01KYFZ6RBHBTXGWG8HREAG8AG9` · status: done
 - belongs-to: Give editor extensions a creation UX
 - produced-by: [[Plan-motion-next-phase]]
 
@@ -92,7 +92,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Give editor extensions a creation UX
-`01KYFZ6RBHA5DRP85QQ0EHTAJ6` · status: in_progress
+`01KYFZ6RBHA5DRP85QQ0EHTAJ6` · status: done
 - belongs-to: Motion next development phase
 - contains: "/" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,
 - contains: Toolbar buttons to insert each of the 5 block extensions, reusing the existing
