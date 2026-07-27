@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditor, EditorContent, type Editor as TiptapEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
 import { marked } from "marked";
 import TurndownService from "turndown";
 import Toolbar from "./Toolbar";
+import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
 import MermaidExtension from "./extensions/MermaidExtension";
 import { DatasetExtension } from "./extensions/DatasetExtension";
 import { QueryExtension } from "./extensions/QueryExtension";
@@ -49,6 +50,33 @@ interface EditorProps {
     filePath: string | null;
 }
 
+interface SlashMenuState {
+    range: { from: number; to: number };
+    query: string;
+    position: { top: number; left: number };
+    selectedIndex: number;
+}
+
+// Slash menu only triggers when "/" is the very first character of the
+// current block, followed by a whitespace-free query -- e.g. typing a
+// normal "and/or" mid-sentence never opens it. Matches Notion-style
+// slash-command scoping without needing prefix-boundary heuristics.
+function detectSlashTrigger(editor: TiptapEditor): SlashMenuState | null {
+    const { selection } = editor.state;
+    if (!selection.empty) return null;
+    const { $from } = selection;
+    const textBefore = $from.parent.textBetween(0, $from.parentOffset, undefined, "￼");
+    const match = /^\/(\S*)$/.exec(textBefore);
+    if (!match) return null;
+    const coords = editor.view.coordsAtPos($from.pos);
+    return {
+        range: { from: $from.start(), to: $from.pos },
+        query: match[1] ?? "",
+        position: { top: coords.bottom, left: coords.left },
+        selectedIndex: 0,
+    };
+}
+
 const welcomeHTML = `
 <h1>Welcome to Motion</h1>
 <p>Motion is a <strong>local-first technical writing IDE</strong>. Select a folder to start editing your notes.</p>
@@ -88,6 +116,23 @@ function Editor({ viewMode, filePath }: EditorProps) {
     // an actual mode transition, not on every render.
     const prevViewModeRef = useRef<ViewMode | null>(null);
 
+    const [slashMenu, setSlashMenu] = useState<SlashMenuState | null>(null);
+    // editorProps callbacks are registered once at editor creation, so they
+    // must read state/editor through refs to avoid closing over stale values.
+    const slashMenuRef = useRef<SlashMenuState | null>(null);
+    const editorRef = useRef<TiptapEditor | null>(null);
+    useEffect(() => {
+        slashMenuRef.current = slashMenu;
+    }, [slashMenu]);
+
+    const executeSlashCommand = useCallback((nodeType: string) => {
+        const menu = slashMenuRef.current;
+        const currentEditor = editorRef.current;
+        if (!menu || !currentEditor) return;
+        insertBlock(currentEditor, nodeType, menu.range);
+        setSlashMenu(null);
+    }, []);
+
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
@@ -108,14 +153,68 @@ function Editor({ viewMode, filePath }: EditorProps) {
             attributes: {
                 class: "tiptap-editor",
             },
+            // Registered once at editor creation -- reads slashMenuRef/
+            // executeSlashCommand (both stable via refs/empty deps) rather
+            // than closing over component state directly.
+            handleKeyDown: (_view, event) => {
+                const menu = slashMenuRef.current;
+                if (!menu) return false;
+                const filtered = INSERT_COMMANDS.filter((c) =>
+                    c.label.toLowerCase().includes(menu.query.toLowerCase())
+                );
+                if (event.key === "Escape") {
+                    setSlashMenu(null);
+                    return true;
+                }
+                if (event.key === "ArrowDown") {
+                    setSlashMenu((m) =>
+                        m ? { ...m, selectedIndex: (m.selectedIndex + 1) % Math.max(filtered.length, 1) } : m
+                    );
+                    return true;
+                }
+                if (event.key === "ArrowUp") {
+                    setSlashMenu((m) =>
+                        m
+                            ? {
+                                  ...m,
+                                  selectedIndex:
+                                      (m.selectedIndex - 1 + Math.max(filtered.length, 1)) %
+                                      Math.max(filtered.length, 1),
+                              }
+                            : m
+                    );
+                    return true;
+                }
+                if (event.key === "Enter") {
+                    const chosen = filtered[menu.selectedIndex];
+                    if (chosen) {
+                        executeSlashCommand(chosen.nodeType);
+                        return true;
+                    }
+                    setSlashMenu(null);
+                    return false;
+                }
+                return false;
+            },
         },
         // Keep rawMarkdown in sync with WYSIWYG/split edits as they happen, so
         // switching to markdown mode (or the split pane) never shows stale
-        // content and no edits are lost.
+        // content and no edits are lost. Also re-checks the slash-command
+        // trigger, since typing after "/" changes the query.
         onUpdate: ({ editor: updatedEditor }) => {
             setRawMarkdown(turndown.turndown(updatedEditor.getHTML()));
+            setSlashMenu(detectSlashTrigger(updatedEditor));
+        },
+        // Cursor movement (arrow keys, clicks) without a content change can
+        // also enter/leave the "/" trigger position.
+        onSelectionUpdate: ({ editor: updatedEditor }) => {
+            setSlashMenu(detectSlashTrigger(updatedEditor));
         },
     });
+
+    useEffect(() => {
+        editorRef.current = editor;
+    }, [editor]);
 
     // Handle saving
     const handleSave = useCallback(async () => {
@@ -201,6 +300,37 @@ function Editor({ viewMode, filePath }: EditorProps) {
         );
     }
 
+    const filteredSlashCommands = slashMenu
+        ? INSERT_COMMANDS.filter((c) => c.label.toLowerCase().includes(slashMenu.query.toLowerCase()))
+        : [];
+
+    // position: fixed uses coordsAtPos's viewport-relative coords directly.
+    // onMouseDown (not onClick) + preventDefault keeps editor focus/selection
+    // intact so executeSlashCommand's stored range is still valid.
+    const slashMenuPopup = slashMenu && (
+        <div
+            className="slash-menu"
+            style={{ top: slashMenu.position.top + 4, left: slashMenu.position.left }}
+        >
+            {filteredSlashCommands.length === 0 ? (
+                <div className="slash-menu-empty">No matches</div>
+            ) : (
+                filteredSlashCommands.map((cmd, i) => (
+                    <div
+                        key={cmd.nodeType}
+                        className={`slash-menu-item ${i === slashMenu.selectedIndex ? "selected" : ""}`}
+                        onMouseDown={(e) => {
+                            e.preventDefault();
+                            executeSlashCommand(cmd.nodeType);
+                        }}
+                    >
+                        {cmd.label}
+                    </div>
+                ))
+            )}
+        </div>
+    );
+
     if (viewMode === "markdown") {
         return (
             <div className="editor-container">
@@ -231,6 +361,7 @@ function Editor({ viewMode, filePath }: EditorProps) {
         return (
             <div className="editor-container" style={{ maxWidth: "1400px" }}>
                 <Toolbar editor={editor} onSave={handleSave} />
+                {slashMenuPopup}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)", flex: 1 }}>
                     <EditorContent editor={editor} />
                     <div
@@ -257,6 +388,7 @@ function Editor({ viewMode, filePath }: EditorProps) {
     return (
         <div className="editor-container">
             <Toolbar editor={editor} onSave={handleSave} />
+            {slashMenuPopup}
             <EditorContent editor={editor} />
         </div>
     );

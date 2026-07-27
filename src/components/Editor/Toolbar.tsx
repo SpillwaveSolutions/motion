@@ -1,4 +1,5 @@
 import type { Editor } from "@tiptap/react";
+import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
 
 interface ToolbarProps {
     editor: Editor;
@@ -28,15 +29,6 @@ function ToolbarButton({
             {children}
         </button>
     );
-}
-
-// Atom nodes inserted at the end of the document (or anywhere with no
-// following block) leave a NodeSelection on themselves rather than a text
-// cursor -- the next insertContent call then replaces the selected node
-// instead of adding a new one. Always pairing the insert with a trailing
-// paragraph guarantees a text cursor lands after it, every time.
-function insertBlock(editor: Editor, nodeType: string) {
-    editor.chain().focus().insertContent([{ type: nodeType }, { type: "paragraph" }]).run();
 }
 
 function Toolbar({ editor, onSave }: ToolbarProps) {
@@ -188,40 +180,15 @@ function Toolbar({ editor, onSave }: ToolbarProps) {
             <div className="toolbar-divider" />
 
             {/* Insert blocks */}
-            <ToolbarButton
-                onClick={() => insertBlock(editor, "mermaid")}
-                title="Insert Mermaid Diagram"
-            >
-                Mermaid
-            </ToolbarButton>
-
-            <ToolbarButton
-                onClick={() => insertBlock(editor, "dataset")}
-                title="Insert Dataset"
-            >
-                Dataset
-            </ToolbarButton>
-
-            <ToolbarButton
-                onClick={() => insertBlock(editor, "query")}
-                title="Insert SQL Query"
-            >
-                Query
-            </ToolbarButton>
-
-            <ToolbarButton
-                onClick={() => insertBlock(editor, "diagramGen")}
-                title="Insert AI Diagram Generation"
-            >
-                AI Diagram
-            </ToolbarButton>
-
-            <ToolbarButton
-                onClick={() => insertBlock(editor, "imageGen")}
-                title="Insert AI Image Generation"
-            >
-                AI Image
-            </ToolbarButton>
+            {INSERT_COMMANDS.map((cmd) => (
+                <ToolbarButton
+                    key={cmd.nodeType}
+                    onClick={() => insertBlock(editor, cmd.nodeType)}
+                    title={`Insert ${cmd.label}`}
+                >
+                    {cmd.label}
+                </ToolbarButton>
+            ))}
 
             <div className="toolbar-divider" />
 

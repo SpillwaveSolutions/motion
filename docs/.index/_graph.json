@@ -184,7 +184,7 @@
   },
   "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6": {
    "doc_type": "item",
-   "status": "in_progress",
+   "status": "done",
    "title": "Give editor extensions a creation UX"
   },
   "item/01KYFZ6RBHABFSC9K9NJ90168Q": {
@@ -199,7 +199,7 @@
   },
   "item/01KYFZ6RBHBTXGWG8HREAG8AG9": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "\"/\" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,"
   },
   "item/01KYFZ6RBHDMXV57V4JZW3PS5K": {

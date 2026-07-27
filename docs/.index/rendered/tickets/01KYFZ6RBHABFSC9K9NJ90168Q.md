@@ -8,7 +8,7 @@ Close the gap between Motion's stated vision (organize/edit/visualize documentat
 
 - [[Ticket-01KYFZ6RBHA5DRP85QQ0EHTAJ6]] Give editor extensions a creation UX — DatasetExtension, QueryExtension, MermaidExtension, DiagramGenExtension, and ImageGenExtension
 are real, working TipTap nodes with zero UI affordance to create one — no slash command, input
-rule, or toolbar button. (in-progress)
+rule, or toolbar button. (done)
 - [[Ticket-01KYFZ6RBHDMXV57V4JZW3PS5K]] Fix editor mode-desync between WYSIWYG, Markdown, and Split views — `src/components/Editor/index.tsx` keeps two independent sources of truth — the TipTap editor
 document and the rawMarkdown string state — that only reconcile in handleSave and the
 file-load effect. (done)
@@ -22,4 +22,4 @@ filename returns a placeholder string. (open)
 tested, working modules with zero imports from App.tsx or anything under src/components/ — only
 their own test files ever call them. (open)
 
-Progress: 2/6 done
+Progress: 3/6 done

@@ -1,6 +1,6 @@
 # "/" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,
 
-`01KYFZ6RBHBTXGWG8HREAG8AG9` · subtask/feature · **open**
+`01KYFZ6RBHBTXGWG8HREAG8AG9` · subtask/feature · **done**
 
 not a new @tiptap/suggestion dependency, for 5 fixed commands)
 
