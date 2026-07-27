@@ -25,13 +25,13 @@ describe("End-to-End Integration Mock", () => {
             }
         );
 
-        const injector = new ContentInjector("gemini");
+        const injector = new ContentInjector("claude");
         const refined = await injector.refineChunk("Raw draft", "Context about Motion");
         expect(refined.content).toContain("Refined");
         expect(refined.summary.length).toBeGreaterThan(0);
         expect(injector.verifyCodeBlocks(refined.content)).toBe(true);
 
-        const refiner = new TopicRefiner("gemini");
+        const refiner = new TopicRefiner("claude");
         const analysis = await refiner.analyzeTopic([refined.summary]);
         expect(analysis.suggestedLabels).toEqual(["architecture", "storage"]);
         expect(analysis.shouldSplit).toBe(false);
@@ -46,7 +46,7 @@ describe("End-to-End Integration Mock", () => {
             rawOutput: "",
         });
 
-        const refiner = new TopicRefiner("gemini");
+        const refiner = new TopicRefiner("claude");
         const analysis = await refiner.analyzeTopic(["summary A"]);
         expect(analysis.suggestedLabels).toEqual([]);
         expect(analysis.shouldSplit).toBe(false);

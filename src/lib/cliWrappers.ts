@@ -1,8 +1,12 @@
 /**
- * Universal CLI wrapper for external LLMs (opencode, claude, qwen, gemini).
+ * Universal CLI wrapper for external LLMs (opencode, claude, qwen).
+ * Runs Bun.spawn -- only callable from a real Bun process (the dev server,
+ * a Tauri Rust command's shelled-out equivalent, or a CLI script), never
+ * directly from browser/webview-executed React code. See src/lib/llmClient.ts
+ * for the browser-safe entry point that routes here through a Bun process.
  */
 
-export type ModelProvider = 'opencode' | 'claude' | 'qwen' | 'gemini';
+export type ModelProvider = 'opencode' | 'claude' | 'qwen';
 
 export interface LLMOptions {
     model?: string;
@@ -37,9 +41,6 @@ export async function callLLM(provider: ModelProvider, options: LLMOptions): Pro
             break;
         case 'qwen':
             args = ['--model', options.model || 'qwen-max', '--prompt', options.prompt];
-            break;
-        case 'gemini':
-            args = ['--model', options.model || 'gemini-1.5-pro', '--prompt', options.prompt];
             break;
         default:
             throw new Error(`Unsupported provider: ${provider}`);

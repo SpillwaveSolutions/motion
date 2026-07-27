@@ -15,7 +15,7 @@ describe("TopicRefiner", () => {
             rawOutput: JSON.stringify(mockResponse)
         });
 
-        const refiner = new TopicRefiner("gemini");
+        const refiner = new TopicRefiner("claude");
         const result = await refiner.analyzeTopic(["Summary 1", "Summary 2"]);
 
         expect(result.suggestedLabels).toContain("AI");
@@ -31,7 +31,7 @@ describe("TopicRefiner", () => {
             rawOutput: "Invalid JSON response"
         });
 
-        const refiner = new TopicRefiner("gemini");
+        const refiner = new TopicRefiner("claude");
         const result = await refiner.analyzeTopic(["Summary 1"]);
 
         expect(result.shouldSplit).toBe(false);

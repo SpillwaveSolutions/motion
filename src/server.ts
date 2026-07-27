@@ -7,6 +7,9 @@
 import { watch } from "fs";
 import { readdir } from "fs/promises";
 import { join, dirname, resolve, relative, isAbsolute } from "path";
+import { callLLM, type ModelProvider } from "./lib/cliWrappers";
+
+const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
 // Get project root (parent of src/)
 const PROJECT_ROOT = dirname(dirname(import.meta.path));
@@ -147,6 +150,34 @@ const server = Bun.serve({
                     "Cache-Control": "no-cache",
                 },
             });
+        }
+
+        // Proxy for LLM CLI calls: cliWrappers.callLLM's Bun.spawn only works
+        // in a real Bun process, never in browser-executed React code -- this
+        // is that Bun process. Mirrors run_llm_cli on the Tauri side.
+        if (pathname === "/api/llm" && req.method === "POST") {
+            try {
+                const body = await req.json();
+                const provider = body?.provider;
+                if (!ALLOWED_LLM_PROVIDERS.includes(provider)) {
+                    return Response.json(
+                        { error: `Unsupported provider: ${provider}` },
+                        { status: 400 }
+                    );
+                }
+                if (typeof body?.prompt !== "string" || !body.prompt) {
+                    return Response.json({ error: "Missing prompt" }, { status: 400 });
+                }
+                const result = await callLLM(provider, {
+                    prompt: body.prompt,
+                    systemPrompt: typeof body.systemPrompt === "string" ? body.systemPrompt : undefined,
+                    model: typeof body.model === "string" ? body.model : undefined,
+                });
+                return Response.json(result);
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                return Response.json({ error: message }, { status: 500 });
+            }
         }
 
         // List the demo workspace files WebStorage reads from in a browser

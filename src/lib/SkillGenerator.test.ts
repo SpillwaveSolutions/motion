@@ -9,7 +9,7 @@ describe("SkillGenerator", () => {
             rawOutput: "# Skill Test content"
         });
 
-        const generator = new SkillGenerator("gemini");
+        const generator = new SkillGenerator("claude");
         const result = await generator.generateSkill("Test Topic", ["Summary"]);
 
         expect(result).toBe("# Skill Test content");

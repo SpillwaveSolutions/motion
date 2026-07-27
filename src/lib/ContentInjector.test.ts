@@ -21,7 +21,7 @@ describe("ContentInjector", () => {
             rawOutput: "Refined Content"
         });
 
-        const injector = new ContentInjector("gemini");
+        const injector = new ContentInjector("claude");
         const result = await injector.refineChunk("Raw Content", "Small Context");
 
         expect(result.content).toBe("Refined Content");

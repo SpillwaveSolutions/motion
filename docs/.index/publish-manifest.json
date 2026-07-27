@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "675a7d689fb0",
+   "render_hash": "177d88889858",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -94,7 +94,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
    "render": "as-is",
-   "render_hash": "69c9b436e961",
+   "render_hash": "2945693a7701",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
    "title": "Motion next development phase",
    "truth_state": "open",
@@ -164,10 +164,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJ5718M3GQPAB76RHS",
    "render": "as-is",
-   "render_hash": "40ab45443e1c",
+   "render_hash": "30190deae887",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJ5718M3GQPAB76RHS.md",
    "title": "Real diagram generation, and scope a real ImageGen backend",
-   "truth_state": "open",
+   "truth_state": "in-progress",
    "wiki_key": "item/01KYFZ6RBJ5718M3GQPAB76RHS"
   },
   {
@@ -184,10 +184,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJCWMMF7THJZFB6943",
    "render": "as-is",
-   "render_hash": "e3fb6c5538e1",
+   "render_hash": "f830d498d4df",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJCWMMF7THJZFB6943.md",
    "title": "Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBJCWMMF7THJZFB6943"
   },
   {
@@ -251,6 +251,16 @@
    "wiki_key": "item/01KYJQ3WF4XJ4D1G7T9WQ3V0TV"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYJW5XJ5HTG7ESZ7DDDS8W0C",
+   "render": "as-is",
+   "render_hash": "c9a3f8634f33",
+   "source": "docs/.index/rendered/tickets/01KYJW5XJ5HTG7ESZ7DDDS8W0C.md",
+   "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring",
+   "truth_state": "open",
+   "wiki_key": "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -262,11 +272,11 @@
    "wiki_key": "plan/2026-07-26-motion-next-phase"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T22:23:19Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T22:47:25Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "4af84c4272ec",
+   "render_hash": "8d6d25ccc950",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

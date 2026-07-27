@@ -4,7 +4,7 @@ export class SkillGenerator {
     private provider: ModelProvider;
     private model?: string;
 
-    constructor(provider: ModelProvider = 'gemini', model?: string) {
+    constructor(provider: ModelProvider = 'claude', model?: string) {
         this.provider = provider;
         this.model = model;
     }
