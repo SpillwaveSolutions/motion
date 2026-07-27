@@ -184,7 +184,7 @@
   },
   "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Give editor extensions a creation UX"
   },
   "item/01KYFZ6RBHABFSC9K9NJ90168Q": {
@@ -214,7 +214,7 @@
   },
   "item/01KYFZ6RBHZQWH62SK631C3H1K": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Toolbar buttons to insert each of the 5 block extensions, reusing the existing"
   },
   "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2": {
