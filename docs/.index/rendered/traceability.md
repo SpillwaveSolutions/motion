@@ -2,6 +2,9 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Manually verify mode-desync fix in browser (agent-browser)
+`01KYJQ3WF4XJ4D1G7T9WQ3V0TV` · status: done
+
 ### Workspace-level topic clustering + auto TOC/SKILL generation
 `01KYFZ8RGR06XBSG9CH4TEWYJY` · status: todo
 
