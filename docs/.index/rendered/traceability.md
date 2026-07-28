@@ -2,6 +2,10 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Refresh README for v0.1.0 — six months stale, documented broken features and omitted built ones
+`01KYN85K57SRYK5WJFG98W5R6F` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+
 ### Demo Query block returns zero rows: case mismatch in the demo data JOIN
 `01KYK7WZRS65D7DPP0D1DT58Z7` · status: todo
 - belongs-to: Phase 0: console/network failure fixture with a measured baseline
@@ -231,6 +235,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Phase 2: E2E coverage of the journeys that have actually broken
 - contains: Phase 4: desktop confidence without a WebDriver
 - contains: Phase 3: fix what the loop exposes
+- contains: Refresh README for v0.1.0 — six months stale, documented broken features and omitted built ones
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 0: console/network failure fixture with a measured baseline

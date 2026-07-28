@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "a42838a64b15",
+   "render_hash": "cc19151fb918",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -314,7 +314,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "7a39a63088e8",
+   "render_hash": "0efa2c3b7953",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "open",
@@ -711,6 +711,16 @@
    "wiki_key": "item/01KYK7WZRS65D7DPP0D1DT58Z7"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYN85K57SRYK5WJFG98W5R6F",
+   "render": "as-is",
+   "render_hash": "4835fffc6289",
+   "source": "docs/.index/rendered/tickets/01KYN85K57SRYK5WJFG98W5R6F.md",
+   "title": "Refresh README for v0.1.0 \u2014 six months stale, documented broken features and omitted built ones",
+   "truth_state": "done",
+   "wiki_key": "item/01KYN85K57SRYK5WJFG98W5R6F"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -733,11 +743,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-28T02:17:59Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-28T20:55:37Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "a9aae6528997",
+   "render_hash": "a8063fedfae1",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

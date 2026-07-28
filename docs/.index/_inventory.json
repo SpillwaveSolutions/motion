@@ -85,10 +85,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-07-28T02:17:59Z",
+   "generated_at": "2026-07-28T20:55:37Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "c840194b",
+   "source_hash": "c810ccf0",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki_key": "roadmap"

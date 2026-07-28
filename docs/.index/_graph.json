@@ -296,6 +296,11 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYN85K57SRYK5WJFG98W5R6F",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -911,6 +916,11 @@
    "doc_type": "item",
    "status": "todo",
    "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN"
+  },
+  "item/01KYN85K57SRYK5WJFG98W5R6F": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Refresh README for v0.1.0 \u2014 six months stale, documented broken features and omitted built ones"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
