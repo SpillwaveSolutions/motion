@@ -74,9 +74,6 @@ async function generateHTML(): Promise<string> {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Motion - A local-first technical writing IDE with Markdown storage and AI-powered editing" />
   <title>Motion - Technical Writing IDE</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
 ${css}
   </style>
@@ -141,6 +138,13 @@ const server = Bun.serve({
                     "Cache-Control": "no-cache",
                 },
             });
+        }
+
+        // Browsers request this unprompted and the app ships no icon. Answer
+        // 204 rather than 404: a real 404 here is pure noise that would fail
+        // every E2E run through the network gate.
+        if (pathname === "/favicon.ico") {
+            return new Response(null, { status: 204 });
         }
 
         // Serve the JS bundle
@@ -225,6 +229,25 @@ const server = Bun.serve({
             } else {
                 return new Response("Not Found", { status: 404 });
             }
+        }
+
+        // An unknown /api/* route is an error, never an HTML page.
+        if (pathname.startsWith("/api/")) {
+            return Response.json(
+                { error: `Unknown endpoint: ${pathname}` },
+                { status: 404 }
+            );
+        }
+
+        // A request for a concrete asset (anything whose last segment has an
+        // extension) that wasn't found is a 404. Falling through to the SPA
+        // shell here would answer fetch() with "200 + a page of HTML", which is
+        // how a missing note came back to WebStorage.readFile as a successful
+        // read of index.html rather than an error -- and why a missing file was
+        // invisible to the E2E network gate.
+        const lastSegment = pathname.split("/").pop() ?? "";
+        if (lastSegment.includes(".")) {
+            return new Response("Not Found", { status: 404 });
         }
 
         // Fallback to index.html for SPA routing

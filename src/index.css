@@ -29,6 +29,9 @@
   --gradient-surface: linear-gradient(180deg, rgba(88, 166, 255, 0.08) 0%, transparent 100%);
 
   /* Typography */
+  /* Locally-installed Inter/JetBrains Mono are used when present; otherwise the
+     native stacks below apply. Deliberately no webfont CDN: an external font
+     request makes the E2E network gate flaky and fails offline CI. */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 

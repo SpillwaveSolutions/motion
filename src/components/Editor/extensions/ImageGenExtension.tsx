@@ -2,6 +2,7 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useState } from "react";
 import { generateImageFromUI } from "../../../lib/imageClient";
+import { parseBlockAttrs } from "./blockAttrs";
 
 function ImageGenNodeView({ node, updateAttributes }: NodeViewProps) {
     const { prompt, src } = node.attrs;
@@ -189,15 +190,7 @@ export const ImageGenExtension = Node.create({
                 tag: 'pre[data-type="image-gen"]',
                 getAttrs: (node) => {
                     if (typeof node === "string") return false;
-                    const content = node.textContent || "";
-                    const attrs: any = {};
-                    content.split("\n").forEach(line => {
-                        const [key, ...val] = line.split(":");
-                        if (key && val.length > 0) {
-                            attrs[key.trim()] = val.join(":").trim();
-                        }
-                    });
-                    return attrs;
+                    return parseBlockAttrs(node.textContent || "");
                 }
             },
         ];

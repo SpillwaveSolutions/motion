@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import mermaid from "mermaid";
 import { sanitizeSvg } from "../../../lib/sanitize";
 import { callLLMFromUI } from "../../../lib/llmClient";
+import { parseBlockAttrs } from "./blockAttrs";
 
 // LLMs asked for "only Mermaid syntax" still often wrap it in a fenced code
 // block anyway -- strip that defensively before validating.
@@ -222,17 +223,9 @@ export const DiagramGenExtension = Node.create({
                 tag: 'pre[data-type="diagram-gen"]',
                 getAttrs: (node) => {
                     if (typeof node === "string") return false;
-                    const text = node.textContent || "";
-                    const attrs: Record<string, string> = {};
-                    text.split("\n").forEach(line => {
-                        const [key, ...val] = line.split(":");
-                        if (key && val.length > 0) {
-                            attrs[key.trim()] = val.join(":").trim();
-                        }
-                    });
                     // Content might be multi-line, this basic parser might fail for complex content
-                    // In a real app we'd use a better serializer
-                    return attrs;
+                    // In a real app we'd use a better serializer (tracked as B7).
+                    return parseBlockAttrs(node.textContent || "");
                 }
             },
         ];
