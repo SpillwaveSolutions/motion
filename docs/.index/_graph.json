@@ -574,6 +574,16 @@
    "from": "plan/2026-07-28-validation-loop",
    "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
    "type": "produces"
+  },
+  {
+   "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "to": "release/v0.1.0",
+   "type": "targets"
   }
  ],
  "nodes": {
@@ -914,11 +924,20 @@
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "current"
   },
+  "release/v0.1.0": {
+   "doc_type": "release"
+  },
   "roadmap": {
    "doc_type": "roadmap",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current"
+  },
+  "roadmap-snapshot/2026-07-28_v0.1.0-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
   }
  },
  "version": 1

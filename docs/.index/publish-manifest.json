@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "f45668ba0034",
+   "render_hash": "3ea847255eb5",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -49,6 +49,16 @@
    "title": "Traceability Index",
    "truth_state": "current",
    "wiki_key": "index/traceability"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.1.0",
+   "render": "as-is",
+   "render_hash": "84529d37dc5c",
+   "source": "docs/.index/rendered/releases/v0.1.0.md",
+   "title": "Release v0.1.0",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.1.0"
   },
   {
    "frozen": false,
@@ -732,10 +742,21 @@
    "title": "Roadmap",
    "truth_state": "current",
    "wiki_key": "roadmap"
+  },
+  {
+   "banner": "> **Snapshot** of release v0.1.0 (2026-07-28) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-07-28_v0.1.0-release",
+   "render": "doc+banner",
+   "render_hash": "e81dd9c96970",
+   "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
   }
  ],
  "sidebar": {
-  "render_hash": "7349e4df033d",
+  "render_hash": "0233da90a37a",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

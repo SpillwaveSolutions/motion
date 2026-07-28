@@ -92,6 +92,20 @@
    "title": "Roadmap",
    "truth_state": "current",
    "wiki_key": "roadmap"
+  },
+  {
+   "canonical_key": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "date": "2026-07-28",
+   "doc_type": "roadmap-snapshot",
+   "generated_at": "2026-07-28T02:17:59Z",
+   "name": "v0.1.0-release",
+   "release": "v0.1.0",
+   "slug": "2026-07-28_v0.1.0-release",
+   "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
+   "source_hash": "c840194b",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
   }
  ],
  "version": 1
