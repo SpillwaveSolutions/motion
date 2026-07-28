@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "cc19151fb918",
+   "render_hash": "43d3c787ab76",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -314,7 +314,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "0efa2c3b7953",
+   "render_hash": "fb01597c21b0",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "open",
@@ -721,6 +721,16 @@
    "wiki_key": "item/01KYN85K57SRYK5WJFG98W5R6F"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYNDC9CPK8314F6PWDZW1NC6",
+   "render": "as-is",
+   "render_hash": "b93f58b44380",
+   "source": "docs/.index/rendered/tickets/01KYNDC9CPK8314F6PWDZW1NC6.md",
+   "title": "First wiki publish for motion \u2014 v0.1.0 release, roadmap, snapshot, ticket index",
+   "truth_state": "done",
+   "wiki_key": "item/01KYNDC9CPK8314F6PWDZW1NC6"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -743,11 +753,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-28T20:55:37Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-28T22:26:40Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "a8063fedfae1",
+   "render_hash": "636b23c8e07e",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

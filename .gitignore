@@ -42,3 +42,6 @@ __pycache__/
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# wiki publish checkout (cache, not source)
+.work/wiki-checkout

@@ -28,6 +28,7 @@
    "status": "active",
    "title": "Motion next development phase",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-motion-next-phase",
    "wiki_key": "plan/2026-07-26-motion-next-phase"
   },
   {
@@ -80,17 +81,19 @@
    "status": "active",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-validation-loop",
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-07-28T20:55:37Z",
+   "generated_at": "2026-07-28T22:26:40Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "c810ccf0",
+   "source_hash": "bea123ed",
    "title": "Roadmap",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
    "wiki_key": "roadmap"
   },
   {
@@ -105,6 +108,7 @@
    "source_hash": "c840194b",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-07-28_v0.1.0-release",
    "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
   }
  ],
