@@ -271,3 +271,164 @@ pub fn run() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::fs;
+    use tempfile::TempDir;
+
+    /// macOS temp dirs live under a symlink (/var -> /private/var), so every
+    /// expectation has to be built from the canonicalized root, never the raw
+    /// TempDir path.
+    fn workspace() -> (TempDir, WorkspaceState) {
+        let dir = TempDir::new().expect("temp dir");
+        let root = fs::canonicalize(dir.path()).expect("canonicalize root");
+        let state = WorkspaceState {
+            root: Mutex::new(Some(root)),
+        };
+        (dir, state)
+    }
+
+    fn root_of(dir: &TempDir) -> PathBuf {
+        fs::canonicalize(dir.path()).expect("canonicalize")
+    }
+
+    #[test]
+    fn rejects_everything_until_a_workspace_is_opened() {
+        let state = WorkspaceState {
+            root: Mutex::new(None),
+        };
+        let err = ensure_within_workspace(&state, Path::new("/etc/passwd")).unwrap_err();
+        assert!(err.contains("No workspace opened"), "got: {err}");
+    }
+
+    #[test]
+    fn allows_a_file_inside_the_workspace() {
+        let (dir, state) = workspace();
+        let file = root_of(&dir).join("note.md");
+        fs::write(&file, "hi").unwrap();
+
+        let resolved = ensure_within_workspace(&state, &file).expect("should be allowed");
+        assert_eq!(resolved, file);
+    }
+
+    #[test]
+    fn allows_a_file_that_does_not_exist_yet() {
+        // write_file depends on this: a new note has no inode until it is saved.
+        let (dir, state) = workspace();
+        let file = root_of(&dir).join("brand-new.md");
+
+        let resolved = ensure_within_workspace(&state, &file).expect("should be allowed");
+        assert_eq!(resolved, file);
+        assert!(!file.exists(), "resolution must not create the file");
+    }
+
+    #[test]
+    fn rejects_parent_traversal() {
+        let (dir, state) = workspace();
+        let escape = root_of(&dir).join("..").join("outside.md");
+
+        let err = ensure_within_workspace(&state, &escape).unwrap_err();
+        assert!(err.contains("outside the opened workspace"), "got: {err}");
+    }
+
+    /// The sibling-prefix escape. A workspace at `/x/ws` must not admit
+    /// `/x/ws-evil/...`, even though the second string starts with the first.
+    /// Rust's Path::starts_with is component-aware so this passes here -- the
+    /// test exists to pin that guarantee, because the HTTP jail added in Phase 1
+    /// must match it and a naive JS `startsWith` would not.
+    #[test]
+    fn rejects_a_sibling_directory_sharing_the_workspace_prefix() {
+        let parent = TempDir::new().unwrap();
+        let base = fs::canonicalize(parent.path()).unwrap();
+
+        let ws = base.join("ws");
+        let evil = base.join("ws-evil");
+        fs::create_dir(&ws).unwrap();
+        fs::create_dir(&evil).unwrap();
+        let target = evil.join("secrets.md");
+        fs::write(&target, "secret").unwrap();
+
+        let state = WorkspaceState {
+            root: Mutex::new(Some(ws)),
+        };
+
+        let err = ensure_within_workspace(&state, &target).unwrap_err();
+        assert!(err.contains("outside the opened workspace"), "got: {err}");
+    }
+
+    #[test]
+    fn rejects_a_symlink_that_points_outside_the_workspace() {
+        let (dir, state) = workspace();
+        let outside = TempDir::new().unwrap();
+        let secret = fs::canonicalize(outside.path()).unwrap().join("secret.md");
+        fs::write(&secret, "secret").unwrap();
+
+        let link = root_of(&dir).join("looks-local.md");
+        #[cfg(unix)]
+        std::os::unix::fs::symlink(&secret, &link).unwrap();
+
+        let err = ensure_within_workspace(&state, &link).unwrap_err();
+        assert!(err.contains("outside the opened workspace"), "got: {err}");
+    }
+
+    #[test]
+    fn resolve_path_rejects_a_bare_relative_path() {
+        // Why the welcome document's `source: sample-data.csv` fails on desktop
+        // while working in the browser (B5): a bare filename has no parent to
+        // canonicalize.
+        let err = resolve_path(Path::new("sample-data.csv")).unwrap_err();
+        assert!(err.contains("no parent directory"), "got: {err}");
+    }
+
+    #[test]
+    fn collects_only_the_requested_extensions_and_skips_dotdirs() {
+        let dir = TempDir::new().unwrap();
+        let root = fs::canonicalize(dir.path()).unwrap();
+        fs::write(root.join("a.md"), "").unwrap();
+        fs::write(root.join("b.csv"), "").unwrap();
+        fs::create_dir(root.join("nested")).unwrap();
+        fs::write(root.join("nested").join("c.md"), "").unwrap();
+        fs::create_dir(root.join(".hidden")).unwrap();
+        fs::write(root.join(".hidden").join("d.md"), "").unwrap();
+
+        let mut found = Vec::new();
+        collect_files_with_extensions(&root, &["md"], &mut found).unwrap();
+        found.sort();
+
+        assert_eq!(found.len(), 2, "got: {found:?}");
+        assert!(found.iter().any(|p| p.ends_with("a.md")));
+        assert!(found.iter().any(|p| p.ends_with("c.md")));
+        assert!(
+            !found.iter().any(|p| p.contains(".hidden")),
+            "dotdirs must be skipped: {found:?}"
+        );
+    }
+
+    /// B14, pinned as-is rather than fixed: list_markdown_files re-roots the
+    /// jail to whatever directory it is handed, a second write path to
+    /// WorkspaceState that never goes through the folder dialog. This test
+    /// documents today's behaviour so Phase 1's decision to keep or remove it is
+    /// a deliberate change with a failing test attached, not a silent drift.
+    #[test]
+    fn b14_workspace_root_is_reassignable_without_set_workspace() {
+        let (dir, state) = workspace();
+        let elsewhere = TempDir::new().unwrap();
+        let new_root = fs::canonicalize(elsewhere.path()).unwrap();
+
+        // Mirrors what list_markdown_files does to the shared state.
+        {
+            let mut guard = state.root.lock().unwrap();
+            *guard = Some(new_root.clone());
+        }
+
+        let target = new_root.join("now-reachable.md");
+        fs::write(&target, "").unwrap();
+        assert!(
+            ensure_within_workspace(&state, &target).is_ok(),
+            "documents current behaviour: the jail followed the new root"
+        );
+        let _ = dir;
+    }
+}
