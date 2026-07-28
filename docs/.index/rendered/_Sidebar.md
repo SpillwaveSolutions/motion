@@ -2,6 +2,7 @@
 
 - [[Roadmap]]
 - [[Design-Doc]] · [[Code-Walkthrough]]
+- Plan: [[Plan-validation-loop]]
 - Plan: [[Plan-motion-next-phase]]
 
 ### History

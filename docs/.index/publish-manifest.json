@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "44002a329cb5",
+   "render_hash": "f4460316aeaa",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "ae45caf6cb98",
+   "render_hash": "1e9fe0ece76a",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "22df053cdbe5",
+   "render_hash": "a42838a64b15",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -281,6 +281,426 @@
    "wiki_key": "item/01KYJXSYEZ97M9638S91GYZWV0"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSF1KPVANBR2F76R20N",
+   "render": "as-is",
+   "render_hash": "4f5f3c226001",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSF1KPVANBR2F76R20N.md",
+   "title": "Add test, test:e2e, tauri, and verify scripts to package.json",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSF1KPVANBR2F76R20N"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSFD37YD6RN9KS2T4W8",
+   "render": "as-is",
+   "render_hash": "7c0de41a5d2c",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSFD37YD6RN9KS2T4W8.md",
+   "title": "Phase 0: console/network failure fixture with a measured baseline",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSFD37YD6RN9KS2T4W8"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "render": "as-is",
+   "render_hash": "7a39a63088e8",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
+   "title": "Validation loop: prove the UI works before the human launches it",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSFJNG9XV6D8K5SHWCV"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSFMY34BQ4EVPH28D9M",
+   "render": "as-is",
+   "render_hash": "bacf92a8cd2a",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSFMY34BQ4EVPH28D9M.md",
+   "title": "Phase 0: add test/verify scripts and the Playwright harness",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSFMY34BQ4EVPH28D9M"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSFW1K6739GPERY93QS",
+   "render": "as-is",
+   "render_hash": "f479903061ef",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSFW1K6739GPERY93QS.md",
+   "title": "Install Playwright and add playwright.config.ts with webServer, workers:1",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSFW1K6739GPERY93QS"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSFYKSCFS0T31XBPHY1",
+   "render": "as-is",
+   "render_hash": "d22ac9e9a040",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSFYKSCFS0T31XBPHY1.md",
+   "title": "Add a smoke spec: app loads, editor present, zero console errors",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSFYKSCFS0T31XBPHY1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSG0VG2NDWC3E7FRJFA",
+   "render": "as-is",
+   "render_hash": "a9ba2e8d16c1",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSG0VG2NDWC3E7FRJFA.md",
+   "title": "Implement the path jail with component-aware containment, not string startsWith",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSG0VG2NDWC3E7FRJFA"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSG64GHM3NM9JCV1NJ3",
+   "render": "as-is",
+   "render_hash": "2f50c2fbfe7a",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSG64GHM3NM9JCV1NJ3.md",
+   "title": "Track CLAUDE.md (git add -f), add Definition of Done, fix its stale Bun/HMR claims",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSG64GHM3NM9JCV1NJ3"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSG7TT2K13FNK8C74QE",
+   "render": "as-is",
+   "render_hash": "541bb19538a4",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSG7TT2K13FNK8C74QE.md",
+   "title": "Append typecheck and bun test to hooks/pre-commit",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSG7TT2K13FNK8C74QE"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGAV4DHBNCJMXP086J",
+   "render": "as-is",
+   "render_hash": "03eba446cf77",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGAV4DHBNCJMXP086J.md",
+   "title": "Write e2e/fixtures.ts failing on console errors, requestfailed, and status >= 400",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGAV4DHBNCJMXP086J"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGDE4KJP64EW6JHQ9V",
+   "render": "as-is",
+   "render_hash": "a071f36d3374",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGDE4KJP64EW6JHQ9V.md",
+   "title": "Phase 0: self-host fonts so the network gate is not flaky",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGDE4KJP64EW6JHQ9V"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGFM7BEQF2MG6J7K8W",
+   "render": "as-is",
+   "render_hash": "7888613202dd",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGFM7BEQF2MG6J7K8W.md",
+   "title": "Phase 0: static Bun-in-client guard",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGFM7BEQF2MG6J7K8W"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGGR1V5ACMDGZSJHF1",
+   "render": "as-is",
+   "render_hash": "ff354d590cdc",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGGR1V5ACMDGZSJHF1.md",
+   "title": "Add a data-app-ready signal set after first mount",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGGR1V5ACMDGZSJHF1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGHBG8EM467WQXQCR5",
+   "render": "as-is",
+   "render_hash": "27b0e0c89c44",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGHBG8EM467WQXQCR5.md",
+   "title": "Phase 0: Rust tests for the workspace jail",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGHBG8EM467WQXQCR5"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGHYEM1GVBPVT14SS1",
+   "render": "as-is",
+   "render_hash": "e73fb5c136d8",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGHYEM1GVBPVT14SS1.md",
+   "title": "Measure the cold-load console and network baseline and record it",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGHYEM1GVBPVT14SS1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGP45SAC43B5AYA91P",
+   "render": "as-is",
+   "render_hash": "e3b6076a05ed",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGP45SAC43B5AYA91P.md",
+   "title": "Add .github/workflows/ci.yml that actually tests the application",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGP45SAC43B5AYA91P"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "render": "as-is",
+   "render_hash": "a02cabf84ae6",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGP58Q6GQ3Z3HEMXXN.md",
+   "title": "Phase 1: make web mode a real filesystem backend",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR",
+   "render": "as-is",
+   "render_hash": "82df628fa178",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGPYHDTHG3T7Y80MAR.md",
+   "title": "Phase 0.5: accessibility pass so role-based locators are possible",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSGPYHDTHG3T7Y80MAR"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGSAMNDS6CJ47YST2C",
+   "render": "as-is",
+   "render_hash": "2727167c77d5",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGSAMNDS6CJ47YST2C.md",
+   "title": "Add /api/fs/* routes to server.ts with an env-only workspace root",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSGSAMNDS6CJ47YST2C"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGSX8673FTZ7AY0CCB",
+   "render": "as-is",
+   "render_hash": "0f0904bb4898",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGSX8673FTZ7AY0CCB.md",
+   "title": "Phase 0: make the gates bite",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK6NHSGSX8673FTZ7AY0CCB"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSGXDY0C5GZRQDVEQGC",
+   "render": "as-is",
+   "render_hash": "9a20d394d3ec",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSGXDY0C5GZRQDVEQGC.md",
+   "title": "Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSGXDY0C5GZRQDVEQGC"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSH15H376EZGAMTZE9J",
+   "render": "as-is",
+   "render_hash": "447ed1f67b6e",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSH15H376EZGAMTZE9J.md",
+   "title": "B8: route the four enrichment modules through llmClient",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSH15H376EZGAMTZE9J"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSH1PJ0YBJ1WEG3SZ4R",
+   "render": "as-is",
+   "render_hash": "8174fbf0b066",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSH1PJ0YBJ1WEG3SZ4R.md",
+   "title": "Give each Playwright worker a seeded temp workspace",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSH2RMTJQ3SR7MGW7Q8",
+   "render": "as-is",
+   "render_hash": "fd57d9c9d34c",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSH2RMTJQ3SR7MGW7Q8.md",
+   "title": "Add resolveWorkspacePath so documents are portable between modes",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSH8WXC8MEGFPFM8DYC",
+   "render": "as-is",
+   "render_hash": "c594e5b85c57",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSH8WXC8MEGFPFM8DYC.md",
+   "title": "Add the language-neutral parity fixture run by both bun test and cargo test",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSH8WXC8MEGFPFM8DYC"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7",
+   "render": "as-is",
+   "render_hash": "bc4e2c874e6b",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSH9BTQ4BND9DZEFAY7.md",
+   "title": "B4 and B7: block round-trip and multi-line serialization",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSH9BTQ4BND9DZEFAY7"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR",
+   "render": "as-is",
+   "render_hash": "80fc68f59c70",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHBJ0SV2MM8N3A0KJR.md",
+   "title": "Phase 2: E2E coverage of the journeys that have actually broken",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHBJ0SV2MM8N3A0KJR"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP",
+   "render": "as-is",
+   "render_hash": "6f5f472d49fb",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHD4NMT2QVMQD2HHBP.md",
+   "title": "B5: welcome doc paths resolve in both modes",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHD4NMT2QVMQD2HHBP"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHKCZWFNWZX3NATX04",
+   "render": "as-is",
+   "render_hash": "cef32b54a4e3",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHKCZWFNWZX3NATX04.md",
+   "title": "Replace WebStorage with a real HttpStorage",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHKCZWFNWZX3NATX04"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHKXZNTXS3F3ANDYV9",
+   "render": "as-is",
+   "render_hash": "fbb6854edfa1",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHKXZNTXS3F3ANDYV9.md",
+   "title": "Add bin/smoke-desktop.sh building and launching the packaged app",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHKXZNTXS3F3ANDYV9"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9",
+   "render": "as-is",
+   "render_hash": "d359a9058980",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHKZ20DY8FBB5S1PP9.md",
+   "title": "B6: thread model through the run_llm_cli IPC signature",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHKZ20DY8FBB5S1PP9"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHQZZQV7DJM5A64C6E",
+   "render": "as-is",
+   "render_hash": "2bc6ca7ab559",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHQZZQV7DJM5A64C6E.md",
+   "title": "B13: save completion signal and file-load cancellation",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHQZZQV7DJM5A64C6E"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHRFE2KXPBTV76JR02",
+   "render": "as-is",
+   "render_hash": "fd339aef4ebc",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHRFE2KXPBTV76JR02.md",
+   "title": "Write the short release-only manual checklist",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHRFE2KXPBTV76JR02"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ",
+   "render": "as-is",
+   "render_hash": "cdbb30e2e458",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHRFPGDZXKE6EH4QRJ.md",
+   "title": "B3: fix the broken desktop production build (dist has no index.html)",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHRFPGDZXKE6EH4QRJ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHSASEERK1KJ7XVDPN",
+   "render": "as-is",
+   "render_hash": "7eead449f407",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHSASEERK1KJ7XVDPN.md",
+   "title": "Backfill tests on the untested security boundaries",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHSASEERK1KJ7XVDPN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHVJEFG9W6TZYWXNEF",
+   "render": "as-is",
+   "render_hash": "846e43f83fba",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHVJEFG9W6TZYWXNEF.md",
+   "title": "Delete the stale root index.html and generate dev and prod shells from one template",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHVJEFG9W6TZYWXNEF"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E",
+   "render": "as-is",
+   "render_hash": "c4b67f2535f0",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHVZ2EZZH7NBRADW7E.md",
+   "title": "B9: contain the Mermaid parse-error graphic",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHVZ2EZZH7NBRADW7E"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+   "render": "as-is",
+   "render_hash": "6de364a8dfd8",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHZF8S0ZNGQ9ZAD05F.md",
+   "title": "Phase 4: desktop confidence without a WebDriver",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "render": "as-is",
+   "render_hash": "5fa03e99a877",
+   "source": "docs/.index/rendered/tickets/01KYK6NHSHZJNNCYMEW9ZG77NP.md",
+   "title": "Phase 3: fix what the loop exposes",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK6NHSHZJNNCYMEW9ZG77NP"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK7WZFJXKTH14WKSZR7FQEE",
+   "render": "as-is",
+   "render_hash": "f0bae4f798bf",
+   "source": "docs/.index/rendered/tickets/01KYK7WZFJXKTH14WKSZR7FQEE.md",
+   "title": "Welcome doc's diagram-gen block sent the string \"null\" to mermaid.render on every cold load",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK7WZFJXKTH14WKSZR7FQEE"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK7WZM5846FPAQZH84S5D38",
+   "render": "as-is",
+   "render_hash": "06f83a61c8a3",
+   "source": "docs/.index/rendered/tickets/01KYK7WZM5846FPAQZH84S5D38.md",
+   "title": "Dev server answered every missing file with 200 + index.html instead of 404",
+   "truth_state": "done",
+   "wiki_key": "item/01KYK7WZM5846FPAQZH84S5D38"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYK7WZRS65D7DPP0D1DT58Z7",
+   "render": "as-is",
+   "render_hash": "9b5043d080f3",
+   "source": "docs/.index/rendered/tickets/01KYK7WZRS65D7DPP0D1DT58Z7.md",
+   "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN",
+   "truth_state": "open",
+   "wiki_key": "item/01KYK7WZRS65D7DPP0D1DT58Z7"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -292,11 +712,22 @@
    "wiki_key": "plan/2026-07-26-motion-next-phase"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-27T23:16:04Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-validation-loop",
+   "render": "doc+banner",
+   "render_hash": "e2ad54dfa927",
+   "source": "docs/plans/2026-07-28-validation-loop.md",
+   "title": "Validation loop: prove the UI works before the human launches it",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-07-28-validation-loop"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-28T02:17:59Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "33672da531c8",
+   "render_hash": "a9aae6528997",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -304,7 +735,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "621220c02dc0",
+  "render_hash": "7349e4df033d",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

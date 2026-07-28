@@ -2,6 +2,253 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Demo Query block returns zero rows: case mismatch in the demo data JOIN
+`01KYK7WZRS65D7DPP0D1DT58Z7` · status: todo
+- belongs-to: Phase 0: console/network failure fixture with a measured baseline
+
+### Dev server answered every missing file with 200 + index.html instead of 404
+`01KYK7WZM5846FPAQZH84S5D38` · status: done
+- belongs-to: Phase 0: console/network failure fixture with a measured baseline
+
+### Welcome doc's diagram-gen block sent the string "null" to mermaid.render on every cold load
+`01KYK7WZFJXKTH14WKSZR7FQEE` · status: done
+- belongs-to: Phase 0: console/network failure fixture with a measured baseline
+
+### Phase 3: fix what the loop exposes
+`01KYK6NHSHZJNNCYMEW9ZG77NP` · status: todo
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- contains: B8: route the four enrichment modules through llmClient
+- contains: B4 and B7: block round-trip and multi-line serialization
+- contains: B5: welcome doc paths resolve in both modes
+- contains: B6: thread model through the run_llm_cli IPC signature
+- contains: B13: save completion signal and file-load cancellation
+- contains: B3: fix the broken desktop production build (dist has no index.html)
+- contains: Backfill tests on the untested security boundaries
+- contains: B9: contain the Mermaid parse-error graphic
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 4: desktop confidence without a WebDriver
+`01KYK6NHSHZF8S0ZNGQ9ZAD05F` · status: todo
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- contains: Add bin/smoke-desktop.sh building and launching the packaged app
+- contains: Write the short release-only manual checklist
+- produced-by: [[Plan-validation-loop]]
+
+### B9: contain the Mermaid parse-error graphic
+`01KYK6NHSHVZ2EZZH7NBRADW7E` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Delete the stale root index.html and generate dev and prod shells from one template
+`01KYK6NHSHVJEFG9W6TZYWXNEF` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### Backfill tests on the untested security boundaries
+`01KYK6NHSHSASEERK1KJ7XVDPN` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### B3: fix the broken desktop production build (dist has no index.html)
+`01KYK6NHSHRFPGDZXKE6EH4QRJ` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Write the short release-only manual checklist
+`01KYK6NHSHRFE2KXPBTV76JR02` · status: todo
+- belongs-to: Phase 4: desktop confidence without a WebDriver
+- produced-by: [[Plan-validation-loop]]
+
+### B13: save completion signal and file-load cancellation
+`01KYK6NHSHQZZQV7DJM5A64C6E` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### B6: thread model through the run_llm_cli IPC signature
+`01KYK6NHSHKZ20DY8FBB5S1PP9` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Add bin/smoke-desktop.sh building and launching the packaged app
+`01KYK6NHSHKXZNTXS3F3ANDYV9` · status: todo
+- belongs-to: Phase 4: desktop confidence without a WebDriver
+- produced-by: [[Plan-validation-loop]]
+
+### Replace WebStorage with a real HttpStorage
+`01KYK6NHSHKCZWFNWZX3NATX04` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### B5: welcome doc paths resolve in both modes
+`01KYK6NHSHD4NMT2QVMQD2HHBP` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 2: E2E coverage of the journeys that have actually broken
+`01KYK6NHSHBJ0SV2MM8N3A0KJR` · status: todo
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- produced-by: [[Plan-validation-loop]]
+
+### B4 and B7: block round-trip and multi-line serialization
+`01KYK6NHSH9BTQ4BND9DZEFAY7` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Add the language-neutral parity fixture run by both bun test and cargo test
+`01KYK6NHSH8WXC8MEGFPFM8DYC` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### Add resolveWorkspacePath so documents are portable between modes
+`01KYK6NHSH2RMTJQ3SR7MGW7Q8` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### Give each Playwright worker a seeded temp workspace
+`01KYK6NHSH1PJ0YBJ1WEG3SZ4R` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### B8: route the four enrichment modules through llmClient
+`01KYK6NHSH15H376EZGAMTZE9J` · status: todo
+- belongs-to: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs
+`01KYK6NHSGXDY0C5GZRQDVEQGC` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0: make the gates bite
+`01KYK6NHSGSX8673FTZ7AY0CCB` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- contains: Track CLAUDE.md (git add -f), add Definition of Done, fix its stale Bun/HMR claims
+- contains: Append typecheck and bun test to hooks/pre-commit
+- contains: Add .github/workflows/ci.yml that actually tests the application
+- produced-by: [[Plan-validation-loop]]
+
+### Add /api/fs/* routes to server.ts with an env-only workspace root
+`01KYK6NHSGSAMNDS6CJ47YST2C` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0.5: accessibility pass so role-based locators are possible
+`01KYK6NHSGPYHDTHG3T7Y80MAR` · status: todo
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 1: make web mode a real filesystem backend
+`01KYK6NHSGP58Q6GQ3Z3HEMXXN` · status: todo
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- contains: Implement the path jail with component-aware containment, not string startsWith
+- contains: Add /api/fs/* routes to server.ts with an env-only workspace root
+- contains: Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs
+- contains: Give each Playwright worker a seeded temp workspace
+- contains: Add resolveWorkspacePath so documents are portable between modes
+- contains: Add the language-neutral parity fixture run by both bun test and cargo test
+- contains: Replace WebStorage with a real HttpStorage
+- contains: Delete the stale root index.html and generate dev and prod shells from one template
+- produced-by: [[Plan-validation-loop]]
+
+### Add .github/workflows/ci.yml that actually tests the application
+`01KYK6NHSGP45SAC43B5AYA91P` · status: done
+- belongs-to: Phase 0: make the gates bite
+- produced-by: [[Plan-validation-loop]]
+
+### Measure the cold-load console and network baseline and record it
+`01KYK6NHSGHYEM1GVBPVT14SS1` · status: done
+- belongs-to: Phase 0: console/network failure fixture with a measured baseline
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0: Rust tests for the workspace jail
+`01KYK6NHSGHBG8EM467WQXQCR5` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- produced-by: [[Plan-validation-loop]]
+
+### Add a data-app-ready signal set after first mount
+`01KYK6NHSGGR1V5ACMDGZSJHF1` · status: done
+- belongs-to: Phase 0: console/network failure fixture with a measured baseline
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0: static Bun-in-client guard
+`01KYK6NHSGFM7BEQF2MG6J7K8W` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0: self-host fonts so the network gate is not flaky
+`01KYK6NHSGDE4KJP64EW6JHQ9V` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- produced-by: [[Plan-validation-loop]]
+
+### Write e2e/fixtures.ts failing on console errors, requestfailed, and status >= 400
+`01KYK6NHSGAV4DHBNCJMXP086J` · status: done
+- belongs-to: Phase 0: console/network failure fixture with a measured baseline
+- produced-by: [[Plan-validation-loop]]
+
+### Append typecheck and bun test to hooks/pre-commit
+`01KYK6NHSG7TT2K13FNK8C74QE` · status: done
+- belongs-to: Phase 0: make the gates bite
+- produced-by: [[Plan-validation-loop]]
+
+### Track CLAUDE.md (git add -f), add Definition of Done, fix its stale Bun/HMR claims
+`01KYK6NHSG64GHM3NM9JCV1NJ3` · status: done
+- belongs-to: Phase 0: make the gates bite
+- produced-by: [[Plan-validation-loop]]
+
+### Implement the path jail with component-aware containment, not string startsWith
+`01KYK6NHSG0VG2NDWC3E7FRJFA` · status: todo
+- belongs-to: Phase 1: make web mode a real filesystem backend
+- produced-by: [[Plan-validation-loop]]
+
+### Add a smoke spec: app loads, editor present, zero console errors
+`01KYK6NHSFYKSCFS0T31XBPHY1` · status: done
+- belongs-to: Phase 0: add test/verify scripts and the Playwright harness
+- produced-by: [[Plan-validation-loop]]
+
+### Install Playwright and add playwright.config.ts with webServer, workers:1
+`01KYK6NHSFW1K6739GPERY93QS` · status: done
+- belongs-to: Phase 0: add test/verify scripts and the Playwright harness
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0: add test/verify scripts and the Playwright harness
+`01KYK6NHSFMY34BQ4EVPH28D9M` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- contains: Add test, test:e2e, tauri, and verify scripts to package.json
+- contains: Install Playwright and add playwright.config.ts with webServer, workers:1
+- contains: Add a smoke spec: app loads, editor present, zero console errors
+- produced-by: [[Plan-validation-loop]]
+
+### Validation loop: prove the UI works before the human launches it
+`01KYK6NHSFJNG9XV6D8K5SHWCV` · status: todo
+- contains: Phase 0: console/network failure fixture with a measured baseline
+- contains: Phase 0: add test/verify scripts and the Playwright harness
+- contains: Phase 0: self-host fonts so the network gate is not flaky
+- contains: Phase 0: static Bun-in-client guard
+- contains: Phase 0: Rust tests for the workspace jail
+- contains: Phase 1: make web mode a real filesystem backend
+- contains: Phase 0.5: accessibility pass so role-based locators are possible
+- contains: Phase 0: make the gates bite
+- contains: Phase 2: E2E coverage of the journeys that have actually broken
+- contains: Phase 4: desktop confidence without a WebDriver
+- contains: Phase 3: fix what the loop exposes
+- produced-by: [[Plan-validation-loop]]
+
+### Phase 0: console/network failure fixture with a measured baseline
+`01KYK6NHSFD37YD6RN9KS2T4W8` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+- contains: Write e2e/fixtures.ts failing on console errors, requestfailed, and status >= 400
+- contains: Add a data-app-ready signal set after first mount
+- contains: Measure the cold-load console and network baseline and record it
+- contains: Welcome doc's diagram-gen block sent the string "null" to mermaid.render on every cold load
+- contains: Dev server answered every missing file with 200 + index.html instead of 404
+- contains: Demo Query block returns zero rows: case mismatch in the demo data JOIN
+- produced-by: [[Plan-validation-loop]]
+
+### Add test, test:e2e, tauri, and verify scripts to package.json
+`01KYK6NHSF1KPVANBR2F76R20N` · status: done
+- belongs-to: Phase 0: add test/verify scripts and the Playwright harness
+- produced-by: [[Plan-validation-loop]]
+
 ### Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container
 `01KYJXSYEZ97M9638S91GYZWV0` · status: todo
 - belongs-to: Real diagram generation, and scope a real ImageGen backend
