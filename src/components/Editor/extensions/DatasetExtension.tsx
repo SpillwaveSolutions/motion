@@ -3,6 +3,7 @@ import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tip
 import { useEffect, useState } from "react";
 import { registerFile, executeQuery, clampLimit, validateIdentifier } from "../../../lib/data/duckdb";
 import { storage } from "../../../lib/storage";
+import { parseBlockAttrs } from "./blockAttrs";
 
 function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
     const { source, name, limit = 5 } = node.attrs;
@@ -140,23 +141,12 @@ export const DatasetExtension = Node.create({
                 getAttrs: (node) => {
                     if (typeof node === "string") return false;
                     try {
-                        const content = node.textContent || "";
-                        // Simple key-value parser for the dataset block
-                        const attrs: Record<string, unknown> = {};
-                        content.split("\n").forEach((line) => {
-                            const [key, ...val] = line.split(":");
-                            if (key && val.length > 0) {
-                                const k = key.trim();
-                                const v = val.join(":").trim();
-                                if (k === "limit") {
-                                    attrs.limit = clampLimit(v);
-                                } else {
-                                    attrs[k] = v;
-                                }
-                            }
-                        });
-                        if (attrs.limit === undefined) {
-                            attrs.limit = 5;
+                        const parsed = parseBlockAttrs(node.textContent || "");
+                        const attrs: Record<string, unknown> = { ...parsed };
+                        if (parsed["limit"] !== undefined && parsed["limit"] !== "") {
+                            attrs["limit"] = clampLimit(parsed["limit"]);
+                        } else {
+                            attrs["limit"] = 5;
                         }
                         return attrs;
                     } catch {

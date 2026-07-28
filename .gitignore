@@ -10,6 +10,12 @@ dist
 coverage
 *.lcov
 
+# Playwright
+test-results
+playwright-report
+blob-report
+.playwright
+
 # logs
 logs
 _.log

@@ -9,3 +9,10 @@ if (!container) {
 
 const root = createRoot(container);
 root.render(<App />);
+
+// E2E readiness signal. Specs wait for [data-app-ready] rather than racing a
+// half-mounted tree. Set after paint so it means "React has rendered", not
+// merely "the bundle parsed".
+requestAnimationFrame(() => {
+    document.documentElement.dataset["appReady"] = "true";
+});

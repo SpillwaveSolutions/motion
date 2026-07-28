@@ -91,6 +91,211 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYK6NHSF1KPVANBR2F76R20N",
+   "to": "item/01KYK6NHSFMY34BQ4EVPH28D9M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSFMY34BQ4EVPH28D9M",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSFW1K6739GPERY93QS",
+   "to": "item/01KYK6NHSFMY34BQ4EVPH28D9M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSFYKSCFS0T31XBPHY1",
+   "to": "item/01KYK6NHSFMY34BQ4EVPH28D9M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSG0VG2NDWC3E7FRJFA",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSG64GHM3NM9JCV1NJ3",
+   "to": "item/01KYK6NHSGSX8673FTZ7AY0CCB",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSG7TT2K13FNK8C74QE",
+   "to": "item/01KYK6NHSGSX8673FTZ7AY0CCB",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGAV4DHBNCJMXP086J",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGDE4KJP64EW6JHQ9V",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGFM7BEQF2MG6J7K8W",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGGR1V5ACMDGZSJHF1",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGHBG8EM467WQXQCR5",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGHYEM1GVBPVT14SS1",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGP45SAC43B5AYA91P",
+   "to": "item/01KYK6NHSGSX8673FTZ7AY0CCB",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGPYHDTHG3T7Y80MAR",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGSAMNDS6CJ47YST2C",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGSX8673FTZ7AY0CCB",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSGXDY0C5GZRQDVEQGC",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSH15H376EZGAMTZE9J",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSH8WXC8MEGFPFM8DYC",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSH9BTQ4BND9DZEFAY7",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHBJ0SV2MM8N3A0KJR",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHD4NMT2QVMQD2HHBP",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHKCZWFNWZX3NATX04",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHKXZNTXS3F3ANDYV9",
+   "to": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHKZ20DY8FBB5S1PP9",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHQZZQV7DJM5A64C6E",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHRFE2KXPBTV76JR02",
+   "to": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHRFPGDZXKE6EH4QRJ",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHSASEERK1KJ7XVDPN",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHVJEFG9W6TZYWXNEF",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHVZ2EZZH7NBRADW7E",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK7WZFJXKTH14WKSZR7FQEE",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK7WZM5846FPAQZH84S5D38",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYK7WZRS65D7DPP0D1DT58Z7",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -174,6 +379,211 @@
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBJZNYDT9AK2V0RA11T",
    "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSF1KPVANBR2F76R20N",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSFMY34BQ4EVPH28D9M",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSFW1K6739GPERY93QS",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSFYKSCFS0T31XBPHY1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSG0VG2NDWC3E7FRJFA",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSG64GHM3NM9JCV1NJ3",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSG7TT2K13FNK8C74QE",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGAV4DHBNCJMXP086J",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGDE4KJP64EW6JHQ9V",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGFM7BEQF2MG6J7K8W",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGGR1V5ACMDGZSJHF1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGHBG8EM467WQXQCR5",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGHYEM1GVBPVT14SS1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGP45SAC43B5AYA91P",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGPYHDTHG3T7Y80MAR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGSAMNDS6CJ47YST2C",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGSX8673FTZ7AY0CCB",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSGXDY0C5GZRQDVEQGC",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSH15H376EZGAMTZE9J",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSH8WXC8MEGFPFM8DYC",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSH9BTQ4BND9DZEFAY7",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHBJ0SV2MM8N3A0KJR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHD4NMT2QVMQD2HHBP",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHKCZWFNWZX3NATX04",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHKXZNTXS3F3ANDYV9",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHKZ20DY8FBB5S1PP9",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHQZZQV7DJM5A64C6E",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHRFE2KXPBTV76JR02",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHRFPGDZXKE6EH4QRJ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHSASEERK1KJ7XVDPN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHVJEFG9W6TZYWXNEF",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHVZ2EZZH7NBRADW7E",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-28-validation-loop",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "produces"
+  },
+  {
+   "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "to": "release/v0.1.0",
+   "type": "targets"
   }
  ],
  "nodes": {
@@ -292,17 +702,242 @@
    "status": "todo",
    "title": "Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container"
   },
+  "item/01KYK6NHSF1KPVANBR2F76R20N": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add test, test:e2e, tauri, and verify scripts to package.json"
+  },
+  "item/01KYK6NHSFD37YD6RN9KS2T4W8": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Phase 0: console/network failure fixture with a measured baseline"
+  },
+  "item/01KYK6NHSFJNG9XV6D8K5SHWCV": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Validation loop: prove the UI works before the human launches it"
+  },
+  "item/01KYK6NHSFMY34BQ4EVPH28D9M": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Phase 0: add test/verify scripts and the Playwright harness"
+  },
+  "item/01KYK6NHSFW1K6739GPERY93QS": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Install Playwright and add playwright.config.ts with webServer, workers:1"
+  },
+  "item/01KYK6NHSFYKSCFS0T31XBPHY1": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add a smoke spec: app loads, editor present, zero console errors"
+  },
+  "item/01KYK6NHSG0VG2NDWC3E7FRJFA": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Implement the path jail with component-aware containment, not string startsWith"
+  },
+  "item/01KYK6NHSG64GHM3NM9JCV1NJ3": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Track CLAUDE.md (git add -f), add Definition of Done, fix its stale Bun/HMR claims"
+  },
+  "item/01KYK6NHSG7TT2K13FNK8C74QE": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Append typecheck and bun test to hooks/pre-commit"
+  },
+  "item/01KYK6NHSGAV4DHBNCJMXP086J": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Write e2e/fixtures.ts failing on console errors, requestfailed, and status >= 400"
+  },
+  "item/01KYK6NHSGDE4KJP64EW6JHQ9V": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Phase 0: self-host fonts so the network gate is not flaky"
+  },
+  "item/01KYK6NHSGFM7BEQF2MG6J7K8W": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Phase 0: static Bun-in-client guard"
+  },
+  "item/01KYK6NHSGGR1V5ACMDGZSJHF1": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add a data-app-ready signal set after first mount"
+  },
+  "item/01KYK6NHSGHBG8EM467WQXQCR5": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Phase 0: Rust tests for the workspace jail"
+  },
+  "item/01KYK6NHSGHYEM1GVBPVT14SS1": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Measure the cold-load console and network baseline and record it"
+  },
+  "item/01KYK6NHSGP45SAC43B5AYA91P": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add .github/workflows/ci.yml that actually tests the application"
+  },
+  "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 1: make web mode a real filesystem backend"
+  },
+  "item/01KYK6NHSGPYHDTHG3T7Y80MAR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 0.5: accessibility pass so role-based locators are possible"
+  },
+  "item/01KYK6NHSGSAMNDS6CJ47YST2C": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add /api/fs/* routes to server.ts with an env-only workspace root"
+  },
+  "item/01KYK6NHSGSX8673FTZ7AY0CCB": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Phase 0: make the gates bite"
+  },
+  "item/01KYK6NHSGXDY0C5GZRQDVEQGC": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs"
+  },
+  "item/01KYK6NHSH15H376EZGAMTZE9J": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B8: route the four enrichment modules through llmClient"
+  },
+  "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Give each Playwright worker a seeded temp workspace"
+  },
+  "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add resolveWorkspacePath so documents are portable between modes"
+  },
+  "item/01KYK6NHSH8WXC8MEGFPFM8DYC": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add the language-neutral parity fixture run by both bun test and cargo test"
+  },
+  "item/01KYK6NHSH9BTQ4BND9DZEFAY7": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B4 and B7: block round-trip and multi-line serialization"
+  },
+  "item/01KYK6NHSHBJ0SV2MM8N3A0KJR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 2: E2E coverage of the journeys that have actually broken"
+  },
+  "item/01KYK6NHSHD4NMT2QVMQD2HHBP": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B5: welcome doc paths resolve in both modes"
+  },
+  "item/01KYK6NHSHKCZWFNWZX3NATX04": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Replace WebStorage with a real HttpStorage"
+  },
+  "item/01KYK6NHSHKXZNTXS3F3ANDYV9": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add bin/smoke-desktop.sh building and launching the packaged app"
+  },
+  "item/01KYK6NHSHKZ20DY8FBB5S1PP9": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B6: thread model through the run_llm_cli IPC signature"
+  },
+  "item/01KYK6NHSHQZZQV7DJM5A64C6E": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B13: save completion signal and file-load cancellation"
+  },
+  "item/01KYK6NHSHRFE2KXPBTV76JR02": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write the short release-only manual checklist"
+  },
+  "item/01KYK6NHSHRFPGDZXKE6EH4QRJ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B3: fix the broken desktop production build (dist has no index.html)"
+  },
+  "item/01KYK6NHSHSASEERK1KJ7XVDPN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Backfill tests on the untested security boundaries"
+  },
+  "item/01KYK6NHSHVJEFG9W6TZYWXNEF": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Delete the stale root index.html and generate dev and prod shells from one template"
+  },
+  "item/01KYK6NHSHVZ2EZZH7NBRADW7E": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "B9: contain the Mermaid parse-error graphic"
+  },
+  "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 4: desktop confidence without a WebDriver"
+  },
+  "item/01KYK6NHSHZJNNCYMEW9ZG77NP": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 3: fix what the loop exposes"
+  },
+  "item/01KYK7WZFJXKTH14WKSZR7FQEE": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Welcome doc's diagram-gen block sent the string \"null\" to mermaid.render on every cold load"
+  },
+  "item/01KYK7WZM5846FPAQZH84S5D38": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Dev server answered every missing file with 200 + index.html instead of 404"
+  },
+  "item/01KYK7WZRS65D7DPP0D1DT58Z7": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
    "title": "Motion next development phase",
    "truth_state": "current"
   },
+  "plan/2026-07-28-validation-loop": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-07-28-validation-loop.md",
+   "title": "Validation loop: prove the UI works before the human launches it",
+   "truth_state": "current"
+  },
+  "release/v0.1.0": {
+   "doc_type": "release"
+  },
   "roadmap": {
    "doc_type": "roadmap",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current"
+  },
+  "roadmap-snapshot/2026-07-28_v0.1.0-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
   }
  },
  "version": 1

@@ -108,3 +108,23 @@ if [ -f bin/ia.py ] && [ -x bin/worklog ]; then
   [ ! -f bin/ia_graph.py ] || python3 bin/worklog trace-check >/dev/null 2>&1 || \
     echo "worklog: WARNING — unlinked evidence; run: worklog trace-check" >&2
 fi
+
+# ---------------------------------------------------------------------------
+# Application gates (validation-loop plan, 01KYK6NHSFJNG9XV6D8K5SHWCV).
+#
+# The FAST subset only: typecheck, the client-bundle guard, and unit tests.
+# E2E, cargo test and clippy live in CI, which is the authoritative gate --
+# this hook is a courtesy that catches the obvious before it leaves the machine.
+# Agents use --no-verify freely, so nothing here is load-bearing for correctness.
+#
+# Skip with WORKLOG_SKIP_APP_GATES=1 when committing docs-only changes.
+# ---------------------------------------------------------------------------
+if [ -z "${WORKLOG_SKIP_APP_GATES:-}" ] && [ -f package.json ] && command -v bun >/dev/null 2>&1; then
+  # Only run when application code actually changed -- a roadmap-only commit
+  # should not pay for a typecheck.
+  if git diff --cached --name-only | grep -qE '^(src/|scripts/|e2e/|package\.json|tsconfig\.json)'; then
+    bun run typecheck >/dev/null 2>&1 || fail "tsc --noEmit failed — run: bun run typecheck"
+    bun run guard:client >/dev/null 2>&1 || fail "Bun API reachable from the browser bundle — run: bun run guard:client"
+    bun test src >/dev/null 2>&1 || fail "unit tests failing — run: bun test src"
+  fi
+fi

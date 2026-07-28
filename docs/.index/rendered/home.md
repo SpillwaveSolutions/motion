@@ -7,7 +7,7 @@
 
 ## What are we working on now?
 [[Roadmap]]
-Active plans: [[Plan-motion-next-phase]]
+Active plans: [[Plan-validation-loop]], [[Plan-motion-next-phase]]
 
 ## Why was it built this way?
 [[Index-Decisions]] — ADRs and plans, with supersede chains

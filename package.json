@@ -6,9 +6,15 @@
   "scripts": {
     "dev": "bun --hot run src/server.ts",
     "build": "bun build src/main.tsx --outdir=dist --minify",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "tauri": "tauri",
+    "test": "bun test src",
+    "test:e2e": "playwright test",
+    "guard:client": "bun run scripts/guard-client-bundle.ts",
+    "verify": "bun run typecheck && bun run guard:client && bun run test && bun run test:e2e"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
     "@tauri-apps/cli": "^2.9.6",
     "@types/bun": "latest",
     "@types/dompurify": "^3.2.0",
