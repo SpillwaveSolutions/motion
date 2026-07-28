@@ -26,5 +26,6 @@ Dataset to Query, Mermaid error containment, and rapid file switching. (open)
 rather than UI automation. (open)
 - [[Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP]] Phase 3: fix what the loop exposes — With gates in place, fix the backlog test-first, ordered by what blocks shipping. (open)
 - [[Ticket-01KYN85K57SRYK5WJFG98W5R6F]] Refresh README for v0.1.0 — six months stale, documented broken features and omitted built ones — README had not been touched since the January 'intial' commit. (done)
+- [[Ticket-01KYNDC9CPK8314F6PWDZW1NC6]] First wiki publish for motion — v0.1.0 release, roadmap, snapshot, ticket index — The repo had never published its wiki; .wiki.git did not exist until a human created the first page (GitHub does not create the wiki repo until then). (done)
 
-Progress: 7/12 done
+Progress: 8/13 done

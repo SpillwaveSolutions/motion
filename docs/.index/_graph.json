@@ -301,6 +301,11 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYNDC9CPK8314F6PWDZW1NC6",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -921,6 +926,11 @@
    "doc_type": "item",
    "status": "done",
    "title": "Refresh README for v0.1.0 \u2014 six months stale, documented broken features and omitted built ones"
+  },
+  "item/01KYNDC9CPK8314F6PWDZW1NC6": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "First wiki publish for motion \u2014 v0.1.0 release, roadmap, snapshot, ticket index"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
