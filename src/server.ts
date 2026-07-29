@@ -147,6 +147,13 @@ const watcher = watch(join(PROJECT_ROOT, "src"), { recursive: true }, (_event, f
 // Serve the app
 const server = Bun.serve({
     port: PORT,
+    // Loopback only. Bun.serve defaults to 0.0.0.0, which would put this
+    // server's filesystem write endpoint and its subprocess-spawning /api/llm
+    // and /api/image endpoints on every interface -- reachable by anything on
+    // the same network, with no authentication. The workspace jail constrains
+    // WHERE a write can land; it says nothing about who may ask for one.
+    // Override only if you know why you need to.
+    hostname: process.env["MOTION_HOST"] ?? "127.0.0.1",
     async fetch(req) {
         const url = new URL(req.url);
         const pathname = url.pathname;

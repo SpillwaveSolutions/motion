@@ -2,6 +2,10 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network
+`01KYNKTZ6KPKZV24XWRZJZG04S` · status: done
+- belongs-to: Validation loop: prove the UI works before the human launches it
+
 ### B14 fixed: list_markdown_files no longer re-roots the workspace jail
 `01KYNKG3ZD866C3AGQS20T6H8J` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
@@ -246,6 +250,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Phase 3: fix what the loop exposes
 - contains: Refresh README for v0.1.0 — six months stale, documented broken features and omitted built ones
 - contains: First wiki publish for motion — v0.1.0 release, roadmap, snapshot, ticket index
+- contains: Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 0: console/network failure fixture with a measured baseline

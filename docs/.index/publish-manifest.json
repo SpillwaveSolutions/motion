@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "4e6084fd7152",
+   "render_hash": "a2ba08ba56d8",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -314,7 +314,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "d844661dca3c",
+   "render_hash": "15b26564e03f",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "open",
@@ -741,6 +741,16 @@
    "wiki_key": "item/01KYNKG3ZD866C3AGQS20T6H8J"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYNKTZ6KPKZV24XWRZJZG04S",
+   "render": "as-is",
+   "render_hash": "46be139b269b",
+   "source": "docs/.index/rendered/tickets/01KYNKTZ6KPKZV24XWRZJZG04S.md",
+   "title": "Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network",
+   "truth_state": "done",
+   "wiki_key": "item/01KYNKTZ6KPKZV24XWRZJZG04S"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -763,11 +773,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:13:48Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:19:39Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "9992cde5aebe",
+   "render_hash": "84a1b557e49c",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
