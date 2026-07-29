@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import Editor from "./components/Editor";
-import { storage, rememberWorkspaceRoot } from "./lib/storage";
+import { storage, rememberWorkspaceRoot, relativeToWorkspace } from "./lib/storage";
+import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -10,6 +11,7 @@ function App() {
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
     const [files, setFiles] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [synthesis, setSynthesis] = useState<string | null>(null);
 
     // Get basename for display
     const getBasename = (path: string) => {
@@ -37,6 +39,42 @@ function App() {
             console.error("Failed to open folder:", error);
             const message = error instanceof Error ? error.message : String(error);
             alert(`Error opening folder: ${message}`);
+        }
+    };
+
+    /**
+     * Workspace-level synthesis: summarize every note, cluster by topic, and
+     * write TOC.md and SKILL.md back into the workspace.
+     *
+     * The three modules behind this were written months ago and had no way for
+     * a user to reach them.
+     */
+    const handleSynthesize = async () => {
+        if (!workspacePath || synthesis) return;
+
+        const sep = workspacePath.includes("\\") ? "\\" : "/";
+        try {
+            const result = await synthesizeWorkspace({
+                listFiles: () => storage.listFiles(workspacePath),
+                readFile: (p) => storage.readFile(p),
+                writeFile: (p, c) => storage.writeFile(p, c),
+                toRelative: relativeToWorkspace,
+                joinWorkspace: (name) =>
+                    `${workspacePath.replace(/[/\\]$/, "")}${sep}${name}`,
+                onProgress: setSynthesis,
+            });
+
+            setFiles(await storage.listFiles(workspacePath));
+            setSynthesis(
+                `Synthesized ${result.noteCount} notes into TOC.md and SKILL.md` +
+                (result.topic.suggestedLabels.length
+                    ? ` — topics: ${result.topic.suggestedLabels.join(", ")}`
+                    : "")
+            );
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            console.error("Workspace synthesis failed:", message);
+            setSynthesis(`Synthesis failed: ${message}`);
         }
     };
 
@@ -114,8 +152,33 @@ function App() {
                     >
                         New Note
                     </button>
+                    <button
+                        className="btn btn-secondary"
+                        onClick={handleSynthesize}
+                        disabled={!workspacePath || synthesis !== null}
+                        title={
+                            workspacePath
+                                ? "Summarize every note, cluster by topic, and write TOC.md and SKILL.md"
+                                : "Open a folder first"
+                        }
+                    >
+                        Synthesize
+                    </button>
                 </div>
             </header>
+
+            {synthesis && (
+                <div role="status" aria-live="polite" aria-label="Workspace synthesis" className="synthesis-status">
+                    {synthesis}
+                    <button
+                        className="synthesis-dismiss"
+                        onClick={() => setSynthesis(null)}
+                        aria-label="Dismiss synthesis status"
+                    >
+                        ×
+                    </button>
+                </div>
+            )}
 
             {/* Sidebar */}
             <aside className="app-sidebar">
