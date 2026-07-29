@@ -666,7 +666,7 @@
   },
   "item/01KYFZ6RBHABFSC9K9NJ90168Q": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Motion next development phase"
   },
   "item/01KYFZ6RBHBG53PG8SKVMMNCC4": {
@@ -771,7 +771,7 @@
   },
   "item/01KYK6NHSFJNG9XV6D8K5SHWCV": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Validation loop: prove the UI works before the human launches it"
   },
   "item/01KYK6NHSFMY34BQ4EVPH28D9M": {

@@ -1,6 +1,6 @@
 # Validation loop: prove the UI works before the human launches it
 
-`01KYK6NHSFJNG9XV6D8K5SHWCV` · epic/feature · **open**
+`01KYK6NHSFJNG9XV6D8K5SHWCV` · epic/feature · **done**
 
 Motion has real features and no way to know whether they work.
 
