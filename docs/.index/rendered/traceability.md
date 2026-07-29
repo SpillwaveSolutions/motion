@@ -299,7 +299,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 `01KYJQ3WF4XJ4D1G7T9WQ3V0TV` · status: done
 
 ### Workspace-level topic clustering + auto TOC/SKILL generation
-`01KYFZ8RGR06XBSG9CH4TEWYJY` · status: todo
+`01KYFZ8RGR06XBSG9CH4TEWYJY` · status: done
 
 ### Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector
 `01KYFZ6RBJZNYDT9AK2V0RA11T` · status: done

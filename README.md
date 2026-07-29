@@ -30,6 +30,13 @@ line:
 | **Image gen** | Generates an image from a prompt via the `imagen` CLI |
 | **Diagram gen** | Generates a Mermaid diagram from a prompt via the `claude` CLI |
 
+### Workspace synthesis
+
+**Synthesize** summarizes every note in the workspace, clusters them by topic,
+and writes a generated `TOC.md` and `SKILL.md` back into the folder. Its own
+output is excluded from the input, so re-running does not feed the index back to
+itself. Capped at 40 notes per run, and it reports what it skipped.
+
 SQL is restricted to `SELECT`/`WITH` with validated identifiers and a clamped
 row limit — the query box cannot modify your data.
 

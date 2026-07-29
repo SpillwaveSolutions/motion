@@ -126,6 +126,26 @@ reports the failure rather than silently doing nothing.
 
 ---
 
+## Workspace synthesis
+
+**Synthesize** (next to New Note) reads every note in the workspace, summarizes
+each one, clusters them by topic, and writes two documents back into the folder:
+
+- **`TOC.md`** — a table of contents with a short summary under each note.
+- **`SKILL.md`** — a synthesized guide to what the workspace is about.
+
+Progress is reported in a bar under the header, and both files appear in the
+sidebar when it finishes. It re-runs safely: its own output is excluded from the
+input, so a second run summarizes your notes and not the index it just wrote.
+
+Each note costs one call to the `claude` CLI, so this is slower and more
+expensive than the other actions — and it processes at most 40 notes per run,
+telling you when it has skipped some rather than silently truncating.
+
+Needs `claude` on your `PATH`. Without it the status bar reports the failure.
+
+---
+
 ## Known limitations at v0.1.0
 
 Stated here so you meet them on your terms:
