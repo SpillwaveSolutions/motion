@@ -98,12 +98,14 @@ export async function executeQuery(sql: string, retryCount = 0): Promise<any[]> 
         // Convert Apache Arrow table to standard JS objects
         return result.toArray().map((row) => row.toJSON());
     } catch (err) {
-        // If table not found, and we haven't retried too many times, wait and try again
-        // This handles the case where QueryExtension mounts before DatasetExtension has finished registerFile
+        // Query often mounts before Dataset has finished registerFile (cold DuckDB
+        // WASM in CI is especially slow). Retry missing-table errors long enough
+        // for a full init + CSV register, not just a few hundred ms.
         const message = err instanceof Error ? err.message : String(err);
-        if (message.includes("does not exist") && retryCount < 3) {
+        const maxRetries = 10;
+        if (message.includes("does not exist") && retryCount < maxRetries) {
             await closeOnce();
-            await new Promise((resolve) => setTimeout(resolve, 500 * (retryCount + 1)));
+            await new Promise((resolve) => setTimeout(resolve, 400 * (retryCount + 1)));
             return executeQuery(sql, retryCount + 1);
         }
         throw err;

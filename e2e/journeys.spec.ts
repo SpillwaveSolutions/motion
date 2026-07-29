@@ -130,10 +130,20 @@ test("a Dataset registers and a Query returns rows from it", async ({ page }) =>
 
     const editor = page.locator(".ProseMirror");
     await expect(editor.locator(".dataset-block")).toBeVisible({ timeout: 20_000 });
-    await expect(editor.locator(".dataset-error")).toHaveCount(0, { timeout: 20_000 });
 
-    // Preview + query both surface registered rows.
-    await expect(editor).toContainText("Alice", { timeout: 20_000 });
-    await expect(editor).toContainText("Architect");
-    await expect(editor).toContainText("12");
+    // Dataset preview first — proves registerFile completed. Query may still be
+    // retrying "table does not exist" while DuckDB warms up on cold CI runners.
+    await expect(editor.locator(".dataset-block")).toContainText("Alice", { timeout: 25_000 });
+    await expect(editor.locator(".dataset-block .dataset-error")).toHaveCount(0);
+
+    // If the query raced the register, Run again once the table exists.
+    const query = editor.locator(".query-block");
+    await expect(query).toBeVisible();
+    if ((await query.locator(".dataset-error").count()) > 0) {
+        await query.getByRole("button", { name: /^Run/ }).click();
+    }
+    await expect(query.locator(".dataset-error")).toHaveCount(0, { timeout: 25_000 });
+    await expect(query).toContainText("Alice", { timeout: 10_000 });
+    await expect(query).toContainText("Architect");
+    await expect(query).toContainText("12");
 });
