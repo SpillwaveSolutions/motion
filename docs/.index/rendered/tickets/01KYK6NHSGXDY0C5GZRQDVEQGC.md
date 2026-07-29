@@ -1,6 +1,6 @@
 # Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs
 
-`01KYK6NHSGXDY0C5GZRQDVEQGC` · subtask/feature · **open**
+`01KYK6NHSGXDY0C5GZRQDVEQGC` · subtask/feature · **done**
 
 Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs
 

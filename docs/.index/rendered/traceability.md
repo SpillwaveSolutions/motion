@@ -2,6 +2,10 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### B14 fixed: list_markdown_files no longer re-roots the workspace jail
+`01KYNKG3ZD866C3AGQS20T6H8J` · status: done
+- belongs-to: Phase 1: make web mode a real filesystem backend
+
 ### First wiki publish for motion — v0.1.0 release, roadmap, snapshot, ticket index
 `01KYNDC9CPK8314F6PWDZW1NC6` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
@@ -83,7 +87,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Replace WebStorage with a real HttpStorage
-`01KYK6NHSHKCZWFNWZX3NATX04` · status: todo
+`01KYK6NHSHKCZWFNWZX3NATX04` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -103,7 +107,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Add the language-neutral parity fixture run by both bun test and cargo test
-`01KYK6NHSH8WXC8MEGFPFM8DYC` · status: todo
+`01KYK6NHSH8WXC8MEGFPFM8DYC` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -113,7 +117,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Give each Playwright worker a seeded temp workspace
-`01KYK6NHSH1PJ0YBJ1WEG3SZ4R` · status: todo
+`01KYK6NHSH1PJ0YBJ1WEG3SZ4R` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -123,7 +127,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs
-`01KYK6NHSGXDY0C5GZRQDVEQGC` · status: todo
+`01KYK6NHSGXDY0C5GZRQDVEQGC` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -136,7 +140,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Add /api/fs/* routes to server.ts with an env-only workspace root
-`01KYK6NHSGSAMNDS6CJ47YST2C` · status: todo
+`01KYK6NHSGSAMNDS6CJ47YST2C` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -146,7 +150,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 1: make web mode a real filesystem backend
-`01KYK6NHSGP58Q6GQ3Z3HEMXXN` · status: todo
+`01KYK6NHSGP58Q6GQ3Z3HEMXXN` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
 - contains: Implement the path jail with component-aware containment, not string startsWith
 - contains: Add /api/fs/* routes to server.ts with an env-only workspace root
@@ -156,6 +160,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Add the language-neutral parity fixture run by both bun test and cargo test
 - contains: Replace WebStorage with a real HttpStorage
 - contains: Delete the stale root index.html and generate dev and prod shells from one template
+- contains: B14 fixed: list_markdown_files no longer re-roots the workspace jail
 - produced-by: [[Plan-validation-loop]]
 
 ### Add .github/workflows/ci.yml that actually tests the application
@@ -204,7 +209,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Implement the path jail with component-aware containment, not string startsWith
-`01KYK6NHSG0VG2NDWC3E7FRJFA` · status: todo
+`01KYK6NHSG0VG2NDWC3E7FRJFA` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 

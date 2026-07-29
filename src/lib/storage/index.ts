@@ -42,48 +42,69 @@ export class TauriStorage implements StorageProvider {
     }
 }
 
-export class WebStorage implements StorageProvider {
-    constructor() {
-        console.warn(
-            "[Motion] WebStorage is active: reads come from the dev server's public/demo/ " +
-            "workspace (no Tauri filesystem access here); writes do not persist. " +
-            "Run inside the Tauri shell for real filesystem access."
-        );
+/** Surface the dev server's error message rather than a bare status code. */
+async function failed(res: Response, what: string): Promise<never> {
+    let detail = `${res.status} ${res.statusText}`;
+    try {
+        const body = await res.json();
+        if (body?.error) detail = body.error;
+    } catch {
+        /* non-JSON body; the status line is all we have */
     }
+    throw new Error(`${what}: ${detail}`);
+}
 
+/**
+ * Browser-mode storage, backed by the dev server's real filesystem API.
+ *
+ * This replaces the former WebStorage, which faked the filesystem: `writeFile`
+ * was a console.warn that reported success and `openFolder` returned the literal
+ * string "web-mock-folder". That made web mode useless as a test surface --
+ * saving could not fail, so testing a save proved nothing about the desktop app.
+ *
+ * Every operation now goes through /api/fs/*, which delegates to the same
+ * fsCore the Tauri commands mirror, so behaviour that passes here is behaviour
+ * the desktop app is held to by tests/contract/storage-cases.json.
+ */
+export class HttpStorage implements StorageProvider {
+    /**
+     * The browser has no folder picker: the workspace is fixed by the server's
+     * MOTION_WORKSPACE. Returns the real root so the UI shows where it is
+     * working, instead of a placeholder that is not a path at all.
+     */
     async openFolder(): Promise<string | null> {
-        return "web-mock-folder";
+        const res = await fetch("/api/fs/workspace");
+        if (!res.ok) return await failed(res, "Failed to open workspace");
+        const { root } = await res.json();
+        return root ?? null;
     }
 
-    // No Tauri filesystem in a plain browser -- list the real demo workspace
-    // the dev server serves from public/demo/, instead of a hardcoded array
-    // that could drift from what's actually there.
     async listFiles(_path: string): Promise<string[]> {
-        const res = await fetch("/api/demo-files");
-        if (!res.ok) return [];
+        const res = await fetch("/api/fs/list");
+        if (!res.ok) return await failed(res, "Failed to list files");
         return await res.json();
     }
 
     async readFile(path: string): Promise<string> {
-        const filename = path.split("/").pop() ?? path;
-        const res = await fetch(`/demo/${encodeURIComponent(filename)}`);
-        if (!res.ok) {
-            throw new Error(`Failed to read "${path}": ${res.status} ${res.statusText}`);
-        }
-        return await res.text();
+        const res = await fetch(`/api/fs/read?path=${encodeURIComponent(path)}`);
+        if (!res.ok) return await failed(res, `Failed to read "${path}"`);
+        const { content } = await res.json();
+        return content;
     }
 
-    async writeFile(path: string, _content: string): Promise<void> {
-        console.warn(
-            `[Motion] WebStorage: write to "${path}" was simulated and did not persist.`
-        );
+    async writeFile(path: string, content: string): Promise<void> {
+        const res = await fetch("/api/fs/write", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ path, content }),
+        });
+        if (!res.ok) await failed(res, `Failed to write "${path}"`);
     }
 
     async listDataFiles(): Promise<string[]> {
-        const res = await fetch("/api/demo-files");
-        if (!res.ok) return [];
-        const files: string[] = await res.json();
-        return files.filter((f) => /\.(csv|json|jsonl)$/i.test(f));
+        const res = await fetch("/api/fs/data-files");
+        if (!res.ok) return await failed(res, "Failed to list data files");
+        return await res.json();
     }
 }
 
@@ -93,4 +114,4 @@ export class WebStorage implements StorageProvider {
  */
 export const isTauri = (): boolean => detectTauri();
 
-export const storage: StorageProvider = isTauri() ? new TauriStorage() : new WebStorage();
+export const storage: StorageProvider = isTauri() ? new TauriStorage() : new HttpStorage();

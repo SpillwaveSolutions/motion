@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "43d3c787ab76",
+   "render_hash": "4e6084fd7152",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -314,7 +314,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "fb01597c21b0",
+   "render_hash": "d844661dca3c",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "open",
@@ -354,10 +354,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSG0VG2NDWC3E7FRJFA",
    "render": "as-is",
-   "render_hash": "a9ba2e8d16c1",
+   "render_hash": "95777d200dcb",
    "source": "docs/.index/rendered/tickets/01KYK6NHSG0VG2NDWC3E7FRJFA.md",
    "title": "Implement the path jail with component-aware containment, not string startsWith",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSG0VG2NDWC3E7FRJFA"
   },
   {
@@ -454,10 +454,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN",
    "render": "as-is",
-   "render_hash": "a02cabf84ae6",
+   "render_hash": "3f32da0ab639",
    "source": "docs/.index/rendered/tickets/01KYK6NHSGP58Q6GQ3Z3HEMXXN.md",
    "title": "Phase 1: make web mode a real filesystem backend",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN"
   },
   {
@@ -474,10 +474,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSGSAMNDS6CJ47YST2C",
    "render": "as-is",
-   "render_hash": "2727167c77d5",
+   "render_hash": "b577f8a52d90",
    "source": "docs/.index/rendered/tickets/01KYK6NHSGSAMNDS6CJ47YST2C.md",
    "title": "Add /api/fs/* routes to server.ts with an env-only workspace root",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSGSAMNDS6CJ47YST2C"
   },
   {
@@ -494,10 +494,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSGXDY0C5GZRQDVEQGC",
    "render": "as-is",
-   "render_hash": "9a20d394d3ec",
+   "render_hash": "7ae3f41f970b",
    "source": "docs/.index/rendered/tickets/01KYK6NHSGXDY0C5GZRQDVEQGC.md",
    "title": "Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSGXDY0C5GZRQDVEQGC"
   },
   {
@@ -514,10 +514,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSH1PJ0YBJ1WEG3SZ4R",
    "render": "as-is",
-   "render_hash": "8174fbf0b066",
+   "render_hash": "696a78ba212e",
    "source": "docs/.index/rendered/tickets/01KYK6NHSH1PJ0YBJ1WEG3SZ4R.md",
    "title": "Give each Playwright worker a seeded temp workspace",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R"
   },
   {
@@ -534,10 +534,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSH8WXC8MEGFPFM8DYC",
    "render": "as-is",
-   "render_hash": "c594e5b85c57",
+   "render_hash": "95b69887f1d9",
    "source": "docs/.index/rendered/tickets/01KYK6NHSH8WXC8MEGFPFM8DYC.md",
    "title": "Add the language-neutral parity fixture run by both bun test and cargo test",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSH8WXC8MEGFPFM8DYC"
   },
   {
@@ -574,10 +574,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHKCZWFNWZX3NATX04",
    "render": "as-is",
-   "render_hash": "cef32b54a4e3",
+   "render_hash": "bb03e72feea3",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHKCZWFNWZX3NATX04.md",
    "title": "Replace WebStorage with a real HttpStorage",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHKCZWFNWZX3NATX04"
   },
   {
@@ -731,6 +731,16 @@
    "wiki_key": "item/01KYNDC9CPK8314F6PWDZW1NC6"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYNKG3ZD866C3AGQS20T6H8J",
+   "render": "as-is",
+   "render_hash": "1d233ee6eead",
+   "source": "docs/.index/rendered/tickets/01KYNKG3ZD866C3AGQS20T6H8J.md",
+   "title": "B14 fixed: list_markdown_files no longer re-roots the workspace jail",
+   "truth_state": "done",
+   "wiki_key": "item/01KYNKG3ZD866C3AGQS20T6H8J"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -753,11 +763,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-28T22:26:40Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:13:48Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "636b23c8e07e",
+   "render_hash": "9992cde5aebe",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

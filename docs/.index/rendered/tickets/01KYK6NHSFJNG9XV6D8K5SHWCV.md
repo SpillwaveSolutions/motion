@@ -12,7 +12,7 @@ someone remembers. (done)
 - [[Ticket-01KYK6NHSGDE4KJP64EW6JHQ9V]] Phase 0: self-host fonts so the network gate is not flaky — The generated HTML fetches Inter and JetBrains Mono from Google Fonts. (done)
 - [[Ticket-01KYK6NHSGFM7BEQF2MG6J7K8W]] Phase 0: static Bun-in-client guard — A console gate only proves what ran. (done)
 - [[Ticket-01KYK6NHSGHBG8EM467WQXQCR5]] Phase 0: Rust tests for the workspace jail — ensure_within_workspace, resolve_path, symlink escape, .. (done)
-- [[Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN]] Phase 1: make web mode a real filesystem backend — The keystone. (open)
+- [[Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN]] Phase 1: make web mode a real filesystem backend — The keystone. (done)
 - [[Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR]] Phase 0.5: accessibility pass so role-based locators are possible — Role and accessible-name locators are the right E2E strategy but are not
 executable against today's DOM: sidebar file entries are clickable divs, slash
 menu items are mouse-only divs, and the Markdown textarea has no label. (open)
@@ -28,4 +28,4 @@ rather than UI automation. (open)
 - [[Ticket-01KYN85K57SRYK5WJFG98W5R6F]] Refresh README for v0.1.0 — six months stale, documented broken features and omitted built ones — README had not been touched since the January 'intial' commit. (done)
 - [[Ticket-01KYNDC9CPK8314F6PWDZW1NC6]] First wiki publish for motion — v0.1.0 release, roadmap, snapshot, ticket index — The repo had never published its wiki; .wiki.git did not exist until a human created the first page (GitHub does not create the wiki repo until then). (done)
 
-Progress: 8/13 done
+Progress: 9/13 done

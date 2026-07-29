@@ -1,6 +1,6 @@
 # Implement the path jail with component-aware containment, not string startsWith
 
-`01KYK6NHSG0VG2NDWC3E7FRJFA` · subtask/feature · **open**
+`01KYK6NHSG0VG2NDWC3E7FRJFA` · subtask/feature · **done**
 
 Implement the path jail with component-aware containment, not string startsWith
 

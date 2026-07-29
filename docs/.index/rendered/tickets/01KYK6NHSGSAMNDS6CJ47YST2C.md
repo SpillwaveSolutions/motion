@@ -1,6 +1,6 @@
 # Add /api/fs/* routes to server.ts with an env-only workspace root
 
-`01KYK6NHSGSAMNDS6CJ47YST2C` · subtask/feature · **open**
+`01KYK6NHSGSAMNDS6CJ47YST2C` · subtask/feature · **done**
 
 Add /api/fs/* routes to server.ts with an env-only workspace root
 
