@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "8c5fb1643e15",
+   "render_hash": "c9a1c31e0e32",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "4f48a4b95c8d",
+   "render_hash": "e5a1358e3789",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,11 +44,21 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "c713f8bc6066",
+   "render_hash": "fc345a47bba6",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
    "wiki_key": "index/traceability"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.1.0+dogfood",
+   "render": "as-is",
+   "render_hash": "0b2f1e3772c9",
+   "source": "docs/.index/rendered/releases/v0.1.0+dogfood.md",
+   "title": "Release v0.1.0+dogfood",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.1.0+dogfood"
   },
   {
    "frozen": false,
@@ -781,22 +791,152 @@
    "wiki_key": "item/01KYQ9NBTQETCVSHC2X775CD14"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:16:30Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
+   "render": "as-is",
+   "render_hash": "ecaae7106c3e",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3SBWDT25TC6H3G4EAA.md",
+   "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3SBWDT25TC6H3G4EAA"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T2SSGG33ESEWPXKH8",
+   "render": "as-is",
+   "render_hash": "0ac1ca33f637",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T2SSGG33ESEWPXKH8.md",
+   "title": "Agent-browser final pass in Definition of Done",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3T2SSGG33ESEWPXKH8"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T3VB8RCTMJJ13FK2H",
+   "render": "as-is",
+   "render_hash": "6161a1cd48fe",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T3VB8RCTMJJ13FK2H.md",
+   "title": "Welcome / demo datasets resolve when the open folder is not Motion",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3T3VB8RCTMJJ13FK2H"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T5RXZWBXWV9VNP3ZH",
+   "render": "as-is",
+   "render_hash": "3e03588859dc",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T5RXZWBXWV9VNP3ZH.md",
+   "title": "Make the Save control discoverable",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQYYN3T5RXZWBXWV9VNP3ZH"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T5W49QH05WCCYX7CE",
+   "render": "as-is",
+   "render_hash": "82d4fa2a6cc7",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T5W49QH05WCCYX7CE.md",
+   "title": "Sidebar: directory tree view alongside flat markdown list",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3T5W49QH05WCCYX7CE"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T731B57N8NXQ8C0FQ",
+   "render": "as-is",
+   "render_hash": "2f4cf2f1b217",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T731B57N8NXQ8C0FQ.md",
+   "title": "Require branch protection on main for verify + rust checks",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3T731B57N8NXQ8C0FQ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T7R1V9546Q5NTJRZE",
+   "render": "as-is",
+   "render_hash": "376988b5b890",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T7R1V9546Q5NTJRZE.md",
+   "title": "E2E: create a new note, edit, save, reload \u2014 content survives",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQYYN3T7R1V9546Q5NTJRZE"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3T8MXHSF7JS4MA57GJ",
+   "render": "as-is",
+   "render_hash": "a919a4fec7fc",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3T8MXHSF7JS4MA57GJ.md",
+   "title": "Land Playwright coverage for dataset/SQL install",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQYYN3T8MXHSF7JS4MA57GJ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3TA69K8848E483HC82",
+   "render": "as-is",
+   "render_hash": "74e1531ea61a",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3TA69K8848E483HC82.md",
+   "title": "Sidebar: sort by name or date",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3TA69K8848E483HC82"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQYYN3TKW93D9SVW07VKFZY",
+   "render": "as-is",
+   "render_hash": "79845770aeee",
+   "source": "docs/.index/rendered/tickets/01KYQYYN3TKW93D9SVW07VKFZY.md",
+   "title": "Search inside file contents (grep/glob UX)",
+   "truth_state": "open",
+   "wiki_key": "item/01KYQYYN3TKW93D9SVW07VKFZY"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQZ491VF71K9KCDHAZYNE9S",
+   "render": "as-is",
+   "render_hash": "21f5991d26c7",
+   "source": "docs/.index/rendered/tickets/01KYQZ491VF71K9KCDHAZYNE9S.md",
+   "title": "Write or update design docs for post-v0.1 dogfood work and publish to wiki",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQZ491VF71K9KCDHAZYNE9S"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQZ4963GCA86R8CP4P14DRV",
+   "render": "as-is",
+   "render_hash": "5e7c3704816b",
+   "source": "docs/.index/rendered/tickets/01KYQZ4963GCA86R8CP4P14DRV.md",
+   "title": "Update user guide for current behaviour and publish to wiki",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQZ4963GCA86R8CP4P14DRV"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQZ49A7NWRQZK83658CT4QT",
+   "render": "as-is",
+   "render_hash": "f2140f1835e2",
+   "source": "docs/.index/rendered/tickets/01KYQZ49A7NWRQZK83658CT4QT.md",
+   "title": "Keep README feature list and known limitations current",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQZ49A7NWRQZK83658CT4QT"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
    "render": "doc+banner",
-   "render_hash": "0ca5dd63ae03",
+   "render_hash": "691275c5c2af",
    "source": "docs/designs/current_code_walkthrough.md",
    "title": "Motion \u2014 Current Code Walkthrough",
    "truth_state": "current",
    "wiki_key": "design/current-code-walkthrough"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:16:30Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "beab3ab15575",
+   "render_hash": "dd6ceba2b397",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -825,11 +965,22 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T16:16:00Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-save-ux-and-next",
+   "render": "doc+banner",
+   "render_hash": "da9542d1a863",
+   "source": "docs/plans/2026-07-29-save-ux-and-next.md",
+   "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-07-29-save-ux-and-next"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:18Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "7233b3fa3cf9",
+   "render_hash": "a298a215c956",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -851,7 +1002,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "7b8b853c6044",
+   "render_hash": "25e98b73f2eb",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -859,7 +1010,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "f40b1df39bfb",
+  "render_hash": "ae340f7f69f7",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

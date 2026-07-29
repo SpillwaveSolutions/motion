@@ -75,6 +75,54 @@ test("a new note is created, listed, and opens without error", async ({ page }) 
     // exactly what the old behaviour produced.
 });
 
+test("a new note can be edited, saved, and reloaded with content intact", async ({ page }) => {
+    // Create only wrote the stub; the human path is create → type → Save →
+    // come back later. That path was untested, and Save was icon-only so people
+    // could not find it. This locks the full journey.
+    const marker = `newnote-persist-${Date.now()}`;
+
+    await gotoApp(page);
+    await page.getByRole("button", { name: "Open Folder" }).click();
+
+    const createWrite = page.waitForResponse(
+        (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
+    );
+    await page.getByRole("button", { name: "New Note" }).click();
+    expect((await createWrite).status()).toBe(200);
+
+    // Shared workspace may already contain untitled notes from earlier specs;
+    // pin the one this click just selected.
+    const created = page.getByRole("option", { name: /^untitled-/, selected: true });
+    await expect(created).toBeVisible();
+    const basename = ((await created.textContent()) ?? "").trim();
+    expect(basename).toMatch(/^untitled-.*\.md$/);
+
+    const editor = page.locator(".ProseMirror");
+    await expect(editor).toContainText("New Note");
+    await editor.click();
+    await page.keyboard.press("End");
+    await page.keyboard.press("Enter");
+    await page.keyboard.type(marker);
+
+    // Visible labeled Save (not icon-only). Accessible name still matches /^Save/.
+    const saveBtn = page.getByRole("button", { name: /^Save/ });
+    await expect(saveBtn).toBeVisible();
+    await expect(saveBtn).toContainText("Save");
+
+    const saveWrite = page.waitForResponse(
+        (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
+    );
+    await saveBtn.click();
+    expect((await saveWrite).status()).toBe(200);
+    await expect(page.locator(".save-status")).toContainText(/Saved/, { timeout: 5_000 });
+
+    // Full reload — proves the bytes are on disk, not only in React state.
+    await gotoApp(page);
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await page.getByRole("option", { name: basename }).click();
+    await expect(page.locator(".ProseMirror")).toContainText(marker, { timeout: 15_000 });
+});
+
 test("writes land on disk where the next read can find them", async ({ page }) => {
     const marker = `roundtrip-${Date.now()}`;
 

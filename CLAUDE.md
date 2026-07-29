@@ -30,8 +30,31 @@ client-bundle guard, unit tests, then E2E.
 | `bun run typecheck` | `tsc --noEmit`, strict |
 | `bun run guard:client` | no `Bun.` reachable from `src/main.tsx` |
 | `bun test src` | unit tests (scoped to `src` — unscoped, Bun would try to run the Playwright specs and fail) |
-| `bunx playwright test` | E2E against the real dev server |
+| `bunx playwright test` | **end-to-end** against the real dev server (Playwright *is* the E2E harness) |
 | `cd src-tauri && cargo test --lib` | the workspace jail |
+
+### Every feature ships with tests — no exceptions
+
+When you add or change a **user-visible feature** (UI control, workflow, block
+type, storage behaviour, synthesis, etc.), the PR must include **both**:
+
+1. **Unit / focused tests** under `src/**` via `bun test src` — pure logic,
+   serialization, path resolution, duckdb helpers, synthesis orchestration,
+   etc. If the change is UI-only wiring with no extractable logic, still prefer
+   a small unit test for any new pure helper you introduce.
+2. **Playwright end-to-end** under `e2e/` — a real browser journey against the
+   real dev server that exercises the feature the way a user would (roles and
+   accessible names, not CSS trivia). Extend an existing spec file when the
+   journey fits; add a new `e2e/<area>.spec.ts` when it does not.
+
+A feature without both is **not done**, even if `verify` is green for unrelated
+reasons. "Covered by an old smoke that only mounts the shell" does not count —
+the new behaviour itself must be asserted (success path and the failure path
+when the feature can fail observably).
+
+Optional dogfood (not a CI gate): a final `agent-browser` pass against
+localhost before human handoff for milestone work — see the open work item on
+agent-browser in the Definition of Done.
 
 Two probes are excluded from the suite and run by hand with `BASELINE=1`:
 `e2e/baseline.capture.spec.ts` re-measures the console/network baseline, and
@@ -73,12 +96,24 @@ repo. Route UI-initiated CLI work through `src/lib/llmClient.ts` or
 A change is done only when **all** of these hold:
 
 1. `bun run verify` passes (typecheck + client-bundle guard + unit + E2E).
-2. An E2E spec in `e2e/` covers the new or fixed behaviour.
+2. **Feature work includes both layers of tests** (see Testing above):
+   - unit coverage under `src/` for new or changed logic, and
+   - a Playwright E2E in `e2e/` that drives the new or fixed user journey.
 3. Zero console errors, zero uncaught exceptions, zero failed requests and zero
    responses >= 400 during E2E — enforced automatically by `e2e/fixtures.ts`.
 4. Rust or storage changes additionally pass `cargo test --lib` and
    `cargo clippy --all-targets -- -D warnings` in `src-tauri/`.
-5. Anything discovered along the way is filed via `worklog add --unplanned`.
+5. **Docs stay truthful for features that change product surface:**
+   - update `docs/designs/current_design_doc.md` (and/or the code walkthrough)
+     when architecture, contracts, or major flows change;
+   - update `docs/user_guide/user-guide.md` when a user-visible behaviour is
+     added, fixed, or removed;
+   - update the **feature list** in `README.md` (and known limitations there)
+     so it matches what actually ships;
+   - register/publish to the GitHub wiki (`worklog wiki-add` / the wiki publish
+     flow under `.work/wiki-checkout`) so the wiki is not stale relative to
+     `docs/`.
+6. Anything discovered along the way is filed via `worklog add --unplanned`.
 
 **"I looked at it in the browser" is not done.** Not done means not handed over:
 the human reviews design, not defects. If you cannot demonstrate it green, say

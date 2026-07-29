@@ -496,6 +496,26 @@ pre {
   color: var(--color-accent-blue);
 }
 
+/* Save is labeled so it is findable after New Note — not icon-only. */
+.toolbar-btn-save {
+  gap: var(--space-2);
+  padding-inline: var(--space-3);
+  min-width: auto;
+  height: 32px;
+  color: var(--color-accent-primary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.toolbar-btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toolbar-save-label {
+  line-height: 1;
+}
+
 /* Slash command menu */
 .slash-menu {
   position: fixed;

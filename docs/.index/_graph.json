@@ -2,12 +2,12 @@
  "edges": [
   {
    "from": "design/current-code-walkthrough",
-   "to": "release/v0.1.0",
+   "to": "release/v0.1.0+dogfood",
    "type": "targets"
   },
   {
    "from": "design/current-design-doc",
-   "to": "release/v0.1.0",
+   "to": "release/v0.1.0+dogfood",
    "type": "targets"
   },
   {
@@ -341,6 +341,66 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYQYYN3T2SSGG33ESEWPXKH8",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3T3VB8RCTMJJ13FK2H",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3T5RXZWBXWV9VNP3ZH",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3T5W49QH05WCCYX7CE",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3T731B57N8NXQ8C0FQ",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3T7R1V9546Q5NTJRZE",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3T8MXHSF7JS4MA57GJ",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3TA69K8848E483HC82",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQYYN3TKW93D9SVW07VKFZY",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQZ491VF71K9KCDHAZYNE9S",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQZ4963GCA86R8CP4P14DRV",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQZ49A7NWRQZK83658CT4QT",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -618,6 +678,71 @@
   {
    "from": "plan/2026-07-28-validation-loop",
    "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T2SSGG33ESEWPXKH8",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T3VB8RCTMJJ13FK2H",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T5RXZWBXWV9VNP3ZH",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T5W49QH05WCCYX7CE",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T731B57N8NXQ8C0FQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T7R1V9546Q5NTJRZE",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3T8MXHSF7JS4MA57GJ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3TA69K8848E483HC82",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQYYN3TKW93D9SVW07VKFZY",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQZ491VF71K9KCDHAZYNE9S",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQZ4963GCA86R8CP4P14DRV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYQZ49A7NWRQZK83658CT4QT",
    "type": "produces"
   },
   {
@@ -1004,6 +1129,71 @@
    "status": "done",
    "title": "README and user guide claimed markdown tables, which are not supported"
   },
+  "item/01KYQYYN3SBWDT25TC6H3G4EAA": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups"
+  },
+  "item/01KYQYYN3T2SSGG33ESEWPXKH8": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Agent-browser final pass in Definition of Done"
+  },
+  "item/01KYQYYN3T3VB8RCTMJJ13FK2H": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Welcome / demo datasets resolve when the open folder is not Motion"
+  },
+  "item/01KYQYYN3T5RXZWBXWV9VNP3ZH": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Make the Save control discoverable"
+  },
+  "item/01KYQYYN3T5W49QH05WCCYX7CE": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Sidebar: directory tree view alongside flat markdown list"
+  },
+  "item/01KYQYYN3T731B57N8NXQ8C0FQ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Require branch protection on main for verify + rust checks"
+  },
+  "item/01KYQYYN3T7R1V9546Q5NTJRZE": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "E2E: create a new note, edit, save, reload \u2014 content survives"
+  },
+  "item/01KYQYYN3T8MXHSF7JS4MA57GJ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Land Playwright coverage for dataset/SQL install"
+  },
+  "item/01KYQYYN3TA69K8848E483HC82": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Sidebar: sort by name or date"
+  },
+  "item/01KYQYYN3TKW93D9SVW07VKFZY": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Search inside file contents (grep/glob UX)"
+  },
+  "item/01KYQZ491VF71K9KCDHAZYNE9S": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Write or update design docs for post-v0.1 dogfood work and publish to wiki"
+  },
+  "item/01KYQZ4963GCA86R8CP4P14DRV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Update user guide for current behaviour and publish to wiki"
+  },
+  "item/01KYQZ49A7NWRQZK83658CT4QT": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Keep README feature list and known limitations current"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -1016,7 +1206,16 @@
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "current"
   },
+  "plan/2026-07-29-save-ux-and-next": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-07-29-save-ux-and-next.md",
+   "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
+   "truth_state": "current"
+  },
   "release/v0.1.0": {
+   "doc_type": "release"
+  },
+  "release/v0.1.0+dogfood": {
    "doc_type": "release"
   },
   "roadmap": {

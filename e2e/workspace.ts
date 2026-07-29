@@ -13,8 +13,17 @@ export const SEED_FILES: Record<string, string> = {
     "welcome.md": "# Welcome\n\nA seeded note for end-to-end runs.\n",
     "getting-started.md": "# Getting started\n\nSecond seeded note.\n",
     "nested/deeper.md": "# Deeper\n\nProves recursive listing.\n",
-    "sample-data.csv": "name,score\nada,10\ngrace,12\n",
-    "sample-events.jsonl": '{"user":"ada","event":"login"}\n{"user":"grace","event":"edit"}\n',
+    // Same shape as public/demo — the welcome document registers these as
+    // tables `team` and `events` and JOINs on team.name = events.user. A
+    // name/score-only fixture made that path untested and hid install failures.
+    "sample-data.csv":
+        "id,name,role,experience\n1,Alice,Architect,12\n2,Bob,Author,5\n3,Charlie,Developer,8\n",
+    "sample-events.jsonl": [
+        '{"event":"login","user":"Alice","timestamp":"2024-03-20T10:00:00Z"}',
+        '{"event":"view_page","user":"Bob","timestamp":"2024-03-20T10:05:00Z"}',
+        '{"event":"click_btn","user":"Alice","timestamp":"2024-03-20T10:10:00Z"}',
+        "",
+    ].join("\n"),
     // One scratch file per spec that writes. Specs share a workspace, so a spec
     // saving into a file another spec reads is cross-test contamination -- it
     // showed up as four sanitize specs failing only when the suite ran in order.

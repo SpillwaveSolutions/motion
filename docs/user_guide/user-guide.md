@@ -12,8 +12,9 @@ Motion is a local-first technical writing IDE. It edits markdown that lives on
 your own disk, renders diagrams and runs SQL inline, and can generate both from
 plain-language prompts.
 
-This guide covers the app as it behaves at **v0.1.0**. Where something is
-incomplete, it says so.
+This guide covers the app as it behaves **after the v0.1.0 validation loop and
+the post-release dogfood fixes** (labeled Save, new-note persistence, dataset/SQL
+install coverage). Where something is incomplete, it says so.
 
 ---
 
@@ -36,10 +37,8 @@ MOTION_WORKSPACE=~/notes bun run dev
 
 Both modes now read and write real files through the same rules, so behaviour you
 see in the browser is behaviour the desktop app is held to. Browser mode exists
-so the interface can be driven by automated tests before anyone opens the app.
-
-> **Note:** the packaged desktop build does not work yet — `bun run build` does
-> not emit an entry HTML file. Use `bun tauri dev`.
+so the interface can be driven by automated tests (Playwright E2E) before anyone
+opens the app.
 
 ---
 
@@ -47,13 +46,16 @@ so the interface can be driven by automated tests before anyone opens the app.
 
 1. Click **Open Folder**. On desktop you pick a folder; in the browser it opens
    the configured workspace.
-2. The sidebar lists every `.md` file underneath it, including nested folders.
-   Use **Search notes** to filter by filename.
+2. The sidebar lists every `.md` file underneath it, including nested folders
+   (flat list of basenames). Use **Search notes** to filter by filename.
 3. Click a note to open it. Use the arrow keys and Enter if you prefer the
    keyboard — the list is fully navigable.
-4. Edit, then press **⌘S** (Ctrl+S) or click the save icon.
+4. Edit, then press **⌘S** (Ctrl+S) or click the labeled **Save** button in the
+   editor toolbar. The status area shows **Saving…** / **Saved** / **Save failed**.
 
-**New Note** creates a timestamped `untitled-*.md` in the open workspace.
+**New Note** creates a timestamped `untitled-*.md` in the open workspace and
+writes a stub `# New Note` immediately. Keep editing, then **Save** so your
+changes are on disk.
 
 Motion cannot read or write anything outside the folder you opened. Paths are
 resolved to their real location first, so a symbolic link pointing elsewhere is
@@ -146,20 +148,22 @@ Needs `claude` on your `PATH`. Without it the status bar reports the failure.
 
 ---
 
-## Known limitations at v0.1.0
+## Known limitations
 
 Stated here so you meet them on your terms:
 
-- **Only Mermaid blocks survive a save/reload cycle.** Dataset, Query, Image gen
-  and Diagram gen blocks degrade into plain code blocks once a document is saved
-  and reopened. Your content is not lost, but the block becomes inert.
-- **The packaged desktop build does not run.** Use `bun tauri dev`.
+- **Sidebar is flat** — every markdown file under the workspace, not a directory
+  tree. Sort is by name; there is no search inside file contents yet.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) only loads when
+  those files exist in the open workspace (they ship under `public/demo/`). Open
+  an unrelated project folder and the welcome Dataset/Query blocks will error
+  until you pick real files or open a folder that includes the samples.
 - **No hot reload.** The dev server rebuilds when files change but does not
   refresh the page — reload manually.
-- **The bundled demo query returns no rows.** The sample data disagrees on
-  capitalisation in its join condition.
 - **Markdown tables are not supported.** Pipe-table syntax renders as plain
   text; no table extension is registered.
+- **Synthesize / generative blocks** need `claude` and/or `imagen` on your
+  `PATH`.
 
 ---
 

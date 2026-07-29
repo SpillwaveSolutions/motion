@@ -11,16 +11,21 @@ natural-language prompts using CLI tools you already have installed.
 ### Editing
 
 - **Three view modes** — WYSIWYG, raw Markdown, and Split, switchable at any time.
+  Edits carry across modes without loss.
 - **Workspace management** — open a folder and Motion lists every markdown file
-  under it, recursively. Search filters the list as you type.
+  under it, recursively (flat list). **Search notes** filters by filename.
+- **New Note** — creates `untitled-<timestamp>.md` in the open workspace.
+- **Save** — labeled **Save** control in the toolbar, plus **⌘S** / **Ctrl+S**.
+  Status shows Saving… / Saved / Save failed.
 - **Rich markdown** — headings, lists, blockquotes, and code blocks with syntax
   highlighting across the common languages. (Tables are not supported yet — no
   table extension is registered, so pipe-table syntax renders as text.)
+- **AI Refine** — per-document refine action (needs `claude` on `PATH`).
 
 ### Content blocks
 
 Five block types, insertable from the toolbar or by typing `/` at the start of a
-line:
+line. Blocks survive save/reload as real blocks (not plain code).
 
 | Block | What it does |
 |---|---|
@@ -30,21 +35,24 @@ line:
 | **Image gen** | Generates an image from a prompt via the `imagen` CLI |
 | **Diagram gen** | Generates a Mermaid diagram from a prompt via the `claude` CLI |
 
+Dataset/Query need the data files inside the **open workspace** (demo files ship
+under `public/demo/`). SQL is restricted to `SELECT`/`WITH` with validated
+identifiers and a clamped row limit — the query box cannot modify your data.
+
 ### Workspace synthesis
 
 **Synthesize** summarizes every note in the workspace, clusters them by topic,
 and writes a generated `TOC.md` and `SKILL.md` back into the folder. Its own
 output is excluded from the input, so re-running does not feed the index back to
-itself. Capped at 40 notes per run, and it reports what it skipped.
-
-SQL is restricted to `SELECT`/`WITH` with validated identifiers and a clamped
-row limit — the query box cannot modify your data.
+itself. Capped at 40 notes per run, and it reports what it skipped. Needs
+`claude` on `PATH`.
 
 ### Safety
 
 - Filesystem access is jailed to the folder you opened. Paths are canonicalized,
   so `..` traversal and symlinks pointing outside the workspace are both refused.
 - Rendered markdown and generated SVG are sanitized before insertion.
+- Dev server binds to **localhost only**.
 
 ## Getting started
 
@@ -110,12 +118,16 @@ cannot pass quietly. See `CLAUDE.md` for the full definition of done.
 
 Recorded here rather than discovered later:
 
-- `bun run build` does not emit an entry HTML file, so the **packaged desktop
-  build does not work yet** — use `bun tauri dev`.
-- Dataset, Query, Image gen and Diagram gen blocks do not survive a save/reload
-  cycle; they degrade into plain code blocks. Mermaid blocks round-trip fine.
-- The bundled demo query returns no rows — the demo data disagrees on case in
-  its join condition.
+- **Sidebar is flat** — every `.md` under the workspace, not a directory tree.
+  Sort is name-only; no content (in-file) search yet.
+- **Welcome demo datasets** assume `sample-data.csv` / `sample-events.jsonl` exist
+  in the open workspace. Opening an unrelated folder shows load errors for those
+  blocks until those files are present or sources are re-pointed.
+- **Markdown tables are not supported.** Pipe-table syntax renders as plain text.
+- **No hot reload.** The dev server rebuilds the bundle on change but the page
+  does not refresh itself — reload manually.
+- Generative blocks and **Synthesize** need the relevant CLI (`claude`, `imagen`)
+  on `PATH`.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
 [docs/roadmap.md](docs/roadmap.md) for what is planned.

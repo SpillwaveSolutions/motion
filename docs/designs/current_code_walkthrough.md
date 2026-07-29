@@ -2,27 +2,29 @@
 wiki_key: design/current-code-walkthrough
 doc_type: design
 truth_state: current
-tag: v0.1.0
-git_hash: 13240d084d2f97b1df49616a573ebd29f7e994e2
+tag: v0.1.0+dogfood
+git_hash: b987195ccda2b1e20fa1ec9b0681cf8c1b46f6b1
 branch: main
-generated_at: 2026-07-29T00:16:30Z
+generated_at: 2026-07-29T23:00:00Z
 roadmap: docs/roadmap.md
 ---
 
 # Motion — Current Code Walkthrough
 
-> Generated from the repository at `13240d0`, immediately after Phase 1
-> ("make web mode a real filesystem") landed. Every claim below cites
-> `path — symbol, lines N–M`. Where this document and `CLAUDE.md` or
-> `docs/designs/current_design_doc.md` disagree, **this document describes the
-> code at HEAD** and the disagreement is recorded in §6.
+> Generated from the repository after Phase 1 ("make web mode a real
+> filesystem") landed. **Currency for product status:** see
+> `docs/designs/current_design_doc.md` **§0** (post-v0.1 dogfood amendment) —
+> packaged build, block round-trip, enrichment UI (AI Refine + Synthesize),
+> labeled Save, and dataset/SQL E2E are shipped. Line-level citations in this
+> walkthrough may lag HEAD; prefer the design-doc §0 table over any claim
+> here that enrichment is dead code or that four blocks fail round-trip.
 >
 > **Read this first if you have read anything older about Motion:**
 > `WebStorage` no longer exists. It was deleted in Phase 1 and replaced by
-> `HttpStorage` (`src/lib/storage/index.ts` — `HttpStorage`, lines 69–109),
-> which performs real reads and writes against a real filesystem through the
-> dev server's `/api/fs/*` routes. Any description of browser mode as a
-> `console.warn` no-op is describing deleted code.
+> `HttpStorage` (`src/lib/storage/index.ts` — `HttpStorage`), which performs
+> real reads and writes against a real filesystem through the dev server's
+> `/api/fs/*` routes. Any description of browser mode as a `console.warn`
+> no-op is describing deleted code.
 
 ---
 
