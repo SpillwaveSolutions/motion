@@ -1,6 +1,6 @@
 # Wire the per-note enrichment action into the UI
 
-`01KYFZ6RBJV920SFW0MAN9MX9J` · task/feature · **open**
+`01KYFZ6RBJV920SFW0MAN9MX9J` · task/feature · **done**
 
 cliWrappers, TopicRefiner, TOCGenerator, SkillGenerator, and ContentInjector are all real,
 tested, working modules with zero imports from App.tsx or anything under src/components/ — only
@@ -12,6 +12,6 @@ their own test files ever call them.
 
 ## Subtasks
 
-- [[Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T]] Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector — Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector (open)
+- [[Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T]] Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector — Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector (done)
 
-Progress: 0/1 done
+Progress: 1/1 done

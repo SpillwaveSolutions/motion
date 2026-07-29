@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "f4460316aeaa",
+   "render_hash": "8c5fb1643e15",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "1e9fe0ece76a",
+   "render_hash": "4f48a4b95c8d",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "852fec71eb71",
+   "render_hash": "b13664e3b47c",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -104,7 +104,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
    "render": "as-is",
-   "render_hash": "2d201e906e44",
+   "render_hash": "7208945dd7eb",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
    "title": "Motion next development phase",
    "truth_state": "open",
@@ -224,20 +224,20 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJV920SFW0MAN9MX9J",
    "render": "as-is",
-   "render_hash": "44db03832295",
+   "render_hash": "48b35b2f99d5",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJV920SFW0MAN9MX9J.md",
    "title": "Wire the per-note enrichment action into the UI",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBJV920SFW0MAN9MX9J"
   },
   {
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T",
    "render": "as-is",
-   "render_hash": "4e0f54fe7acf",
+   "render_hash": "1296db3b8d05",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJZNYDT9AK2V0RA11T.md",
    "title": "Per-note \"AI Refine\"/\"Generate Summary\" toolbar action backed by ContentInjector",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBJZNYDT9AK2V0RA11T"
   },
   {
@@ -314,7 +314,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "5974c90870da",
+   "render_hash": "2cbc6d0d8130",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "open",
@@ -554,10 +554,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR",
    "render": "as-is",
-   "render_hash": "80fc68f59c70",
+   "render_hash": "0a18c45ad696",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHBJ0SV2MM8N3A0KJR.md",
    "title": "Phase 2: E2E coverage of the journeys that have actually broken",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHBJ0SV2MM8N3A0KJR"
   },
   {
@@ -674,10 +674,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP",
    "render": "as-is",
-   "render_hash": "049be8b261a3",
+   "render_hash": "234bafa76933",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHZJNNCYMEW9ZG77NP.md",
    "title": "Phase 3: fix what the loop exposes",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHZJNNCYMEW9ZG77NP"
   },
   {
@@ -825,11 +825,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T16:00:26Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T16:05:58Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "369ecf7a2592",
+   "render_hash": "af4674d94893",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -859,7 +859,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "0233da90a37a",
+  "render_hash": "f40b1df39bfb",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

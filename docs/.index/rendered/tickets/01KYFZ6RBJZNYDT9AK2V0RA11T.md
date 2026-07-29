@@ -1,6 +1,6 @@
 # Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector
 
-`01KYFZ6RBJZNYDT9AK2V0RA11T` · subtask/feature · **open**
+`01KYFZ6RBJZNYDT9AK2V0RA11T` · subtask/feature · **done**
 
 Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector
 

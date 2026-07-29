@@ -43,7 +43,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - belongs-to: Phase 0: console/network failure fixture with a measured baseline
 
 ### Phase 3: fix what the loop exposes
-`01KYK6NHSHZJNNCYMEW9ZG77NP` · status: todo
+`01KYK6NHSHZJNNCYMEW9ZG77NP` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
 - contains: B8: route the four enrichment modules through llmClient
 - contains: B4 and B7: block round-trip and multi-line serialization
@@ -115,7 +115,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 2: E2E coverage of the journeys that have actually broken
-`01KYK6NHSHBJ0SV2MM8N3A0KJR` · status: todo
+`01KYK6NHSHBJ0SV2MM8N3A0KJR` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
 - produced-by: [[Plan-validation-loop]]
 
@@ -302,12 +302,12 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 `01KYFZ8RGR06XBSG9CH4TEWYJY` · status: todo
 
 ### Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector
-`01KYFZ6RBJZNYDT9AK2V0RA11T` · status: todo
+`01KYFZ6RBJZNYDT9AK2V0RA11T` · status: done
 - belongs-to: Wire the per-note enrichment action into the UI
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Wire the per-note enrichment action into the UI
-`01KYFZ6RBJV920SFW0MAN9MX9J` · status: todo
+`01KYFZ6RBJV920SFW0MAN9MX9J` · status: done
 - belongs-to: Motion next development phase
 - contains: Per-note "AI Refine"/"Generate Summary" toolbar action backed by ContentInjector
 - produced-by: [[Plan-motion-next-phase]]

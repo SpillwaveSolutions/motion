@@ -1,6 +1,6 @@
 # Phase 3: fix what the loop exposes
 
-`01KYK6NHSHZJNNCYMEW9ZG77NP` · task/feature · **open**
+`01KYK6NHSHZJNNCYMEW9ZG77NP` · task/feature · **done**
 
 With gates in place, fix the backlog test-first, ordered by what blocks shipping.
 
