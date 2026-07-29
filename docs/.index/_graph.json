@@ -836,7 +836,7 @@
   },
   "item/01KYK6NHSGPYHDTHG3T7Y80MAR": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 0.5: accessibility pass so role-based locators are possible"
   },
   "item/01KYK6NHSGSAMNDS6CJ47YST2C": {
@@ -876,7 +876,7 @@
   },
   "item/01KYK6NHSH9BTQ4BND9DZEFAY7": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B4 and B7: block round-trip and multi-line serialization"
   },
   "item/01KYK6NHSHBJ0SV2MM8N3A0KJR": {

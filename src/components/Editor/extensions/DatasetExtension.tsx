@@ -3,7 +3,7 @@ import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tip
 import { useEffect, useState } from "react";
 import { registerFile, executeQuery, clampLimit, validateIdentifier } from "../../../lib/data/duckdb";
 import { storage } from "../../../lib/storage";
-import { parseBlockAttrs } from "./blockAttrs";
+import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
 
 function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
     const { source, name, limit = 5 } = node.attrs;
@@ -154,20 +154,22 @@ export const DatasetExtension = Node.create({
                     }
                 }
             },
+            languageParseRule("dataset", (attrs) => ({
+                ...attrs,
+                limit: attrs["limit"] ? clampLimit(attrs["limit"]) : 5,
+            })),
         ];
     },
 
     renderHTML({ HTMLAttributes }) {
         const limit = clampLimit(HTMLAttributes.limit);
-        const content = Object.entries({ ...HTMLAttributes, limit })
-            .filter(([key]) => key !== "class" && key !== "data-limit")
-            .map(([key, val]) => `${key}: ${val}`)
-            .join("\n");
+        const { class: _cls, "data-limit": _dl, ...fields } = HTMLAttributes;
+        const content = serializeBlockAttrs({ ...fields, limit });
 
         return [
             "pre",
             mergeAttributes(HTMLAttributes, { "data-type": "dataset", "data-limit": String(limit) }),
-            ["code", {}, content],
+            ["code", { class: "language-dataset" }, content],
         ];
     },
 

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import mermaid from "mermaid";
 import { sanitizeSvg } from "../../../lib/sanitize";
 import { callLLMFromUI } from "../../../lib/llmClient";
-import { parseBlockAttrs } from "./blockAttrs";
+import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
 
 // LLMs asked for "only Mermaid syntax" still often wrap it in a fenced code
 // block anyway -- strip that defensively before validating.
@@ -228,17 +228,18 @@ export const DiagramGenExtension = Node.create({
                     return parseBlockAttrs(node.textContent || "");
                 }
             },
+            languageParseRule("diagram-gen"),
         ];
     },
 
     renderHTML({ HTMLAttributes }) {
         const { prompt, content, ...rest } = HTMLAttributes;
-        const serialized = `prompt: ${prompt}\ncontent: ${content}`;
+        const serialized = serializeBlockAttrs({ prompt, content });
 
         return [
             "pre",
             mergeAttributes(rest, { "data-type": "diagram-gen" }),
-            ["code", {}, serialized],
+            ["code", { class: "language-diagram-gen" }, serialized],
         ];
     },
 
