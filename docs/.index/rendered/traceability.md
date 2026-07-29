@@ -250,7 +250,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Validation loop: prove the UI works before the human launches it
-`01KYK6NHSFJNG9XV6D8K5SHWCV` · status: todo
+`01KYK6NHSFJNG9XV6D8K5SHWCV` · status: done
 - contains: Phase 0: console/network failure fixture with a measured baseline
 - contains: Phase 0: add test/verify scripts and the Playwright harness
 - contains: Phase 0: self-host fonts so the network gate is not flaky
@@ -377,7 +377,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-motion-next-phase]]
 
 ### Motion next development phase
-`01KYFZ6RBHABFSC9K9NJ90168Q` · status: todo
+`01KYFZ6RBHABFSC9K9NJ90168Q` · status: done
 - contains: Give editor extensions a creation UX
 - contains: Fix editor mode-desync between WYSIWYG, Markdown, and Split views
 - contains: Verify and fix the claude CLI system-prompt contract in cliWrappers

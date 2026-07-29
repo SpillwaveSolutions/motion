@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "b13664e3b47c",
+   "render_hash": "c184d0a0be75",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -104,10 +104,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
    "render": "as-is",
-   "render_hash": "7208945dd7eb",
+   "render_hash": "9af64bff7c1d",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
    "title": "Motion next development phase",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYFZ6RBHABFSC9K9NJ90168Q"
   },
   {
@@ -314,10 +314,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "2cbc6d0d8130",
+   "render_hash": "e1e912aaeef7",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSFJNG9XV6D8K5SHWCV"
   },
   {
@@ -825,11 +825,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T16:05:58Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T16:09:03Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "af4674d94893",
+   "render_hash": "1806342375fa",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
