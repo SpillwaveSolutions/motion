@@ -102,12 +102,10 @@ limit: 5</code></pre>
 
 <h2>Generative Features (Phase 4)</h2>
 <p>Create visual assets and diagrams directly from natural language prompts:</p>
-<pre data-type="image-gen"><code class="language-image-gen">prompt: A futuristic cyberpunk city at night with neon signs and flying cars
-src: null</code></pre>
+<pre data-type="image-gen"><code class="language-image-gen">prompt: A futuristic cyberpunk city at night with neon signs and flying cars</code></pre>
 
 <p>Or generate technical diagrams with Mermaid:</p>
-<pre data-type="diagram-gen"><code class="language-diagram-gen">prompt: A sequence diagram for a login flow
-content: null</code></pre>
+<pre data-type="diagram-gen"><code class="language-diagram-gen">prompt: A sequence diagram for a login flow</code></pre>
 `;
 
 function Editor({ viewMode, filePath }: EditorProps) {
@@ -310,6 +308,8 @@ function Editor({ viewMode, filePath }: EditorProps) {
     const slashMenuPopup = slashMenu && (
         <div
             className="slash-menu"
+            role="listbox"
+            aria-label="Insert block"
             style={{ top: slashMenu.position.top + 4, left: slashMenu.position.left }}
         >
             {filteredSlashCommands.length === 0 ? (
@@ -318,6 +318,8 @@ function Editor({ viewMode, filePath }: EditorProps) {
                 filteredSlashCommands.map((cmd, i) => (
                     <div
                         key={cmd.nodeType}
+                        role="option"
+                        aria-selected={i === slashMenu.selectedIndex}
                         className={`slash-menu-item ${i === slashMenu.selectedIndex ? "selected" : ""}`}
                         onMouseDown={(e) => {
                             e.preventDefault();
@@ -336,6 +338,7 @@ function Editor({ viewMode, filePath }: EditorProps) {
             <div className="editor-container">
                 <Toolbar editor={editor} onSave={handleSave} />
                 <textarea
+                    aria-label="Markdown source"
                     style={{
                         flex: 1,
                         background: "var(--color-bg-secondary)",

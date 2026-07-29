@@ -1,6 +1,6 @@
 # B4 and B7: block round-trip and multi-line serialization
 
-`01KYK6NHSH9BTQ4BND9DZEFAY7` · subtask/feature · **open**
+`01KYK6NHSH9BTQ4BND9DZEFAY7` · subtask/feature · **done**
 
 B4 and B7: block round-trip and multi-line serialization
 

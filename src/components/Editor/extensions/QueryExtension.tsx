@@ -2,6 +2,7 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useState } from "react";
 import { executeQuery } from "../../../lib/data/duckdb";
+import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
 
 function QueryNodeView({ node, updateAttributes }: NodeViewProps) {
     const { sql } = node.attrs;
@@ -146,14 +147,13 @@ export const QueryExtension = Node.create({
                 getAttrs: (node) => {
                     if (typeof node === "string") return false;
                     const content = node.textContent || "";
-                    // Support YAML-like parsing if we want, but for now just text
-                    const sqlLine = content.split("\n").find(l => l.startsWith("sql:"));
-                    if (sqlLine) {
-                        return { sql: sqlLine.replace("sql:", "").trim() };
-                    }
-                    return { sql: content.trim() };
+                    const attrs = parseBlockAttrs(content);
+                    // A body with no `sql:` key at all is treated as raw SQL, so
+                    // hand-written blocks keep working.
+                    return { sql: attrs["sql"] ?? content.trim() };
                 }
             },
+            languageParseRule("query"),
         ];
     },
 
@@ -161,7 +161,7 @@ export const QueryExtension = Node.create({
         return [
             "pre",
             mergeAttributes(HTMLAttributes, { "data-type": "query" }),
-            ["code", {}, `sql: ${HTMLAttributes.sql}`],
+            ["code", { class: "language-query" }, serializeBlockAttrs({ sql: HTMLAttributes.sql })],
         ];
     },
 

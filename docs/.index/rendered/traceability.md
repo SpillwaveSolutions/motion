@@ -110,7 +110,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### B4 and B7: block round-trip and multi-line serialization
-`01KYK6NHSH9BTQ4BND9DZEFAY7` · status: todo
+`01KYK6NHSH9BTQ4BND9DZEFAY7` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
@@ -153,7 +153,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 0.5: accessibility pass so role-based locators are possible
-`01KYK6NHSGPYHDTHG3T7Y80MAR` · status: todo
+`01KYK6NHSGPYHDTHG3T7Y80MAR` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
 - produced-by: [[Plan-validation-loop]]
 

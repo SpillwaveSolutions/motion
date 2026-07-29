@@ -15,7 +15,7 @@ someone remembers. (done)
 - [[Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN]] Phase 1: make web mode a real filesystem backend — The keystone. (done)
 - [[Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR]] Phase 0.5: accessibility pass so role-based locators are possible — Role and accessible-name locators are the right E2E strategy but are not
 executable against today's DOM: sidebar file entries are clickable divs, slash
-menu items are mouse-only divs, and the Markdown textarea has no label. (open)
+menu items are mouse-only divs, and the Markdown textarea has no label. (done)
 - [[Ticket-01KYK6NHSGSX8673FTZ7AY0CCB]] Phase 0: make the gates bite — Pre-commit gets the fast subset only (typecheck + bun test); agents use
 --no-verify freely, so CI is the authoritative gate. (done)
 - [[Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR]] Phase 2: E2E coverage of the journeys that have actually broken — Nine specs, each locking a real past regression: open/list/read, save and reload,
@@ -30,4 +30,4 @@ rather than UI automation. (open)
 - [[Ticket-01KYNKTZ6KPKZV24XWRZJZG04S]] Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network — Bun.serve defaults to hostname 0.0.0.0 when none is given, so the dev server listened on every interface. (done)
 - [[Ticket-01KYNMZ132M2NE1EYPHG2DCCAW]] Publish design doc, code walkthrough and user guide — resolve the three dangling wiki links — The generated wiki sidebar has linked Design-Doc, Code-Walkthrough and User-Guide since before this session, with no source files behind them. (done)
 
-Progress: 11/15 done
+Progress: 12/15 done

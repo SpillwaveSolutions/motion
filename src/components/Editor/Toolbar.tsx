@@ -21,9 +21,14 @@ function ToolbarButton({
 }) {
     return (
         <button
+            type="button"
             className={`toolbar-btn ${isActive ? "active" : ""}`}
             onClick={onClick}
             title={title}
+            // Every toolbar button is icon-only, so the accessible name has to
+            // come from here -- `title` alone is inconsistently exposed.
+            aria-label={title}
+            aria-pressed={isActive}
             disabled={disabled}
         >
             {children}

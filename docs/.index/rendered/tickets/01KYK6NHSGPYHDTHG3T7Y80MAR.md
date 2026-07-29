@@ -1,6 +1,6 @@
 # Phase 0.5: accessibility pass so role-based locators are possible
 
-`01KYK6NHSGPYHDTHG3T7Y80MAR` · task/feature · **open**
+`01KYK6NHSGPYHDTHG3T7Y80MAR` · task/feature · **done**
 
 Role and accessible-name locators are the right E2E strategy but are not
 executable against today's DOM: sidebar file entries are clickable divs, slash

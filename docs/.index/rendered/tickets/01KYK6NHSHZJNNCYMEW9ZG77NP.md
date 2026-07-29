@@ -11,7 +11,7 @@ With gates in place, fix the backlog test-first, ordered by what blocks shipping
 ## Subtasks
 
 - [[Ticket-01KYK6NHSH15H376EZGAMTZE9J]] B8: route the four enrichment modules through llmClient — B8: route the four enrichment modules through llmClient (open)
-- [[Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7]] B4 and B7: block round-trip and multi-line serialization — B4 and B7: block round-trip and multi-line serialization (open)
+- [[Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7]] B4 and B7: block round-trip and multi-line serialization — B4 and B7: block round-trip and multi-line serialization (done)
 - [[Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP]] B5: welcome doc paths resolve in both modes — B5: welcome doc paths resolve in both modes (open)
 - [[Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9]] B6: thread model through the run_llm_cli IPC signature — B6: thread model through the run_llm_cli IPC signature (open)
 - [[Ticket-01KYK6NHSHQZZQV7DJM5A64C6E]] B13: save completion signal and file-load cancellation — B13: save completion signal and file-load cancellation (open)
@@ -19,4 +19,4 @@ With gates in place, fix the backlog test-first, ordered by what blocks shipping
 - [[Ticket-01KYK6NHSHSASEERK1KJ7XVDPN]] Backfill tests on the untested security boundaries — Backfill tests on the untested security boundaries (open)
 - [[Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E]] B9: contain the Mermaid parse-error graphic — B9: contain the Mermaid parse-error graphic (open)
 
-Progress: 0/8 done
+Progress: 1/8 done
