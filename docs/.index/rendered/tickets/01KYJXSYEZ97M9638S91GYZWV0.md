@@ -1,6 +1,6 @@
 # Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container
 
-`01KYJXSYEZ97M9638S91GYZWV0` · task/bug · **open**
+`01KYJXSYEZ97M9638S91GYZWV0` · task/bug · **done**
 
 Observed while live-verifying the sanitizeSvg fix: when an AI-generated diagram has invalid Mermaid syntax, DiagramGenExtension.tsx correctly catches the error and shows its own inline message, but mermaid.render() itself also has a side effect of appending a bomb-icon error overlay to document.body -- outside any of our React-managed containers, appearing as a stray fixed-position toast unrelated to the failing block's on-screen position.
 

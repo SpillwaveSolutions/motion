@@ -1,8 +1,8 @@
-# B8: route the four enrichment modules through llmClient
+# README and user guide claimed markdown tables, which are not supported
 
-`01KYK6NHSH15H376EZGAMTZE9J` · subtask/feature · **done**
+`01KYQ9NBTQETCVSHC2X775CD14` · subtask/bug · **done**
 
-B8: route the four enrichment modules through llmClient
+No Table extension is registered and StarterKit does not include one, so pipe-table syntax renders as a paragraph.
 
 ## Hierarchy
 

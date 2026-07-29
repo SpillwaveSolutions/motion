@@ -15,6 +15,6 @@ The highest-leverage item in the plan.
 - [[Ticket-01KYK6NHSGHYEM1GVBPVT14SS1]] Measure the cold-load console and network baseline and record it — Measure the cold-load console and network baseline and record it (done)
 - [[Ticket-01KYK7WZFJXKTH14WKSZR7FQEE]] Welcome doc's diagram-gen block sent the string "null" to mermaid.render on every cold load — Found by the first console baseline measurement in Phase 0. (done)
 - [[Ticket-01KYK7WZM5846FPAQZH84S5D38]] Dev server answered every missing file with 200 + index.html instead of 404 — Found while proving the E2E network gate actually bites. (done)
-- [[Ticket-01KYK7WZRS65D7DPP0D1DT58Z7]] Demo Query block returns zero rows: case mismatch in the demo data JOIN — Visible in the Phase 0 console baseline as 'Catalog Error: Table with name team does not exist!' from the DuckDB worker. (open)
+- [[Ticket-01KYK7WZRS65D7DPP0D1DT58Z7]] Demo Query block returns zero rows: case mismatch in the demo data JOIN — Visible in the Phase 0 console baseline as 'Catalog Error: Table with name team does not exist!' from the DuckDB worker. (done)
 
-Progress: 5/6 done
+Progress: 6/6 done

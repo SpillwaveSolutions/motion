@@ -1,11 +1,11 @@
 import { test, expect, describe, spyOn } from "bun:test";
 import { ContentInjector } from "./ContentInjector";
 import { TopicRefiner } from "./TopicRefiner";
-import * as cliWrappers from "./cliWrappers";
+import * as llmClient from "./llmClient";
 
 describe("End-to-End Integration Mock", () => {
     test("full enrichment pipeline flow with mocked LLM", async () => {
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockImplementation(
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockImplementation(
             async (_provider, options) => {
                 const prompt = options.prompt.toLowerCase();
                 if (prompt.includes("return the result in json format") || prompt.includes("suggestedlabels")) {
@@ -41,7 +41,7 @@ describe("End-to-End Integration Mock", () => {
     });
 
     test("TopicRefiner rejects wrong-shaped JSON", async () => {
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockResolvedValue({
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockResolvedValue({
             content: JSON.stringify({ labels: ["oops"], split: true }),
             rawOutput: "",
         });

@@ -23,7 +23,12 @@ async fn run_llm_cli(
     provider: String,
     prompt: String,
     system_prompt: Option<String>,
+    model: Option<String>,
 ) -> Result<String, String> {
+    // B6: this command had no `model` parameter at all and hardcoded the model
+    // for opencode and qwen, so a caller's choice was silently dropped on the
+    // desktop while the dev server's /api/llm honoured it. Same call, two
+    // different models depending on how the app was launched.
     let args: Vec<String> = match provider.as_str() {
         "claude" => {
             let mut a = vec!["-p".to_string(), prompt];
@@ -33,8 +38,18 @@ async fn run_llm_cli(
             }
             a
         }
-        "opencode" => vec!["--model".to_string(), "gpt-4o".to_string(), "--prompt".to_string(), prompt],
-        "qwen" => vec!["--model".to_string(), "qwen-max".to_string(), "--prompt".to_string(), prompt],
+        "opencode" => vec![
+            "--model".to_string(),
+            model.unwrap_or_else(|| "gpt-4o".to_string()),
+            "--prompt".to_string(),
+            prompt,
+        ],
+        "qwen" => vec![
+            "--model".to_string(),
+            model.unwrap_or_else(|| "qwen-max".to_string()),
+            "--prompt".to_string(),
+            prompt,
+        ],
         _ => return Err(format!("Unsupported provider: {provider}")),
     };
 

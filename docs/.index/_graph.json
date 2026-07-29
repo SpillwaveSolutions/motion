@@ -331,6 +331,16 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYQ9NBNXCBFA30Z4HD0W7HGQ",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYQ9NBTQETCVSHC2X775CD14",
+   "to": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -736,7 +746,7 @@
   },
   "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring"
   },
   "item/01KYJXSMV02C0PP9H8BKE1PNEZ": {
@@ -746,7 +756,7 @@
   },
   "item/01KYJXSYEZ97M9638S91GYZWV0": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container"
   },
   "item/01KYK6NHSF1KPVANBR2F76R20N": {
@@ -856,7 +866,7 @@
   },
   "item/01KYK6NHSH15H376EZGAMTZE9J": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B8: route the four enrichment modules through llmClient"
   },
   "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R": {
@@ -866,7 +876,7 @@
   },
   "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add resolveWorkspacePath so documents are portable between modes"
   },
   "item/01KYK6NHSH8WXC8MEGFPFM8DYC": {
@@ -886,7 +896,7 @@
   },
   "item/01KYK6NHSHD4NMT2QVMQD2HHBP": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B5: welcome doc paths resolve in both modes"
   },
   "item/01KYK6NHSHKCZWFNWZX3NATX04": {
@@ -901,12 +911,12 @@
   },
   "item/01KYK6NHSHKZ20DY8FBB5S1PP9": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B6: thread model through the run_llm_cli IPC signature"
   },
   "item/01KYK6NHSHQZZQV7DJM5A64C6E": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B13: save completion signal and file-load cancellation"
   },
   "item/01KYK6NHSHRFE2KXPBTV76JR02": {
@@ -921,7 +931,7 @@
   },
   "item/01KYK6NHSHSASEERK1KJ7XVDPN": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Backfill tests on the untested security boundaries"
   },
   "item/01KYK6NHSHVJEFG9W6TZYWXNEF": {
@@ -931,7 +941,7 @@
   },
   "item/01KYK6NHSHVZ2EZZH7NBRADW7E": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B9: contain the Mermaid parse-error graphic"
   },
   "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F": {
@@ -956,7 +966,7 @@
   },
   "item/01KYK7WZRS65D7DPP0D1DT58Z7": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN"
   },
   "item/01KYN85K57SRYK5WJFG98W5R6F": {
@@ -983,6 +993,16 @@
    "doc_type": "item",
    "status": "done",
    "title": "Publish design doc, code walkthrough and user guide \u2014 resolve the three dangling wiki links"
+  },
+  "item/01KYQ9NBNXCBFA30Z4HD0W7HGQ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "React flushSync error when opening a document containing block node views"
+  },
+  "item/01KYQ9NBTQETCVSHC2X775CD14": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "README and user guide claimed markdown tables, which are not supported"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",

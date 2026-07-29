@@ -1,10 +1,10 @@
 import { test, expect, describe, spyOn } from "bun:test";
 import { SkillGenerator } from "./SkillGenerator";
-import * as cliWrappers from "./cliWrappers";
+import * as llmClient from "./llmClient";
 
 describe("SkillGenerator", () => {
     test("generateSkill should return LLM content", async () => {
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockResolvedValue({
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockResolvedValue({
             content: "# Skill Test content",
             rawOutput: "# Skill Test content"
         });

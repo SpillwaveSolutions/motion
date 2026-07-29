@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import Editor from "./components/Editor";
-import { storage } from "./lib/storage";
+import { storage, rememberWorkspaceRoot } from "./lib/storage";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -27,6 +27,7 @@ function App() {
             const path = await storage.openFolder();
             if (path) {
                 setWorkspacePath(path);
+                rememberWorkspaceRoot(path);
                 const markdownFiles = await storage.listFiles(path);
                 setFiles(markdownFiles);
                 setCurrentFilePath(null);

@@ -1,6 +1,6 @@
 # B6: thread model through the run_llm_cli IPC signature
 
-`01KYK6NHSHKZ20DY8FBB5S1PP9` · subtask/feature · **open**
+`01KYK6NHSHKZ20DY8FBB5S1PP9` · subtask/feature · **done**
 
 B6: thread model through the run_llm_cli IPC signature
 

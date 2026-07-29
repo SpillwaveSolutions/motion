@@ -2,6 +2,14 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### README and user guide claimed markdown tables, which are not supported
+`01KYQ9NBTQETCVSHC2X775CD14` · status: done
+- belongs-to: Phase 3: fix what the loop exposes
+
+### React flushSync error when opening a document containing block node views
+`01KYQ9NBNXCBFA30Z4HD0W7HGQ` · status: done
+- belongs-to: Phase 3: fix what the loop exposes
+
 ### Publish design doc, code walkthrough and user guide — resolve the three dangling wiki links
 `01KYNMZ132M2NE1EYPHG2DCCAW` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
@@ -23,7 +31,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - belongs-to: Validation loop: prove the UI works before the human launches it
 
 ### Demo Query block returns zero rows: case mismatch in the demo data JOIN
-`01KYK7WZRS65D7DPP0D1DT58Z7` · status: todo
+`01KYK7WZRS65D7DPP0D1DT58Z7` · status: done
 - belongs-to: Phase 0: console/network failure fixture with a measured baseline
 
 ### Dev server answered every missing file with 200 + index.html instead of 404
@@ -45,6 +53,8 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: B3: fix the broken desktop production build (dist has no index.html)
 - contains: Backfill tests on the untested security boundaries
 - contains: B9: contain the Mermaid parse-error graphic
+- contains: React flushSync error when opening a document containing block node views
+- contains: README and user guide claimed markdown tables, which are not supported
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 4: desktop confidence without a WebDriver
@@ -55,7 +65,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### B9: contain the Mermaid parse-error graphic
-`01KYK6NHSHVZ2EZZH7NBRADW7E` · status: todo
+`01KYK6NHSHVZ2EZZH7NBRADW7E` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
@@ -65,7 +75,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Backfill tests on the untested security boundaries
-`01KYK6NHSHSASEERK1KJ7XVDPN` · status: todo
+`01KYK6NHSHSASEERK1KJ7XVDPN` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
@@ -80,12 +90,12 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### B13: save completion signal and file-load cancellation
-`01KYK6NHSHQZZQV7DJM5A64C6E` · status: todo
+`01KYK6NHSHQZZQV7DJM5A64C6E` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
 ### B6: thread model through the run_llm_cli IPC signature
-`01KYK6NHSHKZ20DY8FBB5S1PP9` · status: todo
+`01KYK6NHSHKZ20DY8FBB5S1PP9` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
@@ -100,7 +110,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### B5: welcome doc paths resolve in both modes
-`01KYK6NHSHD4NMT2QVMQD2HHBP` · status: todo
+`01KYK6NHSHD4NMT2QVMQD2HHBP` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
@@ -120,7 +130,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Add resolveWorkspacePath so documents are portable between modes
-`01KYK6NHSH2RMTJQ3SR7MGW7Q8` · status: todo
+`01KYK6NHSH2RMTJQ3SR7MGW7Q8` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -130,7 +140,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### B8: route the four enrichment modules through llmClient
-`01KYK6NHSH15H376EZGAMTZE9J` · status: todo
+`01KYK6NHSH15H376EZGAMTZE9J` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
@@ -275,7 +285,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container
-`01KYJXSYEZ97M9638S91GYZWV0` · status: todo
+`01KYJXSYEZ97M9638S91GYZWV0` · status: done
 - belongs-to: Real diagram generation, and scope a real ImageGen backend
 
 ### sanitizeSvg strips Mermaid's HTML-based node labels (foreignObject), leaving diagrams with empty shapes and no text
@@ -283,7 +293,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - belongs-to: Real diagram generation, and scope a real ImageGen backend
 
 ### TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring
-`01KYJW5XJ5HTG7ESZ7DDDS8W0C` · status: todo
+`01KYJW5XJ5HTG7ESZ7DDDS8W0C` · status: done
 
 ### Manually verify mode-desync fix in browser (agent-browser)
 `01KYJQ3WF4XJ4D1G7T9WQ3V0TV` · status: done

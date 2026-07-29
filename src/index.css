@@ -753,3 +753,11 @@ pre {
   margin: var(--space-4) 0;
   overflow: hidden;
 }
+/* Save status: announced to assistive tech, and the signal E2E specs assert on
+   instead of guessing with a timeout. */
+.save-status {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    min-width: 4rem;
+    text-align: right;
+}

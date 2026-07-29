@@ -1,10 +1,10 @@
 import { test, expect, describe, spyOn } from "bun:test";
 import { TOCGenerator } from "./TOCGenerator";
-import * as cliWrappers from "./cliWrappers";
+import * as llmClient from "./llmClient";
 
 describe("TOCGenerator", () => {
     test("enrichTOC should return LLM content", async () => {
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockResolvedValue({
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockResolvedValue({
             content: "Enriched TOC content",
             rawOutput: "Enriched TOC content"
         });

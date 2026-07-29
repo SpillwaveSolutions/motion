@@ -47,9 +47,9 @@ function MermaidNodeView({ node, updateAttributes }: NodeViewProps) {
         const renderDiagram = async () => {
             if (isEditing || !containerRef.current) return;
 
+            const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
             try {
                 setError(null);
-                const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
                 const { svg } = await mermaid.render(id, content);
                 if (cancelled || !containerRef.current) return;
                 // Sanitize untrusted Mermaid SVG before innerHTML
@@ -59,6 +59,24 @@ function MermaidNodeView({ node, updateAttributes }: NodeViewProps) {
                 setError(err instanceof Error ? err.message : "Failed to render diagram");
                 if (containerRef.current) {
                     containerRef.current.innerHTML = "";
+                }
+            } finally {
+                // B9: on a parse failure mermaid leaves its temporary render
+                // container (and its "bomb" error graphic) attached to
+                // document.body, outside every React-managed node -- it then
+                // survives unmount and stacks up one per failed keystroke. The
+                // error belongs inside this block, which `error` renders.
+                //
+                // Only remove genuine orphans: on success mermaid puts this same
+                // id on the root <svg> it returns, so an unscoped lookup finds
+                // the diagram we just inserted and deletes it.
+                for (const orphan of [
+                    document.getElementById(id),
+                    document.getElementById(`d${id}`),
+                ]) {
+                    if (orphan && !containerRef.current?.contains(orphan)) {
+                        orphan.remove();
+                    }
                 }
             }
         };
