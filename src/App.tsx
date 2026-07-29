@@ -135,19 +135,28 @@ function App() {
                         </div>
                     )}
 
-                    {filteredFiles.map(file => (
-                        <div
-                            key={file}
-                            className={`file-tree-item ${currentFilePath === file ? "active" : ""}`}
-                            onClick={() => handleFileSelect(file)}
-                        >
-                            <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                <polyline points="14 2 14 8 20 8" />
-                            </svg>
-                            {getBasename(file)}
-                        </div>
-                    ))}
+                    {/* Real buttons, not clickable divs: the file list has to be
+                        keyboard-reachable and addressable by accessible name --
+                        for users first, and so E2E specs can select a note by
+                        its name instead of a brittle CSS path. */}
+                    <div role="listbox" aria-label="Notes">
+                        {filteredFiles.map(file => (
+                            <button
+                                key={file}
+                                type="button"
+                                role="option"
+                                aria-selected={currentFilePath === file}
+                                className={`file-tree-item ${currentFilePath === file ? "active" : ""}`}
+                                onClick={() => handleFileSelect(file)}
+                            >
+                                <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                </svg>
+                                {getBasename(file)}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </aside>
 

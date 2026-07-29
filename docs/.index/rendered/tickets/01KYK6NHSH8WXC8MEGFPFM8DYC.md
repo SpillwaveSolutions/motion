@@ -1,6 +1,6 @@
 # Add the language-neutral parity fixture run by both bun test and cargo test
 
-`01KYK6NHSH8WXC8MEGFPFM8DYC` · subtask/feature · **open**
+`01KYK6NHSH8WXC8MEGFPFM8DYC` · subtask/feature · **done**
 
 Add the language-neutral parity fixture run by both bun test and cargo test
 

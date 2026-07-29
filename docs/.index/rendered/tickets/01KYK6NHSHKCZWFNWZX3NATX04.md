@@ -1,6 +1,6 @@
 # Replace WebStorage with a real HttpStorage
 
-`01KYK6NHSHKCZWFNWZX3NATX04` · subtask/feature · **open**
+`01KYK6NHSHKCZWFNWZX3NATX04` · subtask/feature · **done**
 
 Replace WebStorage with a real HttpStorage
 

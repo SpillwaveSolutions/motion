@@ -4,18 +4,40 @@
  * Serves the app with CSS inlined and JS as external file.
  */
 
-import { watch } from "fs";
-import { readdir } from "fs/promises";
+import { watch, mkdirSync, existsSync } from "fs";
 import { join, dirname, resolve, relative, isAbsolute } from "path";
 import { callLLM, type ModelProvider } from "./lib/cliWrappers";
 import { generateImage } from "./lib/imageGen";
+import {
+    collectFiles,
+    readWorkspaceFile,
+    writeWorkspaceFile,
+    FsError,
+    MARKDOWN_EXTENSIONS,
+    DATA_EXTENSIONS,
+} from "./lib/fsCore";
 
 const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
 // Get project root (parent of src/)
 const PROJECT_ROOT = dirname(dirname(import.meta.path));
 const PUBLIC_DIR = resolve(PROJECT_ROOT, "public");
-const PORT = 3000;
+const PORT = Number(process.env["PORT"] ?? 3000);
+
+/**
+ * The workspace browser mode reads and writes.
+ *
+ * Env-only by design (see the /api/fs/ handler). Defaults to public/demo so a
+ * fresh clone still opens with something to look at; E2E runs point it at a
+ * seeded temp directory so specs never mutate tracked fixtures.
+ */
+const WORKSPACE_ROOT = resolve(
+    PROJECT_ROOT,
+    process.env["MOTION_WORKSPACE"] ?? join("public", "demo")
+);
+if (!existsSync(WORKSPACE_ROOT)) {
+    mkdirSync(WORKSPACE_ROOT, { recursive: true });
+}
 
 // Store the latest JS bundle in memory
 let jsBundle = "";
@@ -202,17 +224,65 @@ const server = Bun.serve({
             }
         }
 
-        // List the demo workspace files WebStorage reads from in a browser
-        // (no Tauri filesystem access there -- these are real files under
-        // public/demo/, not a hardcoded list).
-        if (pathname === "/api/demo-files") {
+        // Real filesystem API for browser mode -- the counterpart to the Tauri
+        // commands, delegating to the same shared core (src/lib/fsCore.ts) that
+        // fs_core.rs mirrors. This is what makes browser-mode testing mean
+        // something: WebStorage used to fake writes, so a save could not fail
+        // and testing it proved nothing.
+        //
+        // The workspace root comes from MOTION_WORKSPACE and NOTHING ELSE. It is
+        // deliberately not client-supplied: accepting a directory from the
+        // request would turn the dev server into an arbitrary-filesystem read
+        // API for anything that can reach the port.
+        if (pathname.startsWith("/api/fs/")) {
             try {
-                const files = (await readdir(join(PUBLIC_DIR, "demo"))).filter(
-                    (f) => !f.startsWith(".")
+                switch (`${req.method} ${pathname}`) {
+                    case "GET /api/fs/workspace":
+                        return Response.json({ root: WORKSPACE_ROOT });
+
+                    case "GET /api/fs/list":
+                        return Response.json(
+                            collectFiles(WORKSPACE_ROOT, MARKDOWN_EXTENSIONS)
+                        );
+
+                    case "GET /api/fs/data-files":
+                        return Response.json(collectFiles(WORKSPACE_ROOT, DATA_EXTENSIONS));
+
+                    case "GET /api/fs/read": {
+                        const target = url.searchParams.get("path");
+                        if (!target) {
+                            return Response.json({ error: "Missing path" }, { status: 400 });
+                        }
+                        return Response.json({
+                            content: readWorkspaceFile(WORKSPACE_ROOT, target),
+                        });
+                    }
+
+                    case "POST /api/fs/write": {
+                        const body = await req.json();
+                        if (typeof body?.path !== "string" || typeof body?.content !== "string") {
+                            return Response.json(
+                                { error: "Missing path or content" },
+                                { status: 400 }
+                            );
+                        }
+                        writeWorkspaceFile(WORKSPACE_ROOT, body.path, body.content);
+                        return Response.json({ ok: true });
+                    }
+                }
+                return Response.json(
+                    { error: `Unknown endpoint: ${req.method} ${pathname}` },
+                    { status: 404 }
                 );
-                return Response.json(files, { headers: { "Cache-Control": "no-cache" } });
-            } catch {
-                return Response.json([], { headers: { "Cache-Control": "no-cache" } });
+            } catch (error) {
+                // Map the shared error classes onto HTTP so the browser sees the
+                // same distinctions the desktop app does.
+                const status =
+                    error instanceof FsError
+                        ? { denied: 403, "not-found": 404, "not-a-directory": 400 }[error.code]
+                        : 500;
+                const message = error instanceof Error ? error.message : String(error);
+                return Response.json({ error: message }, { status });
             }
         }
 

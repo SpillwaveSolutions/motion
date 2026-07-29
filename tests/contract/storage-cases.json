@@ -1,0 +1,157 @@
+{
+  "_comment": [
+    "Canonical storage contract. Hand-written and language-neutral on purpose:",
+    "generating it from TypeScript would make TS the source of truth and give us",
+    "a second artifact to keep in sync, which is the exact failure mode this file",
+    "exists to prevent.",
+    "",
+    "Run against BOTH implementations:",
+    "  - src/lib/fsCore.ts        via  bun test src",
+    "  - src-tauri/src/fs_core.rs via  cargo test --lib",
+    "",
+    "Each case builds a fresh workspace from `setup`, runs `op`, and asserts",
+    "`expect`. Error cases assert an error CLASS, not a message string, so the",
+    "two languages can word their errors naturally.",
+    "",
+    "Paths in `setup` are workspace-relative. `outside/` is a sibling directory",
+    "created next to the workspace, used for escape cases.",
+    "",
+    "expect.result: ok | denied | not-found | not-a-directory"
+  ],
+
+  "setup": {
+    "files": {
+      "note.md": "# Note\n",
+      "nested/deep.md": "# Deep\n",
+      "data/sales.csv": "a,b\n1,2\n",
+      "data/events.jsonl": "{\"x\":1}\n",
+      "notes.txt": "not markdown\n",
+      ".hidden/secret.md": "# Hidden\n"
+    },
+    "outside_files": {
+      "secret.md": "# Outside the jail\n"
+    },
+    "symlinks": {
+      "escape-link.md": "../outside/secret.md"
+    },
+    "sibling_dirs": ["-evil"]
+  },
+
+  "cases": [
+    {
+      "name": "reads a file at the workspace root",
+      "op": "read",
+      "path": "note.md",
+      "expect": { "result": "ok", "content": "# Note\n" }
+    },
+    {
+      "name": "reads a nested file",
+      "op": "read",
+      "path": "nested/deep.md",
+      "expect": { "result": "ok", "content": "# Deep\n" }
+    },
+    {
+      "name": "resolves a relative path against the workspace root, not the cwd",
+      "_why": "B5/B11. The welcome document stores `source: data/sales.csv`. Rust used to reject this outright (no parent component) while Node would have resolved it against the process cwd. Both must now mean the same file.",
+      "op": "read",
+      "path": "data/sales.csv",
+      "expect": { "result": "ok", "content": "a,b\n1,2\n" }
+    },
+    {
+      "name": "accepts an absolute path inside the workspace",
+      "op": "read",
+      "path": "$ROOT/note.md",
+      "expect": { "result": "ok", "content": "# Note\n" }
+    },
+    {
+      "name": "reports a missing file as not-found, never as empty content",
+      "_why": "The dev server used to answer a missing file with 200 + index.html, so a missing note read as a successful page of HTML.",
+      "op": "read",
+      "path": "no-such-note.md",
+      "expect": { "result": "not-found" }
+    },
+    {
+      "name": "refuses parent traversal",
+      "op": "read",
+      "path": "../outside/secret.md",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "refuses an absolute path outside the workspace",
+      "op": "read",
+      "path": "$OUTSIDE/secret.md",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "refuses a sibling directory sharing the workspace name prefix",
+      "_why": "The whole reason containment is component-aware. A JS startsWith() check admits /x/ws-evil for a workspace at /x/ws; path.relative and Rust's Path::starts_with both reject it.",
+      "op": "read",
+      "path": "$ROOT-evil/planted.md",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "refuses a symlink pointing outside the workspace",
+      "op": "read",
+      "path": "escape-link.md",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "writes a new file and reads it back",
+      "_why": "The behaviour WebStorage faked: writeFile was a console.warn that reported success.",
+      "op": "write_then_read",
+      "path": "brand-new.md",
+      "content": "# Brand new\n",
+      "expect": { "result": "ok", "content": "# Brand new\n" }
+    },
+    {
+      "name": "overwrites an existing file",
+      "op": "write_then_read",
+      "path": "note.md",
+      "content": "# Replaced\n",
+      "expect": { "result": "ok", "content": "# Replaced\n" }
+    },
+    {
+      "name": "writes into an existing subdirectory",
+      "op": "write_then_read",
+      "path": "nested/added.md",
+      "content": "# Added\n",
+      "expect": { "result": "ok", "content": "# Added\n" }
+    },
+    {
+      "name": "refuses a write that escapes the workspace",
+      "op": "write",
+      "path": "../outside/planted.md",
+      "content": "should never land",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "refuses a write through an escaping symlink",
+      "op": "write",
+      "path": "escape-link.md",
+      "content": "should never land",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "lists markdown recursively, sorted, skipping dotdirs and other extensions",
+      "op": "list_markdown",
+      "expect": {
+        "result": "ok",
+        "relative_paths": ["nested/deep.md", "note.md"]
+      }
+    },
+    {
+      "name": "lists data files by extension, sorted",
+      "op": "list_data",
+      "expect": {
+        "result": "ok",
+        "relative_paths": ["data/events.jsonl", "data/sales.csv"]
+      }
+    },
+    {
+      "name": "listing returns absolute paths",
+      "_why": "Web mode used to return bare filenames while Tauri returned absolute paths, so a document authored on desktop could not resolve in the browser.",
+      "op": "list_markdown_shape",
+      "expect": { "result": "ok", "absolute": true }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Give each Playwright worker a seeded temp workspace
 
-`01KYK6NHSH1PJ0YBJ1WEG3SZ4R` · subtask/feature · **open**
+`01KYK6NHSH1PJ0YBJ1WEG3SZ4R` · subtask/feature · **done**
 
 Give each Playwright worker a seeded temp workspace
 

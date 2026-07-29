@@ -1,4 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
+import { createWorkspace } from "./e2e/workspace";
+
+// Created at config load so webServer.env can reference it. Specs perform real
+// writes now, so they must never run against the tracked public/demo fixtures.
+const E2E_WORKSPACE = process.env["MOTION_WORKSPACE"] ?? createWorkspace();
 
 /**
  * E2E config for Motion's web mode.
@@ -40,7 +45,10 @@ export default defineConfig({
     webServer: {
         command: "bun run dev",
         url: "http://localhost:3000",
-        reuseExistingServer: !process.env["CI"],
+        // Never reuse a server here: an already-running dev server would be
+        // pointed at someone's real workspace, not the seeded scratch one.
+        reuseExistingServer: false,
         timeout: 120_000,
+        env: { MOTION_WORKSPACE: E2E_WORKSPACE },
     },
 });

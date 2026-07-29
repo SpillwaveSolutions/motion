@@ -306,6 +306,11 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYNKG3ZD866C3AGQS20T6H8J",
+   "to": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -744,7 +749,7 @@
   },
   "item/01KYK6NHSG0VG2NDWC3E7FRJFA": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Implement the path jail with component-aware containment, not string startsWith"
   },
   "item/01KYK6NHSG64GHM3NM9JCV1NJ3": {
@@ -794,7 +799,7 @@
   },
   "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 1: make web mode a real filesystem backend"
   },
   "item/01KYK6NHSGPYHDTHG3T7Y80MAR": {
@@ -804,7 +809,7 @@
   },
   "item/01KYK6NHSGSAMNDS6CJ47YST2C": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add /api/fs/* routes to server.ts with an env-only workspace root"
   },
   "item/01KYK6NHSGSX8673FTZ7AY0CCB": {
@@ -814,7 +819,7 @@
   },
   "item/01KYK6NHSGXDY0C5GZRQDVEQGC": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs"
   },
   "item/01KYK6NHSH15H376EZGAMTZE9J": {
@@ -824,7 +829,7 @@
   },
   "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Give each Playwright worker a seeded temp workspace"
   },
   "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8": {
@@ -834,7 +839,7 @@
   },
   "item/01KYK6NHSH8WXC8MEGFPFM8DYC": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add the language-neutral parity fixture run by both bun test and cargo test"
   },
   "item/01KYK6NHSH9BTQ4BND9DZEFAY7": {
@@ -854,7 +859,7 @@
   },
   "item/01KYK6NHSHKCZWFNWZX3NATX04": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Replace WebStorage with a real HttpStorage"
   },
   "item/01KYK6NHSHKXZNTXS3F3ANDYV9": {
@@ -931,6 +936,11 @@
    "doc_type": "item",
    "status": "done",
    "title": "First wiki publish for motion \u2014 v0.1.0 release, roadmap, snapshot, ticket index"
+  },
+  "item/01KYNKG3ZD866C3AGQS20T6H8J": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "B14 fixed: list_markdown_files no longer re-roots the workspace jail"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
