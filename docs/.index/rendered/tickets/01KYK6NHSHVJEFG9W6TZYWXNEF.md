@@ -1,6 +1,6 @@
 # Delete the stale root index.html and generate dev and prod shells from one template
 
-`01KYK6NHSHVJEFG9W6TZYWXNEF` · subtask/feature · **open**
+`01KYK6NHSHVJEFG9W6TZYWXNEF` · subtask/feature · **done**
 
 Delete the stale root index.html and generate dev and prod shells from one template
 

@@ -48,7 +48,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Phase 4: desktop confidence without a WebDriver
-`01KYK6NHSHZF8S0ZNGQ9ZAD05F` · status: todo
+`01KYK6NHSHZF8S0ZNGQ9ZAD05F` · status: done
 - belongs-to: Validation loop: prove the UI works before the human launches it
 - contains: Add bin/smoke-desktop.sh building and launching the packaged app
 - contains: Write the short release-only manual checklist
@@ -60,7 +60,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Delete the stale root index.html and generate dev and prod shells from one template
-`01KYK6NHSHVJEFG9W6TZYWXNEF` · status: todo
+`01KYK6NHSHVJEFG9W6TZYWXNEF` · status: done
 - belongs-to: Phase 1: make web mode a real filesystem backend
 - produced-by: [[Plan-validation-loop]]
 
@@ -70,12 +70,12 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### B3: fix the broken desktop production build (dist has no index.html)
-`01KYK6NHSHRFPGDZXKE6EH4QRJ` · status: todo
+`01KYK6NHSHRFPGDZXKE6EH4QRJ` · status: done
 - belongs-to: Phase 3: fix what the loop exposes
 - produced-by: [[Plan-validation-loop]]
 
 ### Write the short release-only manual checklist
-`01KYK6NHSHRFE2KXPBTV76JR02` · status: todo
+`01KYK6NHSHRFE2KXPBTV76JR02` · status: done
 - belongs-to: Phase 4: desktop confidence without a WebDriver
 - produced-by: [[Plan-validation-loop]]
 
@@ -90,7 +90,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-validation-loop]]
 
 ### Add bin/smoke-desktop.sh building and launching the packaged app
-`01KYK6NHSHKXZNTXS3F3ANDYV9` · status: todo
+`01KYK6NHSHKXZNTXS3F3ANDYV9` · status: done
 - belongs-to: Phase 4: desktop confidence without a WebDriver
 - produced-by: [[Plan-validation-loop]]
 

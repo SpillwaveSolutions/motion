@@ -8,6 +8,7 @@ import { watch, mkdirSync, existsSync } from "fs";
 import { join, dirname, resolve, relative, isAbsolute } from "path";
 import { callLLM, type ModelProvider } from "./lib/cliWrappers";
 import { generateImage } from "./lib/imageGen";
+import { renderShell } from "./shell";
 import {
     collectFiles,
     readWorkspaceFile,
@@ -85,26 +86,9 @@ async function getCSS(): Promise<string> {
     return "";
 }
 
-// Generate the HTML
+// Generate the HTML from the shared shell template (see src/shell.ts).
 async function generateHTML(): Promise<string> {
-    const css = await getCSS();
-
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Motion - A local-first technical writing IDE with Markdown storage and AI-powered editing" />
-  <title>Motion - Technical Writing IDE</title>
-  <style>
-${css}
-  </style>
-</head>
-<body>
-  <div id="root"></div>
-  <script type="module" src="/bundle.js"></script>
-</body>
-</html>`;
+    return renderShell({ inlineCss: await getCSS(), scriptSrc: "/bundle.js" });
 }
 
 /** Ensure a resolved path stays inside the public/ directory (no path traversal). */

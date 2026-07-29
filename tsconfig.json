@@ -26,5 +26,11 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
-  }
+  },
+  // Without these, `tsc` walks the whole tree. A release build drops generated
+  // JS under src-tauri/target/, and typecheck then fails on binary asset files
+  // that are not ours -- a green checkout goes red the moment someone builds
+  // the desktop app.
+  "include": ["src", "e2e", "scripts", "playwright.config.ts"],
+  "exclude": ["node_modules", "dist", "src-tauri/target", ".work"]
 }
