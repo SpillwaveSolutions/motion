@@ -63,9 +63,9 @@ test("a document with blocks survives save and reload with content intact", asyn
         "",
         "```query",
         "sql: |",
-        "  SELECT name, score",
+        "  SELECT name, role",
         "  FROM sales",
-        "  ORDER BY score DESC",
+        "  ORDER BY experience DESC",
         "```",
         "",
         "```diagram-gen",
@@ -107,6 +107,20 @@ test("a document with blocks survives save and reload with content intact", asyn
     // B7: the multi-line SQL must not have been truncated at line one.
     await page.getByRole("button", { name: "Markdown" }).click();
     const reloadedSource = page.getByRole("textbox", { name: "Markdown source" });
-    await expect(reloadedSource).toContainText("ORDER BY score DESC");
+    await expect(reloadedSource).toContainText("ORDER BY experience DESC");
     await expect(reloadedSource).toContainText("B-->>A: hi");
 });
+
+test("welcome dataset and query blocks install without error banners", async ({ page }) => {
+    // Companion to e2e/data.spec.ts: keep a lightweight lock next to the
+    // "renders as blocks" check so a regression that only mounts empty shells
+    // cannot pass this file alone.
+    await gotoApp(page);
+    const editor = page.locator(".ProseMirror");
+
+    await expect(editor.locator(".dataset-block").first()).toBeVisible({ timeout: 15_000 });
+    await expect(editor.locator(".query-block").first()).toBeVisible();
+    await expect(editor.locator(".dataset-error")).toHaveCount(0, { timeout: 20_000 });
+    await expect(editor).toContainText("Alice", { timeout: 20_000 });
+});
+

@@ -1,12 +1,22 @@
 {
+  "_sidebar": {
+    "page_id": "_Sidebar",
+    "render_hash": "ae340f7f69f7",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/_Sidebar.md",
+    "source_hash": "ae340f7f69f7",
+    "title": "Sidebar",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/_Sidebar",
+    "wiki_key": "_sidebar"
+  },
   "design/current-code-walkthrough": {
     "canonical_key": "design/current-code-walkthrough",
     "doc_type": "design",
     "page_id": "Code-Walkthrough",
-    "render_hash": "0ca5dd63ae03",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "691275c5c2af",
+    "rev": "9c1109ea56e44034fd183e3b3871b68ccc830f1b",
     "source": "docs/designs/current_code_walkthrough.md",
-    "source_hash": "341e3d4ff204",
+    "source_hash": "4add3684aae5",
     "title": "Motion \u2014 Current Code Walkthrough",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Code-Walkthrough",
@@ -16,32 +26,40 @@
     "canonical_key": "design/current-design-doc",
     "doc_type": "design",
     "page_id": "Design-Doc",
-    "render_hash": "beab3ab15575",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "dd6ceba2b397",
+    "rev": "9c1109ea56e44034fd183e3b3871b68ccc830f1b",
     "source": "docs/designs/current_design_doc.md",
-    "source_hash": "6ee926d022c3",
+    "source_hash": "39178d30ec6c",
     "title": "Motion \u2014 Current Design Document",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Design-Doc",
     "wiki_key": "design/current-design-doc"
   },
   "home": {
+    "canonical_key": "home",
+    "doc_type": null,
     "page_id": "Home",
-    "render_hash": "f4460316aeaa",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "c9a1c31e0e32",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/home.md",
-    "source_hash": "f4460316aeaa",
+    "source_hash": "c9a1c31e0e32",
     "title": "Home",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Home"
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Home",
+    "wiki_key": "home"
   },
   "index/decisions": {
+    "canonical_key": "index/decisions",
+    "doc_type": null,
     "page_id": "Index-Decisions",
-    "render_hash": "1e9fe0ece76a",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "e5a1358e3789",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/decisions.md",
-    "source_hash": "1e9fe0ece76a",
+    "source_hash": "e5a1358e3789",
     "title": "Decisions Index",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Decisions"
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Decisions",
+    "wiki_key": "index/decisions"
   },
   "index/releases": {
     "page_id": "Index-Releases",
@@ -62,13 +80,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Status"
   },
   "index/traceability": {
+    "canonical_key": "index/traceability",
+    "doc_type": null,
     "page_id": "Index-Traceability",
-    "render_hash": "301c727ff5b3",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "fc345a47bba6",
+    "rev": "139fb50b45706b8bd0418384010f4ca9f5550fc7",
     "source": "docs/.index/rendered/traceability.md",
-    "source_hash": "301c727ff5b3",
+    "source_hash": "fc345a47bba6",
     "title": "Traceability Index",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Traceability"
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Traceability",
+    "wiki_key": "index/traceability"
   },
   "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN": {
     "page_id": "Ticket-01KYDZ4A5HN1AZ7BN8Q2WV3XVN",
@@ -107,13 +129,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBHA5DRP85QQ0EHTAJ6"
   },
   "item/01KYFZ6RBHABFSC9K9NJ90168Q": {
+    "canonical_key": "item/01KYFZ6RBHABFSC9K9NJ90168Q",
+    "doc_type": null,
     "page_id": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
-    "render_hash": "2d201e906e44",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "9af64bff7c1d",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
-    "source_hash": "2d201e906e44",
+    "source_hash": "9af64bff7c1d",
     "title": "Motion next development phase",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBHABFSC9K9NJ90168Q"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
+    "wiki_key": "item/01KYFZ6RBHABFSC9K9NJ90168Q"
   },
   "item/01KYFZ6RBHBG53PG8SKVMMNCC4": {
     "page_id": "Ticket-01KYFZ6RBHBG53PG8SKVMMNCC4",
@@ -170,13 +196,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJ18SB2ZCSFK06BNJ2"
   },
   "item/01KYFZ6RBJ5718M3GQPAB76RHS": {
+    "canonical_key": "item/01KYFZ6RBJ5718M3GQPAB76RHS",
+    "doc_type": null,
     "page_id": "Ticket-01KYFZ6RBJ5718M3GQPAB76RHS",
-    "render_hash": "f8d4a1673c0a",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "fcb820333aae",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJ5718M3GQPAB76RHS.md",
-    "source_hash": "f8d4a1673c0a",
+    "source_hash": "fcb820333aae",
     "title": "Real diagram generation, and scope a real ImageGen backend",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJ5718M3GQPAB76RHS"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJ5718M3GQPAB76RHS",
+    "wiki_key": "item/01KYFZ6RBJ5718M3GQPAB76RHS"
   },
   "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
     "page_id": "Ticket-01KYFZ6RBJC07FEQ0FT0KQ302M",
@@ -215,31 +245,43 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJT7FG0G30WYS3YF6Q"
   },
   "item/01KYFZ6RBJV920SFW0MAN9MX9J": {
+    "canonical_key": "item/01KYFZ6RBJV920SFW0MAN9MX9J",
+    "doc_type": null,
     "page_id": "Ticket-01KYFZ6RBJV920SFW0MAN9MX9J",
-    "render_hash": "44db03832295",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "48b35b2f99d5",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJV920SFW0MAN9MX9J.md",
-    "source_hash": "44db03832295",
+    "source_hash": "48b35b2f99d5",
     "title": "Wire the per-note enrichment action into the UI",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJV920SFW0MAN9MX9J"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJV920SFW0MAN9MX9J",
+    "wiki_key": "item/01KYFZ6RBJV920SFW0MAN9MX9J"
   },
   "item/01KYFZ6RBJZNYDT9AK2V0RA11T": {
+    "canonical_key": "item/01KYFZ6RBJZNYDT9AK2V0RA11T",
+    "doc_type": null,
     "page_id": "Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T",
-    "render_hash": "4e0f54fe7acf",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "1296db3b8d05",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJZNYDT9AK2V0RA11T.md",
-    "source_hash": "4e0f54fe7acf",
+    "source_hash": "1296db3b8d05",
     "title": "Per-note \"AI Refine\"/\"Generate Summary\" toolbar action backed by ContentInjector",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T",
+    "wiki_key": "item/01KYFZ6RBJZNYDT9AK2V0RA11T"
   },
   "item/01KYFZ8RGR06XBSG9CH4TEWYJY": {
+    "canonical_key": "item/01KYFZ8RGR06XBSG9CH4TEWYJY",
+    "doc_type": null,
     "page_id": "Ticket-01KYFZ8RGR06XBSG9CH4TEWYJY",
-    "render_hash": "dd59761c7406",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "1098cf992b4e",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYFZ8RGR06XBSG9CH4TEWYJY.md",
-    "source_hash": "dd59761c7406",
+    "source_hash": "1098cf992b4e",
     "title": "Workspace-level topic clustering + auto TOC/SKILL generation",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ8RGR06XBSG9CH4TEWYJY"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYFZ8RGR06XBSG9CH4TEWYJY",
+    "wiki_key": "item/01KYFZ8RGR06XBSG9CH4TEWYJY"
   },
   "item/01KYJQ3WF4XJ4D1G7T9WQ3V0TV": {
     "page_id": "Ticket-01KYJQ3WF4XJ4D1G7T9WQ3V0TV",
@@ -251,13 +293,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYJQ3WF4XJ4D1G7T9WQ3V0TV"
   },
   "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C": {
+    "canonical_key": "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C",
+    "doc_type": null,
     "page_id": "Ticket-01KYJW5XJ5HTG7ESZ7DDDS8W0C",
-    "render_hash": "c9a3f8634f33",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "9e604d8523da",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYJW5XJ5HTG7ESZ7DDDS8W0C.md",
-    "source_hash": "c9a3f8634f33",
+    "source_hash": "9e604d8523da",
     "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYJW5XJ5HTG7ESZ7DDDS8W0C"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYJW5XJ5HTG7ESZ7DDDS8W0C",
+    "wiki_key": "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C"
   },
   "item/01KYJXSMV02C0PP9H8BKE1PNEZ": {
     "page_id": "Ticket-01KYJXSMV02C0PP9H8BKE1PNEZ",
@@ -269,13 +315,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYJXSMV02C0PP9H8BKE1PNEZ"
   },
   "item/01KYJXSYEZ97M9638S91GYZWV0": {
+    "canonical_key": "item/01KYJXSYEZ97M9638S91GYZWV0",
+    "doc_type": null,
     "page_id": "Ticket-01KYJXSYEZ97M9638S91GYZWV0",
-    "render_hash": "59dfbdd50205",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "e5daf71814c8",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYJXSYEZ97M9638S91GYZWV0.md",
-    "source_hash": "59dfbdd50205",
+    "source_hash": "e5daf71814c8",
     "title": "Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYJXSYEZ97M9638S91GYZWV0"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYJXSYEZ97M9638S91GYZWV0",
+    "wiki_key": "item/01KYJXSYEZ97M9638S91GYZWV0"
   },
   "item/01KYK6NHSF1KPVANBR2F76R20N": {
     "page_id": "Ticket-01KYK6NHSF1KPVANBR2F76R20N",
@@ -287,22 +337,30 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSF1KPVANBR2F76R20N"
   },
   "item/01KYK6NHSFD37YD6RN9KS2T4W8": {
+    "canonical_key": "item/01KYK6NHSFD37YD6RN9KS2T4W8",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSFD37YD6RN9KS2T4W8",
-    "render_hash": "7c0de41a5d2c",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "d231b0371ac0",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFD37YD6RN9KS2T4W8.md",
-    "source_hash": "7c0de41a5d2c",
+    "source_hash": "d231b0371ac0",
     "title": "Phase 0: console/network failure fixture with a measured baseline",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSFD37YD6RN9KS2T4W8"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSFD37YD6RN9KS2T4W8",
+    "wiki_key": "item/01KYK6NHSFD37YD6RN9KS2T4W8"
   },
   "item/01KYK6NHSFJNG9XV6D8K5SHWCV": {
+    "canonical_key": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
-    "render_hash": "1b1e5000115a",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "e1e912aaeef7",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
-    "source_hash": "1b1e5000115a",
+    "source_hash": "e1e912aaeef7",
     "title": "Validation loop: prove the UI works before the human launches it",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
+    "wiki_key": "item/01KYK6NHSFJNG9XV6D8K5SHWCV"
   },
   "item/01KYK6NHSFMY34BQ4EVPH28D9M": {
     "page_id": "Ticket-01KYK6NHSFMY34BQ4EVPH28D9M",
@@ -422,22 +480,30 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGP45SAC43B5AYA91P"
   },
   "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN": {
+    "canonical_key": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN",
-    "render_hash": "3f32da0ab639",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "f47a1322275e",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGP58Q6GQ3Z3HEMXXN.md",
-    "source_hash": "3f32da0ab639",
+    "source_hash": "f47a1322275e",
     "title": "Phase 1: make web mode a real filesystem backend",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN",
+    "wiki_key": "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN"
   },
   "item/01KYK6NHSGPYHDTHG3T7Y80MAR": {
+    "canonical_key": "item/01KYK6NHSGPYHDTHG3T7Y80MAR",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR",
-    "render_hash": "82df628fa178",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "de0deae8dd87",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGPYHDTHG3T7Y80MAR.md",
-    "source_hash": "82df628fa178",
+    "source_hash": "de0deae8dd87",
     "title": "Phase 0.5: accessibility pass so role-based locators are possible",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR",
+    "wiki_key": "item/01KYK6NHSGPYHDTHG3T7Y80MAR"
   },
   "item/01KYK6NHSGSAMNDS6CJ47YST2C": {
     "page_id": "Ticket-01KYK6NHSGSAMNDS6CJ47YST2C",
@@ -467,13 +533,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGXDY0C5GZRQDVEQGC"
   },
   "item/01KYK6NHSH15H376EZGAMTZE9J": {
+    "canonical_key": "item/01KYK6NHSH15H376EZGAMTZE9J",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSH15H376EZGAMTZE9J",
-    "render_hash": "447ed1f67b6e",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "6b92d3879fbe",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH15H376EZGAMTZE9J.md",
-    "source_hash": "447ed1f67b6e",
+    "source_hash": "6b92d3879fbe",
     "title": "B8: route the four enrichment modules through llmClient",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH15H376EZGAMTZE9J"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH15H376EZGAMTZE9J",
+    "wiki_key": "item/01KYK6NHSH15H376EZGAMTZE9J"
   },
   "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R": {
     "page_id": "Ticket-01KYK6NHSH1PJ0YBJ1WEG3SZ4R",
@@ -485,13 +555,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH1PJ0YBJ1WEG3SZ4R"
   },
   "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8": {
+    "canonical_key": "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSH2RMTJQ3SR7MGW7Q8",
-    "render_hash": "fd57d9c9d34c",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "720442754f4f",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH2RMTJQ3SR7MGW7Q8.md",
-    "source_hash": "fd57d9c9d34c",
+    "source_hash": "720442754f4f",
     "title": "Add resolveWorkspacePath so documents are portable between modes",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH2RMTJQ3SR7MGW7Q8"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH2RMTJQ3SR7MGW7Q8",
+    "wiki_key": "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8"
   },
   "item/01KYK6NHSH8WXC8MEGFPFM8DYC": {
     "page_id": "Ticket-01KYK6NHSH8WXC8MEGFPFM8DYC",
@@ -503,31 +577,43 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH8WXC8MEGFPFM8DYC"
   },
   "item/01KYK6NHSH9BTQ4BND9DZEFAY7": {
+    "canonical_key": "item/01KYK6NHSH9BTQ4BND9DZEFAY7",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7",
-    "render_hash": "bc4e2c874e6b",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "414750714217",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH9BTQ4BND9DZEFAY7.md",
-    "source_hash": "bc4e2c874e6b",
+    "source_hash": "414750714217",
     "title": "B4 and B7: block round-trip and multi-line serialization",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7",
+    "wiki_key": "item/01KYK6NHSH9BTQ4BND9DZEFAY7"
   },
   "item/01KYK6NHSHBJ0SV2MM8N3A0KJR": {
+    "canonical_key": "item/01KYK6NHSHBJ0SV2MM8N3A0KJR",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR",
-    "render_hash": "80fc68f59c70",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "0a18c45ad696",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHBJ0SV2MM8N3A0KJR.md",
-    "source_hash": "80fc68f59c70",
+    "source_hash": "0a18c45ad696",
     "title": "Phase 2: E2E coverage of the journeys that have actually broken",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR",
+    "wiki_key": "item/01KYK6NHSHBJ0SV2MM8N3A0KJR"
   },
   "item/01KYK6NHSHD4NMT2QVMQD2HHBP": {
+    "canonical_key": "item/01KYK6NHSHD4NMT2QVMQD2HHBP",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP",
-    "render_hash": "6f5f472d49fb",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "d047b564c246",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHD4NMT2QVMQD2HHBP.md",
-    "source_hash": "6f5f472d49fb",
+    "source_hash": "d047b564c246",
     "title": "B5: welcome doc paths resolve in both modes",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP",
+    "wiki_key": "item/01KYK6NHSHD4NMT2QVMQD2HHBP"
   },
   "item/01KYK6NHSHKCZWFNWZX3NATX04": {
     "page_id": "Ticket-01KYK6NHSHKCZWFNWZX3NATX04",
@@ -539,94 +625,134 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHKCZWFNWZX3NATX04"
   },
   "item/01KYK6NHSHKXZNTXS3F3ANDYV9": {
+    "canonical_key": "item/01KYK6NHSHKXZNTXS3F3ANDYV9",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHKXZNTXS3F3ANDYV9",
-    "render_hash": "fbb6854edfa1",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "13c8c0516efa",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHKXZNTXS3F3ANDYV9.md",
-    "source_hash": "fbb6854edfa1",
+    "source_hash": "13c8c0516efa",
     "title": "Add bin/smoke-desktop.sh building and launching the packaged app",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHKXZNTXS3F3ANDYV9"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHKXZNTXS3F3ANDYV9",
+    "wiki_key": "item/01KYK6NHSHKXZNTXS3F3ANDYV9"
   },
   "item/01KYK6NHSHKZ20DY8FBB5S1PP9": {
+    "canonical_key": "item/01KYK6NHSHKZ20DY8FBB5S1PP9",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9",
-    "render_hash": "d359a9058980",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "6559a9225105",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHKZ20DY8FBB5S1PP9.md",
-    "source_hash": "d359a9058980",
+    "source_hash": "6559a9225105",
     "title": "B6: thread model through the run_llm_cli IPC signature",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9",
+    "wiki_key": "item/01KYK6NHSHKZ20DY8FBB5S1PP9"
   },
   "item/01KYK6NHSHQZZQV7DJM5A64C6E": {
+    "canonical_key": "item/01KYK6NHSHQZZQV7DJM5A64C6E",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHQZZQV7DJM5A64C6E",
-    "render_hash": "2bc6ca7ab559",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "5ad440c6f84b",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHQZZQV7DJM5A64C6E.md",
-    "source_hash": "2bc6ca7ab559",
+    "source_hash": "5ad440c6f84b",
     "title": "B13: save completion signal and file-load cancellation",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHQZZQV7DJM5A64C6E"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHQZZQV7DJM5A64C6E",
+    "wiki_key": "item/01KYK6NHSHQZZQV7DJM5A64C6E"
   },
   "item/01KYK6NHSHRFE2KXPBTV76JR02": {
+    "canonical_key": "item/01KYK6NHSHRFE2KXPBTV76JR02",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHRFE2KXPBTV76JR02",
-    "render_hash": "fd339aef4ebc",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "5e9fa3d7befe",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHRFE2KXPBTV76JR02.md",
-    "source_hash": "fd339aef4ebc",
+    "source_hash": "5e9fa3d7befe",
     "title": "Write the short release-only manual checklist",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHRFE2KXPBTV76JR02"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHRFE2KXPBTV76JR02",
+    "wiki_key": "item/01KYK6NHSHRFE2KXPBTV76JR02"
   },
   "item/01KYK6NHSHRFPGDZXKE6EH4QRJ": {
+    "canonical_key": "item/01KYK6NHSHRFPGDZXKE6EH4QRJ",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ",
-    "render_hash": "cdbb30e2e458",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "33d693de05b8",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHRFPGDZXKE6EH4QRJ.md",
-    "source_hash": "cdbb30e2e458",
+    "source_hash": "33d693de05b8",
     "title": "B3: fix the broken desktop production build (dist has no index.html)",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ",
+    "wiki_key": "item/01KYK6NHSHRFPGDZXKE6EH4QRJ"
   },
   "item/01KYK6NHSHSASEERK1KJ7XVDPN": {
+    "canonical_key": "item/01KYK6NHSHSASEERK1KJ7XVDPN",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHSASEERK1KJ7XVDPN",
-    "render_hash": "7eead449f407",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "958cefd62de1",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHSASEERK1KJ7XVDPN.md",
-    "source_hash": "7eead449f407",
+    "source_hash": "958cefd62de1",
     "title": "Backfill tests on the untested security boundaries",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHSASEERK1KJ7XVDPN"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHSASEERK1KJ7XVDPN",
+    "wiki_key": "item/01KYK6NHSHSASEERK1KJ7XVDPN"
   },
   "item/01KYK6NHSHVJEFG9W6TZYWXNEF": {
+    "canonical_key": "item/01KYK6NHSHVJEFG9W6TZYWXNEF",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHVJEFG9W6TZYWXNEF",
-    "render_hash": "846e43f83fba",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "fd56d6db0230",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHVJEFG9W6TZYWXNEF.md",
-    "source_hash": "846e43f83fba",
+    "source_hash": "fd56d6db0230",
     "title": "Delete the stale root index.html and generate dev and prod shells from one template",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHVJEFG9W6TZYWXNEF"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHVJEFG9W6TZYWXNEF",
+    "wiki_key": "item/01KYK6NHSHVJEFG9W6TZYWXNEF"
   },
   "item/01KYK6NHSHVZ2EZZH7NBRADW7E": {
+    "canonical_key": "item/01KYK6NHSHVZ2EZZH7NBRADW7E",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E",
-    "render_hash": "c4b67f2535f0",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "1a2e946ff602",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHVZ2EZZH7NBRADW7E.md",
-    "source_hash": "c4b67f2535f0",
+    "source_hash": "1a2e946ff602",
     "title": "B9: contain the Mermaid parse-error graphic",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E",
+    "wiki_key": "item/01KYK6NHSHVZ2EZZH7NBRADW7E"
   },
   "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F": {
+    "canonical_key": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHZF8S0ZNGQ9ZAD05F",
-    "render_hash": "6de364a8dfd8",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "9eed50dbce85",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHZF8S0ZNGQ9ZAD05F.md",
-    "source_hash": "6de364a8dfd8",
+    "source_hash": "9eed50dbce85",
     "title": "Phase 4: desktop confidence without a WebDriver",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHZF8S0ZNGQ9ZAD05F"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHZF8S0ZNGQ9ZAD05F",
+    "wiki_key": "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F"
   },
   "item/01KYK6NHSHZJNNCYMEW9ZG77NP": {
+    "canonical_key": "item/01KYK6NHSHZJNNCYMEW9ZG77NP",
+    "doc_type": null,
     "page_id": "Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP",
-    "render_hash": "5fa03e99a877",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "234bafa76933",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHZJNNCYMEW9ZG77NP.md",
-    "source_hash": "5fa03e99a877",
+    "source_hash": "234bafa76933",
     "title": "Phase 3: fix what the loop exposes",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP",
+    "wiki_key": "item/01KYK6NHSHZJNNCYMEW9ZG77NP"
   },
   "item/01KYK7WZFJXKTH14WKSZR7FQEE": {
     "page_id": "Ticket-01KYK7WZFJXKTH14WKSZR7FQEE",
@@ -647,13 +773,17 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK7WZM5846FPAQZH84S5D38"
   },
   "item/01KYK7WZRS65D7DPP0D1DT58Z7": {
+    "canonical_key": "item/01KYK7WZRS65D7DPP0D1DT58Z7",
+    "doc_type": null,
     "page_id": "Ticket-01KYK7WZRS65D7DPP0D1DT58Z7",
-    "render_hash": "9b5043d080f3",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "11617808e03c",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/tickets/01KYK7WZRS65D7DPP0D1DT58Z7.md",
-    "source_hash": "9b5043d080f3",
+    "source_hash": "11617808e03c",
     "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN",
-    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK7WZRS65D7DPP0D1DT58Z7"
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK7WZRS65D7DPP0D1DT58Z7",
+    "wiki_key": "item/01KYK7WZRS65D7DPP0D1DT58Z7"
   },
   "item/01KYN85K57SRYK5WJFG98W5R6F": {
     "page_id": "Ticket-01KYN85K57SRYK5WJFG98W5R6F",
@@ -700,6 +830,201 @@
     "title": "Publish design doc, code walkthrough and user guide \u2014 resolve the three dangling wiki links",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYNMZ132M2NE1EYPHG2DCCAW"
   },
+  "item/01KYQ9NBNXCBFA30Z4HD0W7HGQ": {
+    "canonical_key": "item/01KYQ9NBNXCBFA30Z4HD0W7HGQ",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQ9NBNXCBFA30Z4HD0W7HGQ",
+    "render_hash": "5c6aee5f5b03",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQ9NBNXCBFA30Z4HD0W7HGQ.md",
+    "source_hash": "5c6aee5f5b03",
+    "title": "React flushSync error when opening a document containing block node views",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQ9NBNXCBFA30Z4HD0W7HGQ",
+    "wiki_key": "item/01KYQ9NBNXCBFA30Z4HD0W7HGQ"
+  },
+  "item/01KYQ9NBTQETCVSHC2X775CD14": {
+    "canonical_key": "item/01KYQ9NBTQETCVSHC2X775CD14",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQ9NBTQETCVSHC2X775CD14",
+    "render_hash": "b2b31856374a",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQ9NBTQETCVSHC2X775CD14.md",
+    "source_hash": "b2b31856374a",
+    "title": "README and user guide claimed markdown tables, which are not supported",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQ9NBTQETCVSHC2X775CD14",
+    "wiki_key": "item/01KYQ9NBTQETCVSHC2X775CD14"
+  },
+  "item/01KYQYYN3SBWDT25TC6H3G4EAA": {
+    "canonical_key": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
+    "render_hash": "7ed0659187ab",
+    "rev": "c4c2464745ec2071b8516e5c679c010773272b34",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3SBWDT25TC6H3G4EAA.md",
+    "source_hash": "7ed0659187ab",
+    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
+    "wiki_key": "item/01KYQYYN3SBWDT25TC6H3G4EAA"
+  },
+  "item/01KYQYYN3T2SSGG33ESEWPXKH8": {
+    "canonical_key": "item/01KYQYYN3T2SSGG33ESEWPXKH8",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T2SSGG33ESEWPXKH8",
+    "render_hash": "0ac1ca33f637",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T2SSGG33ESEWPXKH8.md",
+    "source_hash": "0ac1ca33f637",
+    "title": "Agent-browser final pass in Definition of Done",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T2SSGG33ESEWPXKH8",
+    "wiki_key": "item/01KYQYYN3T2SSGG33ESEWPXKH8"
+  },
+  "item/01KYQYYN3T3VB8RCTMJJ13FK2H": {
+    "canonical_key": "item/01KYQYYN3T3VB8RCTMJJ13FK2H",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T3VB8RCTMJJ13FK2H",
+    "render_hash": "6161a1cd48fe",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T3VB8RCTMJJ13FK2H.md",
+    "source_hash": "6161a1cd48fe",
+    "title": "Welcome / demo datasets resolve when the open folder is not Motion",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T3VB8RCTMJJ13FK2H",
+    "wiki_key": "item/01KYQYYN3T3VB8RCTMJJ13FK2H"
+  },
+  "item/01KYQYYN3T5RXZWBXWV9VNP3ZH": {
+    "canonical_key": "item/01KYQYYN3T5RXZWBXWV9VNP3ZH",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T5RXZWBXWV9VNP3ZH",
+    "render_hash": "3e03588859dc",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T5RXZWBXWV9VNP3ZH.md",
+    "source_hash": "3e03588859dc",
+    "title": "Make the Save control discoverable",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T5RXZWBXWV9VNP3ZH",
+    "wiki_key": "item/01KYQYYN3T5RXZWBXWV9VNP3ZH"
+  },
+  "item/01KYQYYN3T5W49QH05WCCYX7CE": {
+    "canonical_key": "item/01KYQYYN3T5W49QH05WCCYX7CE",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T5W49QH05WCCYX7CE",
+    "render_hash": "82d4fa2a6cc7",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T5W49QH05WCCYX7CE.md",
+    "source_hash": "82d4fa2a6cc7",
+    "title": "Sidebar: directory tree view alongside flat markdown list",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T5W49QH05WCCYX7CE",
+    "wiki_key": "item/01KYQYYN3T5W49QH05WCCYX7CE"
+  },
+  "item/01KYQYYN3T731B57N8NXQ8C0FQ": {
+    "canonical_key": "item/01KYQYYN3T731B57N8NXQ8C0FQ",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T731B57N8NXQ8C0FQ",
+    "render_hash": "2f4cf2f1b217",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T731B57N8NXQ8C0FQ.md",
+    "source_hash": "2f4cf2f1b217",
+    "title": "Require branch protection on main for verify + rust checks",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T731B57N8NXQ8C0FQ",
+    "wiki_key": "item/01KYQYYN3T731B57N8NXQ8C0FQ"
+  },
+  "item/01KYQYYN3T7R1V9546Q5NTJRZE": {
+    "canonical_key": "item/01KYQYYN3T7R1V9546Q5NTJRZE",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T7R1V9546Q5NTJRZE",
+    "render_hash": "376988b5b890",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T7R1V9546Q5NTJRZE.md",
+    "source_hash": "376988b5b890",
+    "title": "E2E: create a new note, edit, save, reload \u2014 content survives",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T7R1V9546Q5NTJRZE",
+    "wiki_key": "item/01KYQYYN3T7R1V9546Q5NTJRZE"
+  },
+  "item/01KYQYYN3T8MXHSF7JS4MA57GJ": {
+    "canonical_key": "item/01KYQYYN3T8MXHSF7JS4MA57GJ",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3T8MXHSF7JS4MA57GJ",
+    "render_hash": "a919a4fec7fc",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3T8MXHSF7JS4MA57GJ.md",
+    "source_hash": "a919a4fec7fc",
+    "title": "Land Playwright coverage for dataset/SQL install",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T8MXHSF7JS4MA57GJ",
+    "wiki_key": "item/01KYQYYN3T8MXHSF7JS4MA57GJ"
+  },
+  "item/01KYQYYN3TA69K8848E483HC82": {
+    "canonical_key": "item/01KYQYYN3TA69K8848E483HC82",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3TA69K8848E483HC82",
+    "render_hash": "74e1531ea61a",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3TA69K8848E483HC82.md",
+    "source_hash": "74e1531ea61a",
+    "title": "Sidebar: sort by name or date",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3TA69K8848E483HC82",
+    "wiki_key": "item/01KYQYYN3TA69K8848E483HC82"
+  },
+  "item/01KYQYYN3TKW93D9SVW07VKFZY": {
+    "canonical_key": "item/01KYQYYN3TKW93D9SVW07VKFZY",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQYYN3TKW93D9SVW07VKFZY",
+    "render_hash": "79845770aeee",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQYYN3TKW93D9SVW07VKFZY.md",
+    "source_hash": "79845770aeee",
+    "title": "Search inside file contents (grep/glob UX)",
+    "truth_state": "open",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3TKW93D9SVW07VKFZY",
+    "wiki_key": "item/01KYQYYN3TKW93D9SVW07VKFZY"
+  },
+  "item/01KYQZ491VF71K9KCDHAZYNE9S": {
+    "canonical_key": "item/01KYQZ491VF71K9KCDHAZYNE9S",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQZ491VF71K9KCDHAZYNE9S",
+    "render_hash": "21f5991d26c7",
+    "rev": "139fb50b45706b8bd0418384010f4ca9f5550fc7",
+    "source": "docs/.index/rendered/tickets/01KYQZ491VF71K9KCDHAZYNE9S.md",
+    "source_hash": "21f5991d26c7",
+    "title": "Write or update design docs for post-v0.1 dogfood work and publish to wiki",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQZ491VF71K9KCDHAZYNE9S",
+    "wiki_key": "item/01KYQZ491VF71K9KCDHAZYNE9S"
+  },
+  "item/01KYQZ4963GCA86R8CP4P14DRV": {
+    "canonical_key": "item/01KYQZ4963GCA86R8CP4P14DRV",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQZ4963GCA86R8CP4P14DRV",
+    "render_hash": "5e7c3704816b",
+    "rev": "c4c2464745ec2071b8516e5c679c010773272b34",
+    "source": "docs/.index/rendered/tickets/01KYQZ4963GCA86R8CP4P14DRV.md",
+    "source_hash": "5e7c3704816b",
+    "title": "Update user guide for current behaviour and publish to wiki",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQZ4963GCA86R8CP4P14DRV",
+    "wiki_key": "item/01KYQZ4963GCA86R8CP4P14DRV"
+  },
+  "item/01KYQZ49A7NWRQZK83658CT4QT": {
+    "canonical_key": "item/01KYQZ49A7NWRQZK83658CT4QT",
+    "doc_type": null,
+    "page_id": "Ticket-01KYQZ49A7NWRQZK83658CT4QT",
+    "render_hash": "f2140f1835e2",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/.index/rendered/tickets/01KYQZ49A7NWRQZK83658CT4QT.md",
+    "source_hash": "f2140f1835e2",
+    "title": "Keep README feature list and known limitations current",
+    "truth_state": "done",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQZ49A7NWRQZK83658CT4QT",
+    "wiki_key": "item/01KYQZ49A7NWRQZK83658CT4QT"
+  },
   "plan/2026-07-26-motion-next-phase": {
     "canonical_key": "plan/2026-07-26-motion-next-phase",
     "doc_type": "plan",
@@ -726,6 +1051,19 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-validation-loop",
     "wiki_key": "plan/2026-07-28-validation-loop"
   },
+  "plan/2026-07-29-save-ux-and-next": {
+    "canonical_key": "plan/2026-07-29-save-ux-and-next",
+    "doc_type": "plan",
+    "page_id": "Plan-save-ux-and-next",
+    "render_hash": "da9542d1a863",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "source": "docs/plans/2026-07-29-save-ux-and-next.md",
+    "source_hash": "505e78665365",
+    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-save-ux-and-next",
+    "wiki_key": "plan/2026-07-29-save-ux-and-next"
+  },
   "release-checklist": {
     "rev": null,
     "source": "docs/release-checklist.md",
@@ -746,10 +1084,10 @@
     "canonical_key": "roadmap",
     "doc_type": "roadmap",
     "page_id": "Roadmap",
-    "render_hash": "d446bcc66d05",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "a298a215c956",
+    "rev": "139fb50b45706b8bd0418384010f4ca9f5550fc7",
     "source": "docs/roadmap.md",
-    "source_hash": "fca1032b42c0",
+    "source_hash": "c7f71e8a8cd9",
     "title": "Roadmap",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
@@ -771,7 +1109,7 @@
   "sidebar": {
     "page_id": "_Sidebar",
     "render_hash": "0233da90a37a",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/.index/rendered/_Sidebar.md",
     "source_hash": "0233da90a37a",
     "title": "_Sidebar",
@@ -784,10 +1122,10 @@
     "canonical_key": "guide/user-guide",
     "doc_type": "guide",
     "page_id": "User-Guide",
-    "render_hash": "a2861f424455",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "25e98b73f2eb",
+    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
     "source": "docs/user_guide/user-guide.md",
-    "source_hash": "5052663bcedb",
+    "source_hash": "0608eeac7402",
     "title": "User Guide",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/User-Guide",

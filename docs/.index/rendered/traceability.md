@@ -2,6 +2,82 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Keep README feature list and known limitations current
+`01KYQZ49A7NWRQZK83658CT4QT` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Update user guide for current behaviour and publish to wiki
+`01KYQZ4963GCA86R8CP4P14DRV` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Write or update design docs for post-v0.1 dogfood work and publish to wiki
+`01KYQZ491VF71K9KCDHAZYNE9S` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Search inside file contents (grep/glob UX)
+`01KYQYYN3TKW93D9SVW07VKFZY` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Sidebar: sort by name or date
+`01KYQYYN3TA69K8848E483HC82` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Land Playwright coverage for dataset/SQL install
+`01KYQYYN3T8MXHSF7JS4MA57GJ` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### E2E: create a new note, edit, save, reload — content survives
+`01KYQYYN3T7R1V9546Q5NTJRZE` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Require branch protection on main for verify + rust checks
+`01KYQYYN3T731B57N8NXQ8C0FQ` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Sidebar: directory tree view alongside flat markdown list
+`01KYQYYN3T5W49QH05WCCYX7CE` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Make the Save control discoverable
+`01KYQYYN3T5RXZWBXWV9VNP3ZH` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Welcome / demo datasets resolve when the open folder is not Motion
+`01KYQYYN3T3VB8RCTMJJ13FK2H` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Agent-browser final pass in Definition of Done
+`01KYQYYN3T2SSGG33ESEWPXKH8` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+`01KYQYYN3SBWDT25TC6H3G4EAA` · status: todo
+- contains: Agent-browser final pass in Definition of Done
+- contains: Welcome / demo datasets resolve when the open folder is not Motion
+- contains: Make the Save control discoverable
+- contains: Sidebar: directory tree view alongside flat markdown list
+- contains: Require branch protection on main for verify + rust checks
+- contains: E2E: create a new note, edit, save, reload — content survives
+- contains: Land Playwright coverage for dataset/SQL install
+- contains: Sidebar: sort by name or date
+- contains: Search inside file contents (grep/glob UX)
+- contains: Write or update design docs for post-v0.1 dogfood work and publish to wiki
+- contains: Update user guide for current behaviour and publish to wiki
+- contains: Keep README feature list and known limitations current
+- produced-by: [[Plan-save-ux-and-next]]
+
 ### README and user guide claimed markdown tables, which are not supported
 `01KYQ9NBTQETCVSHC2X775CD14` · status: done
 - belongs-to: Phase 3: fix what the loop exposes

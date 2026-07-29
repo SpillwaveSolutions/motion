@@ -2,23 +2,87 @@
 wiki_key: design/current-design-doc
 doc_type: design
 truth_state: current
-tag: v0.1.0
-git_hash: 13240d084d2f97b1df49616a573ebd29f7e994e2
+tag: v0.1.0+dogfood
+git_hash: b987195ccda2b1e20fa1ec9b0681cf8c1b46f6b1
 branch: main
-generated_at: 2026-07-29T00:16:30Z
+generated_at: 2026-07-29T23:00:00Z
 roadmap: docs/roadmap.md
+plan: docs/plans/2026-07-29-save-ux-and-next.md
 ---
 
 # Motion — Current Design Document
 
-> Generated against the code as it exists at commit
-> `13240d084d2f97b1df49616a573ebd29f7e994e2`, immediately after Phase 1 of the
-> validation-loop plan landed. Every code claim cites a repository-relative path,
-> a function, and line numbers. Where the repository's own prose contradicts the
-> code, the code wins and the contradiction is recorded in §31.
+> Originally generated against the code at the end of Phase 1 of the
+> validation-loop plan. **Amended 2026-07-29** against `main` at
+> `b987195` plus the in-flight dogfood work on branch
+> `docs/save-ux-and-dogfood` (labeled Save, new-note E2E, dataset/SQL install
+> specs, docs/DoD policy). Body sections still cite the Phase-1 line map in
+> places; where this amendment and the body disagree, **this amendment and the
+> code win**. Full status of closed risks is in **§0** below.
 >
 > **Note for readers of an earlier revision of this document:** `WebStorage` no
 > longer exists. Browser mode is now backed by a real filesystem API. See §6.1.
+
+---
+
+# 0. Currency amendment — post-v0.1 dogfood (2026-07-29)
+
+The validation-loop and next-phase epics closed on `main` (PR #14–#28). Dogfood
+immediately after exposed product and process gaps; plan
+`docs/plans/2026-07-29-save-ux-and-next.md` tracks them.
+
+## 0.1 Risks from §2.6 / §31 that are closed
+
+| Was | Status now |
+|---|---|
+| Packaged desktop build has no `index.html` (B3) | **Fixed.** `bun run build` emits `dist/index.html` + `dist/main.js`; CI asserts it; `bin/smoke-desktop.sh` exists. |
+| 4 of 5 blocks do not survive save/reload (B4/B7) | **Fixed.** Shared `blockAttrs` parse/serialize; E2E in `e2e/blocks.spec.ts`. |
+| Enrichment modules unreachable / `Bun.spawn` (B8) | **Fixed.** Modules route through `llmClient`; **AI Refine** on the toolbar; **Synthesize** writes `TOC.md` + `SKILL.md` (`src/lib/workspaceSynthesis.ts`, `src/App.tsx`). Guard walks 23 modules. |
+| No load cancellation / save signal (B13) | **Fixed.** Save status region; cancelled loads; E2E rapid switch + save status. |
+| Dev server on `0.0.0.0` | **Fixed.** Binds loopback only. |
+| README / user guide claim broken persistence | **Fixed.** README and user guide refreshed; wiki User-Guide republished. |
+| Save is icon-only (dogfood) | **Fixed.** Labeled **Save** button (`Toolbar.tsx` + CSS); ⌘S unchanged. |
+| Create note → edit → save untested | **Fixed.** `e2e/persistence.spec.ts` locks create → edit → Save → reload. |
+| Dataset/SQL install not asserted (only node views) | **Fixed.** `e2e/data.spec.ts` + demo-shaped E2E seed; welcome JOIN and missing-file path. |
+
+## 0.2 Still open (roadmap)
+
+| Gap | Notes |
+|---|---|
+| Welcome demo datasets outside Motion workspace | Welcome HTML hardcodes `sample-data.csv` / `sample-events.jsonl`. Works when those files are in the open folder (`public/demo` or E2E seed); fails in Tauri when the folder is an unrelated project. |
+| Sidebar tree, sort by date, in-file search | Flat markdown list + filename search only. |
+| Agent-browser final pass in DoD | Optional dogfood; Playwright remains the CI gate. |
+| Branch protection on `main` | CI exists; GitHub does not yet require `verify` / `rust` checks. |
+| Full line-number re-audit of §7–§27 | This amendment corrects product status; a full line re-citation is deferred. |
+
+## 0.3 Definition of Done (policy)
+
+`CLAUDE.md` / `AGENTS.md` now require, for every user-visible feature:
+
+1. Unit tests under `src/` (`bun test src`) for new or changed logic.
+2. Playwright E2E under `e2e/` for the user journey (Playwright *is* the E2E harness).
+3. Docs: design doc and/or code walkthrough when architecture changes; user guide
+   and README feature list when product surface changes; wiki publish so the
+   GitHub wiki matches `docs/`.
+
+`bun run verify` remains the one local/CI command (typecheck → client guard →
+unit → E2E).
+
+## 0.4 Main user workflows (current)
+
+1. **Open a folder** — desktop native picker, or browser `MOTION_WORKSPACE`.
+2. **Open / search notes** — flat recursive `.md` list; filter by filename.
+3. **Edit** — WYSIWYG / Markdown / Split; edits carry across modes.
+4. **Save** — labeled **Save** toolbar control or ⌘S / Ctrl+S; status
+   Saving… / Saved / Save failed. Welcome content with no `filePath` cannot save.
+5. **New Note** — writes `untitled-<timestamp>.md` with stub content, selects it;
+   further edits require Save.
+6. **Blocks** — toolbar or `/` menu: Mermaid, Dataset, Query, Image gen, Diagram gen.
+   Round-trip through save/reload as real blocks when serialization is intact.
+7. **Dataset → Query** — register CSV/JSON/JSONL in the workspace, `SELECT` via DuckDB-WASM.
+8. **AI Refine** — per-document refine via `ContentInjector` + `llmClient`.
+9. **Synthesize** — workspace-level topic clustering; writes `TOC.md` and `SKILL.md`
+   (cap 40 notes; excludes its own outputs from the next run).
 
 ---
 
@@ -75,19 +139,22 @@ CLI that lives alongside the app but is not part of it), the generated
 | **Atom node** | A Tiptap node with no editable child content. All five block extensions are atoms. |
 | **E2E** | End-to-end tests — Playwright specs driving a real browser against the real dev server. |
 | **DuckDB-WASM** | An analytical SQL engine compiled to WebAssembly, running in a Web Worker inside the page. |
-| **Enrichment modules** | `ContentInjector`, `TopicRefiner`, `TOCGenerator`, `SkillGenerator` — currently unreachable code (§11.7). |
+| **Enrichment modules** | `ContentInjector`, `TopicRefiner`, `TOCGenerator`, `SkillGenerator` — routed through `llmClient`; UI: AI Refine + **Synthesize** (§0.1, was §11.7 dead code). |
+| **Workspace synthesis** | `src/lib/workspaceSynthesis.ts` — summarize notes, cluster topics, write `TOC.md` / `SKILL.md`. |
 | **ULID** | Universally Unique Lexicographically Sortable Identifier — the work-item IDs in `docs/roadmap.md`. |
 
 ## 1.5 Related documents
 
 | Document | Role | Currency |
 |---|---|---|
-| `README.md` | User-facing overview and known limitations | **Stale in two places** — §31, item D1 |
-| `CLAUDE.md` | Working agreement, runtime facts, Definition of Done | Current at this commit (lines 54–58 describe `HttpStorage`) |
-| `CHANGELOG.md` | Release history; the `0.1.0` entry begins at line 5 | Current |
+| `README.md` | User-facing overview, feature list, known limitations | Current (dogfood refresh) |
+| `CLAUDE.md` / `AGENTS.md` | Working agreement, runtime facts, Definition of Done (unit + Playwright E2E + docs) | Current |
+| `CHANGELOG.md` | Release history; the `0.1.0` entry begins at line 5 | Current for 0.1.0 |
 | `docs/roadmap.md` | Generated from `.work/todo.jsonl`; the authoritative backlog | Generated, current |
-| `docs/plans/2026-07-28-validation-loop.md` | The plan this work executes. Phases 0, 0.5 and 1 have landed | Current |
-| `docs/plans/2026-07-26-motion-next-phase.md` | The prior feature-reachability plan | Partly superseded |
+| `docs/user_guide/user-guide.md` | End-user guide (wiki: User-Guide) | Current (dogfood refresh) |
+| `docs/plans/2026-07-28-validation-loop.md` | Validation loop plan — complete | Superseded as active work; historical |
+| `docs/plans/2026-07-26-motion-next-phase.md` | Feature-reachability plan — complete | Superseded as active work; historical |
+| `docs/plans/2026-07-29-save-ux-and-next.md` | Post-v0.1 dogfood plan (Save UX, E2E, follow-ups) | **Active** |
 | `tests/contract/storage-cases.json` | The storage contract — normative, not documentation | Current |
 
 There is no `docs/adr/` directory. §6 reconstructs the architectural decisions
@@ -111,10 +178,13 @@ from code comments, the plans, and the changelog, labelling anything inferred.
 
 ## 1.7 Open questions
 
-Carried to §34 with full context. In brief: whether the packaged desktop build is
-repaired before or after block round-tripping; whether the four enrichment
-modules are wired up or deleted; and whether browser mode is ever intended to be
-reachable from beyond `localhost`.
+**Resolved since the Phase-1 freeze (see §0):** packaged build repaired; block
+round-trip fixed; enrichment modules routed and exposed via AI Refine +
+Synthesize; dev server bound to localhost.
+
+**Still open (see §0.2 and the active plan):** welcome demo data outside a
+Motion/demo workspace; sidebar tree / sort / content search; branch protection;
+whether a full line-number re-audit of this document is worth the cost.
 
 ---
 
@@ -137,18 +207,23 @@ tools the user already has installed.
 
 ## 2.2 Main user workflows
 
-1. **Open a folder.** Motion lists every Markdown file underneath it, recursively.
+See also the amended list in **§0.4**. Summary:
+
+1. **Open a folder.** Motion lists every Markdown file underneath it, recursively
+   (flat list of basenames).
 2. **Open a note and edit it** in one of three view modes — WYSIWYG, raw
    Markdown, or a split view of both.
-3. **Save** with the toolbar button or `Cmd/Ctrl+S`. The Tiptap document is
-   converted back to Markdown and written to the same file.
-4. **Create a new note** in the open workspace.
+3. **Save** with the labeled **Save** toolbar control or `Cmd/Ctrl+S`. Status:
+   Saving… / Saved / Save failed. The Tiptap document is converted to Markdown
+   and written to the same file.
+4. **Create a new note** — immediate write of `untitled-*.md`, then edit + Save.
 5. **Insert a content block** from the toolbar or by typing `/` at the start of a
-   line: Mermaid diagram, Dataset, SQL Query, AI Image, AI Diagram.
-6. **Query local data.** A Dataset block registers a CSV/JSON/JSONL file as a
-   DuckDB table; a Query block runs `SELECT` against it and renders a table.
-7. **Generate.** An AI Image block calls the `imagen` CLI; an AI Diagram block
-   calls the `claude` CLI and validates that the result is parseable Mermaid.
+   line: Mermaid, Dataset, SQL Query, AI Image, AI Diagram.
+6. **Query local data.** Dataset registers a workspace CSV/JSON/JSONL file;
+   Query runs `SELECT` via DuckDB-WASM.
+7. **Generate.** AI Image (`imagen` CLI); AI Diagram (`claude` CLI, Mermaid-validated).
+8. **AI Refine** — refine the current document via ContentInjector.
+9. **Synthesize** — workspace-level TOC.md + SKILL.md generation.
 
 ## 2.3 Major system components
 
@@ -199,13 +274,16 @@ Each is developed fully in §6.
 
 ## 2.6 Primary risks
 
+**Closed risks** (were High/Medium at the Phase-1 freeze): packaged build, block
+round-trip, enrichment dead code, README staleness — see **§0.1**.
+
 | Risk | Severity | Detail |
 |---|---|---|
-| The packaged desktop build does not work | High | `bun run build` emits no `index.html`, so `frontendDist` points at a directory with no entry point. Only `bun tauri dev` runs. §27.3 |
-| Four of five block types do not survive save/reload | High | They serialize without a language class, so the round trip degrades them into plain code blocks. §9.4 |
-| Four enrichment modules are dead code | Medium | They reach `Bun.spawn` through `cliWrappers.ts` and cannot execute in either shipped mode. §11.7 |
-| `README.md` still describes the pre-Phase-1 world | Medium | It tells readers browser mode does not persist writes. It does now. §31 D1 |
+| Welcome demo datasets assume files in the open workspace | Medium | Opening an unrelated folder in Tauri leaves sample-data paths broken. §0.2 |
+| No branch protection on `main` | Medium | CI exists; merges can still skip required checks until repo settings enforce them. |
+| Sidebar does not scale to large workspaces | Low–Medium | Flat list only; no tree, date sort, or content search. §0.2 |
 | No HMR | Low | Every source change needs a manual browser reload. §29.4 |
+| Full design-doc line map drifts from source | Low | §7–§27 still cite Phase-1 line numbers; product status is authoritative in §0. |
 
 ---
 
@@ -231,7 +309,7 @@ The repository has no formal requirements document. The requirements below are
 | FR-10 | Generate an image from a prompt via the `imagen` CLI | `src/lib/imageClient.ts — generateImageFromUI(), lines 12–27` | **Confirmed** |
 | FR-11 | Generate a Mermaid diagram from a prompt, validated before acceptance | `src/components/Editor/extensions/DiagramGenExtension.tsx — generateMermaidDiagram(), lines 16–27` | **Confirmed** |
 | FR-12 | Insert any block from the toolbar or a `/` slash menu | `src/components/Editor/insertBlock.ts — insertBlock(), lines 21–31`; `index.tsx — detectSlashTrigger(), lines 64–78` | **Confirmed** |
-| FR-13 | All five block types survive a save/reload cycle | — | **NOT MET — 1 of 5.** §9.4 |
+| FR-13 | All five block types survive a save/reload cycle | `blockAttrs` + `e2e/blocks.spec.ts` | **MET** (post Phase-3 fix; was 1 of 5 at freeze — §0.1) |
 
 ## 3.2 Non-functional requirements
 
@@ -248,7 +326,7 @@ The repository has no formal requirements document. The requirements below are
 | NFR-9 | An LLM or image CLI call cannot hang the app indefinitely | 120 s timeouts on all four paths — §18.5 |
 | NFR-10 | Strict TypeScript across the codebase | `bun run typecheck`, in `verify` and in CI (lines 36–37) |
 | NFR-11 | Rust warnings are errors | `.github/workflows/ci.yml`, lines 101–102 (`clippy -D warnings`) |
-| NFR-12 | The packaged desktop application launches | **NOT MET.** §27.3 |
+| NFR-12 | The packaged desktop application launches | **MET** for production build entry point (B3 fixed; CI asserts `dist/index.html`). Desktop smoke script exists. §0.1 |
 
 ## 3.3 Requirements not addressed at all
 
@@ -3287,6 +3365,11 @@ path."*)
 
 ## 28.7 Minimum expectations for a change
 
+> **Amendment:** every user-visible feature must ship with unit tests under
+> `src/` **and** a Playwright E2E under `e2e/` that asserts the new behaviour
+> (not only that the shell mounts). Docs and wiki updates when product surface
+> changes. See `CLAUDE.md` Definition of Done and §0.3.
+
 From `CLAUDE.md`, Definition of Done: `bun run verify` passes; an E2E spec covers
 the new or fixed behaviour; zero console errors, uncaught exceptions, failed
 requests or responses ≥ 400 during E2E; Rust or storage changes additionally pass
@@ -3405,41 +3488,39 @@ model fallback:** not applicable; none of those mechanisms exist.
 | T1 | Full-document turndown on every keystroke | `onUpdate` serializes the whole document | Editor | — | Performance | Debounce or derive lazily | Not tracked |
 | T2 | Timeout and model defaults duplicated across languages | Not covered by the contract | Cross-cutting | — | Low | Extend the contract, or accept | Not tracked |
 | T3 | `Editor/index.tsx` holds five responsibilities in 398 lines | Document state, view modes, slash menu, save, three render branches | Editor | — | Maintainability | Split the slash menu and the save/load lifecycle into hooks | Not tracked |
-| D1 | **`README.md` is stale** | Lines 65–69 still say browser mode *"does not persist writes — saving reports success but changes nothing"*, and line 98 repeats it under Known limitations. Both were true before this commit and are false now | Docs | Certain (present) | Medium — actively misleads readers and reviewers | Rewrite the Running and Known-limitations sections | **Fix with this document** |
+| D1 | **`README.md` is stale** | ~~Pre-Phase-1 claim that browser mode does not persist writes~~ | Docs | **Closed** (dogfood README refresh) | — | — | §0.1 |
 | D2 | Tauri CSP still allows Google Fonts hosts | The font links were removed; the CSP permission was not | Config | Certain (present) | Very low | Remove the two hosts | Not tracked |
 
 ---
 
 # 32. Extension Roadmap
 
-This is a built system, so the template's Implementation Plan becomes "what to
-build next, and in what order". The ordering below is derived from
-`docs/roadmap.md` and `docs/plans/2026-07-28-validation-loop.md`, which record 27
-of 44 items done on the validation-loop epic.
+> **Amendment:** the validation-loop and next-phase epics are **complete** on
+> `main`. Active work is `docs/plans/2026-07-29-save-ux-and-next.md` (§0). The
+> table that previously listed B3–B8 as "next" is historical — those items
+> shipped (PR #23–#28 and dogfood).
 
-## 32.1 Completed (this commit)
+## 32.1 Completed (through dogfood)
 
 | Phase | Deliverable |
 |---|---|
-| Phase 0 | Test and verify scripts; the Playwright harness; the console/network fixture with a measured baseline; the static Bun guard; self-hosted fonts; Rust tests for the jail; real CI; a tracked `CLAUDE.md` with a Definition of Done |
-| Phase 0.5 | Accessibility pass — real buttons with roles and accessible names, so role-based locators are possible |
-| Phase 1 | **The keystone.** Pure filesystem cores on both sides; component-aware containment; `/api/fs/*` with an env-only root; `HttpStorage` replacing `WebStorage`; the language-neutral parity fixture; a seeded temp workspace per Playwright run |
+| Phase 0–1 | Validation loop, real web filesystem, CI, a11y, contract suite |
+| Phase 2–4 | Journey E2E, block round-trip, desktop build entry point, desktop smoke |
+| Enrichment UI | AI Refine + workspace **Synthesize** (TOC.md / SKILL.md) |
+| Dogfood (partial) | Labeled Save; create→edit→save E2E; dataset/SQL install E2E; DoD policy (unit + Playwright); user guide + README feature list; design-doc §0 amendment |
 
-## 32.2 Next, in dependency order
+## 32.2 Next (active plan)
 
-| # | Work | Why this order | Acceptance | Risk if skipped |
-|---|---|---|---|---|
-| 1 | **B3 — repair the packaged build** | Nothing else can be validated on the desktop until an artifact exists. Generate dev and prod shells from one template and delete the stale root `index.html` | `bun tauri build` produces an app that launches | No distributable product |
-| 2 | **B4/B7 — block round-trip** | The largest user-visible defect. Test-first: write the round-trip spec, watch it fail, then fix serialization | A spec inserts each of the five blocks, saves, reloads, and asserts each is still a functioning block | Silent feature loss on every save |
-| 3 | **Phase 2 — the remaining seven E2E specs** | Each locks a regression that has actually happened: view-mode round trip, block insertion twice in a row, Dataset→Query, Mermaid error containment, rapid file switching | Nine specs green; the gate still bites under `BASELINE=1` | Regressions return unnoticed |
-| 4 | **B13 — save signal and load cancellation** | Needs the rapid-switching spec from (3) to demonstrate the bug | Switching files rapidly never renders stale content | Apparent data loss |
-| 5 | **B8 — route or delete the enrichment modules** | Independent of the above; can run in parallel | Either they call `llmClient.ts` and a UI entry point exists, or they are gone | 250 lines of misleading code |
-| 6 | **Phase 4 — desktop packaging smoke** | Depends on (1) | `bin/smoke-desktop.sh` builds with `bun tauri build` and launches the packaged app | Desktop regressions invisible |
-| 7 | **B6 — thread `model` through IPC** | Small, isolated | Desktop and browser honour `options.model` identically | Silent parameter drop |
-| 8 | **Backfill security-boundary tests** | Ongoing | Contract cases for the remaining divergences (§28.6) | Untested boundaries |
+| # | Work | Acceptance |
+|---|---|---|
+| 1 | Welcome/demo datasets when open folder is not Motion | No false "Failed to load dataset" / missing `team` table for demo sources, or clear messaging |
+| 2 | Sidebar directory tree | Navigate nested folders as a tree |
+| 3 | Sort by name or date | User-selectable sort |
+| 4 | Search inside file contents | Grep/glob UX, results open files |
+| 5 | Agent-browser final pass in DoD | Documented/scripted dogfood, not a CI flake |
+| 6 | Branch protection on `main` | `verify` + `rust` required checks |
 
-**Critical path:** 1 → 6 (desktop confidence). **Parallelizable:** 2, 3, 5, 7 are
-independent of 1. **Ownership:** single maintainer; no boundaries to negotiate.
+**Historical critical path (done):** B3 → B4/B7 → Phase 2 → B13 → B8 → Phase 4.
 
 ## 32.3 Not in the plan but recommended
 
@@ -3486,8 +3567,8 @@ independent of 1. **Ownership:** single maintainer; no boundaries to negotiate.
 | # | Question | Why it matters | Options | Recommendation | Impact of delay |
 |---|---|---|---|---|---|
 | Q1 | Should the dev server bind explicitly to loopback? | `Bun.serve` is called without a `hostname` (`src/server.ts`, lines 148–150), and `/api/fs/read` plus `/api/llm` are a filesystem-read and process-spawn API with no authentication | (a) Bind `127.0.0.1`; (b) add a token; (c) document that it is localhost-only and accept | **(a)** — one line, closes T5 and T6 with no ergonomic cost | The largest unmitigated risk in the threat model |
-| Q2 | Fix the packaged build before or after block round-tripping? | Both are P1; they compete for the same attention | (a) Build first — unblocks all desktop validation; (b) round trip first — larger user-visible defect | **(a)**, because Phase 4's packaging smoke depends on it and (b) is testable in browser mode meanwhile | Neither ships |
-| Q3 | Route the enrichment modules through `llmClient`, or delete them? | Four classes and four test files that cannot run in either mode | (a) Route and wire a UI entry point; (b) delete; (c) leave | **(b) unless a concrete UI is planned this milestone.** Deleting is a smaller diff than routing, and the roadmap has no committed UI for them | Readers keep mistaking them for working features |
+| Q2 | Fix the packaged build before or after block round-tripping? | Both are P1 | (a)/(b) | **Resolved: both shipped** (B3 then B4/B7) | — |
+| Q3 | Route the enrichment modules through `llmClient`, or delete them? | Dead code at freeze | (a) Route + UI | **Resolved: (a)** — AI Refine + Synthesize | — |
 | Q4 | Should save detect that the file changed on disk? | Motion overwrites silently (§8.3) | (a) Compare mtime and warn; (b) reload on window focus; (c) accept | (a) — cheapest correct answer | Low probability, but silent data loss when it happens |
 | Q5 | Is the DuckDB error-substring retry acceptable long-term? | `message.includes("does not exist")` couples to a library's error wording | (a) Registration-completion signal Query blocks await; (b) keep with a test pinning the string | (a) when the data blocks are next touched | Breaks on a DuckDB upgrade, silently |
 | Q6 | Should `collect_files` divergence be pinned? | Rust skips entries whose `file_type()` fails; TypeScript would throw | (a) Add a contract case and align; (b) document as accepted | (a) — the whole point of the fixture is that divergence is visible | An untested behavioural difference |
