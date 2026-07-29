@@ -11,5 +11,5 @@ _Why things are the way they are: ADRs (rules adopted) and plans (designs execut
 
 | Plan | Lifecycle | Truth | Date |
 |---|---|---|---|
-| [[Plan-validation-loop]] Validation loop: prove the UI works before the human launches it | active | current | 2026-07-28 |
-| [[Plan-motion-next-phase]] Motion next development phase | active | current | 2026-07-26 |
+| [[Plan-validation-loop]] Validation loop: prove the UI works before the human launches it | completed | current | 2026-07-28 |
+| [[Plan-motion-next-phase]] Motion next development phase | completed | current | 2026-07-26 |

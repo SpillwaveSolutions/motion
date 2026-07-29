@@ -726,12 +726,12 @@
   },
   "item/01KYFZ6RBJV920SFW0MAN9MX9J": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Wire the per-note enrichment action into the UI"
   },
   "item/01KYFZ6RBJZNYDT9AK2V0RA11T": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Per-note \"AI Refine\"/\"Generate Summary\" toolbar action backed by ContentInjector"
   },
   "item/01KYFZ8RGR06XBSG9CH4TEWYJY": {
@@ -891,7 +891,7 @@
   },
   "item/01KYK6NHSHBJ0SV2MM8N3A0KJR": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 2: E2E coverage of the journeys that have actually broken"
   },
   "item/01KYK6NHSHD4NMT2QVMQD2HHBP": {
@@ -951,7 +951,7 @@
   },
   "item/01KYK6NHSHZJNNCYMEW9ZG77NP": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 3: fix what the loop exposes"
   },
   "item/01KYK7WZFJXKTH14WKSZR7FQEE": {

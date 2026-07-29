@@ -1,6 +1,6 @@
 # Phase 2: E2E coverage of the journeys that have actually broken
 
-`01KYK6NHSHBJ0SV2MM8N3A0KJR` · task/feature · **open**
+`01KYK6NHSHBJ0SV2MM8N3A0KJR` · task/feature · **done**
 
 Nine specs, each locking a real past regression: open/list/read, save and reload,
 New Note, view-mode round trip, block insertion from toolbar and slash menu twice

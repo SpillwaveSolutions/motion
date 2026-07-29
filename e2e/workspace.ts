@@ -20,6 +20,7 @@ export const SEED_FILES: Record<string, string> = {
     // showed up as four sanitize specs failing only when the suite ran in order.
     "scratch-blocks.md": "# Scratch: blocks\n",
     "scratch-sanitize.md": "# Scratch: sanitize\n",
+    "scratch-journeys.md": "# Scratch: journeys\n",
 };
 
 export function createWorkspace(): string {

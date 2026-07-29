@@ -21,13 +21,13 @@ menu items are mouse-only divs, and the Markdown textarea has no label. (done)
 - [[Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR]] Phase 2: E2E coverage of the journeys that have actually broken — Nine specs, each locking a real past regression: open/list/read, save and reload,
 New Note, view-mode round trip, block insertion from toolbar and slash menu twice
 in a row, save/reload round trip for all five blocks asserting content is intact,
-Dataset to Query, Mermaid error containment, and rapid file switching. (open)
+Dataset to Query, Mermaid error containment, and rapid file switching. (done)
 - [[Ticket-01KYK6NHSHZF8S0ZNGQ9ZAD05F]] Phase 4: desktop confidence without a WebDriver — tauri-driver does not work on macOS, so the desktop check is a packaging smoke
 rather than UI automation. (done)
-- [[Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP]] Phase 3: fix what the loop exposes — With gates in place, fix the backlog test-first, ordered by what blocks shipping. (open)
+- [[Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP]] Phase 3: fix what the loop exposes — With gates in place, fix the backlog test-first, ordered by what blocks shipping. (done)
 - [[Ticket-01KYN85K57SRYK5WJFG98W5R6F]] Refresh README for v0.1.0 — six months stale, documented broken features and omitted built ones — README had not been touched since the January 'intial' commit. (done)
 - [[Ticket-01KYNDC9CPK8314F6PWDZW1NC6]] First wiki publish for motion — v0.1.0 release, roadmap, snapshot, ticket index — The repo had never published its wiki; .wiki.git did not exist until a human created the first page (GitHub does not create the wiki repo until then). (done)
 - [[Ticket-01KYNKTZ6KPKZV24XWRZJZG04S]] Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network — Bun.serve defaults to hostname 0.0.0.0 when none is given, so the dev server listened on every interface. (done)
 - [[Ticket-01KYNMZ132M2NE1EYPHG2DCCAW]] Publish design doc, code walkthrough and user guide — resolve the three dangling wiki links — The generated wiki sidebar has linked Design-Doc, Code-Walkthrough and User-Guide since before this session, with no source files behind them. (done)
 
-Progress: 13/15 done
+Progress: 15/15 done
