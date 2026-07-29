@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "bab7f04c89d8",
+   "render_hash": "852fec71eb71",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -174,7 +174,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYFZ6RBJ5718M3GQPAB76RHS",
    "render": "as-is",
-   "render_hash": "f8d4a1673c0a",
+   "render_hash": "fcb820333aae",
    "source": "docs/.index/rendered/tickets/01KYFZ6RBJ5718M3GQPAB76RHS.md",
    "title": "Real diagram generation, and scope a real ImageGen backend",
    "truth_state": "done",
@@ -264,10 +264,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYJW5XJ5HTG7ESZ7DDDS8W0C",
    "render": "as-is",
-   "render_hash": "c9a3f8634f33",
+   "render_hash": "9e604d8523da",
    "source": "docs/.index/rendered/tickets/01KYJW5XJ5HTG7ESZ7DDDS8W0C.md",
    "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C"
   },
   {
@@ -284,10 +284,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYJXSYEZ97M9638S91GYZWV0",
    "render": "as-is",
-   "render_hash": "59dfbdd50205",
+   "render_hash": "e5daf71814c8",
    "source": "docs/.index/rendered/tickets/01KYJXSYEZ97M9638S91GYZWV0.md",
    "title": "Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYJXSYEZ97M9638S91GYZWV0"
   },
   {
@@ -304,7 +304,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFD37YD6RN9KS2T4W8",
    "render": "as-is",
-   "render_hash": "7c0de41a5d2c",
+   "render_hash": "d231b0371ac0",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFD37YD6RN9KS2T4W8.md",
    "title": "Phase 0: console/network failure fixture with a measured baseline",
    "truth_state": "done",
@@ -454,7 +454,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN",
    "render": "as-is",
-   "render_hash": "9e729a627466",
+   "render_hash": "f47a1322275e",
    "source": "docs/.index/rendered/tickets/01KYK6NHSGP58Q6GQ3Z3HEMXXN.md",
    "title": "Phase 1: make web mode a real filesystem backend",
    "truth_state": "done",
@@ -504,10 +504,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSH15H376EZGAMTZE9J",
    "render": "as-is",
-   "render_hash": "447ed1f67b6e",
+   "render_hash": "6b92d3879fbe",
    "source": "docs/.index/rendered/tickets/01KYK6NHSH15H376EZGAMTZE9J.md",
    "title": "B8: route the four enrichment modules through llmClient",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSH15H376EZGAMTZE9J"
   },
   {
@@ -524,10 +524,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSH2RMTJQ3SR7MGW7Q8",
    "render": "as-is",
-   "render_hash": "fd57d9c9d34c",
+   "render_hash": "720442754f4f",
    "source": "docs/.index/rendered/tickets/01KYK6NHSH2RMTJQ3SR7MGW7Q8.md",
    "title": "Add resolveWorkspacePath so documents are portable between modes",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8"
   },
   {
@@ -564,10 +564,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP",
    "render": "as-is",
-   "render_hash": "6f5f472d49fb",
+   "render_hash": "d047b564c246",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHD4NMT2QVMQD2HHBP.md",
    "title": "B5: welcome doc paths resolve in both modes",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHD4NMT2QVMQD2HHBP"
   },
   {
@@ -594,20 +594,20 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9",
    "render": "as-is",
-   "render_hash": "d359a9058980",
+   "render_hash": "6559a9225105",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHKZ20DY8FBB5S1PP9.md",
    "title": "B6: thread model through the run_llm_cli IPC signature",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHKZ20DY8FBB5S1PP9"
   },
   {
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHQZZQV7DJM5A64C6E",
    "render": "as-is",
-   "render_hash": "2bc6ca7ab559",
+   "render_hash": "5ad440c6f84b",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHQZZQV7DJM5A64C6E.md",
    "title": "B13: save completion signal and file-load cancellation",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHQZZQV7DJM5A64C6E"
   },
   {
@@ -634,10 +634,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHSASEERK1KJ7XVDPN",
    "render": "as-is",
-   "render_hash": "7eead449f407",
+   "render_hash": "958cefd62de1",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHSASEERK1KJ7XVDPN.md",
    "title": "Backfill tests on the untested security boundaries",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHSASEERK1KJ7XVDPN"
   },
   {
@@ -654,10 +654,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E",
    "render": "as-is",
-   "render_hash": "c4b67f2535f0",
+   "render_hash": "1a2e946ff602",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHVZ2EZZH7NBRADW7E.md",
    "title": "B9: contain the Mermaid parse-error graphic",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK6NHSHVZ2EZZH7NBRADW7E"
   },
   {
@@ -674,7 +674,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP",
    "render": "as-is",
-   "render_hash": "8d5552ff0e12",
+   "render_hash": "049be8b261a3",
    "source": "docs/.index/rendered/tickets/01KYK6NHSHZJNNCYMEW9ZG77NP.md",
    "title": "Phase 3: fix what the loop exposes",
    "truth_state": "open",
@@ -704,10 +704,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYK7WZRS65D7DPP0D1DT58Z7",
    "render": "as-is",
-   "render_hash": "9b5043d080f3",
+   "render_hash": "11617808e03c",
    "source": "docs/.index/rendered/tickets/01KYK7WZRS65D7DPP0D1DT58Z7.md",
    "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYK7WZRS65D7DPP0D1DT58Z7"
   },
   {
@@ -761,6 +761,26 @@
    "wiki_key": "item/01KYNMZ132M2NE1EYPHG2DCCAW"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYQ9NBNXCBFA30Z4HD0W7HGQ",
+   "render": "as-is",
+   "render_hash": "5c6aee5f5b03",
+   "source": "docs/.index/rendered/tickets/01KYQ9NBNXCBFA30Z4HD0W7HGQ.md",
+   "title": "React flushSync error when opening a document containing block node views",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQ9NBNXCBFA30Z4HD0W7HGQ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYQ9NBTQETCVSHC2X775CD14",
+   "render": "as-is",
+   "render_hash": "b2b31856374a",
+   "source": "docs/.index/rendered/tickets/01KYQ9NBTQETCVSHC2X775CD14.md",
+   "title": "README and user guide claimed markdown tables, which are not supported",
+   "truth_state": "done",
+   "wiki_key": "item/01KYQ9NBTQETCVSHC2X775CD14"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:16:30Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -805,11 +825,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T15:42:47Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T16:00:26Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "b028702f3c28",
+   "render_hash": "369ecf7a2592",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -831,7 +851,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "a2861f424455",
+   "render_hash": "178f84e8b841",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",

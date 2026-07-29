@@ -65,7 +65,7 @@ refused rather than followed.
 
 | Mode | What you get |
 |---|---|
-| **WYSIWYG** | Rendered editing — headings, lists, tables, diagrams in place |
+| **WYSIWYG** | Rendered editing — headings, lists, diagrams in place |
 | **Markdown** | The raw source in a plain text area |
 | **Split** | Rendered editor beside the markdown source |
 
@@ -138,8 +138,8 @@ Stated here so you meet them on your terms:
   refresh the page — reload manually.
 - **The bundled demo query returns no rows.** The sample data disagrees on
   capitalisation in its join condition.
-- Multi-line content in Diagram gen and Query blocks does not round-trip
-  reliably.
+- **Markdown tables are not supported.** Pipe-table syntax renders as plain
+  text; no table extension is registered.
 
 ---
 

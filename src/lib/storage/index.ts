@@ -114,4 +114,27 @@ export class HttpStorage implements StorageProvider {
  */
 export const isTauri = (): boolean => detectTauri();
 
+/**
+ * The workspace root currently open, remembered when a folder is opened.
+ *
+ * Documents must store workspace-RELATIVE paths: an absolute path baked into a
+ * Dataset block does not exist on anyone else's machine, and used to differ
+ * between the two runtimes (web returned bare filenames, desktop absolute
+ * paths), so a document authored in one mode could not resolve in the other.
+ * Listings still return absolute paths -- unambiguous for the backend -- and
+ * this converts at the point of storage.
+ */
+let workspaceRoot: string | null = null;
+
+export function rememberWorkspaceRoot(root: string | null): void {
+    workspaceRoot = root;
+}
+
+export function relativeToWorkspace(absolutePath: string): string {
+    if (!workspaceRoot) return absolutePath;
+    const root = workspaceRoot.replace(/[/\\]$/, "");
+    if (!absolutePath.startsWith(root)) return absolutePath;
+    return absolutePath.slice(root.length).replace(/^[/\\]+/, "");
+}
+
 export const storage: StorageProvider = isTauri() ? new TauriStorage() : new HttpStorage();

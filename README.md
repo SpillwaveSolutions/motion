@@ -13,8 +13,9 @@ natural-language prompts using CLI tools you already have installed.
 - **Three view modes** — WYSIWYG, raw Markdown, and Split, switchable at any time.
 - **Workspace management** — open a folder and Motion lists every markdown file
   under it, recursively. Search filters the list as you type.
-- **Rich markdown** — headings, lists, tables, and code blocks with syntax
-  highlighting across the common languages.
+- **Rich markdown** — headings, lists, blockquotes, and code blocks with syntax
+  highlighting across the common languages. (Tables are not supported yet — no
+  table extension is registered, so pipe-table syntax renders as text.)
 
 ### Content blocks
 

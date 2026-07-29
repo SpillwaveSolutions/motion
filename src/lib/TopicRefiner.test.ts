@@ -1,6 +1,6 @@
 import { test, expect, describe, spyOn } from "bun:test";
 import { TopicRefiner } from "./TopicRefiner";
-import * as cliWrappers from "./cliWrappers";
+import * as llmClient from "./llmClient";
 
 describe("TopicRefiner", () => {
     test("analyzeTopic should parse valid JSON from LLM", async () => {
@@ -10,7 +10,7 @@ describe("TopicRefiner", () => {
             reasoning: "Consistent content."
         };
 
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockResolvedValue({
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockResolvedValue({
             content: JSON.stringify(mockResponse),
             rawOutput: JSON.stringify(mockResponse)
         });
@@ -26,7 +26,7 @@ describe("TopicRefiner", () => {
     });
 
     test("analyzeTopic should handle malformed JSON", async () => {
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockResolvedValue({
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockResolvedValue({
             content: "Invalid JSON response",
             rawOutput: "Invalid JSON response"
         });

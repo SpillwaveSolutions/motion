@@ -1,6 +1,6 @@
 # B13: save completion signal and file-load cancellation
 
-`01KYK6NHSHQZZQV7DJM5A64C6E` · subtask/feature · **open**
+`01KYK6NHSHQZZQV7DJM5A64C6E` · subtask/feature · **done**
 
 B13: save completion signal and file-load cancellation
 

@@ -1,6 +1,6 @@
 # B5: welcome doc paths resolve in both modes
 
-`01KYK6NHSHD4NMT2QVMQD2HHBP` · subtask/feature · **open**
+`01KYK6NHSHD4NMT2QVMQD2HHBP` · subtask/feature · **done**
 
 B5: welcome doc paths resolve in both modes
 

@@ -16,7 +16,7 @@ const BLOCK_SELECTORS: Record<string, string> = {
 
 async function openWorkspace(page: import("@playwright/test").Page) {
     await page.getByRole("button", { name: "Open Folder" }).click();
-    await expect(page.getByRole("option", { name: "welcome.md" })).toBeVisible();
+    await expect(page.getByRole("option", { name: "scratch-blocks.md" })).toBeVisible();
 }
 
 test("the welcome document renders its blocks as blocks, not code", async ({ page }) => {
@@ -40,7 +40,7 @@ test("a document with blocks survives save and reload with content intact", asyn
 
     // Write a document containing every block type through the markdown pane,
     // which is the same path a file on disk takes.
-    await page.getByRole("option", { name: "welcome.md" }).click();
+    await page.getByRole("option", { name: "scratch-blocks.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
 
     await page.getByRole("button", { name: "Markdown" }).click();
@@ -95,7 +95,7 @@ test("a document with blocks survives save and reload with content intact", asyn
     // Reload from disk -- the full cycle.
     await gotoApp(page);
     await openWorkspace(page);
-    await page.getByRole("option", { name: "welcome.md" }).click();
+    await page.getByRole("option", { name: "scratch-blocks.md" }).click();
 
     const reloaded = page.locator(".ProseMirror");
     await expect(reloaded.locator('[data-type="mermaid"], .mermaid-preview').first()).toBeVisible({

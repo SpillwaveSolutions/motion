@@ -1,6 +1,6 @@
 # Add resolveWorkspacePath so documents are portable between modes
 
-`01KYK6NHSH2RMTJQ3SR7MGW7Q8` · subtask/feature · **open**
+`01KYK6NHSH2RMTJQ3SR7MGW7Q8` · subtask/feature · **done**
 
 Add resolveWorkspacePath so documents are portable between modes
 

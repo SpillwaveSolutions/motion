@@ -4,6 +4,9 @@ import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
 interface ToolbarProps {
     editor: Editor;
     onSave?: () => void;
+    onRefine?: () => void;
+    refining?: boolean;
+    saveState?: "idle" | "saving" | "saved" | "error";
 }
 
 function ToolbarButton({
@@ -36,7 +39,7 @@ function ToolbarButton({
     );
 }
 
-function Toolbar({ editor, onSave }: ToolbarProps) {
+function Toolbar({ editor, onSave, onRefine, refining = false, saveState = "idle" }: ToolbarProps) {
     return (
         <div className="editor-toolbar">
             {/* Text formatting */}
@@ -220,10 +223,32 @@ function Toolbar({ editor, onSave }: ToolbarProps) {
 
             <div className="toolbar-divider" />
 
+            <span role="status" aria-live="polite" className="save-status">
+                {saveState === "saving" ? "Saving…"
+                 : saveState === "saved" ? "Saved"
+                 : saveState === "error" ? "Save failed"
+                 : ""}
+            </span>
+
+            <ToolbarButton
+                onClick={() => onRefine?.()}
+                title={refining ? "Refining…" : "AI Refine document"}
+                disabled={!onRefine || refining}
+            >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 3l1.9 5.8L20 10.7l-5.1 3 1.2 6-4.1-3.2L7.9 19.7l1.2-6L4 10.7l6.1-1.9z" />
+                </svg>
+            </ToolbarButton>
+
             <ToolbarButton
                 onClick={() => onSave?.()}
-                title="Save (⌘S)"
-                disabled={!onSave}
+                title={
+                    saveState === "saving" ? "Saving…"
+                    : saveState === "saved" ? "Saved"
+                    : saveState === "error" ? "Save failed"
+                    : "Save (⌘S)"
+                }
+                disabled={!onSave || saveState === "saving"}
             >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-primary)" strokeWidth="2.5">
                     <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />

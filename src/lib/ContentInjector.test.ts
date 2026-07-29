@@ -1,6 +1,6 @@
 import { test, expect, describe, spyOn } from "bun:test";
 import { ContentInjector } from "./ContentInjector";
-import * as cliWrappers from "./cliWrappers";
+import * as llmClient from "./llmClient";
 
 describe("ContentInjector", () => {
     test("verifyCodeBlocks should detect unbalanced triple backticks", () => {
@@ -16,7 +16,7 @@ describe("ContentInjector", () => {
     });
 
     test("refineChunk should call LLM and return refined content", async () => {
-        const mockCallLLM = spyOn(cliWrappers, "callLLM").mockResolvedValue({
+        const mockCallLLM = spyOn(llmClient, "callLLMFromUI").mockResolvedValue({
             content: "Refined Content",
             rawOutput: "Refined Content"
         });

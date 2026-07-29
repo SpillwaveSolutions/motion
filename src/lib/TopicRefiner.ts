@@ -1,4 +1,5 @@
-import { callLLM, type ModelProvider } from './cliWrappers';
+import { callLLMFromUI } from './llmClient';
+import type { ModelProvider } from './cliWrappers';
 
 export interface TopicAnalysis {
     suggestedLabels: string[];
@@ -49,7 +50,7 @@ SUMMARIES:
 ${summaries.join('\n---\n')}
 `;
 
-        const response = await callLLM(this.provider, {
+        const response = await callLLMFromUI(this.provider, {
             model: this.model,
             prompt,
             systemPrompt: "You are a taxonomy expert specializing in technical documentation organization."

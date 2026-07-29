@@ -1,4 +1,5 @@
-import { callLLM, type ModelProvider } from './cliWrappers';
+import { callLLMFromUI } from './llmClient';
+import type { ModelProvider } from './cliWrappers';
 
 export interface RefinedChunk {
     content: string;
@@ -33,7 +34,7 @@ CHUNK:
 ${content}
 `;
 
-        const response = await callLLM(this.provider, {
+        const response = await callLLMFromUI(this.provider, {
             model: this.model,
             prompt,
             systemPrompt: "You are a technical editor focusing on code integrity and clarity."
@@ -65,7 +66,7 @@ CONTENT:
 ${content}
 `;
 
-        const response = await callLLM(this.provider, {
+        const response = await callLLMFromUI(this.provider, {
             model: this.model,
             prompt,
             systemPrompt: "You are a helpful assistant that generates technical summaries for documentation."

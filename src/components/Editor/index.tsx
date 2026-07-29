@@ -13,6 +13,7 @@ import { QueryExtension } from "./extensions/QueryExtension";
 import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
 import { storage } from "../../lib/storage";
+import { ContentInjector } from "../../lib/ContentInjector";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
 
 const lowlight = createLowlight(common);
@@ -110,6 +111,7 @@ limit: 5</code></pre>
 
 function Editor({ viewMode, filePath }: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
+    const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
     // Tracks the previously active view mode so we can sync content only on
     // an actual mode transition, not on every render.
     const prevViewModeRef = useRef<ViewMode | null>(null);
@@ -218,31 +220,83 @@ function Editor({ viewMode, filePath }: EditorProps) {
     const handleSave = useCallback(async () => {
         if (!editor || !filePath) return;
 
+        // B13: saving had no observable completion at all -- the only signal was
+        // a console.log, so neither a user nor a test could tell a finished save
+        // from one still in flight, or from one that silently did nothing.
+        setSaveState("saving");
         try {
             await storage.writeFile(filePath, rawMarkdown);
-            console.log("File saved successfully:", filePath);
+            setSaveState("saved");
         } catch (error) {
+            setSaveState("error");
             console.error("Failed to save file:", error);
             alert(`Error saving file: ${error}`);
         }
     }, [editor, filePath, rawMarkdown]);
 
+    const [refining, setRefining] = useState(false);
+
+    // A save is only "saved" until the next keystroke.
+    useEffect(() => {
+        setSaveState((prev) => (prev === "saved" ? "idle" : prev));
+    }, [rawMarkdown]);
+
+    /**
+     * Runs the current document through ContentInjector and replaces it with the
+     * refined version.
+     *
+     * This is the last unbuilt item of the July plan: ContentInjector and its
+     * three siblings were real, tested modules with no way for a user to reach
+     * them. They also could not have run from here until they were routed
+     * through llmClient -- they called Bun.spawn, which is undefined in both the
+     * browser and the Tauri webview.
+     */
+    const handleRefine = useCallback(async () => {
+        if (!editor || refining) return;
+        const current = rawMarkdown.trim();
+        if (!current) return;
+
+        setRefining(true);
+        try {
+            const injector = new ContentInjector("claude");
+            const refined = await injector.refineChunk(current, filePath ?? "untitled document");
+            const html = sanitizeHtml(await marked.parse(refined.content));
+            editor.commands.setContent(html);
+            setRawMarkdown(refined.content);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            console.error("Refine failed:", message);
+            alert(`Could not refine this document: ${message}`);
+        } finally {
+            setRefining(false);
+        }
+    }, [editor, rawMarkdown, filePath, refining]);
+
     // Load file content
     useEffect(() => {
         if (!editor) return;
+
+        // B13: reads are async and unordered. Without this flag a slow read for
+        // the previously-selected file lands after a fast read for the current
+        // one and silently overwrites it -- the user sees the wrong note, or
+        // worse, edits it and saves it over the right one.
+        let cancelled = false;
 
         const loadFile = async () => {
             if (filePath) {
                 try {
                     const content = await storage.readFile(filePath);
+                    if (cancelled) return;
                     setRawMarkdown(content);
                     const rawHtml = await marked.parse(content);
                     // Sanitize Markdown→HTML before TipTap to prevent XSS from untrusted .md files
                     const html = sanitizeHtml(
                         typeof rawHtml === "string" ? rawHtml : String(rawHtml)
                     );
+                    if (cancelled) return;
                     editor.commands.setContent(html, { emitUpdate: false });
                 } catch (error) {
+                    if (cancelled) return;
                     console.error("Failed to read file:", error);
                     const message =
                         error instanceof Error ? error.message : String(error);
@@ -259,6 +313,9 @@ function Editor({ viewMode, filePath }: EditorProps) {
         };
 
         loadFile();
+        return () => {
+            cancelled = true;
+        };
     }, [filePath, editor]);
 
     // Sync markdown-mode edits into the editor doc when leaving markdown mode.
@@ -336,7 +393,7 @@ function Editor({ viewMode, filePath }: EditorProps) {
     if (viewMode === "markdown") {
         return (
             <div className="editor-container">
-                <Toolbar editor={editor} onSave={handleSave} />
+                <Toolbar editor={editor} onSave={handleSave} onRefine={handleRefine} refining={refining} saveState={saveState} />
                 <textarea
                     aria-label="Markdown source"
                     style={{
@@ -363,7 +420,7 @@ function Editor({ viewMode, filePath }: EditorProps) {
     if (viewMode === "split") {
         return (
             <div className="editor-container" style={{ maxWidth: "1400px" }}>
-                <Toolbar editor={editor} onSave={handleSave} />
+                <Toolbar editor={editor} onSave={handleSave} onRefine={handleRefine} refining={refining} saveState={saveState} />
                 {slashMenuPopup}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)", flex: 1 }}>
                     <EditorContent editor={editor} />
@@ -390,7 +447,7 @@ function Editor({ viewMode, filePath }: EditorProps) {
 
     return (
         <div className="editor-container">
-            <Toolbar editor={editor} onSave={handleSave} />
+            <Toolbar editor={editor} onSave={handleSave} onRefine={handleRefine} refining={refining} saveState={saveState} />
             {slashMenuPopup}
             <EditorContent editor={editor} />
         </div>

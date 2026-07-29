@@ -1,8 +1,8 @@
-# B8: route the four enrichment modules through llmClient
+# React flushSync error when opening a document containing block node views
 
-`01KYK6NHSH15H376EZGAMTZE9J` · subtask/feature · **done**
+`01KYQ9NBNXCBFA30Z4HD0W7HGQ` · subtask/bug · **done**
 
-B8: route the four enrichment modules through llmClient
+Opening a saved document with custom block node views logged 'flushSync was called from inside a lifecycle method' at console.error level, three times per load.
 
 ## Hierarchy
 

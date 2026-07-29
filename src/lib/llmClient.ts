@@ -19,6 +19,7 @@ export async function callLLMFromUI(
             provider,
             prompt: options.prompt,
             systemPrompt: options.systemPrompt,
+            model: options.model,
         });
         return { content, rawOutput: content };
     }

@@ -15,6 +15,11 @@ export const SEED_FILES: Record<string, string> = {
     "nested/deeper.md": "# Deeper\n\nProves recursive listing.\n",
     "sample-data.csv": "name,score\nada,10\ngrace,12\n",
     "sample-events.jsonl": '{"user":"ada","event":"login"}\n{"user":"grace","event":"edit"}\n',
+    // One scratch file per spec that writes. Specs share a workspace, so a spec
+    // saving into a file another spec reads is cross-test contamination -- it
+    // showed up as four sanitize specs failing only when the suite ran in order.
+    "scratch-blocks.md": "# Scratch: blocks\n",
+    "scratch-sanitize.md": "# Scratch: sanitize\n",
 };
 
 export function createWorkspace(): string {

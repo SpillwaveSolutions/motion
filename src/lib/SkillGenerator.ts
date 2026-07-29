@@ -1,4 +1,5 @@
-import { callLLM, type ModelProvider } from './cliWrappers';
+import { callLLMFromUI } from './llmClient';
+import type { ModelProvider } from './cliWrappers';
 
 export class SkillGenerator {
     private provider: ModelProvider;
@@ -31,7 +32,7 @@ SUMMARIES:
 ${summaries.join('\n---\n')}
 `;
 
-        const response = await callLLM(this.provider, {
+        const response = await callLLMFromUI(this.provider, {
             model: this.model,
             prompt,
             systemPrompt: "You are a technical writer specializing in creating skill documentation for AI agents."

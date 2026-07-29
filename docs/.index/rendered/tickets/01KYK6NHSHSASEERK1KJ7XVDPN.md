@@ -1,6 +1,6 @@
 # Backfill tests on the untested security boundaries
 
-`01KYK6NHSHSASEERK1KJ7XVDPN` · subtask/feature · **open**
+`01KYK6NHSHSASEERK1KJ7XVDPN` · subtask/feature · **done**
 
 Backfill tests on the untested security boundaries
 

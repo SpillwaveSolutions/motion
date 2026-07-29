@@ -2,8 +2,9 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useState } from "react";
 import { registerFile, executeQuery, clampLimit, validateIdentifier } from "../../../lib/data/duckdb";
-import { storage } from "../../../lib/storage";
+import { storage, relativeToWorkspace } from "../../../lib/storage";
 import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
+
 
 function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
     const { source, name, limit = 5 } = node.attrs;
@@ -14,7 +15,13 @@ function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
     const [availableFiles, setAvailableFiles] = useState<string[]>([]);
 
     useEffect(() => {
-        storage.listDataFiles().then(setAvailableFiles).catch(() => setAvailableFiles([]));
+        // Store the workspace-relative form, not the absolute path the backend
+        // returns: an absolute path baked into a document does not exist on
+        // anyone else's machine, and differed between web and desktop modes.
+        storage
+            .listDataFiles()
+            .then((files) => setAvailableFiles(files.map(relativeToWorkspace)))
+            .catch(() => setAvailableFiles([]));
     }, []);
 
     const loadData = async () => {

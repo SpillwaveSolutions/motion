@@ -1,6 +1,6 @@
 # B9: contain the Mermaid parse-error graphic
 
-`01KYK6NHSHVZ2EZZH7NBRADW7E` · subtask/feature · **open**
+`01KYK6NHSHVZ2EZZH7NBRADW7E` · subtask/feature · **done**
 
 B9: contain the Mermaid parse-error graphic
 
