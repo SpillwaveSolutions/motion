@@ -13,6 +13,7 @@
    "tag": "v0.1.0",
    "title": "Motion \u2014 Current Code Walkthrough",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Code-Walkthrough",
    "wiki_key": "design/current-code-walkthrough"
   },
   {
@@ -28,6 +29,7 @@
    "tag": "v0.1.0",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Design-Doc",
    "wiki_key": "design/current-design-doc"
   },
   {
@@ -151,6 +153,7 @@
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/User-Guide",
    "wiki_key": "user-guide"
   }
  ],

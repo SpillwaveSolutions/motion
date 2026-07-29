@@ -1,8 +1,34 @@
 {
+  "design/current-code-walkthrough": {
+    "canonical_key": "design/current-code-walkthrough",
+    "doc_type": "design",
+    "page_id": "Code-Walkthrough",
+    "render_hash": "0ca5dd63ae03",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "source": "docs/designs/current_code_walkthrough.md",
+    "source_hash": "341e3d4ff204",
+    "title": "Motion \u2014 Current Code Walkthrough",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Code-Walkthrough",
+    "wiki_key": "design/current-code-walkthrough"
+  },
+  "design/current-design-doc": {
+    "canonical_key": "design/current-design-doc",
+    "doc_type": "design",
+    "page_id": "Design-Doc",
+    "render_hash": "beab3ab15575",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "source": "docs/designs/current_design_doc.md",
+    "source_hash": "6ee926d022c3",
+    "title": "Motion \u2014 Current Design Document",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Design-Doc",
+    "wiki_key": "design/current-design-doc"
+  },
   "home": {
     "page_id": "Home",
     "render_hash": "f4460316aeaa",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/home.md",
     "source_hash": "f4460316aeaa",
     "title": "Home",
@@ -11,7 +37,7 @@
   "index/decisions": {
     "page_id": "Index-Decisions",
     "render_hash": "1e9fe0ece76a",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/decisions.md",
     "source_hash": "1e9fe0ece76a",
     "title": "Decisions Index",
@@ -20,7 +46,7 @@
   "index/releases": {
     "page_id": "Index-Releases",
     "render_hash": "3ea847255eb5",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/releases.md",
     "source_hash": "3ea847255eb5",
     "title": "Releases Index",
@@ -29,7 +55,7 @@
   "index/status": {
     "page_id": "Index-Status",
     "render_hash": "b8bcebbbbe23",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/status.md",
     "source_hash": "b8bcebbbbe23",
     "title": "Status Archive",
@@ -37,17 +63,17 @@
   },
   "index/traceability": {
     "page_id": "Index-Traceability",
-    "render_hash": "cc19151fb918",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "301c727ff5b3",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/traceability.md",
-    "source_hash": "cc19151fb918",
+    "source_hash": "301c727ff5b3",
     "title": "Traceability Index",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Traceability"
   },
   "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN": {
     "page_id": "Ticket-01KYDZ4A5HN1AZ7BN8Q2WV3XVN",
     "render_hash": "b865b7579786",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYDZ4A5HN1AZ7BN8Q2WV3XVN.md",
     "source_hash": "b865b7579786",
     "title": "Install WikiTicket SDD worklog tooling",
@@ -56,7 +82,7 @@
   "item/01KYFZ6RBH4J746JDANTQKYVSN": {
     "page_id": "Ticket-01KYFZ6RBH4J746JDANTQKYVSN",
     "render_hash": "4e16c6601724",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBH4J746JDANTQKYVSN.md",
     "source_hash": "4e16c6601724",
     "title": "Rename/dedupe EnrichmentTools.test.ts to match what it actually tests (no matching",
@@ -65,7 +91,7 @@
   "item/01KYFZ6RBH7SW7J03FYN4XZ08J": {
     "page_id": "Ticket-01KYFZ6RBH7SW7J03FYN4XZ08J",
     "render_hash": "c48156171680",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBH7SW7J03FYN4XZ08J.md",
     "source_hash": "c48156171680",
     "title": "Sync content on viewMode transitions in Editor/index.tsx, reusing the existing",
@@ -74,7 +100,7 @@
   "item/01KYFZ6RBHA5DRP85QQ0EHTAJ6": {
     "page_id": "Ticket-01KYFZ6RBHA5DRP85QQ0EHTAJ6",
     "render_hash": "d0350c1614ac",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHA5DRP85QQ0EHTAJ6.md",
     "source_hash": "d0350c1614ac",
     "title": "Give editor extensions a creation UX",
@@ -83,7 +109,7 @@
   "item/01KYFZ6RBHABFSC9K9NJ90168Q": {
     "page_id": "Ticket-01KYFZ6RBHABFSC9K9NJ90168Q",
     "render_hash": "2d201e906e44",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHABFSC9K9NJ90168Q.md",
     "source_hash": "2d201e906e44",
     "title": "Motion next development phase",
@@ -92,7 +118,7 @@
   "item/01KYFZ6RBHBG53PG8SKVMMNCC4": {
     "page_id": "Ticket-01KYFZ6RBHBG53PG8SKVMMNCC4",
     "render_hash": "03c6ff6f045a",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHBG53PG8SKVMMNCC4.md",
     "source_hash": "03c6ff6f045a",
     "title": "Verify and fix the claude CLI system-prompt argument in cliWrappers.callLLM",
@@ -101,7 +127,7 @@
   "item/01KYFZ6RBHBTXGWG8HREAG8AG9": {
     "page_id": "Ticket-01KYFZ6RBHBTXGWG8HREAG8AG9",
     "render_hash": "828dd762630e",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHBTXGWG8HREAG8AG9.md",
     "source_hash": "828dd762630e",
     "title": "\"/\" slash-command popup wired to the same insertion actions (hand-rolled minimal popup,",
@@ -110,7 +136,7 @@
   "item/01KYFZ6RBHDMXV57V4JZW3PS5K": {
     "page_id": "Ticket-01KYFZ6RBHDMXV57V4JZW3PS5K",
     "render_hash": "a973aefd73b2",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHDMXV57V4JZW3PS5K.md",
     "source_hash": "a973aefd73b2",
     "title": "Fix editor mode-desync between WYSIWYG, Markdown, and Split views",
@@ -119,7 +145,7 @@
   "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX": {
     "page_id": "Ticket-01KYFZ6RBHW4FJK9EGFAQ3XNJX",
     "render_hash": "ab4bff86f355",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHW4FJK9EGFAQ3XNJX.md",
     "source_hash": "ab4bff86f355",
     "title": "Verify and fix the claude CLI system-prompt contract in cliWrappers",
@@ -128,7 +154,7 @@
   "item/01KYFZ6RBHZQWH62SK631C3H1K": {
     "page_id": "Ticket-01KYFZ6RBHZQWH62SK631C3H1K",
     "render_hash": "fb4c857e17c6",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBHZQWH62SK631C3H1K.md",
     "source_hash": "fb4c857e17c6",
     "title": "Toolbar buttons to insert each of the 5 block extensions, reusing the existing",
@@ -137,7 +163,7 @@
   "item/01KYFZ6RBJ18SB2ZCSFK06BNJ2": {
     "page_id": "Ticket-01KYFZ6RBJ18SB2ZCSFK06BNJ2",
     "render_hash": "fb6613d21800",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJ18SB2ZCSFK06BNJ2.md",
     "source_hash": "fb6613d21800",
     "title": "WebStorage.readFile/listFiles read real files via Bun.file instead of hardcoded branches",
@@ -146,7 +172,7 @@
   "item/01KYFZ6RBJ5718M3GQPAB76RHS": {
     "page_id": "Ticket-01KYFZ6RBJ5718M3GQPAB76RHS",
     "render_hash": "f8d4a1673c0a",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJ5718M3GQPAB76RHS.md",
     "source_hash": "f8d4a1673c0a",
     "title": "Real diagram generation, and scope a real ImageGen backend",
@@ -155,7 +181,7 @@
   "item/01KYFZ6RBJC07FEQ0FT0KQ302M": {
     "page_id": "Ticket-01KYFZ6RBJC07FEQ0FT0KQ302M",
     "render_hash": "7a55a829df66",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJC07FEQ0FT0KQ302M.md",
     "source_hash": "7a55a829df66",
     "title": "Fix web/dev storage mock so Dataset/Query are testable outside Tauri",
@@ -164,7 +190,7 @@
   "item/01KYFZ6RBJCWMMF7THJZFB6943": {
     "page_id": "Ticket-01KYFZ6RBJCWMMF7THJZFB6943",
     "render_hash": "f830d498d4df",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJCWMMF7THJZFB6943.md",
     "source_hash": "f830d498d4df",
     "title": "Real diagram generation via cliWrappers.callLLM + Mermaid-validate-before-accept,",
@@ -173,7 +199,7 @@
   "item/01KYFZ6RBJEYPZ9RX0F86490TM": {
     "page_id": "Ticket-01KYFZ6RBJEYPZ9RX0F86490TM",
     "render_hash": "a432302acdf0",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJEYPZ9RX0F86490TM.md",
     "source_hash": "a432302acdf0",
     "title": "Research spike: what a real ImageGen backend would require (candidate CLIs/APIs,",
@@ -182,7 +208,7 @@
   "item/01KYFZ6RBJT7FG0G30WYS3YF6Q": {
     "page_id": "Ticket-01KYFZ6RBJT7FG0G30WYS3YF6Q",
     "render_hash": "e17fc5b299dc",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJT7FG0G30WYS3YF6Q.md",
     "source_hash": "e17fc5b299dc",
     "title": "File picker for Dataset's source field, populated from storage.listFiles",
@@ -191,7 +217,7 @@
   "item/01KYFZ6RBJV920SFW0MAN9MX9J": {
     "page_id": "Ticket-01KYFZ6RBJV920SFW0MAN9MX9J",
     "render_hash": "44db03832295",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJV920SFW0MAN9MX9J.md",
     "source_hash": "44db03832295",
     "title": "Wire the per-note enrichment action into the UI",
@@ -200,7 +226,7 @@
   "item/01KYFZ6RBJZNYDT9AK2V0RA11T": {
     "page_id": "Ticket-01KYFZ6RBJZNYDT9AK2V0RA11T",
     "render_hash": "4e0f54fe7acf",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ6RBJZNYDT9AK2V0RA11T.md",
     "source_hash": "4e0f54fe7acf",
     "title": "Per-note \"AI Refine\"/\"Generate Summary\" toolbar action backed by ContentInjector",
@@ -209,7 +235,7 @@
   "item/01KYFZ8RGR06XBSG9CH4TEWYJY": {
     "page_id": "Ticket-01KYFZ8RGR06XBSG9CH4TEWYJY",
     "render_hash": "dd59761c7406",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYFZ8RGR06XBSG9CH4TEWYJY.md",
     "source_hash": "dd59761c7406",
     "title": "Workspace-level topic clustering + auto TOC/SKILL generation",
@@ -218,7 +244,7 @@
   "item/01KYJQ3WF4XJ4D1G7T9WQ3V0TV": {
     "page_id": "Ticket-01KYJQ3WF4XJ4D1G7T9WQ3V0TV",
     "render_hash": "e30e5ccab9a0",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYJQ3WF4XJ4D1G7T9WQ3V0TV.md",
     "source_hash": "e30e5ccab9a0",
     "title": "Manually verify mode-desync fix in browser (agent-browser)",
@@ -227,7 +253,7 @@
   "item/01KYJW5XJ5HTG7ESZ7DDDS8W0C": {
     "page_id": "Ticket-01KYJW5XJ5HTG7ESZ7DDDS8W0C",
     "render_hash": "c9a3f8634f33",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYJW5XJ5HTG7ESZ7DDDS8W0C.md",
     "source_hash": "c9a3f8634f33",
     "title": "TopicRefiner/ContentInjector/TOCGenerator/SkillGenerator need llmClient.ts routing before UI wiring",
@@ -236,7 +262,7 @@
   "item/01KYJXSMV02C0PP9H8BKE1PNEZ": {
     "page_id": "Ticket-01KYJXSMV02C0PP9H8BKE1PNEZ",
     "render_hash": "b4ef4f3d1eaf",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYJXSMV02C0PP9H8BKE1PNEZ.md",
     "source_hash": "b4ef4f3d1eaf",
     "title": "sanitizeSvg strips Mermaid's HTML-based node labels (foreignObject), leaving diagrams with empty shapes and no text",
@@ -245,7 +271,7 @@
   "item/01KYJXSYEZ97M9638S91GYZWV0": {
     "page_id": "Ticket-01KYJXSYEZ97M9638S91GYZWV0",
     "render_hash": "59dfbdd50205",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYJXSYEZ97M9638S91GYZWV0.md",
     "source_hash": "59dfbdd50205",
     "title": "Mermaid's internal parse-error UI ('bomb' error graphic) injects into document.body instead of staying inside the failing block's container",
@@ -254,7 +280,7 @@
   "item/01KYK6NHSF1KPVANBR2F76R20N": {
     "page_id": "Ticket-01KYK6NHSF1KPVANBR2F76R20N",
     "render_hash": "4f5f3c226001",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSF1KPVANBR2F76R20N.md",
     "source_hash": "4f5f3c226001",
     "title": "Add test, test:e2e, tauri, and verify scripts to package.json",
@@ -263,7 +289,7 @@
   "item/01KYK6NHSFD37YD6RN9KS2T4W8": {
     "page_id": "Ticket-01KYK6NHSFD37YD6RN9KS2T4W8",
     "render_hash": "7c0de41a5d2c",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFD37YD6RN9KS2T4W8.md",
     "source_hash": "7c0de41a5d2c",
     "title": "Phase 0: console/network failure fixture with a measured baseline",
@@ -271,17 +297,17 @@
   },
   "item/01KYK6NHSFJNG9XV6D8K5SHWCV": {
     "page_id": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
-    "render_hash": "0efa2c3b7953",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "1b1e5000115a",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
-    "source_hash": "0efa2c3b7953",
+    "source_hash": "1b1e5000115a",
     "title": "Validation loop: prove the UI works before the human launches it",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV"
   },
   "item/01KYK6NHSFMY34BQ4EVPH28D9M": {
     "page_id": "Ticket-01KYK6NHSFMY34BQ4EVPH28D9M",
     "render_hash": "bacf92a8cd2a",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFMY34BQ4EVPH28D9M.md",
     "source_hash": "bacf92a8cd2a",
     "title": "Phase 0: add test/verify scripts and the Playwright harness",
@@ -290,7 +316,7 @@
   "item/01KYK6NHSFW1K6739GPERY93QS": {
     "page_id": "Ticket-01KYK6NHSFW1K6739GPERY93QS",
     "render_hash": "f479903061ef",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFW1K6739GPERY93QS.md",
     "source_hash": "f479903061ef",
     "title": "Install Playwright and add playwright.config.ts with webServer, workers:1",
@@ -299,7 +325,7 @@
   "item/01KYK6NHSFYKSCFS0T31XBPHY1": {
     "page_id": "Ticket-01KYK6NHSFYKSCFS0T31XBPHY1",
     "render_hash": "d22ac9e9a040",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSFYKSCFS0T31XBPHY1.md",
     "source_hash": "d22ac9e9a040",
     "title": "Add a smoke spec: app loads, editor present, zero console errors",
@@ -307,17 +333,17 @@
   },
   "item/01KYK6NHSG0VG2NDWC3E7FRJFA": {
     "page_id": "Ticket-01KYK6NHSG0VG2NDWC3E7FRJFA",
-    "render_hash": "a9ba2e8d16c1",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "95777d200dcb",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSG0VG2NDWC3E7FRJFA.md",
-    "source_hash": "a9ba2e8d16c1",
+    "source_hash": "95777d200dcb",
     "title": "Implement the path jail with component-aware containment, not string startsWith",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSG0VG2NDWC3E7FRJFA"
   },
   "item/01KYK6NHSG64GHM3NM9JCV1NJ3": {
     "page_id": "Ticket-01KYK6NHSG64GHM3NM9JCV1NJ3",
     "render_hash": "2f50c2fbfe7a",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSG64GHM3NM9JCV1NJ3.md",
     "source_hash": "2f50c2fbfe7a",
     "title": "Track CLAUDE.md (git add -f), add Definition of Done, fix its stale Bun/HMR claims",
@@ -326,7 +352,7 @@
   "item/01KYK6NHSG7TT2K13FNK8C74QE": {
     "page_id": "Ticket-01KYK6NHSG7TT2K13FNK8C74QE",
     "render_hash": "541bb19538a4",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSG7TT2K13FNK8C74QE.md",
     "source_hash": "541bb19538a4",
     "title": "Append typecheck and bun test to hooks/pre-commit",
@@ -335,7 +361,7 @@
   "item/01KYK6NHSGAV4DHBNCJMXP086J": {
     "page_id": "Ticket-01KYK6NHSGAV4DHBNCJMXP086J",
     "render_hash": "03eba446cf77",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGAV4DHBNCJMXP086J.md",
     "source_hash": "03eba446cf77",
     "title": "Write e2e/fixtures.ts failing on console errors, requestfailed, and status >= 400",
@@ -344,7 +370,7 @@
   "item/01KYK6NHSGDE4KJP64EW6JHQ9V": {
     "page_id": "Ticket-01KYK6NHSGDE4KJP64EW6JHQ9V",
     "render_hash": "a071f36d3374",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGDE4KJP64EW6JHQ9V.md",
     "source_hash": "a071f36d3374",
     "title": "Phase 0: self-host fonts so the network gate is not flaky",
@@ -353,7 +379,7 @@
   "item/01KYK6NHSGFM7BEQF2MG6J7K8W": {
     "page_id": "Ticket-01KYK6NHSGFM7BEQF2MG6J7K8W",
     "render_hash": "7888613202dd",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGFM7BEQF2MG6J7K8W.md",
     "source_hash": "7888613202dd",
     "title": "Phase 0: static Bun-in-client guard",
@@ -362,7 +388,7 @@
   "item/01KYK6NHSGGR1V5ACMDGZSJHF1": {
     "page_id": "Ticket-01KYK6NHSGGR1V5ACMDGZSJHF1",
     "render_hash": "ff354d590cdc",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGGR1V5ACMDGZSJHF1.md",
     "source_hash": "ff354d590cdc",
     "title": "Add a data-app-ready signal set after first mount",
@@ -371,7 +397,7 @@
   "item/01KYK6NHSGHBG8EM467WQXQCR5": {
     "page_id": "Ticket-01KYK6NHSGHBG8EM467WQXQCR5",
     "render_hash": "27b0e0c89c44",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGHBG8EM467WQXQCR5.md",
     "source_hash": "27b0e0c89c44",
     "title": "Phase 0: Rust tests for the workspace jail",
@@ -380,7 +406,7 @@
   "item/01KYK6NHSGHYEM1GVBPVT14SS1": {
     "page_id": "Ticket-01KYK6NHSGHYEM1GVBPVT14SS1",
     "render_hash": "e73fb5c136d8",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGHYEM1GVBPVT14SS1.md",
     "source_hash": "e73fb5c136d8",
     "title": "Measure the cold-load console and network baseline and record it",
@@ -389,7 +415,7 @@
   "item/01KYK6NHSGP45SAC43B5AYA91P": {
     "page_id": "Ticket-01KYK6NHSGP45SAC43B5AYA91P",
     "render_hash": "e3b6076a05ed",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGP45SAC43B5AYA91P.md",
     "source_hash": "e3b6076a05ed",
     "title": "Add .github/workflows/ci.yml that actually tests the application",
@@ -397,17 +423,17 @@
   },
   "item/01KYK6NHSGP58Q6GQ3Z3HEMXXN": {
     "page_id": "Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN",
-    "render_hash": "a02cabf84ae6",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "3f32da0ab639",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGP58Q6GQ3Z3HEMXXN.md",
-    "source_hash": "a02cabf84ae6",
+    "source_hash": "3f32da0ab639",
     "title": "Phase 1: make web mode a real filesystem backend",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGP58Q6GQ3Z3HEMXXN"
   },
   "item/01KYK6NHSGPYHDTHG3T7Y80MAR": {
     "page_id": "Ticket-01KYK6NHSGPYHDTHG3T7Y80MAR",
     "render_hash": "82df628fa178",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGPYHDTHG3T7Y80MAR.md",
     "source_hash": "82df628fa178",
     "title": "Phase 0.5: accessibility pass so role-based locators are possible",
@@ -415,17 +441,17 @@
   },
   "item/01KYK6NHSGSAMNDS6CJ47YST2C": {
     "page_id": "Ticket-01KYK6NHSGSAMNDS6CJ47YST2C",
-    "render_hash": "2727167c77d5",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "b577f8a52d90",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGSAMNDS6CJ47YST2C.md",
-    "source_hash": "2727167c77d5",
+    "source_hash": "b577f8a52d90",
     "title": "Add /api/fs/* routes to server.ts with an env-only workspace root",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGSAMNDS6CJ47YST2C"
   },
   "item/01KYK6NHSGSX8673FTZ7AY0CCB": {
     "page_id": "Ticket-01KYK6NHSGSX8673FTZ7AY0CCB",
     "render_hash": "0f0904bb4898",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGSX8673FTZ7AY0CCB.md",
     "source_hash": "0f0904bb4898",
     "title": "Phase 0: make the gates bite",
@@ -433,17 +459,17 @@
   },
   "item/01KYK6NHSGXDY0C5GZRQDVEQGC": {
     "page_id": "Ticket-01KYK6NHSGXDY0C5GZRQDVEQGC",
-    "render_hash": "9a20d394d3ec",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "7ae3f41f970b",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSGXDY0C5GZRQDVEQGC.md",
-    "source_hash": "9a20d394d3ec",
+    "source_hash": "7ae3f41f970b",
     "title": "Extract pure filesystem cores: src/lib/fsCore.ts and src-tauri/src/fs_core.rs",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSGXDY0C5GZRQDVEQGC"
   },
   "item/01KYK6NHSH15H376EZGAMTZE9J": {
     "page_id": "Ticket-01KYK6NHSH15H376EZGAMTZE9J",
     "render_hash": "447ed1f67b6e",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH15H376EZGAMTZE9J.md",
     "source_hash": "447ed1f67b6e",
     "title": "B8: route the four enrichment modules through llmClient",
@@ -451,17 +477,17 @@
   },
   "item/01KYK6NHSH1PJ0YBJ1WEG3SZ4R": {
     "page_id": "Ticket-01KYK6NHSH1PJ0YBJ1WEG3SZ4R",
-    "render_hash": "8174fbf0b066",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "696a78ba212e",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH1PJ0YBJ1WEG3SZ4R.md",
-    "source_hash": "8174fbf0b066",
+    "source_hash": "696a78ba212e",
     "title": "Give each Playwright worker a seeded temp workspace",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH1PJ0YBJ1WEG3SZ4R"
   },
   "item/01KYK6NHSH2RMTJQ3SR7MGW7Q8": {
     "page_id": "Ticket-01KYK6NHSH2RMTJQ3SR7MGW7Q8",
     "render_hash": "fd57d9c9d34c",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH2RMTJQ3SR7MGW7Q8.md",
     "source_hash": "fd57d9c9d34c",
     "title": "Add resolveWorkspacePath so documents are portable between modes",
@@ -469,17 +495,17 @@
   },
   "item/01KYK6NHSH8WXC8MEGFPFM8DYC": {
     "page_id": "Ticket-01KYK6NHSH8WXC8MEGFPFM8DYC",
-    "render_hash": "c594e5b85c57",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "95b69887f1d9",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH8WXC8MEGFPFM8DYC.md",
-    "source_hash": "c594e5b85c57",
+    "source_hash": "95b69887f1d9",
     "title": "Add the language-neutral parity fixture run by both bun test and cargo test",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSH8WXC8MEGFPFM8DYC"
   },
   "item/01KYK6NHSH9BTQ4BND9DZEFAY7": {
     "page_id": "Ticket-01KYK6NHSH9BTQ4BND9DZEFAY7",
     "render_hash": "bc4e2c874e6b",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSH9BTQ4BND9DZEFAY7.md",
     "source_hash": "bc4e2c874e6b",
     "title": "B4 and B7: block round-trip and multi-line serialization",
@@ -488,7 +514,7 @@
   "item/01KYK6NHSHBJ0SV2MM8N3A0KJR": {
     "page_id": "Ticket-01KYK6NHSHBJ0SV2MM8N3A0KJR",
     "render_hash": "80fc68f59c70",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHBJ0SV2MM8N3A0KJR.md",
     "source_hash": "80fc68f59c70",
     "title": "Phase 2: E2E coverage of the journeys that have actually broken",
@@ -497,7 +523,7 @@
   "item/01KYK6NHSHD4NMT2QVMQD2HHBP": {
     "page_id": "Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP",
     "render_hash": "6f5f472d49fb",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHD4NMT2QVMQD2HHBP.md",
     "source_hash": "6f5f472d49fb",
     "title": "B5: welcome doc paths resolve in both modes",
@@ -505,17 +531,17 @@
   },
   "item/01KYK6NHSHKCZWFNWZX3NATX04": {
     "page_id": "Ticket-01KYK6NHSHKCZWFNWZX3NATX04",
-    "render_hash": "cef32b54a4e3",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "bb03e72feea3",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHKCZWFNWZX3NATX04.md",
-    "source_hash": "cef32b54a4e3",
+    "source_hash": "bb03e72feea3",
     "title": "Replace WebStorage with a real HttpStorage",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYK6NHSHKCZWFNWZX3NATX04"
   },
   "item/01KYK6NHSHKXZNTXS3F3ANDYV9": {
     "page_id": "Ticket-01KYK6NHSHKXZNTXS3F3ANDYV9",
     "render_hash": "fbb6854edfa1",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHKXZNTXS3F3ANDYV9.md",
     "source_hash": "fbb6854edfa1",
     "title": "Add bin/smoke-desktop.sh building and launching the packaged app",
@@ -524,7 +550,7 @@
   "item/01KYK6NHSHKZ20DY8FBB5S1PP9": {
     "page_id": "Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9",
     "render_hash": "d359a9058980",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHKZ20DY8FBB5S1PP9.md",
     "source_hash": "d359a9058980",
     "title": "B6: thread model through the run_llm_cli IPC signature",
@@ -533,7 +559,7 @@
   "item/01KYK6NHSHQZZQV7DJM5A64C6E": {
     "page_id": "Ticket-01KYK6NHSHQZZQV7DJM5A64C6E",
     "render_hash": "2bc6ca7ab559",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHQZZQV7DJM5A64C6E.md",
     "source_hash": "2bc6ca7ab559",
     "title": "B13: save completion signal and file-load cancellation",
@@ -542,7 +568,7 @@
   "item/01KYK6NHSHRFE2KXPBTV76JR02": {
     "page_id": "Ticket-01KYK6NHSHRFE2KXPBTV76JR02",
     "render_hash": "fd339aef4ebc",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHRFE2KXPBTV76JR02.md",
     "source_hash": "fd339aef4ebc",
     "title": "Write the short release-only manual checklist",
@@ -551,7 +577,7 @@
   "item/01KYK6NHSHRFPGDZXKE6EH4QRJ": {
     "page_id": "Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ",
     "render_hash": "cdbb30e2e458",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHRFPGDZXKE6EH4QRJ.md",
     "source_hash": "cdbb30e2e458",
     "title": "B3: fix the broken desktop production build (dist has no index.html)",
@@ -560,7 +586,7 @@
   "item/01KYK6NHSHSASEERK1KJ7XVDPN": {
     "page_id": "Ticket-01KYK6NHSHSASEERK1KJ7XVDPN",
     "render_hash": "7eead449f407",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHSASEERK1KJ7XVDPN.md",
     "source_hash": "7eead449f407",
     "title": "Backfill tests on the untested security boundaries",
@@ -569,7 +595,7 @@
   "item/01KYK6NHSHVJEFG9W6TZYWXNEF": {
     "page_id": "Ticket-01KYK6NHSHVJEFG9W6TZYWXNEF",
     "render_hash": "846e43f83fba",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHVJEFG9W6TZYWXNEF.md",
     "source_hash": "846e43f83fba",
     "title": "Delete the stale root index.html and generate dev and prod shells from one template",
@@ -578,7 +604,7 @@
   "item/01KYK6NHSHVZ2EZZH7NBRADW7E": {
     "page_id": "Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E",
     "render_hash": "c4b67f2535f0",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHVZ2EZZH7NBRADW7E.md",
     "source_hash": "c4b67f2535f0",
     "title": "B9: contain the Mermaid parse-error graphic",
@@ -587,7 +613,7 @@
   "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F": {
     "page_id": "Ticket-01KYK6NHSHZF8S0ZNGQ9ZAD05F",
     "render_hash": "6de364a8dfd8",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHZF8S0ZNGQ9ZAD05F.md",
     "source_hash": "6de364a8dfd8",
     "title": "Phase 4: desktop confidence without a WebDriver",
@@ -596,7 +622,7 @@
   "item/01KYK6NHSHZJNNCYMEW9ZG77NP": {
     "page_id": "Ticket-01KYK6NHSHZJNNCYMEW9ZG77NP",
     "render_hash": "5fa03e99a877",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK6NHSHZJNNCYMEW9ZG77NP.md",
     "source_hash": "5fa03e99a877",
     "title": "Phase 3: fix what the loop exposes",
@@ -605,7 +631,7 @@
   "item/01KYK7WZFJXKTH14WKSZR7FQEE": {
     "page_id": "Ticket-01KYK7WZFJXKTH14WKSZR7FQEE",
     "render_hash": "f0bae4f798bf",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK7WZFJXKTH14WKSZR7FQEE.md",
     "source_hash": "f0bae4f798bf",
     "title": "Welcome doc's diagram-gen block sent the string \"null\" to mermaid.render on every cold load",
@@ -614,7 +640,7 @@
   "item/01KYK7WZM5846FPAQZH84S5D38": {
     "page_id": "Ticket-01KYK7WZM5846FPAQZH84S5D38",
     "render_hash": "06f83a61c8a3",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK7WZM5846FPAQZH84S5D38.md",
     "source_hash": "06f83a61c8a3",
     "title": "Dev server answered every missing file with 200 + index.html instead of 404",
@@ -623,7 +649,7 @@
   "item/01KYK7WZRS65D7DPP0D1DT58Z7": {
     "page_id": "Ticket-01KYK7WZRS65D7DPP0D1DT58Z7",
     "render_hash": "9b5043d080f3",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYK7WZRS65D7DPP0D1DT58Z7.md",
     "source_hash": "9b5043d080f3",
     "title": "Demo Query block returns zero rows: case mismatch in the demo data JOIN",
@@ -632,18 +658,54 @@
   "item/01KYN85K57SRYK5WJFG98W5R6F": {
     "page_id": "Ticket-01KYN85K57SRYK5WJFG98W5R6F",
     "render_hash": "4835fffc6289",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/tickets/01KYN85K57SRYK5WJFG98W5R6F.md",
     "source_hash": "4835fffc6289",
     "title": "Refresh README for v0.1.0 \u2014 six months stale, documented broken features and omitted built ones",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYN85K57SRYK5WJFG98W5R6F"
+  },
+  "item/01KYNDC9CPK8314F6PWDZW1NC6": {
+    "page_id": "Ticket-01KYNDC9CPK8314F6PWDZW1NC6",
+    "render_hash": "b93f58b44380",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "source": "docs/.index/rendered/tickets/01KYNDC9CPK8314F6PWDZW1NC6.md",
+    "source_hash": "b93f58b44380",
+    "title": "First wiki publish for motion \u2014 v0.1.0 release, roadmap, snapshot, ticket index",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYNDC9CPK8314F6PWDZW1NC6"
+  },
+  "item/01KYNKG3ZD866C3AGQS20T6H8J": {
+    "page_id": "Ticket-01KYNKG3ZD866C3AGQS20T6H8J",
+    "render_hash": "1d233ee6eead",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "source": "docs/.index/rendered/tickets/01KYNKG3ZD866C3AGQS20T6H8J.md",
+    "source_hash": "1d233ee6eead",
+    "title": "B14 fixed: list_markdown_files no longer re-roots the workspace jail",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYNKG3ZD866C3AGQS20T6H8J"
+  },
+  "item/01KYNKTZ6KPKZV24XWRZJZG04S": {
+    "page_id": "Ticket-01KYNKTZ6KPKZV24XWRZJZG04S",
+    "render_hash": "46be139b269b",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "source": "docs/.index/rendered/tickets/01KYNKTZ6KPKZV24XWRZJZG04S.md",
+    "source_hash": "46be139b269b",
+    "title": "Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYNKTZ6KPKZV24XWRZJZG04S"
+  },
+  "item/01KYNMZ132M2NE1EYPHG2DCCAW": {
+    "page_id": "Ticket-01KYNMZ132M2NE1EYPHG2DCCAW",
+    "render_hash": "271a5549d17c",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "source": "docs/.index/rendered/tickets/01KYNMZ132M2NE1EYPHG2DCCAW.md",
+    "source_hash": "271a5549d17c",
+    "title": "Publish design doc, code walkthrough and user guide \u2014 resolve the three dangling wiki links",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYNMZ132M2NE1EYPHG2DCCAW"
   },
   "plan/2026-07-26-motion-next-phase": {
     "canonical_key": "plan/2026-07-26-motion-next-phase",
     "doc_type": "plan",
     "page_id": "Plan-motion-next-phase",
     "render_hash": "c0f94212e5c8",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/plans/2026-07-26-motion-next-phase.md",
     "source_hash": "cdce116e0b69",
     "title": "Motion next development phase",
@@ -656,7 +718,7 @@
     "doc_type": "plan",
     "page_id": "Plan-validation-loop",
     "render_hash": "e2ad54dfa927",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/plans/2026-07-28-validation-loop.md",
     "source_hash": "9d99afec5d68",
     "title": "Validation loop: prove the UI works before the human launches it",
@@ -667,7 +729,7 @@
   "release/v0.1.0": {
     "page_id": "Release-v0.1.0",
     "render_hash": "84529d37dc5c",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/releases/v0.1.0.md",
     "source_hash": "84529d37dc5c",
     "title": "Release v0.1.0",
@@ -677,10 +739,10 @@
     "canonical_key": "roadmap",
     "doc_type": "roadmap",
     "page_id": "Roadmap",
-    "render_hash": "a8063fedfae1",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "render_hash": "d446bcc66d05",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/roadmap.md",
-    "source_hash": "ea54f57ba73b",
+    "source_hash": "fca1032b42c0",
     "title": "Roadmap",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
@@ -691,7 +753,7 @@
     "doc_type": "roadmap-snapshot",
     "page_id": "Roadmap-2026-07-28_v0.1.0-release",
     "render_hash": "e81dd9c96970",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
     "source_hash": "84478a74bed0",
     "title": "Roadmap",
@@ -702,7 +764,7 @@
   "sidebar": {
     "page_id": "_Sidebar",
     "render_hash": "0233da90a37a",
-    "rev": "fb9d792bcb2842b61bbe7c9229ccdf27a822e7a2",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/.index/rendered/_Sidebar.md",
     "source_hash": "0233da90a37a",
     "title": "_Sidebar",
@@ -714,12 +776,14 @@
     ],
     "canonical_key": "guide/user-guide",
     "doc_type": "guide",
-    "rev": null,
+    "page_id": "User-Guide",
+    "render_hash": "a2861f424455",
+    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
     "source": "docs/user_guide/user-guide.md",
-    "source_hash": null,
+    "source_hash": "5052663bcedb",
     "title": "User Guide",
     "truth_state": "current",
-    "url": null,
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/User-Guide",
     "wiki_key": "user-guide"
   }
 }
