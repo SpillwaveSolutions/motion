@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "a2ba08ba56d8",
+   "render_hash": "301c727ff5b3",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -314,7 +314,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYK6NHSFJNG9XV6D8K5SHWCV",
    "render": "as-is",
-   "render_hash": "15b26564e03f",
+   "render_hash": "1b1e5000115a",
    "source": "docs/.index/rendered/tickets/01KYK6NHSFJNG9XV6D8K5SHWCV.md",
    "title": "Validation loop: prove the UI works before the human launches it",
    "truth_state": "open",
@@ -751,6 +751,38 @@
    "wiki_key": "item/01KYNKTZ6KPKZV24XWRZJZG04S"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01KYNMZ132M2NE1EYPHG2DCCAW",
+   "render": "as-is",
+   "render_hash": "271a5549d17c",
+   "source": "docs/.index/rendered/tickets/01KYNMZ132M2NE1EYPHG2DCCAW.md",
+   "title": "Publish design doc, code walkthrough and user guide \u2014 resolve the three dangling wiki links",
+   "truth_state": "done",
+   "wiki_key": "item/01KYNMZ132M2NE1EYPHG2DCCAW"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:16:30Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Code-Walkthrough",
+   "render": "doc+banner",
+   "render_hash": "0ca5dd63ae03",
+   "source": "docs/designs/current_code_walkthrough.md",
+   "title": "Motion \u2014 Current Code Walkthrough",
+   "truth_state": "current",
+   "wiki_key": "design/current-code-walkthrough"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:16:30Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Design-Doc",
+   "render": "doc+banner",
+   "render_hash": "e04db9b55679",
+   "source": "docs/designs/current_design_doc.md",
+   "title": "Motion \u2014 Current Design Document",
+   "truth_state": "current",
+   "wiki_key": "design/current-design-doc"
+  },
+  {
    "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
    "frozen": true,
    "page_name": "Plan-motion-next-phase",
@@ -773,11 +805,11 @@
    "wiki_key": "plan/2026-07-28-validation-loop"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:19:39Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T00:39:17Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "84a1b557e49c",
+   "render_hash": "d446bcc66d05",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -793,6 +825,17 @@
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "User-Guide",
+   "render": "doc+banner",
+   "render_hash": "a2861f424455",
+   "source": "docs/user_guide/user-guide.md",
+   "title": "User Guide",
+   "truth_state": "current",
+   "wiki_key": "user-guide"
   }
  ],
  "sidebar": {

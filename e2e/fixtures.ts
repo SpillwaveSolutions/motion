@@ -16,8 +16,8 @@
  * creates a file the editor then cannot read), so a gate watching only
  * `requestfailed` would sail straight past the bug it exists to catch.
  *
- * Warnings are recorded but never fatal: `WebStorage` warns on construction by
- * design, and warning-level noise is not a defect signal.
+ * Warnings are recorded but never fatal: warning-level noise is not a defect
+ * signal, and gating on it would make the suite hostage to third-party chatter.
  *
  * Baseline as measured on a cold load (see baseline.capture.spec.ts): zero
  * errors, zero failed requests, zero >=400 responses. The gate is therefore

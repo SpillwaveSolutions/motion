@@ -1,6 +1,36 @@
 {
  "docs": [
   {
+   "branch": "main",
+   "canonical_key": "design/current-code-walkthrough",
+   "doc_type": "design",
+   "generated_at": "2026-07-29T00:16:30Z",
+   "git_hash": "13240d084d2f97b1df49616a573ebd29f7e994e2",
+   "release": "v0.1.0",
+   "roadmap": "docs/roadmap.md",
+   "slug": "current_code_walkthrough",
+   "source": "docs/designs/current_code_walkthrough.md",
+   "tag": "v0.1.0",
+   "title": "Motion \u2014 Current Code Walkthrough",
+   "truth_state": "current",
+   "wiki_key": "design/current-code-walkthrough"
+  },
+  {
+   "branch": "main",
+   "canonical_key": "design/current-design-doc",
+   "doc_type": "design",
+   "generated_at": "2026-07-29T00:16:30Z",
+   "git_hash": "13240d084d2f97b1df49616a573ebd29f7e994e2",
+   "release": "v0.1.0",
+   "roadmap": "docs/roadmap.md",
+   "slug": "current_design_doc",
+   "source": "docs/designs/current_design_doc.md",
+   "tag": "v0.1.0",
+   "title": "Motion \u2014 Current Design Document",
+   "truth_state": "current",
+   "wiki_key": "design/current-design-doc"
+  },
+  {
    "canonical_key": "plan/2026-07-26-motion-next-phase",
    "date": "2026-07-26",
    "doc_type": "plan",
@@ -87,10 +117,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-07-29T00:19:39Z",
+   "generated_at": "2026-07-29T00:39:17Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "f4147fc0",
+   "source_hash": "937964da",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
@@ -110,6 +140,18 @@
    "truth_state": "snapshot",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-07-28_v0.1.0-release",
    "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
+  },
+  {
+   "aliases": [
+    "user-guide"
+   ],
+   "canonical_key": "guide/user-guide",
+   "doc_type": "guide",
+   "slug": "user-guide",
+   "source": "docs/user_guide/user-guide.md",
+   "title": "User Guide",
+   "truth_state": "current",
+   "wiki_key": "user-guide"
   }
  ],
  "version": 1
