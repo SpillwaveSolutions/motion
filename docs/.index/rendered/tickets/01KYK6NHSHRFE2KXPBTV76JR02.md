@@ -1,6 +1,6 @@
 # Write the short release-only manual checklist
 
-`01KYK6NHSHRFE2KXPBTV76JR02` · subtask/feature · **open**
+`01KYK6NHSHRFE2KXPBTV76JR02` · subtask/feature · **done**
 
 Write the short release-only manual checklist
 

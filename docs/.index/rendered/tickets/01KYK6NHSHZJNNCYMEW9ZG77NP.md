@@ -15,8 +15,8 @@ With gates in place, fix the backlog test-first, ordered by what blocks shipping
 - [[Ticket-01KYK6NHSHD4NMT2QVMQD2HHBP]] B5: welcome doc paths resolve in both modes — B5: welcome doc paths resolve in both modes (open)
 - [[Ticket-01KYK6NHSHKZ20DY8FBB5S1PP9]] B6: thread model through the run_llm_cli IPC signature — B6: thread model through the run_llm_cli IPC signature (open)
 - [[Ticket-01KYK6NHSHQZZQV7DJM5A64C6E]] B13: save completion signal and file-load cancellation — B13: save completion signal and file-load cancellation (open)
-- [[Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ]] B3: fix the broken desktop production build (dist has no index.html) — B3: fix the broken desktop production build (dist has no index.html) (open)
+- [[Ticket-01KYK6NHSHRFPGDZXKE6EH4QRJ]] B3: fix the broken desktop production build (dist has no index.html) — B3: fix the broken desktop production build (dist has no index.html) (done)
 - [[Ticket-01KYK6NHSHSASEERK1KJ7XVDPN]] Backfill tests on the untested security boundaries — Backfill tests on the untested security boundaries (open)
 - [[Ticket-01KYK6NHSHVZ2EZZH7NBRADW7E]] B9: contain the Mermaid parse-error graphic — B9: contain the Mermaid parse-error graphic (open)
 
-Progress: 1/8 done
+Progress: 2/8 done

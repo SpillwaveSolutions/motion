@@ -54,6 +54,16 @@ jobs:
       - name: Production build
         run: bun run build
 
+      # B3 guard: `bun build` alone emits only assets, so frontendDist pointed at
+      # a directory with no entry point and the packaged app opened blank. The
+      # full desktop smoke (bin/smoke-desktop.sh) needs a GUI session, but this
+      # catches the regression that actually happened, for free.
+      - name: Assert the frontend bundle has an entry point
+        run: |
+          test -f dist/index.html || { echo "dist/index.html missing (B3)"; exit 1; }
+          grep -q 'src="./main.js"' dist/index.html || { echo "index.html does not reference the built JS"; exit 1; }
+          test -f dist/main.js || { echo "dist/main.js missing"; exit 1; }
+
       - name: Upload Playwright report
         if: failure()
         uses: actions/upload-artifact@v4

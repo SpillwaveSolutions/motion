@@ -896,7 +896,7 @@
   },
   "item/01KYK6NHSHKXZNTXS3F3ANDYV9": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add bin/smoke-desktop.sh building and launching the packaged app"
   },
   "item/01KYK6NHSHKZ20DY8FBB5S1PP9": {
@@ -911,12 +911,12 @@
   },
   "item/01KYK6NHSHRFE2KXPBTV76JR02": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Write the short release-only manual checklist"
   },
   "item/01KYK6NHSHRFPGDZXKE6EH4QRJ": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "B3: fix the broken desktop production build (dist has no index.html)"
   },
   "item/01KYK6NHSHSASEERK1KJ7XVDPN": {
@@ -926,7 +926,7 @@
   },
   "item/01KYK6NHSHVJEFG9W6TZYWXNEF": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Delete the stale root index.html and generate dev and prod shells from one template"
   },
   "item/01KYK6NHSHVZ2EZZH7NBRADW7E": {
@@ -936,7 +936,7 @@
   },
   "item/01KYK6NHSHZF8S0ZNGQ9ZAD05F": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 4: desktop confidence without a WebDriver"
   },
   "item/01KYK6NHSHZJNNCYMEW9ZG77NP": {

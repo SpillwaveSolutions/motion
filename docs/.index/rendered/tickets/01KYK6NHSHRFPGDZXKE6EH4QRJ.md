@@ -1,6 +1,6 @@
 # B3: fix the broken desktop production build (dist has no index.html)
 
-`01KYK6NHSHRFPGDZXKE6EH4QRJ` · subtask/feature · **open**
+`01KYK6NHSHRFPGDZXKE6EH4QRJ` · subtask/feature · **done**
 
 B3: fix the broken desktop production build (dist has no index.html)
 

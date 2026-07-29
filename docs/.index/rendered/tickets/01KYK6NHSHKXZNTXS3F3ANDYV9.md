@@ -1,6 +1,6 @@
 # Add bin/smoke-desktop.sh building and launching the packaged app
 
-`01KYK6NHSHKXZNTXS3F3ANDYV9` · subtask/feature · **open**
+`01KYK6NHSHKXZNTXS3F3ANDYV9` · subtask/feature · **done**
 
 Add bin/smoke-desktop.sh building and launching the packaged app
 
