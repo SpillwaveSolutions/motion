@@ -217,12 +217,29 @@ mod tests {
         assert_eq!(workspace_root(&state).unwrap(), real);
     }
 
+    /// A workspace root must be a directory.
+    ///
+    /// The first version of this test asserted `!file.is_dir()` on its own
+    /// fixture and never touched the code it was named after -- a test that
+    /// could not fail. It now exercises the same rejection `set_workspace`
+    /// applies, without needing a running Tauri app to hold the State.
     #[test]
-    fn set_workspace_rejects_a_file() {
+    fn a_file_is_not_a_valid_workspace_root() {
         let dir = TempDir::new().unwrap();
         let file = fs::canonicalize(dir.path()).unwrap().join("a.md");
         fs::write(&file, "").unwrap();
-        assert!(!file.is_dir(), "fixture should be a file, not a directory");
+
+        // The check set_workspace performs after canonicalizing.
+        let canonical = fs::canonicalize(&file).expect("file exists");
+        assert!(
+            !canonical.is_dir(),
+            "set_workspace must refuse a path that is not a directory"
+        );
+
+        // And a root that is not a directory cannot serve a listing either.
+        let err = fs_core::collect_files(&file, fs_core::MARKDOWN_EXTENSIONS)
+            .expect_err("a file is not listable as a workspace");
+        assert_eq!(err.code, fs_core::FsErrorCode::NotADirectory);
     }
 
     /// B14, now fixed. list_markdown_files used to overwrite the workspace root

@@ -51,8 +51,11 @@ is not what Motion does, and following it will send you down a dead end.
 - **There is no HMR.** A file watcher rebuilds the bundle on change, but the
   browser is never notified. Reload the page manually.
 - `bun tauri dev` runs the same server inside the Tauri webview via `devUrl`.
-- Storage is swapped at module load by `isTauri()`: `TauriStorage` (real
-  filesystem, jailed to the opened workspace) vs `WebStorage` in a browser.
+- Storage is swapped at module load by `isTauri()`: `TauriStorage` (Tauri
+  commands) vs `HttpStorage` (the dev server's `/api/fs/*`). Both are real
+  filesystems now, jailed to the workspace, and both delegate to a shared core
+  (`src/lib/fsCore.ts` / `src-tauri/src/fs_core.rs`) held together by
+  `tests/contract/storage-cases.json`, which both test suites run.
 
 ### `Bun` is not available in the browser or the webview
 

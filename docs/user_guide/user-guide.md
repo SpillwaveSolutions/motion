@@ -1,0 +1,164 @@
+---
+wiki_key: user-guide
+doc_type: guide
+truth_state: current
+title: User Guide
+slug: user-guide
+---
+
+# Motion User Guide
+
+Motion is a local-first technical writing IDE. It edits markdown that lives on
+your own disk, renders diagrams and runs SQL inline, and can generate both from
+plain-language prompts.
+
+This guide covers the app as it behaves at **v0.1.0**. Where something is
+incomplete, it says so.
+
+---
+
+## Two ways to run, and why it matters
+
+```bash
+bun tauri dev   # desktop app
+bun run dev     # browser at http://localhost:3000
+```
+
+**Desktop** is the real product. A native folder picker, and full read/write
+access to any file inside the folder you open.
+
+**Browser** runs against a fixed workspace directory instead of a folder picker,
+set by the `MOTION_WORKSPACE` environment variable (defaulting to `public/demo`):
+
+```bash
+MOTION_WORKSPACE=~/notes bun run dev
+```
+
+Both modes now read and write real files through the same rules, so behaviour you
+see in the browser is behaviour the desktop app is held to. Browser mode exists
+so the interface can be driven by automated tests before anyone opens the app.
+
+> **Note:** the packaged desktop build does not work yet — `bun run build` does
+> not emit an entry HTML file. Use `bun tauri dev`.
+
+---
+
+## Getting started
+
+1. Click **Open Folder**. On desktop you pick a folder; in the browser it opens
+   the configured workspace.
+2. The sidebar lists every `.md` file underneath it, including nested folders.
+   Use **Search notes** to filter by filename.
+3. Click a note to open it. Use the arrow keys and Enter if you prefer the
+   keyboard — the list is fully navigable.
+4. Edit, then press **⌘S** (Ctrl+S) or click the save icon.
+
+**New Note** creates a timestamped `untitled-*.md` in the open workspace.
+
+Motion cannot read or write anything outside the folder you opened. Paths are
+resolved to their real location first, so a symbolic link pointing elsewhere is
+refused rather than followed.
+
+---
+
+## View modes
+
+| Mode | What you get |
+|---|---|
+| **WYSIWYG** | Rendered editing — headings, lists, tables, diagrams in place |
+| **Markdown** | The raw source in a plain text area |
+| **Split** | Rendered editor beside the markdown source |
+
+Switch freely; your edits carry across. Split view shows the markdown *source*,
+not a second rendered preview.
+
+---
+
+## Content blocks
+
+Five block types. Insert them from the toolbar, or type `/` at the start of an
+empty line and pick from the menu.
+
+### Mermaid
+
+A diagram from [Mermaid](https://mermaid.js.org) source. Click it to edit; it
+re-renders as you go. Invalid syntax shows an error in the block instead of
+replacing your content.
+
+### Dataset
+
+Registers a local `.csv`, `.json` or `.jsonl` file as a named table:
+
+```
+source: data/sales.csv
+name: sales
+limit: 5
+```
+
+Use the file picker to choose a source. Store the path **relative to your
+workspace** — a document written that way opens correctly on any machine.
+
+### Query
+
+SQL against the tables your Dataset blocks registered, run in-browser by
+DuckDB-WASM:
+
+```
+sql: SELECT name, score FROM sales ORDER BY score DESC
+```
+
+Only `SELECT` and `WITH` are permitted, identifiers are validated, and the row
+limit is clamped. The query box cannot modify your data — by construction, not
+by convention.
+
+### Image gen
+
+Generates an image from a prompt using the `imagen` CLI, embedded as a data URI.
+
+### Diagram gen
+
+Generates a Mermaid diagram from a prompt using the `claude` CLI. The result is
+validated as Mermaid before it is accepted, so a bad generation cannot corrupt
+the document.
+
+Both generative blocks need their CLI on your `PATH`. Without it the block
+reports the failure rather than silently doing nothing.
+
+---
+
+## Known limitations at v0.1.0
+
+Stated here so you meet them on your terms:
+
+- **Only Mermaid blocks survive a save/reload cycle.** Dataset, Query, Image gen
+  and Diagram gen blocks degrade into plain code blocks once a document is saved
+  and reopened. Your content is not lost, but the block becomes inert.
+- **The packaged desktop build does not run.** Use `bun tauri dev`.
+- **No hot reload.** The dev server rebuilds when files change but does not
+  refresh the page — reload manually.
+- **The bundled demo query returns no rows.** The sample data disagrees on
+  capitalisation in its join condition.
+- Multi-line content in Diagram gen and Query blocks does not round-trip
+  reliably.
+
+---
+
+## Troubleshooting
+
+**"Access denied: path is outside the opened workspace"** — you are reaching for
+a file outside the folder you opened. Open the containing folder instead.
+
+**A Dataset block cannot find its file** — check the `source:` path. Relative
+paths resolve against the workspace root; a path that was absolute on another
+machine will not exist on yours.
+
+**Generative blocks fail immediately** — confirm `claude` or `imagen` is
+installed and on your `PATH`.
+
+**Saving appears to do nothing in the browser** — this was true before v0.1.0
+and is fixed. If you see it now, it is a bug worth reporting.
+
+---
+
+See the [Changelog](https://github.com/SpillwaveSolutions/motion/blob/main/CHANGELOG.md)
+for release history and the [[Roadmap]] for what is planned.

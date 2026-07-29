@@ -92,8 +92,9 @@ jobs:
         with:
           workspaces: src-tauri
 
-      # The workspace jail (ensure_within_workspace / resolve_path) lives here.
-      # These are the tests for the sibling-prefix and symlink escapes.
+      # The workspace jail lives in src-tauri/src/fs_core.rs, and this also runs
+      # tests/contract/storage-cases.json against it -- the same fixture bun test
+      # runs against the TypeScript core, so the two cannot drift apart.
       - name: Cargo test
         working-directory: src-tauri
         run: cargo test --lib

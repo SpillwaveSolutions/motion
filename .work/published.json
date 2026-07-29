@@ -707,5 +707,19 @@
     "source_hash": "0233da90a37a",
     "title": "_Sidebar",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/_Sidebar"
+  },
+  "user-guide": {
+    "aliases": [
+      "user-guide"
+    ],
+    "canonical_key": "guide/user-guide",
+    "doc_type": "guide",
+    "rev": null,
+    "source": "docs/user_guide/user-guide.md",
+    "source_hash": null,
+    "title": "User Guide",
+    "truth_state": "current",
+    "url": null,
+    "wiki_key": "user-guide"
   }
 }

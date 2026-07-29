@@ -1,6 +1,16 @@
 {
  "edges": [
   {
+   "from": "design/current-code-walkthrough",
+   "to": "release/v0.1.0",
+   "type": "targets"
+  },
+  {
+   "from": "design/current-design-doc",
+   "to": "release/v0.1.0",
+   "type": "targets"
+  },
+  {
    "from": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "to": "item/01KYFZ6RBHW4FJK9EGFAQ3XNJX",
    "type": "belongs-to"
@@ -316,6 +326,11 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYNMZ132M2NE1EYPHG2DCCAW",
+   "to": "item/01KYK6NHSFJNG9XV6D8K5SHWCV",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -607,6 +622,18 @@
   }
  ],
  "nodes": {
+  "design/current-code-walkthrough": {
+   "doc_type": "design",
+   "source": "docs/designs/current_code_walkthrough.md",
+   "title": "Motion \u2014 Current Code Walkthrough",
+   "truth_state": "current"
+  },
+  "design/current-design-doc": {
+   "doc_type": "design",
+   "source": "docs/designs/current_design_doc.md",
+   "title": "Motion \u2014 Current Design Document",
+   "truth_state": "current"
+  },
   "item/01KYDZ4A5HN1AZ7BN8Q2WV3XVN": {
    "doc_type": "item",
    "status": "done",
@@ -952,6 +979,11 @@
    "status": "done",
    "title": "Dev server bound to 0.0.0.0, exposing filesystem writes and subprocess spawning to the local network"
   },
+  "item/01KYNMZ132M2NE1EYPHG2DCCAW": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Publish design doc, code walkthrough and user guide \u2014 resolve the three dangling wiki links"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -978,6 +1010,12 @@
    "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
+  },
+  "user-guide": {
+   "doc_type": "guide",
+   "source": "docs/user_guide/user-guide.md",
+   "title": "User Guide",
+   "truth_state": "current"
   }
  },
  "version": 1
