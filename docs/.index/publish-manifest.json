@@ -776,7 +776,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "53213292099b",
+   "render_hash": "beab3ab15575",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
