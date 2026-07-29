@@ -62,11 +62,18 @@ bun run dev     # browser at http://localhost:3000
 **Desktop (`bun tauri dev`)** is the real product: a native folder picker, and
 reading and writing files anywhere inside the folder you open.
 
-**Browser (`bun run dev`)** currently runs against a fixed demo workspace
-(`public/demo/`) and **does not persist writes** — saving reports success but
-changes nothing. It exists so the UI can be driven by browser automation. Making
-this backend real is the next milestone; until then, do not evaluate save
-behaviour in the browser.
+**Browser (`bun run dev`)** reads and writes real files too, against a workspace
+directory set by `MOTION_WORKSPACE` (default `public/demo/`) instead of a folder
+picker:
+
+```bash
+MOTION_WORKSPACE=~/notes bun run dev
+```
+
+Both modes go through the same rules, enforced by one shared contract that both
+test suites run — so behaviour you see in the browser is behaviour the desktop
+app is held to. That is what makes browser automation a meaningful gate rather
+than a rehearsal. The server binds to `127.0.0.1`.
 
 There is no hot reload. The dev server rebuilds the bundle when files change, but
 the page does not refresh itself — reload manually.
@@ -95,7 +102,6 @@ cannot pass quietly. See `CLAUDE.md` for the full definition of done.
 
 Recorded here rather than discovered later:
 
-- Browser mode does not persist writes (above).
 - `bun run build` does not emit an entry HTML file, so the **packaged desktop
   build does not work yet** — use `bun tauri dev`.
 - Dataset, Query, Image gen and Diagram gen blocks do not survive a save/reload
