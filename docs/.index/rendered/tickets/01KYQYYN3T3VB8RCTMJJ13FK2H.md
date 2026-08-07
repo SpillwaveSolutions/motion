@@ -1,6 +1,6 @@
 # Welcome / demo datasets resolve when the open folder is not Motion
 
-`01KYQYYN3T3VB8RCTMJJ13FK2H` · task/feature · **open**
+`01KYQYYN3T3VB8RCTMJJ13FK2H` · task/feature · **done**
 
 In Tauri, opening an arbitrary project folder leaves welcome pointing at
 sample-data.csv / sample-events.jsonl that are not in that folder → red

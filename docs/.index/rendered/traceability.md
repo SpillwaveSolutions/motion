@@ -2,6 +2,378 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Update user-facing docs
+`01KZF796D8ZGMWVK04YJABXR6M` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Document the file argument, the unsaved guard, and zoom in `docs/user_guide/user-guide.md`
+- contains: Update the README feature list and known limitations
+- contains: Commit
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write failing tests for the scale reducer
+`01KZF796D8QZRGNVV5VS2VJKMH` · status: todo
+- belongs-to: Zoom the app with ⌘+, ⌘− and ⌘0
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Run `bun run verify` and commit
+`01KZF796D8GRCQVQYQ8RM2J301` · status: todo
+- belongs-to: Zoom the app with ⌘+, ⌘− and ⌘0
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Commit
+`01KZF796D8B0Y62FBE775Q7PTR` · status: todo
+- belongs-to: Update user-facing docs
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Update the README feature list and known limitations
+`01KZF796D8ARMVFVGRX3FGE262` · status: todo
+- belongs-to: Update user-facing docs
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Mount it in `src/App.tsx` and apply the saved value at boot
+`01KZF796D89YD00DR64VGVAJ1V` · status: todo
+- belongs-to: Zoom the app with ⌘+, ⌘− and ⌘0
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write `e2e/zoom.spec.ts` asserting the computed root font size and survival across reload
+`01KZF796D88XT43Y4PTYPCKP7E` · status: todo
+- belongs-to: Zoom the app with ⌘+, ⌘− and ⌘0
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Implement `src/lib/zoom.ts` and the `useZoom` hook with debounced persistence
+`01KZF796D88VACJ230R487YY1K` · status: todo
+- belongs-to: Zoom the app with ⌘+, ⌘− and ⌘0
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Document the file argument, the unsaved guard, and zoom in `docs/user_guide/user-guide.md`
+`01KZF796D86GET2MKXHP5AJRMQ` · status: todo
+- belongs-to: Update user-facing docs
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Add the field, default, and clamp to `src/lib/settings.ts`
+`01KZF796D7ZQYQQPP1BX3H9HQB` · status: todo
+- belongs-to: Add a validated zoom level to settings
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Add the `check:` rubric rows to `e2e/layout.spec.ts` and commit
+`01KZF796D7ZGXJ30SD9QX6F2SW` · status: todo
+- belongs-to: Warn before switching notes with unsaved edits
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Run `bun test src` green and commit
+`01KZF796D7Y5RN6FRFXT6AKC11` · status: todo
+- belongs-to: Track unsaved editor changes
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write failing tests for the dirty predicate
+`01KZF796D7X9DM9THYCNTFPH03` · status: todo
+- belongs-to: Track unsaved editor changes
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Add the `savedMarkdown` snapshot and `onDirtyChange` to the Editor
+`01KZF796D7WSC35B41ZNQV9P5V` · status: todo
+- belongs-to: Track unsaved editor changes
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Zoom the app with ⌘+, ⌘− and ⌘0
+`01KZF796D7T4MB8E1N5S9B3RJW` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Implement `src/lib/zoom.ts` and the `useZoom` hook with debounced persistence
+- contains: Write `e2e/zoom.spec.ts` asserting the computed root font size and survival across reload
+- contains: Mount it in `src/App.tsx` and apply the saved value at boot
+- contains: Run `bun run verify` and commit
+- contains: Write failing tests for the scale reducer
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Track unsaved editor changes
+`01KZF796D7SBPX52KF580NPAPW` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Add the `savedMarkdown` snapshot and `onDirtyChange` to the Editor
+- contains: Write failing tests for the dirty predicate
+- contains: Run `bun test src` green and commit
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Add `open_file` to `BootstrapInfo` in `src-tauri/src/lib.rs`
+`01KZF796D7PP25PNYZ3003PJ74` · status: todo
+- belongs-to: Carry `openFile` through the bootstrap payload
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Open the CLI-supplied file on boot
+`01KZF796D7K6BR1ZQQ8SVC8YPH` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Write `e2e/cli-open-file.spec.ts` driving a server booted with the env var
+- contains: Run the E2E green and commit
+- contains: Extend the auto-open effect in `src/App.tsx` to select `openFile`
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Warn before switching notes with unsaved edits
+`01KZF796D7K5T4BS7K4ZWVKFT1` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Intercept file selection in `src/App.tsx`
+- contains: Write `e2e/unsaved-guard.spec.ts` covering all three outcomes plus the clean-switch case
+- contains: Build `UnsavedChangesDialog` with the three documented actions
+- contains: Add the `check:` rubric rows to `e2e/layout.spec.ts` and commit
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Build `UnsavedChangesDialog` with the three documented actions
+`01KZF796D7H8F2PH7VJJDVCR9M` · status: todo
+- belongs-to: Warn before switching notes with unsaved edits
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Extend the auto-open effect in `src/App.tsx` to select `openFile`
+`01KZF796D78HWFN79T9TNYVJPN` · status: todo
+- belongs-to: Open the CLI-supplied file on boot
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write failing tests for `zoom` absent, out of range, and non-numeric
+`01KZF796D75QVQM6MQYPGVMSKE` · status: todo
+- belongs-to: Add a validated zoom level to settings
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Run the E2E green and commit
+`01KZF796D75MSG13JB0ZED5NQ1` · status: todo
+- belongs-to: Open the CLI-supplied file on boot
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Add a validated zoom level to settings
+`01KZF796D745F0RNS2QGV44EMK` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Run `bun test src/lib/settings.test.ts` green and commit
+- contains: Write failing tests for `zoom` absent, out of range, and non-numeric
+- contains: Add the field, default, and clamp to `src/lib/settings.ts`
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Run `cargo test --lib` and `cargo clippy --all-targets -- -D warnings`, then commit
+`01KZF796D72GZ2QWRAASHTNSRA` · status: todo
+- belongs-to: Carry `openFile` through the bootstrap payload
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write `e2e/cli-open-file.spec.ts` driving a server booted with the env var
+`01KZF796D725F72PYEAHRZZSKQ` · status: todo
+- belongs-to: Open the CLI-supplied file on boot
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write `e2e/unsaved-guard.spec.ts` covering all three outcomes plus the clean-switch case
+`01KZF796D71X3W53R1W9GRGDEC` · status: todo
+- belongs-to: Warn before switching notes with unsaved edits
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Extend `BootstrapInfo` in `src/lib/storage/index.ts`
+`01KZF796D71ATP5ZX7XZY1FG7V` · status: todo
+- belongs-to: Carry `openFile` through the bootstrap payload
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Intercept file selection in `src/App.tsx`
+`01KZF796D715WDWPYE7DBVV7WZ` · status: todo
+- belongs-to: Warn before switching notes with unsaved edits
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Run `bun test src/lib/settings.test.ts` green and commit
+`01KZF796D70MHWVDM1PZGFDCPN` · status: todo
+- belongs-to: Add a validated zoom level to settings
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Write failing tests for directory, existing `.md`, missing `.md`, and non-markdown non-directory
+`01KZF796D6VPDRQYR7N0F5JJZ5` · status: todo
+- belongs-to: Pure CLI path-argument classifier
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Verify by hand against a scratch directory and commit
+`01KZF796D6SJFH8JAYQAAS98H8` · status: todo
+- belongs-to: Teach `bin/motion` to accept a markdown file
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Run `bun test src/lib/cliPathArg.test.ts` green and commit
+`01KZF796D6SECSX92KFSQMRPN4` · status: todo
+- belongs-to: Pure CLI path-argument classifier
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Pure CLI path-argument classifier
+`01KZF796D6RNJ0Q40G0113QV8Q` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Implement `classifyPathArg` in `src/lib/cliPathArg.ts`
+- contains: Run `bun test src/lib/cliPathArg.test.ts` green and commit
+- contains: Write failing tests for directory, existing `.md`, missing `.md`, and non-markdown non-directory
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Add `openFile` to `/api/fs/workspace` in `src/server.ts`
+`01KZF796D6PYF8DQXHV67QRJDD` · status: todo
+- belongs-to: Carry `openFile` through the bootstrap payload
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Create the file when missing, then export `MOTION_OPEN_FILE`
+`01KZF796D6JZ2XPNGVFEGXJ9QR` · status: todo
+- belongs-to: Teach `bin/motion` to accept a markdown file
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Replace the `-d` check with file/directory classification
+`01KZF796D6FMZHDDXEX6D8TZ96` · status: todo
+- belongs-to: Teach `bin/motion` to accept a markdown file
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Teach `bin/motion` to accept a markdown file
+`01KZF796D6F9ZDTXF28PQBH969` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Replace the `-d` check with file/directory classification
+- contains: Create the file when missing, then export `MOTION_OPEN_FILE`
+- contains: Verify by hand against a scratch directory and commit
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Carry `openFile` through the bootstrap payload
+`01KZF796D6BPZCFNVPWEGYSSA0` · status: todo
+- belongs-to: CLI file argument, unsaved-changes guard, and editor zoom
+- contains: Add `openFile` to `/api/fs/workspace` in `src/server.ts`
+- contains: Extend `BootstrapInfo` in `src/lib/storage/index.ts`
+- contains: Run `cargo test --lib` and `cargo clippy --all-targets -- -D warnings`, then commit
+- contains: Add `open_file` to `BootstrapInfo` in `src-tauri/src/lib.rs`
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### CLI file argument, unsaved-changes guard, and editor zoom
+`01KZF796D647FD32J1W2452NWM` · status: todo
+- contains: Carry `openFile` through the bootstrap payload
+- contains: Teach `bin/motion` to accept a markdown file
+- contains: Pure CLI path-argument classifier
+- contains: Add a validated zoom level to settings
+- contains: Warn before switching notes with unsaved edits
+- contains: Open the CLI-supplied file on boot
+- contains: Track unsaved editor changes
+- contains: Zoom the app with ⌘+, ⌘− and ⌘0
+- contains: Update user-facing docs
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Implement `classifyPathArg` in `src/lib/cliPathArg.ts`
+`01KZF796D63FJCPA6FMJC6582E` · status: todo
+- belongs-to: Pure CLI path-argument classifier
+- produced-by: [[Plan-cli-file-arg-dirty-zoom]]
+
+### Expand docs/ui for dialogs and blocks
+`01KZ42HH7BYM4S6V67BBN6TGYV` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### Optional CI: ui:check wireframe syntax only
+`01KZ42HH7BAPBM2Y19SBJPE1V3` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### Agent policy and design-ui skill
+`01KZ42HH7ASMGN1NW5MZN46C8Q` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### Scaffold docs/ui, scripts, capture freeze mode
+`01KZ42HH7ASHAYV7TFM3RG3DE1` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### Playwright capture harness and layout Check gates
+`01KZ42HH7AJYC4AC3VC8VJ3WDT` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### UI wireframe specs, capture recipes, and agent-judge loop
+`01KZ42HH7AFDSY4E4F04F1Y4CR` · status: done
+- contains: Wireframes and screen specs for shell, sidebar, editor
+- contains: ui-audit script for deterministic DOM/CSS chrome checks
+- contains: Playwright capture harness and layout Check gates
+- contains: Scaffold docs/ui, scripts, capture freeze mode
+- contains: Agent policy and design-ui skill
+- contains: Optional CI: ui:check wireframe syntax only
+- contains: Expand docs/ui for dialogs and blocks
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### ui-audit script for deterministic DOM/CSS chrome checks
+`01KZ42HH7AEFH7EKY1C8YFA8FJ` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### Wireframes and screen specs for shell, sidebar, editor
+`01KZ42HH7A4EDS0ZNPG2PKQ8PT` · status: done
+- belongs-to: UI wireframe specs, capture recipes, and agent-judge loop
+- produced-by: [[Plan-ui-wireframe-agent-judge]]
+
+### Path glob AND content grep compose together
+`01KYTQ67FJQ23NSC1GVH581216` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+
+### Hide YAML front matter from WYSIWYG view
+`01KYTPYMXBTSVK5CBJ6T1N5JQ1` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+
+### Tree sidebar collapses folders by default (click to expand)
+`01KYTHJBVWFB501A7T6BRPQNEY` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+
+### DuckDB query retries longer for cold WASM Dataset race on CI
+`01KYR5AT8YEJ41CCREP2VCFMCV` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### User guide and README: Save As and project navigator
+`01KYR5AT4298KJRWG9V4HXYJ3N` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Unit tests for noteNaming, fileTree, searchNotes, and demoFixtures
+`01KYR5ASZ5HH0KXQ4H36BNYEY0` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### E2E coverage for tree, flat, name filter, and content search
+`01KYR5ASSTQPK9SJWK7JVNP17C` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### E2E coverage for Save As, rename overwrite, and Untitled new-note flow
+`01KYR5ASMGEH266Q6YGXTRPGAG` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### FileSidebar: Find-in-Files content search with path:line hits
+`01KYR5ASFTMP26NGW7HD202QJV` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### FileSidebar: sort by name A-Z, Z-A, and session Recent
+`01KYR5ASB3F3WDY91ZX70B0E3A` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### FileSidebar: Tree and Flat layout with folder expand/collapse
+`01KYR5AS6481KPN2G2XJPW9SZY` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Surface real Tauri error strings on dataset load failures
+`01KYR5AS1220C9RAG5T9KTATH0` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Bundle welcome demo fixtures for sample-data.csv and sample-events.jsonl
+`01KYR5ARW4T97QC3QGC104P2KQ` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Overwrite confirmation when Save As would replace another note
+`01KYR5ARQ76XTH5PJR0KRZXTPH` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Save As dialog component with title-derived default filename
+`01KYR5ARJHQYGHNF1RW3RM8DHM` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### New Note is in-memory Untitled until first Save (macOS document model)
+`01KYR5ARDSPKHYE6SAD9TS218F` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
+### Save As / Rename: title-based filename and overwrite warning
+`01KYR4YYBRMXNSMKHKAYTN117F` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- produced-by: [[Plan-save-ux-and-next]]
+
 ### Keep README feature list and known limitations current
 `01KYQZ49A7NWRQZK83658CT4QT` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
@@ -18,12 +390,12 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Search inside file contents (grep/glob UX)
-`01KYQYYN3TKW93D9SVW07VKFZY` · status: todo
+`01KYQYYN3TKW93D9SVW07VKFZY` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Sidebar: sort by name or date
-`01KYQYYN3TA69K8848E483HC82` · status: todo
+`01KYQYYN3TA69K8848E483HC82` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
 - produced-by: [[Plan-save-ux-and-next]]
 
@@ -43,7 +415,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Sidebar: directory tree view alongside flat markdown list
-`01KYQYYN3T5W49QH05WCCYX7CE` · status: todo
+`01KYQYYN3T5W49QH05WCCYX7CE` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
 - produced-by: [[Plan-save-ux-and-next]]
 
@@ -53,7 +425,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Welcome / demo datasets resolve when the open folder is not Motion
-`01KYQYYN3T3VB8RCTMJJ13FK2H` · status: todo
+`01KYQYYN3T3VB8RCTMJJ13FK2H` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
 - produced-by: [[Plan-save-ux-and-next]]
 
@@ -76,6 +448,23 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Write or update design docs for post-v0.1 dogfood work and publish to wiki
 - contains: Update user guide for current behaviour and publish to wiki
 - contains: Keep README feature list and known limitations current
+- contains: Save As / Rename: title-based filename and overwrite warning
+- contains: New Note is in-memory Untitled until first Save (macOS document model)
+- contains: Save As dialog component with title-derived default filename
+- contains: Overwrite confirmation when Save As would replace another note
+- contains: Bundle welcome demo fixtures for sample-data.csv and sample-events.jsonl
+- contains: Surface real Tauri error strings on dataset load failures
+- contains: FileSidebar: Tree and Flat layout with folder expand/collapse
+- contains: FileSidebar: sort by name A-Z, Z-A, and session Recent
+- contains: FileSidebar: Find-in-Files content search with path:line hits
+- contains: E2E coverage for Save As, rename overwrite, and Untitled new-note flow
+- contains: E2E coverage for tree, flat, name filter, and content search
+- contains: Unit tests for noteNaming, fileTree, searchNotes, and demoFixtures
+- contains: User guide and README: Save As and project navigator
+- contains: DuckDB query retries longer for cold WASM Dataset race on CI
+- contains: Tree sidebar collapses folders by default (click to expand)
+- contains: Hide YAML front matter from WYSIWYG view
+- contains: Path glob AND content grep compose together
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### README and user guide claimed markdown tables, which are not supported

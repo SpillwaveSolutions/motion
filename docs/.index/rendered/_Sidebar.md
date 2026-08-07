@@ -2,6 +2,7 @@
 
 - [[Roadmap]]
 - [[Design-Doc]] · [[Code-Walkthrough]]
+- Plan: [[Plan-cli-file-arg-dirty-zoom]]
 - Plan: [[Plan-save-ux-and-next]]
 
 ### History

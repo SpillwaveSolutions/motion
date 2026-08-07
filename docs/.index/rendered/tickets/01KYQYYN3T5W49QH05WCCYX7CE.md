@@ -1,6 +1,6 @@
 # Sidebar: directory tree view alongside flat markdown list
 
-`01KYQYYN3T5W49QH05WCCYX7CE` · task/feature · **open**
+`01KYQYYN3T5W49QH05WCCYX7CE` · task/feature · **done**
 
 Flat list of all .md files is useful; also need a tree of directories so large
 workspaces are navigable.

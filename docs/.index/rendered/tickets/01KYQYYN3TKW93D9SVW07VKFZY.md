@@ -1,6 +1,6 @@
 # Search inside file contents (grep/glob UX)
 
-`01KYQYYN3TKW93D9SVW07VKFZY` · task/feature · **open**
+`01KYQYYN3TKW93D9SVW07VKFZY` · task/feature · **done**
 
 Filename search already works.
 

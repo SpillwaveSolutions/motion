@@ -1,6 +1,11 @@
 {
  "edges": [
   {
+   "from": "design/2026-08-07-cli-file-arg-dirty-zoom-design",
+   "to": "design/current-code-walkthrough",
+   "type": "snapshot-of"
+  },
+  {
    "from": "design/current-code-walkthrough",
    "to": "release/v0.1.0+dogfood",
    "type": "targets"
@@ -401,6 +406,326 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYR4YYBRMXNSMKHKAYTN117F",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ARDSPKHYE6SAD9TS218F",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ARJHQYGHNF1RW3RM8DHM",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ARQ76XTH5PJR0KRZXTPH",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ARW4T97QC3QGC104P2KQ",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5AS1220C9RAG5T9KTATH0",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5AS6481KPN2G2XJPW9SZY",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ASB3F3WDY91ZX70B0E3A",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ASFTMP26NGW7HD202QJV",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ASMGEH266Q6YGXTRPGAG",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ASSTQPK9SJWK7JVNP17C",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5ASZ5HH0KXQ4H36BNYEY0",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5AT4298KJRWG9V4HXYJ3N",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYR5AT8YEJ41CCREP2VCFMCV",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYTHJBVWFB501A7T6BRPQNEY",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYTPYMXBTSVK5CBJ6T1N5JQ1",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYTQ67FJQ23NSC1GVH581216",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7A4EDS0ZNPG2PKQ8PT",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7AEFH7EKY1C8YFA8FJ",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7AJYC4AC3VC8VJ3WDT",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7ASHAYV7TFM3RG3DE1",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7ASMGN1NW5MZN46C8Q",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7BAPBM2Y19SBJPE1V3",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZ42HH7BYM4S6V67BBN6TGYV",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D63FJCPA6FMJC6582E",
+   "to": "item/01KZF796D6RNJ0Q40G0113QV8Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6BPZCFNVPWEGYSSA0",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6F9ZDTXF28PQBH969",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6FMZHDDXEX6D8TZ96",
+   "to": "item/01KZF796D6F9ZDTXF28PQBH969",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6JZ2XPNGVFEGXJ9QR",
+   "to": "item/01KZF796D6F9ZDTXF28PQBH969",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6PYF8DQXHV67QRJDD",
+   "to": "item/01KZF796D6BPZCFNVPWEGYSSA0",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6RNJ0Q40G0113QV8Q",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6SECSX92KFSQMRPN4",
+   "to": "item/01KZF796D6RNJ0Q40G0113QV8Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6SJFH8JAYQAAS98H8",
+   "to": "item/01KZF796D6F9ZDTXF28PQBH969",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D6VPDRQYR7N0F5JJZ5",
+   "to": "item/01KZF796D6RNJ0Q40G0113QV8Q",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D70MHWVDM1PZGFDCPN",
+   "to": "item/01KZF796D745F0RNS2QGV44EMK",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D715WDWPYE7DBVV7WZ",
+   "to": "item/01KZF796D7K5T4BS7K4ZWVKFT1",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D71ATP5ZX7XZY1FG7V",
+   "to": "item/01KZF796D6BPZCFNVPWEGYSSA0",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D71X3W53R1W9GRGDEC",
+   "to": "item/01KZF796D7K5T4BS7K4ZWVKFT1",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D725F72PYEAHRZZSKQ",
+   "to": "item/01KZF796D7K6BR1ZQQ8SVC8YPH",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D72GZ2QWRAASHTNSRA",
+   "to": "item/01KZF796D6BPZCFNVPWEGYSSA0",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D745F0RNS2QGV44EMK",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D75MSG13JB0ZED5NQ1",
+   "to": "item/01KZF796D7K6BR1ZQQ8SVC8YPH",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D75QVQM6MQYPGVMSKE",
+   "to": "item/01KZF796D745F0RNS2QGV44EMK",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D78HWFN79T9TNYVJPN",
+   "to": "item/01KZF796D7K6BR1ZQQ8SVC8YPH",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7H8F2PH7VJJDVCR9M",
+   "to": "item/01KZF796D7K5T4BS7K4ZWVKFT1",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7K5T4BS7K4ZWVKFT1",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7K6BR1ZQQ8SVC8YPH",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7PP25PNYZ3003PJ74",
+   "to": "item/01KZF796D6BPZCFNVPWEGYSSA0",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7SBPX52KF580NPAPW",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7WSC35B41ZNQV9P5V",
+   "to": "item/01KZF796D7SBPX52KF580NPAPW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7X9DM9THYCNTFPH03",
+   "to": "item/01KZF796D7SBPX52KF580NPAPW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7Y5RN6FRFXT6AKC11",
+   "to": "item/01KZF796D7SBPX52KF580NPAPW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7ZGXJ30SD9QX6F2SW",
+   "to": "item/01KZF796D7K5T4BS7K4ZWVKFT1",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D7ZQYQQPP1BX3H9HQB",
+   "to": "item/01KZF796D745F0RNS2QGV44EMK",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D86GET2MKXHP5AJRMQ",
+   "to": "item/01KZF796D8ZGMWVK04YJABXR6M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D88VACJ230R487YY1K",
+   "to": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D88XT43Y4PTYPCKP7E",
+   "to": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D89YD00DR64VGVAJ1V",
+   "to": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D8ARMVFVGRX3FGE262",
+   "to": "item/01KZF796D8ZGMWVK04YJABXR6M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D8B0Y62FBE775Q7PTR",
+   "to": "item/01KZF796D8ZGMWVK04YJABXR6M",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D8GRCQVQYQ8RM2J301",
+   "to": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D8QZRGNVV5VS2VJKMH",
+   "to": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KZF796D8ZGMWVK04YJABXR6M",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "belongs-to"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -746,6 +1071,321 @@
    "type": "produces"
   },
   {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR4YYBRMXNSMKHKAYTN117F",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ARDSPKHYE6SAD9TS218F",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ARJHQYGHNF1RW3RM8DHM",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ARQ76XTH5PJR0KRZXTPH",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ARW4T97QC3QGC104P2KQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5AS1220C9RAG5T9KTATH0",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5AS6481KPN2G2XJPW9SZY",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ASB3F3WDY91ZX70B0E3A",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ASFTMP26NGW7HD202QJV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ASMGEH266Q6YGXTRPGAG",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ASSTQPK9SJWK7JVNP17C",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5ASZ5HH0KXQ4H36BNYEY0",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5AT4298KJRWG9V4HXYJ3N",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-07-29-save-ux-and-next",
+   "to": "item/01KYR5AT8YEJ41CCREP2VCFMCV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7A4EDS0ZNPG2PKQ8PT",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7AEFH7EKY1C8YFA8FJ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7AFDSY4E4F04F1Y4CR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7AJYC4AC3VC8VJ3WDT",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7ASHAYV7TFM3RG3DE1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7ASMGN1NW5MZN46C8Q",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7BAPBM2Y19SBJPE1V3",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-03-ui-wireframe-agent-judge",
+   "to": "item/01KZ42HH7BYM4S6V67BBN6TGYV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D63FJCPA6FMJC6582E",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D647FD32J1W2452NWM",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6BPZCFNVPWEGYSSA0",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6F9ZDTXF28PQBH969",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6FMZHDDXEX6D8TZ96",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6JZ2XPNGVFEGXJ9QR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6PYF8DQXHV67QRJDD",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6RNJ0Q40G0113QV8Q",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6SECSX92KFSQMRPN4",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6SJFH8JAYQAAS98H8",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D6VPDRQYR7N0F5JJZ5",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D70MHWVDM1PZGFDCPN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D715WDWPYE7DBVV7WZ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D71ATP5ZX7XZY1FG7V",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D71X3W53R1W9GRGDEC",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D725F72PYEAHRZZSKQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D72GZ2QWRAASHTNSRA",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D745F0RNS2QGV44EMK",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D75MSG13JB0ZED5NQ1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D75QVQM6MQYPGVMSKE",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D78HWFN79T9TNYVJPN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7H8F2PH7VJJDVCR9M",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7K5T4BS7K4ZWVKFT1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7K6BR1ZQQ8SVC8YPH",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7PP25PNYZ3003PJ74",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7SBPX52KF580NPAPW",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7T4MB8E1N5S9B3RJW",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7WSC35B41ZNQV9P5V",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7X9DM9THYCNTFPH03",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7Y5RN6FRFXT6AKC11",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7ZGXJ30SD9QX6F2SW",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D7ZQYQQPP1BX3H9HQB",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D86GET2MKXHP5AJRMQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D88VACJ230R487YY1K",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D88XT43Y4PTYPCKP7E",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D89YD00DR64VGVAJ1V",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D8ARMVFVGRX3FGE262",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D8B0Y62FBE775Q7PTR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D8GRCQVQYQ8RM2J301",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D8QZRGNVV5VS2VJKMH",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-07-cli-file-arg-dirty-zoom",
+   "to": "item/01KZF796D8ZGMWVK04YJABXR6M",
+   "type": "produces"
+  },
+  {
    "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -757,6 +1397,12 @@
   }
  ],
  "nodes": {
+  "design/2026-08-07-cli-file-arg-dirty-zoom-design": {
+   "doc_type": "design",
+   "source": "docs/designs/2026-08-07-cli-file-arg-dirty-zoom-design.md",
+   "title": "CLI file argument, unsaved-changes guard, and editor zoom",
+   "truth_state": "snapshot"
+  },
   "design/current-code-walkthrough": {
    "doc_type": "design",
    "source": "docs/designs/current_code_walkthrough.md",
@@ -1141,7 +1787,7 @@
   },
   "item/01KYQYYN3T3VB8RCTMJJ13FK2H": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Welcome / demo datasets resolve when the open folder is not Motion"
   },
   "item/01KYQYYN3T5RXZWBXWV9VNP3ZH": {
@@ -1151,7 +1797,7 @@
   },
   "item/01KYQYYN3T5W49QH05WCCYX7CE": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Sidebar: directory tree view alongside flat markdown list"
   },
   "item/01KYQYYN3T731B57N8NXQ8C0FQ": {
@@ -1171,12 +1817,12 @@
   },
   "item/01KYQYYN3TA69K8848E483HC82": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Sidebar: sort by name or date"
   },
   "item/01KYQYYN3TKW93D9SVW07VKFZY": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Search inside file contents (grep/glob UX)"
   },
   "item/01KYQZ491VF71K9KCDHAZYNE9S": {
@@ -1194,6 +1840,336 @@
    "status": "done",
    "title": "Keep README feature list and known limitations current"
   },
+  "item/01KYR4YYBRMXNSMKHKAYTN117F": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Save As / Rename: title-based filename and overwrite warning"
+  },
+  "item/01KYR5ARDSPKHYE6SAD9TS218F": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "New Note is in-memory Untitled until first Save (macOS document model)"
+  },
+  "item/01KYR5ARJHQYGHNF1RW3RM8DHM": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Save As dialog component with title-derived default filename"
+  },
+  "item/01KYR5ARQ76XTH5PJR0KRZXTPH": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Overwrite confirmation when Save As would replace another note"
+  },
+  "item/01KYR5ARW4T97QC3QGC104P2KQ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Bundle welcome demo fixtures for sample-data.csv and sample-events.jsonl"
+  },
+  "item/01KYR5AS1220C9RAG5T9KTATH0": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Surface real Tauri error strings on dataset load failures"
+  },
+  "item/01KYR5AS6481KPN2G2XJPW9SZY": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "FileSidebar: Tree and Flat layout with folder expand/collapse"
+  },
+  "item/01KYR5ASB3F3WDY91ZX70B0E3A": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "FileSidebar: sort by name A-Z, Z-A, and session Recent"
+  },
+  "item/01KYR5ASFTMP26NGW7HD202QJV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "FileSidebar: Find-in-Files content search with path:line hits"
+  },
+  "item/01KYR5ASMGEH266Q6YGXTRPGAG": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "E2E coverage for Save As, rename overwrite, and Untitled new-note flow"
+  },
+  "item/01KYR5ASSTQPK9SJWK7JVNP17C": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "E2E coverage for tree, flat, name filter, and content search"
+  },
+  "item/01KYR5ASZ5HH0KXQ4H36BNYEY0": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Unit tests for noteNaming, fileTree, searchNotes, and demoFixtures"
+  },
+  "item/01KYR5AT4298KJRWG9V4HXYJ3N": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "User guide and README: Save As and project navigator"
+  },
+  "item/01KYR5AT8YEJ41CCREP2VCFMCV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "DuckDB query retries longer for cold WASM Dataset race on CI"
+  },
+  "item/01KYTHJBVWFB501A7T6BRPQNEY": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Tree sidebar collapses folders by default (click to expand)"
+  },
+  "item/01KYTPYMXBTSVK5CBJ6T1N5JQ1": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Hide YAML front matter from WYSIWYG view"
+  },
+  "item/01KYTQ67FJQ23NSC1GVH581216": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Path glob AND content grep compose together"
+  },
+  "item/01KZ42HH7A4EDS0ZNPG2PKQ8PT": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Wireframes and screen specs for shell, sidebar, editor"
+  },
+  "item/01KZ42HH7AEFH7EKY1C8YFA8FJ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "ui-audit script for deterministic DOM/CSS chrome checks"
+  },
+  "item/01KZ42HH7AFDSY4E4F04F1Y4CR": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "UI wireframe specs, capture recipes, and agent-judge loop"
+  },
+  "item/01KZ42HH7AJYC4AC3VC8VJ3WDT": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Playwright capture harness and layout Check gates"
+  },
+  "item/01KZ42HH7ASHAYV7TFM3RG3DE1": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Scaffold docs/ui, scripts, capture freeze mode"
+  },
+  "item/01KZ42HH7ASMGN1NW5MZN46C8Q": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Agent policy and design-ui skill"
+  },
+  "item/01KZ42HH7BAPBM2Y19SBJPE1V3": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Optional CI: ui:check wireframe syntax only"
+  },
+  "item/01KZ42HH7BYM4S6V67BBN6TGYV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Expand docs/ui for dialogs and blocks"
+  },
+  "item/01KZF796D63FJCPA6FMJC6582E": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Implement `classifyPathArg` in `src/lib/cliPathArg.ts`"
+  },
+  "item/01KZF796D647FD32J1W2452NWM": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "CLI file argument, unsaved-changes guard, and editor zoom"
+  },
+  "item/01KZF796D6BPZCFNVPWEGYSSA0": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Carry `openFile` through the bootstrap payload"
+  },
+  "item/01KZF796D6F9ZDTXF28PQBH969": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Teach `bin/motion` to accept a markdown file"
+  },
+  "item/01KZF796D6FMZHDDXEX6D8TZ96": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Replace the `-d` check with file/directory classification"
+  },
+  "item/01KZF796D6JZ2XPNGVFEGXJ9QR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Create the file when missing, then export `MOTION_OPEN_FILE`"
+  },
+  "item/01KZF796D6PYF8DQXHV67QRJDD": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add `openFile` to `/api/fs/workspace` in `src/server.ts`"
+  },
+  "item/01KZF796D6RNJ0Q40G0113QV8Q": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Pure CLI path-argument classifier"
+  },
+  "item/01KZF796D6SECSX92KFSQMRPN4": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Run `bun test src/lib/cliPathArg.test.ts` green and commit"
+  },
+  "item/01KZF796D6SJFH8JAYQAAS98H8": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Verify by hand against a scratch directory and commit"
+  },
+  "item/01KZF796D6VPDRQYR7N0F5JJZ5": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write failing tests for directory, existing `.md`, missing `.md`, and non-markdown non-directory"
+  },
+  "item/01KZF796D70MHWVDM1PZGFDCPN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Run `bun test src/lib/settings.test.ts` green and commit"
+  },
+  "item/01KZF796D715WDWPYE7DBVV7WZ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Intercept file selection in `src/App.tsx`"
+  },
+  "item/01KZF796D71ATP5ZX7XZY1FG7V": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Extend `BootstrapInfo` in `src/lib/storage/index.ts`"
+  },
+  "item/01KZF796D71X3W53R1W9GRGDEC": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write `e2e/unsaved-guard.spec.ts` covering all three outcomes plus the clean-switch case"
+  },
+  "item/01KZF796D725F72PYEAHRZZSKQ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write `e2e/cli-open-file.spec.ts` driving a server booted with the env var"
+  },
+  "item/01KZF796D72GZ2QWRAASHTNSRA": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Run `cargo test --lib` and `cargo clippy --all-targets -- -D warnings`, then commit"
+  },
+  "item/01KZF796D745F0RNS2QGV44EMK": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add a validated zoom level to settings"
+  },
+  "item/01KZF796D75MSG13JB0ZED5NQ1": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Run the E2E green and commit"
+  },
+  "item/01KZF796D75QVQM6MQYPGVMSKE": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write failing tests for `zoom` absent, out of range, and non-numeric"
+  },
+  "item/01KZF796D78HWFN79T9TNYVJPN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Extend the auto-open effect in `src/App.tsx` to select `openFile`"
+  },
+  "item/01KZF796D7H8F2PH7VJJDVCR9M": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Build `UnsavedChangesDialog` with the three documented actions"
+  },
+  "item/01KZF796D7K5T4BS7K4ZWVKFT1": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Warn before switching notes with unsaved edits"
+  },
+  "item/01KZF796D7K6BR1ZQQ8SVC8YPH": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Open the CLI-supplied file on boot"
+  },
+  "item/01KZF796D7PP25PNYZ3003PJ74": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add `open_file` to `BootstrapInfo` in `src-tauri/src/lib.rs`"
+  },
+  "item/01KZF796D7SBPX52KF580NPAPW": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Track unsaved editor changes"
+  },
+  "item/01KZF796D7T4MB8E1N5S9B3RJW": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Zoom the app with \u2318+, \u2318\u2212 and \u23180"
+  },
+  "item/01KZF796D7WSC35B41ZNQV9P5V": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add the `savedMarkdown` snapshot and `onDirtyChange` to the Editor"
+  },
+  "item/01KZF796D7X9DM9THYCNTFPH03": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write failing tests for the dirty predicate"
+  },
+  "item/01KZF796D7Y5RN6FRFXT6AKC11": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Run `bun test src` green and commit"
+  },
+  "item/01KZF796D7ZGXJ30SD9QX6F2SW": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add the `check:` rubric rows to `e2e/layout.spec.ts` and commit"
+  },
+  "item/01KZF796D7ZQYQQPP1BX3H9HQB": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add the field, default, and clamp to `src/lib/settings.ts`"
+  },
+  "item/01KZF796D86GET2MKXHP5AJRMQ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Document the file argument, the unsaved guard, and zoom in `docs/user_guide/user-guide.md`"
+  },
+  "item/01KZF796D88VACJ230R487YY1K": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Implement `src/lib/zoom.ts` and the `useZoom` hook with debounced persistence"
+  },
+  "item/01KZF796D88XT43Y4PTYPCKP7E": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write `e2e/zoom.spec.ts` asserting the computed root font size and survival across reload"
+  },
+  "item/01KZF796D89YD00DR64VGVAJ1V": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Mount it in `src/App.tsx` and apply the saved value at boot"
+  },
+  "item/01KZF796D8ARMVFVGRX3FGE262": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Update the README feature list and known limitations"
+  },
+  "item/01KZF796D8B0Y62FBE775Q7PTR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Commit"
+  },
+  "item/01KZF796D8GRCQVQYQ8RM2J301": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Run `bun run verify` and commit"
+  },
+  "item/01KZF796D8QZRGNVV5VS2VJKMH": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Write failing tests for the scale reducer"
+  },
+  "item/01KZF796D8ZGMWVK04YJABXR6M": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Update user-facing docs"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -1210,6 +2186,18 @@
    "doc_type": "plan",
    "source": "docs/plans/2026-07-29-save-ux-and-next.md",
    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
+   "truth_state": "current"
+  },
+  "plan/2026-08-03-ui-wireframe-agent-judge": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-08-03-ui-wireframe-agent-judge.md",
+   "title": "UI wireframe specs, capture recipes, and agent-judge loop",
+   "truth_state": "current"
+  },
+  "plan/2026-08-07-cli-file-arg-dirty-zoom": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-08-07-cli-file-arg-dirty-zoom.md",
+   "title": "CLI file argument, unsaved-changes guard, and editor zoom",
    "truth_state": "current"
   },
   "release/v0.1.0": {

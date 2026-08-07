@@ -1,0 +1,14 @@
+' Source: src/components/UnsavedChangesDialog.tsx — sidebar switch with a dirty buffer
+' Three outcomes, so a native confirm() cannot express this dialog.
+@startsalt
+{
+  {S
+    <b>Unsaved Changes
+    .
+    "welcome.md" has unsaved changes.
+    Save before opening "roadmap.md"?
+    .
+    [Discard] | [Cancel] | [Save]
+  }
+}
+@endsalt
