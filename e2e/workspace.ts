@@ -52,6 +52,7 @@ Body after the YAML block.
     "scratch-blocks.md": "# Scratch: blocks\n",
     "scratch-sanitize.md": "# Scratch: sanitize\n",
     "scratch-journeys.md": "# Scratch: journeys\n",
+    "scratch-unsaved.md": "# Scratch: unsaved guard\n",
 };
 
 export function createWorkspace(): string {

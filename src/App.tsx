@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import Editor from "./components/Editor";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Editor, { type SaveOutcome } from "./components/Editor";
 import { FileSidebar } from "./components/FileSidebar";
 import { SettingsDialog } from "./components/SettingsDialog";
+import { UnsavedChangesDialog } from "./components/UnsavedChangesDialog";
+import { basenameOf } from "./lib/noteNaming";
 import {
     storage,
     rememberWorkspaceRoot,
@@ -25,6 +27,17 @@ function App() {
     const [synthesis, setSynthesis] = useState<string | null>(null);
     const [recentOpens, setRecentOpens] = useState<Map<string, number>>(() => new Map());
     const [settingsOpen, setSettingsOpen] = useState(false);
+    /** Editor buffer differs from disk — reported up by the Editor. */
+    const [dirty, setDirty] = useState(false);
+    /** A file switch held back by the unsaved-changes guard. */
+    const [pendingFile, setPendingFile] = useState<string | null>(null);
+    // The Editor's own Save, so the dialog cannot grow a second save path.
+    const saveRef = useRef<(() => Promise<SaveOutcome>) | null>(null);
+    // Stable identity: the Editor re-registers whenever its save closure
+    // changes, and an unstable callback here would make that effect loop.
+    const registerSave = useCallback((save: () => Promise<SaveOutcome>) => {
+        saveRef.current = save;
+    }, []);
 
     const markRecent = useCallback((path: string) => {
         setRecentOpens((prev) => {
@@ -57,6 +70,7 @@ function App() {
         }
     };
 
+    /** Opens a note unconditionally. Guarded callers go through requestFileSelect. */
     const handleFileSelect = useCallback(
         (path: string) => {
             setIsNewDocument(false);
@@ -64,6 +78,23 @@ function App() {
             markRecent(path);
         },
         [markRecent]
+    );
+
+    /**
+     * Sidebar selection, guarded. When the open note has unsaved edits the
+     * switch is held in `pendingFile` until the dialog resolves it. The
+     * bootstrap path deliberately calls handleFileSelect directly: nothing can
+     * be dirty before the first document loads.
+     */
+    const requestFileSelect = useCallback(
+        (path: string) => {
+            if (dirty && path !== currentFilePath) {
+                setPendingFile(path);
+                return;
+            }
+            handleFileSelect(path);
+        },
+        [dirty, currentFilePath, handleFileSelect]
     );
 
     // `motion <dir>` sets MOTION_AUTO_OPEN so we open the CLI folder on boot,
@@ -134,6 +165,28 @@ function App() {
         setIsNewDocument(true);
         setCurrentFilePath(null);
         setNameFilter("");
+    };
+
+    /**
+     * Unsaved-changes guard, Save. Runs the editor's own Save and only then
+     * opens the note the user asked for.
+     *
+     * If Save routed to the name sheet (the dirty document is Untitled) the
+     * pending switch is abandoned rather than queued: the user is mid-naming,
+     * and yanking them off the document at that moment is worse than making
+     * them click the target again.
+     */
+    const handleGuardSave = async () => {
+        const target = pendingFile;
+        setPendingFile(null);
+        const outcome = (await saveRef.current?.()) ?? "failed";
+        if (outcome === "saved" && target) handleFileSelect(target);
+    };
+
+    const handleGuardDiscard = () => {
+        const target = pendingFile;
+        setPendingFile(null);
+        if (target) handleFileSelect(target);
     };
 
     const handleDocumentSaved = async (path: string) => {
@@ -241,7 +294,7 @@ function App() {
                     currentFilePath={currentFilePath}
                     nameFilter={nameFilter}
                     onNameFilterChange={setNameFilter}
-                    onSelectFile={handleFileSelect}
+                    onSelectFile={requestFileSelect}
                     recentOpens={recentOpens}
                 />
             </aside>
@@ -254,8 +307,20 @@ function App() {
                     workspacePath={workspacePath}
                     existingFiles={files}
                     onDocumentSaved={handleDocumentSaved}
+                    onDirtyChange={setDirty}
+                    onRegisterSave={registerSave}
                 />
             </main>
+
+            {pendingFile && (
+                <UnsavedChangesDialog
+                    currentName={currentFilePath ? basenameOf(currentFilePath) : "Untitled"}
+                    incomingName={basenameOf(pendingFile)}
+                    onSave={handleGuardSave}
+                    onDiscard={handleGuardDiscard}
+                    onCancel={() => setPendingFile(null)}
+                />
+            )}
 
             {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
         </div>
