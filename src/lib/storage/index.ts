@@ -66,6 +66,38 @@ async function failed(res: Response, what: string): Promise<never> {
  * fsCore the Tauri commands mirror, so behaviour that passes here is behaviour
  * the desktop app is held to by tests/contract/storage-cases.json.
  */
+export interface BootstrapInfo {
+    root: string | null;
+    autoOpen: boolean;
+    /**
+     * Absolute path of a note `motion <file.md>` asked for, or null. Absolute so
+     * it feeds handleFileSelect unchanged — listings are absolute too.
+     */
+    openFile: string | null;
+}
+
+/**
+ * Startup payload: workspace root, whether the UI should open it without a
+ * click, and any note the CLI named (all set when `motion` launched us).
+ */
+export async function fetchBootstrap(): Promise<BootstrapInfo> {
+    if (detectTauri()) {
+        return await invoke<BootstrapInfo>("get_bootstrap");
+    }
+    const res = await fetch("/api/fs/workspace");
+    if (!res.ok) return await failed(res, "Failed to read workspace bootstrap");
+    const data = (await res.json()) as {
+        root?: string;
+        autoOpen?: boolean;
+        openFile?: string | null;
+    };
+    return {
+        root: data.root ?? null,
+        autoOpen: Boolean(data.autoOpen),
+        openFile: data.openFile ?? null,
+    };
+}
+
 export class HttpStorage implements StorageProvider {
     /**
      * The browser has no folder picker: the workspace is fixed by the server's

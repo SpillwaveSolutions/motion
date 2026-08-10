@@ -4,7 +4,7 @@
  * Serves the app with CSS inlined and JS as external file.
  */
 
-import { watch, mkdirSync, existsSync } from "fs";
+import { watch, mkdirSync, existsSync, realpathSync } from "fs";
 import { join, dirname, resolve, relative, isAbsolute } from "path";
 import { callLLM, type ModelProvider } from "./lib/cliWrappers";
 import { generateImage } from "./lib/imageGen";
@@ -17,6 +17,8 @@ import {
     MARKDOWN_EXTENSIONS,
     DATA_EXTENSIONS,
 } from "./lib/fsCore";
+import { loadSettings, saveSettings, defaultSettingsPath } from "./lib/settingsIo";
+import type { MotionSettings } from "./lib/settings";
 
 const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
@@ -31,14 +33,41 @@ const PORT = Number(process.env["PORT"] ?? 3000);
  * Env-only by design (see the /api/fs/ handler). Defaults to public/demo so a
  * fresh clone still opens with something to look at; E2E runs point it at a
  * seeded temp directory so specs never mutate tracked fixtures.
+ *
+ * When the `motion` CLI launches the server it sets MOTION_WORKSPACE +
+ * MOTION_AUTO_OPEN=1 so the UI opens that folder without a click.
  */
 const WORKSPACE_ROOT = resolve(
     PROJECT_ROOT,
     process.env["MOTION_WORKSPACE"] ?? join("public", "demo")
 );
+/** Set by `motion <dir>` so the UI auto-opens the CLI-supplied folder. */
+const AUTO_OPEN = process.env["MOTION_AUTO_OPEN"] === "1" || process.env["MOTION_AUTO_OPEN"] === "true";
 if (!existsSync(WORKSPACE_ROOT)) {
     mkdirSync(WORKSPACE_ROOT, { recursive: true });
 }
+/**
+ * Absolute path of a note `motion <file.md>` asked us to open, or null.
+ *
+ * Absolute because that is what collectFiles returns and what the sidebar hands
+ * back to onSelectFile — no second path convention to keep in sync. Filtered to
+ * the workspace for the same reason the Tauri side is (resolve_open_file in
+ * src-tauri/src/lib.rs): the CLI may name any path, but bootstrap must never
+ * hand the UI something /api/fs/read would then refuse.
+ *
+ * Computed after the root exists, because it realpaths that root.
+ */
+const OPEN_FILE = ((): string | null => {
+    const raw = process.env["MOTION_OPEN_FILE"]?.trim();
+    if (!raw || !existsSync(raw)) return null;
+    // realpath, not resolve: collectFiles realpaths its root, so a symlinked
+    // workspace (/tmp -> /private/tmp on macOS) would otherwise hand the UI a
+    // path that matches nothing in the listing. Matches fs::canonicalize on the
+    // Tauri side.
+    const abs = realpathSync(raw);
+    if (!abs.startsWith(realpathSync(WORKSPACE_ROOT))) return null;
+    return abs;
+})();
 
 // Store the latest JS bundle in memory
 let jsBundle = "";
@@ -229,7 +258,11 @@ const server = Bun.serve({
             try {
                 switch (`${req.method} ${pathname}`) {
                     case "GET /api/fs/workspace":
-                        return Response.json({ root: WORKSPACE_ROOT });
+                        return Response.json({
+                            root: WORKSPACE_ROOT,
+                            autoOpen: AUTO_OPEN,
+                            openFile: OPEN_FILE,
+                        });
 
                     case "GET /api/fs/list":
                         return Response.json(
@@ -289,6 +322,30 @@ const server = Bun.serve({
                 }
             } else {
                 return new Response("Not Found", { status: 404 });
+            }
+        }
+
+        // User settings (CLI launch mode, port, …) — file lives under
+        // ~/.config/motion/ so the `motion` CLI can read the same prefs.
+        if (pathname === "/api/settings") {
+            try {
+                if (req.method === "GET") {
+                    return Response.json({
+                        settings: loadSettings(),
+                        path: defaultSettingsPath(),
+                        cliInstallHint: `bun link  # from the Motion repo, or: ln -sf ${join(PROJECT_ROOT, "bin/motion")} ~/.local/bin/motion`,
+                        projectRoot: PROJECT_ROOT,
+                    });
+                }
+                if (req.method === "POST" || req.method === "PUT") {
+                    const body = (await req.json()) as Partial<MotionSettings>;
+                    const settings = saveSettings(body ?? {});
+                    return Response.json({ settings, path: defaultSettingsPath() });
+                }
+                return Response.json({ error: "Method not allowed" }, { status: 405 });
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                return Response.json({ error: message }, { status: 500 });
             }
         }
 

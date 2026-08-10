@@ -1,0 +1,277 @@
+#!/usr/bin/env bash
+# Motion CLI — open a folder or a note in Motion from the terminal.
+#
+#   motion            # open the current directory
+#   motion .          # same
+#   motion ./docs     # open a relative folder
+#   motion /abs/path  # open an absolute folder
+#   motion notes/idea.md  # open that note, with notes/ as the workspace
+#   motion --help
+#
+# Launch mode (web | desktop) and port come from ~/.config/motion/settings.json
+# (editable in the app under Settings). Override with --web / --desktop / --port.
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: motion [options] [directory | file.md]
+
+Open a workspace folder — or a single note — in Motion (local-first markdown IDE).
+
+  motion            open the current directory (.)
+  motion .          same
+  motion ./foo      open ./foo
+  motion /path/to   open an absolute path
+  motion a/note.md  open that note, with a/ as the workspace
+                    (the note is created if it does not exist)
+
+Only .md is treated as a file; anything else that is not a directory is an error.
+
+Options:
+  --web             force browser + bun run dev (default from Settings)
+  --desktop         force Tauri desktop (bun tauri dev)
+  --port N          web server port (default from Settings, else 3000)
+  --no-open         do not open a browser tab (web mode)
+  -h, --help        show this help
+
+Install (from the Motion repository):
+  bun link
+  # or: ln -sf "$(pwd)/bin/motion" ~/.local/bin/motion
+EOF
+}
+
+# Resolve the Motion project root (directory that owns package.json + src/server.ts).
+resolve_root() {
+  if [[ -n "${MOTION_HOME:-}" && -f "${MOTION_HOME}/package.json" ]]; then
+    (cd "$MOTION_HOME" && pwd)
+    return
+  fi
+  local here
+  here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  if [[ -f "$here/../package.json" && -f "$here/../src/server.ts" ]]; then
+    (cd "$here/.." && pwd)
+    return
+  fi
+  # bun link may place a shim elsewhere — walk realpath of this script
+  local real
+  real="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}" 2>/dev/null || echo "${BASH_SOURCE[0]}")")" && pwd)"
+  if [[ -f "$real/../package.json" ]]; then
+    (cd "$real/.." && pwd)
+    return
+  fi
+  echo "motion: cannot find the Motion project root. Set MOTION_HOME=/path/to/motion" >&2
+  exit 1
+}
+
+ROOT="$(resolve_root)"
+SETTINGS_FILE="${HOME}/.config/motion/settings.json"
+
+# Defaults (overridden by settings file + flags)
+LAUNCH_MODE="web"
+PORT=3000
+OPEN_BROWSER=1
+DIR_ARG=""
+
+read_settings() {
+  if [[ ! -f "$SETTINGS_FILE" ]]; then
+    return
+  fi
+  # Prefer bun/node for JSON; fall back to defaults if unavailable.
+  if command -v bun >/dev/null 2>&1; then
+    local out
+    out="$(
+      bun -e '
+        const fs = require("fs");
+        const p = process.argv[1];
+        try {
+          const s = JSON.parse(fs.readFileSync(p, "utf8"));
+          const mode = s.launchMode === "desktop" ? "desktop" : "web";
+          const port = Number(s.port) > 0 && Number(s.port) < 65536 ? Number(s.port) : 3000;
+          const open = s.openBrowser === false ? "0" : "1";
+          console.log([mode, port, open].join("\n"));
+        } catch { console.log("web\n3000\n1"); }
+      ' "$SETTINGS_FILE" 2>/dev/null
+    )" || return
+    LAUNCH_MODE="$(echo "$out" | sed -n '1p')"
+    PORT="$(echo "$out" | sed -n '2p')"
+    OPEN_BROWSER="$(echo "$out" | sed -n '3p')"
+  fi
+}
+
+read_settings
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --web)
+      LAUNCH_MODE="web"
+      shift
+      ;;
+    --desktop)
+      LAUNCH_MODE="desktop"
+      shift
+      ;;
+    --port)
+      PORT="$2"
+      shift 2
+      ;;
+    --no-open)
+      OPEN_BROWSER=0
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      echo "motion: unknown option: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+    *)
+      if [[ -n "$DIR_ARG" ]]; then
+        echo "motion: unexpected extra argument: $1" >&2
+        exit 2
+      fi
+      DIR_ARG="$1"
+      shift
+      ;;
+  esac
+done
+
+# Classify the argument: directory → workspace; *.md → open that note with its
+# parent as the workspace. Mirrors classifyPathArg in src/lib/cliPathArg.ts,
+# which is where the rule is unit-tested. Only .md is treated as a file, so a
+# typo'd directory name errors instead of silently becoming an empty note.
+#
+# `pwd -P` (physical, symlinks resolved) is load-bearing, not tidiness: the
+# file listing realpaths its root (assertDirectory in src/lib/fsCore.ts), so on
+# macOS a workspace under /tmp comes back as /private/tmp/... A logical
+# MOTION_WORKSPACE would leave the sidebar comparing two spellings of the same
+# path and never matching the note we just asked it to select.
+PATH_ARG="${DIR_ARG:-.}"
+OPEN_FILE=""
+if [[ -d "$PATH_ARG" ]]; then
+  WORKSPACE="$(cd "$PATH_ARG" && pwd -P)"
+elif [[ "$PATH_ARG" == *.md || "$PATH_ARG" == *.MD ]]; then
+  parent="$(dirname "$PATH_ARG")"
+  mkdir -p "$parent" || { echo "motion: cannot create directory: $parent" >&2; exit 1; }
+  # Quick capture: motion notes/idea.md creates the note if it is not there yet.
+  [[ -e "$PATH_ARG" ]] || : >"$PATH_ARG" || { echo "motion: cannot create file: $PATH_ARG" >&2; exit 1; }
+  WORKSPACE="$(cd "$parent" && pwd -P)"
+  OPEN_FILE="$WORKSPACE/$(basename "$PATH_ARG")"
+else
+  echo "motion: not a directory: $PATH_ARG" >&2
+  exit 1
+fi
+
+export MOTION_WORKSPACE="$WORKSPACE"
+export MOTION_AUTO_OPEN=1
+export PORT
+if [[ -n "$OPEN_FILE" ]]; then
+  export MOTION_OPEN_FILE="$OPEN_FILE"
+fi
+
+echo "motion: workspace → $WORKSPACE"
+# Not `[[ … ]] && echo`: under `set -e` a false test makes the AND-list the
+# shell's last status and kills the script before it ever starts a server.
+if [[ -n "$OPEN_FILE" ]]; then
+  echo "motion: file      → $OPEN_FILE"
+fi
+echo "motion: mode      → $LAUNCH_MODE"
+
+cd "$ROOT"
+
+if [[ "$LAUNCH_MODE" == "desktop" ]]; then
+  if ! command -v bun >/dev/null 2>&1; then
+    echo "motion: bun is required (https://bun.com)" >&2
+    exit 1
+  fi
+  echo "motion: starting Tauri desktop…"
+  exec bun tauri dev
+fi
+
+# --- web mode ---
+if ! command -v bun >/dev/null 2>&1; then
+  echo "motion: bun is required (https://bun.com)" >&2
+  exit 1
+fi
+
+url="http://127.0.0.1:${PORT}/"
+
+# Reuse a running server only if it already serves this workspace.
+reuse=0
+mkdir -p "$ROOT/.artifacts"
+ws_check="$ROOT/.artifacts/motion-ws-check.json"
+if curl -sf "http://127.0.0.1:${PORT}/api/fs/workspace" >"$ws_check" 2>/dev/null; then
+  if command -v bun >/dev/null 2>&1; then
+    same="$(
+      bun -e '
+        const fs = require("fs");
+        const want = process.argv[1];
+        const file = process.argv[2];
+        try {
+          const j = JSON.parse(fs.readFileSync(file,"utf8"));
+          process.exit(j.root === want ? 0 : 1);
+        } catch { process.exit(1); }
+      ' "$WORKSPACE" "$ws_check" && echo yes || echo no
+    )"
+    if [[ "$same" == "yes" ]]; then
+      reuse=1
+      echo "motion: reusing server already on port $PORT"
+    fi
+  fi
+fi
+rm -f "$ws_check" 2>/dev/null || true
+
+if [[ "$reuse" -eq 0 ]]; then
+  # Find a free port if the configured one is busy with something else.
+  if curl -sf "http://127.0.0.1:${PORT}/" >/dev/null 2>&1; then
+    base="$PORT"
+    for try in $(seq 0 20); do
+      cand=$((base + try))
+      if ! curl -sf "http://127.0.0.1:${cand}/" >/dev/null 2>&1; then
+        PORT=$cand
+        export PORT
+        url="http://127.0.0.1:${PORT}/"
+        break
+      fi
+    done
+    echo "motion: port busy — using $PORT instead"
+  fi
+
+  echo "motion: starting dev server on $url"
+  # Detach server; keep logs under the project.
+  mkdir -p "$ROOT/.artifacts"
+  nohup bun run dev >"$ROOT/.artifacts/motion-cli-server.log" 2>&1 &
+  echo $! >"$ROOT/.artifacts/motion-cli-server.pid"
+
+  # Wait until healthy
+  for _ in $(seq 1 60); do
+    if curl -sf "http://127.0.0.1:${PORT}/api/fs/workspace" >/dev/null 2>&1; then
+      break
+    fi
+    sleep 0.25
+  done
+  if ! curl -sf "http://127.0.0.1:${PORT}/api/fs/workspace" >/dev/null 2>&1; then
+    echo "motion: server failed to start — see .artifacts/motion-cli-server.log" >&2
+    exit 1
+  fi
+fi
+
+if [[ "$OPEN_BROWSER" == "1" ]]; then
+  echo "motion: opening $url"
+  if command -v open >/dev/null 2>&1; then
+    open "$url"
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$url"
+  else
+    echo "motion: open this URL: $url"
+  fi
+else
+  echo "motion: ready at $url"
+fi

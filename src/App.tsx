@@ -1,39 +1,54 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Editor from "./components/Editor";
-import { storage, rememberWorkspaceRoot, relativeToWorkspace } from "./lib/storage";
+import { FileSidebar } from "./components/FileSidebar";
+import { SettingsDialog } from "./components/SettingsDialog";
+import {
+    storage,
+    rememberWorkspaceRoot,
+    relativeToWorkspace,
+    fetchBootstrap,
+} from "./lib/storage";
+import { useCaptureMode } from "./lib/useCaptureMode";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
 function App() {
+    useCaptureMode();
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
+    /** New Note that has not been saved under a real name yet (macOS Untitled). */
+    const [isNewDocument, setIsNewDocument] = useState(false);
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
     const [files, setFiles] = useState<string[]>([]);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [nameFilter, setNameFilter] = useState("");
     const [synthesis, setSynthesis] = useState<string | null>(null);
+    const [recentOpens, setRecentOpens] = useState<Map<string, number>>(() => new Map());
+    const [settingsOpen, setSettingsOpen] = useState(false);
 
-    // Get basename for display
-    const getBasename = (path: string) => {
-        return path.split(/[/\\]/).pop() || path;
-    };
+    const markRecent = useCallback((path: string) => {
+        setRecentOpens((prev) => {
+            const next = new Map(prev);
+            next.set(path, Date.now());
+            return next;
+        });
+    }, []);
 
-    const filteredFiles = useMemo(() => {
-        const q = searchQuery.trim().toLowerCase();
-        if (!q) return files;
-        return files.filter((file) => getBasename(file).toLowerCase().includes(q));
-    }, [files, searchQuery]);
+    const applyWorkspace = useCallback(async (path: string) => {
+        setWorkspacePath(path);
+        rememberWorkspaceRoot(path);
+        const markdownFiles = await storage.listFiles(path);
+        setFiles(markdownFiles);
+        setCurrentFilePath(null);
+        setIsNewDocument(false);
+        setNameFilter("");
+    }, []);
 
     const handleOpenFolder = async () => {
         try {
             const path = await storage.openFolder();
             if (path) {
-                setWorkspacePath(path);
-                rememberWorkspaceRoot(path);
-                const markdownFiles = await storage.listFiles(path);
-                setFiles(markdownFiles);
-                setCurrentFilePath(null);
-                setSearchQuery("");
+                await applyWorkspace(path);
             }
         } catch (error) {
             console.error("Failed to open folder:", error);
@@ -42,12 +57,41 @@ function App() {
         }
     };
 
+    const handleFileSelect = useCallback(
+        (path: string) => {
+            setIsNewDocument(false);
+            setCurrentFilePath(path);
+            markRecent(path);
+        },
+        [markRecent]
+    );
+
+    // `motion <dir>` sets MOTION_AUTO_OPEN so we open the CLI folder on boot,
+    // and `motion <file.md>` adds MOTION_OPEN_FILE to land in the note itself.
+    // The shared E2E server sets neither, so the empty-shell cold start every
+    // other spec relies on is preserved (e2e/cli-open-file.spec.ts drives its
+    // own server on 3001 instead).
+    useEffect(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                const boot = await fetchBootstrap();
+                if (cancelled || !boot.autoOpen || !boot.root) return;
+                // applyWorkspace clears the selection, so the note is opened after it.
+                await applyWorkspace(boot.root);
+                if (!cancelled && boot.openFile) handleFileSelect(boot.openFile);
+            } catch (error) {
+                console.error("CLI auto-open failed:", error);
+            }
+        })();
+        return () => {
+            cancelled = true;
+        };
+    }, [applyWorkspace, handleFileSelect]);
+
     /**
      * Workspace-level synthesis: summarize every note, cluster by topic, and
      * write TOC.md and SKILL.md back into the workspace.
-     *
-     * The three modules behind this were written months ago and had no way for
-     * a user to reach them.
      */
     const handleSynthesize = async () => {
         if (!workspacePath || synthesis) return;
@@ -78,36 +122,35 @@ function App() {
         }
     };
 
-    const handleFileSelect = (path: string) => {
-        setCurrentFilePath(path);
-    };
-
-    const handleNewNote = async () => {
+    /**
+     * macOS-style new document: in memory until the first Save, which prompts
+     * for a name defaulting from the H1 title (New Note → new-note.md).
+     */
+    const handleNewNote = () => {
         if (!workspacePath) {
             alert("Open a folder first to create a new note.");
             return;
         }
+        setIsNewDocument(true);
+        setCurrentFilePath(null);
+        setNameFilter("");
+    };
 
-        try {
-            const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-            const name = `untitled-${stamp}.md`;
-            const sep = workspacePath.includes("\\") ? "\\" : "/";
-            const path = `${workspacePath.replace(/[/\\]$/, "")}${sep}${name}`;
-            const content = "# New Note\n\n";
-            await storage.writeFile(path, content);
-            setFiles((prev) => [...prev, path].sort((a, b) => a.localeCompare(b)));
-            setCurrentFilePath(path);
-            setSearchQuery("");
-        } catch (error) {
-            console.error("Failed to create note:", error);
-            const message = error instanceof Error ? error.message : String(error);
-            alert(`Error creating note: ${message}`);
+    const handleDocumentSaved = async (path: string) => {
+        setIsNewDocument(false);
+        setCurrentFilePath(path);
+        markRecent(path);
+        if (workspacePath) {
+            try {
+                setFiles(await storage.listFiles(workspacePath));
+            } catch (error) {
+                console.error("Failed to refresh file list after save:", error);
+            }
         }
     };
 
     return (
         <div className="app">
-            {/* Header */}
             <header className="app-header">
                 <div className="logo">
                     <div className="logo-icon">
@@ -120,17 +163,19 @@ function App() {
                     Motion
                 </div>
 
+                {/* Name filter also in header for quick access / existing a11y tests */}
                 <div className="search-bar">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
                     <input
-                        type="text"
-                        placeholder="Search notes..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        type="search"
+                        placeholder="Glob or name filter…"
+                        value={nameFilter}
+                        onChange={(e) => setNameFilter(e.target.value)}
                         aria-label="Search notes"
+                        disabled={!workspacePath}
                     />
                 </div>
 
@@ -140,7 +185,7 @@ function App() {
                     <button className={`view-toggle-btn ${viewMode === "split" ? "active" : ""}`} onClick={() => setViewMode("split")}>Split</button>
                 </div>
 
-                <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                <div style={{ display: "flex", gap: "var(--space-2)" }}>
                     <button className="btn btn-secondary" onClick={handleOpenFolder}>
                         Open Folder
                     </button>
@@ -164,6 +209,15 @@ function App() {
                     >
                         Synthesize
                     </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => setSettingsOpen(true)}
+                        aria-label="Settings"
+                        title="Settings"
+                    >
+                        Settings
+                    </button>
                 </div>
             </header>
 
@@ -180,54 +234,30 @@ function App() {
                 </div>
             )}
 
-            {/* Sidebar */}
             <aside className="app-sidebar">
-                <div className="file-tree">
-                    <h3 style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "var(--color-text-muted)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "var(--space-3)" }}>
-                        {workspacePath ? getBasename(workspacePath) : "Documents"}
-                    </h3>
-
-                    {files.length === 0 && (
-                        <div style={{ padding: 'var(--space-4)', textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
-                            No folder opened or no markdown files found.
-                        </div>
-                    )}
-
-                    {files.length > 0 && filteredFiles.length === 0 && (
-                        <div style={{ padding: 'var(--space-4)', textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
-                            No notes match “{searchQuery}”.
-                        </div>
-                    )}
-
-                    {/* Real buttons, not clickable divs: the file list has to be
-                        keyboard-reachable and addressable by accessible name --
-                        for users first, and so E2E specs can select a note by
-                        its name instead of a brittle CSS path. */}
-                    <div role="listbox" aria-label="Notes">
-                        {filteredFiles.map(file => (
-                            <button
-                                key={file}
-                                type="button"
-                                role="option"
-                                aria-selected={currentFilePath === file}
-                                className={`file-tree-item ${currentFilePath === file ? "active" : ""}`}
-                                onClick={() => handleFileSelect(file)}
-                            >
-                                <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                    <polyline points="14 2 14 8 20 8" />
-                                </svg>
-                                {getBasename(file)}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                <FileSidebar
+                    workspacePath={workspacePath}
+                    files={files}
+                    currentFilePath={currentFilePath}
+                    nameFilter={nameFilter}
+                    onNameFilterChange={setNameFilter}
+                    onSelectFile={handleFileSelect}
+                    recentOpens={recentOpens}
+                />
             </aside>
 
-            {/* Main content */}
             <main className="app-main">
-                <Editor viewMode={viewMode} filePath={currentFilePath} />
+                <Editor
+                    viewMode={viewMode}
+                    filePath={currentFilePath}
+                    isNewDocument={isNewDocument}
+                    workspacePath={workspacePath}
+                    existingFiles={files}
+                    onDocumentSaved={handleDocumentSaved}
+                />
             </main>
+
+            {settingsOpen && <SettingsDialog onClose={() => setSettingsOpen(false)} />}
         </div>
     );
 }

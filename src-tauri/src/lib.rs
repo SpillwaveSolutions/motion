@@ -101,9 +101,168 @@ async fn run_image_cli(prompt: String) -> Result<String, String> {
 }
 
 /// Allowed workspace root for the filesystem commands. Set once by
-/// `set_workspace` when the user picks a folder.
+/// `set_workspace` when the user picks a folder (or by the `motion` CLI via
+/// MOTION_WORKSPACE + MOTION_AUTO_OPEN).
 struct WorkspaceState {
     root: Mutex<Option<PathBuf>>,
+    /// True when launched as `motion <dir>` so the UI opens the folder on boot.
+    auto_open: Mutex<bool>,
+    /// Absolute note `motion <file.md>` asked for, opened once the folder loads.
+    open_file: Mutex<Option<PathBuf>>,
+}
+
+#[derive(serde::Serialize)]
+struct BootstrapInfo {
+    root: Option<String>,
+    #[serde(rename = "autoOpen")]
+    auto_open: bool,
+    #[serde(rename = "openFile")]
+    open_file: Option<String>,
+}
+
+#[derive(serde::Serialize, serde::Deserialize, Clone)]
+struct MotionSettings {
+    #[serde(rename = "launchMode", default = "default_launch_mode")]
+    launch_mode: String,
+    #[serde(default = "default_port")]
+    port: u16,
+    #[serde(rename = "openBrowser", default = "default_open_browser")]
+    open_browser: bool,
+}
+
+fn default_launch_mode() -> String {
+    "web".into()
+}
+fn default_port() -> u16 {
+    3000
+}
+fn default_open_browser() -> bool {
+    true
+}
+
+impl Default for MotionSettings {
+    fn default() -> Self {
+        Self {
+            launch_mode: default_launch_mode(),
+            port: default_port(),
+            open_browser: default_open_browser(),
+        }
+    }
+}
+
+fn home_dir() -> PathBuf {
+    std::env::var_os("HOME")
+        .or_else(|| std::env::var_os("USERPROFILE"))
+        .map(PathBuf::from)
+        .unwrap_or_else(|| PathBuf::from("."))
+}
+
+fn settings_path() -> PathBuf {
+    home_dir()
+        .join(".config")
+        .join("motion")
+        .join("settings.json")
+}
+
+fn load_settings_file() -> MotionSettings {
+    let path = settings_path();
+    let Ok(text) = fs::read_to_string(&path) else {
+        return MotionSettings::default();
+    };
+    serde_json::from_str(&text).unwrap_or_default()
+}
+
+fn save_settings_file(settings: &MotionSettings) -> Result<(), String> {
+    let path = settings_path();
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).map_err(|e| e.to_string())?;
+    }
+    let text = serde_json::to_string_pretty(settings).map_err(|e| e.to_string())?;
+    fs::write(&path, text + "\n").map_err(|e| e.to_string())
+}
+
+/// Resolve MOTION_OPEN_FILE against the workspace root.
+///
+/// Kept inside the jail on purpose: the CLI may name any path it likes, but
+/// bootstrap must never hand the UI something the filesystem commands would
+/// then refuse to read — nor widen what they will serve. A rejected file is
+/// silently dropped so a bad argument costs the note, never the session.
+fn resolve_open_file(root: Option<&Path>, raw: Option<&str>) -> Option<PathBuf> {
+    let root = root?;
+    let raw = raw?.trim();
+    if raw.is_empty() {
+        return None;
+    }
+    let path = fs::canonicalize(Path::new(raw)).ok()?;
+    (path.is_file() && path.starts_with(root)).then_some(path)
+}
+
+#[tauri::command]
+fn get_bootstrap(state: State<'_, WorkspaceState>) -> Result<BootstrapInfo, String> {
+    let root = state
+        .root
+        .lock()
+        .map_err(|_| "Workspace lock poisoned".to_string())?
+        .as_ref()
+        .map(|p| p.to_string_lossy().into_owned());
+    let auto_open = *state
+        .auto_open
+        .lock()
+        .map_err(|_| "Workspace lock poisoned".to_string())?;
+    let open_file = state
+        .open_file
+        .lock()
+        .map_err(|_| "Workspace lock poisoned".to_string())?
+        .as_ref()
+        .map(|p| p.to_string_lossy().into_owned());
+    Ok(BootstrapInfo {
+        root,
+        auto_open,
+        open_file,
+    })
+}
+
+#[derive(serde::Serialize)]
+struct SettingsResponse {
+    settings: MotionSettings,
+    path: String,
+    #[serde(rename = "cliInstallHint")]
+    cli_install_hint: String,
+}
+
+#[tauri::command]
+fn get_settings() -> Result<SettingsResponse, String> {
+    Ok(SettingsResponse {
+        settings: load_settings_file(),
+        path: settings_path().to_string_lossy().into_owned(),
+        cli_install_hint: "bun link  # from the Motion repo, or symlink bin/motion onto your PATH"
+            .into(),
+    })
+}
+
+#[tauri::command]
+fn set_settings(partial: serde_json::Value) -> Result<SettingsResponse, String> {
+    let mut current = load_settings_file();
+    if let Some(m) = partial.get("launchMode").and_then(|v| v.as_str()) {
+        if m == "web" || m == "desktop" {
+            current.launch_mode = m.to_string();
+        }
+    }
+    if let Some(p) = partial.get("port").and_then(|v| v.as_u64()) {
+        if (1..=65535).contains(&p) {
+            current.port = p as u16;
+        }
+    }
+    if let Some(b) = partial.get("openBrowser").and_then(|v| v.as_bool()) {
+        current.open_browser = b;
+    }
+    save_settings_file(&current)?;
+    Ok(SettingsResponse {
+        settings: current,
+        path: settings_path().to_string_lossy().into_owned(),
+        cli_install_hint: "bun link  # from the Motion repo, or symlink bin/motion onto your PATH"
+            .into(),
+    })
 }
 
 /// All jail and path-resolution logic lives in fs_core, which is shared, tested,
@@ -173,11 +332,36 @@ fn list_data_files(state: State<'_, WorkspaceState>) -> Result<Vec<String>, Stri
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // `motion <dir>` exports MOTION_WORKSPACE (+ MOTION_AUTO_OPEN) before start.
+    let (initial_root, auto_open) = match std::env::var("MOTION_WORKSPACE") {
+        Ok(raw) if !raw.trim().is_empty() => {
+            match fs::canonicalize(Path::new(&raw)) {
+                Ok(p) if p.is_dir() => {
+                    let auto = matches!(
+                        std::env::var("MOTION_AUTO_OPEN").as_deref(),
+                        Ok("1") | Ok("true")
+                    );
+                    (Some(p), auto)
+                }
+                _ => (None, false),
+            }
+        }
+        _ => (None, false),
+    };
+
+    // `motion <file.md>` additionally exports MOTION_OPEN_FILE.
+    let initial_open_file = resolve_open_file(
+        initial_root.as_deref(),
+        std::env::var("MOTION_OPEN_FILE").ok().as_deref(),
+    );
+
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .manage(WorkspaceState {
-            root: Mutex::new(None),
+            root: Mutex::new(initial_root),
+            auto_open: Mutex::new(auto_open),
+            open_file: Mutex::new(initial_open_file),
         })
         .setup(|app| {
             if cfg!(debug_assertions) {
@@ -196,7 +380,10 @@ pub fn run() {
             list_markdown_files,
             list_data_files,
             run_llm_cli,
-            run_image_cli
+            run_image_cli,
+            get_bootstrap,
+            get_settings,
+            set_settings,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -212,9 +399,56 @@ mod tests {
     use std::fs;
     use tempfile::TempDir;
 
+    /// `motion <file.md>` hands the UI a note to open on boot. It must be a
+    /// real file inside the workspace, or bootstrap drops it.
+    #[test]
+    fn open_file_is_accepted_only_inside_the_workspace() {
+        let dir = TempDir::new().unwrap();
+        let root = fs::canonicalize(dir.path()).unwrap();
+        let note = root.join("idea.md");
+        fs::write(&note, "# Idea\n").unwrap();
+
+        assert_eq!(
+            resolve_open_file(Some(&root), Some(note.to_str().unwrap())),
+            Some(note.clone()),
+            "a note inside the workspace opens"
+        );
+
+        let elsewhere = TempDir::new().unwrap();
+        let outside = fs::canonicalize(elsewhere.path()).unwrap().join("secret.md");
+        fs::write(&outside, "").unwrap();
+        assert_eq!(
+            resolve_open_file(Some(&root), Some(outside.to_str().unwrap())),
+            None,
+            "a note outside the workspace must not widen the jail"
+        );
+
+        assert_eq!(
+            resolve_open_file(Some(&root), Some(root.to_str().unwrap())),
+            None,
+            "a directory is not a note"
+        );
+        assert_eq!(
+            resolve_open_file(Some(&root), Some(root.join("missing.md").to_str().unwrap())),
+            None,
+            "a path that does not exist is dropped, not reported"
+        );
+        assert_eq!(resolve_open_file(Some(&root), Some("   ")), None);
+        assert_eq!(resolve_open_file(Some(&root), None), None);
+        assert_eq!(
+            resolve_open_file(None, Some(note.to_str().unwrap())),
+            None,
+            "no workspace means nothing to open into"
+        );
+    }
+
     #[test]
     fn refuses_every_operation_until_a_workspace_is_opened() {
-        let state = WorkspaceState { root: Mutex::new(None) };
+        let state = WorkspaceState {
+            root: Mutex::new(None),
+            auto_open: Mutex::new(false),
+            open_file: Mutex::new(None),
+        };
         let err = workspace_root(&state).unwrap_err();
         assert!(err.contains("No workspace opened"), "got: {err}");
     }
@@ -222,7 +456,11 @@ mod tests {
     #[test]
     fn set_workspace_stores_the_canonical_root() {
         let dir = TempDir::new().unwrap();
-        let state = WorkspaceState { root: Mutex::new(None) };
+        let state = WorkspaceState {
+            root: Mutex::new(None),
+            auto_open: Mutex::new(false),
+            open_file: Mutex::new(None),
+        };
         let real = fs::canonicalize(dir.path()).unwrap();
 
         {
@@ -269,7 +507,11 @@ mod tests {
         let outside = fs::canonicalize(elsewhere.path()).unwrap();
         fs::write(outside.join("secret.md"), "").unwrap();
 
-        let state = WorkspaceState { root: Mutex::new(Some(root.clone())) };
+        let state = WorkspaceState {
+            root: Mutex::new(Some(root.clone())),
+            auto_open: Mutex::new(false),
+            open_file: Mutex::new(None),
+        };
 
         let err = fs_core::resolve_in_workspace(&root, &outside.to_string_lossy())
             .expect_err("a directory outside the workspace must be refused");
