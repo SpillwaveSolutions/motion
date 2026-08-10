@@ -9,10 +9,32 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync, realpathSync } from "fs"
 import { tmpdir } from "os";
 import { join, dirname } from "path";
 
+/**
+ * Port for the second dev server, launched the way `motion <file.md>` launches
+ * one (MOTION_AUTO_OPEN + MOTION_OPEN_FILE). Lives here rather than in
+ * playwright.config.ts because importing that config from a spec re-executes
+ * it inside the worker — which mints a *second* scratch workspace and makes
+ * every path assertion compare two different temp directories.
+ */
+export const AUTO_OPEN_PORT = 3001;
+
+/** The note the auto-open server is told to open. */
+export const AUTO_OPEN_NOTE = "welcome.md";
+
 export const SEED_FILES: Record<string, string> = {
     "welcome.md": "# Welcome\n\nA seeded note for end-to-end runs.\n",
     "getting-started.md": "# Getting started\n\nSecond seeded note.\n",
     "nested/deeper.md": "# Deeper\n\nProves recursive listing.\n",
+    // Front matter must stay in Markdown view only — not WYSIWYG.
+    "with-frontmatter.md": `---
+title: Frontmatter Fixture
+primary_keyword: "HideFromWysiwyg"
+---
+
+# Visible Heading
+
+Body after the YAML block.
+`,
     // Same shape as public/demo — the welcome document registers these as
     // tables `team` and `events` and JOINs on team.name = events.user. A
     // name/score-only fixture made that path untested and hid install failures.
