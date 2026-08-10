@@ -11,12 +11,14 @@ import {
     fetchBootstrap,
 } from "./lib/storage";
 import { useCaptureMode } from "./lib/useCaptureMode";
+import { useZoom } from "./lib/useZoom";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
 function App() {
     useCaptureMode();
+    useZoom();
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
     /** New Note that has not been saved under a real name yet (macOS Untitled). */

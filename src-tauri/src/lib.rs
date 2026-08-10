@@ -128,6 +128,11 @@ struct MotionSettings {
     port: u16,
     #[serde(rename = "openBrowser", default = "default_open_browser")]
     open_browser: bool,
+    /// Root font scale. Present here because saving re-serializes the whole
+    /// file: without a field for it, a settings save from the desktop app
+    /// would silently erase the user's zoom level.
+    #[serde(default = "default_zoom")]
+    zoom: f64,
 }
 
 fn default_launch_mode() -> String {
@@ -139,6 +144,13 @@ fn default_port() -> u16 {
 fn default_open_browser() -> bool {
     true
 }
+fn default_zoom() -> f64 {
+    1.0
+}
+
+/// Same bounds as ZOOM_MIN/ZOOM_MAX in src/lib/settings.ts.
+const ZOOM_MIN: f64 = 0.75;
+const ZOOM_MAX: f64 = 2.0;
 
 impl Default for MotionSettings {
     fn default() -> Self {
@@ -146,6 +158,7 @@ impl Default for MotionSettings {
             launch_mode: default_launch_mode(),
             port: default_port(),
             open_browser: default_open_browser(),
+            zoom: default_zoom(),
         }
     }
 }
@@ -255,6 +268,11 @@ fn set_settings(partial: serde_json::Value) -> Result<SettingsResponse, String> 
     }
     if let Some(b) = partial.get("openBrowser").and_then(|v| v.as_bool()) {
         current.open_browser = b;
+    }
+    if let Some(z) = partial.get("zoom").and_then(|v| v.as_f64()) {
+        if z.is_finite() {
+            current.zoom = z.clamp(ZOOM_MIN, ZOOM_MAX);
+        }
     }
     save_settings_file(&current)?;
     Ok(SettingsResponse {
