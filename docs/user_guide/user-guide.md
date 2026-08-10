@@ -46,20 +46,77 @@ opens the app.
 
 1. Click **Open Folder**. On desktop you pick a folder; in the browser it opens
    the configured workspace.
-2. The sidebar lists every `.md` file underneath it, including nested folders
-   (flat list of basenames). Use **Search notes** to filter by filename.
-3. Click a note to open it. Use the arrow keys and Enter if you prefer the
-   keyboard — the list is fully navigable.
+2. The sidebar is a normal project navigator:
+   - **Tree** (default): folders start **collapsed** — you see the current folder’s
+     subfolders and root-level notes; click a folder to open it and drill down.
+     **Flat** lists every `.md` in the workspace at once.
+   - **Sort**: Name A–Z, Z–A, or **Recent** (notes you opened this session).
+   - **Glob** (header or sidebar): path pattern like `knowledge/**` or `**/index.md`, or a plain
+     name fragment. Narrows which notes are listed and which are grepped.
+   - **Grep**: search text *inside* those notes (path + line). **Glob then grep** — both apply
+     together (AND), not either-or. Empty glob = all notes; empty grep = list only.
+3. Click a note to open it.
 4. Edit, then press **⌘S** (Ctrl+S) or click the labeled **Save** button in the
    editor toolbar. The status area shows **Saving…** / **Saved** / **Save failed**.
 
-**New Note** creates a timestamped `untitled-*.md` in the open workspace and
-writes a stub `# New Note` immediately. Keep editing, then **Save** so your
-changes are on disk.
+**New Note** opens an **Untitled** document in memory (like a new document on
+macOS) with a starting `# New Note` heading. The first **Save** opens a **Save
+As** sheet: the default filename is derived from the document title
+(`New Note` → `new-note.md`). You can edit the name before confirming. If that
+name already exists in the folder, Motion asks whether to **replace** it.
+
+Click the document name in the toolbar (**Untitled** or the current `.md` name)
+to **Rename** at any time — same sheet, same overwrite warning when the new
+name collides with another file.
 
 Motion cannot read or write anything outside the folder you opened. Paths are
 resolved to their real location first, so a symbolic link pointing elsewhere is
 refused rather than followed.
+
+### Opening from the command line
+
+```bash
+motion                  # the current directory
+motion ./docs           # that folder
+motion docs/idea.md     # that note, with docs/ as the workspace
+```
+
+Naming a `.md` file opens it straight away, with its parent folder listed in
+the sidebar. If the file does not exist yet it is created empty first, which
+makes `motion notes/idea.md` a quick-capture command.
+
+Only `.md` counts as a file argument. Anything else that is not a directory is
+an error rather than a new note — otherwise a mistyped folder name would
+quietly become an empty file.
+
+### Unsaved changes
+
+If you have edited a note and click a different one, Motion asks before moving:
+
+| Choice | What happens |
+|---|---|
+| **Save** | Writes your edits, then opens the other note |
+| **Discard** | Opens the other note; the edits are gone |
+| **Cancel** | Stays put; your edits are still there, still unsaved |
+
+Escape is the same as Cancel. A note with no unsaved edits switches straight
+away with no prompt.
+
+One exception: if the edited document is still **Untitled**, Save opens the
+Save As sheet and leaves you there rather than jumping to the other note. Name
+it, then click the note you wanted.
+
+Closing the window or switching folders is **not** guarded yet — see Known
+limitations.
+
+### Zoom
+
+**⌘+** / **⌘−** (Ctrl on Windows and Linux) change the text size, and **⌘0**
+returns to 100%. The whole window scales — sidebar and toolbar included — and
+the range is 75% to 200%.
+
+The level is written to your settings file, so it survives a restart and is
+the same in the browser and the desktop app.
 
 ---
 
@@ -67,9 +124,9 @@ refused rather than followed.
 
 | Mode | What you get |
 |---|---|
-| **WYSIWYG** | Rendered editing — headings, lists, diagrams in place |
-| **Markdown** | The raw source in a plain text area |
-| **Split** | Rendered editor beside the markdown source |
+| **WYSIWYG** | Rendered editing — headings, lists, diagrams in place. YAML front matter (`---` … `---`) is hidden here. |
+| **Markdown** | The raw source in a plain text area — including YAML front matter when present |
+| **Split** | Rendered editor (no front matter) beside the full markdown source (with front matter) |
 
 Switch freely; your edits carry across. Split view shows the markdown *source*,
 not a second rendered preview.
@@ -152,8 +209,8 @@ Needs `claude` on your `PATH`. Without it the status bar reports the failure.
 
 Stated here so you meet them on your terms:
 
-- **Sidebar is flat** — every markdown file under the workspace, not a directory
-  tree. Sort is by name; there is no search inside file contents yet.
+- **Recent sort** is session-based (last opened in this app session), not disk
+  mtime — yet.
 - **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) only loads when
   those files exist in the open workspace (they ship under `public/demo/`). Open
   an unrelated project folder and the welcome Dataset/Query blocks will error
@@ -164,6 +221,14 @@ Stated here so you meet them on your terms:
   text; no table extension is registered.
 - **Synthesize / generative blocks** need `claude` and/or `imagen` on your
   `PATH`.
+- **The unsaved-changes guard covers sidebar switching only.** Closing the
+  window or tab, and opening a different folder, still discard unsaved edits
+  without asking.
+- **A note edited and then undone may still count as unsaved.** Motion compares
+  the buffer against what it last wrote, and an edit-then-undo does not always
+  reproduce the original text byte for byte. It errs toward asking.
+- **`motion <file.md>` only accepts `.md`**, because that is the only extension
+  the sidebar lists.
 
 ---
 

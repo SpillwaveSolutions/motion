@@ -137,6 +137,11 @@ form this repo requires — cannot address it at all.
 Dirty state is derived (`rawMarkdown !== savedMarkdown`), never assigned, so no
 future edit path can forget to flag it.
 
+As built, a **new unsaved note counts too**: it snapshots its `# New Note`
+template as the baseline, so typing into it is dirty like any other buffer.
+Otherwise the one document with nothing on disk to fall back on would have been
+the only one left unguarded.
+
 ### Layout
 
 1. **Backdrop** — `role="presentation"`, covers the shell
@@ -156,6 +161,11 @@ Outcomes:
 If Save routes to the Save As sheet (the dirty document is Untitled), the
 pending switch is **abandoned** — the user is mid-naming, and moving them off
 the document at that moment is worse than making them re-click the target.
+
+The Editor's save therefore reports which of those happened: `SaveOutcome` is
+`"saved" | "needs-name" | "failed"`, and only `"saved"` proceeds with the
+switch. The dialog runs that same save — the one the toolbar and `⌘S` run — so
+there is no second write path to drift from it.
 
 ## Addressability
 

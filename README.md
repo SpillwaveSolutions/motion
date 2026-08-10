@@ -12,11 +12,16 @@ natural-language prompts using CLI tools you already have installed.
 
 - **Three view modes** — WYSIWYG, raw Markdown, and Split, switchable at any time.
   Edits carry across modes without loss.
-- **Workspace management** — open a folder and Motion lists every markdown file
-  under it, recursively (flat list). **Search notes** filters by filename.
+- **Workspace management** — open a folder; sidebar **Tree** (default: folders
+  collapsed, click to expand) or **Flat** (all notes at once), sort by name or
+  recent, **path glob** then **content grep** (both apply together).
 - **New Note** — creates `untitled-<timestamp>.md` in the open workspace.
 - **Save** — labeled **Save** control in the toolbar, plus **⌘S** / **Ctrl+S**.
   Status shows Saving… / Saved / Save failed.
+- **Unsaved-changes guard** — switching notes with unsaved edits asks
+  **Save / Discard / Cancel** instead of discarding silently.
+- **Zoom** — **⌘+** / **⌘−** / **⌘0** rescale the whole window (75%–200%),
+  remembered in your settings file across restarts and across web/desktop.
 - **Rich markdown** — headings, lists, blockquotes, and code blocks with syntax
   highlighting across the common languages. (Tables are not supported yet — no
   table extension is registered, so pipe-table syntax renders as text.)
@@ -75,6 +80,32 @@ bun tauri dev   # desktop app — real filesystem access
 bun run dev     # browser at http://localhost:3000
 ```
 
+#### CLI: `motion <dir | file.md>`
+
+Open a folder — or a single note — from the terminal (same idea as `code .`):
+
+```bash
+# once, from this repo
+bun link
+# or: ln -sf "$(pwd)/bin/motion" ~/.local/bin/motion
+
+motion .          # open the current directory
+motion ./docs     # open a relative folder
+motion /path/to   # absolute path
+motion docs/idea.md # open that note, with docs/ as the workspace
+motion --desktop .  # force Tauri instead of the browser
+```
+
+A `.md` argument opens that note with its parent folder in the sidebar, and
+creates the file first if it is not there yet. Only `.md` counts as a file;
+anything else that is not a directory is an error, so a mistyped folder name
+cannot quietly become an empty note.
+
+The launcher sets `MOTION_WORKSPACE`, `MOTION_AUTO_OPEN=1`, and (for a file
+argument) `MOTION_OPEN_FILE`, so the UI opens that folder and note without an
+extra click. Prefer **web** or **desktop** in
+**Settings → CLI launcher** (stored in `~/.config/motion/settings.json`).
+
 **Desktop (`bun tauri dev`)** is the real product: a native folder picker, and
 reading and writing files anywhere inside the folder you open.
 
@@ -118,8 +149,7 @@ cannot pass quietly. See `CLAUDE.md` for the full definition of done.
 
 Recorded here rather than discovered later:
 
-- **Sidebar is flat** — every `.md` under the workspace, not a directory tree.
-  Sort is name-only; no content (in-file) search yet.
+- **Content grep is substring** — not full regex; path glob supports `*`, `**`, `?`.
 - **Welcome demo datasets** assume `sample-data.csv` / `sample-events.jsonl` exist
   in the open workspace. Opening an unrelated folder shows load errors for those
   blocks until those files are present or sources are re-pointed.
@@ -128,6 +158,12 @@ Recorded here rather than discovered later:
   does not refresh itself — reload manually.
 - Generative blocks and **Synthesize** need the relevant CLI (`claude`, `imagen`)
   on `PATH`.
+- **The unsaved-changes guard covers sidebar file switching only** — closing the
+  window and switching folders are still unguarded. An edit that is undone by
+  hand may also still register as unsaved; the guard errs toward asking.
+- **`motion --desktop` run twice** silently attaches the second window to the
+  first instance's dev server and shows the wrong workspace. Web mode hunts for
+  a free port; desktop mode does not.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
 [docs/roadmap.md](docs/roadmap.md) for what is planned.
