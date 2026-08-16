@@ -6,6 +6,7 @@ import { common, createLowlight } from "lowlight";
 import { marked } from "marked";
 import TurndownService from "turndown";
 import Toolbar from "./Toolbar";
+import { FindBar, findInPmDoc, findInString } from "./FindBar";
 import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
 import MermaidExtension from "./extensions/MermaidExtension";
 import { DatasetExtension } from "./extensions/DatasetExtension";
@@ -112,6 +113,11 @@ limit: 5</code></pre>
 function Editor({ viewMode, filePath }: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
     const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+    const [findOpen, setFindOpen] = useState(false);
+    const [findQuery, setFindQuery] = useState("");
+    const [findIndex, setFindIndex] = useState(0);
+    const findInputRef = useRef<HTMLInputElement>(null);
+    const markdownRef = useRef<HTMLTextAreaElement>(null);
     // Tracks the previously active view mode so we can sync content only on
     // an actual mode transition, not on every render.
     const prevViewModeRef = useRef<ViewMode | null>(null);
@@ -342,10 +348,19 @@ function Editor({ viewMode, filePath }: EditorProps) {
                 e.preventDefault();
                 handleSave();
             }
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "f") {
+                e.preventDefault();
+                setFindOpen(true);
+                requestAnimationFrame(() => findInputRef.current?.focus());
+            }
+            if (e.key === "Escape" && findOpen) {
+                e.preventDefault();
+                setFindOpen(false);
+            }
         };
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [handleSave]);
+        window.addEventListener("keydown", handleKeyDown, true);
+        return () => window.removeEventListener("keydown", handleKeyDown, true);
+    }, [handleSave, findOpen]);
 
     if (!editor) {
         return (
@@ -354,6 +369,45 @@ function Editor({ viewMode, filePath }: EditorProps) {
             </div>
         );
     }
+
+    const matches =
+        findOpen && findQuery
+            ? viewMode === "markdown"
+                ? findInString(rawMarkdown, findQuery)
+                : findInPmDoc(editor.state.doc, findQuery)
+            : [];
+
+    const revealMatch = (index: number) => {
+        if (!matches.length) return;
+        const i = ((index % matches.length) + matches.length) % matches.length;
+        setFindIndex(i);
+        const m = matches[i]!;
+        if (viewMode === "markdown") {
+            const ta = markdownRef.current;
+            if (ta) {
+                ta.focus();
+                ta.setSelectionRange(m.from, m.to);
+            }
+        } else {
+            editor.chain().focus().setTextSelection({ from: m.from, to: m.to }).scrollIntoView().run();
+        }
+    };
+
+    const findBar = findOpen ? (
+        <FindBar
+            query={findQuery}
+            current={matches.length ? findIndex % matches.length : 0}
+            total={matches.length}
+            onQuery={(q) => {
+                setFindQuery(q);
+                setFindIndex(0);
+            }}
+            onNext={() => revealMatch(findIndex + 1)}
+            onPrev={() => revealMatch(findIndex - 1)}
+            onClose={() => setFindOpen(false)}
+            inputRef={findInputRef}
+        />
+    ) : null;
 
     const filteredSlashCommands = slashMenu
         ? INSERT_COMMANDS.filter((c) => c.label.toLowerCase().includes(slashMenu.query.toLowerCase()))
@@ -393,8 +447,10 @@ function Editor({ viewMode, filePath }: EditorProps) {
     if (viewMode === "markdown") {
         return (
             <div className="editor-container">
-                <Toolbar editor={editor} onSave={handleSave} onRefine={handleRefine} refining={refining} saveState={saveState} />
+                <Toolbar editor={editor} onSave={handleSave} onFind={() => { setFindOpen(true); requestAnimationFrame(() => findInputRef.current?.focus()); }} onRefine={handleRefine} refining={refining} saveState={saveState} />
+                {findBar}
                 <textarea
+                    ref={markdownRef}
                     aria-label="Markdown source"
                     style={{
                         flex: 1,
@@ -420,7 +476,8 @@ function Editor({ viewMode, filePath }: EditorProps) {
     if (viewMode === "split") {
         return (
             <div className="editor-container" style={{ maxWidth: "1400px" }}>
-                <Toolbar editor={editor} onSave={handleSave} onRefine={handleRefine} refining={refining} saveState={saveState} />
+                <Toolbar editor={editor} onSave={handleSave} onFind={() => { setFindOpen(true); requestAnimationFrame(() => findInputRef.current?.focus()); }} onRefine={handleRefine} refining={refining} saveState={saveState} />
+                {findBar}
                 {slashMenuPopup}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)", flex: 1 }}>
                     <EditorContent editor={editor} />
@@ -447,7 +504,8 @@ function Editor({ viewMode, filePath }: EditorProps) {
 
     return (
         <div className="editor-container">
-            <Toolbar editor={editor} onSave={handleSave} onRefine={handleRefine} refining={refining} saveState={saveState} />
+            <Toolbar editor={editor} onSave={handleSave} onFind={() => { setFindOpen(true); requestAnimationFrame(() => findInputRef.current?.focus()); }} onRefine={handleRefine} refining={refining} saveState={saveState} />
+            {findBar}
             {slashMenuPopup}
             <EditorContent editor={editor} />
         </div>

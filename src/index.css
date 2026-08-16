@@ -309,6 +309,49 @@ pre {
   width: 100%;
 }
 
+.find-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+}
+
+.find-bar input {
+  flex: 1;
+  min-width: 10rem;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  outline: none;
+}
+
+.find-bar-count {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  min-width: 5rem;
+}
+
+.find-bar button {
+  background: transparent;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.find-bar button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* TipTap Editor Styles */
 .tiptap-editor {
   flex: 1;
