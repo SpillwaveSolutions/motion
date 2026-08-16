@@ -110,6 +110,7 @@ function App() {
     const [dirty, setDirty] = useState(false);
     /** Folder absolute paths that are expanded. Empty set means “all expanded” until user toggles. */
     const [expanded, setExpanded] = useState<Set<string> | null>(null);
+    const [notesOpen, setNotesOpen] = useState(false);
     const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -189,6 +190,15 @@ function App() {
         setContents(next);
     }
 
+    useEffect(() => {
+        if (!notesOpen) return;
+        const onEsc = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setNotesOpen(false);
+        };
+        window.addEventListener("keydown", onEsc);
+        return () => window.removeEventListener("keydown", onEsc);
+    }, [notesOpen]);
+
     const handleOpenFolder = async () => {
         try {
             const path = await storage.openFolder();
@@ -241,6 +251,7 @@ function App() {
 
     const handleFileSelect = (path: string) => {
         setCurrentFilePath(path);
+        setNotesOpen(false);
     };
 
     const handleNewNote = async () => {
@@ -352,6 +363,17 @@ function App() {
                     </div>
                     Motion
                 </div>
+
+                <button
+                    type="button"
+                    className="btn btn-secondary notes-toggle"
+                    data-testid="open-notes"
+                    aria-expanded={notesOpen}
+                    aria-controls="notes-drawer"
+                    onClick={() => setNotesOpen((v) => !v)}
+                >
+                    Notes
+                </button>
 
                 <div className="search-bar">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -482,6 +504,67 @@ function App() {
                     </div>
                 </div>
             </aside>
+
+            {notesOpen && (
+                <>
+                    <button
+                        type="button"
+                        className="notes-backdrop"
+                        aria-label="Close notes"
+                        onClick={() => setNotesOpen(false)}
+                    />
+                    <div
+                        id="notes-drawer"
+                        className="notes-drawer"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Notes"
+                        data-testid="notes-drawer"
+                    >
+                        <div className="file-tree">
+                            <h3
+                                style={{
+                                    fontSize: "var(--text-xs)",
+                                    fontWeight: 600,
+                                    color: "var(--color-text-muted)",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.05em",
+                                    marginBottom: "var(--space-3)",
+                                }}
+                            >
+                                {workspacePath ? getBasename(workspacePath) : "Documents"}
+                            </h3>
+                            {files.length === 0 && (
+                                <div
+                                    style={{
+                                        padding: "var(--space-4)",
+                                        textAlign: "center",
+                                        color: "var(--color-text-secondary)",
+                                        fontSize: "var(--text-sm)",
+                                    }}
+                                >
+                                    No folder opened or no markdown files found.
+                                </div>
+                            )}
+                            {files.length > 0 && filteredFiles.length === 0 && (
+                                <div
+                                    style={{
+                                        padding: "var(--space-4)",
+                                        textAlign: "center",
+                                        color: "var(--color-text-secondary)",
+                                        fontSize: "var(--text-sm)",
+                                    }}
+                                >
+                                    No notes match “{searchQuery}”.
+                                </div>
+                            )}
+                            <div role="tree" aria-label="Notes">
+                                {tree.map((node) => renderNode(node, 0))}
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
 
             {/* Main content */}
             <main className="app-main">
