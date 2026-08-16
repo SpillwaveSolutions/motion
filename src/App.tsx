@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Editor from "./components/Editor";
 import { storage, rememberWorkspaceRoot, relativeToWorkspace } from "./lib/storage";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
@@ -12,6 +12,18 @@ function App() {
     const [files, setFiles] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [synthesis, setSynthesis] = useState<string | null>(null);
+    const searchRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+                e.preventDefault();
+                searchRef.current?.focus();
+            }
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, []);
 
     // Get basename for display
     const getBasename = (path: string) => {
@@ -126,6 +138,7 @@ function App() {
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
                     <input
+                        ref={searchRef}
                         type="text"
                         placeholder="Search notes..."
                         value={searchQuery}
@@ -134,10 +147,10 @@ function App() {
                     />
                 </div>
 
-                <div className="view-toggle">
-                    <button className={`view-toggle-btn ${viewMode === "wysiwyg" ? "active" : ""}`} onClick={() => setViewMode("wysiwyg")}>WYSIWYG</button>
-                    <button className={`view-toggle-btn ${viewMode === "markdown" ? "active" : ""}`} onClick={() => setViewMode("markdown")}>Markdown</button>
-                    <button className={`view-toggle-btn ${viewMode === "split" ? "active" : ""}`} onClick={() => setViewMode("split")}>Split</button>
+                <div className="view-toggle" role="group" aria-label="Editor view mode">
+                    <button type="button" className={`view-toggle-btn ${viewMode === "wysiwyg" ? "active" : ""}`} aria-pressed={viewMode === "wysiwyg"} onClick={() => setViewMode("wysiwyg")}>WYSIWYG</button>
+                    <button type="button" className={`view-toggle-btn ${viewMode === "markdown" ? "active" : ""}`} aria-pressed={viewMode === "markdown"} onClick={() => setViewMode("markdown")}>Markdown</button>
+                    <button type="button" className={`view-toggle-btn ${viewMode === "split" ? "active" : ""}`} aria-pressed={viewMode === "split"} onClick={() => setViewMode("split")}>Split</button>
                 </div>
 
                 <div style={{ display: 'flex', gap: 'var(--space-2)' }}>

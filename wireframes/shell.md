@@ -26,8 +26,8 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 | Element | Type | Behavior / Notes |
 |---------|------|------------------|
 | Logo + Motion | brand | Always visible |
-| Search notes | text input | Filters the list by **basename** only. aria-label Search notes. |
-| View toggle | 3 buttons | WYSIWYG / Markdown / Split. Active class on current. |
+| Search notes | text input | Filters the list by **basename** only. aria-label Search notes. ⌘/Ctrl+K focuses it. |
+| View toggle | 3 buttons | WYSIWYG / Markdown / Split. role=group aria-label=Editor view mode. Each button has aria-pressed. |
 | Open Folder | secondary | Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
 | New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note, selects it, clears search. |
 | Synthesize | secondary | Disabled with no folder, or while a synthesis status is showing. See synthesize.md. |
@@ -49,11 +49,12 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 - [ ] Header, sidebar, and editor are all visible on a desktop viewport.
 - [ ] Open Folder is always available; New Note and Synthesize require an open folder.
 - [ ] Search filters by filename only and has aria-label Search notes.
+- [ ] ⌘/Ctrl+K focuses the Search notes field.
 - [ ] Note list is a listbox of real buttons (not clickable divs) with aria-selected.
 - [ ] Selecting a note loads it in the editor.
 - [ ] New Note writes untitled-{timestamp}.md, selects it, and appears in the list.
 - [ ] Sidebar is flat (basenames only), not a tree.
-- [ ] WYSIWYG / Markdown / Split toggle is in the header and changes the editor.
+- [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.
 - [ ] Synthesis banner is dismissible and uses role=status.
 
 ## Notes
