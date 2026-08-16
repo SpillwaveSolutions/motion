@@ -1,0 +1,13 @@
+{
+  "name": "spillwave-ui-guard",
+  "version": "0.1.0",
+  "description": "Wireframe-first + adversarial UI review enforcement for Spillwave apps (Grok Build)",
+  "author": "Spillwave Solutions",
+  "skills": [
+    "../../skills/ui-standards",
+    "../../skills/ui-require-wireframe",
+    "../../skills/ui-adversarial-reviewer",
+    "../../skills/ui-visual-regression",
+    "../../skills/ui-accessibility-check"
+  ]
+}
