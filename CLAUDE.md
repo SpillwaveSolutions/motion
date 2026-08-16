@@ -165,3 +165,8 @@ guess. This inline path is the default; the flag-gated classifier (`classifier:`
 in `.work/config.yml`, off by default) is the escape hatch for teams where work
 keeps escaping the log.
 <!-- worklog:taxonomy:end -->
+
+## Spillwave UI Guard
+See `.claude/UI_GUARD.md` and the skills under `.spillwave/ui-guard/skills/`.
+Wireframe-first + adversarial review is required for non-trivial UI work.
+Plugin: https://github.com/SpillwaveSolutions/spillwave-ui-guard

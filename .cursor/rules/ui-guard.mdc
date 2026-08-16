@@ -1,0 +1,14 @@
+---
+description: Enforce wireframe-first and adversarial review for UI work
+alwaysApply: true
+---
+
+# UI Guard Rules
+
+When the task involves UI (screens, components, layout, navigation, panels, dialogs):
+
+1. Locate or create a wireframe under `wireframes/` before writing implementation code.
+2. Ensure the wireframe contains clear acceptance criteria.
+3. After implementing, run or request an adversarial review against those criteria.
+4. Do not consider the UI change complete until the review verdict is PASS or an accepted PASS WITH NOTES.
+5. Prefer separate builder and critic roles.
