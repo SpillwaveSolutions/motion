@@ -5,10 +5,9 @@
 
 set -euo pipefail
 
-UI_PATTERNS='(src/.*\.(tsx?|jsx?|css|scss)$|components/|pages/|views/|app/)'
+UI_PATTERNS='((^|/)(src|web|app)/.*\.(tsx?|jsx?|css|scss)$|(^|/)(components|pages|views)/)'
 WIREFRAME_DIR="wireframes"
 
-# Collect staged files
 STAGED=$(git diff --cached --name-only --diff-filter=ACM || true)
 
 if [ -z "$STAGED" ]; then
