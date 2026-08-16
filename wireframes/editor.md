@@ -8,7 +8,7 @@ Edit one markdown note in WYSIWYG, raw Markdown, or Split without losing edits a
 ```
 +-----------------------------------------------------------------+
 | B I S ` | H1 H2 H3 | lists quote | code hr | Mermaid Dataset    |
-| Query AI Diagram AI Image | undo redo | status | Refine | Save  |
+| Query AI Diagram AI Image | undo redo | status | Refine |
 +-----------------------------------------------------------------+
 | WYSIWYG: TipTap document (welcome or file)                      |
 | Markdown: labeled textarea                                      |
@@ -28,9 +28,9 @@ Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 | Code block / HR | icons | |
 | Insert blocks | labeled | Mermaid, Dataset, Query, AI Diagram, AI Image -- same set as slash menu |
 | Undo / Redo | icons | Cmd+Z / Cmd+Shift+Z |
-| Save status | status | Saving / Saved / Save failed / empty. role=status aria-live=polite |
+| Save status | status | Saving / Saved / Save failed / empty. role=status aria-live=polite. The Save **button** lives in the shell header (see shell.md). |
 | AI Refine | icon | Disabled while refining. Needs claude on PATH. Alert on failure. |
-| Save | labeled button | Visible Save / Saving / Saved / Save failed. Disabled while saving or if no file. Cmd/Ctrl+S. |
+| Save | — | Moved to the app header. Toolbar keeps status only. Disabled with no file. Cmd/Ctrl+S. Autosave 1.5s after last edit. |
 | Welcome doc | default | Shown when no file selected: intro, mermaid, dataset, query, image-gen, diagram-gen demo blocks |
 | Markdown source | textarea | aria-label Markdown source. Placeholder Write your markdown here... |
 | Split preview | pre-wrap | Right pane is live raw markdown (read-only). |
@@ -38,7 +38,8 @@ Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 | Loading | copy | Loading editor... before TipTap mounts |
 
 ## States
-- **No file**: Welcome document. Save is a no-op (no filePath).
+- **No file**: Welcome document. Header Save is disabled.
+- **Dirty**: header Save enabled (primary); selected note shows •. Autosave after 1.5s idle.
 - **File loaded**: Content from disk, sanitized Markdown to HTML.
 - **Dirty after save**: Saved flips back to idle on the next keystroke.
 - **Save error**: Status Save failed plus alert.
@@ -51,9 +52,8 @@ Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 ## Acceptance Criteria
 - [ ] Toolbar is visible in all three view modes.
 - [ ] Every icon-only control has an aria-label (not title alone).
-- [ ] Save has a visible text label, not an icon only.
 - [ ] Save status is announced via role=status.
-- [ ] Cmd/Ctrl+S saves the current file.
+- [ ] Cmd/Ctrl+S saves the current file (header Save note is the visible control).
 - [ ] Switching WYSIWYG / Markdown / Split does not drop edits.
 - [ ] Markdown textarea is labeled Markdown source.
 - [ ] With no file selected, the welcome document (not a blank pane) is shown.
