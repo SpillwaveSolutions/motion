@@ -11,6 +11,7 @@ function App() {
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
     const [files, setFiles] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [contents, setContents] = useState<Record<string, string>>({});
     const [synthesis, setSynthesis] = useState<string | null>(null);
     const searchRef = useRef<HTMLInputElement>(null);
 
@@ -33,8 +34,37 @@ function App() {
     const filteredFiles = useMemo(() => {
         const q = searchQuery.trim().toLowerCase();
         if (!q) return files;
-        return files.filter((file) => getBasename(file).toLowerCase().includes(q));
-    }, [files, searchQuery]);
+        return files.filter((file) => {
+            if (getBasename(file).toLowerCase().includes(q)) return true;
+            return (contents[file] ?? "").toLowerCase().includes(q);
+        });
+    }, [files, searchQuery, contents]);
+
+    function snippetFor(file: string): string | null {
+        const q = searchQuery.trim();
+        if (!q) return null;
+        if (getBasename(file).toLowerCase().includes(q.toLowerCase())) return null;
+        const text = contents[file] ?? "";
+        const i = text.toLowerCase().indexOf(q.toLowerCase());
+        if (i < 0) return null;
+        const start = Math.max(0, i - 24);
+        const raw = text.slice(start, start + 72).replace(/\s+/g, " ").trim();
+        return `${start > 0 ? "…" : ""}${raw}…`;
+    }
+
+    async function cacheContents(paths: string[]) {
+        const next: Record<string, string> = {};
+        await Promise.all(
+            paths.map(async (p) => {
+                try {
+                    next[p] = await storage.readFile(p);
+                } catch {
+                    next[p] = "";
+                }
+            }),
+        );
+        setContents(next);
+    }
 
     const handleOpenFolder = async () => {
         try {
@@ -44,6 +74,7 @@ function App() {
                 rememberWorkspaceRoot(path);
                 const markdownFiles = await storage.listFiles(path);
                 setFiles(markdownFiles);
+                await cacheContents(markdownFiles);
                 setCurrentFilePath(null);
                 setSearchQuery("");
             }
@@ -77,6 +108,7 @@ function App() {
             });
 
             setFiles(await storage.listFiles(workspacePath));
+            await cacheContents(await storage.listFiles(workspacePath));
             setSynthesis(
                 `Synthesized ${result.noteCount} notes into TOC.md and SKILL.md` +
                 (result.topic.suggestedLabels.length
@@ -108,6 +140,7 @@ function App() {
             const content = "# New Note\n\n";
             await storage.writeFile(path, content);
             setFiles((prev) => [...prev, path].sort((a, b) => a.localeCompare(b)));
+            setContents((prev) => ({ ...prev, [path]: content }));
             setCurrentFilePath(path);
             setSearchQuery("");
         } catch (error) {
@@ -140,7 +173,7 @@ function App() {
                     <input
                         ref={searchRef}
                         type="text"
-                        placeholder="Search notes..."
+                        placeholder="Search notes and contents..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         aria-label="Search notes"
@@ -230,7 +263,14 @@ function App() {
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                                     <polyline points="14 2 14 8 20 8" />
                                 </svg>
-                                {getBasename(file)}
+                                <span className="file-tree-copy">
+                                    <span className="file-tree-name">{getBasename(file)}</span>
+                                    {snippetFor(file) && (
+                                        <span className="file-tree-snippet" aria-hidden="true">
+                                            {snippetFor(file)}
+                                        </span>
+                                    )}
+                                </span>
                             </button>
                         ))}
                     </div>
