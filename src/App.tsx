@@ -5,6 +5,98 @@ import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
+type TreeNode = {
+    name: string;
+    /** Absolute path for files; folder key path for directories */
+    path: string;
+    kind: "file" | "folder";
+    children?: TreeNode[];
+};
+
+function getBasename(path: string) {
+    return path.split(/[/\\]/).pop() || path;
+}
+
+function pathSep(root: string) {
+    return root.includes("\\") ? "\\" : "/";
+}
+
+/** Build a sorted directory tree from absolute file paths under workspaceRoot. */
+function buildTree(absolutePaths: string[], workspaceRoot: string | null): TreeNode[] {
+    if (!workspaceRoot) {
+        return absolutePaths
+            .map((p) => ({ name: getBasename(p), path: p, kind: "file" as const }))
+            .sort((a, b) => a.name.localeCompare(b.name));
+    }
+    const sep = pathSep(workspaceRoot);
+    const rootNorm = workspaceRoot.replace(/[/\\]$/, "");
+
+    type Mutable = { name: string; path: string; kind: "file" | "folder"; children: Map<string, Mutable> };
+    const root: Mutable = { name: "", path: rootNorm, kind: "folder", children: new Map() };
+
+    for (const abs of absolutePaths) {
+        let rel = abs;
+        if (abs.startsWith(rootNorm + sep)) rel = abs.slice(rootNorm.length + 1);
+        else if (abs.startsWith(rootNorm + "/") || abs.startsWith(rootNorm + "\\")) {
+            rel = abs.slice(rootNorm.length + 1);
+        }
+        const parts = rel.split(/[/\\]/).filter(Boolean);
+        if (parts.length === 0) continue;
+
+        let node = root;
+        let acc = rootNorm;
+        for (let i = 0; i < parts.length; i++) {
+            const part = parts[i];
+            acc = `${acc}${sep}${part}`;
+            const isFile = i === parts.length - 1;
+            if (!node.children.has(part)) {
+                node.children.set(part, {
+                    name: part,
+                    path: isFile ? abs : acc,
+                    kind: isFile ? "file" : "folder",
+                    children: new Map(),
+                });
+            }
+            node = node.children.get(part)!;
+            if (isFile) node.path = abs;
+        }
+    }
+
+    function toNodes(m: Mutable): TreeNode[] {
+        const list = Array.from(m.children.values()).sort((a, b) => {
+            if (a.kind !== b.kind) return a.kind === "folder" ? -1 : 1;
+            return a.name.localeCompare(b.name);
+        });
+        return list.map((c) => ({
+            name: c.name,
+            path: c.path,
+            kind: c.kind,
+            children: c.kind === "folder" ? toNodes(c) : undefined,
+        }));
+    }
+
+    return toNodes(root);
+}
+
+/** Collect folder paths that are ancestors of the given file paths. */
+function ancestorFolders(filePaths: string[], workspaceRoot: string | null): Set<string> {
+    const out = new Set<string>();
+    if (!workspaceRoot) return out;
+    const sep = pathSep(workspaceRoot);
+    const rootNorm = workspaceRoot.replace(/[/\\]$/, "");
+    for (const abs of filePaths) {
+        let rel = abs;
+        if (abs.startsWith(rootNorm + sep)) rel = abs.slice(rootNorm.length + 1);
+        const parts = rel.split(/[/\\]/).filter(Boolean);
+        let acc = rootNorm;
+        for (let i = 0; i < parts.length - 1; i++) {
+            acc = `${acc}${sep}${parts[i]}`;
+            out.add(acc);
+        }
+    }
+    return out;
+}
+
 function App() {
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
@@ -16,6 +108,8 @@ function App() {
     const [saveSignal, setSaveSignal] = useState(0);
     const [saveState, setSaveState] = useState<SaveState>("idle");
     const [dirty, setDirty] = useState(false);
+    /** Folder absolute paths that are expanded. Empty set means “all expanded” until user toggles. */
+    const [expanded, setExpanded] = useState<Set<string> | null>(null);
     const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -29,11 +123,6 @@ function App() {
         return () => window.removeEventListener("keydown", onKey);
     }, []);
 
-    // Get basename for display
-    const getBasename = (path: string) => {
-        return path.split(/[/\\]/).pop() || path;
-    };
-
     const filteredFiles = useMemo(() => {
         const q = searchQuery.trim().toLowerCase();
         if (!q) return files;
@@ -42,6 +131,37 @@ function App() {
             return (contents[file] ?? "").toLowerCase().includes(q);
         });
     }, [files, searchQuery, contents]);
+
+    const tree = useMemo(
+        () => buildTree(filteredFiles, workspacePath),
+        [filteredFiles, workspacePath],
+    );
+
+    const searchAncestors = useMemo(
+        () => (searchQuery.trim() ? ancestorFolders(filteredFiles, workspacePath) : null),
+        [searchQuery, filteredFiles, workspacePath],
+    );
+
+    function isExpanded(folderPath: string): boolean {
+        if (searchAncestors) return searchAncestors.has(folderPath);
+        if (expanded === null) return true; // default: all open
+        return expanded.has(folderPath);
+    }
+
+    function toggleFolder(folderPath: string) {
+        setExpanded((prev) => {
+            const base =
+                prev === null
+                    ? new Set(
+                          // seed with every current folder path so closing one doesn't collapse all
+                          collectFolderPaths(buildTree(files, workspacePath)),
+                      )
+                    : new Set(prev);
+            if (base.has(folderPath)) base.delete(folderPath);
+            else base.add(folderPath);
+            return base;
+        });
+    }
 
     function snippetFor(file: string): string | null {
         const q = searchQuery.trim();
@@ -80,6 +200,7 @@ function App() {
                 await cacheContents(markdownFiles);
                 setCurrentFilePath(null);
                 setSearchQuery("");
+                setExpanded(null); // default all expanded
             }
         } catch (error) {
             console.error("Failed to open folder:", error);
@@ -88,13 +209,6 @@ function App() {
         }
     };
 
-    /**
-     * Workspace-level synthesis: summarize every note, cluster by topic, and
-     * write TOC.md and SKILL.md back into the workspace.
-     *
-     * The three modules behind this were written months ago and had no way for
-     * a user to reach them.
-     */
     const handleSynthesize = async () => {
         if (!workspacePath || synthesis) return;
 
@@ -114,9 +228,9 @@ function App() {
             await cacheContents(await storage.listFiles(workspacePath));
             setSynthesis(
                 `Synthesized ${result.noteCount} notes into TOC.md and SKILL.md` +
-                (result.topic.suggestedLabels.length
-                    ? ` — topics: ${result.topic.suggestedLabels.join(", ")}`
-                    : "")
+                    (result.topic.suggestedLabels.length
+                        ? ` — topics: ${result.topic.suggestedLabels.join(", ")}`
+                        : ""),
             );
         } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
@@ -157,6 +271,73 @@ function App() {
         setContents((prev) => ({ ...prev, [path]: content }));
     }, []);
 
+    function renderNode(node: TreeNode, depth: number): React.ReactNode {
+        if (node.kind === "folder") {
+            const open = isExpanded(node.path);
+            return (
+                <div key={node.path} role="group" aria-label={node.name}>
+                    <button
+                        type="button"
+                        className="file-tree-item file-tree-folder"
+                        style={{ paddingLeft: `calc(var(--space-2) + ${depth * 12}px)` }}
+                        aria-expanded={open}
+                        onClick={() => toggleFolder(node.path)}
+                    >
+                        <svg
+                            className="file-tree-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            aria-hidden="true"
+                            style={{
+                                transform: open ? "rotate(90deg)" : "none",
+                                transition: "transform 0.12s ease",
+                            }}
+                        >
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                        <span className="file-tree-name">{node.name}</span>
+                    </button>
+                    {open && node.children?.map((child) => renderNode(child, depth + 1))}
+                </div>
+            );
+        }
+
+        return (
+            <button
+                key={node.path}
+                type="button"
+                role="treeitem"
+                aria-selected={currentFilePath === node.path}
+                className={`file-tree-item ${currentFilePath === node.path ? "active" : ""}`}
+                style={{ paddingLeft: `calc(var(--space-2) + ${depth * 12}px)` }}
+                onClick={() => handleFileSelect(node.path)}
+            >
+                <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                </svg>
+                <span className="file-tree-copy">
+                    <span className="file-tree-name">
+                        {node.name}
+                        {dirty && currentFilePath === node.path ? (
+                            <span className="file-tree-dirty" aria-hidden="true">
+                                {" "}
+                                •
+                            </span>
+                        ) : null}
+                    </span>
+                    {snippetFor(node.path) && (
+                        <span className="file-tree-snippet" aria-hidden="true">
+                            {snippetFor(node.path)}
+                        </span>
+                    )}
+                </span>
+            </button>
+        );
+    }
+
     return (
         <div className="app">
             {/* Header */}
@@ -193,7 +374,7 @@ function App() {
                     <button type="button" className={`view-toggle-btn ${viewMode === "split" ? "active" : ""}`} aria-pressed={viewMode === "split"} onClick={() => setViewMode("split")}>Split</button>
                 </div>
 
-                <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                <div style={{ display: "flex", gap: "var(--space-2)" }}>
                     <button className="btn btn-secondary" onClick={handleOpenFolder}>
                         Open Folder
                     </button>
@@ -257,55 +438,47 @@ function App() {
             {/* Sidebar */}
             <aside className="app-sidebar">
                 <div className="file-tree">
-                    <h3 style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "var(--color-text-muted)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "var(--space-3)" }}>
+                    <h3
+                        style={{
+                            fontSize: "var(--text-xs)",
+                            fontWeight: 600,
+                            color: "var(--color-text-muted)",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.05em",
+                            marginBottom: "var(--space-3)",
+                        }}
+                    >
                         {workspacePath ? getBasename(workspacePath) : "Documents"}
                     </h3>
 
                     {files.length === 0 && (
-                        <div style={{ padding: 'var(--space-4)', textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
+                        <div
+                            style={{
+                                padding: "var(--space-4)",
+                                textAlign: "center",
+                                color: "var(--color-text-secondary)",
+                                fontSize: "var(--text-sm)",
+                            }}
+                        >
                             No folder opened or no markdown files found.
                         </div>
                     )}
 
                     {files.length > 0 && filteredFiles.length === 0 && (
-                        <div style={{ padding: 'var(--space-4)', textAlign: 'center', color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
+                        <div
+                            style={{
+                                padding: "var(--space-4)",
+                                textAlign: "center",
+                                color: "var(--color-text-secondary)",
+                                fontSize: "var(--text-sm)",
+                            }}
+                        >
                             No notes match “{searchQuery}”.
                         </div>
                     )}
 
-                    {/* Real buttons, not clickable divs: the file list has to be
-                        keyboard-reachable and addressable by accessible name --
-                        for users first, and so E2E specs can select a note by
-                        its name instead of a brittle CSS path. */}
-                    <div role="listbox" aria-label="Notes">
-                        {filteredFiles.map(file => (
-                            <button
-                                key={file}
-                                type="button"
-                                role="option"
-                                aria-selected={currentFilePath === file}
-                                className={`file-tree-item ${currentFilePath === file ? "active" : ""}`}
-                                onClick={() => handleFileSelect(file)}
-                            >
-                                <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                    <polyline points="14 2 14 8 20 8" />
-                                </svg>
-                                <span className="file-tree-copy">
-                                    <span className="file-tree-name">
-                                        {getBasename(file)}
-                                        {dirty && currentFilePath === file ? (
-                                            <span className="file-tree-dirty" aria-hidden="true"> •</span>
-                                        ) : null}
-                                    </span>
-                                    {snippetFor(file) && (
-                                        <span className="file-tree-snippet" aria-hidden="true">
-                                            {snippetFor(file)}
-                                        </span>
-                                    )}
-                                </span>
-                            </button>
-                        ))}
+                    <div role="tree" aria-label="Notes">
+                        {tree.map((node) => renderNode(node, 0))}
                     </div>
                 </div>
             </aside>
@@ -323,6 +496,17 @@ function App() {
             </main>
         </div>
     );
+}
+
+function collectFolderPaths(nodes: TreeNode[]): string[] {
+    const out: string[] = [];
+    for (const n of nodes) {
+        if (n.kind === "folder") {
+            out.push(n.path);
+            if (n.children) out.push(...collectFolderPaths(n.children));
+        }
+    }
+    return out;
 }
 
 export default App;
