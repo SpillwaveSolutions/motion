@@ -1,8 +1,17 @@
 # Wireframes
 
-This directory is required by Spillwave UI Guard.
+As-built UI contracts for Motion. Required by [Spillwave UI Guard](https://github.com/SpillwaveSolutions/spillwave-ui-guard).
 
-- One folder per feature or major screen
-- Use `_template.md` as the skeleton
-- Keep acceptance criteria current — the adversarial reviewer treats them as the contract
-- Source plugin: https://github.com/SpillwaveSolutions/spillwave-ui-guard
+These describe the **current** product, not a redesign. Update the matching file *before* changing layout, navigation, or a primary flow. The adversarial reviewer treats acceptance criteria as the contract.
+
+| Screen | File |
+|--------|------|
+| App chrome | [shell.md](./shell.md) |
+| Editor | [editor.md](./editor.md) |
+| Slash menu | [slash-menu.md](./slash-menu.md) |
+| Content blocks | [blocks.md](./blocks.md) |
+| Workspace synthesize | [synthesize.md](./synthesize.md) |
+
+Skeleton: [_template.md](./_template.md).
+
+Motion is one surface: header + sidebar + editor. There is no view router.
