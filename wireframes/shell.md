@@ -39,6 +39,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | Empty list | copy | No folder opened or no markdown files found. |
 | No match | copy | No notes match "{query}". |
 | Note tree | tree | role=tree aria-label=Notes. Folders are expandable buttons (aria-expanded). Files are buttons with role=treeitem and aria-selected. Shows basename for files; relative folder segments for directories. A dirty selected note shows a • mark. |
+| Notes (mobile) | button | Visible below 768px. Opens a left drawer (`data-testid=notes-drawer`, `role=dialog` `aria-modal`) with the same tree. Escape / backdrop / selecting a file close it. |
 
 ## States
 - **No folder**: Documents heading, empty copy, New Note and Synthesize disabled.
@@ -47,7 +48,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - **Filter miss**: No-match copy, tree empty (or only empty folders collapsed away).
 - **Synthesis in flight / done / failed**: Banner; Synthesize stays disabled until dismiss.
 - **Open / create error**: window.alert (current).
-- **Narrow (~390px)**: Sidebar hidden (existing). Header wraps: search goes full width; view toggle and Open / New Note / Synthesize stay reachable. No horizontal overflow.
+- **Narrow (~390px)**: Persistent sidebar hidden. **Notes** header button opens a drawer with the tree so notes stay reachable. Header wraps: search goes full width; view toggle and Open / New Note / Synthesize stay reachable. No horizontal overflow.
 
 ## Acceptance Criteria
 - [ ] Header, sidebar, and editor are all visible on a desktop viewport.
@@ -62,6 +63,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] Synthesis banner is dismissible and uses role=status.
 - [ ] Save is a labeled header button (Save note). Disabled until a note is selected.
 - [ ] A dirty note autosaves ~1.5s after the last edit and can be saved immediately with the button or ⌘S.
+- [ ] Below 768px a **Notes** button (`data-testid=open-notes`) opens a drawer with the same tree; Escape and selecting a file close it.
 
 ## Notes
 - Source: src/App.tsx.
