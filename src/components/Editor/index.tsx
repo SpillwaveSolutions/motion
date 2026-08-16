@@ -36,6 +36,7 @@ turndown.addRule("fencedCodeBlock", {
 });
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
+export type SaveState = "idle" | "saving" | "saved" | "error";
 
 // Leaving markdown mode is the only transition that needs an explicit push:
 // wysiwyg/split edits keep rawMarkdown current via onUpdate, but typing in
@@ -50,6 +51,10 @@ export function shouldSyncMarkdownIntoEditor(
 interface EditorProps {
     viewMode: ViewMode;
     filePath: string | null;
+    saveSignal?: number;
+    onSaveStateChange?: (state: SaveState) => void;
+    onDirtyChange?: (dirty: boolean) => void;
+    onSaved?: (path: string, content: string) => void;
 }
 
 interface SlashMenuState {
@@ -110,9 +115,18 @@ limit: 5</code></pre>
 <pre data-type="diagram-gen"><code class="language-diagram-gen">prompt: A sequence diagram for a login flow</code></pre>
 `;
 
-function Editor({ viewMode, filePath }: EditorProps) {
+function Editor({
+    viewMode,
+    filePath,
+    saveSignal = 0,
+    onSaveStateChange,
+    onDirtyChange,
+    onSaved,
+}: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
-    const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+    const [saveState, setSaveState] = useState<SaveState>("idle");
+    const [dirty, setDirty] = useState(false);
+    const snapshotRef = useRef("");
     const [findOpen, setFindOpen] = useState(false);
     const [findQuery, setFindQuery] = useState("");
     const [findIndex, setFindIndex] = useState(0);
@@ -223,22 +237,56 @@ function Editor({ viewMode, filePath }: EditorProps) {
     }, [editor]);
 
     // Handle saving
-    const handleSave = useCallback(async () => {
+    const handleSave = useCallback(async (opts?: { silent?: boolean }) => {
         if (!editor || !filePath) return;
 
-        // B13: saving had no observable completion at all -- the only signal was
-        // a console.log, so neither a user nor a test could tell a finished save
-        // from one still in flight, or from one that silently did nothing.
         setSaveState("saving");
         try {
             await storage.writeFile(filePath, rawMarkdown);
+            snapshotRef.current = rawMarkdown;
+            setDirty(false);
             setSaveState("saved");
+            onSaved?.(filePath, rawMarkdown);
         } catch (error) {
             setSaveState("error");
             console.error("Failed to save file:", error);
-            alert(`Error saving file: ${error}`);
+            if (!opts?.silent) {
+                alert(`Error saving file: ${error}`);
+            }
         }
-    }, [editor, filePath, rawMarkdown]);
+    }, [editor, filePath, rawMarkdown, onSaved]);
+
+    const saveRef = useRef(handleSave);
+    saveRef.current = handleSave;
+
+    useEffect(() => {
+        onSaveStateChange?.(saveState);
+    }, [saveState, onSaveStateChange]);
+
+    useEffect(() => {
+        onDirtyChange?.(dirty);
+    }, [dirty, onDirtyChange]);
+
+    useEffect(() => {
+        if (!filePath) {
+            setDirty(false);
+            return;
+        }
+        setDirty(rawMarkdown !== snapshotRef.current);
+    }, [rawMarkdown, filePath]);
+
+    useEffect(() => {
+        if (saveSignal === 0) return;
+        void saveRef.current();
+    }, [saveSignal]);
+
+    useEffect(() => {
+        if (!dirty || !filePath || saveState === "saving") return;
+        const t = window.setTimeout(() => {
+            void saveRef.current({ silent: true });
+        }, 1500);
+        return () => window.clearTimeout(t);
+    }, [dirty, rawMarkdown, filePath, saveState]);
 
     const [refining, setRefining] = useState(false);
 
@@ -294,6 +342,8 @@ function Editor({ viewMode, filePath }: EditorProps) {
                     const content = await storage.readFile(filePath);
                     if (cancelled) return;
                     setRawMarkdown(content);
+                    snapshotRef.current = content;
+                    setDirty(false);
                     const rawHtml = await marked.parse(content);
                     // Sanitize Markdown→HTML before TipTap to prevent XSS from untrusted .md files
                     const html = sanitizeHtml(
@@ -314,6 +364,8 @@ function Editor({ viewMode, filePath }: EditorProps) {
                 }
             } else {
                 setRawMarkdown("");
+                snapshotRef.current = "";
+                setDirty(false);
                 editor.commands.setContent(welcomeHTML, { emitUpdate: false });
             }
         };

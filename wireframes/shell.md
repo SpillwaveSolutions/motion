@@ -8,7 +8,7 @@ Give the user a workspace of markdown notes they can find by **filename or conte
 ```
 +-----------------------------------------------------------------+
 | [logo] Motion | Search notes... | WYSIWYG Markdown Split |      |
-|               |                 | Open Folder  New Note  Synthesize |
+|               |                 | Open Folder  New Note  Save  Synthesize |
 +-----------------------------------------------------------------+
 | (optional synthesis status banner + dismiss)                    |
 +-----------------+-----------------------------------------------+
@@ -30,12 +30,13 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 | View toggle | 3 buttons | WYSIWYG / Markdown / Split. role=group aria-label=Editor view mode. Each button has aria-pressed. |
 | Open Folder | secondary | Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
 | New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note, selects it, clears search. |
+| Save | primary when dirty | Header control, aria-label Save note. Disabled with no note selected or while saving. Label: Save / Saving… / Saved / Save failed. ⌘/Ctrl+S also saves. Auto-saves 1.5s after the last edit. |
 | Synthesize | secondary | Disabled with no folder, or while a synthesis status is showing. See synthesize.md. |
 | Synthesis banner | status | role=status aria-live=polite. Dismiss (x) with aria-label Dismiss synthesis status. |
 | Sidebar heading | h3 | Workspace basename, or Documents if none |
 | Empty list | copy | No folder opened or no markdown files found. |
 | No match | copy | No notes match "{query}". |
-| Note list | listbox | role=listbox aria-label=Notes. Each item is a button role=option with aria-selected. Shows basename only. |
+| Note list | listbox | role=listbox aria-label=Notes. Each item is a button role=option with aria-selected. Shows basename only. A dirty selected note shows a • mark. |
 
 ## States
 - **No folder**: Documents heading, empty copy, New Note and Synthesize disabled.
@@ -57,7 +58,8 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 - [ ] Sidebar is flat (basenames only), not a tree.
 - [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.
 - [ ] Synthesis banner is dismissible and uses role=status.
-- [ ] At ~390px the header wraps instead of overflowing; Open Folder / New Note / Synthesize remain usable.
+- [ ] Save is a labeled header button (Save note). Disabled until a note is selected.
+- [ ] A dirty note autosaves ~1.5s after the last edit and can be saved immediately with the button or ⌘S.
 
 ## Notes
 - Source: src/App.tsx.

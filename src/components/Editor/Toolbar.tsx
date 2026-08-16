@@ -251,42 +251,6 @@ function Toolbar({ editor, onSave, onFind, onRefine, refining = false, saveState
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
             </ToolbarButton>
-
-            {/*
-              Save used to be icon-only. After New Note, users could not see how
-              to keep edits — only a floppy glyph with a hover tooltip. Keep the
-              icon, add a visible label, and leave ⌘S / the status region intact.
-            */}
-            <button
-                type="button"
-                className="toolbar-btn toolbar-btn-save"
-                onClick={() => onSave?.()}
-                title={
-                    saveState === "saving" ? "Saving…"
-                    : saveState === "saved" ? "Saved"
-                    : saveState === "error" ? "Save failed"
-                    : "Save (⌘S)"
-                }
-                aria-label={
-                    saveState === "saving" ? "Saving…"
-                    : saveState === "saved" ? "Saved"
-                    : saveState === "error" ? "Save failed"
-                    : "Save (⌘S)"
-                }
-                disabled={!onSave || saveState === "saving"}
-            >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-primary)" strokeWidth="2.5" aria-hidden="true">
-                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                    <polyline points="17 21 17 13 7 13 7 21" />
-                    <polyline points="7 3 7 8 15 8" />
-                </svg>
-                <span className="toolbar-save-label">
-                    {saveState === "saving" ? "Saving…"
-                     : saveState === "saved" ? "Saved"
-                     : saveState === "error" ? "Save failed"
-                     : "Save"}
-                </span>
-            </button>
         </div>
     );
 }

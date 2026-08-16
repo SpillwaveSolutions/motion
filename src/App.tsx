@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import Editor from "./components/Editor";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Editor, { type SaveState } from "./components/Editor";
 import { storage, rememberWorkspaceRoot, relativeToWorkspace } from "./lib/storage";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 
@@ -13,6 +13,9 @@ function App() {
     const [searchQuery, setSearchQuery] = useState("");
     const [contents, setContents] = useState<Record<string, string>>({});
     const [synthesis, setSynthesis] = useState<string | null>(null);
+    const [saveSignal, setSaveSignal] = useState(0);
+    const [saveState, setSaveState] = useState<SaveState>("idle");
+    const [dirty, setDirty] = useState(false);
     const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -150,6 +153,10 @@ function App() {
         }
     };
 
+    const handleSaved = useCallback((path: string, content: string) => {
+        setContents((prev) => ({ ...prev, [path]: content }));
+    }, []);
+
     return (
         <div className="app">
             {/* Header */}
@@ -197,6 +204,27 @@ function App() {
                         title={workspacePath ? "Create a new markdown note" : "Open a folder first"}
                     >
                         New Note
+                    </button>
+                    <button
+                        className={dirty ? "btn btn-primary" : "btn btn-secondary"}
+                        onClick={() => setSaveSignal((n) => n + 1)}
+                        disabled={!currentFilePath || saveState === "saving"}
+                        aria-label="Save note"
+                        title={
+                            !currentFilePath
+                                ? "Select a note to save"
+                                : dirty
+                                  ? "Save note (⌘S)"
+                                  : "All changes saved"
+                        }
+                    >
+                        {saveState === "saving"
+                            ? "Saving…"
+                            : saveState === "saved"
+                              ? "Saved"
+                              : saveState === "error"
+                                ? "Save failed"
+                                : "Save"}
                     </button>
                     <button
                         className="btn btn-secondary"
@@ -264,7 +292,12 @@ function App() {
                                     <polyline points="14 2 14 8 20 8" />
                                 </svg>
                                 <span className="file-tree-copy">
-                                    <span className="file-tree-name">{getBasename(file)}</span>
+                                    <span className="file-tree-name">
+                                        {getBasename(file)}
+                                        {dirty && currentFilePath === file ? (
+                                            <span className="file-tree-dirty" aria-hidden="true"> •</span>
+                                        ) : null}
+                                    </span>
                                     {snippetFor(file) && (
                                         <span className="file-tree-snippet" aria-hidden="true">
                                             {snippetFor(file)}
@@ -279,7 +312,14 @@ function App() {
 
             {/* Main content */}
             <main className="app-main">
-                <Editor viewMode={viewMode} filePath={currentFilePath} />
+                <Editor
+                    viewMode={viewMode}
+                    filePath={currentFilePath}
+                    saveSignal={saveSignal}
+                    onSaveStateChange={setSaveState}
+                    onDirtyChange={setDirty}
+                    onSaved={handleSaved}
+                />
             </main>
         </div>
     );

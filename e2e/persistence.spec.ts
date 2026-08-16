@@ -43,7 +43,7 @@ test("an edit survives save and reload", async ({ page }) => {
     const write = page.waitForResponse(
         (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
     );
-    await page.getByRole("button", { name: /^Save/ }).click();
+    await page.getByRole("button", { name: "Save note" }).click();
     expect((await write).status()).toBe(200);
 
     await gotoApp(page);
@@ -105,7 +105,7 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
     await page.keyboard.type(marker);
 
     // Visible labeled Save (not icon-only). Accessible name still matches /^Save/.
-    const saveBtn = page.getByRole("button", { name: /^Save/ });
+    const saveBtn = page.getByRole("button", { name: "Save note" });
     await expect(saveBtn).toBeVisible();
     await expect(saveBtn).toContainText("Save");
 
@@ -135,7 +135,7 @@ test("writes land on disk where the next read can find them", async ({ page }) =
     await page.keyboard.type(` ${marker}`);
 
     const write = page.waitForResponse((r) => r.url().includes("/api/fs/write"));
-    await page.getByRole("button", { name: /^Save/ }).click();
+    await page.getByRole("button", { name: "Save note" }).click();
     await write;
 
     // Read it straight back through the API, bypassing the editor entirely --

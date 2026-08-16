@@ -89,7 +89,7 @@ test("a document with blocks survives save and reload with content intact", asyn
     await expect(editor.locator('[data-type="query"], .query-block').first()).toBeVisible();
 
     const write = page.waitForResponse((r) => r.url().includes("/api/fs/write"));
-    await page.getByRole("button", { name: /^Save/ }).click();
+    await page.getByRole("button", { name: "Save note" }).click();
     expect((await write).status()).toBe(200);
 
     // Reload from disk -- the full cycle.
