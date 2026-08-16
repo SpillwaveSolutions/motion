@@ -4,6 +4,7 @@ import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
 interface ToolbarProps {
     editor: Editor;
     onSave?: () => void;
+    onFind?: () => void;
     onRefine?: () => void;
     refining?: boolean;
     saveState?: "idle" | "saving" | "saved" | "error";
@@ -39,7 +40,7 @@ function ToolbarButton({
     );
 }
 
-function Toolbar({ editor, onSave, onRefine, refining = false, saveState = "idle" }: ToolbarProps) {
+function Toolbar({ editor, onSave, onFind, onRefine, refining = false, saveState = "idle" }: ToolbarProps) {
     return (
         <div className="editor-toolbar">
             {/* Text formatting */}
@@ -237,6 +238,17 @@ function Toolbar({ editor, onSave, onRefine, refining = false, saveState = "idle
             >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 3l1.9 5.8L20 10.7l-5.1 3 1.2 6-4.1-3.2L7.9 19.7l1.2-6L4 10.7l6.1-1.9z" />
+                </svg>
+            </ToolbarButton>
+
+            <ToolbarButton
+                onClick={() => onFind?.()}
+                title="Find in note (⌘F)"
+                disabled={!onFind}
+            >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
             </ToolbarButton>
 

@@ -34,7 +34,7 @@ Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 | Welcome doc | default | Shown when no file selected: intro, mermaid, dataset, query, image-gen, diagram-gen demo blocks |
 | Markdown source | textarea | aria-label Markdown source. Placeholder Write your markdown here... |
 | Split preview | pre-wrap | Right pane is live raw markdown (read-only). |
-| Load error | red paragraph | Error loading file: {message} -- escaped, not raw HTML |
+| Find in note | bar | ⌘/Ctrl+F opens. Matches the current note (WYSIWYG selection or markdown source). Enter next, Shift+Enter previous, Escape closes. aria-label Find in note. |
 | Loading | copy | Loading editor... before TipTap mounts |
 
 ## States
@@ -45,6 +45,8 @@ Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 - **Refine in flight**: Refine disabled; title Refining.
 - **Markdown mode**: Textarea only (no slash menu).
 - **Split**: Two columns; slash menu still works on the TipTap side.
+
+- **Find open**: bar above the document; current match is selected.
 
 ## Acceptance Criteria
 - [ ] Toolbar is visible in all three view modes.
@@ -58,6 +60,7 @@ Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 - [ ] A failed file load shows an error inside the editor, not a blank page.
 - [ ] Insert buttons create Mermaid, Dataset, Query, AI Diagram, and AI Image blocks.
 - [ ] Pipe tables are **not** required (unsupported; render as text).
+- [ ] ⌘/Ctrl+F opens Find in note; Enter cycles matches; Escape closes.
 
 ## Notes
 - Source: src/components/Editor/index.tsx, Toolbar.tsx.

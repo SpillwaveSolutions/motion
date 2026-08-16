@@ -160,3 +160,16 @@ test("search matches note contents, not just the filename", async ({ page }) => 
     await expect(hit).toContainText(/seeded note/i);
 });
 
+test("find in note opens with the shortcut and counts matches", async ({ page }) => {
+    await gotoApp(page);
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await page.getByRole("listbox", { name: "Notes" }).getByRole("option", { name: "welcome.md" }).click();
+    await expect(page.locator(".ProseMirror")).toBeVisible();
+    await page.getByRole("button", { name: "Find in note (⌘F)" }).click();
+    const find = page.getByRole("searchbox", { name: "Find in note" });
+    await expect(find).toBeVisible();
+    await find.fill("seeded");
+    await expect(page.locator(".find-bar-count")).toContainText(/of \d+/);
+});
+
+
