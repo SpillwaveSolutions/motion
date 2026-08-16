@@ -44,6 +44,7 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 - **Filter miss**: No-match copy, list empty.
 - **Synthesis in flight / done / failed**: Banner; Synthesize stays disabled until dismiss.
 - **Open / create error**: window.alert (current).
+- **Narrow (~390px)**: Sidebar hidden (existing). Header wraps: search goes full width; view toggle and Open / New Note / Synthesize stay reachable. No horizontal overflow.
 
 ## Acceptance Criteria
 - [ ] Header, sidebar, and editor are all visible on a desktop viewport.
@@ -56,6 +57,7 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 - [ ] Sidebar is flat (basenames only), not a tree.
 - [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.
 - [ ] Synthesis banner is dismissible and uses role=status.
+- [ ] At ~390px the header wraps instead of overflowing; Open Folder / New Note / Synthesize remain usable.
 
 ## Notes
 - Source: src/App.tsx.

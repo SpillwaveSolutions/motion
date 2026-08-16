@@ -169,6 +169,8 @@ pre {
   grid-template-columns: var(--sidebar-width) 1fr;
   grid-template-rows: var(--header-height) 1fr;
   min-height: 100vh;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .app-header {
@@ -179,6 +181,7 @@ pre {
   align-items: center;
   padding: 0 var(--space-4);
   gap: var(--space-4);
+  min-width: 0;
 }
 
 .app-sidebar {
@@ -588,6 +591,7 @@ pre {
   padding: var(--space-2) var(--space-3);
   flex: 1;
   max-width: 400px;
+  min-width: 0;
 }
 
 .search-bar:focus-within {
@@ -628,6 +632,27 @@ pre {
 @media (max-width: 768px) {
   :root {
     --sidebar-width: 0px;
+  }
+
+  .app {
+    grid-template-rows: auto 1fr;
+  }
+
+  .app-header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .search-bar {
+    flex: 1 1 100%;
+    max-width: none;
+    order: 5;
+  }
+
+  .view-toggle {
+    order: 6;
   }
 
   .app-sidebar {
