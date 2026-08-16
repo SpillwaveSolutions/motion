@@ -555,13 +555,36 @@ pre {
 
 .file-tree-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: all var(--transition-fast);
+  text-align: left;
+  width: 100%;
+}
+
+.file-tree-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-tree-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-tree-snippet {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .file-tree-item:hover {
@@ -578,6 +601,8 @@ pre {
   width: 16px;
   height: 16px;
   opacity: 0.7;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 /* Search bar */

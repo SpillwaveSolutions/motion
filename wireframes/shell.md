@@ -1,7 +1,7 @@
 # Screen: App chrome (shell)
 
 ## Goal
-Open a workspace folder, find a note by filename, create a note, run workspace synthesis, and pick the editor view mode. The user always sees which folder is open and which note is selected.
+Give the user a workspace of markdown notes they can find by **filename or contents**, create, synthesize, and edit.
 
 ## Layout
 
@@ -26,7 +26,7 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 | Element | Type | Behavior / Notes |
 |---------|------|------------------|
 | Logo + Motion | brand | Always visible |
-| Search notes | text input | Filters the list by **basename** only. aria-label Search notes. ⌘/Ctrl+K focuses it. |
+| Search notes | text input | Filters the list by basename **or file contents**. aria-label Search notes. ⌘/Ctrl+K focuses it. A content hit shows a one-line snippet under the basename. |
 | View toggle | 3 buttons | WYSIWYG / Markdown / Split. role=group aria-label=Editor view mode. Each button has aria-pressed. |
 | Open Folder | secondary | Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
 | New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note, selects it, clears search. |
@@ -49,7 +49,7 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 ## Acceptance Criteria
 - [ ] Header, sidebar, and editor are all visible on a desktop viewport.
 - [ ] Open Folder is always available; New Note and Synthesize require an open folder.
-- [ ] Search filters by filename only and has aria-label Search notes.
+- [ ] Search filters by filename **or contents** and has aria-label Search notes.
 - [ ] ⌘/Ctrl+K focuses the Search notes field.
 - [ ] Note list is a listbox of real buttons (not clickable divs) with aria-selected.
 - [ ] Selecting a note loads it in the editor.
@@ -61,4 +61,4 @@ Sidebar is a **flat** list of every .md under the workspace (not a directory tre
 
 ## Notes
 - Source: src/App.tsx.
-- Known limitation: no in-file content search; no directory tree.
+- Content search reads each note once when the folder opens and caches it.

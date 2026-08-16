@@ -147,3 +147,16 @@ test("a Dataset registers and a Query returns rows from it", async ({ page }) =>
     await expect(query).toContainText("Architect");
     await expect(query).toContainText("12");
 });
+
+test("search matches note contents, not just the filename", async ({ page }) => {
+    await gotoApp(page);
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    const search = page.getByLabel("Search notes");
+    await search.fill("seeded note for end-to-end");
+    const notes = page.getByRole("listbox", { name: "Notes" });
+    const hit = notes.getByRole("option", { name: "welcome.md" });
+    await expect(hit).toBeVisible();
+    await expect(notes.getByRole("option")).toHaveCount(1);
+    await expect(hit).toContainText(/seeded note/i);
+});
+
