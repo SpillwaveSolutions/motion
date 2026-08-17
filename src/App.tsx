@@ -97,6 +97,24 @@ function ancestorFolders(filePaths: string[], workspaceRoot: string | null): Set
     return out;
 }
 
+function parentDirOf(filePath: string | null, workspaceRoot: string): string {
+    const root = workspaceRoot.replace(/[/\\]$/, "");
+    if (!filePath) return root;
+    const last = Math.max(filePath.lastIndexOf("/"), filePath.lastIndexOf("\\"));
+    if (last <= 0) return root;
+    const candidate = filePath.slice(0, last);
+    return candidate.startsWith(root) ? candidate : root;
+}
+
+function sanitizeFolderName(raw: string): string {
+    return raw
+        .trim()
+        .replace(/[/\\]+/g, "-")
+        .replace(/^\.+/, "")
+        .replace(/\s+/g, "-")
+        .slice(0, 80);
+}
+
 function App() {
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
@@ -265,18 +283,7 @@ function App() {
             const name = `untitled-${stamp}.md`;
             const sep = workspacePath.includes("\\") ? "\\" : "/";
             const root = workspacePath.replace(/[/\\]$/, "");
-            // Tree-aware: drop into the parent folder of the selected file.
-            let parentDir = root;
-            if (currentFilePath) {
-                const last = Math.max(
-                    currentFilePath.lastIndexOf("/"),
-                    currentFilePath.lastIndexOf("\\"),
-                );
-                if (last > 0) {
-                    const candidate = currentFilePath.slice(0, last);
-                    if (candidate.startsWith(root)) parentDir = candidate;
-                }
-            }
+            const parentDir = parentDirOf(currentFilePath, workspacePath);
             const path = `${parentDir}${sep}${name}`;
             const content = "# New Note\n\n";
             await storage.writeFile(path, content);
@@ -284,7 +291,6 @@ function App() {
             setContents((prev) => ({ ...prev, [path]: content }));
             setCurrentFilePath(path);
             setSearchQuery("");
-            // Keep the parent folder expanded so the new note is visible.
             setExpanded((prev) => {
                 if (prev === null) return null;
                 if (parentDir === root) return prev;
@@ -296,6 +302,44 @@ function App() {
             console.error("Failed to create note:", error);
             const message = error instanceof Error ? error.message : String(error);
             alert(`Error creating note: ${message}`);
+        }
+    };
+
+    const handleNewFolder = async () => {
+        if (!workspacePath) {
+            alert("Open a folder first to create a new folder.");
+            return;
+        }
+        const raw = window.prompt("Folder name", "new-folder");
+        if (raw == null) return;
+        const name = sanitizeFolderName(raw);
+        if (!name) {
+            alert("Folder name cannot be empty.");
+            return;
+        }
+
+        try {
+            const sep = workspacePath.includes("\\") ? "\\" : "/";
+            const parentDir = parentDirOf(currentFilePath, workspacePath);
+            const folderPath = `${parentDir}${sep}${name}`;
+            const readme = `${folderPath}${sep}README.md`;
+            const content = `# ${name}\n\n`;
+            await storage.writeFile(readme, content);
+            setFiles((prev) => (prev.includes(readme) ? prev : [...prev, readme].sort((a, b) => a.localeCompare(b))));
+            setContents((prev) => ({ ...prev, [readme]: content }));
+            setCurrentFilePath(readme);
+            setSearchQuery("");
+            setExpanded((prev) => {
+                if (prev === null) return null;
+                const next = new Set(prev);
+                next.add(folderPath);
+                if (parentDir !== workspacePath.replace(/[/\\]$/, "")) next.add(parentDir);
+                return next;
+            });
+        } catch (error) {
+            console.error("Failed to create folder:", error);
+            const message = error instanceof Error ? error.message : String(error);
+            alert(`Error creating folder: ${message}`);
         }
     };
 
@@ -428,6 +472,15 @@ function App() {
                         title={workspacePath ? "Create a new markdown note" : "Open a folder first"}
                     >
                         New Note
+                    </button>
+                    <button
+                        className="btn btn-secondary"
+                        onClick={handleNewFolder}
+                        disabled={!workspacePath}
+                        data-testid="new-folder"
+                        title={workspacePath ? "Create a folder with a README" : "Open a folder first"}
+                    >
+                        New Folder
                     </button>
                     <button
                         className={dirty ? "btn btn-primary" : "btn btn-secondary"}
