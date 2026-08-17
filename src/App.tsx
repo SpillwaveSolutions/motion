@@ -264,13 +264,34 @@ function App() {
             const stamp = new Date().toISOString().replace(/[:.]/g, "-");
             const name = `untitled-${stamp}.md`;
             const sep = workspacePath.includes("\\") ? "\\" : "/";
-            const path = `${workspacePath.replace(/[/\\]$/, "")}${sep}${name}`;
+            const root = workspacePath.replace(/[/\\]$/, "");
+            // Tree-aware: drop into the parent folder of the selected file.
+            let parentDir = root;
+            if (currentFilePath) {
+                const last = Math.max(
+                    currentFilePath.lastIndexOf("/"),
+                    currentFilePath.lastIndexOf("\\"),
+                );
+                if (last > 0) {
+                    const candidate = currentFilePath.slice(0, last);
+                    if (candidate.startsWith(root)) parentDir = candidate;
+                }
+            }
+            const path = `${parentDir}${sep}${name}`;
             const content = "# New Note\n\n";
             await storage.writeFile(path, content);
             setFiles((prev) => [...prev, path].sort((a, b) => a.localeCompare(b)));
             setContents((prev) => ({ ...prev, [path]: content }));
             setCurrentFilePath(path);
             setSearchQuery("");
+            // Keep the parent folder expanded so the new note is visible.
+            setExpanded((prev) => {
+                if (prev === null) return null;
+                if (parentDir === root) return prev;
+                const next = new Set(prev);
+                next.add(parentDir);
+                return next;
+            });
         } catch (error) {
             console.error("Failed to create note:", error);
             const message = error instanceof Error ? error.message : String(error);

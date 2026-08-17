@@ -31,7 +31,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | Search notes | text input | Filters the tree by basename **or file contents**. aria-label Search notes. ⌘/Ctrl+K focuses it. A content hit shows a one-line snippet under the basename. Matching expands ancestor folders of hits. |
 | View toggle | 3 buttons | WYSIWYG / Markdown / Split. role=group aria-label=Editor view mode. Each button has aria-pressed. |
 | Open Folder | secondary | Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
-| New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note at the **workspace root**, selects it, clears search. |
+| New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note. Placement is **tree-aware**: if a file is selected, the note is created in that file's parent folder; if no file is selected, it falls back to the workspace root. Selects the new note and clears search. |
 | Save | primary when dirty | Header control, aria-label Save note. Disabled with no note selected or while saving. Label: Save / Saving… / Saved / Save failed. ⌘/Ctrl+S also saves. Auto-saves 1.5s after the last edit. |
 | Synthesize | secondary | Disabled with no folder, or while a synthesis status is showing. See synthesize.md. |
 | Synthesis banner | status | role=status aria-live=polite. Dismiss (x) with aria-label Dismiss synthesis status. |
@@ -57,7 +57,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] ⌘/Ctrl+K focuses the Search notes field.
 - [ ] Note list is a **tree** (role=tree) of real buttons (not clickable divs) with aria-selected on files and aria-expanded on folders.
 - [ ] Selecting a note loads it in the editor.
-- [ ] New Note writes untitled-{timestamp}.md at workspace root, selects it, and appears in the tree.
+- [ ] New Note writes untitled-{timestamp}.md **in the parent folder of the selected file** (or workspace root when nothing is selected), selects it, and appears in the tree.
 - [ ] Sidebar is a collapsible folder tree (not a flat basename list).
 - [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.
 - [ ] Synthesis banner is dismissible and uses role=status.
