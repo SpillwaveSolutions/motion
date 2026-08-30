@@ -49,7 +49,7 @@ Ask AI bubble + preview -- see ask-ai.md.
 - **File loaded**: Content from disk, sanitized Markdown to HTML.
 - **Dirty after save**: Saved flips back to idle on the next keystroke.
 - **Save error**: Status Save failed plus alert.
-- **Refine in flight**: Refine disabled; title Refining. Docked Ask AI panel shows Asking AI….
+- **Refine in flight**: Refine disabled; title Refining. Docked Ask AI panel shows Asking AI… and live tokens.
 - **AI preview / error**: Docked panel. Replace (and Insert below on a selection) commit; Discard / Escape apply nothing. Failure copy is in the panel, not an alert.
 - **Markdown mode**: Textarea only (no slash menu, no Ask AI bubble). Refine still opens the panel.
 - **Split**: Two columns; slash menu and Ask AI bubble still work on the TipTap side.

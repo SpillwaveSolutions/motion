@@ -13,9 +13,12 @@ round-trip, and the demo Query join were fixed on `main` before this work.
 
 - **Ask AI.** Select text in WYSIWYG/Split for a floating Ask AI, type `/ai` at
   the start of a line, or use toolbar Refine for the whole document. One
-  pipeline (`buildAiContext` + `callLLMFromUI`) previews the reply; Replace /
-  Insert below / Try again / Discard commit as a single undo step. Failures stay
-  in the panel. Phase 1 still uses the existing CLI transport.
+  pipeline (`buildAiContext` + `/api/ai/stream`) previews the reply; tokens
+  stream into the panel. Replace / Insert below / Try again / Discard commit as
+  a single undo step. Failures stay in the panel. Anthropic SDK when
+  `ANTHROPIC_API_KEY` is set (prompt cache on system + document context), else
+  the `claude` CLI. Packaged Tauri still one-shots via `run_llm_cli` until the
+  sidecar.
 - **Finder Open With.** Markdown file associations (`.md`, `.markdown`,
   `.mdown`, `.mkd`, `.mdx`). Opening a file sets the workspace to its parent
   directory and selects the file. Cold start buffers the path until React

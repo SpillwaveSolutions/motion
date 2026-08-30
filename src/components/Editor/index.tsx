@@ -25,8 +25,8 @@ import {
     clampPos,
     planWysiwygApply,
     REFINE_INSTRUCTION,
-    runAskAi,
     sessionForDoc,
+    streamAskAiFromUI,
     summarizeReply,
     titleFromPath,
     type AiApplyMode,
@@ -223,6 +223,7 @@ function Editor({
         setAskAi(next);
     }, []);
     const genIdRef = useRef(0);
+    const abortRef = useRef<AbortController | null>(null);
 
     const executeSlashCommand = useCallback((cmd: SlashCommand) => {
         const menu = slashMenuRef.current;
@@ -362,6 +363,8 @@ function Editor({
 
     useEffect(() => {
         genIdRef.current += 1;
+        abortRef.current?.abort();
+        abortRef.current = null;
         setAskAiState({ phase: "idle" });
         setSlashMenu(null);
     }, [filePath, setAskAiState]);
@@ -420,6 +423,8 @@ function Editor({
 
     const discardAskAi = useCallback(() => {
         genIdRef.current += 1;
+        abortRef.current?.abort();
+        abortRef.current = null;
         setAskAiState({ phase: "idle" });
         queueMicrotask(() => editorRef.current?.commands.focus());
     }, [setAskAiState]);
@@ -430,6 +435,9 @@ function Editor({
         const trimmed = instruction.trim();
         if (!trimmed) return;
 
+        abortRef.current?.abort();
+        const abort = new AbortController();
+        abortRef.current = abort;
         const id = ++genIdRef.current;
         const nextWorking: AskAiState = {
             phase: "working",
@@ -457,14 +465,26 @@ function Editor({
         }
 
         try {
-            const reply = await runAskAi({
-                title: titleFromPath(filePathRef.current),
-                before,
-                selection,
-                after,
-                priorOps: sessionForDoc(filePathRef.current).list(),
-                instruction: trimmed,
-            });
+            const reply = await streamAskAiFromUI(
+                {
+                    title: titleFromPath(filePathRef.current),
+                    before,
+                    selection,
+                    after,
+                    priorOps: sessionForDoc(filePathRef.current).list(),
+                    instruction: trimmed,
+                },
+                {
+                    signal: abort.signal,
+                    onText: (full) => {
+                        if (id !== genIdRef.current) return;
+                        setAskAiState({
+                            ...nextWorking,
+                            reply: full,
+                        });
+                    },
+                }
+            );
             if (id !== genIdRef.current) return;
             setAskAiState({
                 phase: "preview",
@@ -477,6 +497,7 @@ function Editor({
         } catch (error) {
             if (id !== genIdRef.current) return;
             const message = error instanceof Error ? error.message : String(error);
+            if (/cancel/i.test(message)) return;
             setAskAiState({
                 phase: "error",
                 scope: nextWorking.scope,

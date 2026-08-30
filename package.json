@@ -25,6 +25,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.122.0",
     "@duckdb/duckdb-wasm": "^1.33.1-dev18.0",
     "@tauri-apps/api": "^2.9.1",
     "@tauri-apps/plugin-dialog": "^2.6.0",

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { buildAiContext } from "./context";
-import { cannedForScope, packPrompt, unwrapReply } from "./prompt";
+import { cannedForScope, packPrompt, packPromptParts, unwrapReply } from "./prompt";
 
 describe("unwrapReply", () => {
     test("returns plain text unchanged", () => {
@@ -79,5 +79,24 @@ describe("packPrompt", () => {
         });
         const packed = packPrompt(ctx, "Continue");
         expect(packed.prompt).toContain("No text is selected");
+    });
+});
+
+describe("packPromptParts", () => {
+    test("context is cacheable: no instruction, instruction is separate", () => {
+        const ctx = buildAiContext({
+            title: "Spec",
+            before: "alpha",
+            selection: "beta",
+            after: "gamma",
+            priorOps: [],
+        });
+        const parts = packPromptParts(ctx, "Rewrite it");
+        expect(parts.context).toContain("Document title: Spec");
+        expect(parts.context).toContain("beta");
+        expect(parts.context).not.toMatch(/Instruction:/);
+        expect(parts.instruction).toBe("Rewrite it");
+        expect(parts.prompt.startsWith(parts.context)).toBe(true);
+        expect(parts.prompt).toContain("Instruction:\nRewrite it");
     });
 });

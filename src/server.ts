@@ -19,6 +19,8 @@ import {
 } from "./lib/fsCore";
 import { publishGist } from "./lib/publish/gist";
 import { publishNotion } from "./lib/publish/notion";
+import { streamAiToSseResponse } from "./lib/ai/service";
+import { encodeSse } from "./lib/ai/protocol";
 
 const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
@@ -197,6 +199,45 @@ const server = Bun.serve({
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);
                 return Response.json({ error: message }, { status: 500 });
+            }
+        }
+
+        // Ask AI / Refine stream. Always HTTP 200 SSE so a missing CLI or
+        // Anthropic key is not an E2E >=400 failure. Shared TS service:
+        // Anthropic SDK when ANTHROPIC_API_KEY is set, else claude CLI.
+        if (pathname === "/api/ai/stream" && req.method === "POST") {
+            const sseError = (error: string) =>
+                new Response(encodeSse({ type: "error", error }), {
+                    status: 200,
+                    headers: {
+                        "Content-Type": "text/event-stream; charset=utf-8",
+                        "Cache-Control": "no-cache",
+                    },
+                });
+            try {
+                const body = await req.json();
+                if (typeof body?.instruction !== "string" || !body.instruction.trim()) {
+                    return sseError("Ask AI needs an instruction.");
+                }
+                if (typeof body?.context !== "string" || typeof body?.systemPrompt !== "string") {
+                    return sseError("Missing packed context.");
+                }
+                return streamAiToSseResponse(
+                    {
+                        systemPrompt: body.systemPrompt,
+                        context: body.context,
+                        instruction: body.instruction,
+                        model: typeof body.model === "string" ? body.model : undefined,
+                    },
+                    {
+                        apiKey: process.env["ANTHROPIC_API_KEY"],
+                        model: process.env["MOTION_AI_MODEL"],
+                    },
+                    req.signal
+                );
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                return sseError(message);
             }
         }
 

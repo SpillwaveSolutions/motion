@@ -66,10 +66,18 @@ export function unwrapReply(text: string): string {
     return (match[1] ?? "").replace(/\s+$/, "");
 }
 
-export function packPrompt(
+export const SYSTEM_PROMPT =
+    "You are a technical editor for a local markdown IDE. Return only markdown. Do not wrap the entire reply in a code fence unless the user asked for a code block.";
+
+/**
+ * Split the packed prompt so the SDK can put a prompt-cache breakpoint on
+ * the document context (stable across Try again) and leave the instruction
+ * uncached.
+ */
+export function packPromptParts(
     ctx: AiContext,
     instruction: string
-): { prompt: string; systemPrompt: string } {
+): { systemPrompt: string; context: string; instruction: string; prompt: string } {
     const parts: string[] = [`Document title: ${ctx.title}`];
 
     if (ctx.priorOps.length > 0) {
@@ -99,12 +107,21 @@ export function packPrompt(
         parts.push("(Surrounding text was truncated to fit the context budget.)");
     }
 
-    parts.push(`Instruction:\n${instruction.trim()}`);
-    parts.push("Return only the markdown for the result. No preamble.");
-
+    const trimmed = instruction.trim();
+    const context = parts.join("\n\n");
+    const prompt = `${context}\n\nInstruction:\n${trimmed}\n\nReturn only the markdown for the result. No preamble.`;
     return {
-        systemPrompt:
-            "You are a technical editor for a local markdown IDE. Return only markdown. Do not wrap the entire reply in a code fence unless the user asked for a code block.",
-        prompt: parts.join("\n\n"),
+        systemPrompt: SYSTEM_PROMPT,
+        context,
+        instruction: trimmed,
+        prompt,
     };
+}
+
+export function packPrompt(
+    ctx: AiContext,
+    instruction: string
+): { prompt: string; systemPrompt: string } {
+    const packed = packPromptParts(ctx, instruction);
+    return { systemPrompt: packed.systemPrompt, prompt: packed.prompt };
 }

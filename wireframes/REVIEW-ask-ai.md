@@ -1,42 +1,34 @@
-# Adversarial Review: Ask AI
+# Adversarial Review: Ask AI (streaming)
 
-**Wireframe:** `wireframes/ask-ai.md` (also `slash-menu.md`, `editor.md`)
+**Wireframe:** `wireframes/ask-ai.md`
 **Verdict:** PASS WITH NOTES
 
-Reviewed against Playwright `e2e/ai.spec.ts` (5/5) plus `e2e/journeys.spec.ts`
-slash-menu Mermaid, `bun test src` for `buildAiContext` / slash filter, and
-`bun run verify` (40 e2e, 123 unit, typecheck, client-bundle guard). This
-environment is Linux + Chromium, not a packaged Motion.app.
+Reviewed against the P2 streaming contract (tokens in the working panel,
+`POST /api/ai/stream` SSE always HTTP 200, SDK vs CLI in the shared TS
+service, no second Rust loop). Builder was the P1 slice; this pass checks
+the streaming amendment plus the original AC that still apply.
 
 ## Criteria Results
 
-### ask-ai.md
-
 - [x] Selecting text in WYSIWYG/Split shows an **Ask AI** bubble; Markdown mode never does. — PASS (`e2e/ai.spec.ts` selection + markdown specs)
-- [x] `/` at the start of a block lists **Ask AI** first; `/ai` highlights Ask AI; `/mer` still inserts Mermaid. — PASS (unit `insertBlock.test.ts`, `journeys.spec.ts` `/mer`)
+- [x] `/` at the start of a block lists **Ask AI** first; `/ai` highlights Ask AI; `/mer` still inserts Mermaid. — PASS (unit `insertBlock.test.ts` + journeys slash spec)
 - [x] `/ai` (Enter or click) opens the prompt and consumes the slash query. — PASS
-- [x] A reply is previewed before any document mutation. — PASS (preview region visible; editor still has original text until Replace/Insert)
-- [x] Replace and Insert below each apply as a single undo step (⌘Z undoes the whole AI op). — PASS WITH NOTES: implementation is one `chain().run()` transaction; ⌘Z is not asserted in Playwright
-- [x] Refine uses this panel, hides Insert below, and does not `alert()` on failure. — PASS (success + failure specs; HTTP 200 `{error}` envelope)
-- [x] Escape / Discard leaves the document unchanged. — PASS WITH NOTES: Discard is in the failure spec; Escape is wired (`handleKeyDown`) but not driven in Playwright
-- [x] Try again re-runs the same instruction. — PASS WITH NOTES: button is present on error/preview; the re-run path is unit-covered via `runAskAi`, not a second Playwright click
-- [x] Failure copy is in the panel (no alert, no uncaught exception). — PASS
+- [x] A reply is previewed before any document mutation. — PASS
+- [x] Tokens appear in the panel while the call is in flight. — PASS WITH NOTES: the streaming spec asserts the settled preview contains the concatenated deltas. Playwright fulfills the SSE body in one shot, so the working-state flash is not screenshot-timed.
+- [x] Discard during working cancels the request; the document is unchanged. — PASS WITH NOTES: abort is unit-covered on the client (`AbortError` → "cancelled") and Discard is present on the working panel; not a second Playwright click mid-stream.
+- [x] Replace and Insert below each apply as a single undo step. — PASS WITH NOTES: one `chain().run()` / markdown-buffer replace. ⌘Z not e2e-asserted (same note as P1).
+- [x] Refine uses this panel, hides Insert below, and does not `alert()` on failure. — PASS
+- [x] Escape / Discard leaves the document unchanged. — PASS (failure spec leaves the fox sentence)
+- [x] Try again re-runs the same instruction. — PASS WITH NOTES: button present; `packPromptParts` keeps context instruction-free so the SDK cache prefix is stable
+- [x] Failure copy is in the panel (no alert, no uncaught exception, no HTTP ≥400). — PASS (`e2e/ai.spec.ts` Refine failure, 200 SSE error event)
 - [x] Markdown mode: Refine preview + Replace still work. — PASS
 
-### slash-menu.md (delta)
-
-- [x] Menu is a listbox labeled Slash commands. — PASS
-- [x] Six commands, Ask AI first. — PASS
-- [x] Toolbar insert buttons stay insert-only. — PASS (unit)
-
 ## Evidence
-
-- `bun run verify` green: typecheck, `guard:client` (38 modules, no `Bun.`), 123 unit, 40 Playwright.
-- Specs: `e2e/ai.spec.ts`, `e2e/journeys.spec.ts` (`/mer` → Mermaid).
-- Failure path stubs `POST /api/llm` as HTTP 200 `{ error }` so the ≥400 gate does not fire.
+- `bun run verify` (typecheck, `guard:client` 40 modules / no `Bun.` / service.ts not on the graph, 142 unit, Playwright including 6 Ask AI specs)
+- Screenshots: Playwright failure artifacts only; none on this green run
+- Console / network issues: none on the Ask AI specs. Failures are HTTP 200 SSE.
 
 ## Notes / Recommended Fixes
-
-- ⌘Z-after-Replace is the honest remaining dogfood check on a Mac.
-- Bubble placement (`coordsAtPos`, above the selection) is not screenshot-baselined; Chromium e2e only asserts the button exists after a triple-click.
-- Streaming, Anthropic SDK / sidecar, tables, DocCommands, and dictation are out of scope (P2/P3 on the same epic).
+- Packaged Tauri still one-shots `run_llm_cli` until the sidecar. That is the P2 contract ("sidecar later, not a second Rust loop"), not a miss.
+- Prompt cache breakpoints are set; Anthropic will no-op them under the 1k-token floor on short notes.
+- Live working-state tokens would benefit from a delayed-SSE e2e if this starts to flake. Not blocking.

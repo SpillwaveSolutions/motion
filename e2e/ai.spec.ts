@@ -1,19 +1,26 @@
 /**
  * Ask AI / Refine, end to end.
  *
- * The LLM is stubbed at `/api/llm` (HTTP 200 even on failure) so the suite
- * stays deterministic and the fixtures.ts >=400 gate does not fire.
+ * The LLM is stubbed at `/api/ai/stream` (HTTP 200 SSE even on failure) so the
+ * suite stays deterministic and the fixtures.ts >=400 gate does not fire.
  */
 import { test, expect, gotoApp } from "./fixtures";
 
 const AI_REPLY = "AI_EDIT_OK the fox is quicker.";
 
-async function stubLLM(page: import("@playwright/test").Page, content = AI_REPLY) {
-    await page.route("**/api/llm", async (route) => {
+function sseBody(events: object[]): string {
+    return events.map((e) => `data: ${JSON.stringify(e)}\n\n`).join("");
+}
+
+async function stubAiStream(page: import("@playwright/test").Page, content = AI_REPLY) {
+    await page.route("**/api/ai/stream", async (route) => {
         await route.fulfill({
             status: 200,
-            contentType: "application/json",
-            body: JSON.stringify({ content, rawOutput: content }),
+            contentType: "text/event-stream",
+            body: sseBody([
+                { type: "delta", text: content },
+                { type: "done", text: content },
+            ]),
         });
     });
 }
@@ -29,7 +36,7 @@ async function openScratchAi(page: import("@playwright/test").Page) {
 }
 
 test("selecting text shows Ask AI, previews, then Replace commits", async ({ page }) => {
-    await stubLLM(page);
+    await stubAiStream(page);
     await gotoApp(page);
     await openScratchAi(page);
 
@@ -56,7 +63,7 @@ test("selecting text shows Ask AI, previews, then Replace commits", async ({ pag
 });
 
 test("/ai opens a prompt at the cursor and Insert below commits", async ({ page }) => {
-    await stubLLM(page, "AI_INSERT_OK");
+    await stubAiStream(page, "AI_INSERT_OK");
     await gotoApp(page);
     await openScratchAi(page);
 
@@ -86,7 +93,7 @@ test("/ai opens a prompt at the cursor and Insert below commits", async ({ page 
 });
 
 test("Refine previews a document-scoped edit with no Insert below", async ({ page }) => {
-    await stubLLM(page);
+    await stubAiStream(page);
     await gotoApp(page);
     await openScratchAi(page);
 
@@ -103,11 +110,11 @@ test("Refine previews a document-scoped edit with no Insert below", async ({ pag
 });
 
 test("Refine failure lands in the panel, not an alert", async ({ page }) => {
-    await page.route("**/api/llm", (route) =>
+    await page.route("**/api/ai/stream", (route) =>
         route.fulfill({
             status: 200,
-            contentType: "application/json",
-            body: JSON.stringify({ error: "claude CLI not found" }),
+            contentType: "text/event-stream",
+            body: sseBody([{ type: "error", error: "claude CLI not found" }]),
         })
     );
 
@@ -125,7 +132,7 @@ test("Refine failure lands in the panel, not an alert", async ({ page }) => {
 
 test("markdown mode has no bubble; Refine still previews", async ({ page, guard }) => {
     guard.allow(/flushSync was called from inside a lifecycle method/);
-    await stubLLM(page);
+    await stubAiStream(page);
     await gotoApp(page);
     await openScratchAi(page);
 
@@ -143,4 +150,24 @@ test("markdown mode has no bubble; Refine still previews", async ({ page, guard 
     await expect(preview.getByRole("button", { name: "Insert below" })).toHaveCount(0);
     await preview.getByRole("button", { name: "Replace" }).click();
     await expect(source).toContainText("AI_EDIT_OK");
+});
+
+test("streaming tokens appear while Asking AI, then settle into preview", async ({ page }) => {
+    await page.route("**/api/ai/stream", async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: "text/event-stream",
+            body: sseBody([
+                { type: "delta", text: "AI_STREAM_" },
+                { type: "delta", text: "PARTIAL" },
+                { type: "done", text: "AI_STREAM_PARTIAL" },
+            ]),
+        });
+    });
+    await gotoApp(page);
+    await openScratchAi(page);
+    await page.getByRole("button", { name: "AI Refine document" }).click();
+    const preview = page.getByRole("region", { name: "AI preview" });
+    await expect(preview).toBeVisible({ timeout: 15_000 });
+    await expect(preview).toContainText("AI_STREAM_PARTIAL");
 });

@@ -86,9 +86,11 @@ unit → E2E).
    Round-trip through save/reload as real blocks when serialization is intact.
 7. **Dataset → Query** — register CSV/JSON/JSONL in the workspace, `SELECT` via DuckDB-WASM.
 8. **Ask AI** — selection bubble, `/ai`, or toolbar Refine. One pipeline
-   (`src/lib/ai`, `callLLMFromUI`); preview before commit. Refine is
-   document-scoped (no Insert below). `ContentInjector.generateSummary` still
-   backs Synthesize.
+   (`src/lib/ai`). Browser/`bun tauri dev` streams `POST /api/ai/stream`
+   (Anthropic SDK when `ANTHROPIC_API_KEY` is set, else `claude` CLI; prompt
+   cache on system + packed context). Packaged Tauri one-shots `run_llm_cli`
+   until the sidecar. Preview before commit. Refine is document-scoped (no
+   Insert below). `ContentInjector.generateSummary` still backs Synthesize.
 9. **Synthesize** — workspace-level topic clustering; writes `TOC.md` and `SKILL.md`
    (cap 40 notes; excludes its own outputs from the next run).
 10. **Share** — current buffer to a GitHub Gist or Notion page. Tokens in
