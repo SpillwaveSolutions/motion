@@ -107,6 +107,10 @@ grammar, Continue). Tokens stream into the preview as they arrive.
 **Try again** re-runs; **Discard** (or Escape) applies nothing and cancels an
 in-flight stream. Failures show in the panel, not an alert.
 
+When the model proposes targeted edits (replace a unique span, insert after a
+heading, add a table row, update a cell) the preview is a **Proposed edits**
+list instead. **Apply N edits** commits the whole list as one undo step.
+
 Markdown mode has no bubble and no slash menu; Refine still works.
 
 Set `ANTHROPIC_API_KEY` to use the Anthropic API (with prompt caching on the

@@ -53,4 +53,4 @@ Popup is position:fixed under the caret (coordsAtPos). Overlay, not inline.
 ## Notes
 - Source: src/components/Editor/index.tsx (detectSlashTrigger), insertBlock.ts (`SLASH_COMMANDS`).
 - Toolbar insert buttons stay insert-only (`INSERT_COMMANDS`); they do not include Ask AI.
-- Ask AI prompt / preview: [ask-ai.md](./ask-ai.md). Tables: [tables.md](./tables.md).
+- Ask AI prompt / preview: [ask-ai.md](./ask-ai.md). Tables: [tables.md](./tables.md). DocCommands: [doc-commands.md](./doc-commands.md).

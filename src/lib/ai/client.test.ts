@@ -40,7 +40,7 @@ describe("streamAskAiFromUI", () => {
         );
         const seen: string[] = [];
         const reply = await streamAskAiFromUI(INPUT, { onText: (t) => seen.push(t) });
-        expect(reply).toBe("Hello");
+        expect(reply).toEqual({ text: "Hello", commands: [] });
         expect(seen).toEqual(["Hel", "Hello", "Hello"]);
         expect(fetchSpy).toHaveBeenCalledTimes(1);
         const call = fetchSpy.mock.calls[0];
@@ -59,7 +59,25 @@ describe("streamAskAiFromUI", () => {
             )
         );
         const reply = await streamAskAiFromUI(INPUT);
-        expect(reply).toBe("Hi");
+        expect(reply).toEqual({ text: "Hi", commands: [] });
+        fetchSpy.mockRestore();
+    });
+
+    test("collects command events even with empty text", async () => {
+        const command = { op: "table_add_row" as const, table: 1, cells: ["Grace", "Architect"] };
+        const fetchSpy = spyOn(globalThis, "fetch").mockResolvedValue(
+            new Response(
+                sseBodyFromEvents([
+                    { type: "command", command },
+                    { type: "done", text: "", commands: [command] },
+                ]),
+                { status: 200, headers: { "Content-Type": "text/event-stream" } }
+            )
+        );
+        const seen: import("./commands").DocCommand[][] = [];
+        const reply = await streamAskAiFromUI(INPUT, { onCommands: (c) => seen.push(c) });
+        expect(reply).toEqual({ text: "", commands: [command] });
+        expect(seen.at(-1)).toEqual([command]);
         fetchSpy.mockRestore();
     });
 

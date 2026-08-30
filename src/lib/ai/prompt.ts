@@ -67,7 +67,7 @@ export function unwrapReply(text: string): string {
 }
 
 export const SYSTEM_PROMPT =
-    "You are a technical editor for a local markdown IDE. Return only markdown. Do not wrap the entire reply in a code fence unless the user asked for a code block.";
+    "You are a technical editor for a local markdown IDE. For a rewrite, tighten, expand, grammar pass, or continuation, return only markdown. Do not wrap the entire reply in a code fence unless the user asked for a code block. For targeted edits (replace a unique span, insert after a heading or table, add a table row, update a cell) call the document tools. You may call several. When you use tools, do not also return the full rewritten document.";
 
 /**
  * Split the packed prompt so the SDK can put a prompt-cache breakpoint on
@@ -109,7 +109,7 @@ export function packPromptParts(
 
     const trimmed = instruction.trim();
     const context = parts.join("\n\n");
-    const prompt = `${context}\n\nInstruction:\n${trimmed}\n\nReturn only the markdown for the result. No preamble.`;
+    const prompt = `${context}\n\nInstruction:\n${trimmed}\n\nReturn only the markdown for the result, or a doccommands JSON fence for targeted edits. No preamble.`;
     return {
         systemPrompt: SYSTEM_PROMPT,
         context,

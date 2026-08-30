@@ -23,6 +23,7 @@ import { storage } from "../../lib/storage";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
 import {
     clampPos,
+    dispatchDocCommands,
     planWysiwygApply,
     REFINE_INSTRUCTION,
     sessionForDoc,
@@ -452,7 +453,7 @@ function Editor({
         }
 
         try {
-            const reply = await streamAskAiFromUI(
+            const outcome = await streamAskAiFromUI(
                 {
                     title: titleFromPath(filePathRef.current),
                     before,
@@ -470,16 +471,49 @@ function Editor({
                             reply: full,
                         });
                     },
+                    onCommands: (commands) => {
+                        if (id !== genIdRef.current) return;
+                        setAskAiState({
+                            ...nextWorking,
+                            commands,
+                        });
+                    },
                 }
             );
             if (id !== genIdRef.current) return;
+            if (outcome.commands.length > 0) {
+                const planned = dispatchDocCommands(rawMarkdownRef.current, outcome.commands);
+                if (!planned.ok) {
+                    setAskAiState({
+                        phase: "error",
+                        scope: nextWorking.scope,
+                        range: nextWorking.range,
+                        selectedText: nextWorking.selectedText,
+                        instruction: trimmed,
+                        commands: outcome.commands,
+                        error: planned.error,
+                    });
+                    return;
+                }
+                setAskAiState({
+                    phase: "preview",
+                    scope: nextWorking.scope,
+                    range: nextWorking.range,
+                    selectedText: nextWorking.selectedText,
+                    instruction: trimmed,
+                    reply: outcome.text,
+                    commands: outcome.commands,
+                    edits: planned.edits,
+                });
+                return;
+            }
             setAskAiState({
                 phase: "preview",
                 scope: nextWorking.scope,
                 range: nextWorking.range,
                 selectedText: nextWorking.selectedText,
                 instruction: trimmed,
-                reply,
+                reply: outcome.text,
             });
         } catch (error) {
             if (id !== genIdRef.current) return;
@@ -496,41 +530,89 @@ function Editor({
         }
     }, [setAskAiState]);
 
+    const applyMarkdownToEditor = useCallback(async (md: string, mode: AiApplyMode, scope: AiScope, range: { from: number; to: number } | null) => {
+        const ed = editorRef.current;
+        if (viewModeRef.current === "markdown" || !ed) {
+            if (mode === "replace") {
+                setRawMarkdown(md);
+                onMarkdownChangeRef.current?.(md);
+            } else {
+                const combined = rawMarkdownRef.current.replace(/\s*$/, "") + "\n\n" + md;
+                setRawMarkdown(combined);
+                onMarkdownChangeRef.current?.(combined);
+            }
+            return;
+        }
+        const html = sanitizeHtml(await markdownToHtml(md));
+        const plan = planWysiwygApply(scope, mode, range);
+        const size = ed.state.doc.content.size;
+        const chain = ed.chain().focus();
+        if (plan.kind === "setContent") {
+            chain.setContent(html);
+        } else if (plan.kind === "replaceRange") {
+            chain
+                .deleteRange({
+                    from: clampPos(plan.from, size),
+                    to: clampPos(plan.to, size),
+                })
+                .insertContent(html);
+        } else {
+            chain.insertContentAt(clampPos(plan.pos, size), html);
+        }
+        chain.run();
+    }, []);
+
+    const applyAskAiCommands = useCallback(async () => {
+        const current = askAiRef.current;
+        if (current.phase !== "preview" || !current.commands?.length) return;
+        const planned = dispatchDocCommands(rawMarkdownRef.current, current.commands);
+        if (!planned.ok) {
+            setAskAiState({
+                phase: "error",
+                scope: current.scope,
+                range: current.range,
+                selectedText: current.selectedText,
+                instruction: current.instruction,
+                commands: current.commands,
+                error: planned.error,
+            });
+            return;
+        }
+        try {
+            await applyMarkdownToEditor(planned.markdown, "replace", "document", null);
+            sessionForDoc(filePathRef.current).push({
+                instruction: current.instruction,
+                selection: current.selectedText || null,
+                resultSummary: summarizeReply(planned.edits.map((e) => e.summary).join("; ")),
+                ts: Date.now(),
+            });
+            setAskAiState({ phase: "idle" });
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            setAskAiState({
+                phase: "error",
+                scope: current.scope,
+                range: current.range,
+                selectedText: current.selectedText,
+                instruction: current.instruction,
+                commands: current.commands,
+                error: message,
+            });
+        }
+    }, [applyMarkdownToEditor, setAskAiState]);
+
     const applyAskAi = useCallback(async (mode: AiApplyMode) => {
         const current = askAiRef.current;
-        if (current.phase !== "preview" || !current.reply) return;
+        if (current.phase !== "preview") return;
+        if (current.commands?.length) {
+            await applyAskAiCommands();
+            return;
+        }
+        if (!current.reply) return;
         const md = current.reply;
-        const ed = editorRef.current;
 
         try {
-            if (viewModeRef.current === "markdown" || !ed) {
-                if (mode === "replace") {
-                    setRawMarkdown(md);
-                    onMarkdownChangeRef.current?.(md);
-                } else {
-                    const combined = rawMarkdownRef.current.replace(/\s*$/, "") + "\n\n" + md;
-                    setRawMarkdown(combined);
-                    onMarkdownChangeRef.current?.(combined);
-                }
-            } else {
-                const html = sanitizeHtml(await markdownToHtml(md));
-                const plan = planWysiwygApply(current.scope, mode, current.range);
-                const size = ed.state.doc.content.size;
-                const chain = ed.chain().focus();
-                if (plan.kind === "setContent") {
-                    chain.setContent(html);
-                } else if (plan.kind === "replaceRange") {
-                    chain
-                        .deleteRange({
-                            from: clampPos(plan.from, size),
-                            to: clampPos(plan.to, size),
-                        })
-                        .insertContent(html);
-                } else {
-                    chain.insertContentAt(clampPos(plan.pos, size), html);
-                }
-                chain.run();
-            }
+            await applyMarkdownToEditor(md, mode, current.scope, current.range);
             sessionForDoc(filePathRef.current).push({
                 instruction: current.instruction,
                 selection: current.selectedText || null,
@@ -549,7 +631,7 @@ function Editor({
                 error: message,
             });
         }
-    }, [setAskAiState]);
+    }, [applyAskAiCommands, applyMarkdownToEditor, setAskAiState]);
 
     /**
      * Document-scoped Ask AI. Same pipeline and preview as the bubble / /ai,
@@ -773,6 +855,8 @@ function Editor({
             scope={askAi.scope}
             instruction={askAi.instruction}
             reply={askAi.reply}
+            commands={askAi.commands}
+            edits={askAi.edits}
             error={askAi.error}
             onInstruction={(value) => {
                 const current = askAiRef.current;
@@ -793,6 +877,7 @@ function Editor({
             }}
             onReplace={() => void applyAskAi("replace")}
             onInsertBelow={() => void applyAskAi("insert-below")}
+            onApplyCommands={() => void applyAskAiCommands()}
             onTryAgain={() => {
                 const current = askAiRef.current;
                 if (current.phase === "idle" || current.phase === "bubble") return;

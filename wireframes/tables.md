@@ -59,6 +59,6 @@ Slash (start of a block)
 
 ## Notes
 - Source: `src/components/Editor/` (`TableKit`, `insertBlock`, `Toolbar`, `markdown.ts`).
-- DocCommands (`table_add_row`, `table_update_cell`) are a later slice — this chrome is the human equivalent, not the tool loop.
+- DocCommands (`table_add_row`, `table_update_cell`) dispatch through `src/lib/ai/commands.ts` — this chrome is the human equivalent. See [doc-commands.md](./doc-commands.md).
 - No column resize (colwidths cannot round-trip through GFM).
 - Related: [slash-menu.md](./slash-menu.md), [editor.md](./editor.md).
