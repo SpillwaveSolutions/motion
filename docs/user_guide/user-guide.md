@@ -102,13 +102,15 @@ Three ways to start, one preview:
 3. **Refine** in the toolbar — whole-document, no "Insert below".
 
 Write an instruction or pick a canned chip (Rewrite, Tighten, Expand, Fix
-grammar, Continue). The reply is previewed first. **Replace** swaps the target;
-**Insert below** adds the reply after it; **Try again** re-runs; **Discard**
-(or Escape) applies nothing. Failures show in the panel, not an alert.
+grammar, Continue). Tokens stream into the preview as they arrive.
+**Replace** swaps the target; **Insert below** adds the reply after it;
+**Try again** re-runs; **Discard** (or Escape) applies nothing and cancels an
+in-flight stream. Failures show in the panel, not an alert.
 
 Markdown mode has no bubble and no slash menu; Refine still works.
 
-Needs `claude` on your `PATH`.
+Set `ANTHROPIC_API_KEY` to use the Anthropic API (with prompt caching on the
+note context). Otherwise Motion shells out to `claude` on your `PATH`.
 
 ### Mermaid
 
@@ -189,8 +191,8 @@ Stated here so you meet them on your terms:
   refresh the page — reload manually.
 - **Markdown tables are not supported.** Pipe-table syntax renders as plain
   text; no table extension is registered.
-- **Ask AI / Synthesize / generative blocks** need `claude` and/or `imagen` on your
-  `PATH`.
+- **Ask AI** uses `ANTHROPIC_API_KEY` when set, otherwise `claude` on `PATH`.
+  Synthesize / generative blocks still need `claude` and/or `imagen`.
 - **Share** needs a GitHub PAT with gist scope, and/or a Notion internal
   integration that has been invited to the parent page.
 

@@ -4,10 +4,13 @@ export {
     REFINE_INSTRUCTION,
     cannedForScope,
     packPrompt,
+    packPromptParts,
     unwrapReply,
     type CannedPrompt,
 } from "./prompt";
 export { runAskAi, type RunAskAiInput } from "./run";
+export { streamAskAiFromUI, prepareAskAiRequest, type StreamAskAiHandlers } from "./client";
+export { AI_STREAM_PATH, type AiStreamEvent, type AiStreamRequest } from "./protocol";
 export {
     AiSessionLog,
     sessionForDoc,

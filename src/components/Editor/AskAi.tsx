@@ -181,6 +181,7 @@ export function AskAiPanel({
                     <p role="status" className="ask-ai-status">
                         Asking AI…
                     </p>
+                    {reply ? <pre className="ask-ai-preview-body">{reply}</pre> : null}
                     <div className="ask-ai-actions">
                         <button type="button" className="ask-ai-btn" onClick={onDiscard}>
                             Discard

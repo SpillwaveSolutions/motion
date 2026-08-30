@@ -29,9 +29,10 @@ natural-language prompts using CLI tools you already have installed.
   highlighting across the common languages. (Tables are not supported yet — no
   table extension is registered, so pipe-table syntax renders as text.)
 - **Ask AI** — select text for a floating **Ask AI**, type `/ai` at the start of
-  a line, or use toolbar **Refine** for the whole document. Replies preview
-  (Replace / Insert below / Try again / Discard) before anything is committed.
-  Needs `claude` on `PATH`.
+  a line, or use toolbar **Refine** for the whole document. Replies stream into
+  a preview (Replace / Insert below / Try again / Discard) before anything is
+  committed. Uses the Anthropic API when `ANTHROPIC_API_KEY` is set, otherwise
+  `claude` on `PATH`.
 
 ### Content blocks
 
@@ -72,7 +73,7 @@ itself. Capped at 40 notes per run, and it reports what it skipped. Needs
 
 - [Bun](https://bun.com) 1.3+
 - [Rust](https://www.rust-lang.org/tools/install) — only for the desktop build
-- Optional, for the generative blocks: the `claude` and `imagen` CLIs on `PATH`
+- Optional, for Ask AI / generative blocks: `ANTHROPIC_API_KEY`, and/or the `claude` and `imagen` CLIs on `PATH`
 
 ```bash
 bun install
@@ -139,8 +140,8 @@ Recorded here rather than discovered later:
 - **Markdown tables are not supported.** Pipe-table syntax renders as plain text.
 - **No hot reload.** The dev server rebuilds the bundle on change but the page
   does not refresh itself — reload manually.
-- Generative blocks and **Synthesize** need the relevant CLI (`claude`, `imagen`)
-  on `PATH`.
+- **Ask AI** uses `ANTHROPIC_API_KEY` when set, otherwise `claude` on `PATH`.
+  Generative blocks and **Synthesize** still need `claude` / `imagen`.
 - **Share** needs a GitHub PAT (gist scope) and/or a Notion internal
   integration token plus a parent page the integration can write to.
 
