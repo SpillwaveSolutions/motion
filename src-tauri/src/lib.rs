@@ -8,7 +8,9 @@ use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Mutex;
 use std::time::Duration;
-use tauri::{Emitter, Manager, RunEvent, State};
+use tauri::{Emitter, Manager, State};
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
+use tauri::RunEvent;
 use tokio::process::Command as TokioCommand;
 use tokio::time::timeout;
 
@@ -136,9 +138,9 @@ fn enqueue_open(app: &tauri::AppHandle, path: PathBuf) {
 #[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
 fn handle_opened_urls(app: &tauri::AppHandle, urls: Vec<url::Url>) {
     for url in urls {
-        match url.to_file_path() {
+        match fs_core::path_from_opened_url(url.as_str()) {
             Ok(path) => enqueue_open(app, path),
-            Err(()) => log::warn!("opened URL is not a file path: {url}"),
+            Err(err) => log::warn!("opened URL skipped: {err}"),
         }
     }
 }

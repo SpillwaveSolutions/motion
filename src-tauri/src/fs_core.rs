@@ -211,6 +211,13 @@ pub struct OpenedTarget {
 }
 
 /// Accept a `file://` URL or a plain filesystem path.
+///
+/// Called from the macOS `RunEvent::Opened` handler. Kept public and tested
+/// on every OS so Linux CI still covers the mapping.
+#[cfg_attr(
+    not(any(target_os = "macos", target_os = "ios", target_os = "android")),
+    allow(dead_code)
+)]
 pub fn path_from_opened_url(raw: &str) -> Result<PathBuf, String> {
     if !raw.contains("://") {
         return Ok(PathBuf::from(raw));
