@@ -52,7 +52,7 @@ immediately after exposed product and process gaps; plan
 | Welcome demo datasets outside Motion workspace | Welcome HTML hardcodes `sample-data.csv` / `sample-events.jsonl`. Works when those files are in the open folder (`public/demo` or E2E seed); fails in Tauri when the folder is an unrelated project. |
 | Sidebar tree, sort by date, in-file search | **Tree + content search shipped.** Sort-by-date is still open. |
 | Finder Open With / Share / native chrome | **Shipped in v0.6.0 work** (`docs/plans/2026-08-30-native-mac-app.md`). |
-| Ask AI (selection, `/ai`, preview) | **P1 + streaming shipped** (`docs/plans/2026-08-30-ai-editor.md`). Tables shipping in this slice. DocCommands and dictation remain P2/P3. |
+| Ask AI (selection, `/ai`, preview) | **P1 + streaming + tables + DocCommands shipped** (`docs/plans/2026-08-30-ai-editor.md`). Dictation remains P3. |
 | Agent-browser final pass in DoD | Optional dogfood; Playwright remains the CI gate. |
 | Branch protection on `main` | CI exists; GitHub does not yet require `verify` / `rust` checks. |
 | Full line-number re-audit of §7–§27 | This amendment corrects product status; a full line re-citation is deferred. |
@@ -88,9 +88,11 @@ unit → E2E).
 8. **Ask AI** — selection bubble, `/ai`, or toolbar Refine. One pipeline
    (`src/lib/ai`). Browser/`bun tauri dev` streams `POST /api/ai/stream`
    (Anthropic SDK when `ANTHROPIC_API_KEY` is set, else `claude` CLI; prompt
-   cache on system + packed context). Packaged Tauri one-shots `run_llm_cli`
-   until the sidecar. Preview before commit. Refine is document-scoped (no
-   Insert below). `ContentInjector.generateSummary` still backs Synthesize.
+   cache on system + packed context; DocCommands as SDK tools / `doccommands`
+   fence). Packaged Tauri one-shots `run_llm_cli` until the sidecar. Preview
+   before commit: markdown blob (Replace / Insert below) or a Proposed edits
+   list (Apply N edits). Refine is document-scoped (no Insert below).
+   `ContentInjector.generateSummary` still backs Synthesize.
 9. **Synthesize** — workspace-level topic clustering; writes `TOC.md` and `SKILL.md`
    (cap 40 notes; excludes its own outputs from the next run).
 10. **Share** — current buffer to a GitHub Gist or Notion page. Tokens in

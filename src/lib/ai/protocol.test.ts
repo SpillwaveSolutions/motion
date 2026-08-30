@@ -19,10 +19,24 @@ describe("SSE protocol", () => {
         });
     });
 
+    test("parses command events and done.commands", () => {
+        const command = { op: "replace_range" as const, old_text: "a", new_text: "b" };
+        expect(parseSseBlock(encodeSse({ type: "command", command }).trim())).toEqual({
+            type: "command",
+            command,
+        });
+        expect(
+            parseSseBlock(
+                encodeSse({ type: "done", text: "", commands: [command] }).trim()
+            )
+        ).toEqual({ type: "done", text: "", commands: [command] });
+    });
+
     test("ignores [DONE] and junk", () => {
         expect(parseSseBlock("data: [DONE]")).toBeNull();
         expect(parseSseBlock("event: ping")).toBeNull();
         expect(parseSseBlock("data: {not json")).toBeNull();
         expect(parseSseBlock('data: {"type":"other"}')).toBeNull();
+        expect(parseSseBlock('data: {"type":"command","command":{"op":"nope"}}')).toBeNull();
     });
 });

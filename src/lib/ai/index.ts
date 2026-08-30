@@ -9,7 +9,12 @@ export {
     type CannedPrompt,
 } from "./prompt";
 export { runAskAi, type RunAskAiInput } from "./run";
-export { streamAskAiFromUI, prepareAskAiRequest, type StreamAskAiHandlers } from "./client";
+export {
+    streamAskAiFromUI,
+    prepareAskAiRequest,
+    type StreamAskAiHandlers,
+    type AskAiOutcome,
+} from "./client";
 export { AI_STREAM_PATH, type AiStreamEvent, type AiStreamRequest } from "./protocol";
 export {
     AiSessionLog,
@@ -26,3 +31,13 @@ export {
     type AiApplyMode,
     type WysiwygApply,
 } from "./apply";
+export {
+    DOC_COMMAND_OPS,
+    DOC_COMMAND_TOOLS,
+    dispatchDocCommands,
+    planDocCommands,
+    parseDocCommand,
+    summarizeCommand,
+    type DocCommand,
+    type PlannedEdit,
+} from "./commands";

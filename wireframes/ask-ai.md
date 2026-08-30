@@ -46,9 +46,10 @@ layer — a long reply has to be readable.
 | Instruction | textarea | `aria-label` **Ask AI instruction**. ⌘/Ctrl+Enter submits. Empty instruction does not submit. |
 | Canned chips | buttons | Selection: Rewrite, Tighten, Expand, Fix grammar. Cursor: Continue, Expand. Document (if the prompt is shown): Refine, Fix grammar. A chip fills the instruction and submits. |
 | Ask AI (submit) | button | Disabled when the instruction is blank or a call is in flight. |
-| Preview body | region | `aria-label` **AI preview** when complete. Raw markdown, mono, scroll. During **working**, the same body fills in as tokens arrive. The document is not mutated until Replace / Insert below. |
-| Replace | button | One ProseMirror transaction (or markdown-buffer replace). Default for selection and Refine. Hidden for cursor-only (`/ai`). |
-| Insert below | button | Inserts at the end of the stored range. Hidden for Refine / document scope. Default for cursor-only. |
+| Preview body | region | `aria-label` **AI preview** when complete. Raw markdown, mono, scroll. During **working**, the same body fills in as tokens arrive. The document is not mutated until Replace / Insert below / Apply. When the model returns DocCommands, the body is a **Proposed edits** list instead — see [doc-commands.md](./doc-commands.md). |
+| Replace | button | One ProseMirror transaction (or markdown-buffer replace). Default for selection and Refine. Hidden for cursor-only (`/ai`) and hidden when the preview is a command list. |
+| Insert below | button | Inserts at the end of the stored range. Hidden for Refine / document scope and hidden when the preview is a command list. Default for cursor-only. |
+| Apply N edits | button | Primary when the preview is a command list. See doc-commands.md. |
 | Try again | button | Re-runs the same instruction. Visible on preview and error. Hits the prompt cache prefix (title + surrounding text + prior ops) so the SDK can reuse it. |
 | Discard | button | Closes the panel, applies nothing, **aborts** an in-flight stream. Escape does the same while the panel is open. |
 | Working | status | Copy **Asking AI…**. `aria-busy`. Live tokens appear under the status when any text has arrived. Discard still works (cancels). |
@@ -60,7 +61,7 @@ layer — a long reply has to be readable.
 - **Bubble**: non-empty WYSIWYG/Split selection.
 - **Prompt**: textarea + chips. Editor is not editable so the stored range stays valid.
 - **Working**: Asking AI… plus streaming tokens. Editor not editable. Discard aborts.
-- **Preview**: reply shown; Replace / Insert below / Try again / Discard per scope.
+- **Preview**: reply shown; Replace / Insert below / Try again / Discard per scope. A command-list reply uses Apply N edits instead (doc-commands.md).
 - **Error**: message + Try again / Discard. Same panel, not an alert.
 - **Markdown mode**: Refine only (panel). No bubble. No slash menu.
 - **Empty note**: Refine is a no-op (nothing to send).
@@ -78,6 +79,7 @@ layer — a long reply has to be readable.
 - [ ] Try again re-runs the same instruction.
 - [ ] Failure copy is in the panel (no alert, no uncaught exception, no HTTP ≥400).
 - [ ] Markdown mode: Refine preview + Replace still work.
+- [ ] A DocCommands reply previews as a list with Apply N edits (doc-commands.md).
 
 ## Notes
 - Transport is `POST /api/ai/stream` (SSE, always HTTP 200). The shared TS
@@ -89,4 +91,4 @@ layer — a long reply has to be readable.
 - Context is packed by `buildAiContext` (title, surrounding text, selection,
   prior accepted ops). Per-doc session is `sessionForDoc`.
 - Source: `src/lib/ai/*`, `src/components/Editor/AskAi.tsx`, `insertBlock.ts`, `index.tsx`.
-- Related: [slash-menu.md](./slash-menu.md), [editor.md](./editor.md).
+- Related: [slash-menu.md](./slash-menu.md), [editor.md](./editor.md), [doc-commands.md](./doc-commands.md).

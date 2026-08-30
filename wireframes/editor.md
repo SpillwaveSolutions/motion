@@ -26,6 +26,7 @@ Edit one markdown note in WYSIWYG, raw Markdown, or Split without losing edits a
 Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 Ask AI bubble + preview -- see ask-ai.md.
 Tables -- see tables.md.
+DocCommands (proposed-edits list) -- see doc-commands.md.
 
 
 ## Key Elements
@@ -57,7 +58,7 @@ Tables -- see tables.md.
 - **Dirty after save**: Saved flips back to idle on the next keystroke.
 - **Save error**: Status Save failed plus alert.
 - **Refine in flight**: Refine disabled; title Refining. Docked Ask AI panel shows Asking AI… and live tokens.
-- **AI preview / error**: Docked panel. Replace (and Insert below on a selection) commit; Discard / Escape apply nothing. Failure copy is in the panel, not an alert.
+- **AI preview / error**: Docked panel. Replace (and Insert below on a selection) commit a markdown blob; a DocCommands reply uses Apply N edits. Discard / Escape apply nothing. Failure copy is in the panel, not an alert.
 - **Markdown mode**: Textarea only (no slash menu, no Ask AI bubble, no table chrome). Refine still opens the panel.
 - **Split**: Two columns; slash menu, Ask AI bubble, and tables still work on the TipTap side.
 - **Caret in table**: table chrome appears in the toolbar.

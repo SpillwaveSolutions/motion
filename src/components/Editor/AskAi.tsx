@@ -1,5 +1,13 @@
 import { useEffect, useRef } from "react";
-import { cannedForScope, type AiApplyMode, type AiScope, type CannedPrompt } from "../../lib/ai";
+import {
+    cannedForScope,
+    summarizeCommand,
+    type AiApplyMode,
+    type AiScope,
+    type CannedPrompt,
+    type DocCommand,
+    type PlannedEdit,
+} from "../../lib/ai";
 
 export type AskAiPhase = "idle" | "bubble" | "prompt" | "working" | "preview" | "error";
 
@@ -19,8 +27,25 @@ export type AskAiState =
           selectedText: string;
           instruction: string;
           reply?: string;
+          commands?: DocCommand[];
+          edits?: PlannedEdit[];
           error?: string;
       };
+
+function commandsEqual(a?: DocCommand[], b?: DocCommand[]): boolean {
+    const left = a ?? [];
+    const right = b ?? [];
+    if (left.length !== right.length) return false;
+    if (left.length === 0) return true;
+    return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function editsEqual(a?: PlannedEdit[], b?: PlannedEdit[]): boolean {
+    const left = a ?? [];
+    const right = b ?? [];
+    if (left.length !== right.length) return false;
+    return left.every((edit, i) => edit.summary === right[i]?.summary && edit.op === right[i]?.op);
+}
 
 export function isAskAiPanelOpen(
     state: AskAiState
@@ -53,8 +78,14 @@ export function askAiStatesEqual(a: AskAiState, b: AskAiState): boolean {
         a.reply === b.reply &&
         a.error === b.error &&
         a.range?.from === b.range?.from &&
-        a.range?.to === b.range?.to
+        a.range?.to === b.range?.to &&
+        commandsEqual(a.commands, b.commands) &&
+        editsEqual(a.edits, b.edits)
     );
+}
+
+export function applyEditsLabel(count: number): string {
+    return count === 1 ? "Apply 1 edit" : `Apply ${count} edits`;
 }
 
 export function AskAiBubble({
@@ -82,17 +113,32 @@ export function AskAiBubble({
     );
 }
 
+function ProposedEdits({ edits }: { edits: PlannedEdit[] }) {
+    return (
+        <ul className="ask-ai-edits" role="list" aria-label="Proposed edits">
+            {edits.map((edit, i) => (
+                <li key={`${edit.op}-${i}`} className="ask-ai-edit">
+                    {edit.summary}
+                </li>
+            ))}
+        </ul>
+    );
+}
+
 export function AskAiPanel({
     phase,
     scope,
     instruction,
     reply,
+    commands,
+    edits,
     error,
     onInstruction,
     onSubmit,
     onCanned,
     onReplace,
     onInsertBelow,
+    onApplyCommands,
     onTryAgain,
     onDiscard,
 }: {
@@ -100,12 +146,15 @@ export function AskAiPanel({
     scope: AiScope;
     instruction: string;
     reply?: string;
+    commands?: DocCommand[];
+    edits?: PlannedEdit[];
     error?: string;
     onInstruction: (value: string) => void;
     onSubmit: () => void;
     onCanned: (chip: CannedPrompt) => void;
     onReplace: () => void;
     onInsertBelow: () => void;
+    onApplyCommands: () => void;
     onTryAgain: () => void;
     onDiscard: () => void;
 }) {
@@ -113,6 +162,15 @@ export function AskAiPanel({
     const chips = cannedForScope(scope);
     const modes: AiApplyMode[] =
         scope === "document" ? ["replace"] : scope === "cursor" ? ["insert-below"] : ["replace", "insert-below"];
+    const planned =
+        edits && edits.length > 0
+            ? edits
+            : (commands ?? []).map((command) => ({
+                  op: command.op,
+                  summary: summarizeCommand(command),
+                  command,
+              }));
+    const commandPreview = planned.length > 0;
 
     useEffect(() => {
         if (phase === "prompt") {
@@ -181,7 +239,11 @@ export function AskAiPanel({
                     <p role="status" className="ask-ai-status">
                         Asking AI…
                     </p>
-                    {reply ? <pre className="ask-ai-preview-body">{reply}</pre> : null}
+                    {commandPreview ? (
+                        <ProposedEdits edits={planned} />
+                    ) : reply ? (
+                        <pre className="ask-ai-preview-body">{reply}</pre>
+                    ) : null}
                     <div className="ask-ai-actions">
                         <button type="button" className="ask-ai-btn" onClick={onDiscard}>
                             Discard
@@ -192,27 +254,44 @@ export function AskAiPanel({
 
             {phase === "preview" && (
                 <>
-                    <pre className="ask-ai-preview-body">{reply}</pre>
+                    {commandPreview ? (
+                        <ProposedEdits edits={planned} />
+                    ) : (
+                        <pre className="ask-ai-preview-body">{reply}</pre>
+                    )}
                     <div className="ask-ai-actions">
-                        {modes.includes("replace") && (
+                        {commandPreview ? (
                             <button
                                 type="button"
                                 className="ask-ai-btn ask-ai-btn-primary"
                                 onMouseDown={(e) => e.preventDefault()}
-                                onClick={onReplace}
+                                onClick={onApplyCommands}
                             >
-                                Replace
+                                {applyEditsLabel(planned.length)}
                             </button>
-                        )}
-                        {modes.includes("insert-below") && (
-                            <button
-                                type="button"
-                                className="ask-ai-btn ask-ai-btn-primary"
-                                onMouseDown={(e) => e.preventDefault()}
-                                onClick={onInsertBelow}
-                            >
-                                Insert below
-                            </button>
+                        ) : (
+                            <>
+                                {modes.includes("replace") && (
+                                    <button
+                                        type="button"
+                                        className="ask-ai-btn ask-ai-btn-primary"
+                                        onMouseDown={(e) => e.preventDefault()}
+                                        onClick={onReplace}
+                                    >
+                                        Replace
+                                    </button>
+                                )}
+                                {modes.includes("insert-below") && (
+                                    <button
+                                        type="button"
+                                        className="ask-ai-btn ask-ai-btn-primary"
+                                        onMouseDown={(e) => e.preventDefault()}
+                                        onClick={onInsertBelow}
+                                    >
+                                        Insert below
+                                    </button>
+                                )}
+                            </>
                         )}
                         <button type="button" className="ask-ai-btn" onClick={onTryAgain}>
                             Try again

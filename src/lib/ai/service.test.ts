@@ -23,15 +23,36 @@ describe("streamAi", () => {
         for await (const ev of streamAi(REQ, {
             apiKey: "sk-test",
             async *streamAnthropic() {
-                yield "```markdown\n";
-                yield "Hello ";
-                yield "world.\n```";
+                yield { kind: "text", text: "```markdown\n" };
+                yield { kind: "text", text: "Hello " };
+                yield { kind: "text", text: "world.\n```" };
             },
         })) {
             events.push(ev);
         }
         expect(events.filter((e) => e.type === "delta")).toHaveLength(3);
         expect(events.at(-1)).toEqual({ type: "done", text: "Hello world." });
+    });
+
+    test("SDK tool calls become command events plus done.commands", async () => {
+        const command = {
+            op: "replace_range" as const,
+            old_text: "body",
+            new_text: "edited",
+        };
+        const events = [];
+        for await (const ev of streamAi(REQ, {
+            apiKey: "sk-test",
+            async *streamAnthropic() {
+                yield { kind: "command", command };
+            },
+        })) {
+            events.push(ev);
+        }
+        expect(events).toEqual([
+            { type: "command", command },
+            { type: "done", text: "", commands: [command] },
+        ]);
     });
 
     test("CLI fallback is one delta plus done", async () => {
@@ -46,6 +67,26 @@ describe("streamAi", () => {
             { type: "delta", text: "CLI reply" },
             { type: "done", text: "CLI reply" },
         ]);
+    });
+
+    test("CLI doccommands fence becomes command events", async () => {
+        const fence = [
+            "```doccommands",
+            '[{"op":"table_add_row","table":1,"cells":["Grace","Architect"]}]',
+            "```",
+        ].join("\n");
+        const events = [];
+        for await (const ev of streamAi(REQ, {
+            apiKey: "",
+            callLLM: async () => ({ content: fence, rawOutput: fence }),
+        })) {
+            events.push(ev);
+        }
+        expect(events[0]).toEqual({
+            type: "command",
+            command: { op: "table_add_row", table: 1, cells: ["Grace", "Architect"] },
+        });
+        expect(events.at(-1)).toMatchObject({ type: "done", commands: [expect.objectContaining({ op: "table_add_row" })] });
     });
 
     test("blank instruction is an error event, not a throw", async () => {

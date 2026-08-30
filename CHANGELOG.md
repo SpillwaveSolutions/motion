@@ -11,6 +11,11 @@ round-trip, and the demo Query join were fixed on `main` before this work.
 
 ### Added
 
+- **DocCommands.** Ask AI can propose targeted edits (`replace_range`,
+  `insert_after_block`, `table_add_row`, `table_update_cell`) as a preview list.
+  **Apply N edits** commits the batch as one undo step. Text-only rewrites still
+  use Replace / Insert below. Anthropic tool-use when a key is set; CLI fallback
+  is a `doccommands` JSON fence.
 - **GFM tables.** Toolbar **Insert Table** (or `/tab`) drops a 3×3 with a header
   row. Cells are editable; while the caret is in a table the toolbar shows Add
   / Delete row and column, and Delete table. Pipe tables round-trip through

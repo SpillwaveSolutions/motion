@@ -56,6 +56,7 @@ filesystem cores to behave identically.
 | `src-tauri/src/fs_core.rs` | The same core in Rust | Runs in the desktop app's Rust process |
 | `src-tauri/src/lib.rs` | `#[tauri::command]` wrappers + `WorkspaceState` | Thin: state lookup, then delegate to `fs_core` |
 | `src/lib/{llmClient,imageClient}.ts` | Browser-safe entry points that fork on `isTauri()` | The only sanctioned way UI code reaches a CLI |
+| `src/lib/ai/` | Ask AI pipeline: context, session, SSE client, DocCommands registry | `commands.ts` is browser-safe; `service.ts` is server-only |
 | `src/lib/{cliWrappers,imageGen}.ts` | `Bun.spawn` CLI wrappers | Server/desktop-side only; must stay unreachable from `main.tsx` |
 | `src/lib/data/{duckdb,sqlSafety}.ts` | DuckDB-WASM lifecycle + SQL validation | Document-supplied SQL is untrusted input |
 | `src/server.ts` | The Bun dev server: build, watch, HTML, `/api/*` | Also the browser's filesystem backend |

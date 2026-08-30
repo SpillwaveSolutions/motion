@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { askAiStatesEqual, isAskAiPanelOpen, type AskAiState } from "./AskAi";
+import { applyEditsLabel, askAiStatesEqual, isAskAiPanelOpen, type AskAiState } from "./AskAi";
 
 describe("askAiStatesEqual", () => {
     test("two idle states are equal so selection updates do not loop", () => {
@@ -30,6 +30,24 @@ describe("askAiStatesEqual", () => {
         expect(askAiStatesEqual(a, { ...a, instruction: "b" })).toBe(false);
         expect(askAiStatesEqual(a, { ...a })).toBe(true);
     });
+
+    test("command lists are part of equality", () => {
+        const a: AskAiState = {
+            phase: "preview",
+            scope: "document",
+            range: null,
+            selectedText: "",
+            instruction: "add a row",
+            commands: [{ op: "table_add_row", table: 1, cells: ["Grace"] }],
+        };
+        expect(askAiStatesEqual(a, { ...a })).toBe(true);
+        expect(
+            askAiStatesEqual(a, {
+                ...a,
+                commands: [{ op: "table_add_row", table: 1, cells: ["Ada"] }],
+            })
+        ).toBe(false);
+    });
 });
 
 describe("isAskAiPanelOpen", () => {
@@ -55,3 +73,11 @@ describe("isAskAiPanelOpen", () => {
         ).toBe(true);
     });
 });
+
+describe("applyEditsLabel", () => {
+    test("singular and plural", () => {
+        expect(applyEditsLabel(1)).toBe("Apply 1 edit");
+        expect(applyEditsLabel(3)).toBe("Apply 3 edits");
+    });
+});
+

@@ -32,8 +32,9 @@ natural-language prompts using CLI tools you already have installed.
 - **Ask AI** — select text for a floating **Ask AI**, type `/ai` at the start of
   a line, or use toolbar **Refine** for the whole document. Replies stream into
   a preview (Replace / Insert below / Try again / Discard) before anything is
-  committed. Uses the Anthropic API when `ANTHROPIC_API_KEY` is set, otherwise
-  `claude` on `PATH`.
+  committed. Targeted edits (`replace_range`, insert after a block, table row /
+  cell) preview as a list; **Apply N edits** commits the batch. Uses the
+  Anthropic API when `ANTHROPIC_API_KEY` is set, otherwise `claude` on `PATH`.
 
 ### Content blocks
 

@@ -718,6 +718,39 @@ pre {
   white-space: pre-wrap;
 }
 
+.ask-ai-edits {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  max-height: 12rem;
+  overflow: auto;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ask-ai-edit {
+  margin: 0;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border-secondary);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.ask-ai-edit:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ask-ai-edit:first-child {
+  padding-top: 0;
+}
+
 .ask-ai-actions {
   display: flex;
   flex-wrap: wrap;

@@ -5,9 +5,19 @@
  *
  * Prompt cache: cache_control on the system prompt and the packed document
  * context so Try again does not re-pay for the note body.
+ *
+ * Tool use: the four DocCommands are advertised to the SDK. The host previews
+ * the planned list; we do not apply them here.
  */
 
 import { callLLM } from "../cliWrappers";
+import {
+    CLI_DOCCOMMANDS_TRAILER,
+    DOC_COMMAND_TOOLS,
+    commandFromToolUse,
+    extractDocCommandsFence,
+    type DocCommand,
+} from "./commands";
 import { unwrapReply } from "./prompt";
 import { encodeSse, type AiStreamEvent, type AiStreamRequest } from "./protocol";
 
@@ -15,11 +25,15 @@ export const DEFAULT_AI_MODEL = "claude-sonnet-4-5";
 
 export type AiBackend = "anthropic" | "cli";
 
+export type AnthropicChunk =
+    | { kind: "text"; text: string }
+    | { kind: "command"; command: DocCommand };
+
 export type AnthropicStreamer = (
     req: AiStreamRequest,
     apiKey: string,
     signal?: AbortSignal
-) => AsyncIterable<string>;
+) => AsyncIterable<AnthropicChunk>;
 
 export type CliCaller = typeof callLLM;
 
@@ -32,6 +46,17 @@ export interface AiServiceDeps {
 
 export function resolveAiBackend(apiKey: string | undefined): AiBackend {
     return apiKey && apiKey.trim() ? "anthropic" : "cli";
+}
+
+function finishTurn(text: string, commands: DocCommand[]): AiStreamEvent {
+    const reply = unwrapReply(text);
+    if (commands.length > 0) {
+        return { type: "done", text: reply, commands };
+    }
+    if (!reply.trim()) {
+        return { type: "error", error: "The model returned an empty reply." };
+    }
+    return { type: "done", text: reply };
 }
 
 export async function* streamAi(
@@ -54,27 +79,28 @@ export async function* streamAi(
         if (resolveAiBackend(apiKey) === "anthropic") {
             const streamer = deps.streamAnthropic ?? defaultAnthropicStream;
             let full = "";
+            const commands: DocCommand[] = [];
             for await (const chunk of streamer(req, apiKey, signal)) {
                 if (signal?.aborted) {
                     yield { type: "error", error: "Ask AI was cancelled." };
                     return;
                 }
-                if (!chunk) continue;
-                full += chunk;
-                yield { type: "delta", text: chunk };
+                if (chunk.kind === "command") {
+                    commands.push(chunk.command);
+                    yield { type: "command", command: chunk.command };
+                    continue;
+                }
+                if (!chunk.text) continue;
+                full += chunk.text;
+                yield { type: "delta", text: chunk.text };
             }
-            const reply = unwrapReply(full);
-            if (!reply.trim()) {
-                yield { type: "error", error: "The model returned an empty reply." };
-                return;
-            }
-            yield { type: "done", text: reply };
+            yield finishTurn(full, commands);
             return;
         }
 
         const caller = deps.callLLM ?? callLLM;
         const response = await caller("claude", {
-            prompt: `${req.context}\n\nInstruction:\n${instruction}\n\nReturn only the markdown for the result. No preamble.`,
+            prompt: `${req.context}\n\nInstruction:\n${instruction}\n\n${CLI_DOCCOMMANDS_TRAILER}`,
             systemPrompt: req.systemPrompt,
             model: req.model ?? deps.model,
         });
@@ -82,7 +108,16 @@ export async function* streamAi(
             yield { type: "error", error: "Ask AI was cancelled." };
             return;
         }
-        const reply = unwrapReply(response.content ?? "");
+        const raw = response.content ?? "";
+        const commands = extractDocCommandsFence(raw) ?? [];
+        if (commands.length > 0) {
+            for (const command of commands) {
+                yield { type: "command", command };
+            }
+            yield { type: "done", text: "", commands };
+            return;
+        }
+        const reply = unwrapReply(raw);
         if (!reply.trim()) {
             yield { type: "error", error: "The model returned an empty reply." };
             return;
@@ -138,7 +173,7 @@ async function* defaultAnthropicStream(
     req: AiStreamRequest,
     apiKey: string,
     signal?: AbortSignal
-): AsyncIterable<string> {
+): AsyncIterable<AnthropicChunk> {
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
     const client = new Anthropic({ apiKey });
     const model = req.model || process.env["MOTION_AI_MODEL"] || DEFAULT_AI_MODEL;
@@ -146,6 +181,8 @@ async function* defaultAnthropicStream(
         {
             model,
             max_tokens: 8192,
+            tools: [...DOC_COMMAND_TOOLS],
+            tool_choice: { type: "auto" },
             system: [
                 {
                     type: "text",
@@ -164,7 +201,7 @@ async function* defaultAnthropicStream(
                         },
                         {
                             type: "text",
-                            text: `Instruction:\n${req.instruction}\n\nReturn only the markdown for the result. No preamble.`,
+                            text: `Instruction:\n${req.instruction}`,
                         },
                     ],
                 },
@@ -179,7 +216,20 @@ async function* defaultAnthropicStream(
             break;
         }
         if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
-            yield event.delta.text;
+            yield { kind: "text", text: event.delta.text };
         }
+    }
+
+    if (signal?.aborted) return;
+    try {
+        const final = await stream.finalMessage();
+        for (const block of final.content ?? []) {
+            if (block.type !== "tool_use") continue;
+            const parsed = commandFromToolUse(block.name, block.input);
+            if ("error" in parsed) continue;
+            yield { kind: "command", command: parsed };
+        }
+    } catch {
+        /* aborted or no final message */
     }
 }
