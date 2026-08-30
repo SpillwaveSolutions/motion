@@ -70,7 +70,7 @@ if [ ! -d "$WIREFRAME_DIR" ]; then
 fi
 
 CONTRACTS=$(find "$WIREFRAME_DIR" -type f -name '*.md' \
-  ! -name '_template.md' ! -name 'README.md' ! -name 'REVIEW.md' | sort || true)
+  ! -name '_template.md' ! -name 'README.md' ! -name 'REVIEW.md' ! -name 'REVIEW-*.md' | sort || true)
 
 if [ -z "$CONTRACTS" ]; then
   fail "${WIREFRAME_DIR}/ has no contract files (only template/README)."

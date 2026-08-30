@@ -123,14 +123,17 @@ fn enqueue_open(app: &tauri::AppHandle, path: PathBuf) {
     if pending.frontend_ready.load(Ordering::SeqCst) {
         return;
     }
-    if let Ok(mut guard) = pending.paths.lock() {
-        if guard.iter().any(|p| p == &path) {
-            return;
-        }
-        guard.push_back(path);
+    let mut guard = match pending.paths.lock() {
+        Ok(g) => g,
+        Err(_) => return,
+    };
+    if guard.iter().any(|p| p == &path) {
+        return;
     }
+    guard.push_back(path);
 }
 
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
 fn handle_opened_urls(app: &tauri::AppHandle, urls: Vec<url::Url>) {
     for url in urls {
         match url.to_file_path() {
@@ -317,9 +320,15 @@ pub fn run() {
         .expect("error while building tauri application");
 
     app.run(|app_handle, event| {
+        // RunEvent::Opened exists on macOS / iOS / Android only. Linux CI
+        // compiles the same crate without that variant; argv in setup covers
+        // `open` on other desktops.
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
         if let RunEvent::Opened { urls } = event {
             handle_opened_urls(app_handle, urls);
         }
+        #[cfg(not(any(target_os = "macos", target_os = "ios", target_os = "android")))]
+        let _ = (app_handle, event);
     });
 }
 
