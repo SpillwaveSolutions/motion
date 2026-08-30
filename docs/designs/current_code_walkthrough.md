@@ -50,7 +50,7 @@ filesystem cores to behave identically.
 | `src/main.tsx` | Browser entrypoint; React root; the `data-app-ready` flag | The single root of the client import graph the guard walks |
 | `src/App.tsx` | Shell: header, search, file list, view-mode toggle | Owns `workspacePath` / `files` / `currentFilePath` state |
 | `src/components/Editor/` | Tiptap editor, toolbar, slash menu, block insertion | The primary user surface |
-| `src/components/Editor/extensions/` | Five custom Tiptap `Node`s + `blockAttrs.ts` | Each block is a `<pre data-type="…">` on disk |
+| `src/components/Editor/extensions/` | Five custom Tiptap `Node`s + `blockAttrs.ts` + `tableKit.ts` | Each block is a `<pre data-type="…">` on disk; tables are GFM pipes |
 | `src/lib/storage/index.ts` | `StorageProvider`, `TauriStorage`, `HttpStorage`, `isTauri()` | The runtime fork, chosen once at module load |
 | `src/lib/fsCore.ts` | Browser-mode filesystem core (jail, resolve, list, read, write) | Runs **in the Bun dev-server process**, never in the bundle |
 | `src-tauri/src/fs_core.rs` | The same core in Rust | Runs in the desktop app's Rust process |

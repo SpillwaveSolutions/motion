@@ -1,4 +1,5 @@
 import type { Editor } from "@tiptap/react";
+import { TABLE_INSERT } from "./extensions/tableKit";
 
 export interface InsertableBlock {
     label: string;
@@ -19,9 +20,11 @@ export type AiSlashCommand = {
 
 export type SlashCommand = InsertSlashCommand | AiSlashCommand;
 
-// Ask AI is first so typing /ai lands on it. /mer still uniquely matches Mermaid.
+// Ask AI is first so typing /ai lands on it. /tab uniquely matches Table;
+// /mer still uniquely matches Mermaid.
 export const SLASH_COMMANDS: SlashCommand[] = [
     { kind: "ai", label: "Ask AI", id: "ask-ai" },
+    { kind: "insert", label: "Table", nodeType: "table" },
     { kind: "insert", label: "Mermaid", nodeType: "mermaid" },
     { kind: "insert", label: "Dataset", nodeType: "dataset" },
     { kind: "insert", label: "Query", nodeType: "query" },
@@ -48,6 +51,8 @@ export function slashCommandKey(cmd: SlashCommand): string {
 // the next insertContent call then replaces the selected node instead of
 // adding a new one. Always pairing the insert with a trailing paragraph
 // guarantees a text cursor lands after it, every time.
+//
+// Tables are not atoms: insertTable drops the caret in the first header cell.
 export function insertBlock(
     editor: Editor,
     nodeType: string,
@@ -56,6 +61,10 @@ export function insertBlock(
     const chain = editor.chain().focus();
     if (range) {
         chain.deleteRange(range);
+    }
+    if (nodeType === "table") {
+        chain.insertTable({ ...TABLE_INSERT }).run();
+        return;
     }
     chain.insertContent([{ type: nodeType }, { type: "paragraph" }]).run();
 }

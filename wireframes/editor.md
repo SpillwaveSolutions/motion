@@ -7,13 +7,17 @@ Edit one markdown note in WYSIWYG, raw Markdown, or Split without losing edits a
 
 ```
 +-----------------------------------------------------------------+
-| B I S ` | H1 H2 H3 | lists quote | code hr | Mermaid Dataset    |
-| Query AI Diagram AI Image | undo redo | status | Refine | Find |
+| B I S ` | H1 H2 H3 | lists quote | code hr | Table Mermaid      |
+| Dataset Query AI Diagram AI Image | undo redo | status | Refine |
+| Find                                                            |
+| (when caret in a table: Add/Delete row, Add/Delete column,      |
+|  Delete table)                                                  |
 +-----------------------------------------------------------------+
 | Ask AI panel (when open): prompt / preview / error              |
 +-----------------------------------------------------------------+
 | WYSIWYG: TipTap document (welcome or file)                      |
 |   selection → floating Ask AI bubble                            |
+|   tables are real <table> cells, not pipe text                  |
 | Markdown: labeled textarea                                      |
 | Split: TipTap | read-only markdown preview (two columns)        |
 +-----------------------------------------------------------------+
@@ -21,6 +25,7 @@ Edit one markdown note in WYSIWYG, raw Markdown, or Split without losing edits a
 
 Slash menu overlays the viewport when / starts a block -- see slash-menu.md.
 Ask AI bubble + preview -- see ask-ai.md.
+Tables -- see tables.md.
 
 
 ## Key Elements
@@ -31,7 +36,9 @@ Ask AI bubble + preview -- see ask-ai.md.
 | Headings | H1 H2 H3 | Toggle |
 | Lists / quote | icons | Bullet, numbered, blockquote |
 | Code block / HR | icons | |
-| Insert blocks | labeled | Mermaid, Dataset, Query, AI Diagram, AI Image -- insert-only; Ask AI is slash/bubble, not a toolbar insert |
+| Insert Table | labeled | 3×3 with header row. See tables.md. |
+| Insert blocks | labeled | Table, Mermaid, Dataset, Query, AI Diagram, AI Image -- insert-only; Ask AI is slash/bubble, not a toolbar insert |
+| Table chrome | labeled | Add/Delete row, Add/Delete column, Delete table. Visible only while the caret is inside a table. |
 | Undo / Redo | icons | Cmd+Z / Cmd+Shift+Z |
 | Save status | status | Saving / Saved / Save failed / empty. role=status aria-live=polite. The Save **button** lives in the shell header (see shell.md). |
 | AI Refine | icon | Document-scoped Ask AI. Disabled while a call is in flight or the Ask AI panel is open. Preview before commit; no alert on failure. |
@@ -51,8 +58,9 @@ Ask AI bubble + preview -- see ask-ai.md.
 - **Save error**: Status Save failed plus alert.
 - **Refine in flight**: Refine disabled; title Refining. Docked Ask AI panel shows Asking AI… and live tokens.
 - **AI preview / error**: Docked panel. Replace (and Insert below on a selection) commit; Discard / Escape apply nothing. Failure copy is in the panel, not an alert.
-- **Markdown mode**: Textarea only (no slash menu, no Ask AI bubble). Refine still opens the panel.
-- **Split**: Two columns; slash menu and Ask AI bubble still work on the TipTap side.
+- **Markdown mode**: Textarea only (no slash menu, no Ask AI bubble, no table chrome). Refine still opens the panel.
+- **Split**: Two columns; slash menu, Ask AI bubble, and tables still work on the TipTap side.
+- **Caret in table**: table chrome appears in the toolbar.
 
 - **Find open**: bar above the document; current match is selected.
 
@@ -65,12 +73,13 @@ Ask AI bubble + preview -- see ask-ai.md.
 - [ ] Markdown textarea is labeled Markdown source.
 - [ ] With no file selected, the welcome document (not a blank pane) is shown.
 - [ ] A failed file load shows an error inside the editor, not a blank page.
-- [ ] Insert buttons create Mermaid, Dataset, Query, AI Diagram, and AI Image blocks.
-- [ ] Slash menu includes Ask AI first; toolbar insert buttons do not.
+- [ ] Insert buttons create Table, Mermaid, Dataset, Query, AI Diagram, and AI Image blocks.
+- [ ] Slash menu includes Ask AI first, then Table; toolbar insert buttons do not include Ask AI.
 - [ ] Refine previews before replacing the document; failure is in the panel, not an alert.
-- [ ] Pipe tables are **not** required (unsupported; render as text).
+- [ ] Pipe tables render as real tables in WYSIWYG and round-trip through save/reload.
 - [ ] ⌘/Ctrl+F opens Find in note; Enter cycles matches; Escape closes.
 
 ## Notes
 - Source: src/components/Editor/index.tsx, Toolbar.tsx.
 - Blocks persist as real nodes (pre data-type), not as plain code, on save/reload.
+- Tables persist as GFM pipe markdown; see [tables.md](./tables.md).

@@ -9,6 +9,7 @@ interface ToolbarProps {
     refining?: boolean;
     refineDisabled?: boolean;
     saveState?: "idle" | "saving" | "saved" | "error";
+    inTable?: boolean;
 }
 
 function ToolbarButton({
@@ -41,7 +42,16 @@ function ToolbarButton({
     );
 }
 
-function Toolbar({ editor, onSave, onFind, onRefine, refining = false, refineDisabled = false, saveState = "idle" }: ToolbarProps) {
+function Toolbar({
+    editor,
+    onSave,
+    onFind,
+    onRefine,
+    refining = false,
+    refineDisabled = false,
+    saveState = "idle",
+    inTable = false,
+}: ToolbarProps) {
     return (
         <div className="editor-toolbar">
             {/* Text formatting */}
@@ -199,6 +209,42 @@ function Toolbar({ editor, onSave, onFind, onRefine, refining = false, refineDis
                     {cmd.label}
                 </ToolbarButton>
             ))}
+
+            {inTable && (
+                <>
+                    <div className="toolbar-divider" />
+                    <ToolbarButton
+                        onClick={() => editor.chain().focus().addRowAfter().run()}
+                        title="Add row"
+                    >
+                        +Row
+                    </ToolbarButton>
+                    <ToolbarButton
+                        onClick={() => editor.chain().focus().deleteRow().run()}
+                        title="Delete row"
+                    >
+                        −Row
+                    </ToolbarButton>
+                    <ToolbarButton
+                        onClick={() => editor.chain().focus().addColumnAfter().run()}
+                        title="Add column"
+                    >
+                        +Col
+                    </ToolbarButton>
+                    <ToolbarButton
+                        onClick={() => editor.chain().focus().deleteColumn().run()}
+                        title="Delete column"
+                    >
+                        −Col
+                    </ToolbarButton>
+                    <ToolbarButton
+                        onClick={() => editor.chain().focus().deleteTable().run()}
+                        title="Delete table"
+                    >
+                        ×Table
+                    </ToolbarButton>
+                </>
+            )}
 
             <div className="toolbar-divider" />
 

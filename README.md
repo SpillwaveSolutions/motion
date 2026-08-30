@@ -25,9 +25,10 @@ natural-language prompts using CLI tools you already have installed.
   Status shows Saving… / Saved / Save failed.
 - **Share** — publish the current note to a **GitHub Gist** or a **Notion**
   page. Tokens stay on this machine (Settings in the Share menu).
-- **Rich markdown** — headings, lists, blockquotes, and code blocks with syntax
-  highlighting across the common languages. (Tables are not supported yet — no
-  table extension is registered, so pipe-table syntax renders as text.)
+- **Rich markdown** — headings, lists, blockquotes, code blocks with syntax
+  highlighting, and **GFM tables**. Insert a 3×3 from the toolbar or `/tab`;
+  edit cells; add/delete rows and columns while the caret is in the table.
+  Pipe tables round-trip through save/reload.
 - **Ask AI** — select text for a floating **Ask AI**, type `/ai` at the start of
   a line, or use toolbar **Refine** for the whole document. Replies stream into
   a preview (Replace / Insert below / Try again / Discard) before anything is
@@ -37,7 +38,7 @@ natural-language prompts using CLI tools you already have installed.
 ### Content blocks
 
 Five block types, insertable from the toolbar or by typing `/` at the start of a
-line (the slash menu also lists **Ask AI** first). Blocks survive save/reload as
+line (the slash menu also lists **Ask AI** first, then **Table**). Blocks survive save/reload as
 real blocks (not plain code).
 
 | Block | What it does |
@@ -137,7 +138,6 @@ Recorded here rather than discovered later:
 - **Welcome demo datasets** assume `sample-data.csv` / `sample-events.jsonl` exist
   in the open workspace. Opening an unrelated folder shows load errors for those
   blocks until those files are present or sources are re-pointed.
-- **Markdown tables are not supported.** Pipe-table syntax renders as plain text.
 - **No hot reload.** The dev server rebuilds the bundle on change but the page
   does not refresh itself — reload manually.
 - **Ask AI** uses `ANTHROPIC_API_KEY` when set, otherwise `claude` on `PATH`.

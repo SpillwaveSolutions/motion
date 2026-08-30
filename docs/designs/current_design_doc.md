@@ -52,7 +52,7 @@ immediately after exposed product and process gaps; plan
 | Welcome demo datasets outside Motion workspace | Welcome HTML hardcodes `sample-data.csv` / `sample-events.jsonl`. Works when those files are in the open folder (`public/demo` or E2E seed); fails in Tauri when the folder is an unrelated project. |
 | Sidebar tree, sort by date, in-file search | **Tree + content search shipped.** Sort-by-date is still open. |
 | Finder Open With / Share / native chrome | **Shipped in v0.6.0 work** (`docs/plans/2026-08-30-native-mac-app.md`). |
-| Ask AI (selection, `/ai`, preview) | **P1 shipping in this slice** (`docs/plans/2026-08-30-ai-editor.md`). Streaming, tables, DocCommands, dictation remain P2/P3. |
+| Ask AI (selection, `/ai`, preview) | **P1 + streaming shipped** (`docs/plans/2026-08-30-ai-editor.md`). Tables shipping in this slice. DocCommands and dictation remain P2/P3. |
 | Agent-browser final pass in DoD | Optional dogfood; Playwright remains the CI gate. |
 | Branch protection on `main` | CI exists; GitHub does not yet require `verify` / `rust` checks. |
 | Full line-number re-audit of §7–§27 | This amendment corrects product status; a full line re-citation is deferred. |

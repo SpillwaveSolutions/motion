@@ -59,16 +59,16 @@ test("legitimate markdown structure survives sanitization", async ({ page }) => 
     await gotoApp(page);
     const editor = await renderMarkdown(
         page,
-        "# Heading\n\n- one\n- two\n\n**bold** and `code`\n\n```js\nconst x = 1;\n```\n"
+        "# Heading\n\n- one\n- two\n\n**bold** and `code`\n\n```js\nconst x = 1;\n```\n\n| A | B |\n| --- | --- |\n| 1 | 2 |\n"
     );
 
     await expect(editor.locator("h1")).toHaveText("Heading");
     await expect(editor.locator("li").first()).toBeVisible();
     await expect(editor.locator("strong")).toHaveText("bold");
     await expect(editor.locator("pre code")).toContainText("const x = 1");
-    // NOTE: markdown tables are not asserted -- no Table extension is
-    // registered, so `| a | b |` renders as a paragraph. The README and user
-    // guide claimed tables as a feature; both were corrected.
+    await expect(editor.getByRole("table")).toBeVisible();
+    await expect(editor.getByRole("columnheader", { name: "A" })).toBeVisible();
+    await expect(editor.getByRole("cell", { name: "1" })).toBeVisible();
 });
 
 test("Mermaid node labels render, so foreignObject survived sanitizeSvg", async ({ page }) => {

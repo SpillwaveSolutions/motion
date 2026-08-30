@@ -225,3 +225,5 @@
 {"actor":"unknown","ev":"01M18SM2643X0NTH4QHN80NWGJ","item":"01M18R79ZMGXNJ9D8JJ5P4W96J","op":"close","set":{"resolution":"Refine is document-scoped Ask AI; errors in the panel","status":"done"},"ts":"2026-08-30T07:37:24Z"}
 {"actor":"unknown","ev":"01M19SB80GS55AVPAB2SF83ZYX","item":"01M18R79ZMKBXK2PGWR6911MJQ","op":"update","set":{"status":"in_progress"},"ts":"2026-08-30T16:51:49Z"}
 {"actor":"unknown","ev":"01M19SW6929ZW4PD39M8JJBH4F","item":"01M18R79ZMKBXK2PGWR6911MJQ","op":"close","set":{"resolution":"Shared TS AI service streams via POST /api/ai/stream; Anthropic SDK with prompt cache, CLI fallback, no second Rust loop","status":"done"},"ts":"2026-08-30T17:01:05Z"}
+{"actor":"unknown","ev":"01M19TM4NVS07H4654THD7RXZ3","item":"01M18R79ZMK0DX0PE2DPWMZ60D","op":"update","set":{"milestone":"v0.6.0","status":"in_progress"},"ts":"2026-08-30T17:14:09Z"}
+{"actor":"unknown","ev":"01M19VA1P5RXTPHHJ5XWVHM77X","item":"01M18R79ZMK0DX0PE2DPWMZ60D","op":"close","set":{"resolution":"Tiptap TableKit, GFM pipe round-trip, slash /tab and toolbar insert, in-table row/col chrome.","status":"done"},"ts":"2026-08-30T17:26:07Z"}

@@ -11,6 +11,10 @@ round-trip, and the demo Query join were fixed on `main` before this work.
 
 ### Added
 
+- **GFM tables.** Toolbar **Insert Table** (or `/tab`) drops a 3×3 with a header
+  row. Cells are editable; while the caret is in a table the toolbar shows Add
+  / Delete row and column, and Delete table. Pipe tables round-trip through
+  save/reload as real `<table>`s, not paragraphs of pipes.
 - **Ask AI.** Select text in WYSIWYG/Split for a floating Ask AI, type `/ai` at
   the start of a line, or use toolbar Refine for the whole document. One
   pipeline (`buildAiContext` + `/api/ai/stream`) previews the reply; tokens
@@ -37,8 +41,9 @@ round-trip, and the demo Query join were fixed on `main` before this work.
 
 ### Changed
 
-- Slash menu is labeled **Slash commands** and lists **Ask AI** first. `/mer`
-  still inserts Mermaid. Toolbar insert buttons stay insert-only.
+- Slash menu is labeled **Slash commands** and lists **Ask AI** first, then
+  **Table**. `/tab` inserts a table; `/mer` still inserts Mermaid. Toolbar
+  insert buttons stay insert-only.
 - README and the user guide now describe the directory tree, content search,
   Finder Open With, last-workspace restore, Share, and Ask AI.
 
