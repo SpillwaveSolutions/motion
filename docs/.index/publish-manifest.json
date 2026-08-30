@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "c9a1c31e0e32",
+   "render_hash": "08c9297d7fc8",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "e5a1358e3789",
+   "render_hash": "1079a1d4031c",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "3ea847255eb5",
+   "render_hash": "931236b5ec99",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,11 +44,61 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "fc345a47bba6",
+   "render_hash": "308fd58a6e0a",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
    "wiki_key": "index/traceability"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-42",
+   "render": "as-is",
+   "render_hash": "a293c66c94c1",
+   "source": "docs/.index/rendered/prs/42.md",
+   "title": "PR #42",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/42"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-43",
+   "render": "as-is",
+   "render_hash": "7fcafef71524",
+   "source": "docs/.index/rendered/prs/43.md",
+   "title": "PR #43",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/43"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-44",
+   "render": "as-is",
+   "render_hash": "55af55aaa5c2",
+   "source": "docs/.index/rendered/prs/44.md",
+   "title": "PR #44",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/44"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-45",
+   "render": "as-is",
+   "render_hash": "8383e2784502",
+   "source": "docs/.index/rendered/prs/45.md",
+   "title": "PR #45",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/45"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-46",
+   "render": "as-is",
+   "render_hash": "2551b915c4ad",
+   "source": "docs/.index/rendered/prs/46.md",
+   "title": "PR #46",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/46"
   },
   {
    "frozen": false,
@@ -69,6 +119,16 @@
    "title": "Release v0.1.0",
    "truth_state": "shipped",
    "wiki_key": "release/v0.1.0"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.0",
+   "render": "as-is",
+   "render_hash": "6ebe4115cd07",
+   "source": "docs/.index/rendered/releases/v0.6.0.md",
+   "title": "Release v0.6.0",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.0"
   },
   {
    "frozen": false,
@@ -921,11 +981,231 @@
    "wiki_key": "item/01KYQZ49A7NWRQZK83658CT4QT"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19C0DPY7PXRGDRX6Y6G",
+   "render": "as-is",
+   "render_hash": "5deaccb732cc",
+   "source": "docs/.index/rendered/tickets/01M18MN19C0DPY7PXRGDRX6Y6G.md",
+   "title": "Publish the current note to a Notion page",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19C0DPY7PXRGDRX6Y6G"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19C0WR6KZ3X63M1CX2R",
+   "render": "as-is",
+   "render_hash": "e9be23024cc8",
+   "source": "docs/.index/rendered/tickets/01M18MN19C0WR6KZ3X63M1CX2R.md",
+   "title": "Native chrome: overlay title bar, menus, system appearance",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19C0WR6KZ3X63M1CX2R"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19C8FQKQ9NVNT4162CX",
+   "render": "as-is",
+   "render_hash": "6057b687fa1e",
+   "source": "docs/.index/rendered/tickets/01M18MN19C8FQKQ9NVNT4162CX.md",
+   "title": "Packaging polish: product name, identifier, metadata, window, last workspace",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19C8FQKQ9NVNT4162CX"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19CA20B51FR0ND643M4",
+   "render": "as-is",
+   "render_hash": "8eb26807a32f",
+   "source": "docs/.index/rendered/tickets/01M18MN19CA20B51FR0ND643M4.md",
+   "title": "Finder Open With: associations, RunEvent::Opened, pending-open, parent-dir workspace",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19CA20B51FR0ND643M4"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19CBF3A5JXZHVANGT5Y",
+   "render": "as-is",
+   "render_hash": "3ab721976afe",
+   "source": "docs/.index/rendered/tickets/01M18MN19CBF3A5JXZHVANGT5Y.md",
+   "title": "Publish the current note to a GitHub Gist",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19CBF3A5JXZHVANGT5Y"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19CBNRDAYCJ0RTMWJV4",
+   "render": "as-is",
+   "render_hash": "62c6020eaf59",
+   "source": "docs/.index/rendered/tickets/01M18MN19CBNRDAYCJ0RTMWJV4.md",
+   "title": "Fix stale README, changelog, and user-guide product claims",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19CBNRDAYCJ0RTMWJV4"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18MN19CSQ7PS762F7TWEXJC",
+   "render": "as-is",
+   "render_hash": "f985f651c8ea",
+   "source": "docs/.index/rendered/tickets/01M18MN19CSQ7PS762F7TWEXJC.md",
+   "title": "Behave like a native Mac app",
+   "truth_state": "done",
+   "wiki_key": "item/01M18MN19CSQ7PS762F7TWEXJC"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18NBZ8T4G92HM091NQ1Z4B5",
+   "render": "as-is",
+   "render_hash": "aea3b5cfca6b",
+   "source": "docs/.index/rendered/tickets/01M18NBZ8T4G92HM091NQ1Z4B5.md",
+   "title": "E2E still queries role=option after sidebar became a tree",
+   "truth_state": "done",
+   "wiki_key": "item/01M18NBZ8T4G92HM091NQ1Z4B5"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18Q560MPAYQJTA0W6F4DAW3",
+   "render": "as-is",
+   "render_hash": "c9428cf7c123",
+   "source": "docs/.index/rendered/tickets/01M18Q560MPAYQJTA0W6F4DAW3.md",
+   "title": "Mac dogfood: unsigned .app, Finder Open With, overlay padding",
+   "truth_state": "open",
+   "wiki_key": "item/01M18Q560MPAYQJTA0W6F4DAW3"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZM3BMYZ56C7P874YN1",
+   "render": "as-is",
+   "render_hash": "c14cecd9c616",
+   "source": "docs/.index/rendered/tickets/01M18R79ZM3BMYZ56C7P874YN1.md",
+   "title": "DocCommands registry and tool-use loop",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZM3BMYZ56C7P874YN1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZM90HJ0MBG3CX6VW7E",
+   "render": "as-is",
+   "render_hash": "55ca9e95f2f1",
+   "source": "docs/.index/rendered/tickets/01M18R79ZM90HJ0MBG3CX6VW7E.md",
+   "title": "Dictation last",
+   "truth_state": "open",
+   "wiki_key": "item/01M18R79ZM90HJ0MBG3CX6VW7E"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMD6BCM0CQGSSAEM05",
+   "render": "as-is",
+   "render_hash": "2658bed632d7",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMD6BCM0CQGSSAEM05.md",
+   "title": "Wireframes for Ask AI bubble and pending preview",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZMD6BCM0CQGSSAEM05"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMERNNHSH0KYY819SN",
+   "render": "as-is",
+   "render_hash": "ae9b98edb834",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMERNNHSH0KYY819SN.md",
+   "title": "Selection bubble, /ai, preview panel on the CLI transport",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZMERNNHSH0KYY819SN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMGXNJ9D8JJ5P4W96J",
+   "render": "as-is",
+   "render_hash": "88133d01c565",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMGXNJ9D8JJ5P4W96J.md",
+   "title": "Route Refine through the same pipeline",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZMGXNJ9D8JJ5P4W96J"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMK0DX0PE2DPWMZ60D",
+   "render": "as-is",
+   "render_hash": "5a4a2989b344",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMK0DX0PE2DPWMZ60D.md",
+   "title": "Tiptap tables + markdown round-trip",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZMK0DX0PE2DPWMZ60D"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMKBXK2PGWR6911MJQ",
+   "render": "as-is",
+   "render_hash": "0123bbb47fa4",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMKBXK2PGWR6911MJQ.md",
+   "title": "Shared TS AI service: stream, per-doc session, prompt cache",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZMKBXK2PGWR6911MJQ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMN53CMV76JFHKVEFN",
+   "render": "as-is",
+   "render_hash": "e3c614d5d1c6",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMN53CMV76JFHKVEFN.md",
+   "title": "AI editor: selection, /ai, preview",
+   "truth_state": "open",
+   "wiki_key": "item/01M18R79ZMN53CMV76JFHKVEFN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M18R79ZMSX2XFW3N4RG4X4DP",
+   "render": "as-is",
+   "render_hash": "8940513ac8dc",
+   "source": "docs/.index/rendered/tickets/01M18R79ZMSX2XFW3N4RG4X4DP.md",
+   "title": "buildAiContext, canned prompts, session log, unwrap reply",
+   "truth_state": "done",
+   "wiki_key": "item/01M18R79ZMSX2XFW3N4RG4X4DP"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M19Z6Z3XQZ03EYNXKKBG5WK7",
+   "render": "as-is",
+   "render_hash": "39e64e6d19d0",
+   "source": "docs/.index/rendered/tickets/01M19Z6Z3XQZ03EYNXKKBG5WK7.md",
+   "title": "Bun sidecar so packaged Tauri streams Ask AI",
+   "truth_state": "open",
+   "wiki_key": "item/01M19Z6Z3XQZ03EYNXKKBG5WK7"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M19Z6Z5DJ54227R1WYVVX2GF",
+   "render": "as-is",
+   "render_hash": "1cfc6d3d252f",
+   "source": "docs/.index/rendered/tickets/01M19Z6Z5DJ54227R1WYVVX2GF.md",
+   "title": "Insert Table nests when the caret is already in a table",
+   "truth_state": "open",
+   "wiki_key": "item/01M19Z6Z5DJ54227R1WYVVX2GF"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M19Z6Z6X06VRZM95741Y2748",
+   "render": "as-is",
+   "render_hash": "a4909fdd6c40",
+   "source": "docs/.index/rendered/tickets/01M19Z6Z6X06VRZM95741Y2748.md",
+   "title": "DocCommands batch should resolve against the original document",
+   "truth_state": "open",
+   "wiki_key": "item/01M19Z6Z6X06VRZM95741Y2748"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1A5MN90SK807JPBFKZCA5YW",
+   "render": "as-is",
+   "render_hash": "0c350a05b34f",
+   "source": "docs/.index/rendered/tickets/01M1A5MN90SK807JPBFKZCA5YW.md",
+   "title": "Cut v0.6.0 release",
+   "truth_state": "done",
+   "wiki_key": "item/01M1A5MN90SK807JPBFKZCA5YW"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
    "render": "doc+banner",
-   "render_hash": "691275c5c2af",
+   "render_hash": "0adf631047aa",
    "source": "docs/designs/current_code_walkthrough.md",
    "title": "Motion \u2014 Current Code Walkthrough",
    "truth_state": "current",
@@ -936,7 +1216,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "dd6ceba2b397",
+   "render_hash": "924f33e64011",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -976,11 +1256,33 @@
    "wiki_key": "plan/2026-07-29-save-ux-and-next"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:18Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-ai-editor",
+   "render": "doc+banner",
+   "render_hash": "7757193aab95",
+   "source": "docs/plans/2026-08-30-ai-editor.md",
+   "title": "AI editor: selection, /ai, preview",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-08-30-ai-editor"
+  },
+  {
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-native-mac-app",
+   "render": "doc+banner",
+   "render_hash": "0b8fecf787c4",
+   "source": "docs/plans/2026-08-30-native-mac-app.md",
+   "title": "Behave like a native Mac app",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-08-30-native-mac-app"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-30T20:27:24Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "a298a215c956",
+   "render_hash": "875ee766ea69",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -998,11 +1300,22 @@
    "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.0 (2026-08-30) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-08-30_v0.6.0-release",
+   "render": "doc+banner",
+   "render_hash": "ac9462e0d605",
+   "source": "docs/roadmap/2026-08-30_v0.6.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-08-30_v0.6.0-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "25e98b73f2eb",
+   "render_hash": "72169c1a9ac8",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -1010,7 +1323,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "ae340f7f69f7",
+  "render_hash": "10da5594f0ad",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

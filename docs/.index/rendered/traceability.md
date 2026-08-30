@@ -2,6 +2,148 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Cut v0.6.0 release
+`01M1A5MN90SK807JPBFKZCA5YW` · status: done
+- targets: release/v0.6.0
+
+### DocCommands batch should resolve against the original document
+`01M19Z6Z6X06VRZM95741Y2748` · status: todo
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+
+### Insert Table nests when the caret is already in a table
+`01M19Z6Z5DJ54227R1WYVVX2GF` · status: todo
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+
+### Bun sidecar so packaged Tauri streams Ask AI
+`01M19Z6Z3XQZ03EYNXKKBG5WK7` · status: todo
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+
+### buildAiContext, canned prompts, session log, unwrap reply
+`01M18R79ZMSX2XFW3N4RG4X4DP` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### AI editor: selection, /ai, preview
+`01M18R79ZMN53CMV76JFHKVEFN` · status: todo
+- lands-in: pr/43
+- contains: DocCommands registry and tool-use loop
+- contains: Dictation last
+- contains: Wireframes for Ask AI bubble and pending preview
+- contains: Selection bubble, /ai, preview panel on the CLI transport
+- contains: Route Refine through the same pipeline
+- contains: Tiptap tables + markdown round-trip
+- contains: Shared TS AI service: stream, per-doc session, prompt cache
+- contains: buildAiContext, canned prompts, session log, unwrap reply
+- contains: Bun sidecar so packaged Tauri streams Ask AI
+- contains: Insert Table nests when the caret is already in a table
+- contains: DocCommands batch should resolve against the original document
+- produced-by: [[Plan-ai-editor]]
+
+### Shared TS AI service: stream, per-doc session, prompt cache
+`01M18R79ZMKBXK2PGWR6911MJQ` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/44
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### Tiptap tables + markdown round-trip
+`01M18R79ZMK0DX0PE2DPWMZ60D` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/45
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### Route Refine through the same pipeline
+`01M18R79ZMGXNJ9D8JJ5P4W96J` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### Selection bubble, /ai, preview panel on the CLI transport
+`01M18R79ZMERNNHSH0KYY819SN` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/43
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### Wireframes for Ask AI bubble and pending preview
+`01M18R79ZMD6BCM0CQGSSAEM05` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### Dictation last
+`01M18R79ZM90HJ0MBG3CX6VW7E` · status: todo
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### DocCommands registry and tool-use loop
+`01M18R79ZM3BMYZ56C7P874YN1` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/46
+- targets: release/v0.6.0
+- produced-by: [[Plan-ai-editor]]
+
+### Mac dogfood: unsigned .app, Finder Open With, overlay padding
+`01M18Q560MPAYQJTA0W6F4DAW3` · status: todo
+- targets: release/v0.6.0
+
+### E2E still queries role=option after sidebar became a tree
+`01M18NBZ8T4G92HM091NQ1Z4B5` · status: done
+- targets: release/v0.6.0
+
+### Behave like a native Mac app
+`01M18MN19CSQ7PS762F7TWEXJC` · status: done
+- lands-in: pr/42
+- contains: Publish the current note to a Notion page
+- contains: Native chrome: overlay title bar, menus, system appearance
+- contains: Packaging polish: product name, identifier, metadata, window, last workspace
+- contains: Finder Open With: associations, RunEvent::Opened, pending-open, parent-dir workspace
+- contains: Publish the current note to a GitHub Gist
+- contains: Fix stale README, changelog, and user-guide product claims
+- produced-by: [[Plan-native-mac-app]]
+
+### Fix stale README, changelog, and user-guide product claims
+`01M18MN19CBNRDAYCJ0RTMWJV4` · status: done
+- belongs-to: Behave like a native Mac app
+- targets: release/v0.6.0
+- produced-by: [[Plan-native-mac-app]]
+
+### Publish the current note to a GitHub Gist
+`01M18MN19CBF3A5JXZHVANGT5Y` · status: done
+- belongs-to: Behave like a native Mac app
+- targets: release/v0.6.0
+- produced-by: [[Plan-native-mac-app]]
+
+### Finder Open With: associations, RunEvent::Opened, pending-open, parent-dir workspace
+`01M18MN19CA20B51FR0ND643M4` · status: done
+- belongs-to: Behave like a native Mac app
+- targets: release/v0.6.0
+- produced-by: [[Plan-native-mac-app]]
+
+### Packaging polish: product name, identifier, metadata, window, last workspace
+`01M18MN19C8FQKQ9NVNT4162CX` · status: done
+- belongs-to: Behave like a native Mac app
+- targets: release/v0.6.0
+- produced-by: [[Plan-native-mac-app]]
+
+### Native chrome: overlay title bar, menus, system appearance
+`01M18MN19C0WR6KZ3X63M1CX2R` · status: done
+- belongs-to: Behave like a native Mac app
+- targets: release/v0.6.0
+- produced-by: [[Plan-native-mac-app]]
+
+### Publish the current note to a Notion page
+`01M18MN19C0DPY7PXRGDRX6Y6G` · status: done
+- belongs-to: Behave like a native Mac app
+- targets: release/v0.6.0
+- produced-by: [[Plan-native-mac-app]]
+
 ### Keep README feature list and known limitations current
 `01KYQZ49A7NWRQZK83658CT4QT` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups

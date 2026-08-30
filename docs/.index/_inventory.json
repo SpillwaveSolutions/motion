@@ -142,12 +142,54 @@
    "wiki_key": "plan/2026-07-29-save-ux-and-next"
   },
   {
+   "canonical_key": "plan/2026-08-30-ai-editor",
+   "date": "2026-08-30",
+   "doc_type": "plan",
+   "epic": "01M18R79ZMN53CMV76JFHKVEFN",
+   "items": [
+    "01M18R79ZMD6BCM0CQGSSAEM05",
+    "01M18R79ZMSX2XFW3N4RG4X4DP",
+    "01M18R79ZMERNNHSH0KYY819SN",
+    "01M18R79ZMGXNJ9D8JJ5P4W96J",
+    "01M18R79ZMKBXK2PGWR6911MJQ",
+    "01M18R79ZMK0DX0PE2DPWMZ60D",
+    "01M18R79ZM3BMYZ56C7P874YN1",
+    "01M18R79ZM90HJ0MBG3CX6VW7E"
+   ],
+   "slug": "ai-editor",
+   "source": "docs/plans/2026-08-30-ai-editor.md",
+   "status": "active",
+   "title": "AI editor: selection, /ai, preview",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-08-30-ai-editor"
+  },
+  {
+   "canonical_key": "plan/2026-08-30-native-mac-app",
+   "date": "2026-08-30",
+   "doc_type": "plan",
+   "epic": "01M18MN19CSQ7PS762F7TWEXJC",
+   "items": [
+    "01M18MN19CA20B51FR0ND643M4",
+    "01M18MN19C8FQKQ9NVNT4162CX",
+    "01M18MN19C0WR6KZ3X63M1CX2R",
+    "01M18MN19CBF3A5JXZHVANGT5Y",
+    "01M18MN19C0DPY7PXRGDRX6Y6G",
+    "01M18MN19CBNRDAYCJ0RTMWJV4"
+   ],
+   "slug": "native-mac-app",
+   "source": "docs/plans/2026-08-30-native-mac-app.md",
+   "status": "completed",
+   "title": "Behave like a native Mac app",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-08-30-native-mac-app"
+  },
+  {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-07-29T23:00:18Z",
+   "generated_at": "2026-08-30T20:27:24Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "073e53d7",
+   "source_hash": "d1f3663d",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
@@ -163,10 +205,26 @@
    "slug": "2026-07-28_v0.1.0-release",
    "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
    "source_hash": "c840194b",
+   "superseded_by": "roadmap-snapshot/2026-08-30_v0.6.0-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-07-28_v0.1.0-release",
    "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
+  },
+  {
+   "canonical_key": "roadmap-snapshot/2026-08-30_v0.6.0-release",
+   "date": "2026-08-30",
+   "doc_type": "roadmap-snapshot",
+   "generated_at": "2026-08-30T20:27:24Z",
+   "name": "v0.6.0-release",
+   "release": "v0.6.0",
+   "slug": "2026-08-30_v0.6.0-release",
+   "source": "docs/roadmap/2026-08-30_v0.6.0-release.md",
+   "source_hash": "d1f3663d",
+   "supersedes": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-08-30_v0.6.0-release"
   },
   {
    "aliases": [
