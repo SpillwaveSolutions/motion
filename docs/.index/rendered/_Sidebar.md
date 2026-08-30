@@ -2,12 +2,13 @@
 
 - [[Roadmap]]
 - [[Design-Doc]] · [[Code-Walkthrough]]
+- Plan: [[Plan-ai-editor]]
 - Plan: [[Plan-save-ux-and-next]]
 
 ### History
 
 - [[Index-Releases]]
-- Latest snapshot: [[Roadmap-2026-07-28_v0.1.0-release]]
+- Latest snapshot: [[Roadmap-2026-08-30_v0.6.0-release]]
 - [[Index-Status]]
 - [[Index-Decisions]]
 

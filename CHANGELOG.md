@@ -4,10 +4,13 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
-Native Mac app behaviour on top of the already-shipping tree sidebar, content
-search, and real browser filesystem. The 0.1.0 "Known issues" below are
-historical: fake `WebStorage`, the missing production `index.html`, block
-round-trip, and the demo Query join were fixed on `main` before this work.
+## 0.6.0 — 2026-08-30
+
+Native Mac app behaviour, Ask AI, GFM tables, and DocCommands on top of the
+already-shipping tree sidebar, content search, and real browser filesystem. The
+0.1.0 "Known issues" below are historical: fake `WebStorage`, the missing
+production `index.html`, block round-trip, and the demo Query join were fixed
+on `main` before this work.
 
 ### Added
 
@@ -51,6 +54,20 @@ round-trip, and the demo Query join were fixed on `main` before this work.
   insert buttons stay insert-only.
 - README and the user guide now describe the directory tree, content search,
   Finder Open With, last-workspace restore, Share, and Ask AI.
+
+### Known issues
+
+- **Mac dogfood** of an unsigned `.app`, Finder Open With a real file, and
+  overlay traffic-light padding still needs a Mac. Linux CI compiles the crate;
+  it cannot click a `.app`.
+- **Packaged Ask AI** is a one-shot `run_llm_cli` until a Bun sidecar hosts the
+  shared TS service (streaming + tools).
+- **Dictation** is not in this release.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) only loads
+  when those files exist in the open workspace.
+- Insert Table while the caret is already in a table can nest a table. A
+  DocCommands batch whose later `replace_range` depends on the original
+  document (not the post-first-edit document) can fail the later command.
 
 ## 0.1.0 — 2026-07-28
 

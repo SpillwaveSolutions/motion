@@ -401,6 +401,221 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01M18MN19C0DPY7PXRGDRX6Y6G",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18MN19C0DPY7PXRGDRX6Y6G",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18MN19C0WR6KZ3X63M1CX2R",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18MN19C0WR6KZ3X63M1CX2R",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18MN19C8FQKQ9NVNT4162CX",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18MN19C8FQKQ9NVNT4162CX",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18MN19CA20B51FR0ND643M4",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18MN19CA20B51FR0ND643M4",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18MN19CBF3A5JXZHVANGT5Y",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18MN19CBF3A5JXZHVANGT5Y",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18MN19CBNRDAYCJ0RTMWJV4",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18MN19CBNRDAYCJ0RTMWJV4",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "to": "pr/42",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M18NBZ8T4G92HM091NQ1Z4B5",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18Q560MPAYQJTA0W6F4DAW3",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZM3BMYZ56C7P874YN1",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZM3BMYZ56C7P874YN1",
+   "to": "pr/46",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M18R79ZM3BMYZ56C7P874YN1",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZM90HJ0MBG3CX6VW7E",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZM90HJ0MBG3CX6VW7E",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZMD6BCM0CQGSSAEM05",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZMD6BCM0CQGSSAEM05",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZMERNNHSH0KYY819SN",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZMERNNHSH0KYY819SN",
+   "to": "pr/43",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M18R79ZMERNNHSH0KYY819SN",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZMGXNJ9D8JJ5P4W96J",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZMGXNJ9D8JJ5P4W96J",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZMK0DX0PE2DPWMZ60D",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZMK0DX0PE2DPWMZ60D",
+   "to": "pr/45",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M18R79ZMK0DX0PE2DPWMZ60D",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZMKBXK2PGWR6911MJQ",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZMKBXK2PGWR6911MJQ",
+   "to": "pr/44",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M18R79ZMKBXK2PGWR6911MJQ",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "to": "pr/43",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M18R79ZMSX2XFW3N4RG4X4DP",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M18R79ZMSX2XFW3N4RG4X4DP",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M19Z6Z3XQZ03EYNXKKBG5WK7",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M19Z6Z3XQZ03EYNXKKBG5WK7",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M19Z6Z5DJ54227R1WYVVX2GF",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M19Z6Z5DJ54227R1WYVVX2GF",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M19Z6Z6X06VRZM95741Y2748",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M19Z6Z6X06VRZM95741Y2748",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1A5MN90SK807JPBFKZCA5YW",
+   "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -746,6 +961,86 @@
    "type": "produces"
   },
   {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZM3BMYZ56C7P874YN1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZM90HJ0MBG3CX6VW7E",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMD6BCM0CQGSSAEM05",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMERNNHSH0KYY819SN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMGXNJ9D8JJ5P4W96J",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMK0DX0PE2DPWMZ60D",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMKBXK2PGWR6911MJQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-ai-editor",
+   "to": "item/01M18R79ZMSX2XFW3N4RG4X4DP",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19C0DPY7PXRGDRX6Y6G",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19C0WR6KZ3X63M1CX2R",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19C8FQKQ9NVNT4162CX",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19CA20B51FR0ND643M4",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19CBF3A5JXZHVANGT5Y",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19CBNRDAYCJ0RTMWJV4",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-08-30-native-mac-app",
+   "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "produces"
+  },
+  {
    "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -753,6 +1048,21 @@
   {
    "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "to": "release/v0.1.0",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-08-30_v0.6.0-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-08-30_v0.6.0-release",
+   "to": "roadmap-snapshot/2026-07-28_v0.1.0-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-08-30_v0.6.0-release",
+   "to": "release/v0.6.0",
    "type": "targets"
   }
  ],
@@ -1194,6 +1504,116 @@
    "status": "done",
    "title": "Keep README feature list and known limitations current"
   },
+  "item/01M18MN19C0DPY7PXRGDRX6Y6G": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Publish the current note to a Notion page"
+  },
+  "item/01M18MN19C0WR6KZ3X63M1CX2R": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Native chrome: overlay title bar, menus, system appearance"
+  },
+  "item/01M18MN19C8FQKQ9NVNT4162CX": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Packaging polish: product name, identifier, metadata, window, last workspace"
+  },
+  "item/01M18MN19CA20B51FR0ND643M4": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Finder Open With: associations, RunEvent::Opened, pending-open, parent-dir workspace"
+  },
+  "item/01M18MN19CBF3A5JXZHVANGT5Y": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Publish the current note to a GitHub Gist"
+  },
+  "item/01M18MN19CBNRDAYCJ0RTMWJV4": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Fix stale README, changelog, and user-guide product claims"
+  },
+  "item/01M18MN19CSQ7PS762F7TWEXJC": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Behave like a native Mac app"
+  },
+  "item/01M18NBZ8T4G92HM091NQ1Z4B5": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "E2E still queries role=option after sidebar became a tree"
+  },
+  "item/01M18Q560MPAYQJTA0W6F4DAW3": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Mac dogfood: unsigned .app, Finder Open With, overlay padding"
+  },
+  "item/01M18R79ZM3BMYZ56C7P874YN1": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "DocCommands registry and tool-use loop"
+  },
+  "item/01M18R79ZM90HJ0MBG3CX6VW7E": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Dictation last"
+  },
+  "item/01M18R79ZMD6BCM0CQGSSAEM05": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Wireframes for Ask AI bubble and pending preview"
+  },
+  "item/01M18R79ZMERNNHSH0KYY819SN": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Selection bubble, /ai, preview panel on the CLI transport"
+  },
+  "item/01M18R79ZMGXNJ9D8JJ5P4W96J": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Route Refine through the same pipeline"
+  },
+  "item/01M18R79ZMK0DX0PE2DPWMZ60D": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Tiptap tables + markdown round-trip"
+  },
+  "item/01M18R79ZMKBXK2PGWR6911MJQ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Shared TS AI service: stream, per-doc session, prompt cache"
+  },
+  "item/01M18R79ZMN53CMV76JFHKVEFN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "AI editor: selection, /ai, preview"
+  },
+  "item/01M18R79ZMSX2XFW3N4RG4X4DP": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "buildAiContext, canned prompts, session log, unwrap reply"
+  },
+  "item/01M19Z6Z3XQZ03EYNXKKBG5WK7": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Bun sidecar so packaged Tauri streams Ask AI"
+  },
+  "item/01M19Z6Z5DJ54227R1WYVVX2GF": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Insert Table nests when the caret is already in a table"
+  },
+  "item/01M19Z6Z6X06VRZM95741Y2748": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "DocCommands batch should resolve against the original document"
+  },
+  "item/01M1A5MN90SK807JPBFKZCA5YW": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Cut v0.6.0 release"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -1212,10 +1632,40 @@
    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
    "truth_state": "current"
   },
+  "plan/2026-08-30-ai-editor": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-08-30-ai-editor.md",
+   "title": "AI editor: selection, /ai, preview",
+   "truth_state": "current"
+  },
+  "plan/2026-08-30-native-mac-app": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-08-30-native-mac-app.md",
+   "title": "Behave like a native Mac app",
+   "truth_state": "current"
+  },
+  "pr/42": {
+   "doc_type": "pr"
+  },
+  "pr/43": {
+   "doc_type": "pr"
+  },
+  "pr/44": {
+   "doc_type": "pr"
+  },
+  "pr/45": {
+   "doc_type": "pr"
+  },
+  "pr/46": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
   "release/v0.1.0+dogfood": {
+   "doc_type": "release"
+  },
+  "release/v0.6.0": {
    "doc_type": "release"
   },
   "roadmap": {
@@ -1227,6 +1677,12 @@
   "roadmap-snapshot/2026-07-28_v0.1.0-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-07-28_v0.1.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-08-30_v0.6.0-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-08-30_v0.6.0-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },
