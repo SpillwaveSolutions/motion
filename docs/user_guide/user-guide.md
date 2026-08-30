@@ -89,8 +89,8 @@ not a second rendered preview.
 
 ## Content blocks
 
-Five block types. Insert them from the toolbar, or type `/` at the start of an
-empty line and pick from the menu. The same menu lists **Ask AI** first — see
+Five block types, plus GFM tables. Insert them from the toolbar, or type `/` at the start of an
+empty line and pick from the menu. The same menu lists **Ask AI** first, then **Table** — see
 below.
 
 ### Ask AI
@@ -111,6 +111,16 @@ Markdown mode has no bubble and no slash menu; Refine still works.
 
 Set `ANTHROPIC_API_KEY` to use the Anthropic API (with prompt caching on the
 note context). Otherwise Motion shells out to `claude` on your `PATH`.
+
+### Tables
+
+Insert a 3×3 from the toolbar (**Insert Table**) or type `/tab` at the start of
+a line. Click a cell to edit; Tab moves to the next cell. While the caret is
+inside a table, the toolbar shows **Add row**, **Delete row**, **Add column**,
+**Delete column**, and **Delete table**.
+
+Pipe tables in Markdown become real tables in WYSIWYG and round-trip through
+save/reload.
 
 ### Mermaid
 
@@ -189,8 +199,6 @@ Stated here so you meet them on your terms:
   until you pick real files or open a folder that includes the samples.
 - **No hot reload.** The dev server rebuilds when files change but does not
   refresh the page — reload manually.
-- **Markdown tables are not supported.** Pipe-table syntax renders as plain
-  text; no table extension is registered.
 - **Ask AI** uses `ANTHROPIC_API_KEY` when set, otherwise `claude` on `PATH`.
   Synthesize / generative blocks still need `claude` and/or `imagen`.
 - **Share** needs a GitHub PAT with gist scope, and/or a Notion internal

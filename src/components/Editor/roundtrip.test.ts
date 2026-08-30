@@ -18,7 +18,7 @@
 import { test, expect, describe } from "bun:test";
 import { parseBlockAttrs, serializeBlockAttrs } from "./extensions/blockAttrs";
 
-/** The turndown rule in index.tsx: fence language comes from the code class. */
+/** The turndown rule in markdown.ts: fence language comes from the code class. */
 function toMarkdownFence(languageClass: string, body: string): string {
     const language = languageClass.replace("language-", "");
     return "```" + language + "\n" + body + "\n```";

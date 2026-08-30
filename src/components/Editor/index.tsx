@@ -3,8 +3,6 @@ import { useEditor, EditorContent, type Editor as TiptapEditor } from "@tiptap/r
 import StarterKit from "@tiptap/starter-kit";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
-import { marked } from "marked";
-import TurndownService from "turndown";
 import Toolbar from "./Toolbar";
 import { FindBar, findInPmDoc, findInString } from "./FindBar";
 import {
@@ -19,6 +17,8 @@ import { DatasetExtension } from "./extensions/DatasetExtension";
 import { QueryExtension } from "./extensions/QueryExtension";
 import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
+import { tableKit } from "./extensions/tableKit";
+import { htmlToMarkdown, markdownToHtml } from "./markdown";
 import { storage } from "../../lib/storage";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
 import {
@@ -35,22 +35,6 @@ import {
 } from "../../lib/ai";
 
 const lowlight = createLowlight(common);
-
-const turndown = new TurndownService({
-    headingStyle: "atx",
-    codeBlockStyle: "fenced",
-});
-
-// Configure turndown to handle language classes on code blocks
-turndown.addRule("fencedCodeBlock", {
-    filter: ["pre"],
-    replacement: function (content, node) {
-        const code = (node as HTMLElement).querySelector("code");
-        const className = code ? code.getAttribute("class") || "" : "";
-        const language = className.replace("language-", "");
-        return "\n\n```" + language + "\n" + content + "\n```\n\n";
-    },
-});
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 export type SaveState = "idle" | "saving" | "saved" | "error";
@@ -205,6 +189,7 @@ function Editor({
     filePathRef.current = filePath;
 
     const [slashMenu, setSlashMenu] = useState<SlashMenuState | null>(null);
+    const [inTable, setInTable] = useState(false);
     // editorProps callbacks are registered once at editor creation, so they
     // must read state/editor through refs to avoid closing over stale values.
     const slashMenuRef = useRef<SlashMenuState | null>(null);
@@ -247,6 +232,7 @@ function Editor({
     }, [setAskAiState]);
 
     const syncOverlays = useCallback((ed: TiptapEditor) => {
+        setInTable(ed.isActive("table"));
         if (isAskAiPanelOpen(askAiRef.current)) {
             setSlashMenu(null);
             return;
@@ -273,6 +259,7 @@ function Editor({
             StarterKit.configure({
                 codeBlock: false,
             }),
+            tableKit,
             MermaidExtension,
             DatasetExtension,
             QueryExtension,
@@ -338,7 +325,7 @@ function Editor({
             // Markdown mode's textarea is the source of truth. A Tiptap
             // onUpdate (setEditable, leftover transactions) must not clobber it.
             if (viewModeRef.current === "markdown") return;
-            const md = turndown.turndown(updatedEditor.getHTML());
+            const md = htmlToMarkdown(updatedEditor.getHTML());
             setRawMarkdown(md);
             onMarkdownChangeRef.current?.(md);
             syncOverlaysRef.current(updatedEditor);
@@ -526,7 +513,7 @@ function Editor({
                     onMarkdownChangeRef.current?.(combined);
                 }
             } else {
-                const html = sanitizeHtml(await marked.parse(md));
+                const html = sanitizeHtml(await markdownToHtml(md));
                 const plan = planWysiwygApply(current.scope, mode, current.range);
                 const size = ed.state.doc.content.size;
                 const chain = ed.chain().focus();
@@ -619,11 +606,9 @@ function Editor({
                     onMarkdownChangeRef.current?.(content);
                     snapshotRef.current = content;
                     setDirty(false);
-                    const rawHtml = await marked.parse(content);
+                    const rawHtml = await markdownToHtml(content);
                     // Sanitize Markdown→HTML before TipTap to prevent XSS from untrusted .md files
-                    const html = sanitizeHtml(
-                        typeof rawHtml === "string" ? rawHtml : String(rawHtml)
-                    );
+                    const html = sanitizeHtml(rawHtml);
                     if (cancelled) return;
                     editor.commands.setContent(html, { emitUpdate: false });
                 } catch (error) {
@@ -666,10 +651,8 @@ function Editor({
         if (!shouldSyncMarkdownIntoEditor(prev, viewMode)) return;
         const timer = window.setTimeout(() => {
             void (async () => {
-                const rawHtml = await marked.parse(rawMarkdownRef.current);
-                const html = sanitizeHtml(
-                    typeof rawHtml === "string" ? rawHtml : String(rawHtml)
-                );
+                const rawHtml = await markdownToHtml(rawMarkdownRef.current);
+                const html = sanitizeHtml(rawHtml);
                 editor.commands.setContent(html, { emitUpdate: false });
             })();
         }, 0);
@@ -839,6 +822,7 @@ function Editor({
             refining={refining}
             refineDisabled={refineBusy}
             saveState={saveState}
+            inTable={inTable && viewMode !== "markdown"}
         />
     );
 

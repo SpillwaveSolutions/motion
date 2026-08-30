@@ -6,7 +6,10 @@ import DOMPurify from "dompurify";
 export function sanitizeHtml(html: string): string {
     return DOMPurify.sanitize(html, {
         // TipTap / StarterKit use common block+inline tags; keep data-type for custom nodes.
-        ADD_ATTR: ["data-type", "class", "style"],
+        // Table tags are in DOMPurify's default allowlist; listed so a future
+        // tightening cannot silently drop GFM tables again.
+        ADD_TAGS: ["table", "thead", "tbody", "tfoot", "tr", "th", "td", "colgroup", "col"],
+        ADD_ATTR: ["data-type", "class", "style", "colspan", "rowspan"],
         ALLOW_DATA_ATTR: true,
     });
 }

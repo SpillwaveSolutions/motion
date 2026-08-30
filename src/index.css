@@ -469,6 +469,44 @@ pre {
   text-decoration: underline;
 }
 
+/* GFM tables (wireframes/tables.md) */
+.tiptap-editor table.motion-table,
+.tiptap-editor table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: auto;
+  margin: var(--space-4) 0;
+  overflow: hidden;
+}
+
+.tiptap-editor th,
+.tiptap-editor td {
+  border: 1px solid var(--color-border-primary);
+  padding: 0.4em 0.7em;
+  vertical-align: top;
+  min-width: 4em;
+}
+
+.tiptap-editor th {
+  background: var(--color-bg-tertiary);
+  font-weight: 600;
+  text-align: left;
+}
+
+.tiptap-editor td p,
+.tiptap-editor th p {
+  margin: 0;
+}
+
+.tiptap-editor .selectedCell {
+  background: rgba(88, 166, 255, 0.16);
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 /* Mermaid block */
 .mermaid-block {
   background: var(--color-bg-primary);
