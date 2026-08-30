@@ -4,6 +4,34 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Fixed
+
+- **Insert Table no longer nests a table inside a cell.** Table cells accept
+  block content, so **Insert Table** and `/tab` with the caret already in a
+  table produced a table-in-a-table — a shape GFM cannot serialize, so the note
+  stopped round-tripping. Both entry points now append a sibling table after the
+  enclosing one (the outermost, so an already-nested document escapes fully).
+- **A batch of AI edits now resolves against the document the model saw.**
+  `DocCommands` applied each command to the result of the previous one, so a
+  turn that emitted two edits located in the original note could fail the second
+  with "was not found" or "matches 2 places". Every locator is now resolved
+  against one snapshot; commands touching the same table fold into a single
+  rewrite (so "do this to every row" works), and genuinely overlapping edits are
+  refused by naming the pair instead of silently dropping one.
+- **Save no longer writes the same document twice.** The 1.5s autosave and an
+  explicit Save/⌘S could both put a `POST /api/fs/write` on the wire for
+  identical content; the redundant one showed up as an aborted request when the
+  page moved on before it landed.
+
+### Changed
+
+- **Ask AI defaults to a current-generation model.** `claude-opus-5` at `low`
+  effort, rather than pinning a previous generation. `MOTION_AI_MODEL` and
+  `MOTION_AI_EFFORT` override per install.
+- **Publish requests time out.** Gist and Notion calls from the desktop app had
+  no timeout, so an unanswered request left Share on "Publishing…" forever.
+  Thirty seconds now.
+
 ## 0.6.0 — 2026-08-30
 
 Native Mac app behaviour, Ask AI, GFM tables, and DocCommands on top of the

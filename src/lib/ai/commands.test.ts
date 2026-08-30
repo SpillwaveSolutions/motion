@@ -202,7 +202,7 @@ describe("dispatchDocCommands", () => {
         expect(oob.error).toMatch(/row 9 is out of range/);
     });
 
-    test("a batch applies in order against the updated document", () => {
+    test("a batch of independent edits all land", () => {
         const planned = dispatchDocCommands(NOTE, [
             { op: "replace_range", old_text: "lazy dog", new_text: "sleeping dog" },
             { op: "table_add_row", table: 1, cells: ["Grace", "Architect"] },
@@ -216,6 +216,77 @@ describe("dispatchDocCommands", () => {
 
     test("empty batch is an error", () => {
         expect(dispatchDocCommands(NOTE, []).ok).toBe(false);
+    });
+});
+
+/**
+ * Every locator resolves against the document the model was shown, not against
+ * the half-edited result. Applying sequentially failed batches the model had
+ * got right; these are the two shapes that used to break.
+ */
+describe("dispatchDocCommands resolves against the original document", () => {
+    test("an earlier edit that duplicates a later edit's anchor no longer breaks it", () => {
+        // Sequentially: "alpha"→"gamma beta" leaves TWO "beta"s, so the second
+        // command died with "matches 2 places; it must be unique".
+        const planned = dispatchDocCommands("alpha beta", [
+            { op: "replace_range", old_text: "alpha", new_text: "gamma beta" },
+            { op: "replace_range", old_text: "beta", new_text: "delta" },
+        ]);
+        expect(planned.ok).toBe(true);
+        if (!planned.ok) return;
+        expect(planned.markdown).toBe("gamma beta delta");
+    });
+
+    test("an edit whose anchor an earlier edit consumed is refused as an overlap, not as 'not found'", () => {
+        const planned = dispatchDocCommands(NOTE, [
+            { op: "replace_range", old_text: "over the lazy dog", new_text: "over it" },
+            { op: "replace_range", old_text: "lazy dog", new_text: "sleeping dog" },
+        ]);
+        expect(planned.ok).toBe(false);
+        if (planned.ok) return;
+        expect(planned.error).toMatch(/Edit 2 overlaps edit 1/);
+        expect(planned.error).not.toMatch(/not found/);
+    });
+
+    test("every row of one table updates in a single turn", () => {
+        const planned = dispatchDocCommands(NOTE, [
+            { op: "table_update_cell", table: 1, row: 1, col: 1, text: "Founder" },
+            { op: "table_add_row", table: 1, cells: ["Grace", "Architect"] },
+            { op: "table_update_cell", table: 1, row: 0, col: 1, text: "Title" },
+        ]);
+        expect(planned.ok).toBe(true);
+        if (!planned.ok) return;
+        expect(planned.markdown).toContain("| Name | Title |");
+        expect(planned.markdown).toContain("| Ada | Founder |");
+        expect(planned.markdown).toContain("| Grace | Architect |");
+        expect(planned.edits).toHaveLength(3);
+        // One table, rewritten once -- not three stacked copies.
+        expect(planned.markdown.match(/\| --- \| --- \|/g)).toHaveLength(1);
+    });
+
+    test("two inserts anchored to the same block keep the order they were asked for", () => {
+        const planned = dispatchDocCommands(NOTE, [
+            { op: "insert_after_block", after: "# Scratch: commands", markdown: "First." },
+            { op: "insert_after_block", after: "# Scratch: commands", markdown: "Second." },
+        ]);
+        expect(planned.ok).toBe(true);
+        if (!planned.ok) return;
+        expect(planned.markdown).toContain(
+            "# Scratch: commands\n\nFirst.\n\nSecond.\n\nThe quick",
+        );
+    });
+
+    test("edits across the document apply without shifting each other's offsets", () => {
+        const planned = dispatchDocCommands(NOTE, [
+            { op: "replace_range", old_text: "# Scratch: commands", new_text: "# Retitled at much greater length" },
+            { op: "replace_range", old_text: "lazy dog", new_text: "sleeping dog" },
+            { op: "table_update_cell", table: 1, row: 1, col: 0, text: "Ada Lovelace" },
+        ]);
+        expect(planned.ok).toBe(true);
+        if (!planned.ok) return;
+        expect(planned.markdown).toContain("# Retitled at much greater length");
+        expect(planned.markdown).toContain("sleeping dog");
+        expect(planned.markdown).toContain("| Ada Lovelace | Engineer |");
     });
 });
 

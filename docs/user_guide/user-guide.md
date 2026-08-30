@@ -116,6 +116,17 @@ Markdown mode has no bubble and no slash menu; Refine still works.
 Set `ANTHROPIC_API_KEY` to use the Anthropic API (with prompt caching on the
 note context). Otherwise Motion shells out to `claude` on your `PATH`.
 
+Two optional knobs: `MOTION_AI_MODEL` picks the model (default `claude-opus-5`)
+and `MOTION_AI_EFFORT` sets how hard it thinks — `low` (the default, tuned for
+short interactive edits) through `medium`, `high`, `xhigh`, `max`. An
+unrecognised value falls back to `low` rather than failing the request.
+
+Everything the model proposes in one turn is located in the note as it stood
+when you asked. That is why a batch of edits applies as a unit: it will not
+try to edit text an earlier edit in the same batch introduced, and if two
+proposed edits overlap, Motion refuses the batch rather than silently applying
+one of them. **Try again** re-asks against the current note.
+
 ### Tables
 
 Insert a 3×3 from the toolbar (**Insert Table**) or type `/tab` at the start of
@@ -125,6 +136,11 @@ inside a table, the toolbar shows **Add row**, **Delete row**, **Add column**,
 
 Pipe tables in Markdown become real tables in WYSIWYG and round-trip through
 save/reload.
+
+Inserting a table while the caret is already inside one adds the new table
+*after* the current one, with an empty paragraph between them — tables cannot
+nest in Markdown, and two tables with nothing between them would re-read as a
+single table.
 
 ### Mermaid
 

@@ -6,6 +6,18 @@
 
 use serde::Serialize;
 use serde_json::{json, Value};
+use std::time::Duration;
+
+/// reqwest applies no timeout of its own, so a GitHub or Notion request that
+/// never answers leaves Share stuck on "Publishing…" with nothing to cancel.
+const PUBLISH_TIMEOUT_SECS: u64 = 30;
+
+fn http_client() -> Result<reqwest::Client, String> {
+    reqwest::Client::builder()
+        .timeout(Duration::from_secs(PUBLISH_TIMEOUT_SECS))
+        .build()
+        .map_err(|e| format!("Could not start the HTTP client: {e}"))
+}
 
 #[derive(Serialize)]
 pub struct PublishResult {
@@ -41,7 +53,7 @@ pub async fn publish_gist(
     if token.trim().is_empty() {
         return Ok(err("missing-token"));
     }
-    let client = reqwest::Client::new();
+    let client = http_client()?;
     let body = json!({
         "description": description.unwrap_or_default(),
         "public": public.unwrap_or(false),
@@ -81,7 +93,7 @@ pub async fn publish_notion(
     if token.trim().is_empty() {
         return Ok(err("missing-token"));
     }
-    let client = reqwest::Client::new();
+    let client = http_client()?;
     let first = chunks.first().cloned().unwrap_or_else(|| json!([]));
     let create = client
         .post("https://api.notion.com/v1/pages")

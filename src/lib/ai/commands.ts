@@ -104,7 +104,7 @@ export const DOC_COMMAND_TOOLS: readonly DocCommandTool[] = [
     {
         name: "replace_range",
         description:
-            "Replace a unique existing markdown span with new markdown. old_text must occur exactly once in the document.",
+            "Replace a unique existing markdown span with new markdown. old_text must occur exactly once in the document AS SHOWN -- every command in one turn is resolved against that same document, never against the result of an earlier command in the same turn, so never target text an earlier command introduces. Two commands may not edit overlapping spans.",
         input_schema: {
             type: "object",
             properties: {
@@ -117,7 +117,7 @@ export const DOC_COMMAND_TOOLS: readonly DocCommandTool[] = [
     {
         name: "insert_after_block",
         description:
-            "Insert markdown after the unique block that contains `after` (a heading line, paragraph excerpt, or table fragment).",
+            "Insert markdown after the unique block that contains `after` (a heading line, paragraph excerpt, or table fragment), located in the document as shown. Several inserts may share one anchor; they land in the order given.",
         input_schema: {
             type: "object",
             properties: {
@@ -167,7 +167,10 @@ export const CLI_DOCCOMMANDS_TRAILER = `If you need targeted edits, reply with a
 \`\`\`
 
 Valid ops: replace_range, insert_after_block, table_add_row, table_update_cell.
-table is 1-based; table row 0 is the header. Otherwise return only the markdown for the result. No preamble.`;
+table is 1-based; table row 0 is the header. Every command is resolved against
+the document as shown above, not against the result of the previous command, so
+locate each edit in that text and never target text an earlier edit introduces.
+Otherwise return only the markdown for the result. No preamble.`;
 
 function asString(value: unknown): string | null {
     if (typeof value === "string") return value;
@@ -479,7 +482,25 @@ function scanBlocks(md: string): Block[] {
     return blocks;
 }
 
-function applyReplace(md: string, cmd: ReplaceRangeCommand): string {
+/** A resolved edit: a character span of the ORIGINAL document and its replacement. */
+type CharEdit = { start: number; end: number; replacement: string };
+
+function splice(md: string, edit: CharEdit): string {
+    return md.slice(0, edit.start) + edit.replacement + md.slice(edit.end);
+}
+
+/** Character offset of the first character of every line. */
+function lineOffsets(lines: string[]): number[] {
+    const offsets: number[] = [];
+    let offset = 0;
+    for (const line of lines) {
+        offsets.push(offset);
+        offset += line.length + 1;
+    }
+    return offsets;
+}
+
+function resolveReplace(md: string, cmd: ReplaceRangeCommand): CharEdit {
     if (!cmd.old_text) throw new Error("replace_range: old_text is empty");
     const n = countOccurrences(md, cmd.old_text);
     if (n === 0) throw new Error(`replace_range: "${clipSummary(cmd.old_text)}" was not found`);
@@ -489,10 +510,10 @@ function applyReplace(md: string, cmd: ReplaceRangeCommand): string {
         );
     }
     const at = md.indexOf(cmd.old_text);
-    return md.slice(0, at) + cmd.new_text + md.slice(at + cmd.old_text.length);
+    return { start: at, end: at + cmd.old_text.length, replacement: cmd.new_text };
 }
 
-function applyInsertAfter(md: string, cmd: InsertAfterBlockCommand): string {
+function resolveInsertAfter(md: string, cmd: InsertAfterBlockCommand): CharEdit {
     if (!cmd.after) throw new Error("insert_after_block: after is empty");
     const n = countOccurrences(md, cmd.after);
     if (n === 0) throw new Error(`insert_after_block: no block matches "${clipSummary(cmd.after)}"`);
@@ -506,97 +527,184 @@ function applyInsertAfter(md: string, cmd: InsertAfterBlockCommand): string {
     const end = block?.end ?? at + cmd.after.length;
     const insertion = cmd.markdown.trim();
     if (!insertion) throw new Error("insert_after_block: markdown is empty");
-    const rest = md.slice(end).replace(/^\n+/, "");
-    const head = md.slice(0, end).replace(/\n+$/, "");
-    return rest ? `${head}\n\n${insertion}\n\n${rest}` : `${head}\n\n${insertion}\n`;
+    // A zero-width insert at the end of the block, carrying only the separators
+    // it needs. Consuming the surrounding blank lines instead would make two
+    // inserts anchored to the same block overlap, which is a legitimate ask.
+    const rest = md.slice(end);
+    const trailer = rest ? (rest.startsWith("\n\n") ? "" : "\n") : "\n";
+    return { start: end, end, replacement: `\n\n${insertion}${trailer}` };
 }
 
-function applyAddRow(md: string, cmd: TableAddRowCommand): string {
-    if (cmd.table < 1) throw new Error("table_add_row: table must be >= 1");
-    const lines = splitLines(md);
-    const table = findTable(lines, cmd.table);
-    if ("error" in table) throw new Error(`table_add_row: ${table.error}`);
-    const width = Math.max(table.header.length, ...table.rows.map((r) => r.length), 1);
-    const row = padCells(cmd.cells, width);
-    const totalRows = 1 + table.rows.length;
-    let rows: string[][];
-    if (cmd.after_row === undefined) {
-        rows = [...table.rows, row];
-    } else {
-        if (cmd.after_row < 0 || cmd.after_row >= totalRows) {
-            throw new Error(
-                `table_add_row: after_row ${cmd.after_row} is out of range (table has ${totalRows} rows)`
-            );
-        }
-        if (cmd.after_row === 0) {
-            rows = [row, ...table.rows];
-        } else {
-            rows = [
-                ...table.rows.slice(0, cmd.after_row),
-                row,
-                ...table.rows.slice(cmd.after_row),
-            ];
-        }
+/** A table being folded: several commands on one table compose before rendering. */
+type TableState = { header: string[]; rows: string[][] };
+
+function tableState(table: ParsedTable): TableState {
+    return { header: [...table.header], rows: table.rows.map((r) => [...r]) };
+}
+
+function stateWidth(state: TableState): number {
+    return Math.max(state.header.length, ...state.rows.map((r) => r.length), 1);
+}
+
+/** Validated before the table is located, so the message order never depends on the document. */
+function validateTableCommand(cmd: TableAddRowCommand | TableUpdateCellCommand): void {
+    if (cmd.table < 1) throw new Error(`${cmd.op}: table must be >= 1`);
+    if (cmd.op === "table_update_cell" && (cmd.row < 0 || cmd.col < 0)) {
+        throw new Error("table_update_cell: row and col must be >= 0");
     }
-    const rendered = formatTable(table.header, rows);
-    return [...lines.slice(0, table.startLine), ...rendered, ...lines.slice(table.endLine)].join("\n");
 }
 
-function applyUpdateCell(md: string, cmd: TableUpdateCellCommand): string {
-    if (cmd.table < 1) throw new Error("table_update_cell: table must be >= 1");
-    if (cmd.row < 0 || cmd.col < 0) throw new Error("table_update_cell: row and col must be >= 0");
-    const lines = splitLines(md);
-    const table = findTable(lines, cmd.table);
-    if ("error" in table) throw new Error(`table_update_cell: ${table.error}`);
-    const width = Math.max(table.header.length, ...table.rows.map((r) => r.length), 1);
+function addRowToState(state: TableState, cmd: TableAddRowCommand): void {
+    const row = padCells(cmd.cells, stateWidth(state));
+    const totalRows = 1 + state.rows.length;
+    if (cmd.after_row === undefined) {
+        state.rows.push(row);
+        return;
+    }
+    if (cmd.after_row < 0 || cmd.after_row >= totalRows) {
+        throw new Error(
+            `table_add_row: after_row ${cmd.after_row} is out of range (table has ${totalRows} rows)`
+        );
+    }
+    state.rows.splice(cmd.after_row, 0, row);
+}
+
+function updateCellToState(state: TableState, cmd: TableUpdateCellCommand): void {
+    const width = stateWidth(state);
     if (cmd.col >= width) {
         throw new Error(`table_update_cell: col ${cmd.col} is out of range (table has ${width} columns)`);
     }
-    const header = padCells(table.header, width);
-    const rows = table.rows.map((r) => padCells(r, width));
+    state.header = padCells(state.header, width);
+    state.rows = state.rows.map((r) => padCells(r, width));
     if (cmd.row === 0) {
-        header[cmd.col] = cmd.text;
-    } else {
-        const bodyIndex = cmd.row - 1;
-        if (bodyIndex >= rows.length) {
-            throw new Error(
-                `table_update_cell: row ${cmd.row} is out of range (table has ${1 + rows.length} rows)`
-            );
-        }
-        rows[bodyIndex]![cmd.col] = cmd.text;
+        state.header[cmd.col] = cmd.text;
+        return;
     }
-    const rendered = formatTable(header, rows);
-    return [...lines.slice(0, table.startLine), ...rendered, ...lines.slice(table.endLine)].join("\n");
+    const bodyIndex = cmd.row - 1;
+    if (bodyIndex >= state.rows.length) {
+        throw new Error(
+            `table_update_cell: row ${cmd.row} is out of range (table has ${1 + state.rows.length} rows)`
+        );
+    }
+    state.rows[bodyIndex]![cmd.col] = cmd.text;
+}
+
+/** The character span the table occupies, so a rewritten table is an ordinary edit. */
+function tableCharRange(md: string, lines: string[], table: ParsedTable): { start: number; end: number } {
+    const offsets = lineOffsets(lines);
+    const start = offsets[table.startLine] ?? md.length;
+    // endLine is exclusive; the character before the next line's start is its newline.
+    const end = table.endLine < lines.length ? (offsets[table.endLine] ?? md.length + 1) - 1 : md.length;
+    return { start, end };
+}
+
+function applyTableCommand(md: string, command: TableAddRowCommand | TableUpdateCellCommand): string {
+    validateTableCommand(command);
+    const lines = splitLines(md);
+    const table = findTable(lines, command.table);
+    if ("error" in table) throw new Error(`${command.op}: ${table.error}`);
+    const state = tableState(table);
+    if (command.op === "table_add_row") addRowToState(state, command);
+    else updateCellToState(state, command);
+    const range = tableCharRange(md, lines, table);
+    return splice(md, { ...range, replacement: formatTable(state.header, state.rows).join("\n") });
 }
 
 export function applyDocCommand(markdown: string, command: DocCommand): string {
     switch (command.op) {
         case "replace_range":
-            return applyReplace(markdown, command);
+            return splice(markdown, resolveReplace(markdown, command));
         case "insert_after_block":
-            return applyInsertAfter(markdown, command);
+            return splice(markdown, resolveInsertAfter(markdown, command));
         case "table_add_row":
-            return applyAddRow(markdown, command);
         case "table_update_cell":
-            return applyUpdateCell(markdown, command);
+            return applyTableCommand(markdown, command);
     }
 }
 
+/**
+ * Plan a batch of commands against ONE snapshot of the document.
+ *
+ * Every locator (`old_text`, `after`, a table index) is resolved against the
+ * markdown as the model saw it, never against the partially-edited result.
+ * Applying sequentially used to fail a batch the model was right about: the
+ * second `replace_range` of a pair could report "was not found" because the
+ * first had already rewritten that region, or "matches 2 places" because the
+ * first had introduced a duplicate. Resolve-then-apply removes both.
+ *
+ * Commands touching the same table fold together (so "do this to every row" is
+ * one rewrite of that table), and edits that genuinely overlap are refused with
+ * the pair named rather than silently losing one.
+ */
 export function dispatchDocCommands(markdown: string, commands: DocCommand[]): PlanResult {
     if (commands.length === 0) return { ok: false, error: "No document edits to apply." };
+
+    const lines = splitLines(markdown);
+    const tables = scanTables(lines);
     const edits: PlannedEdit[] = [];
-    let current = markdown;
+    const planned: Array<CharEdit & { order: number }> = [];
+    /** table index → folded state, keyed so several commands on one table compose. */
+    const groups = new Map<number, { table: ParsedTable; state: TableState; order: number }>();
+
     for (let i = 0; i < commands.length; i++) {
         const command = commands[i]!;
         try {
-            current = applyDocCommand(current, command);
+            if (command.op === "replace_range") {
+                planned.push({ ...resolveReplace(markdown, command), order: i });
+            } else if (command.op === "insert_after_block") {
+                planned.push({ ...resolveInsertAfter(markdown, command), order: i });
+            } else {
+                validateTableCommand(command);
+                let group = groups.get(command.table);
+                if (!group) {
+                    const table = tables[command.table - 1];
+                    if (!table) {
+                        const n = tables.length;
+                        throw new Error(
+                            `${command.op}: no table ${command.table} (document has ${n} ${n === 1 ? "table" : "tables"})`
+                        );
+                    }
+                    group = { table, state: tableState(table), order: i };
+                    groups.set(command.table, group);
+                }
+                if (command.op === "table_add_row") addRowToState(group.state, command);
+                else updateCellToState(group.state, command);
+            }
         } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
             return { error: `Edit ${i + 1}: ${message}`, ok: false };
         }
         edits.push({ op: command.op, summary: summarizeCommand(command), command });
     }
-    return { ok: true, markdown: current, edits };
+
+    for (const group of groups.values()) {
+        planned.push({
+            ...tableCharRange(markdown, lines, group.table),
+            replacement: formatTable(group.state.header, group.state.rows).join("\n"),
+            order: group.order,
+        });
+    }
+
+    // Ascending by position; ties keep command order so two inserts at one spot
+    // land in the order the model asked for.
+    planned.sort((a, b) => a.start - b.start || a.order - b.order);
+    for (let i = 1; i < planned.length; i++) {
+        const prev = planned[i - 1]!;
+        const cur = planned[i]!;
+        if (cur.start < prev.end) {
+            return {
+                ok: false,
+                error: `Edit ${cur.order + 1} overlaps edit ${prev.order + 1}; one turn cannot edit the same text twice.`,
+            };
+        }
+    }
+
+    // Right to left, so an earlier edit's offsets are still valid.
+    let result = markdown;
+    for (let i = planned.length - 1; i >= 0; i--) {
+        result = splice(result, planned[i]!);
+    }
+    return { ok: true, markdown: result, edits };
 }
 
 export const planDocCommands = dispatchDocCommands;
