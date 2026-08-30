@@ -1,11 +1,16 @@
 mod fs_core;
+mod publish;
 
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
+use std::collections::VecDeque;
 use std::fs;
 use std::path::{Path, PathBuf};
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Mutex;
 use std::time::Duration;
-use tauri::State;
+use tauri::{Emitter, Manager, State};
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
+use tauri::RunEvent;
 use tokio::process::Command as TokioCommand;
 use tokio::time::timeout;
 
@@ -106,6 +111,40 @@ struct WorkspaceState {
     root: Mutex<Option<PathBuf>>,
 }
 
+/// Files handed over by Finder / `open` before React has mounted.
+struct PendingOpen {
+    paths: Mutex<VecDeque<PathBuf>>,
+    frontend_ready: AtomicBool,
+}
+
+fn enqueue_open(app: &tauri::AppHandle, path: PathBuf) {
+    if let Ok(target) = fs_core::opened_target_from_path(&path) {
+        let _ = app.emit("motion://open-file", &target);
+    }
+    let pending = app.state::<PendingOpen>();
+    if pending.frontend_ready.load(Ordering::SeqCst) {
+        return;
+    }
+    let mut guard = match pending.paths.lock() {
+        Ok(g) => g,
+        Err(_) => return,
+    };
+    if guard.iter().any(|p| p == &path) {
+        return;
+    }
+    guard.push_back(path);
+}
+
+#[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
+fn handle_opened_urls(app: &tauri::AppHandle, urls: Vec<url::Url>) {
+    for url in urls {
+        match fs_core::path_from_opened_url(url.as_str()) {
+            Ok(path) => enqueue_open(app, path),
+            Err(err) => log::warn!("opened URL skipped: {err}"),
+        }
+    }
+}
+
 /// All jail and path-resolution logic lives in fs_core, which is shared, tested,
 /// and held to tests/contract/storage-cases.json alongside the TypeScript
 /// implementation. These commands are thin wrappers: they resolve the workspace
@@ -135,6 +174,22 @@ fn set_workspace(path: String, state: State<'_, WorkspaceState>) -> Result<Strin
         .map_err(|_| "Workspace lock poisoned".to_string())?;
     *guard = Some(root);
     Ok(display)
+}
+
+#[tauri::command]
+fn take_pending_open(state: State<'_, PendingOpen>) -> Result<Option<fs_core::OpenedTarget>, String> {
+    state.frontend_ready.store(true, Ordering::SeqCst);
+    let mut guard = state
+        .paths
+        .lock()
+        .map_err(|_| "Pending-open lock poisoned".to_string())?;
+    let Some(path) = guard.pop_front() else {
+        return Ok(None);
+    };
+    guard.clear();
+    fs_core::opened_target_from_path(&path)
+        .map(Some)
+        .map_err(String::from)
 }
 
 #[tauri::command]
@@ -171,13 +226,62 @@ fn list_data_files(state: State<'_, WorkspaceState>) -> Result<Vec<String>, Stri
     fs_core::collect_files(&root, fs_core::DATA_EXTENSIONS).map_err(String::from)
 }
 
+fn install_menu(app: &tauri::App) -> tauri::Result<()> {
+    use tauri::menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder};
+
+    let new_note = MenuItemBuilder::with_id("new_note", "New Note")
+        .accelerator("CmdOrCtrl+N")
+        .build(app)?;
+    let open_folder = MenuItemBuilder::with_id("open_folder", "Open Folder…")
+        .accelerator("CmdOrCtrl+O")
+        .build(app)?;
+    let save = MenuItemBuilder::with_id("save", "Save")
+        .accelerator("CmdOrCtrl+S")
+        .build(app)?;
+    let share_gist = MenuItemBuilder::with_id("share_gist", "Publish to Gist").build(app)?;
+    let share_notion = MenuItemBuilder::with_id("share_notion", "Publish to Notion").build(app)?;
+    let settings = MenuItemBuilder::with_id("settings", "Settings…")
+        .accelerator("CmdOrCtrl+,")
+        .build(app)?;
+
+    let file = SubmenuBuilder::new(app, "File")
+        .item(&new_note)
+        .item(&open_folder)
+        .separator()
+        .item(&save)
+        .separator()
+        .item(&share_gist)
+        .item(&share_notion)
+        .separator()
+        .item(&settings)
+        .build()?;
+
+    let edit = SubmenuBuilder::new(app, "Edit")
+        .undo()
+        .redo()
+        .separator()
+        .cut()
+        .copy()
+        .paste()
+        .select_all()
+        .build()?;
+
+    let menu = MenuBuilder::new(app).item(&file).item(&edit).build()?;
+    app.set_menu(menu)?;
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    let app = tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .manage(WorkspaceState {
             root: Mutex::new(None),
+        })
+        .manage(PendingOpen {
+            paths: Mutex::new(VecDeque::new()),
+            frontend_ready: AtomicBool::new(false),
         })
         .setup(|app| {
             if cfg!(debug_assertions) {
@@ -187,19 +291,47 @@ pub fn run() {
                         .build(),
                 )?;
             }
+            install_menu(app)?;
+            for arg in std::env::args().skip(1) {
+                if arg.starts_with('-') {
+                    continue;
+                }
+                let path = PathBuf::from(&arg);
+                if path.exists() {
+                    enqueue_open(app.handle(), path);
+                }
+            }
             Ok(())
+        })
+        .on_menu_event(|app, event| {
+            let _ = app.emit("motion://menu", event.id().as_ref());
         })
         .invoke_handler(tauri::generate_handler![
             set_workspace,
+            take_pending_open,
             read_file,
             write_file,
             list_markdown_files,
             list_data_files,
             run_llm_cli,
-            run_image_cli
+            run_image_cli,
+            publish::publish_gist,
+            publish::publish_notion
         ])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while building tauri application");
+
+    app.run(|app_handle, event| {
+        // RunEvent::Opened exists on macOS / iOS / Android only. Linux CI
+        // compiles the same crate without that variant; argv in setup covers
+        // `open` on other desktops.
+        #[cfg(any(target_os = "macos", target_os = "ios", target_os = "android"))]
+        if let RunEvent::Opened { urls } = event {
+            handle_opened_urls(app_handle, urls);
+        }
+        #[cfg(not(any(target_os = "macos", target_os = "ios", target_os = "android")))]
+        let _ = (app_handle, event);
+    });
 }
 
 #[cfg(test)]

@@ -91,7 +91,10 @@ export const test = base.extend<{ guard: PageGuard }>({
 export { expect } from "@playwright/test";
 
 /** Navigate and wait for React to have actually rendered, not merely parsed. */
-export async function gotoApp(page: import("@playwright/test").Page): Promise<void> {
-    await page.goto("/");
+export async function gotoApp(
+    page: import("@playwright/test").Page,
+    path = "/",
+): Promise<void> {
+    await page.goto(path);
     await page.waitForSelector("[data-app-ready]", { timeout: 30_000 });
 }

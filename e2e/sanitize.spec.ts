@@ -16,7 +16,7 @@ import { test, expect, gotoApp } from "./fixtures";
 /** Evaluate the app's own sanitizeHtml inside the page. */
 async function renderMarkdown(page: import("@playwright/test").Page, markdown: string) {
     await page.getByRole("button", { name: "Open Folder" }).click();
-    await page.getByRole("option", { name: "scratch-sanitize.md" }).click();
+    await page.getByRole("treeitem", { name: "scratch-sanitize.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
 
     await page.getByRole("button", { name: "Markdown" }).click();

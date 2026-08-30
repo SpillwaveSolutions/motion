@@ -8,7 +8,7 @@ Give the user a workspace of markdown notes they can find by **filename or conte
 ```
 +-----------------------------------------------------------------+
 | [logo] Motion | Search notes... | WYSIWYG Markdown Split |      |
-|               |                 | Open Folder  New Note  New Folder  Save  Synthesize |
+|               |                 | Share  Open Folder  New Note  New Folder  Save  Synthesize |
 +-----------------------------------------------------------------+
 | (optional synthesis status banner + dismiss)                    |
 +-----------------+-----------------------------------------------+
@@ -31,6 +31,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | Search notes | text input | Filters the tree by basename **or file contents**. aria-label Search notes. ⌘/Ctrl+K focuses it. A content hit shows a one-line snippet under the basename. Matching expands ancestor folders of hits. |
 | View toggle | 3 buttons | WYSIWYG / Markdown / Split. role=group aria-label=Editor view mode. Each button has aria-pressed. |
 | Open Folder | secondary | Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
+| Share | secondary | See publish.md. Disabled until a note is selected. |
 | New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note. Placement is **tree-aware**: if a file is selected, the note is created in that file's parent folder; if no file is selected, it falls back to the workspace root. Selects the new note and clears search. |
 | New Folder | secondary | Disabled until a folder is open. Prompts for a folder name, then writes `README.md` inside that folder so the tree can show it. Placement is the same tree-aware parent as New Note. Expands the new folder and selects the README. |
 | Save | primary when dirty | Header control, aria-label Save note. Disabled with no note selected or while saving. Label: Save / Saving… / Saved / Save failed. ⌘/Ctrl+S also saves. Auto-saves 1.5s after the last edit. |

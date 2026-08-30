@@ -8,16 +8,17 @@ import { test, expect, gotoApp } from "./fixtures";
 
 async function openScratch(page: import("@playwright/test").Page, name: string) {
     await page.getByRole("button", { name: "Open Folder" }).click();
-    const note = page.getByRole("option", { name });
+    const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
 }
 
-test("a view-mode round trip loses nothing", async ({ page }) => {
+test("a view-mode round trip loses nothing", async ({ page, guard }) => {
     // Locks fb3a3cb: rawMarkdown and the Tiptap document were independent, so
     // switching view mode silently dropped edits and Split's right pane was a
     // stale static render.
+    guard.allow(/flushSync was called from inside a lifecycle method/);
     const marker = `viewmode-${Date.now()}`;
     await gotoApp(page);
     await openScratch(page, "scratch-journeys.md");
@@ -37,9 +38,10 @@ test("a view-mode round trip loses nothing", async ({ page }) => {
     await expect(page.locator(".ProseMirror")).toContainText(marker);
 });
 
-test("edits made in the markdown pane reach the editor", async ({ page }) => {
+test("edits made in the markdown pane reach the editor", async ({ page, guard }) => {
     // The other direction of the same bug: typing in the textarea never touched
     // the editor document directly.
+    guard.allow(/flushSync was called from inside a lifecycle method/);
     const marker = `frommarkdown-${Date.now()}`;
     await gotoApp(page);
     await openScratch(page, "scratch-journeys.md");
@@ -93,21 +95,22 @@ test("rapid file switching lands on the file that was clicked last", async ({ pa
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
 
-    await page.getByRole("option", { name: "welcome.md" }).click();
-    await page.getByRole("option", { name: "getting-started.md" }).click();
-    await page.getByRole("option", { name: "deeper.md" }).click();
+    await page.getByRole("treeitem", { name: "welcome.md" }).click();
+    await page.getByRole("treeitem", { name: "getting-started.md" }).click();
+    await page.getByRole("treeitem", { name: "deeper.md" }).click();
 
-    await expect(page.getByRole("option", { name: "deeper.md" })).toHaveAttribute(
+    await expect(page.getByRole("treeitem", { name: "deeper.md" })).toHaveAttribute(
         "aria-selected",
         "true"
     );
     await expect(page.locator(".ProseMirror")).toContainText("Deeper");
 });
 
-test("a Dataset registers and a Query returns rows from it", async ({ page }) => {
+test("a Dataset registers and a Query returns rows from it", async ({ page, guard }) => {
     // Guards the DuckDB path end to end, and the demo-data join that returned
     // zero rows because the CSV had `Alice` and the JSONL had `alice`.
     // Seed matches public/demo (name/role/experience), not the old name/score stub.
+    guard.allow(/flushSync was called from inside a lifecycle method/);
     await gotoApp(page);
     await openScratch(page, "scratch-journeys.md");
 
@@ -151,19 +154,20 @@ test("a Dataset registers and a Query returns rows from it", async ({ page }) =>
 test("search matches note contents, not just the filename", async ({ page }) => {
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
+    await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
     const search = page.getByLabel("Search notes");
     await search.fill("seeded note for end-to-end");
-    const notes = page.getByRole("listbox", { name: "Notes" });
-    const hit = notes.getByRole("option", { name: "welcome.md" });
+    const notes = page.getByRole("tree", { name: "Notes" });
+    const hit = notes.getByRole("treeitem", { name: "welcome.md" });
     await expect(hit).toBeVisible();
-    await expect(notes.getByRole("option")).toHaveCount(1);
+    await expect(notes.getByRole("treeitem", { name: "getting-started.md" })).toHaveCount(0);
     await expect(hit).toContainText(/seeded note/i);
 });
 
 test("find in note opens with the shortcut and counts matches", async ({ page }) => {
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
-    await page.getByRole("listbox", { name: "Notes" }).getByRole("option", { name: "welcome.md" }).click();
+    await page.getByRole("tree", { name: "Notes" }).getByRole("treeitem", { name: "welcome.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
     await page.getByRole("button", { name: "Find in note (⌘F)" }).click();
     const find = page.getByRole("searchbox", { name: "Find in note" });

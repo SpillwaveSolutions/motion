@@ -50,7 +50,8 @@ immediately after exposed product and process gaps; plan
 | Gap | Notes |
 |---|---|
 | Welcome demo datasets outside Motion workspace | Welcome HTML hardcodes `sample-data.csv` / `sample-events.jsonl`. Works when those files are in the open folder (`public/demo` or E2E seed); fails in Tauri when the folder is an unrelated project. |
-| Sidebar tree, sort by date, in-file search | Flat markdown list + filename search only. |
+| Sidebar tree, sort by date, in-file search | **Tree + content search shipped.** Sort-by-date is still open. |
+| Finder Open With / Share / native chrome | **Shipped in v0.6.0 work** (`docs/plans/2026-08-30-native-mac-app.md`). |
 | Agent-browser final pass in DoD | Optional dogfood; Playwright remains the CI gate. |
 | Branch protection on `main` | CI exists; GitHub does not yet require `verify` / `rust` checks. |
 | Full line-number re-audit of §7–§27 | This amendment corrects product status; a full line re-citation is deferred. |
@@ -70,19 +71,24 @@ unit → E2E).
 
 ## 0.4 Main user workflows (current)
 
-1. **Open a folder** — desktop native picker, or browser `MOTION_WORKSPACE`.
-2. **Open / search notes** — flat recursive `.md` list; filter by filename.
+1. **Open a folder** — desktop native picker, Finder Open With (parent dir of
+   the file), last-workspace restore on desktop, or browser `MOTION_WORKSPACE`
+   / `?open=`.
+2. **Open / search notes** — collapsible directory tree; filter by filename or
+   file contents (⌘K).
 3. **Edit** — WYSIWYG / Markdown / Split; edits carry across modes.
-4. **Save** — labeled **Save** toolbar control or ⌘S / Ctrl+S; status
+4. **Save** — labeled **Save** header control or ⌘S / Ctrl+S; status
    Saving… / Saved / Save failed. Welcome content with no `filePath` cannot save.
-5. **New Note** — writes `untitled-<timestamp>.md` with stub content, selects it;
-   further edits require Save.
+5. **New Note / New Folder** — tree-aware; note or README lands in the parent
+   of the selected file (or workspace root).
 6. **Blocks** — toolbar or `/` menu: Mermaid, Dataset, Query, Image gen, Diagram gen.
    Round-trip through save/reload as real blocks when serialization is intact.
 7. **Dataset → Query** — register CSV/JSON/JSONL in the workspace, `SELECT` via DuckDB-WASM.
 8. **AI Refine** — per-document refine via `ContentInjector` + `llmClient`.
 9. **Synthesize** — workspace-level topic clustering; writes `TOC.md` and `SKILL.md`
    (cap 40 notes; excludes its own outputs from the next run).
+10. **Share** — current buffer to a GitHub Gist or Notion page. Tokens in
+    localStorage. Tauri command vs `POST /api/publish/*` (HTTP 200 envelope).
 
 ---
 

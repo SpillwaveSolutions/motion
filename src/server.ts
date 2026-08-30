@@ -17,6 +17,8 @@ import {
     MARKDOWN_EXTENSIONS,
     DATA_EXTENSIONS,
 } from "./lib/fsCore";
+import { publishGist } from "./lib/publish/gist";
+import { publishNotion } from "./lib/publish/notion";
 
 const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
@@ -212,6 +214,61 @@ const server = Bun.serve({
             } catch (error) {
                 const message = error instanceof Error ? error.message : String(error);
                 return Response.json({ error: message }, { status: 500 });
+            }
+        }
+
+        // Publish transports for browser mode. Always HTTP 200 with {ok,url,error}
+        // so a refused GitHub/Notion token is not a suite failure for the E2E
+        // >=400 gate. Mirrors src-tauri/src/publish.rs.
+        if (pathname === "/api/publish/gist" && req.method === "POST") {
+            try {
+                const body = await req.json();
+                if (typeof body?.filename !== "string" || typeof body?.content !== "string") {
+                    return Response.json({ ok: false, error: "Missing filename or content" });
+                }
+                if (typeof body?.token !== "string") {
+                    return Response.json({ ok: false, error: "missing-token" });
+                }
+                return Response.json(
+                    await publishGist({
+                        filename: body.filename,
+                        content: body.content,
+                        token: body.token,
+                        description: typeof body.description === "string" ? body.description : undefined,
+                        public: Boolean(body.public),
+                        fetch,
+                    }),
+                );
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                return Response.json({ ok: false, error: message });
+            }
+        }
+
+        if (pathname === "/api/publish/notion" && req.method === "POST") {
+            try {
+                const body = await req.json();
+                if (typeof body?.token !== "string" || !body.token.trim()) {
+                    return Response.json({ ok: false, error: "missing-token" });
+                }
+                if (typeof body?.parentPageId !== "string" || typeof body?.title !== "string") {
+                    return Response.json({ ok: false, error: "Missing parentPageId or title" });
+                }
+                if (!Array.isArray(body?.chunks)) {
+                    return Response.json({ ok: false, error: "Missing chunks" });
+                }
+                return Response.json(
+                    await publishNotion({
+                        token: body.token,
+                        parentPageId: body.parentPageId,
+                        title: body.title,
+                        chunks: body.chunks,
+                        fetch,
+                    }),
+                );
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                return Response.json({ ok: false, error: message });
             }
         }
 

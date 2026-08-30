@@ -1025,6 +1025,13 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQZ49A7NWRQZK83658CT4QT",
     "wiki_key": "item/01KYQZ49A7NWRQZK83658CT4QT"
   },
+  "macos": {
+    "rev": null,
+    "source": "docs/macos.md",
+    "source_hash": null,
+    "title": "Motion on macOS",
+    "url": null
+  },
   "plan/2026-07-26-motion-next-phase": {
     "canonical_key": "plan/2026-07-26-motion-next-phase",
     "doc_type": "plan",
