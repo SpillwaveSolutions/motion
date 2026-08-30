@@ -8,6 +8,11 @@ export interface StorageProvider {
     writeFile(path: string, content: string): Promise<void>;
     /** CSV/JSON/JSONL files in the opened workspace, for the Dataset block's source picker. */
     listDataFiles(): Promise<string[]>;
+    /**
+     * Register `path` as the workspace root without a folder picker.
+     * Used when Finder / `?open=` already knows the directory.
+     */
+    ensureWorkspace(path: string): Promise<string>;
 }
 
 export class TauriStorage implements StorageProvider {
@@ -23,6 +28,10 @@ export class TauriStorage implements StorageProvider {
         // Register the opened folder as the allowed workspace root on the Rust side.
         await invoke<string>("set_workspace", { path: selected });
         return selected;
+    }
+
+    async ensureWorkspace(path: string): Promise<string> {
+        return await invoke<string>("set_workspace", { path });
     }
 
     async listFiles(path: string): Promise<string[]> {
@@ -77,6 +86,12 @@ export class HttpStorage implements StorageProvider {
         if (!res.ok) return await failed(res, "Failed to open workspace");
         const { root } = await res.json();
         return root ?? null;
+    }
+
+    async ensureWorkspace(_path: string): Promise<string> {
+        const root = await this.openFolder();
+        if (!root) throw new Error("Failed to open workspace");
+        return root;
     }
 
     async listFiles(_path: string): Promise<string[]> {

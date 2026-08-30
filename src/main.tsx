@@ -1,6 +1,11 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { isTauri } from "./lib/storage";
 import "./index.css";
+
+if (isTauri()) {
+    document.documentElement.dataset["tauri"] = "true";
+}
 
 const container = document.getElementById("root");
 if (!container) {

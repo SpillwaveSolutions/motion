@@ -55,6 +55,7 @@ interface EditorProps {
     onSaveStateChange?: (state: SaveState) => void;
     onDirtyChange?: (dirty: boolean) => void;
     onSaved?: (path: string, content: string) => void;
+    onMarkdownChange?: (markdown: string) => void;
 }
 
 interface SlashMenuState {
@@ -122,8 +123,11 @@ function Editor({
     onSaveStateChange,
     onDirtyChange,
     onSaved,
+    onMarkdownChange,
 }: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
+    const rawMarkdownRef = useRef("");
+    rawMarkdownRef.current = rawMarkdown;
     const [saveState, setSaveState] = useState<SaveState>("idle");
     const [dirty, setDirty] = useState(false);
     const snapshotRef = useRef("");
@@ -141,6 +145,8 @@ function Editor({
     // must read state/editor through refs to avoid closing over stale values.
     const slashMenuRef = useRef<SlashMenuState | null>(null);
     const editorRef = useRef<TiptapEditor | null>(null);
+    const onMarkdownChangeRef = useRef(onMarkdownChange);
+    onMarkdownChangeRef.current = onMarkdownChange;
     useEffect(() => {
         slashMenuRef.current = slashMenu;
     }, [slashMenu]);
@@ -222,7 +228,9 @@ function Editor({
         // content and no edits are lost. Also re-checks the slash-command
         // trigger, since typing after "/" changes the query.
         onUpdate: ({ editor: updatedEditor }) => {
-            setRawMarkdown(turndown.turndown(updatedEditor.getHTML()));
+            const md = turndown.turndown(updatedEditor.getHTML());
+            setRawMarkdown(md);
+            onMarkdownChangeRef.current?.(md);
             setSlashMenu(detectSlashTrigger(updatedEditor));
         },
         // Cursor movement (arrow keys, clicks) without a content change can
@@ -342,6 +350,7 @@ function Editor({
                     const content = await storage.readFile(filePath);
                     if (cancelled) return;
                     setRawMarkdown(content);
+                    onMarkdownChangeRef.current?.(content);
                     snapshotRef.current = content;
                     setDirty(false);
                     const rawHtml = await marked.parse(content);
@@ -364,6 +373,7 @@ function Editor({
                 }
             } else {
                 setRawMarkdown("");
+                onMarkdownChangeRef.current?.("");
                 snapshotRef.current = "";
                 setDirty(false);
                 editor.commands.setContent(welcomeHTML, { emitUpdate: false });
@@ -379,18 +389,25 @@ function Editor({
     // Sync markdown-mode edits into the editor doc when leaving markdown mode.
     // The reverse direction (wysiwyg/split -> markdown) is already covered by
     // onUpdate keeping rawMarkdown current at all times.
+    //
+    // setContent is deferred to a macrotask: Tiptap flushSync's into React, and
+    // calling it from this effect (even via an async IIFE) logs
+    // "flushSync was called from inside a lifecycle method" which fails E2E.
     useEffect(() => {
         if (!editor) return;
-        if (shouldSyncMarkdownIntoEditor(prevViewModeRef.current, viewMode)) {
-            (async () => {
-                const rawHtml = await marked.parse(rawMarkdown);
+        const prev = prevViewModeRef.current;
+        prevViewModeRef.current = viewMode;
+        if (!shouldSyncMarkdownIntoEditor(prev, viewMode)) return;
+        const timer = window.setTimeout(() => {
+            void (async () => {
+                const rawHtml = await marked.parse(rawMarkdownRef.current);
                 const html = sanitizeHtml(
                     typeof rawHtml === "string" ? rawHtml : String(rawHtml)
                 );
                 editor.commands.setContent(html, { emitUpdate: false });
             })();
-        }
-        prevViewModeRef.current = viewMode;
+        }, 0);
+        return () => window.clearTimeout(timer);
     }, [viewMode, editor]);
 
     // Keyboard shortcut for save
@@ -518,7 +535,10 @@ function Editor({
                         outline: "none",
                     }}
                     value={rawMarkdown}
-                    onChange={(e) => setRawMarkdown(e.target.value)}
+                    onChange={(e) => {
+                        setRawMarkdown(e.target.value);
+                        onMarkdownChangeRef.current?.(e.target.value);
+                    }}
                     placeholder="Write your markdown here..."
                 />
             </div>

@@ -127,7 +127,7 @@ export function collectFiles(root: string, extensions: readonly string[]): strin
     return out;
 }
 
-export const MARKDOWN_EXTENSIONS = ["md"] as const;
+export const MARKDOWN_EXTENSIONS = ["md", "markdown", "mdown", "mkd", "mdx"] as const;
 export const DATA_EXTENSIONS = ["csv", "json", "jsonl"] as const;
 
 export function readWorkspaceFile(root: string, requested: string): string {

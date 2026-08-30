@@ -56,7 +56,7 @@ impl From<FsError> for String {
 
 pub type FsResult<T> = Result<T, FsError>;
 
-pub const MARKDOWN_EXTENSIONS: &[&str] = &["md"];
+pub const MARKDOWN_EXTENSIONS: &[&str] = &["md", "markdown", "mdown", "mkd", "mdx"];
 pub const DATA_EXTENSIONS: &[&str] = &["csv", "json", "jsonl"];
 
 fn real_or_not_found(path: &Path) -> FsResult<PathBuf> {
@@ -199,6 +199,46 @@ pub fn write_workspace_file(root: &Path, requested: &str, content: &str) -> FsRe
     }
 
     fs::write(&path, content).map_err(|e| FsError::new(FsErrorCode::NotFound, e.to_string()))
+}
+
+/// A Finder / `open` launch target: the workspace is the file's parent
+/// directory so the existing jail stays intact and the sidebar still lists
+/// siblings. A directory opens as the workspace with no file selected.
+#[derive(Debug, Clone, PartialEq, Eq, serde::Serialize)]
+pub struct OpenedTarget {
+    pub workspace: PathBuf,
+    pub file: Option<PathBuf>,
+}
+
+/// Accept a `file://` URL or a plain filesystem path.
+pub fn path_from_opened_url(raw: &str) -> Result<PathBuf, String> {
+    if !raw.contains("://") {
+        return Ok(PathBuf::from(raw));
+    }
+    let parsed = url::Url::parse(raw).map_err(|e| e.to_string())?;
+    if parsed.scheme() != "file" {
+        return Err(format!("Unsupported URL scheme: {}", parsed.scheme()));
+    }
+    parsed
+        .to_file_path()
+        .map_err(|_| format!("Not a file URL: {raw}"))
+}
+
+pub fn opened_target_from_path(path: &Path) -> FsResult<OpenedTarget> {
+    let real = real_or_not_found(path)?;
+    if real.is_dir() {
+        return Ok(OpenedTarget {
+            workspace: real,
+            file: None,
+        });
+    }
+    let parent = real.parent().ok_or_else(|| {
+        FsError::new(FsErrorCode::NotFound, "File has no parent directory")
+    })?;
+    Ok(OpenedTarget {
+        workspace: parent.to_path_buf(),
+        file: Some(real),
+    })
 }
 
 #[cfg(test)]
@@ -372,5 +412,56 @@ mod contract {
             failures.len(),
             failures.join("\n  ")
         );
+    }
+}
+
+#[cfg(test)]
+mod opened_file {
+    use super::*;
+    use std::fs;
+    use tempfile::TempDir;
+
+    #[test]
+    fn a_file_opens_its_parent_as_the_workspace() {
+        let dir = TempDir::new().unwrap();
+        let notes = dir.path().join("notes");
+        fs::create_dir(&notes).unwrap();
+        let file = notes.join("plan.md");
+        fs::write(&file, "# plan\n").unwrap();
+
+        let target = opened_target_from_path(&file).unwrap();
+        assert_eq!(target.workspace, fs::canonicalize(&notes).unwrap());
+        assert_eq!(target.file.as_ref().unwrap(), &fs::canonicalize(&file).unwrap());
+    }
+
+    #[test]
+    fn a_directory_opens_as_the_workspace_with_no_file() {
+        let dir = TempDir::new().unwrap();
+        let target = opened_target_from_path(dir.path()).unwrap();
+        assert_eq!(target.workspace, fs::canonicalize(dir.path()).unwrap());
+        assert!(target.file.is_none());
+    }
+
+    #[test]
+    fn a_file_url_round_trips_to_the_same_path() {
+        let dir = TempDir::new().unwrap();
+        let file = dir.path().join("a.md");
+        fs::write(&file, "").unwrap();
+        let real = fs::canonicalize(&file).unwrap();
+        let url = url::Url::from_file_path(&real).expect("file url");
+        let parsed = path_from_opened_url(url.as_str()).unwrap();
+        assert_eq!(fs::canonicalize(&parsed).unwrap(), real);
+    }
+
+    #[test]
+    fn a_plain_path_is_accepted() {
+        let path = path_from_opened_url("/tmp/note.md").unwrap();
+        assert_eq!(path, PathBuf::from("/tmp/note.md"));
+    }
+
+    #[test]
+    fn http_urls_are_refused() {
+        let err = path_from_opened_url("https://example.com/a.md").unwrap_err();
+        assert!(err.contains("Unsupported URL scheme"), "got {err}");
     }
 }

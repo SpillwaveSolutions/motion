@@ -45,21 +45,32 @@ opens the app.
 ## Getting started
 
 1. Click **Open Folder**. On desktop you pick a folder; in the browser it opens
-   the configured workspace.
-2. The sidebar lists every `.md` file underneath it, including nested folders
-   (flat list of basenames). Use **Search notes** to filter by filename.
-3. Click a note to open it. Use the arrow keys and Enter if you prefer the
-   keyboard — the list is fully navigable.
+   the configured workspace. On the Mac app you can also right-click a `.md` in
+   Finder → **Open With → Motion** — the workspace becomes that file's parent
+   folder and the note is selected. Desktop remembers the last folder.
+2. The sidebar is a **collapsible directory tree** of every `.md` underneath
+   the workspace. Use **Search notes** (⌘K / Ctrl+K) to filter by filename or
+   by text inside the notes. A content hit shows a short snippet.
+3. Click a note to open it.
 4. Edit, then press **⌘S** (Ctrl+S) or click the labeled **Save** button in the
-   editor toolbar. The status area shows **Saving…** / **Saved** / **Save failed**.
+   header. The status area shows **Saving…** / **Saved** / **Save failed**.
 
-**New Note** creates a timestamped `untitled-*.md` in the open workspace and
-writes a stub `# New Note` immediately. Keep editing, then **Save** so your
-changes are on disk.
+**New Note** creates a timestamped `untitled-*.md` in the parent folder of the
+selected file (or the workspace root) and writes a stub `# New Note`
+immediately. **New Folder** prompts for a name and writes a `README.md` so the
+tree can show it.
+
+**Share** in the header publishes the current note (including unsaved edits) to
+a GitHub Gist or a Notion page. Open **Settings…** from that menu to store a
+gist-scoped GitHub token and/or a Notion integration token plus parent page.
+Tokens never leave this machine.
 
 Motion cannot read or write anything outside the folder you opened. Paths are
 resolved to their real location first, so a symbolic link pointing elsewhere is
 refused rather than followed.
+
+macOS packaging, Open With, and unsigned local builds:
+[docs/macos.md](../macos.md).
 
 ---
 
@@ -152,8 +163,6 @@ Needs `claude` on your `PATH`. Without it the status bar reports the failure.
 
 Stated here so you meet them on your terms:
 
-- **Sidebar is flat** — every markdown file under the workspace, not a directory
-  tree. Sort is by name; there is no search inside file contents yet.
 - **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) only loads when
   those files exist in the open workspace (they ship under `public/demo/`). Open
   an unrelated project folder and the welcome Dataset/Query blocks will error
@@ -164,6 +173,8 @@ Stated here so you meet them on your terms:
   text; no table extension is registered.
 - **Synthesize / generative blocks** need `claude` and/or `imagen` on your
   `PATH`.
+- **Share** needs a GitHub PAT with gist scope, and/or a Notion internal
+  integration that has been invited to the parent page.
 
 ---
 

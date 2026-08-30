@@ -39,7 +39,7 @@ test("synthesizing a workspace writes TOC.md and SKILL.md", async ({ page }) => 
     await stubLLM(page);
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
-    await expect(page.getByRole("option", { name: "welcome.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
 
     await page.getByRole("button", { name: "Synthesize" }).click();
 
@@ -49,8 +49,8 @@ test("synthesizing a workspace writes TOC.md and SKILL.md", async ({ page }) => 
     await expect(status).toContainText("Seeded Notes");
 
     // Both documents exist on disk and are listed.
-    await expect(page.getByRole("option", { name: "TOC.md" })).toBeVisible();
-    await expect(page.getByRole("option", { name: "SKILL.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "TOC.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "SKILL.md" })).toBeVisible();
 
     const toc = await page.evaluate(async () => {
         const list = (await (await fetch("/api/fs/list")).json()) as string[];

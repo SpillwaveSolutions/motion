@@ -13,10 +13,18 @@ natural-language prompts using CLI tools you already have installed.
 - **Three view modes** — WYSIWYG, raw Markdown, and Split, switchable at any time.
   Edits carry across modes without loss.
 - **Workspace management** — open a folder and Motion lists every markdown file
-  under it, recursively (flat list). **Search notes** filters by filename.
-- **New Note** — creates `untitled-<timestamp>.md` in the open workspace.
+  under it as a **collapsible directory tree**. **Search notes** filters by
+  filename or file contents (⌘K / Ctrl+K). Nested folders keep their shape.
+- **Finder Open With** (desktop) — right-click a `.md` in Finder → Open With
+  Motion. The workspace is the file's parent directory; the note is selected.
+  Last folder and last file are restored on the next desktop launch.
+- **New Note** / **New Folder** — New Note writes `untitled-<timestamp>.md` in
+  the parent of the selected file (or the workspace root). New Folder writes a
+  `README.md` so the tree can show it.
 - **Save** — labeled **Save** control in the toolbar, plus **⌘S** / **Ctrl+S**.
   Status shows Saving… / Saved / Save failed.
+- **Share** — publish the current note to a **GitHub Gist** or a **Notion**
+  page. Tokens stay on this machine (Settings in the Share menu).
 - **Rich markdown** — headings, lists, blockquotes, and code blocks with syntax
   highlighting across the common languages. (Tables are not supported yet — no
   table extension is registered, so pipe-table syntax renders as text.)
@@ -94,6 +102,9 @@ than a rehearsal. The server binds to `127.0.0.1`.
 There is no hot reload. The dev server rebuilds the bundle when files change, but
 the page does not refresh itself — reload manually.
 
+Desktop packaging, Finder Open With, unsigned local builds, and the overlay
+title bar are documented in [docs/macos.md](docs/macos.md).
+
 ## Testing
 
 ```bash
@@ -118,8 +129,6 @@ cannot pass quietly. See `CLAUDE.md` for the full definition of done.
 
 Recorded here rather than discovered later:
 
-- **Sidebar is flat** — every `.md` under the workspace, not a directory tree.
-  Sort is name-only; no content (in-file) search yet.
 - **Welcome demo datasets** assume `sample-data.csv` / `sample-events.jsonl` exist
   in the open workspace. Opening an unrelated folder shows load errors for those
   blocks until those files are present or sources are re-pointed.
@@ -128,6 +137,8 @@ Recorded here rather than discovered later:
   does not refresh itself — reload manually.
 - Generative blocks and **Synthesize** need the relevant CLI (`claude`, `imagen`)
   on `PATH`.
+- **Share** needs a GitHub PAT (gist scope) and/or a Notion internal
+  integration token plus a parent page the integration can write to.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
 [docs/roadmap.md](docs/roadmap.md) for what is planned.

@@ -932,3 +932,166 @@ pre {
     font-size: var(--text-lg);
     line-height: 1;
 }
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Overlay title bar: traffic lights sit on the header. Browser mode is
+   unchanged. Interactive children are no-drag so clicks still land. */
+html[data-tauri="true"] .app-header {
+    padding-left: 88px;
+}
+
+html[data-tauri="true"] .app-header [data-tauri-drag-region="false"],
+html[data-tauri="true"] .app-header button,
+html[data-tauri="true"] .app-header input,
+html[data-tauri="true"] .app-header a {
+    -webkit-app-region: no-drag;
+}
+
+.share-root {
+    position: relative;
+}
+
+.share-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    min-width: 220px;
+    padding: var(--space-1);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
+}
+
+.share-menu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.share-menu button:hover,
+.share-menu button:focus-visible {
+    background: var(--color-bg-tertiary);
+}
+
+.share-menu-sep {
+    height: 1px;
+    margin: var(--space-1) 0;
+    background: var(--color-border-primary);
+}
+
+.publish-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(1, 4, 9, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: var(--space-4);
+}
+
+.publish-dialog {
+    width: min(440px, 100%);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.publish-dialog h2 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+}
+
+.publish-dialog label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+}
+
+.publish-dialog input {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-3);
+}
+
+.publish-dialog a {
+    color: var(--color-text-link);
+    word-break: break-all;
+    font-size: var(--text-sm);
+}
+
+.publish-hint {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+}
+
+.publish-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-bg-primary: #ffffff;
+        --color-bg-secondary: #f6f8fa;
+        --color-bg-tertiary: #ffffff;
+        --color-bg-elevated: #ffffff;
+
+        --color-border-primary: #d0d7de;
+        --color-border-secondary: #d8dee4;
+        --color-border-active: #0969da;
+
+        --color-text-primary: #1f2328;
+        --color-text-secondary: #656d76;
+        --color-text-muted: #8c959f;
+        --color-text-link: #0969da;
+
+        --color-accent-blue: #0969da;
+        --color-accent-purple: #8250df;
+        --color-accent-green: #1a7f37;
+        --color-accent-orange: #bc4c00;
+        --color-accent-red: #cf222e;
+
+        --gradient-glow: linear-gradient(135deg, #0969da 0%, #8250df 100%);
+        --gradient-surface: linear-gradient(180deg, rgba(9, 105, 218, 0.08) 0%, transparent 100%);
+
+        --shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.08);
+        --shadow-md: 0 4px 12px rgba(31, 35, 40, 0.12);
+        --shadow-lg: 0 8px 24px rgba(31, 35, 40, 0.16);
+        --shadow-glow: 0 0 20px rgba(9, 105, 218, 0.2);
+    }
+
+    .publish-modal {
+        background: rgba(31, 35, 40, 0.35);
+    }
+}
+

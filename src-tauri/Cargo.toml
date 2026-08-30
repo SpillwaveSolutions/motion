@@ -1,10 +1,10 @@
 [package]
 name = "app"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "Motion — local-first technical writing IDE"
+authors = ["Spillwave Solutions"]
 license = ""
-repository = ""
+repository = "https://github.com/SpillwaveSolutions/motion"
 edition = "2021"
 rust-version = "1.77.2"
 
@@ -27,6 +27,8 @@ tauri-plugin-fs = "2.4.5"
 tauri-plugin-dialog = "2.6.0"
 tokio = { version = "1", features = ["process", "time"] }
 base64 = "0.22"
+url = "2"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
 
 [dev-dependencies]
 tempfile = "3.24.0"

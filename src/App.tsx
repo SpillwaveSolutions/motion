@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Editor, { type SaveState } from "./components/Editor";
-import { storage, rememberWorkspaceRoot, relativeToWorkspace } from "./lib/storage";
+import ShareMenu from "./components/Publish/ShareMenu";
+import { storage, rememberWorkspaceRoot, relativeToWorkspace, isTauri } from "./lib/storage";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
+import { parseOpenQuery, resolveOpenQuery } from "./lib/openFile";
+import { loadPersistedWorkspace, persistWorkspace } from "./lib/workspaceMemory";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -47,6 +50,7 @@ function buildTree(absolutePaths: string[], workspaceRoot: string | null): TreeN
         let acc = rootNorm;
         for (let i = 0; i < parts.length; i++) {
             const part = parts[i];
+            if (!part) continue;
             acc = `${acc}${sep}${part}`;
             const isFile = i === parts.length - 1;
             if (!node.children.has(part)) {
@@ -129,7 +133,12 @@ function App() {
     /** Folder absolute paths that are expanded. Empty set means “all expanded” until user toggles. */
     const [expanded, setExpanded] = useState<Set<string> | null>(null);
     const [notesOpen, setNotesOpen] = useState(false);
+    const liveMarkdownRef = useRef("");
     const searchRef = useRef<HTMLInputElement>(null);
+
+    const handleMarkdownChange = useCallback((md: string) => {
+        liveMarkdownRef.current = md;
+    }, []);
 
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
@@ -217,18 +226,104 @@ function App() {
         return () => window.removeEventListener("keydown", onEsc);
     }, [notesOpen]);
 
+    const activateWorkspace = useCallback(async (root: string, selectFile: string | null) => {
+        const canonical = await storage.ensureWorkspace(root);
+        setWorkspacePath(canonical);
+        rememberWorkspaceRoot(canonical);
+        const markdownFiles = await storage.listFiles(canonical);
+        setFiles(markdownFiles);
+        const next: Record<string, string> = {};
+        await Promise.all(
+            markdownFiles.map(async (p) => {
+                try {
+                    next[p] = await storage.readFile(p);
+                } catch {
+                    next[p] = "";
+                }
+            }),
+        );
+        setContents(next);
+        const chosen = selectFile
+            ? (markdownFiles.includes(selectFile)
+                ? selectFile
+                : resolveOpenQuery(selectFile, markdownFiles, canonical))
+            : null;
+        setCurrentFilePath(chosen);
+        setSearchQuery("");
+        setExpanded(null);
+        if (isTauri()) persistWorkspace(canonical, chosen);
+        return chosen;
+    }, []);
+
+    useEffect(() => {
+        if (!isTauri() || !workspacePath) return;
+        persistWorkspace(workspacePath, currentFilePath);
+    }, [workspacePath, currentFilePath]);
+
+    useEffect(() => {
+        let cancelled = false;
+        const unsubs: Array<() => void> = [];
+
+        async function boot() {
+            type OpenedTarget = { workspace: string; file: string | null };
+            if (isTauri()) {
+                const { listen } = await import("@tauri-apps/api/event");
+                const { invoke } = await import("@tauri-apps/api/core");
+                unsubs.push(
+                    await listen<OpenedTarget>("motion://open-file", (ev) => {
+                        void activateWorkspace(ev.payload.workspace, ev.payload.file);
+                    }),
+                );
+                unsubs.push(
+                    await listen<string>("motion://menu", (ev) => {
+                        window.dispatchEvent(new CustomEvent("motion-menu", { detail: ev.payload }));
+                    }),
+                );
+                try {
+                    const pending = await invoke<OpenedTarget | null>("take_pending_open");
+                    if (cancelled) return;
+                    if (pending) {
+                        await activateWorkspace(pending.workspace, pending.file);
+                        return;
+                    }
+                } catch (err) {
+                    console.warn("take_pending_open failed", err);
+                }
+                const saved = loadPersistedWorkspace();
+                if (saved.root) {
+                    try {
+                        await activateWorkspace(saved.root, saved.file);
+                    } catch (err) {
+                        console.warn("Could not restore last workspace", err);
+                        persistWorkspace(null, null);
+                    }
+                }
+                return;
+            }
+
+            const open = parseOpenQuery(window.location.search);
+            if (!open) return;
+            try {
+                const root = await storage.openFolder();
+                if (cancelled || !root) return;
+                await activateWorkspace(root, open);
+            } catch (err) {
+                console.error("Failed to open ?open= target", err);
+            }
+        }
+
+        void boot();
+        return () => {
+            cancelled = true;
+            unsubs.forEach((u) => u());
+        };
+    }, [activateWorkspace]);
+
     const handleOpenFolder = async () => {
         try {
             const path = await storage.openFolder();
             if (path) {
-                setWorkspacePath(path);
-                rememberWorkspaceRoot(path);
-                const markdownFiles = await storage.listFiles(path);
-                setFiles(markdownFiles);
-                await cacheContents(markdownFiles);
-                setCurrentFilePath(null);
-                setSearchQuery("");
-                setExpanded(null); // default all expanded
+                await activateWorkspace(path, null);
             }
         } catch (error) {
             console.error("Failed to open folder:", error);
@@ -347,6 +442,25 @@ function App() {
         setContents((prev) => ({ ...prev, [path]: content }));
     }, []);
 
+    const handleOpenFolderRef = useRef(handleOpenFolder);
+    handleOpenFolderRef.current = handleOpenFolder;
+    const handleNewNoteRef = useRef(handleNewNote);
+    handleNewNoteRef.current = handleNewNote;
+
+    useEffect(() => {
+        const onMenu = (e: Event) => {
+            const id = (e as CustomEvent<string>).detail;
+            if (id === "open_folder") void handleOpenFolderRef.current();
+            else if (id === "new_note") void handleNewNoteRef.current();
+            else if (id === "save") setSaveSignal((n) => n + 1);
+            else if (id === "share_gist") window.dispatchEvent(new CustomEvent("motion-share", { detail: "gist" }));
+            else if (id === "share_notion") window.dispatchEvent(new CustomEvent("motion-share", { detail: "notion" }));
+            else if (id === "settings") window.dispatchEvent(new CustomEvent("motion-share", { detail: "settings" }));
+        };
+        window.addEventListener("motion-menu", onMenu);
+        return () => window.removeEventListener("motion-menu", onMenu);
+    }, []);
+
     function renderNode(node: TreeNode, depth: number): React.ReactNode {
         if (node.kind === "folder") {
             const open = isExpanded(node.path);
@@ -417,7 +531,7 @@ function App() {
     return (
         <div className="app">
             {/* Header */}
-            <header className="app-header">
+            <header className="app-header" data-tauri-drag-region>
                 <div className="logo">
                     <div className="logo-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -433,6 +547,7 @@ function App() {
                     type="button"
                     className="btn btn-secondary notes-toggle"
                     data-testid="open-notes"
+                    data-tauri-drag-region="false"
                     aria-expanded={notesOpen}
                     aria-controls="notes-drawer"
                     onClick={() => setNotesOpen((v) => !v)}
@@ -440,7 +555,7 @@ function App() {
                     Notes
                 </button>
 
-                <div className="search-bar">
+                <div className="search-bar" data-tauri-drag-region="false">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="11" cy="11" r="8" />
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -455,13 +570,18 @@ function App() {
                     />
                 </div>
 
-                <div className="view-toggle" role="group" aria-label="Editor view mode">
+                <div className="view-toggle" role="group" aria-label="Editor view mode" data-tauri-drag-region="false">
                     <button type="button" className={`view-toggle-btn ${viewMode === "wysiwyg" ? "active" : ""}`} aria-pressed={viewMode === "wysiwyg"} onClick={() => setViewMode("wysiwyg")}>WYSIWYG</button>
                     <button type="button" className={`view-toggle-btn ${viewMode === "markdown" ? "active" : ""}`} aria-pressed={viewMode === "markdown"} onClick={() => setViewMode("markdown")}>Markdown</button>
                     <button type="button" className={`view-toggle-btn ${viewMode === "split" ? "active" : ""}`} aria-pressed={viewMode === "split"} onClick={() => setViewMode("split")}>Split</button>
                 </div>
 
-                <div style={{ display: "flex", gap: "var(--space-2)" }}>
+                <div style={{ display: "flex", gap: "var(--space-2)" }} data-tauri-drag-region="false">
+                    <ShareMenu
+                        disabled={!currentFilePath}
+                        filename={currentFilePath ? getBasename(currentFilePath) : "untitled.md"}
+                        getContent={() => liveMarkdownRef.current}
+                    />
                     <button className="btn btn-secondary" onClick={handleOpenFolder}>
                         Open Folder
                     </button>
@@ -649,6 +769,7 @@ function App() {
                     onSaveStateChange={setSaveState}
                     onDirtyChange={setDirty}
                     onSaved={handleSaved}
+                    onMarkdownChange={handleMarkdownChange}
                 />
             </main>
         </div>

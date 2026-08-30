@@ -2,6 +2,37 @@
 
 All notable changes to Motion are recorded here. Dates are UTC.
 
+## Unreleased
+
+Native Mac app behaviour on top of the already-shipping tree sidebar, content
+search, and real browser filesystem. The 0.1.0 "Known issues" below are
+historical: fake `WebStorage`, the missing production `index.html`, block
+round-trip, and the demo Query join were fixed on `main` before this work.
+
+### Added
+
+- **Finder Open With.** Markdown file associations (`.md`, `.markdown`,
+  `.mdown`, `.mkd`, `.mdx`). Opening a file sets the workspace to its parent
+  directory and selects the file. Cold start buffers the path until React
+  mounts (`take_pending_open`). Browser stand-in: `/?open=welcome.md`.
+- **Packaging polish.** Product name **Motion**, identifier
+  `com.spillwave.motion`, 1200×760 default window (720×480 minimum), macOS
+  category and copyright. Last desktop workspace (and last file) is restored
+  on launch. Unsigned-build recipe: [docs/macos.md](docs/macos.md).
+- **Native chrome.** Overlay title bar with traffic lights over the header
+  (drag region, no-drag on controls). Native File menu (New Note, Open Folder,
+  Save, Share, Settings) plus the system Edit menu. Light tokens behind
+  `prefers-color-scheme: light`.
+- **Share → Gist / Notion.** Header Share menu publishes the current buffer.
+  Tokens stay in localStorage. Desktop uses Tauri HTTP commands; browser uses
+  `POST /api/publish/*` which always returns HTTP 200 `{ ok, url, error }`.
+
+### Changed
+
+- README and the user guide now describe the directory tree, content search,
+  Finder Open With, last-workspace restore, and Share — those product surfaces
+  had already shipped or ship in this release.
+
 ## 0.1.0 — 2026-07-28
 
 First tagged release. The application itself has existed since January 2026;

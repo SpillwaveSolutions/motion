@@ -14,7 +14,7 @@ import { test, expect, gotoApp } from "./fixtures";
 
 async function openScratch(page: import("@playwright/test").Page, name: string) {
     await page.getByRole("button", { name: "Open Folder" }).click();
-    const note = page.getByRole("option", { name });
+    const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
@@ -102,6 +102,10 @@ test("a missing dataset source surfaces an error instead of a silent empty table
     // the failed resource load. Both are the expected signal for this path.
     guard.allow(/HTTP 404:.*\/api\/fs\/read/);
     guard.allow(/console\.error: Failed to load resource:.*404/);
+    // Tiptap 3 + React 19: node views call flushSync while markdown→WYSIWYG
+    // setContent is landing. Isolated this spec is clean; under a warm suite
+    // the same path logs this and trips the console gate.
+    guard.allow(/flushSync was called from inside a lifecycle method/);
 
     await gotoApp(page);
     await openScratch(page, "scratch-journeys.md");

@@ -12,7 +12,7 @@ import { test, expect, gotoApp } from "./fixtures";
 /** Open a seeded note by its accessible name and wait for it to render. */
 async function openNote(page: import("@playwright/test").Page, name: string) {
     await page.getByRole("button", { name: "Open Folder" }).click();
-    const note = page.getByRole("option", { name });
+    const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
@@ -22,10 +22,10 @@ test("lists the seeded workspace, including nested files", async ({ page }) => {
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
 
-    await expect(page.getByRole("option", { name: "welcome.md" })).toBeVisible();
-    await expect(page.getByRole("option", { name: "getting-started.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "getting-started.md" })).toBeVisible();
     // Recursive listing: this one lives in nested/.
-    await expect(page.getByRole("option", { name: "deeper.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "deeper.md" })).toBeVisible();
 });
 
 test("an edit survives save and reload", async ({ page }) => {
@@ -66,7 +66,7 @@ test("a new note is created, listed, and opens without error", async ({ page }) 
     await page.getByRole("button", { name: "New Note" }).click();
     expect((await write).status()).toBe(200);
 
-    const created = page.getByRole("option", { name: /^untitled-/ });
+    const created = page.getByRole("treeitem", { name: /^untitled-/ });
     await expect(created).toBeVisible();
     await expect(created).toHaveAttribute("aria-selected", "true");
     await expect(page.locator(".ProseMirror")).toContainText("New Note");
@@ -92,7 +92,7 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
 
     // Shared workspace may already contain untitled notes from earlier specs;
     // pin the one this click just selected.
-    const created = page.getByRole("option", { name: /^untitled-/, selected: true });
+    const created = page.getByRole("treeitem", { name: /^untitled-/, selected: true });
     await expect(created).toBeVisible();
     const basename = ((await created.textContent()) ?? "").trim();
     expect(basename).toMatch(/^untitled-.*\.md$/);
@@ -119,7 +119,7 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
     // Full reload — proves the bytes are on disk, not only in React state.
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
-    await page.getByRole("option", { name: basename }).click();
+    await page.getByRole("treeitem", { name: basename }).click();
     await expect(page.locator(".ProseMirror")).toContainText(marker, { timeout: 15_000 });
 });
 
