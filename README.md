@@ -28,12 +28,16 @@ natural-language prompts using CLI tools you already have installed.
 - **Rich markdown** — headings, lists, blockquotes, and code blocks with syntax
   highlighting across the common languages. (Tables are not supported yet — no
   table extension is registered, so pipe-table syntax renders as text.)
-- **AI Refine** — per-document refine action (needs `claude` on `PATH`).
+- **Ask AI** — select text for a floating **Ask AI**, type `/ai` at the start of
+  a line, or use toolbar **Refine** for the whole document. Replies preview
+  (Replace / Insert below / Try again / Discard) before anything is committed.
+  Needs `claude` on `PATH`.
 
 ### Content blocks
 
 Five block types, insertable from the toolbar or by typing `/` at the start of a
-line. Blocks survive save/reload as real blocks (not plain code).
+line (the slash menu also lists **Ask AI** first). Blocks survive save/reload as
+real blocks (not plain code).
 
 | Block | What it does |
 |---|---|

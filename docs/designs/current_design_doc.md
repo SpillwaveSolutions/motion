@@ -52,6 +52,7 @@ immediately after exposed product and process gaps; plan
 | Welcome demo datasets outside Motion workspace | Welcome HTML hardcodes `sample-data.csv` / `sample-events.jsonl`. Works when those files are in the open folder (`public/demo` or E2E seed); fails in Tauri when the folder is an unrelated project. |
 | Sidebar tree, sort by date, in-file search | **Tree + content search shipped.** Sort-by-date is still open. |
 | Finder Open With / Share / native chrome | **Shipped in v0.6.0 work** (`docs/plans/2026-08-30-native-mac-app.md`). |
+| Ask AI (selection, `/ai`, preview) | **P1 shipping in this slice** (`docs/plans/2026-08-30-ai-editor.md`). Streaming, tables, DocCommands, dictation remain P2/P3. |
 | Agent-browser final pass in DoD | Optional dogfood; Playwright remains the CI gate. |
 | Branch protection on `main` | CI exists; GitHub does not yet require `verify` / `rust` checks. |
 | Full line-number re-audit of §7–§27 | This amendment corrects product status; a full line re-citation is deferred. |
@@ -84,7 +85,10 @@ unit → E2E).
 6. **Blocks** — toolbar or `/` menu: Mermaid, Dataset, Query, Image gen, Diagram gen.
    Round-trip through save/reload as real blocks when serialization is intact.
 7. **Dataset → Query** — register CSV/JSON/JSONL in the workspace, `SELECT` via DuckDB-WASM.
-8. **AI Refine** — per-document refine via `ContentInjector` + `llmClient`.
+8. **Ask AI** — selection bubble, `/ai`, or toolbar Refine. One pipeline
+   (`src/lib/ai`, `callLLMFromUI`); preview before commit. Refine is
+   document-scoped (no Insert below). `ContentInjector.generateSummary` still
+   backs Synthesize.
 9. **Synthesize** — workspace-level topic clustering; writes `TOC.md` and `SKILL.md`
    (cap 40 notes; excludes its own outputs from the next run).
 10. **Share** — current buffer to a GitHub Gist or Notion page. Tokens in
@@ -228,7 +232,8 @@ See also the amended list in **§0.4**. Summary:
 6. **Query local data.** Dataset registers a workspace CSV/JSON/JSONL file;
    Query runs `SELECT` via DuckDB-WASM.
 7. **Generate.** AI Image (`imagen` CLI); AI Diagram (`claude` CLI, Mermaid-validated).
-8. **AI Refine** — refine the current document via ContentInjector.
+8. **Ask AI** — selection bubble, `/ai`, or Refine; preview before commit via
+   `src/lib/ai` + `llmClient`. Refine no longer calls `ContentInjector.refineChunk`.
 9. **Synthesize** — workspace-level TOC.md + SKILL.md generation.
 
 ## 2.3 Major system components

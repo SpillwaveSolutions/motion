@@ -82,7 +82,7 @@ test("a block can be inserted from the slash menu", async ({ page }) => {
     await page.keyboard.press("Enter");
     await page.keyboard.type("/mer");
 
-    const menu = page.getByRole("listbox", { name: "Insert block" });
+    const menu = page.getByRole("listbox", { name: "Slash commands" });
     await expect(menu).toBeVisible();
     await menu.getByRole("option").first().click();
 
