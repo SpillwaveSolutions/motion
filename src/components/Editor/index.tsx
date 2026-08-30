@@ -7,15 +7,32 @@ import { marked } from "marked";
 import TurndownService from "turndown";
 import Toolbar from "./Toolbar";
 import { FindBar, findInPmDoc, findInString } from "./FindBar";
-import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
+import {
+    filterSlashCommands,
+    insertBlock,
+    slashCommandKey,
+    type SlashCommand,
+} from "./insertBlock";
+import { AskAiBubble, AskAiPanel, askAiStatesEqual, isAskAiPanelOpen, type AskAiState } from "./AskAi";
 import MermaidExtension from "./extensions/MermaidExtension";
 import { DatasetExtension } from "./extensions/DatasetExtension";
 import { QueryExtension } from "./extensions/QueryExtension";
 import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
 import { storage } from "../../lib/storage";
-import { ContentInjector } from "../../lib/ContentInjector";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
+import {
+    clampPos,
+    planWysiwygApply,
+    REFINE_INSTRUCTION,
+    runAskAi,
+    sessionForDoc,
+    summarizeReply,
+    titleFromPath,
+    type AiApplyMode,
+    type AiScope,
+    type CannedPrompt,
+} from "../../lib/ai";
 
 const lowlight = createLowlight(common);
 
@@ -85,6 +102,49 @@ function detectSlashTrigger(editor: TiptapEditor): SlashMenuState | null {
     };
 }
 
+function readSelectionBubble(editor: TiptapEditor): AskAiState | null {
+    const { from, to, empty } = editor.state.selection;
+    if (empty) return null;
+    const selectedText = editor.state.doc.textBetween(from, to, "\n");
+    if (!selectedText) return null;
+    let start;
+    let end;
+    try {
+        start = editor.view.coordsAtPos(from);
+        end = editor.view.coordsAtPos(to);
+    } catch {
+        return null;
+    }
+    const selTop = Math.min(start.top, end.top);
+    const selBottom = Math.max(start.bottom, end.bottom);
+    const top = selTop > 48 ? selTop - 40 : selBottom + 4;
+    const left = Math.min(start.left, end.left);
+    return {
+        phase: "bubble",
+        range: { from, to },
+        selectedText,
+        top,
+        left,
+    };
+}
+
+function surroundingText(
+    editor: TiptapEditor,
+    range: { from: number; to: number } | null
+): { before: string; after: string; selection: string | null } {
+    const doc = editor.state.doc;
+    const from = range?.from ?? editor.state.selection.from;
+    const to = range?.to ?? editor.state.selection.to;
+    const size = doc.content.size;
+    const safeFrom = clampPos(from, size);
+    const safeTo = clampPos(to, size);
+    return {
+        before: doc.textBetween(1, Math.min(safeFrom, size), "\n"),
+        after: doc.textBetween(Math.min(safeTo, size), size, "\n"),
+        selection: safeTo > safeFrom ? doc.textBetween(safeFrom, safeTo, "\n") : null,
+    };
+}
+
 const welcomeHTML = `
 <h1>Welcome to Motion</h1>
 <p>Motion is a <strong>local-first technical writing IDE</strong>. Select a folder to start editing your notes.</p>
@@ -139,6 +199,10 @@ function Editor({
     // Tracks the previously active view mode so we can sync content only on
     // an actual mode transition, not on every render.
     const prevViewModeRef = useRef<ViewMode | null>(null);
+    const viewModeRef = useRef(viewMode);
+    viewModeRef.current = viewMode;
+    const filePathRef = useRef(filePath);
+    filePathRef.current = filePath;
 
     const [slashMenu, setSlashMenu] = useState<SlashMenuState | null>(null);
     // editorProps callbacks are registered once at editor creation, so they
@@ -151,13 +215,57 @@ function Editor({
         slashMenuRef.current = slashMenu;
     }, [slashMenu]);
 
-    const executeSlashCommand = useCallback((nodeType: string) => {
+    const [askAi, setAskAi] = useState<AskAiState>({ phase: "idle" });
+    const askAiRef = useRef<AskAiState>(askAi);
+    const setAskAiState = useCallback((next: AskAiState) => {
+        if (askAiStatesEqual(askAiRef.current, next)) return;
+        askAiRef.current = next;
+        setAskAi(next);
+    }, []);
+    const genIdRef = useRef(0);
+
+    const executeSlashCommand = useCallback((cmd: SlashCommand) => {
         const menu = slashMenuRef.current;
         const currentEditor = editorRef.current;
         if (!menu || !currentEditor) return;
-        insertBlock(currentEditor, nodeType, menu.range);
+        if (cmd.kind === "insert") {
+            insertBlock(currentEditor, cmd.nodeType, menu.range);
+            setSlashMenu(null);
+            return;
+        }
+        currentEditor.chain().focus().deleteRange(menu.range).run();
         setSlashMenu(null);
-    }, []);
+        const pos = menu.range.from;
+        setAskAiState({
+            phase: "prompt",
+            scope: "cursor",
+            range: { from: pos, to: pos },
+            selectedText: "",
+            instruction: "",
+        });
+    }, [setAskAiState]);
+
+    const syncOverlays = useCallback((ed: TiptapEditor) => {
+        if (isAskAiPanelOpen(askAiRef.current)) {
+            setSlashMenu(null);
+            return;
+        }
+        setSlashMenu(detectSlashTrigger(ed));
+        queueMicrotask(() => {
+            if (isAskAiPanelOpen(askAiRef.current)) return;
+            if (slashMenuRef.current) {
+                if (askAiRef.current.phase === "bubble") setAskAiState({ phase: "idle" });
+                return;
+            }
+            const bubble = readSelectionBubble(ed);
+            setAskAiState(bubble ?? { phase: "idle" });
+        });
+    }, [setAskAiState]);
+
+    const executeSlashCommandRef = useRef(executeSlashCommand);
+    executeSlashCommandRef.current = executeSlashCommand;
+    const syncOverlaysRef = useRef(syncOverlays);
+    syncOverlaysRef.current = syncOverlays;
 
     const editor = useEditor({
         extensions: [
@@ -185,9 +293,7 @@ function Editor({
             handleKeyDown: (_view, event) => {
                 const menu = slashMenuRef.current;
                 if (!menu) return false;
-                const filtered = INSERT_COMMANDS.filter((c) =>
-                    c.label.toLowerCase().includes(menu.query.toLowerCase())
-                );
+                const filtered = filterSlashCommands(menu.query);
                 if (event.key === "Escape") {
                     setSlashMenu(null);
                     return true;
@@ -214,7 +320,7 @@ function Editor({
                 if (event.key === "Enter") {
                     const chosen = filtered[menu.selectedIndex];
                     if (chosen) {
-                        executeSlashCommand(chosen.nodeType);
+                        executeSlashCommandRef.current(chosen);
                         return true;
                     }
                     setSlashMenu(null);
@@ -228,21 +334,37 @@ function Editor({
         // content and no edits are lost. Also re-checks the slash-command
         // trigger, since typing after "/" changes the query.
         onUpdate: ({ editor: updatedEditor }) => {
+            // Markdown mode's textarea is the source of truth. A Tiptap
+            // onUpdate (setEditable, leftover transactions) must not clobber it.
+            if (viewModeRef.current === "markdown") return;
             const md = turndown.turndown(updatedEditor.getHTML());
             setRawMarkdown(md);
             onMarkdownChangeRef.current?.(md);
-            setSlashMenu(detectSlashTrigger(updatedEditor));
+            syncOverlaysRef.current(updatedEditor);
         },
         // Cursor movement (arrow keys, clicks) without a content change can
         // also enter/leave the "/" trigger position.
         onSelectionUpdate: ({ editor: updatedEditor }) => {
-            setSlashMenu(detectSlashTrigger(updatedEditor));
+            if (viewModeRef.current === "markdown") return;
+            syncOverlaysRef.current(updatedEditor);
         },
     });
 
     useEffect(() => {
         editorRef.current = editor;
     }, [editor]);
+
+    const askAiPanelOpen = isAskAiPanelOpen(askAi);
+    useEffect(() => {
+        if (!editor) return;
+        editor.setEditable(!askAiPanelOpen);
+    }, [editor, askAiPanelOpen]);
+
+    useEffect(() => {
+        genIdRef.current += 1;
+        setAskAiState({ phase: "idle" });
+        setSlashMenu(null);
+    }, [filePath, setAskAiState]);
 
     // Handle saving
     const handleSave = useCallback(async (opts?: { silent?: boolean }) => {
@@ -296,43 +418,166 @@ function Editor({
         return () => window.clearTimeout(t);
     }, [dirty, rawMarkdown, filePath, saveState]);
 
-    const [refining, setRefining] = useState(false);
+    const discardAskAi = useCallback(() => {
+        genIdRef.current += 1;
+        setAskAiState({ phase: "idle" });
+        queueMicrotask(() => editorRef.current?.commands.focus());
+    }, [setAskAiState]);
+
+    const submitAskAi = useCallback(async (instruction: string, fromState?: AskAiState) => {
+        const current = fromState ?? askAiRef.current;
+        if (current.phase === "idle" || current.phase === "bubble") return;
+        const trimmed = instruction.trim();
+        if (!trimmed) return;
+
+        const id = ++genIdRef.current;
+        const nextWorking: AskAiState = {
+            phase: "working",
+            scope: current.scope,
+            range: current.range,
+            selectedText: current.selectedText,
+            instruction: trimmed,
+        };
+        setAskAiState(nextWorking);
+
+        const ed = editorRef.current;
+        const scope: AiScope = current.scope;
+        let before = "";
+        let after = rawMarkdownRef.current;
+        let selection: string | null = current.selectedText || null;
+        if (scope === "document" || viewModeRef.current === "markdown") {
+            before = "";
+            after = rawMarkdownRef.current;
+            selection = null;
+        } else if (ed) {
+            const around = surroundingText(ed, current.range);
+            before = around.before;
+            after = around.after;
+            selection = around.selection ?? selection;
+        }
+
+        try {
+            const reply = await runAskAi({
+                title: titleFromPath(filePathRef.current),
+                before,
+                selection,
+                after,
+                priorOps: sessionForDoc(filePathRef.current).list(),
+                instruction: trimmed,
+            });
+            if (id !== genIdRef.current) return;
+            setAskAiState({
+                phase: "preview",
+                scope: nextWorking.scope,
+                range: nextWorking.range,
+                selectedText: nextWorking.selectedText,
+                instruction: trimmed,
+                reply,
+            });
+        } catch (error) {
+            if (id !== genIdRef.current) return;
+            const message = error instanceof Error ? error.message : String(error);
+            setAskAiState({
+                phase: "error",
+                scope: nextWorking.scope,
+                range: nextWorking.range,
+                selectedText: nextWorking.selectedText,
+                instruction: trimmed,
+                error: message,
+            });
+        }
+    }, [setAskAiState]);
+
+    const applyAskAi = useCallback(async (mode: AiApplyMode) => {
+        const current = askAiRef.current;
+        if (current.phase !== "preview" || !current.reply) return;
+        const md = current.reply;
+        const ed = editorRef.current;
+
+        try {
+            if (viewModeRef.current === "markdown" || !ed) {
+                if (mode === "replace") {
+                    setRawMarkdown(md);
+                    onMarkdownChangeRef.current?.(md);
+                } else {
+                    const combined = rawMarkdownRef.current.replace(/\s*$/, "") + "\n\n" + md;
+                    setRawMarkdown(combined);
+                    onMarkdownChangeRef.current?.(combined);
+                }
+            } else {
+                const html = sanitizeHtml(await marked.parse(md));
+                const plan = planWysiwygApply(current.scope, mode, current.range);
+                const size = ed.state.doc.content.size;
+                const chain = ed.chain().focus();
+                if (plan.kind === "setContent") {
+                    chain.setContent(html);
+                } else if (plan.kind === "replaceRange") {
+                    chain
+                        .deleteRange({
+                            from: clampPos(plan.from, size),
+                            to: clampPos(plan.to, size),
+                        })
+                        .insertContent(html);
+                } else {
+                    chain.insertContentAt(clampPos(plan.pos, size), html);
+                }
+                chain.run();
+            }
+            sessionForDoc(filePathRef.current).push({
+                instruction: current.instruction,
+                selection: current.selectedText || null,
+                resultSummary: summarizeReply(md),
+                ts: Date.now(),
+            });
+            setAskAiState({ phase: "idle" });
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            setAskAiState({
+                phase: "error",
+                scope: current.scope,
+                range: current.range,
+                selectedText: current.selectedText,
+                instruction: current.instruction,
+                error: message,
+            });
+        }
+    }, [setAskAiState]);
+
+    /**
+     * Document-scoped Ask AI. Same pipeline and preview as the bubble / /ai,
+     * without Insert below. Failures land in the panel, not window.alert.
+     */
+    const handleRefine = useCallback(() => {
+        if (isAskAiPanelOpen(askAiRef.current) && askAiRef.current.phase !== "error") return;
+        const current = rawMarkdownRef.current.trim();
+        if (!current) return;
+        const next: AskAiState = {
+            phase: "working",
+            scope: "document",
+            range: null,
+            selectedText: "",
+            instruction: REFINE_INSTRUCTION,
+        };
+        setAskAiState(next);
+        void submitAskAi(REFINE_INSTRUCTION, next);
+    }, [setAskAiState, submitAskAi]);
+
+    const openAskAiFromBubble = useCallback(() => {
+        const current = askAiRef.current;
+        if (current.phase !== "bubble") return;
+        setAskAiState({
+            phase: "prompt",
+            scope: "selection",
+            range: current.range,
+            selectedText: current.selectedText,
+            instruction: "",
+        });
+    }, [setAskAiState]);
 
     // A save is only "saved" until the next keystroke.
     useEffect(() => {
         setSaveState((prev) => (prev === "saved" ? "idle" : prev));
     }, [rawMarkdown]);
-
-    /**
-     * Runs the current document through ContentInjector and replaces it with the
-     * refined version.
-     *
-     * This is the last unbuilt item of the July plan: ContentInjector and its
-     * three siblings were real, tested modules with no way for a user to reach
-     * them. They also could not have run from here until they were routed
-     * through llmClient -- they called Bun.spawn, which is undefined in both the
-     * browser and the Tauri webview.
-     */
-    const handleRefine = useCallback(async () => {
-        if (!editor || refining) return;
-        const current = rawMarkdown.trim();
-        if (!current) return;
-
-        setRefining(true);
-        try {
-            const injector = new ContentInjector("claude");
-            const refined = await injector.refineChunk(current, filePath ?? "untitled document");
-            const html = sanitizeHtml(await marked.parse(refined.content));
-            editor.commands.setContent(html);
-            setRawMarkdown(refined.content);
-        } catch (error) {
-            const message = error instanceof Error ? error.message : String(error);
-            console.error("Refine failed:", message);
-            alert(`Could not refine this document: ${message}`);
-        } finally {
-            setRefining(false);
-        }
-    }, [editor, rawMarkdown, filePath, refining]);
 
     // Load file content
     useEffect(() => {
@@ -422,6 +667,11 @@ function Editor({
                 setFindOpen(true);
                 requestAnimationFrame(() => findInputRef.current?.focus());
             }
+            if (e.key === "Escape" && isAskAiPanelOpen(askAiRef.current)) {
+                e.preventDefault();
+                discardAskAi();
+                return;
+            }
             if (e.key === "Escape" && findOpen) {
                 e.preventDefault();
                 setFindOpen(false);
@@ -429,7 +679,7 @@ function Editor({
         };
         window.addEventListener("keydown", handleKeyDown, true);
         return () => window.removeEventListener("keydown", handleKeyDown, true);
-    }, [handleSave, findOpen]);
+    }, [handleSave, findOpen, discardAskAi]);
 
     if (!editor) {
         return (
@@ -479,7 +729,7 @@ function Editor({
     ) : null;
 
     const filteredSlashCommands = slashMenu
-        ? INSERT_COMMANDS.filter((c) => c.label.toLowerCase().includes(slashMenu.query.toLowerCase()))
+        ? filterSlashCommands(slashMenu.query)
         : [];
 
     // position: fixed uses coordsAtPos's viewport-relative coords directly.
@@ -489,7 +739,7 @@ function Editor({
         <div
             className="slash-menu"
             role="listbox"
-            aria-label="Insert block"
+            aria-label="Slash commands"
             style={{ top: slashMenu.position.top + 4, left: slashMenu.position.left }}
         >
             {filteredSlashCommands.length === 0 ? (
@@ -497,13 +747,13 @@ function Editor({
             ) : (
                 filteredSlashCommands.map((cmd, i) => (
                     <div
-                        key={cmd.nodeType}
+                        key={slashCommandKey(cmd)}
                         role="option"
                         aria-selected={i === slashMenu.selectedIndex}
                         className={`slash-menu-item ${i === slashMenu.selectedIndex ? "selected" : ""}`}
                         onMouseDown={(e) => {
                             e.preventDefault();
-                            executeSlashCommand(cmd.nodeType);
+                            executeSlashCommand(cmd);
                         }}
                     >
                         {cmd.label}
@@ -513,11 +763,70 @@ function Editor({
         </div>
     );
 
+    const askAiPanel = isAskAiPanelOpen(askAi) ? (
+        <AskAiPanel
+            phase={askAi.phase}
+            scope={askAi.scope}
+            instruction={askAi.instruction}
+            reply={askAi.reply}
+            error={askAi.error}
+            onInstruction={(value) => {
+                const current = askAiRef.current;
+                if (current.phase !== "prompt") return;
+                setAskAiState({ ...current, instruction: value });
+            }}
+            onSubmit={() => {
+                const current = askAiRef.current;
+                if (current.phase !== "prompt") return;
+                void submitAskAi(current.instruction, current);
+            }}
+            onCanned={(chip: CannedPrompt) => {
+                const current = askAiRef.current;
+                if (current.phase !== "prompt") return;
+                const next = { ...current, instruction: chip.instruction };
+                setAskAiState(next);
+                void submitAskAi(chip.instruction, next);
+            }}
+            onReplace={() => void applyAskAi("replace")}
+            onInsertBelow={() => void applyAskAi("insert-below")}
+            onTryAgain={() => {
+                const current = askAiRef.current;
+                if (current.phase === "idle" || current.phase === "bubble") return;
+                void submitAskAi(current.instruction, current);
+            }}
+            onDiscard={discardAskAi}
+        />
+    ) : null;
+
+    const askAiBubble =
+        askAi.phase === "bubble" && viewMode !== "markdown" ? (
+            <AskAiBubble top={askAi.top} left={askAi.left} onAsk={openAskAiFromBubble} />
+        ) : null;
+
+    const refining = askAi.phase === "working";
+    const refineBusy = isAskAiPanelOpen(askAi);
+
+    const toolbar = (
+        <Toolbar
+            editor={editor}
+            onSave={handleSave}
+            onFind={() => {
+                setFindOpen(true);
+                requestAnimationFrame(() => findInputRef.current?.focus());
+            }}
+            onRefine={handleRefine}
+            refining={refining}
+            refineDisabled={refineBusy}
+            saveState={saveState}
+        />
+    );
+
     if (viewMode === "markdown") {
         return (
             <div className="editor-container">
-                <Toolbar editor={editor} onSave={handleSave} onFind={() => { setFindOpen(true); requestAnimationFrame(() => findInputRef.current?.focus()); }} onRefine={handleRefine} refining={refining} saveState={saveState} />
+                {toolbar}
                 {findBar}
+                {askAiPanel}
                 <textarea
                     ref={markdownRef}
                     aria-label="Markdown source"
@@ -548,9 +857,11 @@ function Editor({
     if (viewMode === "split") {
         return (
             <div className="editor-container" style={{ maxWidth: "1400px" }}>
-                <Toolbar editor={editor} onSave={handleSave} onFind={() => { setFindOpen(true); requestAnimationFrame(() => findInputRef.current?.focus()); }} onRefine={handleRefine} refining={refining} saveState={saveState} />
+                {toolbar}
                 {findBar}
+                {askAiPanel}
                 {slashMenuPopup}
+                {askAiBubble}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)", flex: 1 }}>
                     <EditorContent editor={editor} />
                     <div
@@ -576,9 +887,11 @@ function Editor({
 
     return (
         <div className="editor-container">
-            <Toolbar editor={editor} onSave={handleSave} onFind={() => { setFindOpen(true); requestAnimationFrame(() => findInputRef.current?.focus()); }} onRefine={handleRefine} refining={refining} saveState={saveState} />
+            {toolbar}
             {findBar}
+            {askAiPanel}
             {slashMenuPopup}
+            {askAiBubble}
             <EditorContent editor={editor} />
         </div>
     );

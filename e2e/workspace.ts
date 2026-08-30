@@ -30,6 +30,7 @@ export const SEED_FILES: Record<string, string> = {
     "scratch-blocks.md": "# Scratch: blocks\n",
     "scratch-sanitize.md": "# Scratch: sanitize\n",
     "scratch-journeys.md": "# Scratch: journeys\n",
+    "scratch-ai.md": "# Scratch: AI\n\nThe quick brown fox jumps over the lazy dog.\n",
 };
 
 export function createWorkspace(): string {

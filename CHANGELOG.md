@@ -11,6 +11,11 @@ round-trip, and the demo Query join were fixed on `main` before this work.
 
 ### Added
 
+- **Ask AI.** Select text in WYSIWYG/Split for a floating Ask AI, type `/ai` at
+  the start of a line, or use toolbar Refine for the whole document. One
+  pipeline (`buildAiContext` + `callLLMFromUI`) previews the reply; Replace /
+  Insert below / Try again / Discard commit as a single undo step. Failures stay
+  in the panel. Phase 1 still uses the existing CLI transport.
 - **Finder Open With.** Markdown file associations (`.md`, `.markdown`,
   `.mdown`, `.mkd`, `.mdx`). Opening a file sets the workspace to its parent
   directory and selects the file. Cold start buffers the path until React
@@ -29,9 +34,10 @@ round-trip, and the demo Query join were fixed on `main` before this work.
 
 ### Changed
 
+- Slash menu is labeled **Slash commands** and lists **Ask AI** first. `/mer`
+  still inserts Mermaid. Toolbar insert buttons stay insert-only.
 - README and the user guide now describe the directory tree, content search,
-  Finder Open With, last-workspace restore, and Share — those product surfaces
-  had already shipped or ship in this release.
+  Finder Open With, last-workspace restore, Share, and Ask AI.
 
 ## 0.1.0 — 2026-07-28
 

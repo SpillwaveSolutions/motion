@@ -7,6 +7,7 @@ interface ToolbarProps {
     onFind?: () => void;
     onRefine?: () => void;
     refining?: boolean;
+    refineDisabled?: boolean;
     saveState?: "idle" | "saving" | "saved" | "error";
 }
 
@@ -40,7 +41,7 @@ function ToolbarButton({
     );
 }
 
-function Toolbar({ editor, onSave, onFind, onRefine, refining = false, saveState = "idle" }: ToolbarProps) {
+function Toolbar({ editor, onSave, onFind, onRefine, refining = false, refineDisabled = false, saveState = "idle" }: ToolbarProps) {
     return (
         <div className="editor-toolbar">
             {/* Text formatting */}
@@ -234,7 +235,7 @@ function Toolbar({ editor, onSave, onFind, onRefine, refining = false, saveState
             <ToolbarButton
                 onClick={() => onRefine?.()}
                 title={refining ? "Refining…" : "AI Refine document"}
-                disabled={!onRefine || refining}
+                disabled={!onRefine || refining || refineDisabled}
             >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 3l1.9 5.8L20 10.7l-5.1 3 1.2 6-4.1-3.2L7.9 19.7l1.2-6L4 10.7l6.1-1.9z" />

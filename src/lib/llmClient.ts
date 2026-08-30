@@ -9,6 +9,10 @@ import type { LLMOptions, LLMResponse, ModelProvider } from "./cliWrappers";
  * process where it does: the Tauri Rust backend's run_llm_cli command when
  * packaged, or the dev server's POST /api/llm (which calls cliWrappers.ts
  * server-side) otherwise.
+ *
+ * A JSON body with `error` is a failure even on HTTP 200. That lets tests
+ * (and a future envelope) report a CLI miss without tripping the Playwright
+ * >=400 gate. Non-OK HTTP still throws, for the existing /api/llm contract.
  */
 export async function callLLMFromUI(
     provider: ModelProvider,
@@ -34,9 +38,12 @@ export async function callLLMFromUI(
             model: options.model,
         }),
     });
-    const data = await res.json();
+    const data = (await res.json()) as { error?: unknown; content?: string; rawOutput?: string };
+    if (typeof data?.error === "string" && data.error) {
+        throw new Error(data.error);
+    }
     if (!res.ok) {
-        throw new Error(data?.error || `LLM call failed: ${res.status} ${res.statusText}`);
+        throw new Error(`LLM call failed: ${res.status} ${res.statusText}`);
     }
     return data as LLMResponse;
 }

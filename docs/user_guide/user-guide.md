@@ -90,7 +90,25 @@ not a second rendered preview.
 ## Content blocks
 
 Five block types. Insert them from the toolbar, or type `/` at the start of an
-empty line and pick from the menu.
+empty line and pick from the menu. The same menu lists **Ask AI** first — see
+below.
+
+### Ask AI
+
+Three ways to start, one preview:
+
+1. **Select text** in WYSIWYG or Split — a floating **Ask AI** button appears.
+2. **Type `/ai`** at the start of a line and choose Ask AI.
+3. **Refine** in the toolbar — whole-document, no "Insert below".
+
+Write an instruction or pick a canned chip (Rewrite, Tighten, Expand, Fix
+grammar, Continue). The reply is previewed first. **Replace** swaps the target;
+**Insert below** adds the reply after it; **Try again** re-runs; **Discard**
+(or Escape) applies nothing. Failures show in the panel, not an alert.
+
+Markdown mode has no bubble and no slash menu; Refine still works.
+
+Needs `claude` on your `PATH`.
 
 ### Mermaid
 
@@ -171,7 +189,7 @@ Stated here so you meet them on your terms:
   refresh the page — reload manually.
 - **Markdown tables are not supported.** Pipe-table syntax renders as plain
   text; no table extension is registered.
-- **Synthesize / generative blocks** need `claude` and/or `imagen` on your
+- **Ask AI / Synthesize / generative blocks** need `claude` and/or `imagen` on your
   `PATH`.
 - **Share** needs a GitHub PAT with gist scope, and/or a Notion internal
   integration that has been invited to the parent page.
