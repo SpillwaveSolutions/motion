@@ -16,13 +16,16 @@
 - [x] Try again re-runs the same instruction (tools included). — PASS WITH NOTES: same `submitAskAi` path as markdown Try again; not independently e2e'd for commands.
 - [x] Failure copy is in the panel (no alert, no HTTP ≥400). — PASS (`no table 9` alert in the panel)
 - [x] No new slash commands for the four ops; `/ai` still opens Ask AI. — PASS (`insertBlock.test.ts` still 7 commands; `/ai` e2e)
+- [x] Every locator in one turn resolves against the document the model saw. — PASS (`commands.test.ts`: two `replace_range`s against the original note both apply; sequential-against-updated would fail the second)
+- [x] Commands that touch the same table fold into one rewrite. — PASS (unit: two `table_update_cell`s on one table compose)
+- [x] Genuinely overlapping edits error in the panel by naming the pair. — PASS (unit: overlapping `replace_range`s name the pair; not silently dropped)
 
 ## Evidence
 - `bun run typecheck`, `bun run guard:client` (43 modules, no `Bun.` from `main.tsx`; `service.ts` stays off the graph)
-- `bun test src` (175)
-- Playwright 48 passed (4 new DocCommands specs + existing 44)
+- `bun test src` (new snapshot / overlap / fold cases in `commands.test.ts`)
+- Playwright 48 passed (4 DocCommands specs + existing 44) on the previous green run; this slice does not add a new e2e for overlap (unit covers the planner)
 
 ## Notes / Recommended Fixes
 - Voice/dictation dispatch is P3 and correctly not built. The registry (`dispatchDocCommands`) is the hook.
-- Commands apply sequentially against the updated markdown. A model that emits two `replace_range`s whose `old_text` only exists in the original document can fail the second; Try again is the recovery.
+- Snapshot planning is closed: locators resolve against one document, same-table commands fold, overlaps are refused by naming the pair, edits apply right-to-left. Tool descriptions and the CLI trailer state the contract so the model does not chain onto an earlier command's output.
 - Packaged Tauri still one-shots `run_llm_cli` until the sidecar. CLI path parses a `doccommands` fence; SDK path uses real tool_use. No second Rust LLM loop.

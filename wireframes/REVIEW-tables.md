@@ -13,13 +13,15 @@
 - [x] WYSIWYG table → markdown pipes → save → reload is still a table. — PASS
 - [x] Sanitize keeps `table`/`thead`/`tbody`/`tr`/`th`/`td`. — PASS (`e2e/sanitize.spec.ts` legitimate-structure spec now includes a pipe table)
 - [x] Markdown mode has no table chrome. — PASS (`inTable && viewMode !== "markdown"`)
+- [x] **Insert Table** and `/tab` with the caret already in a table do not nest. — PASS (`e2e/tables.spec.ts` both entry points assert zero `table table`; unit tests on `enclosingTableEnd` + `shiftForDeletedRange`)
 
 ## Evidence
-- `bun run typecheck`, `bun run guard:client` (42 modules, no `Bun.`), `bun test src` (149), Playwright 44 passed including 3 table specs
+- `bun run typecheck`, `bun run guard:client`, `bun test src` (insertBlock helpers + table insert path)
+- Playwright: existing table specs plus two new ones (toolbar and slash, caret already in a table)
 - Screenshots: none on this green run
 - Console / network issues: none on the table specs
 
 ## Notes / Recommended Fixes
 - Column resize is deliberately off — colwidths cannot round-trip through GFM. Not a miss.
-- Insert Table while the caret is already in a table can nest a table if the schema allows it. E2E always starts from a heading. DocCommands later can own "insert after this table".
+- Nested insert is closed: both entry points append a sibling after the outermost enclosing table, with a separating paragraph so two GFM tables do not re-parse as one. The slash path re-bases the insert position for the `/tab` deletion queued in the same transaction.
 - Delete row / column / table and Tab-between-cells are not independently e2e'd. Not blocking; the chrome and commands are the same path as Add row.

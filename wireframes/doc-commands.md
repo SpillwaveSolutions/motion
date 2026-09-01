@@ -37,14 +37,14 @@ panel — same dock, same Discard/Escape, different body and primary action.
 | Replace / Insert below | buttons | Hidden when the preview is a command list. Commands already name their locations. |
 | Try again / Discard | buttons | Same as ask-ai.md. Discard applies nothing and aborts an in-flight call. |
 | Working | status | **Asking AI…**. If tool calls arrive before `done`, the list may fill in under the status. Document is not mutated. |
-| Error | alert | Planning failure (span not unique, no such table, …) lands in the panel with Try again / Discard. No `window.alert`. HTTP 200 SSE. |
+| Error | alert | Planning failure (span not unique, no such table, overlapping edits) lands in the panel with Try again / Discard. No `window.alert`. HTTP 200 SSE. |
 | Slash / Refine / bubble | entry | Unchanged. `/ai`, selection Ask AI, and Refine all go through the same pipeline; the model chooses markdown **or** tools. No new slash items for the four ops (too low-level). |
 
 ## States
 - **Text preview**: no commands in the reply — existing ask-ai.md preview.
 - **Commands preview**: list + Apply N edits. Insert below / Replace hidden.
 - **Working**: Asking AI…; optional live list as `command` events arrive.
-- **Plan error**: a tool call that cannot be applied to the current note.
+- **Plan error**: a tool call that cannot be applied to the current note (missing span, overlapping pair, no such table).
 - **Markdown mode**: Refine can still return commands; Apply rewrites the textarea.
 - **Empty list**: treat as an empty reply (error), not a silent no-op.
 
@@ -60,6 +60,9 @@ panel — same dock, same Discard/Escape, different body and primary action.
 - [ ] Try again re-runs the same instruction (tools included).
 - [ ] Failure copy is in the panel (no alert, no HTTP ≥400).
 - [ ] No new slash commands for the four ops; `/ai` still opens Ask AI.
+- [ ] Every locator in one turn resolves against the document the model saw, not the result of an earlier command in the same turn.
+- [ ] Commands that touch the same table fold into one rewrite (so "do this to every row" works).
+- [ ] Genuinely overlapping edits error in the panel by naming the pair; they are not silently dropped.
 
 ## Notes
 - Registry: `src/lib/ai/commands.ts`. Four ops only this slice:
@@ -70,6 +73,7 @@ panel — same dock, same Discard/Escape, different body and primary action.
   the sidecar — no second Rust LLM loop.
 - Apply is markdown-level (then `markdownToHtml` / textarea), so unit tests
   need no Tiptap. Tables must already round-trip as pipes (tables.md).
+  Edits apply right-to-left so offsets stay valid after the snapshot plan.
 - Dictation / voice dispatch is P3 and uses this registry later — do not build
   it here.
 - Related: [ask-ai.md](./ask-ai.md), [tables.md](./tables.md), [slash-menu.md](./slash-menu.md).
