@@ -21,7 +21,25 @@ import {
 import { unwrapReply } from "./prompt";
 import { encodeSse, type AiStreamEvent, type AiStreamRequest } from "./protocol";
 
-export const DEFAULT_AI_MODEL = "claude-sonnet-4-5";
+/**
+ * Override per install with MOTION_AI_MODEL, or per request with `model`.
+ *
+ * Was pinned to a previous-generation model, which is not what a fresh clone
+ * should reach for. Ask AI is short-turn interactive editing, so the request
+ * asks for `low` effort rather than dropping to a smaller model -- on the
+ * current generation that is the cheaper knob and it keeps rewrite quality.
+ */
+export const DEFAULT_AI_MODEL = "claude-opus-5";
+
+export type AiEffort = "low" | "medium" | "high" | "xhigh" | "max";
+const AI_EFFORTS: readonly AiEffort[] = ["low", "medium", "high", "xhigh", "max"];
+export const DEFAULT_AI_EFFORT: AiEffort = "low";
+
+/** An unrecognised MOTION_AI_EFFORT falls back rather than failing the request. */
+export function resolveAiEffort(raw: string | undefined): AiEffort {
+    const value = raw?.trim().toLowerCase();
+    return AI_EFFORTS.find((e) => e === value) ?? DEFAULT_AI_EFFORT;
+}
 
 export type AiBackend = "anthropic" | "cli";
 
@@ -181,6 +199,10 @@ async function* defaultAnthropicStream(
         {
             model,
             max_tokens: 8192,
+            // Inline edits are short turns: keep thinking shallow so the
+            // preview starts filling quickly. Raise via MOTION_AI_EFFORT when
+            // a workspace wants more deliberation.
+            output_config: { effort: resolveAiEffort(process.env["MOTION_AI_EFFORT"]) },
             tools: [...DOC_COMMAND_TOOLS],
             tool_choice: { type: "auto" },
             system: [

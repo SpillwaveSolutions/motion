@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { resolveAiBackend, streamAi } from "./service";
+import { DEFAULT_AI_MODEL, resolveAiBackend, resolveAiEffort, streamAi } from "./service";
 import type { AiStreamRequest } from "./protocol";
 
 const REQ: AiStreamRequest = {
@@ -119,5 +119,23 @@ describe("streamAi", () => {
             events.push(ev);
         }
         expect(events[0]).toEqual({ type: "error", error: "The model returned an empty reply." });
+    });
+});
+
+describe("resolveAiEffort", () => {
+    test("defaults to low for unset or unrecognised values", () => {
+        expect(resolveAiEffort(undefined)).toBe("low");
+        expect(resolveAiEffort("")).toBe("low");
+        expect(resolveAiEffort("turbo")).toBe("low");
+    });
+
+    test("accepts the documented levels, case-insensitively", () => {
+        expect(resolveAiEffort("high")).toBe("high");
+        expect(resolveAiEffort(" MAX ")).toBe("max");
+        expect(resolveAiEffort("xhigh")).toBe("xhigh");
+    });
+
+    test("the shipped default model is current-generation", () => {
+        expect(DEFAULT_AI_MODEL).toBe("claude-opus-5");
     });
 });

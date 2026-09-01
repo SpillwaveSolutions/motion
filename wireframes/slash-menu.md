@@ -28,7 +28,7 @@ Popup is position:fixed under the caret (coordsAtPos). Overlay, not inline.
 | Menu | listbox | role=listbox aria-label=Slash commands |
 | Items | options | role=option aria-selected on the highlighted row. Ask AI is first, then Table, Mermaid, Dataset, Query, AI Diagram, AI Image |
 | Ask AI | option | kind=ai. Consumes the /query and opens the Ask AI prompt at the cursor (see ask-ai.md). Not an atom insert. |
-| Table | option | kind=insert, nodeType=table. Inserts a 3×3 with a header row (see tables.md). |
+| Table | option | kind=insert, nodeType=table. Inserts a 3×3 with a header row (see tables.md). If the caret is already in a table, appends a sibling after the outermost enclosing table instead of nesting. `/tab` is deleted in the same transaction; the insert position is re-based for that deletion. |
 | Empty | copy | No matches |
 | Keyboard | keys | Escape closes. ArrowUp/Down cycle. Enter runs the selected command. |
 | Mouse | mousedown | preventDefault so the editor selection stays valid, then run |
@@ -49,6 +49,7 @@ Popup is position:fixed under the caret (coordsAtPos). Overlay, not inline.
 - [ ] Enter on an insert command inserts the block (trailing empty paragraph for atoms; 3×3 table for Table) and consumes the /query text.
 - [ ] Enter on Ask AI opens the Ask AI prompt and consumes the /query text.
 - [ ] Menu is absent in Markdown-only mode.
+- [ ] `/tab` inside a table does not nest a table; the new table is a sibling after the enclosing one.
 
 ## Notes
 - Source: src/components/Editor/index.tsx (detectSlashTrigger), insertBlock.ts (`SLASH_COMMANDS`).

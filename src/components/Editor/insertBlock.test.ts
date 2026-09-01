@@ -1,5 +1,25 @@
 import { describe, expect, test } from "bun:test";
-import { filterSlashCommands, INSERT_COMMANDS, SLASH_COMMANDS } from "./insertBlock";
+import {
+    enclosingTableEnd,
+    filterSlashCommands,
+    INSERT_COMMANDS,
+    shiftForDeletedRange,
+    SLASH_COMMANDS,
+    type ResolvedPosLike,
+} from "./insertBlock";
+
+/**
+ * A stand-in for ProseMirror's ResolvedPos: `names` is the node at each depth
+ * from the doc (0) down to the caret, and `ends[d]` is the position after the
+ * node at depth d.
+ */
+function resolvedPos(names: string[], ends: Record<number, number> = {}): ResolvedPosLike {
+    return {
+        depth: names.length - 1,
+        node: (depth: number) => ({ type: { name: names[depth] ?? "unknown" } }),
+        after: (depth: number) => ends[depth] ?? -1,
+    };
+}
 
 describe("SLASH_COMMANDS", () => {
     test("Ask AI is first, Table is next, and the toolbar insert list stays insert-only", () => {
@@ -42,5 +62,62 @@ describe("SLASH_COMMANDS", () => {
         expect(filterSlashCommands("")).toEqual(SLASH_COMMANDS);
         expect(filterSlashCommands("   ")).toEqual(SLASH_COMMANDS);
         expect(SLASH_COMMANDS).toHaveLength(7);
+    });
+});
+
+describe("enclosingTableEnd", () => {
+    test("a caret in a paragraph is not in a table", () => {
+        expect(enclosingTableEnd(resolvedPos(["doc", "paragraph"]))).toBeNull();
+    });
+
+    test("a caret in a cell reports the position after the table", () => {
+        const $from = resolvedPos(["doc", "table", "tableRow", "tableCell", "paragraph"], {
+            1: 42,
+        });
+        expect(enclosingTableEnd($from)).toBe(42);
+    });
+
+    test("a nested table escapes to the OUTERMOST table, not the inner one", () => {
+        // doc > table > row > cell > table > row > cell > paragraph
+        const $from = resolvedPos(
+            [
+                "doc",
+                "table",
+                "tableRow",
+                "tableCell",
+                "table",
+                "tableRow",
+                "tableCell",
+                "paragraph",
+            ],
+            { 1: 100, 4: 60 },
+        );
+        expect(enclosingTableEnd($from)).toBe(100);
+    });
+
+    test("a table inside a blockquote is still found", () => {
+        const $from = resolvedPos(["doc", "blockquote", "table", "tableRow", "tableCell"], {
+            2: 17,
+        });
+        expect(enclosingTableEnd($from)).toBe(17);
+    });
+});
+
+describe("shiftForDeletedRange", () => {
+    test("no range leaves the position alone", () => {
+        expect(shiftForDeletedRange(42)).toBe(42);
+    });
+
+    test("a deletion before the position shifts it back by the deleted length", () => {
+        // "/tab" typed in a cell, deleted before the table-end insert runs.
+        expect(shiftForDeletedRange(42, { from: 10, to: 14 })).toBe(38);
+    });
+
+    test("a deletion after the position leaves it alone", () => {
+        expect(shiftForDeletedRange(42, { from: 50, to: 54 })).toBe(42);
+    });
+
+    test("a deletion ending exactly at the position still shifts it", () => {
+        expect(shiftForDeletedRange(42, { from: 38, to: 42 })).toBe(38);
     });
 });

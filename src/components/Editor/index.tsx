@@ -357,10 +357,28 @@ function Editor({
         setSlashMenu(null);
     }, [filePath, setAskAiState]);
 
+    /**
+     * True while a write is in flight. A ref, not state: the debounced autosave
+     * and an explicit ⌘S can both call this within one render, and state would
+     * still read stale for the second caller.
+     */
+    const savingRef = useRef(false);
+
     // Handle saving
     const handleSave = useCallback(async (opts?: { silent?: boolean }) => {
         if (!editor || !filePath) return;
 
+        // Two callers race for every save: the 1.5s autosave and the Save
+        // button / ⌘S. Writing twice put a redundant POST on the wire whose
+        // only observable effect was an aborted request when the page moved on
+        // before it landed. Whoever gets here second has nothing left to write.
+        if (savingRef.current) return;
+        if (rawMarkdown === snapshotRef.current) {
+            setSaveState("saved");
+            return;
+        }
+
+        savingRef.current = true;
         setSaveState("saving");
         try {
             await storage.writeFile(filePath, rawMarkdown);
@@ -374,6 +392,8 @@ function Editor({
             if (!opts?.silent) {
                 alert(`Error saving file: ${error}`);
             }
+        } finally {
+            savingRef.current = false;
         }
     }, [editor, filePath, rawMarkdown, onSaved]);
 
