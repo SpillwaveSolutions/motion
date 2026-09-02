@@ -2,6 +2,13 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.1 — 2026-09-02
+
+- Roadmap snapshot: [[Roadmap-2026-09-02_v0.6.1-release]]
+- Shipped: Autosave races page teardown, so a write aborts and the E2E gate trips
+- Shipped: Syntax highlighting in Markdown and Split source
+- Shipped: Cut v0.6.1 release
+
 ## v0.6.0 — 2026-08-30
 
 - Roadmap snapshot: [[Roadmap-2026-08-30_v0.6.0-release]]
@@ -19,6 +26,8 @@ _What shipped, with the frozen evidence for each release. Generated; do not edit
 - Shipped: Tiptap tables + markdown round-trip
 - Shipped: Shared TS AI service: stream, per-doc session, prompt cache
 - Shipped: buildAiContext, canned prompts, session log, unwrap reply
+- Shipped: Insert Table nests when the caret is already in a table
+- Shipped: DocCommands batch should resolve against the original document
 - Shipped: Cut v0.6.0 release
 
 ## v0.1.0 — 2026-07-28

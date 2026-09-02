@@ -351,6 +351,11 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYQYYN3T3VB8RCTMJJ13FK2H",
+   "to": "pr/50",
+   "type": "lands-in"
+  },
+  {
    "from": "item/01KYQYYN3T5RXZWBXWV9VNP3ZH",
    "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
    "type": "belongs-to"
@@ -597,6 +602,11 @@
   },
   {
    "from": "item/01M19Z6Z5DJ54227R1WYVVX2GF",
+   "to": "pr/48",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M19Z6Z5DJ54227R1WYVVX2GF",
    "to": "release/v0.6.0",
    "type": "targets"
   },
@@ -607,12 +617,77 @@
   },
   {
    "from": "item/01M19Z6Z6X06VRZM95741Y2748",
+   "to": "pr/48",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M19Z6Z6X06VRZM95741Y2748",
    "to": "release/v0.6.0",
    "type": "targets"
   },
   {
    "from": "item/01M1A5MN90SK807JPBFKZCA5YW",
+   "to": "pr/47",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1A5MN90SK807JPBFKZCA5YW",
    "to": "release/v0.6.0",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1ABYDSANE2N1W2HDTF350EV",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1ABYDSANE2N1W2HDTF350EV",
+   "to": "pr/49",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1ABYDSANE2N1W2HDTF350EV",
+   "to": "release/v0.6.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1ABZH14RJDDJ7M7HT3TZKYW",
+   "to": "item/01M18R79ZMN53CMV76JFHKVEFN",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1ABZH14RJDDJ7M7HT3TZKYW",
+   "to": "release/v0.6.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1ABZH2F573CM32N93NDMAGB",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1FRJ0NDQB3PG4107FR537KK",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1FRJ0NDQB3PG4107FR537KK",
+   "to": "pr/49",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1FRJ0NDQB3PG4107FR537KK",
+   "to": "release/v0.6.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1FVGZH0V9MR9GVHDF99VXED",
+   "to": "pr/51",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1FVGZH0V9MR9GVHDF99VXED",
+   "to": "release/v0.6.1",
    "type": "targets"
   },
   {
@@ -1064,6 +1139,21 @@
    "from": "roadmap-snapshot/2026-08-30_v0.6.0-release",
    "to": "release/v0.6.0",
    "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-02_v0.6.1-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-02_v0.6.1-release",
+   "to": "roadmap-snapshot/2026-08-30_v0.6.0-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-02_v0.6.1-release",
+   "to": "release/v0.6.1",
+   "type": "targets"
   }
  ],
  "nodes": {
@@ -1451,7 +1541,7 @@
   },
   "item/01KYQYYN3T3VB8RCTMJJ13FK2H": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Welcome / demo datasets resolve when the open folder is not Motion"
   },
   "item/01KYQYYN3T5RXZWBXWV9VNP3ZH": {
@@ -1461,7 +1551,7 @@
   },
   "item/01KYQYYN3T5W49QH05WCCYX7CE": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Sidebar: directory tree view alongside flat markdown list"
   },
   "item/01KYQYYN3T731B57N8NXQ8C0FQ": {
@@ -1601,18 +1691,43 @@
   },
   "item/01M19Z6Z5DJ54227R1WYVVX2GF": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Insert Table nests when the caret is already in a table"
   },
   "item/01M19Z6Z6X06VRZM95741Y2748": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "DocCommands batch should resolve against the original document"
   },
   "item/01M1A5MN90SK807JPBFKZCA5YW": {
    "doc_type": "item",
    "status": "done",
    "title": "Cut v0.6.0 release"
+  },
+  "item/01M1ABYDSANE2N1W2HDTF350EV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Autosave races page teardown, so a write aborts and the E2E gate trips"
+  },
+  "item/01M1ABZH14RJDDJ7M7HT3TZKYW": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Ask AI does not say when a reply was cut off at max_tokens"
+  },
+  "item/01M1ABZH2F573CM32N93NDMAGB": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Dev-server publish handlers have no test of their own"
+  },
+  "item/01M1FRJ0NDQB3PG4107FR537KK": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Syntax highlighting in Markdown and Split source"
+  },
+  "item/01M1FVGZH0V9MR9GVHDF99VXED": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Cut v0.6.1 release"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
@@ -1659,6 +1774,21 @@
   "pr/46": {
    "doc_type": "pr"
   },
+  "pr/47": {
+   "doc_type": "pr"
+  },
+  "pr/48": {
+   "doc_type": "pr"
+  },
+  "pr/49": {
+   "doc_type": "pr"
+  },
+  "pr/50": {
+   "doc_type": "pr"
+  },
+  "pr/51": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -1666,6 +1796,9 @@
    "doc_type": "release"
   },
   "release/v0.6.0": {
+   "doc_type": "release"
+  },
+  "release/v0.6.1": {
    "doc_type": "release"
   },
   "roadmap": {
@@ -1683,6 +1816,12 @@
   "roadmap-snapshot/2026-08-30_v0.6.0-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-08-30_v0.6.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-09-02_v0.6.1-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-09-02_v0.6.1-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },

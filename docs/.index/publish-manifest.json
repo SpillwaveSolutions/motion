@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "931236b5ec99",
+   "render_hash": "f3c178e65537",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "308fd58a6e0a",
+   "render_hash": "8e9a7ebe5aae",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -102,6 +102,56 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-47",
+   "render": "as-is",
+   "render_hash": "611bb5d9ce90",
+   "source": "docs/.index/rendered/prs/47.md",
+   "title": "PR #47",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/47"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-48",
+   "render": "as-is",
+   "render_hash": "d8a1de3a91f1",
+   "source": "docs/.index/rendered/prs/48.md",
+   "title": "PR #48",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/48"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-49",
+   "render": "as-is",
+   "render_hash": "f6708960a5cb",
+   "source": "docs/.index/rendered/prs/49.md",
+   "title": "PR #49",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/49"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-50",
+   "render": "as-is",
+   "render_hash": "2606407c54b5",
+   "source": "docs/.index/rendered/prs/50.md",
+   "title": "PR #50",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/50"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-51",
+   "render": "as-is",
+   "render_hash": "307d05db9612",
+   "source": "docs/.index/rendered/prs/51.md",
+   "title": "PR #51",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/51"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -124,11 +174,21 @@
    "frozen": false,
    "page_name": "Release-v0.6.0",
    "render": "as-is",
-   "render_hash": "6ebe4115cd07",
+   "render_hash": "f9a3ce45581c",
    "source": "docs/.index/rendered/releases/v0.6.0.md",
    "title": "Release v0.6.0",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.0"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.1",
+   "render": "as-is",
+   "render_hash": "67239a610709",
+   "source": "docs/.index/rendered/releases/v0.6.1.md",
+   "title": "Release v0.6.1",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.1"
   },
   {
    "frozen": false,
@@ -854,7 +914,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
    "render": "as-is",
-   "render_hash": "ecaae7106c3e",
+   "render_hash": "f263b5f384c9",
    "source": "docs/.index/rendered/tickets/01KYQYYN3SBWDT25TC6H3G4EAA.md",
    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
    "truth_state": "open",
@@ -874,10 +934,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYQYYN3T3VB8RCTMJJ13FK2H",
    "render": "as-is",
-   "render_hash": "6161a1cd48fe",
+   "render_hash": "49f3a70b20db",
    "source": "docs/.index/rendered/tickets/01KYQYYN3T3VB8RCTMJJ13FK2H.md",
    "title": "Welcome / demo datasets resolve when the open folder is not Motion",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYQYYN3T3VB8RCTMJJ13FK2H"
   },
   {
@@ -894,10 +954,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYQYYN3T5W49QH05WCCYX7CE",
    "render": "as-is",
-   "render_hash": "82d4fa2a6cc7",
+   "render_hash": "5bdf835499d0",
    "source": "docs/.index/rendered/tickets/01KYQYYN3T5W49QH05WCCYX7CE.md",
    "title": "Sidebar: directory tree view alongside flat markdown list",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYQYYN3T5W49QH05WCCYX7CE"
   },
   {
@@ -1144,7 +1204,7 @@
    "frozen": false,
    "page_name": "Ticket-01M18R79ZMN53CMV76JFHKVEFN",
    "render": "as-is",
-   "render_hash": "e3c614d5d1c6",
+   "render_hash": "bd8d6582d23a",
    "source": "docs/.index/rendered/tickets/01M18R79ZMN53CMV76JFHKVEFN.md",
    "title": "AI editor: selection, /ai, preview",
    "truth_state": "open",
@@ -1174,31 +1234,81 @@
    "frozen": false,
    "page_name": "Ticket-01M19Z6Z5DJ54227R1WYVVX2GF",
    "render": "as-is",
-   "render_hash": "1cfc6d3d252f",
+   "render_hash": "818eac4bfbf5",
    "source": "docs/.index/rendered/tickets/01M19Z6Z5DJ54227R1WYVVX2GF.md",
    "title": "Insert Table nests when the caret is already in a table",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M19Z6Z5DJ54227R1WYVVX2GF"
   },
   {
    "frozen": false,
    "page_name": "Ticket-01M19Z6Z6X06VRZM95741Y2748",
    "render": "as-is",
-   "render_hash": "a4909fdd6c40",
+   "render_hash": "1edb09c9ccf5",
    "source": "docs/.index/rendered/tickets/01M19Z6Z6X06VRZM95741Y2748.md",
    "title": "DocCommands batch should resolve against the original document",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M19Z6Z6X06VRZM95741Y2748"
   },
   {
    "frozen": false,
    "page_name": "Ticket-01M1A5MN90SK807JPBFKZCA5YW",
    "render": "as-is",
-   "render_hash": "0c350a05b34f",
+   "render_hash": "657a31d56eb3",
    "source": "docs/.index/rendered/tickets/01M1A5MN90SK807JPBFKZCA5YW.md",
    "title": "Cut v0.6.0 release",
    "truth_state": "done",
    "wiki_key": "item/01M1A5MN90SK807JPBFKZCA5YW"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1ABYDSANE2N1W2HDTF350EV",
+   "render": "as-is",
+   "render_hash": "22837ec01bda",
+   "source": "docs/.index/rendered/tickets/01M1ABYDSANE2N1W2HDTF350EV.md",
+   "title": "Autosave races page teardown, so a write aborts and the E2E gate trips",
+   "truth_state": "done",
+   "wiki_key": "item/01M1ABYDSANE2N1W2HDTF350EV"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1ABZH14RJDDJ7M7HT3TZKYW",
+   "render": "as-is",
+   "render_hash": "82c2d22f5b0b",
+   "source": "docs/.index/rendered/tickets/01M1ABZH14RJDDJ7M7HT3TZKYW.md",
+   "title": "Ask AI does not say when a reply was cut off at max_tokens",
+   "truth_state": "open",
+   "wiki_key": "item/01M1ABZH14RJDDJ7M7HT3TZKYW"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1ABZH2F573CM32N93NDMAGB",
+   "render": "as-is",
+   "render_hash": "e1f6c5ebf461",
+   "source": "docs/.index/rendered/tickets/01M1ABZH2F573CM32N93NDMAGB.md",
+   "title": "Dev-server publish handlers have no test of their own",
+   "truth_state": "open",
+   "wiki_key": "item/01M1ABZH2F573CM32N93NDMAGB"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1FRJ0NDQB3PG4107FR537KK",
+   "render": "as-is",
+   "render_hash": "05fc6681c75c",
+   "source": "docs/.index/rendered/tickets/01M1FRJ0NDQB3PG4107FR537KK.md",
+   "title": "Syntax highlighting in Markdown and Split source",
+   "truth_state": "done",
+   "wiki_key": "item/01M1FRJ0NDQB3PG4107FR537KK"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1FVGZH0V9MR9GVHDF99VXED",
+   "render": "as-is",
+   "render_hash": "2de1b0b386ba",
+   "source": "docs/.index/rendered/tickets/01M1FVGZH0V9MR9GVHDF99VXED.md",
+   "title": "Cut v0.6.1 release",
+   "truth_state": "done",
+   "wiki_key": "item/01M1FVGZH0V9MR9GVHDF99VXED"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -1278,11 +1388,11 @@
    "wiki_key": "plan/2026-08-30-native-mac-app"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-30T20:27:24Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-02T01:26:22Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "875ee766ea69",
+   "render_hash": "13fb9f38fbf0",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1311,11 +1421,22 @@
    "wiki_key": "roadmap-snapshot/2026-08-30_v0.6.0-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.1 (2026-09-02) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-09-02_v0.6.1-release",
+   "render": "doc+banner",
+   "render_hash": "525200181830",
+   "source": "docs/roadmap/2026-09-02_v0.6.1-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-09-02_v0.6.1-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "72169c1a9ac8",
+   "render_hash": "4ee4df760b74",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -1323,7 +1444,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "10da5594f0ad",
+  "render_hash": "a8b8c37d2c31",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

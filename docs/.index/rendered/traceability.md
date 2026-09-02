@@ -2,18 +2,47 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Cut v0.6.1 release
+`01M1FVGZH0V9MR9GVHDF99VXED` · status: done
+- lands-in: pr/51
+- targets: release/v0.6.1
+
+### Syntax highlighting in Markdown and Split source
+`01M1FRJ0NDQB3PG4107FR537KK` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- lands-in: pr/49
+- targets: release/v0.6.1
+
+### Dev-server publish handlers have no test of their own
+`01M1ABZH2F573CM32N93NDMAGB` · status: todo
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+
+### Ask AI does not say when a reply was cut off at max_tokens
+`01M1ABZH14RJDDJ7M7HT3TZKYW` · status: todo
+- belongs-to: AI editor: selection, /ai, preview
+- targets: release/v0.6.1
+
+### Autosave races page teardown, so a write aborts and the E2E gate trips
+`01M1ABYDSANE2N1W2HDTF350EV` · status: done
+- belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/49
+- targets: release/v0.6.1
+
 ### Cut v0.6.0 release
 `01M1A5MN90SK807JPBFKZCA5YW` · status: done
+- lands-in: pr/47
 - targets: release/v0.6.0
 
 ### DocCommands batch should resolve against the original document
-`01M19Z6Z6X06VRZM95741Y2748` · status: todo
+`01M19Z6Z6X06VRZM95741Y2748` · status: done
 - belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/48
 - targets: release/v0.6.0
 
 ### Insert Table nests when the caret is already in a table
-`01M19Z6Z5DJ54227R1WYVVX2GF` · status: todo
+`01M19Z6Z5DJ54227R1WYVVX2GF` · status: done
 - belongs-to: AI editor: selection, /ai, preview
+- lands-in: pr/48
 - targets: release/v0.6.0
 
 ### Bun sidecar so packaged Tauri streams Ask AI
@@ -41,6 +70,8 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Bun sidecar so packaged Tauri streams Ask AI
 - contains: Insert Table nests when the caret is already in a table
 - contains: DocCommands batch should resolve against the original document
+- contains: Autosave races page teardown, so a write aborts and the E2E gate trips
+- contains: Ask AI does not say when a reply was cut off at max_tokens
 - produced-by: [[Plan-ai-editor]]
 
 ### Shared TS AI service: stream, per-doc session, prompt cache
@@ -185,7 +216,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Sidebar: directory tree view alongside flat markdown list
-`01KYQYYN3T5W49QH05WCCYX7CE` · status: todo
+`01KYQYYN3T5W49QH05WCCYX7CE` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
 - produced-by: [[Plan-save-ux-and-next]]
 
@@ -195,8 +226,9 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Welcome / demo datasets resolve when the open folder is not Motion
-`01KYQYYN3T3VB8RCTMJJ13FK2H` · status: todo
+`01KYQYYN3T3VB8RCTMJJ13FK2H` · status: done
 - belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- lands-in: pr/50
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### Agent-browser final pass in Definition of Done
@@ -218,6 +250,8 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Write or update design docs for post-v0.1 dogfood work and publish to wiki
 - contains: Update user guide for current behaviour and publish to wiki
 - contains: Keep README feature list and known limitations current
+- contains: Dev-server publish handlers have no test of their own
+- contains: Syntax highlighting in Markdown and Split source
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### README and user guide claimed markdown tables, which are not supported
