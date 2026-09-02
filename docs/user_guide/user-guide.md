@@ -79,11 +79,11 @@ macOS packaging, Open With, and unsigned local builds:
 | Mode | What you get |
 |---|---|
 | **WYSIWYG** | Rendered editing — headings, lists, diagrams in place |
-| **Markdown** | The raw source in a plain text area |
+| **Markdown** | The raw source, syntax-highlighted, in a labeled text area |
 | **Split** | Rendered editor beside the markdown source |
 
-Switch freely; your edits carry across. Split view shows the markdown *source*,
-not a second rendered preview.
+Switch freely; your edits carry across. Split view shows the markdown *source* (also highlighted),
+not a second rendered preview. Switching views does not count as an edit.
 
 ---
 

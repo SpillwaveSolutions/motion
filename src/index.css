@@ -315,6 +315,101 @@ pre {
   width: 100%;
 }
 
+/* Highlighted markdown source (Markdown mode + Split preview) */
+.markdown-source {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+}
+
+.markdown-source-highlight,
+.markdown-source-input,
+.markdown-source-preview {
+  margin: 0;
+  padding: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  tab-size: 4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.markdown-source-highlight,
+.markdown-source-input {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+}
+
+.markdown-source-highlight {
+  pointer-events: none;
+  color: var(--color-text-primary);
+}
+
+.markdown-source-input {
+  z-index: 1;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-lg);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: var(--color-text-primary);
+  resize: none;
+  outline: none;
+}
+
+.markdown-source-input::placeholder {
+  color: var(--color-text-muted);
+  -webkit-text-fill-color: var(--color-text-muted);
+}
+
+.markdown-source-preview {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-primary);
+}
+
+.markdown-source-highlight .hljs-section,
+.markdown-source-preview .hljs-section {
+  color: var(--color-accent-blue);
+  font-weight: 600;
+}
+.markdown-source-highlight .hljs-strong,
+.markdown-source-preview .hljs-strong {
+  color: var(--color-accent-orange);
+  font-weight: 700;
+}
+.markdown-source-highlight .hljs-emphasis,
+.markdown-source-preview .hljs-emphasis {
+  color: var(--color-accent-purple);
+  font-style: italic;
+}
+.markdown-source-highlight .hljs-code,
+.markdown-source-preview .hljs-code {
+  color: var(--color-accent-green);
+}
+.markdown-source-highlight .hljs-link,
+.markdown-source-preview .hljs-link,
+.markdown-source-highlight .hljs-string,
+.markdown-source-preview .hljs-string {
+  color: var(--color-text-link);
+}
+.markdown-source-highlight .hljs-bullet,
+.markdown-source-preview .hljs-bullet,
+.markdown-source-highlight .hljs-quote,
+.markdown-source-preview .hljs-quote {
+  color: var(--color-accent-orange);
+}
+
 .find-bar {
   display: flex;
   flex-wrap: wrap;

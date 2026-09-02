@@ -4,6 +4,14 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Added
+
+- **Syntax highlighting in Markdown and Split.** Headings, emphasis, code,
+  links, and list markers are colored in the source editor. The control is
+  still a labeled textarea (`Markdown source`) so Find and screen readers keep
+  working; a highlight layer sits behind it. Split's right pane uses the same
+  highlighter.
+
 ### Fixed
 
 - **Insert Table no longer nests a table inside a cell.** Table cells accept
@@ -22,6 +30,12 @@ All notable changes to Motion are recorded here. Dates are UTC.
   explicit Save/⌘S could both put a `POST /api/fs/write` on the wire for
   identical content; the redundant one showed up as an aborted request when the
   page moved on before it landed.
+- **Switching view modes no longer dirties an unedited note.** Tiptap's
+  serializer reformats table pipes and trailing newlines; that used to look
+  like an edit, so autosave rewrote the file just for looking at it in another
+  view. Hydration now adopts the serialized form as the clean baseline. E2E
+  waits for save quiescence before tearing the page down so an in-flight write
+  cannot abort into the page-error gate.
 
 ### Changed
 

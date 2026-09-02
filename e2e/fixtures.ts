@@ -77,6 +77,11 @@ export const test = base.extend<{ guard: PageGuard }>({
 
             await use(guard);
 
+            // If a write is already on the wire, wait for it. Do not click
+            // Save: specs share a workspace, and flushing would persist one
+            // spec's buffer into the next spec's seed file.
+            await waitForSaveQuiescence(page);
+
             const unexpected = guard.unexpected();
             expect(
                 unexpected,
@@ -89,6 +94,28 @@ export const test = base.extend<{ guard: PageGuard }>({
 });
 
 export { expect } from "@playwright/test";
+
+/**
+ * Wait until an in-flight save finishes. Does not click Save: specs share a
+ * workspace, and flushing a dirty buffer would leak one spec's edits into
+ * the next spec's seed file. The debounce timer is cleared on unmount;
+ * only a POST already on the wire can abort into the page-error gate.
+ */
+export async function waitForSaveQuiescence(
+    page: import("@playwright/test").Page,
+): Promise<void> {
+    if (page.isClosed()) return;
+    const save = page.getByRole("button", { name: "Save note" });
+    try {
+        if (await save.count() === 0) return;
+        if (!(await save.isVisible().catch(() => false))) return;
+        const label = ((await save.textContent()) ?? "").trim();
+        if (!/Saving/.test(label)) return;
+        await expect(save).not.toContainText("Saving", { timeout: 10_000 });
+    } catch {
+        // Page already tearing down or the shell never mounted.
+    }
+}
 
 /** Navigate and wait for React to have actually rendered, not merely parsed. */
 export async function gotoApp(
