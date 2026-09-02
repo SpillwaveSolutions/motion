@@ -8,6 +8,7 @@ These describe the **current** product, not a redesign. Update the matching file
 |--------|------|
 | App chrome | [shell.md](./shell.md) |
 | Editor | [editor.md](./editor.md) |
+| Markdown source | [markdown-source.md](./markdown-source.md) |
 | Slash menu | [slash-menu.md](./slash-menu.md) |
 | Ask AI | [ask-ai.md](./ask-ai.md) |
 | Content blocks | [blocks.md](./blocks.md) |

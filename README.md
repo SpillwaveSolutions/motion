@@ -10,7 +10,7 @@ natural-language prompts using CLI tools you already have installed.
 
 ### Editing
 
-- **Three view modes** — WYSIWYG, raw Markdown, and Split, switchable at any time.
+- **Three view modes** — WYSIWYG, syntax-highlighted Markdown, and Split, switchable at any time.
   Edits carry across modes without loss.
 - **Workspace management** — open a folder and Motion lists every markdown file
   under it as a **collapsible directory tree**. **Search notes** filters by

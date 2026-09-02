@@ -12,6 +12,8 @@ import {
     type SlashCommand,
 } from "./insertBlock";
 import { AskAiBubble, AskAiPanel, askAiStatesEqual, isAskAiPanelOpen, type AskAiState } from "./AskAi";
+import { MarkdownPreview, MarkdownSource } from "./MarkdownSource";
+import { applySerializedMarkdown } from "./dirtyBaseline";
 import MermaidExtension from "./extensions/MermaidExtension";
 import { DatasetExtension } from "./extensions/DatasetExtension";
 import { QueryExtension } from "./extensions/QueryExtension";
@@ -176,6 +178,8 @@ function Editor({
     const [saveState, setSaveState] = useState<SaveState>("idle");
     const [dirty, setDirty] = useState(false);
     const snapshotRef = useRef("");
+    const hydratingRef = useRef(false);
+    const hydrateGenRef = useRef(0);
     const [findOpen, setFindOpen] = useState(false);
     const [findQuery, setFindQuery] = useState("");
     const [findIndex, setFindIndex] = useState(0);
@@ -327,6 +331,18 @@ function Editor({
             // onUpdate (setEditable, leftover transactions) must not clobber it.
             if (viewModeRef.current === "markdown") return;
             const md = htmlToMarkdown(updatedEditor.getHTML());
+            if (hydratingRef.current) {
+                const next = applySerializedMarkdown(
+                    { snapshot: snapshotRef.current, hydrating: true },
+                    md
+                );
+                snapshotRef.current = next.snapshot;
+                setRawMarkdown(md);
+                setDirty(false);
+                onMarkdownChangeRef.current?.(md);
+                syncOverlaysRef.current(updatedEditor);
+                return;
+            }
             setRawMarkdown(md);
             onMarkdownChangeRef.current?.(md);
             syncOverlaysRef.current(updatedEditor);
@@ -342,6 +358,25 @@ function Editor({
     useEffect(() => {
         editorRef.current = editor;
     }, [editor]);
+
+    const adoptHydratedBaseline = useCallback((ed: TiptapEditor) => {
+        const gen = ++hydrateGenRef.current;
+        const run = () => {
+            if (gen !== hydrateGenRef.current) return;
+            const md = htmlToMarkdown(ed.getHTML());
+            snapshotRef.current = applySerializedMarkdown(
+                { snapshot: md, hydrating: true },
+                md
+            ).snapshot;
+            setRawMarkdown(md);
+            setDirty(false);
+            onMarkdownChangeRef.current?.(md);
+            hydratingRef.current = false;
+        };
+        requestAnimationFrame(() => {
+            requestAnimationFrame(run);
+        });
+    }, []);
 
     const askAiPanelOpen = isAskAiPanelOpen(askAi);
     useEffect(() => {
@@ -708,11 +743,13 @@ function Editor({
                     onMarkdownChangeRef.current?.(content);
                     snapshotRef.current = content;
                     setDirty(false);
+                    hydratingRef.current = true;
                     const rawHtml = await markdownToHtml(content);
                     // Sanitize Markdown→HTML before TipTap to prevent XSS from untrusted .md files
                     const html = sanitizeHtml(rawHtml);
                     if (cancelled) return;
                     editor.commands.setContent(html, { emitUpdate: false });
+                    adoptHydratedBaseline(editor);
                 } catch (error) {
                     if (cancelled) return;
                     console.error("Failed to read file:", error);
@@ -729,15 +766,19 @@ function Editor({
                 onMarkdownChangeRef.current?.("");
                 snapshotRef.current = "";
                 setDirty(false);
+                hydratingRef.current = true;
                 editor.commands.setContent(welcomeHTML, { emitUpdate: false });
+                adoptHydratedBaseline(editor);
             }
         };
 
         loadFile();
         return () => {
             cancelled = true;
+            hydrateGenRef.current += 1;
+            hydratingRef.current = false;
         };
-    }, [filePath, editor]);
+    }, [filePath, editor, adoptHydratedBaseline]);
 
     // Sync markdown-mode edits into the editor doc when leaving markdown mode.
     // The reverse direction (wysiwyg/split -> markdown) is already covered by
@@ -751,11 +792,14 @@ function Editor({
         const prev = prevViewModeRef.current;
         prevViewModeRef.current = viewMode;
         if (!shouldSyncMarkdownIntoEditor(prev, viewMode)) return;
+        const wasClean = rawMarkdownRef.current === snapshotRef.current;
         const timer = window.setTimeout(() => {
             void (async () => {
+                if (wasClean) hydratingRef.current = true;
                 const rawHtml = await markdownToHtml(rawMarkdownRef.current);
                 const html = sanitizeHtml(rawHtml);
                 editor.commands.setContent(html, { emitUpdate: false });
+                if (wasClean) adoptHydratedBaseline(editor);
             })();
         }, 0);
         return () => window.clearTimeout(timer);
@@ -937,28 +981,13 @@ function Editor({
                 {toolbar}
                 {findBar}
                 {askAiPanel}
-                <textarea
-                    ref={markdownRef}
-                    aria-label="Markdown source"
-                    style={{
-                        flex: 1,
-                        background: "var(--color-bg-secondary)",
-                        border: "1px solid var(--color-border-primary)",
-                        borderRadius: "var(--radius-lg)",
-                        padding: "var(--space-6)",
-                        color: "var(--color-text-primary)",
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-sm)",
-                        lineHeight: 1.7,
-                        resize: "none",
-                        outline: "none",
-                    }}
+                <MarkdownSource
+                    textareaRef={markdownRef}
                     value={rawMarkdown}
-                    onChange={(e) => {
-                        setRawMarkdown(e.target.value);
-                        onMarkdownChangeRef.current?.(e.target.value);
+                    onChange={(value) => {
+                        setRawMarkdown(value);
+                        onMarkdownChangeRef.current?.(value);
                     }}
-                    placeholder="Write your markdown here..."
                 />
             </div>
         );
@@ -974,22 +1003,7 @@ function Editor({
                 {askAiBubble}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)", flex: 1 }}>
                     <EditorContent editor={editor} />
-                    <div
-                        style={{
-                            background: "var(--color-bg-secondary)",
-                            border: "1px solid var(--color-border-primary)",
-                            borderRadius: "var(--radius-lg)",
-                            padding: "var(--space-6)",
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "var(--text-sm)",
-                            lineHeight: 1.7,
-                            color: "var(--color-text-secondary)",
-                            overflow: "auto",
-                            whiteSpace: "pre-wrap",
-                        }}
-                    >
-                        {rawMarkdown}
-                    </div>
+                    <MarkdownPreview value={rawMarkdown} />
                 </div>
             </div>
         );

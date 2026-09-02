@@ -34,6 +34,9 @@ export const SEED_FILES: Record<string, string> = {
     "scratch-tables.md": "# Scratch: tables\n",
     "scratch-commands.md":
         "# Scratch: commands\n\nThe quick brown fox jumps over the lazy dog.\n\n| Name | Role |\n| --- | --- |\n| Ada | Engineer |\n",
+    // Tight GFM pipes (no padding). The serializer rewrites these to
+    // `| Name | Role |` — switching views must not treat that as an edit.
+    "scratch-dirty.md": "# Tight pipes\n\n|Name|Role|\n|---|---|\n|Ada|Engineer|\n",
 };
 
 export function createWorkspace(): string {
