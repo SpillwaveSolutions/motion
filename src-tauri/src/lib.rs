@@ -238,6 +238,7 @@ fn install_menu(app: &tauri::App) -> tauri::Result<()> {
     let save = MenuItemBuilder::with_id("save", "Save")
         .accelerator("CmdOrCtrl+S")
         .build(app)?;
+    let copy_all = MenuItemBuilder::with_id("copy_all", "Copy All").build(app)?;
     let share_gist = MenuItemBuilder::with_id("share_gist", "Publish to Gist").build(app)?;
     let share_notion = MenuItemBuilder::with_id("share_notion", "Publish to Notion").build(app)?;
     let settings = MenuItemBuilder::with_id("settings", "Settings…")
@@ -249,6 +250,7 @@ fn install_menu(app: &tauri::App) -> tauri::Result<()> {
         .item(&open_folder)
         .separator()
         .item(&save)
+        .item(&copy_all)
         .separator()
         .item(&share_gist)
         .item(&share_notion)

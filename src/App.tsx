@@ -5,6 +5,7 @@ import { storage, rememberWorkspaceRoot, relativeToWorkspace, isTauri } from "./
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 import { parseOpenQuery, resolveOpenQuery } from "./lib/openFile";
 import { loadPersistedWorkspace, persistWorkspace } from "./lib/workspaceMemory";
+import { buildCopyPayload, writeCopyPayload } from "./lib/copyNote";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -133,12 +134,32 @@ function App() {
     /** Folder absolute paths that are expanded. Empty set means “all expanded” until user toggles. */
     const [expanded, setExpanded] = useState<Set<string> | null>(null);
     const [notesOpen, setNotesOpen] = useState(false);
+    const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
     const liveMarkdownRef = useRef("");
+    const currentFilePathRef = useRef(currentFilePath);
+    currentFilePathRef.current = currentFilePath;
     const searchRef = useRef<HTMLInputElement>(null);
 
     const handleMarkdownChange = useCallback((md: string) => {
         liveMarkdownRef.current = md;
     }, []);
+
+    const handleCopyAll = useCallback(async () => {
+        if (!currentFilePathRef.current) return;
+        const markdown = liveMarkdownRef.current;
+        try {
+            const payload = await buildCopyPayload(markdown);
+            await writeCopyPayload(payload);
+            setCopyState("copied");
+            window.setTimeout(() => setCopyState("idle"), 1500);
+        } catch {
+            setCopyState("error");
+            window.setTimeout(() => setCopyState("idle"), 2000);
+        }
+    }, []);
+
+    const handleCopyAllRef = useRef(handleCopyAll);
+    handleCopyAllRef.current = handleCopyAll;
 
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
@@ -453,6 +474,7 @@ function App() {
             if (id === "open_folder") void handleOpenFolderRef.current();
             else if (id === "new_note") void handleNewNoteRef.current();
             else if (id === "save") setSaveSignal((n) => n + 1);
+            else if (id === "copy_all") void handleCopyAllRef.current();
             else if (id === "share_gist") window.dispatchEvent(new CustomEvent("motion-share", { detail: "gist" }));
             else if (id === "share_notion") window.dispatchEvent(new CustomEvent("motion-share", { detail: "notion" }));
             else if (id === "settings") window.dispatchEvent(new CustomEvent("motion-share", { detail: "settings" }));
@@ -582,6 +604,26 @@ function App() {
                         filename={currentFilePath ? getBasename(currentFilePath) : "untitled.md"}
                         getContent={() => liveMarkdownRef.current}
                     />
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-testid="copy-all"
+                        aria-label="Copy all"
+                        aria-live="polite"
+                        disabled={!currentFilePath}
+                        title={
+                            !currentFilePath
+                                ? "Select a note to copy"
+                                : "Copy as markdown or rich text, depending on where you paste"
+                        }
+                        onClick={() => void handleCopyAll()}
+                    >
+                        {copyState === "copied"
+                            ? "Copied"
+                            : copyState === "error"
+                              ? "Copy failed"
+                              : "Copy All"}
+                    </button>
                     <button className="btn btn-secondary" onClick={handleOpenFolder}>
                         Open Folder
                     </button>

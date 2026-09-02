@@ -8,7 +8,7 @@ Give the user a workspace of markdown notes they can find by **filename or conte
 ```
 +-----------------------------------------------------------------+
 | [logo] Motion | Search notes... | WYSIWYG Markdown Split |      |
-|               |                 | Share  Open Folder  New Note  New Folder  Save  Synthesize |
+|               |                 | Share  Copy All  Open Folder  New Note  New Folder  Save  Synthesize |
 +-----------------------------------------------------------------+
 | (optional synthesis status banner + dismiss)                    |
 +-----------------+-----------------------------------------------+
@@ -32,6 +32,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | View toggle | 3 buttons | WYSIWYG / Markdown / Split. role=group aria-label=Editor view mode. Each button has aria-pressed. |
 | Open Folder | secondary | Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
 | Share | secondary | See publish.md. Disabled until a note is selected. |
+| Copy All | secondary | Copies the live note buffer (unsaved edits included). Clipboard carries `text/plain` as markdown and `text/html` as rendered rich text so paste into a markdown editor vs Docs/Word/Mail follows the destination. Disabled until a note is selected. Label: Copy All / Copied / Copy failed. Accessible name **Copy all**. `data-testid=copy-all`. |
 | New Note | primary | Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note. Placement is **tree-aware**: if a file is selected, the note is created in that file's parent folder; if no file is selected, it falls back to the workspace root. Selects the new note and clears search. |
 | New Folder | secondary | Disabled until a folder is open. Prompts for a folder name, then writes `README.md` inside that folder so the tree can show it. Placement is the same tree-aware parent as New Note. Expands the new folder and selects the README. |
 | Save | primary when dirty | Header control, aria-label Save note. Disabled with no note selected or while saving. Label: Save / Saving… / Saved / Save failed. ⌘/Ctrl+S also saves. Auto-saves 1.5s after the last edit. |
@@ -65,6 +66,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.
 - [ ] Synthesis banner is dismissible and uses role=status.
 - [ ] Save is a labeled header button (Save note). Disabled until a note is selected.
+- [ ] Copy All is a labeled header button (Copy all). Disabled until a note is selected. Click writes markdown + HTML to the clipboard and the label becomes Copied.
 - [ ] A dirty note autosaves ~1.5s after the last edit and can be saved immediately with the button or ⌘S.
 - [ ] Below 768px a **Notes** button (`data-testid=open-notes`) opens a drawer with the same tree; Escape and selecting a file close it.
 
