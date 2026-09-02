@@ -30,7 +30,7 @@ test("welcome datasets register and show rows without an error banner", async ({
     await expect(datasets).toHaveCount(2, { timeout: 20_000 });
 
     // No install failure UI — the red "Failed to load dataset" banners.
-    await expect(editor.locator(".dataset-error")).toHaveCount(0);
+    await expect(editor.locator(".dataset-error")).toHaveCount(0, { timeout: 20_000 });
 
     // Rows from sample-data.csv (table team) and sample-events.jsonl (events).
     await expect(editor).toContainText("Alice", { timeout: 20_000 });
@@ -98,10 +98,6 @@ test("a missing dataset source surfaces an error instead of a silent empty table
     page,
     guard,
 }) => {
-    // Missing path: HTTP 404 on /api/fs/read, plus Chromium's console.error for
-    // the failed resource load. Both are the expected signal for this path.
-    guard.allow(/HTTP 404:.*\/api\/fs\/read/);
-    guard.allow(/console\.error: Failed to load resource:.*404/);
     // Tiptap 3 + React 19: node views call flushSync while markdown→WYSIWYG
     // setContent is landing. Isolated this spec is clean; under a warm suite
     // the same path logs this and trips the console gate.
@@ -126,5 +122,25 @@ test("a missing dataset source surfaces an error instead of a silent empty table
     const block = page.locator(".ProseMirror .dataset-block");
     await expect(block).toBeVisible({ timeout: 20_000 });
     await expect(block.locator(".dataset-error")).toBeVisible({ timeout: 20_000 });
-    await expect(block.locator(".dataset-error")).toContainText(/Failed to load|No such file|not found|does-not-exist/i);
+    await expect(block.locator(".dataset-error")).toContainText("Not in this workspace: does-not-exist.csv");
+});
+
+test("welcome datasets degrade when demo files are not in the workspace", async ({ page }) => {
+    await page.route("**/api/fs/data-files", async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: "[]",
+        });
+    });
+    await gotoApp(page);
+
+    const editor = page.locator(".ProseMirror");
+    await expect(editor.getByRole("heading", { name: "Welcome to Motion" })).toBeVisible();
+    const datasets = editor.locator(".dataset-block");
+    await expect(datasets).toHaveCount(2, { timeout: 20_000 });
+    const banners = editor.locator(".dataset-block .dataset-error");
+    await expect(banners).toHaveCount(2);
+    await expect(banners.first()).toContainText("Demo data is not in this workspace");
+    await expect(banners.nth(1)).toContainText("Demo data is not in this workspace");
 });

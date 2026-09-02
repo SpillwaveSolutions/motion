@@ -36,6 +36,13 @@ All notable changes to Motion are recorded here. Dates are UTC.
   view. Hydration now adopts the serialized form as the clean baseline. E2E
   waits for save quiescence before tearing the page down so an in-flight write
   cannot abort into the page-error gate.
+- **Welcome demo Dataset/Query blocks no longer dump DuckDB errors** when
+  `sample-data.csv` / `sample-events.jsonl` are missing from the open folder.
+  The Dataset checks the workspace listing first (no 404) and says "Demo data
+  is not in this workspace". When the files *are* in the folder they still
+  register (DuckDB init is shared across the two Dataset blocks and the Query).
+  A Query against an unregistered table says the table isn't registered
+  instead of a Catalog Error.
 
 ### Changed
 

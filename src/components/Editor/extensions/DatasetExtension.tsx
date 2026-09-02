@@ -2,6 +2,7 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useState } from "react";
 import { registerFile, executeQuery, clampLimit, validateIdentifier } from "../../../lib/data/duckdb";
+import { explainDatasetError, explainMissingDataset, workspaceHasDataFile } from "../../../lib/data/datasetErrors";
 import { storage, relativeToWorkspace } from "../../../lib/storage";
 import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
 
@@ -13,22 +14,41 @@ function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [availableFiles, setAvailableFiles] = useState<string[]>([]);
+    const [filesReady, setFilesReady] = useState(false);
 
     useEffect(() => {
         // Store the workspace-relative form, not the absolute path the backend
         // returns: an absolute path baked into a document does not exist on
         // anyone else's machine, and differed between web and desktop modes.
+        let cancelled = false;
         storage
             .listDataFiles()
-            .then((files) => setAvailableFiles(files.map(relativeToWorkspace)))
-            .catch(() => setAvailableFiles([]));
+            .then((files) => {
+                if (cancelled) return;
+                setAvailableFiles(files.map(relativeToWorkspace));
+                setFilesReady(true);
+            })
+            .catch(() => {
+                if (cancelled) return;
+                setAvailableFiles([]);
+                setFilesReady(true);
+            });
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     const loadData = async () => {
         if (!source) return;
+        if (!filesReady) return;
         setLoading(true);
         setError(null);
         try {
+            if (!workspaceHasDataFile(availableFiles, source)) {
+                setError(explainMissingDataset(source));
+                setData([]);
+                return;
+            }
             const rawName =
                 name || source.split("/").pop()?.replace(/\.[^/.]+$/, "") || "table";
             // Normalize to a valid identifier (replace non-alphanumeric with underscore)
@@ -40,15 +60,18 @@ function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
             );
             setData(results);
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to load dataset");
+            setError(explainDatasetError(source, err));
+            setData([]);
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        loadData();
-    }, [source, name, safeLimit]);
+        void loadData();
+        // availableFiles is set in the same render as filesReady; depending on
+        // the array identity retriggers registerFile when listing lands twice.
+    }, [source, name, safeLimit, filesReady]);
 
     // Include the current source even if it's not in the listed files (e.g.
     // set via hand-authored markdown) so picking never silently drops it.
@@ -84,8 +107,8 @@ function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
             </div>
 
             {error ? (
-                <div className="dataset-error">
-                    <strong>Error:</strong> {error}
+                <div className="dataset-error" role="status">
+                    {error}
                 </div>
             ) : (
                 <div className="dataset-table-container">

@@ -2,6 +2,7 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useState } from "react";
 import { executeQuery } from "../../../lib/data/duckdb";
+import { explainQueryError } from "../../../lib/data/datasetErrors";
 import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
 
 function QueryNodeView({ node, updateAttributes }: NodeViewProps) {
@@ -20,7 +21,7 @@ function QueryNodeView({ node, updateAttributes }: NodeViewProps) {
             const data = await executeQuery(sql);
             setResults(data);
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Query failed");
+            setError(explainQueryError(err));
         } finally {
             setLoading(false);
         }
@@ -91,8 +92,8 @@ function QueryNodeView({ node, updateAttributes }: NodeViewProps) {
                     </pre>
 
                     {error ? (
-                        <div className="dataset-error">
-                            <strong>Error:</strong> {error}
+                        <div className="dataset-error" role="status">
+                            {error}
                         </div>
                     ) : (
                         <div className="dataset-table-container">

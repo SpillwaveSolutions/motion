@@ -213,10 +213,11 @@ Needs `claude` on your `PATH`. Without it the status bar reports the failure.
 
 Stated here so you meet them on your terms:
 
-- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) only loads when
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) loads when
   those files exist in the open workspace (they ship under `public/demo/`). Open
-  an unrelated project folder and the welcome Dataset/Query blocks will error
-  until you pick real files or open a folder that includes the samples.
+  an unrelated project folder and the Dataset blocks say the demo data is not
+  in this workspace — pick a local file or open the demo folder. No DuckDB
+  catalog dump.
 - **No hot reload.** The dev server rebuilds when files change but does not
   refresh the page — reload manually.
 - **Ask AI** uses `ANTHROPIC_API_KEY` when set, otherwise `claude` on `PATH`.

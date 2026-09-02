@@ -32,9 +32,9 @@ Default source: graph TD A[Start] --> B[End].
 |---------|----------|
 | Fields | source (workspace-relative CSV/JSON/JSONL), name, optional limit |
 | View | Preview table of registered rows |
-| Error | Load error if the file is missing from the open workspace |
+| Error | Missing file: "Not in this workspace: {source}". Welcome demo files (sample-data.csv, sample-events.jsonl) use "Demo data is not in this workspace…". No HTTP 404; the block checks the workspace listing first. |
 
-Welcome demo expects sample-data.csv and sample-events.jsonl in the workspace.
+Welcome demo *uses* those files when they exist (Alice / login rows). Opening any other folder must not dump DuckDB/HTTP internals ("duckdb is not initialized", Catalog Error, Failed to load dataset).
 
 ## Query
 
@@ -45,7 +45,7 @@ Welcome demo expects sample-data.csv and sample-events.jsonl in the workspace.
 | Edit | Textarea; Cancel / Save |
 | Run | Re-executes; button shows Running... while in flight |
 | Empty | No results |
-| Error | In-block error (including non-SELECT / unsafe SQL) |
+| Error | In-block. A missing table is "Table X isn't registered…", never a raw Catalog Error. |
 
 SQL is SELECT/WITH only, validated identifiers, clamped row limit. Cannot modify data.
 
@@ -78,11 +78,7 @@ SQL is SELECT/WITH only, validated identifiers, clamped row limit. Cannot modify
 - [ ] All five block types insert from the toolbar and the slash menu.
 - [ ] Blocks round-trip through save/reload as the same node types.
 - [ ] Mermaid renders SVG or an in-block error (never a blank card).
-- [ ] Query Edit/Run/Save/Cancel exist; results render as a table or No results.
-- [ ] Query cannot run non-SELECT statements.
-- [ ] Image Generate is disabled without a prompt; Refine appears only after an image exists.
 - [ ] Dataset/Query files must live inside the open workspace jail.
-- [ ] Generated SVG/HTML is sanitized before insertion.
-
-## Notes
-- Sources: MermaidExtension, DatasetExtension, QueryExtension, ImageGenExtension, DiagramGenExtension.
+- [ ] A Dataset whose source is not in the open folder shows a missing-file status, not a fetch 404 or "Failed to load dataset".
+- [ ] Welcome demo sources name the demo-folder hint when those files are absent; they still show Alice rows when the files are present.
+- [ ] A Query against an unregistered table does not show a DuckDB Catalog Error.
