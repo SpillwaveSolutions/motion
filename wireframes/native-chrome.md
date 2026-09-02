@@ -24,6 +24,7 @@ Motion    File                         Edit
  About    New Note          ⌘N         Undo / Redo / Cut / Copy / Paste
  Hide     Open Folder…      ⌘O
  Quit     Save              ⌘S
+          Copy All
           Share → Gist / Notion
           Settings…         ⌘,
 ```
@@ -37,6 +38,7 @@ Motion    File                         Edit
 | File → New Note | menu | Same handler as the header button. |
 | File → Open Folder… | menu | Same handler as Open Folder. |
 | File → Save | menu | Same handler as Save / ⌘S. |
+| File → Copy All | menu | Same handler as the header Copy All button. No accelerator (⌘⇧C is Inspect in Chromium). |
 | Edit menu | predefined | System cut/copy/paste/select all — do not replace this. |
 | Last workspace | session | Reopen the last folder (and last file if it still exists) on desktop launch. Finder-opened files win over the saved workspace. Browser does not auto-open (E2E depends on an explicit Open Folder). |
 | System appearance | theme | Dark tokens remain the default. `@media (prefers-color-scheme: light)` swaps to a light set. |

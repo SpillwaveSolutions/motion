@@ -66,6 +66,11 @@ a GitHub Gist or a Notion page. Open **Settings…** from that menu to store a
 gist-scoped GitHub token and/or a Notion integration token plus parent page.
 Tokens never leave this machine.
 
+**Copy All** copies the current note (including unsaved edits). Paste into a
+markdown editor or a terminal to get markdown; paste into Docs, Word, Mail, or
+Slack's rich field to get formatted text. The button reads **Copied** for a
+moment after it works.
+
 Motion cannot read or write anything outside the folder you opened. Paths are
 resolved to their real location first, so a symbolic link pointing elsewhere is
 refused rather than followed.

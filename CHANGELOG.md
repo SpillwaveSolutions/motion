@@ -4,6 +4,14 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Added
+
+- **Copy All.** Header control copies the current note (unsaved edits included).
+  The clipboard holds markdown as `text/plain` and rendered HTML as `text/html`,
+  so paste into a markdown editor vs Docs / Word / Mail follows the destination.
+  Label becomes Copied. Disabled until a note is selected. File menu has the
+  same action.
+
 ## 0.6.1 — 2026-09-02
 
 Editor polish on 0.6.0: syntax highlighting in Markdown/Split, Insert Table

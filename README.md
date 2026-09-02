@@ -25,6 +25,8 @@ natural-language prompts using CLI tools you already have installed.
   Status shows Saving… / Saved / Save failed.
 - **Share** — publish the current note to a **GitHub Gist** or a **Notion**
   page. Tokens stay on this machine (Settings in the Share menu).
+- **Copy All** — copies the current note. Paste into a markdown editor to get
+  markdown; paste into Docs, Word, or Mail to get rich text.
 - **Rich markdown** — headings, lists, blockquotes, code blocks with syntax
   highlighting, and **GFM tables**. Insert a 3×3 from the toolbar or `/tab`;
   edit cells; add/delete rows and columns while the caret is in the table.
