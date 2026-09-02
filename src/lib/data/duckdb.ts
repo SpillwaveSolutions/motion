@@ -27,22 +27,35 @@ const LOCAL_BUNDLES: duckdb.DuckDBBundles = {
 };
 
 let db: duckdb.AsyncDuckDB | null = null;
+let dbInit: Promise<duckdb.AsyncDuckDB> | null = null;
 let logger = new duckdb.ConsoleLogger();
 
 /**
- * Initialize DuckDB WASM
+ * Initialize DuckDB WASM.
+ *
+ * Welcome mounts two Dataset blocks plus a Query at once. The previous
+ * `if (db) return db` returned the instance after construction but before
+ * `instantiate()` finished, which surfaces as "duckdb is not initialized".
+ * Every caller shares one in-flight promise and only observes `db` after
+ * instantiate completes.
  */
 export async function initDuckDB() {
     if (db) return db;
-
-    // Select a bundle based on browser capability
-    const bundle = await duckdb.selectBundle(LOCAL_BUNDLES);
-
-    const worker = new Worker(bundle.mainWorker!);
-    db = new duckdb.AsyncDuckDB(logger, worker);
-    await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
-
-    return db;
+    if (!dbInit) {
+        dbInit = (async () => {
+            const bundle = await duckdb.selectBundle(LOCAL_BUNDLES);
+            const worker = new Worker(bundle.mainWorker!);
+            const instance = new duckdb.AsyncDuckDB(logger, worker);
+            await instance.instantiate(bundle.mainModule, bundle.pthreadWorker);
+            db = instance;
+            return instance;
+        })().catch((err) => {
+            db = null;
+            dbInit = null;
+            throw err;
+        });
+    }
+    return dbInit;
 }
 
 /**

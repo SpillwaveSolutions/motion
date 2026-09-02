@@ -136,9 +136,10 @@ cannot pass quietly. See `CLAUDE.md` for the full definition of done.
 
 Recorded here rather than discovered later:
 
-- **Welcome demo datasets** assume `sample-data.csv` / `sample-events.jsonl` exist
-  in the open workspace. Opening an unrelated folder shows load errors for those
-  blocks until those files are present or sources are re-pointed.
+- **Welcome demo datasets** use `sample-data.csv` / `sample-events.jsonl` when
+  those files exist in the open workspace. Opening an unrelated folder shows
+  "Demo data is not in this workspace" instead of a DuckDB/HTTP error; pick a
+  local CSV/JSONL or open Motion's demo folder.
 - **No hot reload.** The dev server rebuilds the bundle on change but the page
   does not refresh itself — reload manually.
 - **Ask AI** uses `ANTHROPIC_API_KEY` when set, otherwise `claude` on `PATH`.
