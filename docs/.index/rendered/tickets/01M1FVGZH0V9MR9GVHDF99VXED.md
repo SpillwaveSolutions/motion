@@ -4,6 +4,10 @@
 
 Stamp the changelog, bump Cargo and tauri.conf to 0.6.1, freeze a roadmap snapshot, tag v0.6.1, and publish the GitHub release.
 
+## Linked PRs
+
+- [[PR-51]]
+
 ## Release
 
 - [[Release-v0.6.1]]

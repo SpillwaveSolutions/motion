@@ -682,6 +682,11 @@
   },
   {
    "from": "item/01M1FVGZH0V9MR9GVHDF99VXED",
+   "to": "pr/51",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1FVGZH0V9MR9GVHDF99VXED",
    "to": "release/v0.6.1",
    "type": "targets"
   },
@@ -1779,6 +1784,9 @@
    "doc_type": "pr"
   },
   "pr/50": {
+   "doc_type": "pr"
+  },
+  "pr/51": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {

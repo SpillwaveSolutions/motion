@@ -4,6 +4,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 
 ### Cut v0.6.1 release
 `01M1FVGZH0V9MR9GVHDF99VXED` · status: done
+- lands-in: pr/51
 - targets: release/v0.6.1
 
 ### Syntax highlighting in Markdown and Split source
