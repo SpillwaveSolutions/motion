@@ -4,6 +4,13 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.1 — 2026-09-02
+
+Editor polish on 0.6.0: syntax highlighting in Markdown/Split, Insert Table
+escapes its table, DocCommands batches resolve against one snapshot, looking
+at a note is not an edit, and welcome Dataset/Query blocks degrade when demo
+files are missing.
+
 ### Added
 
 - **Syntax highlighting in Markdown and Split.** Headings, emphasis, code,
@@ -52,6 +59,18 @@ All notable changes to Motion are recorded here. Dates are UTC.
 - **Publish requests time out.** Gist and Notion calls from the desktop app had
   no timeout, so an unanswered request left Share on "Publishing…" forever.
   Thirty seconds now.
+
+### Known issues
+
+- **Mac dogfood** of an unsigned `.app`, Finder Open With a real file, and
+  overlay traffic-light padding still needs a Mac. Linux CI compiles the crate;
+  it cannot click a `.app`.
+- **Packaged Ask AI** is a one-shot `run_llm_cli` until a Bun sidecar hosts the
+  shared TS service (streaming + tools).
+- **Dictation** is not in this release.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) still only
+  loads when those files exist in the open workspace. Missing files now say so
+  instead of dumping DuckDB/HTTP errors.
 
 ## 0.6.0 — 2026-08-30
 
