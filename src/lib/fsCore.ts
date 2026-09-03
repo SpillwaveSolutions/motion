@@ -19,12 +19,13 @@ import {
     readdirSync,
     readFileSync,
     realpathSync,
+    renameSync,
     statSync,
     writeFileSync,
 } from "fs";
 import { dirname, isAbsolute, join, relative, resolve, basename } from "path";
 
-export type FsErrorCode = "denied" | "not-found" | "not-a-directory";
+export type FsErrorCode = "denied" | "not-found" | "not-a-directory" | "exists";
 
 export class FsError extends Error {
     constructor(readonly code: FsErrorCode, message: string) {
@@ -150,6 +151,45 @@ export function writeWorkspaceFile(root: string, requested: string, content: str
         mkdirSync(parent, { recursive: true });
     }
     writeFileSync(path, content, "utf8");
+}
+
+/**
+ * Rename a file inside the workspace. Destination must also stay inside.
+ * Existing destinations are refused (no overwrite). Returns the resolved dest.
+ */
+export function renameWorkspaceFile(
+    root: string,
+    fromRequested: string,
+    toRequested: string
+): string {
+    const from = resolveInWorkspace(root, fromRequested);
+    if (!existsSync(from) || !statSync(from).isFile()) {
+        throw new FsError("not-found", `No such file: ${fromRequested}`);
+    }
+    const to = resolveInWorkspace(root, toRequested);
+    const rootReal = realOrThrow(root);
+    if (!isInsideWorkspace(rootReal, to)) {
+        throw new FsError("denied", "Access denied: path is outside the opened workspace");
+    }
+    const parent = dirname(to);
+    if (!isInsideWorkspace(rootReal, parent)) {
+        throw new FsError("denied", "Access denied: path is outside the opened workspace");
+    }
+    if (existsSync(to)) {
+        try {
+            if (realpathSync(to) === realpathSync(from)) {
+                return to;
+            }
+        } catch {
+            /* dest exists but cannot be resolved — still a collision */
+        }
+        throw new FsError("exists", `A file already exists at that name`);
+    }
+    if (!existsSync(parent)) {
+        mkdirSync(parent, { recursive: true });
+    }
+    renameSync(from, to);
+    return to;
 }
 
 /** Absolute path -> path relative to the workspace root, for portable storage. */

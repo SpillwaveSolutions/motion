@@ -13,6 +13,7 @@ import { join, dirname, isAbsolute, relative, sep } from "path";
 import {
     readWorkspaceFile,
     writeWorkspaceFile,
+    renameWorkspaceFile,
     collectFiles,
     FsError,
     MARKDOWN_EXTENSIONS,
@@ -77,6 +78,7 @@ describe("storage contract (TypeScript implementation)", () => {
             const f = buildFixture();
             try {
                 const path = c.path ? expand(c.path, f) : "";
+                const dest = c.dest ? expand(c.dest, f) : "";
                 const want = c.expect.result;
 
                 const run = (): unknown => {
@@ -93,6 +95,11 @@ describe("storage contract (TypeScript implementation)", () => {
                             return collectFiles(f.root, MARKDOWN_EXTENSIONS);
                         case "list_data":
                             return collectFiles(f.root, DATA_EXTENSIONS);
+                        case "rename":
+                            return renameWorkspaceFile(f.root, path, dest);
+                        case "rename_then_read":
+                            renameWorkspaceFile(f.root, path, dest);
+                            return readWorkspaceFile(f.root, dest);
                         default:
                             throw new Error(`unknown op: ${c.op}`);
                     }

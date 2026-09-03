@@ -13,10 +13,12 @@ import {
     collectFiles,
     readWorkspaceFile,
     writeWorkspaceFile,
+    renameWorkspaceFile,
     FsError,
     MARKDOWN_EXTENSIONS,
     DATA_EXTENSIONS,
 } from "./lib/fsCore";
+import { loadSettings, saveSettings, defaultSettingsPath } from "./lib/settingsIo";
 import { publishGist } from "./lib/publish/gist";
 import { publishNotion } from "./lib/publish/notion";
 import { streamAiToSseResponse } from "./lib/ai/service";
@@ -313,6 +315,23 @@ const server = Bun.serve({
             }
         }
 
+        if (pathname === "/api/settings") {
+            if (req.method === "GET") {
+                return Response.json({
+                    settings: loadSettings(),
+                    path: defaultSettingsPath(),
+                });
+            }
+            if (req.method === "POST") {
+                const body = await req.json();
+                const settings = saveSettings(
+                    body && typeof body === "object" ? body : {}
+                );
+                return Response.json({ settings });
+            }
+            return Response.json({ error: "Method not allowed" }, { status: 405 });
+        }
+
         // Real filesystem API for browser mode -- the counterpart to the Tauri
         // commands, delegating to the same shared core (src/lib/fsCore.ts) that
         // fs_core.rs mirrors. This is what makes browser-mode testing mean
@@ -358,6 +377,18 @@ const server = Bun.serve({
                         writeWorkspaceFile(WORKSPACE_ROOT, body.path, body.content);
                         return Response.json({ ok: true });
                     }
+
+                    case "POST /api/fs/rename": {
+                        const body = await req.json();
+                        if (typeof body?.from !== "string" || typeof body?.to !== "string") {
+                            return Response.json(
+                                { error: "Missing from or to" },
+                                { status: 400 }
+                            );
+                        }
+                        const path = renameWorkspaceFile(WORKSPACE_ROOT, body.from, body.to);
+                        return Response.json({ ok: true, path });
+                    }
                 }
                 return Response.json(
                     { error: `Unknown endpoint: ${req.method} ${pathname}` },
@@ -368,7 +399,9 @@ const server = Bun.serve({
                 // same distinctions the desktop app does.
                 const status =
                     error instanceof FsError
-                        ? { denied: 403, "not-found": 404, "not-a-directory": 400 }[error.code]
+                        ? { denied: 403, "not-found": 404, "not-a-directory": 400, exists: 409 }[
+                              error.code
+                          ]
                         : 500;
                 const message = error instanceof Error ? error.message : String(error);
                 return Response.json({ error: message }, { status });

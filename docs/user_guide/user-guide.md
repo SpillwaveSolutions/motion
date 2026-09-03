@@ -14,8 +14,8 @@ plain-language prompts.
 
 This guide covers the app as it behaves **after v0.6.2** (native Mac chrome,
 Ask AI, GFM tables, DocCommands, Markdown source highlighting, Copy All,
-labeled Save, new-note persistence, dataset/SQL install coverage). Where
-something is incomplete, it says so.
+labeled Save, new-note persistence, dataset/SQL install coverage, zoom, and
+tree rename). Where something is incomplete, it says so.
 
 ---
 
@@ -70,6 +70,13 @@ Tokens never leave this machine.
 markdown editor or a terminal to get markdown; paste into Docs, Word, Mail, or
 Slack's rich field to get formatted text. The button reads **Copied** for a
 moment after it works.
+
+**⌘+** / **⌘-** zoom the whole window (Ctrl on a non-Mac keyboard). **⌘0**
+resets to 100%. The size is remembered the next time you open Motion.
+
+A new note opens already in **rename** in the tree. Type a name and press
+Enter. To rename an existing note: right-click it and choose **Rename**, press
+**F2**, or click it again while it is selected. Escape keeps the old name.
 
 Motion cannot read or write anything outside the folder you opened. Paths are
 resolved to their real location first, so a symbolic link pointing elsewhere is

@@ -948,6 +948,46 @@ pre {
   margin-top: 2px;
 }
 
+.file-tree-rename {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  color: inherit;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-active);
+  border-radius: var(--radius-sm);
+  padding: 1px var(--space-2);
+}
+
+.note-context-menu {
+  position: fixed;
+  z-index: 90;
+  min-width: 140px;
+  padding: var(--space-1);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.note-context-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.note-context-menu button:hover,
+.note-context-menu button:focus-visible {
+  background: var(--color-bg-tertiary);
+}
+
 /* Search bar */
 .search-bar {
   display: flex;
@@ -1238,6 +1278,8 @@ pre {
    unchanged. Interactive children are no-drag so clicks still land. */
 html[data-tauri="true"] .app-header {
     padding-left: 88px;
+    -webkit-app-region: drag;
+    app-region: drag;
 }
 
 html[data-tauri="true"] .app-header [data-tauri-drag-region="false"],
@@ -1245,6 +1287,23 @@ html[data-tauri="true"] .app-header button,
 html[data-tauri="true"] .app-header input,
 html[data-tauri="true"] .app-header a {
     -webkit-app-region: no-drag;
+    app-region: no-drag;
+}
+
+.header-drag-gutter {
+    flex: 1 1 3rem;
+    min-width: 2rem;
+    align-self: stretch;
+}
+
+html[data-tauri="true"] .header-drag-gutter {
+    -webkit-app-region: drag;
+    app-region: drag;
+    cursor: default;
+}
+
+.header-actions {
+    flex-shrink: 0;
 }
 
 .share-root {

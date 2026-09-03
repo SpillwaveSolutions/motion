@@ -15,6 +15,7 @@ pub enum FsErrorCode {
     Denied,
     NotFound,
     NotADirectory,
+    Exists,
 }
 
 impl FsErrorCode {
@@ -24,6 +25,7 @@ impl FsErrorCode {
             FsErrorCode::Denied => "denied",
             FsErrorCode::NotFound => "not-found",
             FsErrorCode::NotADirectory => "not-a-directory",
+            FsErrorCode::Exists => "exists",
         }
     }
 }
@@ -201,6 +203,57 @@ pub fn write_workspace_file(root: &Path, requested: &str, content: &str) -> FsRe
     fs::write(&path, content).map_err(|e| FsError::new(FsErrorCode::NotFound, e.to_string()))
 }
 
+/// Rename a file inside the workspace. Destination must also stay inside.
+/// Existing destinations are refused (no overwrite).
+pub fn rename_workspace_file(
+    root: &Path,
+    from_requested: &str,
+    to_requested: &str,
+) -> FsResult<PathBuf> {
+    let from = resolve_in_workspace(root, from_requested)?;
+    if !from.is_file() {
+        return Err(FsError::new(
+            FsErrorCode::NotFound,
+            format!("No such file: {from_requested}"),
+        ));
+    }
+    let to = resolve_in_workspace(root, to_requested)?;
+    let root_real = real_or_not_found(root)?;
+    if !is_inside_workspace(&root_real, &to) {
+        return Err(FsError::new(
+            FsErrorCode::Denied,
+            "Access denied: path is outside the opened workspace",
+        ));
+    }
+    if let Some(parent) = to.parent() {
+        if !is_inside_workspace(&root_real, parent) {
+            return Err(FsError::new(
+                FsErrorCode::Denied,
+                "Access denied: path is outside the opened workspace",
+            ));
+        }
+        if !parent.exists() {
+            fs::create_dir_all(parent).map_err(|e| {
+                FsError::new(FsErrorCode::NotFound, e.to_string())
+            })?;
+        }
+    }
+    if to.exists() {
+        if let (Ok(a), Ok(b)) = (fs::canonicalize(&to), fs::canonicalize(&from)) {
+            if a == b {
+                return Ok(to);
+            }
+        }
+        return Err(FsError::new(
+            FsErrorCode::Exists,
+            "A file already exists at that name",
+        ));
+    }
+    fs::rename(&from, &to)
+        .map_err(|e| FsError::new(FsErrorCode::NotFound, e.to_string()))?;
+    Ok(to)
+}
+
 /// A Finder / `open` launch target: the workspace is the file's parent
 /// directory so the existing jail stays intact and the sidebar still lists
 /// siblings. A directory opens as the workspace with no file selected.
@@ -335,6 +388,7 @@ mod contract {
             let want = case["expect"]["result"].as_str().unwrap();
             let f = build(setup);
             let path = case.get("path").and_then(|p| p.as_str()).map(|p| expand(p, &f));
+            let dest = case.get("dest").and_then(|p| p.as_str()).map(|p| expand(p, &f));
             let content = case.get("content").and_then(|c| c.as_str()).unwrap_or("");
 
             // Every op collapses to (error code, string payload, list payload).
@@ -371,6 +425,29 @@ mod contract {
                 "list_data" => match collect_files(&f.root, DATA_EXTENSIONS) {
                     Ok(list) => got_list = Some(list),
                     Err(e) => err_code = Some(e.code.as_str()),
+                },
+                "rename" => {
+                    match rename_workspace_file(
+                        &f.root,
+                        path.as_deref().unwrap(),
+                        dest.as_deref().unwrap(),
+                    ) {
+                        Ok(_) => {}
+                        Err(e) => err_code = Some(e.code.as_str()),
+                    }
+                }
+                "rename_then_read" => {
+                    match rename_workspace_file(
+                        &f.root,
+                        path.as_deref().unwrap(),
+                        dest.as_deref().unwrap(),
+                    ) {
+                        Err(e) => err_code = Some(e.code.as_str()),
+                        Ok(_) => match read_workspace_file(&f.root, dest.as_deref().unwrap()) {
+                            Ok(text) => got_text = Some(text),
+                            Err(e) => err_code = Some(e.code.as_str()),
+                        },
+                    }
                 },
                 other => panic!("unknown op in contract: {other}"),
             }

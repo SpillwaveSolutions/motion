@@ -16,7 +16,7 @@
     "Paths in `setup` are workspace-relative. `outside/` is a sibling directory",
     "created next to the workspace, used for escape cases.",
     "",
-    "expect.result: ok | denied | not-found | not-a-directory"
+    "expect.result: ok | denied | not-found | not-a-directory | exists"
   ],
 
   "setup": {
@@ -152,6 +152,41 @@
       "_why": "Web mode used to return bare filenames while Tauri returned absolute paths, so a document authored on desktop could not resolve in the browser.",
       "op": "list_markdown_shape",
       "expect": { "result": "ok", "absolute": true }
+    },
+    {
+      "name": "renames a file inside the workspace",
+      "op": "rename_then_read",
+      "path": "note.md",
+      "dest": "renamed.md",
+      "expect": { "result": "ok", "content": "# Note\n" }
+    },
+    {
+      "name": "renames into an existing subdirectory",
+      "op": "rename_then_read",
+      "path": "note.md",
+      "dest": "nested/moved.md",
+      "expect": { "result": "ok", "content": "# Note\n" }
+    },
+    {
+      "name": "refuses a rename that overwrites an existing file",
+      "op": "rename",
+      "path": "note.md",
+      "dest": "nested/deep.md",
+      "expect": { "result": "exists" }
+    },
+    {
+      "name": "refuses a rename whose destination leaves the workspace",
+      "op": "rename",
+      "path": "note.md",
+      "dest": "../outside/stolen.md",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "reports a missing rename source as not-found",
+      "op": "rename",
+      "path": "no-such-note.md",
+      "dest": "gone.md",
+      "expect": { "result": "not-found" }
     }
   ]
 }
