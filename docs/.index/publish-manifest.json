@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "f3c178e65537",
+   "render_hash": "1c7a49a2f978",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "8e9a7ebe5aae",
+   "render_hash": "acad44f4d17f",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -152,6 +152,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-52",
+   "render": "as-is",
+   "render_hash": "cbc8e447bf56",
+   "source": "docs/.index/rendered/prs/52.md",
+   "title": "PR #52",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/52"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -189,6 +199,16 @@
    "title": "Release v0.6.1",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.2",
+   "render": "as-is",
+   "render_hash": "7680b6f889f0",
+   "source": "docs/.index/rendered/releases/v0.6.2.md",
+   "title": "Release v0.6.2",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.2"
   },
   {
    "frozen": false,
@@ -914,7 +934,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
    "render": "as-is",
-   "render_hash": "f263b5f384c9",
+   "render_hash": "b3afc6c7c171",
    "source": "docs/.index/rendered/tickets/01KYQYYN3SBWDT25TC6H3G4EAA.md",
    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
    "truth_state": "open",
@@ -1311,6 +1331,26 @@
    "wiki_key": "item/01M1FVGZH0V9MR9GVHDF99VXED"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M1HYST3AR3HYSFABKN6C0V8B",
+   "render": "as-is",
+   "render_hash": "e6e6773e25a5",
+   "source": "docs/.index/rendered/tickets/01M1HYST3AR3HYSFABKN6C0V8B.md",
+   "title": "Copy All writes markdown and rich text so paste follows the destination",
+   "truth_state": "done",
+   "wiki_key": "item/01M1HYST3AR3HYSFABKN6C0V8B"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1M1F33TZPTS93ABPVACF7BY",
+   "render": "as-is",
+   "render_hash": "b9f1dc32197a",
+   "source": "docs/.index/rendered/tickets/01M1M1F33TZPTS93ABPVACF7BY.md",
+   "title": "Cut v0.6.2 release",
+   "truth_state": "done",
+   "wiki_key": "item/01M1M1F33TZPTS93ABPVACF7BY"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1388,11 +1428,11 @@
    "wiki_key": "plan/2026-08-30-native-mac-app"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-02T01:26:22Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-03T16:28:15Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "13fb9f38fbf0",
+   "render_hash": "2b1d1e246468",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1432,11 +1472,22 @@
    "wiki_key": "roadmap-snapshot/2026-09-02_v0.6.1-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.2 (2026-09-03) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-09-03_v0.6.2-release",
+   "render": "doc+banner",
+   "render_hash": "a99fcecfefd0",
+   "source": "docs/roadmap/2026-09-03_v0.6.2-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.2-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "4ee4df760b74",
+   "render_hash": "e40d2d9cb731",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -1444,7 +1495,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "a8b8c37d2c31",
+  "render_hash": "c5c784fca6e5",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
