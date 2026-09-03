@@ -1,0 +1,19 @@
+' Source: src/components/Editor — Split: source left, preview right
+@startsalt
+{+
+  { toolbar… | doc-name | Saved | [AI] [Save] }
+  ==
+  {#
+    {
+      # Welcome to Motion
+      .
+      source
+    } |
+    {
+      <size:16><b>Welcome to Motion
+      .
+      preview
+    }
+  }
+}
+@endsalt

@@ -16,6 +16,9 @@ playwright-report
 blob-report
 .playwright
 
+# Agent UI capture / review artefacts (see docs/ui/README.md)
+.artifacts/
+
 # logs
 logs
 _.log

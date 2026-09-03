@@ -1,0 +1,12 @@
+' Source: src/components/Editor — default WYSIWYG
+@startsalt
+{+
+  { B I S ` | H1 H2 H3 | • 1. " | code hr | ⚡ | ↩ ↪ | doc-name | Saved | [AI] [Save] }
+  ==
+  {
+    <size:16><b>Welcome to Motion
+    .
+    Rich text surface (ProseMirror).
+  }
+}
+@endsalt

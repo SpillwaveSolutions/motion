@@ -1,0 +1,18 @@
+' AI Diagram + AI Image share header + prompt + generate pattern
+@startsalt
+{
+  {S
+    AI Diagram | [Generate]
+    ----
+    prompt textarea
+    (mermaid preview when ready)
+  }
+  .
+  {S
+    AI Image | [Generate]
+    ----
+    prompt
+    (image preview when ready)
+  }
+}
+@endsalt

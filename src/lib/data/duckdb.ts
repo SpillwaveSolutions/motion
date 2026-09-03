@@ -1,5 +1,6 @@
 import * as duckdb from "@duckdb/duckdb-wasm";
 import { storage } from "../storage";
+import { readDatasetContent } from "./demoFixtures";
 import {
     escapeSqlString,
     validateIdentifier,
@@ -46,15 +47,19 @@ export async function initDuckDB() {
 }
 
 /**
- * Register a local file (CSV/JSONL) as a DuckDB table
+ * Register a local file (CSV/JSONL) as a DuckDB table.
+ *
+ * Workspace path first; if that fails and the basename is a known welcome demo
+ * fixture (sample-data.csv / sample-events.jsonl), use the bundled content so
+ * Tauri cold welcome works without a folder that happens to contain those files.
  */
 export async function registerFile(filePath: string, tableName: string) {
     const database = await initDuckDB();
     const safeTable = validateIdentifier(tableName);
-    const safePath = escapeSqlString(filePath);
+    // Virtual path inside DuckDB must be stable and not collide across sources.
+    const vfsName = escapeSqlString(filePath);
 
-    // Read the file content from local storage
-    const content = await storage.readFile(filePath);
+    const { content } = await readDatasetContent(filePath, (p) => storage.readFile(p));
 
     // Register the file in DuckDB's virtual filesystem
     const encoder = new TextEncoder();
@@ -69,7 +74,7 @@ export async function registerFile(filePath: string, tableName: string) {
         const readFunction = isJson ? "read_json_auto" : "read_csv_auto";
         // table name is identifier-validated; path is single-quote-escaped
         await conn.query(
-            `CREATE OR REPLACE TABLE "${safeTable}" AS SELECT * FROM ${readFunction}('${safePath}')`
+            `CREATE OR REPLACE TABLE "${safeTable}" AS SELECT * FROM ${readFunction}('${vfsName}')`
         );
     } finally {
         await conn.close();

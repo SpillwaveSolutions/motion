@@ -1,0 +1,11 @@
+' Query rest state
+@startsalt
+{
+  {S
+    Query | [Edit] [Run]
+    ----
+    result table
+    or "No results"
+  }
+}
+@endsalt

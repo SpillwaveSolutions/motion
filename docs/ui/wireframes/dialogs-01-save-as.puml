@@ -1,0 +1,16 @@
+' Source: src/components/SaveNameDialog.tsx — first save of Untitled
+@startsalt
+{
+  {S
+    <b>Save As
+    .
+    Name this note. The default comes
+    from the document title.
+    .
+    File name
+    "new-note.md"
+    .
+    [Cancel] | [Save]
+  }
+}
+@endsalt

@@ -1,0 +1,12 @@
+' Source: src/components/FileSidebar.tsx — path glob matches nothing
+@startsalt
+{
+  <b>Notes
+  [Tree] [Flat]  Sort▾
+  Path glob: zzz-nope
+  Content search…
+  --
+  No notes match glob
+  "zzz-nope".
+}
+@endsalt

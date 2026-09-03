@@ -3,6 +3,9 @@
   "module": "src/main.tsx",
   "type": "module",
   "private": true,
+  "bin": {
+    "motion": "./bin/motion"
+  },
   "scripts": {
     "dev": "bun --hot run src/server.ts",
     "build": "bun run scripts/build.ts",
@@ -11,7 +14,11 @@
     "test": "bun test src",
     "test:e2e": "playwright test",
     "guard:client": "bun run scripts/guard-client-bundle.ts",
-    "verify": "bun run typecheck && bun run guard:client && bun run test && bun run test:e2e"
+    "verify": "bun run typecheck && bun run guard:client && bun run test && bun run test:e2e",
+    "ui:render": "plantuml -tpng -o png docs/ui/wireframes/*.puml",
+    "ui:check": "plantuml -checkonly docs/ui/wireframes/*.puml",
+    "ui:capture": "CAPTURE=1 playwright test e2e/capture.spec.ts",
+    "ui:audit": "bun run scripts/ui-audit.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.62.0",

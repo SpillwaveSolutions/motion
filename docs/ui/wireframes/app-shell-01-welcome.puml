@@ -1,0 +1,26 @@
+' Source: src/App.tsx — cold boot, no workspace open
+' Header full width | empty sidebar prompt | welcome editor
+@startsalt
+{+
+  {T
+   + Motion | 🔍 filter | [WYSIWYG] [Markdown] [Split] | [Open Folder] [New Note] [Synthesize]
+  }
+  {#
+    {
+      <b>Notes
+      --
+      Open a folder to
+      browse notes.
+    } |
+    {
+      { toolbar… }
+      ==
+      {
+        <size:16><b>Welcome to Motion
+        .
+        Open a folder to start writing.
+      }
+    }
+  }
+}
+@endsalt

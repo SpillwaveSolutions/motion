@@ -1,0 +1,29 @@
+' Source: src/App.tsx — workspace open, welcome or a note selected
+' Sidebar 280px | header 56px | main scrolls
+@startsalt
+{+
+  {T
+   + Motion | 🔍 filter | [WYSIWYG] [Markdown] [Split] | [Open Folder] [New Note] [Synthesize]
+  }
+  {#
+    {
+      <b>Notes
+      [Tree] [Flat]  Sort▾
+      Path glob…
+      Content search…
+      --
+      📄 welcome.md
+      > nested
+    } |
+    {
+      { B I S ` | H1 H2 H3 | list… | Save }
+      ==
+      {
+        <size:16><b>Welcome to Motion
+        .
+        Body of the active note.
+      }
+    }
+  }
+}
+@endsalt

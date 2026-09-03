@@ -4,6 +4,9 @@ import { INSERT_COMMANDS, insertBlock } from "./insertBlock";
 interface ToolbarProps {
     editor: Editor;
     onSave?: () => void;
+    onRename?: () => void;
+    /** Shown next to Rename — current basename or "Untitled". */
+    documentLabel?: string;
     onRefine?: () => void;
     refining?: boolean;
     saveState?: "idle" | "saving" | "saved" | "error";
@@ -39,7 +42,15 @@ function ToolbarButton({
     );
 }
 
-function Toolbar({ editor, onSave, onRefine, refining = false, saveState = "idle" }: ToolbarProps) {
+function Toolbar({
+    editor,
+    onSave,
+    onRename,
+    documentLabel,
+    onRefine,
+    refining = false,
+    saveState = "idle",
+}: ToolbarProps) {
     return (
         <div className="editor-toolbar">
             {/* Text formatting */}
@@ -222,6 +233,23 @@ function Toolbar({ editor, onSave, onRefine, refining = false, saveState = "idle
             </ToolbarButton>
 
             <div className="toolbar-divider" />
+
+            {documentLabel !== undefined && (
+                <button
+                    type="button"
+                    className="toolbar-doc-name"
+                    onClick={() => onRename?.()}
+                    title="Rename"
+                    aria-label={
+                        documentLabel === "Untitled"
+                            ? "Untitled — click to name when saving"
+                            : `Rename ${documentLabel}`
+                    }
+                    disabled={!onRename}
+                >
+                    {documentLabel}
+                </button>
+            )}
 
             <span role="status" aria-live="polite" className="save-status">
                 {saveState === "saving" ? "Saving…"

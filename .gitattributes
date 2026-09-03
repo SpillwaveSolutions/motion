@@ -1,2 +1,6 @@
 .work/todo.jsonl merge=union
 .work/done.jsonl merge=union
+
+# PlantUML wireframe PNGs — binary; skip noisy diffs
+docs/ui/wireframes/png/** binary -diff
+screenshots/** binary -diff

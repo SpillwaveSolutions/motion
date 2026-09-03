@@ -1,0 +1,12 @@
+' Source: src/components/Editor — Markdown source mode
+@startsalt
+{+
+  { B I S ` | H1 H2 H3 | … | doc-name | Saved | [AI] [Save] }
+  ==
+  {
+    # Welcome to Motion
+    .
+    Raw markdown textarea.
+  }
+}
+@endsalt

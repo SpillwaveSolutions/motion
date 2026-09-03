@@ -1,0 +1,29 @@
+' Welcome doc: stacked custom blocks in the editor
+@startsalt
+{+
+  { toolbar… }
+  ==
+  {
+    <size:16><b>Welcome to Motion
+    .
+    {S
+      Mermaid Diagram | [Edit]
+      ----
+      (diagram preview)
+    }
+    .
+    {S
+      Dataset: [sample-data.csv ▾] | [Refresh]
+      ----
+      | col | col |
+      | ... | ... |
+    }
+    .
+    {S
+      Query (SQL) | [Edit] [Run]
+      ----
+      | result | rows |
+    }
+  }
+}
+@endsalt

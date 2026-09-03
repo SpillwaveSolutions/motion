@@ -1,0 +1,21 @@
+' Source: src/App.tsx — synthesis status banner between header and body
+@startsalt
+{+
+  {T
+   + Motion | 🔍 filter | [WYSIWYG] [Markdown] [Split] | [Open Folder] [New Note] [Synthesize]
+  }
+  { Synthesizing workspace… / result line | [×] }
+  {#
+    {
+      <b>Notes
+      📄 welcome.md
+      📄 TOC.md
+    } |
+    {
+      { toolbar… }
+      ==
+      { note body }
+    }
+  }
+}
+@endsalt

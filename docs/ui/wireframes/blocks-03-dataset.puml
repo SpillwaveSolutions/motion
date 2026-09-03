@@ -1,0 +1,11 @@
+' Dataset rest state
+@startsalt
+{
+  {S
+    Dataset: [Select a file… ▾] | [Refresh]
+    ----
+    table of rows
+    or "No data to display"
+  }
+}
+@endsalt

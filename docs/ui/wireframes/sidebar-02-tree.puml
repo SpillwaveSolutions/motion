@@ -1,0 +1,13 @@
+' Source: src/components/FileSidebar.tsx — tree mode, folders collapsed by default
+@startsalt
+{
+  <b>Notes
+  [Tree] [Flat]  Sort▾
+  Path glob…
+  Content search…
+  --
+  📄 welcome.md
+  > nested
+  > demos
+}
+@endsalt

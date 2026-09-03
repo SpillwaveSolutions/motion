@@ -92,6 +92,9 @@ test("rapid file switching lands on the file that was clicked last", async ({ pa
     // selection could land after a fast one and replace it.
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
+    // Flat so nested deeper.md is a top-level option without expanding folders.
+    await page.getByRole("button", { name: "Flat" }).click();
+    await expect(page.getByRole("option", { name: "deeper.md" })).toBeVisible();
 
     await page.getByRole("option", { name: "welcome.md" }).click();
     await page.getByRole("option", { name: "getting-started.md" }).click();

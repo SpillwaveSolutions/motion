@@ -24,7 +24,8 @@ test("lists the seeded workspace, including nested files", async ({ page }) => {
 
     await expect(page.getByRole("option", { name: "welcome.md" })).toBeVisible();
     await expect(page.getByRole("option", { name: "getting-started.md" })).toBeVisible();
-    // Recursive listing: this one lives in nested/.
+    // Tree mode collapses folders by default — Flat lists every recursive note.
+    await page.getByRole("button", { name: "Flat" }).click();
     await expect(page.getByRole("option", { name: "deeper.md" })).toBeVisible();
 });
 
@@ -51,51 +52,45 @@ test("an edit survives save and reload", async ({ page }) => {
     await expect(page.locator(".ProseMirror")).toContainText(marker);
 });
 
-test("a new note is created, listed, and opens without error", async ({ page }) => {
-    // B2: New Note used to write to a no-op backend, then the editor fetched the
-    // file that was never created. The dev server answered that miss with
-    // 200 + index.html, so the note "opened" showing a page of HTML.
+test("a new note is Untitled until Save names it from the document title", async ({ page }) => {
+    // macOS-style: New Note is in memory only. First Save opens Save As with a
+    // title-derived default (New Note → new-note.md).
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
 
-    // handleNewNote is async, so the click resolves before the file exists.
-    // Wait on the write itself rather than on a redraw.
+    await page.getByRole("button", { name: "New Note" }).click();
+    await expect(page.locator(".ProseMirror")).toContainText("New Note");
+    await expect(page.getByRole("button", { name: /Untitled/i })).toBeVisible();
+
+    // Not on disk yet — no sidebar entry until Save.
+    await expect(page.getByRole("option", { name: "new-note.md" })).toHaveCount(0);
+
     const write = page.waitForResponse(
         (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
     );
-    await page.getByRole("button", { name: "New Note" }).click();
+    await page.getByRole("button", { name: /^Save/ }).click();
+
+    const dialog = page.getByRole("dialog", { name: /Save As/i });
+    await expect(dialog).toBeVisible();
+    const nameField = dialog.getByLabel("File name");
+    await expect(nameField).toHaveValue("new-note.md");
+    await dialog.getByRole("button", { name: /^Save$/ }).click();
     expect((await write).status()).toBe(200);
 
-    const created = page.getByRole("option", { name: /^untitled-/ });
-    await expect(created).toBeVisible();
-    await expect(created).toHaveAttribute("aria-selected", "true");
-    await expect(page.locator(".ProseMirror")).toContainText("New Note");
-
-    // The guard fixture fails this test on any 404 or console error, which is
-    // exactly what the old behaviour produced.
+    await expect(page.getByRole("option", { name: "new-note.md" })).toBeVisible();
+    await expect(page.getByRole("option", { name: "new-note.md" })).toHaveAttribute(
+        "aria-selected",
+        "true"
+    );
 });
 
-test("a new note can be edited, saved, and reloaded with content intact", async ({ page }) => {
-    // Create only wrote the stub; the human path is create → type → Save →
-    // come back later. That path was untested, and Save was icon-only so people
-    // could not find it. This locks the full journey.
+test("a new note can be edited, saved under a chosen name, and reloaded", async ({ page }) => {
     const marker = `newnote-persist-${Date.now()}`;
+    const filename = `persist-${Date.now()}.md`;
 
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
-
-    const createWrite = page.waitForResponse(
-        (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
-    );
     await page.getByRole("button", { name: "New Note" }).click();
-    expect((await createWrite).status()).toBe(200);
-
-    // Shared workspace may already contain untitled notes from earlier specs;
-    // pin the one this click just selected.
-    const created = page.getByRole("option", { name: /^untitled-/, selected: true });
-    await expect(created).toBeVisible();
-    const basename = ((await created.textContent()) ?? "").trim();
-    expect(basename).toMatch(/^untitled-.*\.md$/);
 
     const editor = page.locator(".ProseMirror");
     await expect(editor).toContainText("New Note");
@@ -104,23 +99,49 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
     await page.keyboard.press("Enter");
     await page.keyboard.type(marker);
 
-    // Visible labeled Save (not icon-only). Accessible name still matches /^Save/.
-    const saveBtn = page.getByRole("button", { name: /^Save/ });
-    await expect(saveBtn).toBeVisible();
-    await expect(saveBtn).toContainText("Save");
-
     const saveWrite = page.waitForResponse(
         (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
     );
-    await saveBtn.click();
+    await page.getByRole("button", { name: /^Save/ }).click();
+
+    const dialog = page.getByRole("dialog", { name: /Save As/i });
+    await dialog.getByLabel("File name").fill(filename);
+    await dialog.getByRole("button", { name: /^Save$/ }).click();
     expect((await saveWrite).status()).toBe(200);
     await expect(page.locator(".save-status")).toContainText(/Saved/, { timeout: 5_000 });
 
-    // Full reload — proves the bytes are on disk, not only in React state.
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
-    await page.getByRole("option", { name: basename }).click();
+    await page.getByRole("option", { name: filename }).click();
     await expect(page.locator(".ProseMirror")).toContainText(marker, { timeout: 15_000 });
+});
+
+test("saving a new note over an existing name asks before replacing", async ({ page }) => {
+    await gotoApp(page);
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await page.getByRole("button", { name: "New Note" }).click();
+
+    page.once("dialog", async (d) => {
+        expect(d.message()).toMatch(/already exists/i);
+        await d.dismiss();
+    });
+
+    await page.getByRole("button", { name: /^Save/ }).click();
+    const dialog = page.getByRole("dialog", { name: /Save As/i });
+    await dialog.getByLabel("File name").fill("welcome.md");
+    await dialog.getByRole("button", { name: /^Save$/ }).click();
+
+    // Dismissed replace → welcome.md content on disk unchanged; still Untitled.
+    await expect(page.getByRole("button", { name: /Untitled/i })).toBeVisible();
+    const content = await page.evaluate(async () => {
+        const res = await fetch("/api/fs/list");
+        const list = (await res.json()) as string[];
+        const welcome = list.find((p) => p.endsWith("welcome.md"))!;
+        const read = await fetch(`/api/fs/read?path=${encodeURIComponent(welcome)}`);
+        return (await read.json()).content as string;
+    });
+    expect(content).toMatch(/Welcome/i);
+    expect(content).not.toMatch(/^# New Note\s*$/m);
 });
 
 test("writes land on disk where the next read can find them", async ({ page }) => {

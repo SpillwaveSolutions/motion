@@ -1,3 +1,8 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+`AGENTS.md` is a symlink to this file. Edit this one.
 
 Default to using Bun instead of Node.js.
 
@@ -32,6 +37,22 @@ client-bundle guard, unit tests, then E2E.
 | `bun test src` | unit tests (scoped to `src` — unscoped, Bun would try to run the Playwright specs and fail) |
 | `bunx playwright test` | **end-to-end** against the real dev server (Playwright *is* the E2E harness) |
 | `cd src-tauri && cargo test --lib` | the workspace jail |
+| `bun run ui:render` / `ui:check` | PlantUML Salt wireframes → `docs/ui/wireframes/png/`; **`ui:check` runs in CI** (syntax only) |
+| `bun run ui:capture` | `CAPTURE=1` screenshot every `docs/ui` state → `.artifacts/screenshots/ui/` |
+| `bun run ui:audit` | deterministic DOM/CSS audit (needs `bun run dev`) |
+
+### Run one test
+
+| Goal | Command |
+|---|---|
+| one unit file | `bun test src/lib/zoom.test.ts` |
+| one unit test by name | `bun test src -t "clamps at both ends"` |
+| one E2E spec | `bunx playwright test e2e/zoom.spec.ts` |
+| one E2E test by title | `bunx playwright test -g "survives a reload"` |
+| one E2E spec, visible browser | `bunx playwright test e2e/zoom.spec.ts --headed` |
+
+Playwright boots its own dev servers (`reuseExistingServer: false`), so stop
+`bun run dev` first or the port fight looks like a test failure.
 
 ### Every feature ships with tests — no exceptions
 
@@ -91,6 +112,85 @@ repo. Route UI-initiated CLI work through `src/lib/llmClient.ts` or
 `bun run guard:client` enforces this statically over the import graph from
 `src/main.tsx`. It is not optional and it runs in CI.
 
+## Architecture
+
+One React app (`src/main.tsx` → `src/App.tsx`) runs in two hosts: a browser
+against the Bun dev server, and a Tauri webview. Everything host-specific hides
+behind three modules, and nothing else in `src/` may branch on the host.
+
+| Concern | Browser path | Tauri path | The seam |
+|---|---|---|---|
+| files, workspace, bootstrap | `fetch("/api/fs/*")` | `invoke()` commands | `src/lib/storage/index.ts` |
+| LLM calls | `POST /api/llm` | `run_llm_cli` | `src/lib/llmClient.ts` |
+| image generation | `POST /api/image` | `run_image_cli` | `src/lib/imageClient.ts` |
+| settings | `GET/POST /api/settings` | `get_settings` / `set_settings` | `src/lib/settingsClient.ts` |
+
+`storage` picks its implementation once at module load from `isTauri()`. Both
+implementations enforce the same workspace jail through a duplicated core:
+`src/lib/fsCore.ts` for the server and `src-tauri/src/fs_core.rs` for the
+desktop app. `tests/contract/storage-cases.json` is the shared truth. Add a case
+there when you change path resolution, and both suites pick it up.
+
+`src/App.tsx` owns all cross-cutting state: workspace root, file list, current
+file, dirty flag, pending file switch, view mode, and synthesis output. The
+editor components take props. Do not add a store.
+
+`src/shell.ts` is the single HTML template. The dev server inlines the CSS, the
+production build links it. The root `index.html` is dead. Never edit it.
+
+Editor blocks (Mermaid, Dataset, Query, Image gen, Diagram gen) are TipTap node
+extensions under `src/components/Editor/extensions/`. They persist as fenced
+code bodies through one shared serializer, `blockAttrs.ts`. Never hand-roll a
+second parser. Multi-line values need its block-scalar form.
+
+Query blocks run DuckDB-WASM in the browser (`src/lib/data/duckdb.ts`).
+`src/lib/data/sqlSafety.ts` restricts SQL to `SELECT` and `WITH`, validates
+identifiers, and clamps the row limit.
+
+### Environment variables
+
+| Variable | Effect |
+|---|---|
+| `MOTION_WORKSPACE` | the jailed root the dev server serves (default `public/demo/`) |
+| `MOTION_AUTO_OPEN` | open that workspace without a click |
+| `MOTION_OPEN_FILE` | also open this note on boot (`motion <file.md>`) |
+| `MOTION_SETTINGS_FILE` | redirect `~/.config/motion/settings.json`; tests must set it |
+| `PORT`, `MOTION_HOST` | dev server bind (default 3000, localhost) |
+
+`bin/motion` is a bash launcher. It sets those variables, then runs `bun run
+dev` or `bun tauri dev` per the saved launch mode.
+
+## UI verification loop (wireframes + agent judge)
+
+Any change under `src/components/**`, `src/App.tsx`, or `src/index.css` that
+affects a user-visible surface follows this loop. Index: **`docs/ui/README.md`**.
+
+1. **Read** `docs/ui/<screen>.md` — spec, addressability, capture recipe, rubric.
+   No doc for the surface? Copy `docs/ui/TEMPLATE.md` and write one first.
+2. **Implement.** The element inventory / addressability table is a contract:
+   adding or removing a control means updating the doc (and wireframe) in the
+   same change.
+3. **Wireframe.** Edit the matching `.puml` under `docs/ui/wireframes/`, then
+   `bun run ui:render`. Salt is authoritative for inventory, containment order,
+   and ordinal sequence — **never** for pixels or colour.
+4. **Capture.** `bun run ui:capture` (or follow the recipe with Playwright /
+   agent-browser). Seed `localStorage.motion-ui-freeze=1` before load. Output
+   lands in `.artifacts/screenshots/ui/` (gitignored).
+5. **Judge** rows marked `agent` against the screenshot + an a11y snapshot;
+   console errors fail. **Never pixel-diff** the Salt PNG. Write a short report
+   under `.artifacts/ui-review/` on UI PRs when practical.
+6. **Verify.** `bun run verify` — every rubric row marked `check:…` must pass
+   (see `e2e/layout.spec.ts`). Those are the merge gate; `agent` rows are PR
+   commentary only.
+7. **Iterate** from 2.
+
+`docs/ui/**` is outside the worklog IA (no frontmatter). Do not put screen specs
+under `docs/designs/` — that namespace is for dated design docs / walkthroughs.
+
+Addressability rules for new code: every icon-only button gets `aria-label`;
+prefer roles and names over testids; prefer one structural `data-*` variant over
+N enumerated ids.
+
 ## Definition of Done
 
 A change is done only when **all** of these hold:
@@ -113,15 +213,18 @@ A change is done only when **all** of these hold:
    - register/publish to the GitHub wiki (`worklog wiki-add` / the wiki publish
      flow under `.work/wiki-checkout`) so the wiki is not stale relative to
      `docs/`.
-6. Anything discovered along the way is filed via `worklog add --unplanned`.
+6. **User-visible UI work also completes the UI verification loop** (above):
+   matching `docs/ui/<screen>.md` + wireframe, capture recipe still works,
+   `check:` rows green, agent rows judged or explicitly N/A.
+7. Anything discovered along the way is filed via `worklog add --unplanned`.
 
 **"I looked at it in the browser" is not done.** Not done means not handed over:
 the human reviews design, not defects. If you cannot demonstrate it green, say
 so plainly rather than reporting success.
 
-Write specs against roles and accessible names (`getByRole`, `getByLabel`), not
-screenshots — screenshots are captured as artifacts for human review, never as
-pass/fail assertions.
+Write behavioral specs against roles and accessible names (`getByRole`,
+`getByLabel`), not screenshots. Screenshots are artefacts for human **or agent**
+rubric review — never pixel-diff pass/fail assertions in CI.
 
 <!-- worklog:policy:start -->
 ## Work tracking policy

@@ -2,6 +2,7 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import { useEffect, useState } from "react";
 import { registerFile, executeQuery, clampLimit, validateIdentifier } from "../../../lib/data/duckdb";
+import { asErrorMessage } from "../../../lib/data/demoFixtures";
 import { storage, relativeToWorkspace } from "../../../lib/storage";
 import { parseBlockAttrs, serializeBlockAttrs, languageParseRule } from "./blockAttrs";
 
@@ -40,7 +41,9 @@ function DatasetNodeView({ node, updateAttributes }: NodeViewProps) {
             );
             setData(results);
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to load dataset");
+            // Tauri invoke often rejects with a bare string, not Error — that
+            // used to collapse every failure into "Failed to load dataset".
+            setError(asErrorMessage(err, "Failed to load dataset"));
         } finally {
             setLoading(false);
         }

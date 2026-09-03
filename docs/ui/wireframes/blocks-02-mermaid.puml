@@ -1,0 +1,10 @@
+' Mermaid rest state
+@startsalt
+{
+  {S
+    ◆ Mermaid Diagram | [Edit]
+    ----
+    (rendered SVG preview)
+  }
+}
+@endsalt

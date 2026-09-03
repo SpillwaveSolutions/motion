@@ -1,0 +1,9 @@
+' Source: src/components/FileSidebar.tsx — no workspace
+@startsalt
+{
+  <b>Notes
+  --
+  Open a folder to
+  browse notes.
+}
+@endsalt
