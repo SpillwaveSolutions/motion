@@ -2,6 +2,12 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.2 — 2026-09-03
+
+- Roadmap snapshot: [[Roadmap-2026-09-03_v0.6.2-release]]
+- Shipped: Copy All writes markdown and rich text so paste follows the destination
+- Shipped: Cut v0.6.2 release
+
 ## v0.6.1 — 2026-09-02
 
 - Roadmap snapshot: [[Roadmap-2026-09-02_v0.6.1-release]]

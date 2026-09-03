@@ -4,6 +4,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.2 — 2026-09-03
+
+Copy All: paste as markdown or as rich text, depending on the destination.
+
 ### Added
 
 - **Copy All.** Header control copies the current note (unsaved edits included).
@@ -11,6 +15,18 @@ All notable changes to Motion are recorded here. Dates are UTC.
   so paste into a markdown editor vs Docs / Word / Mail follows the destination.
   Label becomes Copied. Disabled until a note is selected. File menu has the
   same action.
+
+### Known issues
+
+- **Mac dogfood** of an unsigned `.app`, Finder Open With a real file, and
+  overlay traffic-light padding still needs a Mac. Linux CI compiles the crate;
+  it cannot click a `.app`.
+- **Packaged Ask AI** is a one-shot `run_llm_cli` until a Bun sidecar hosts the
+  shared TS service (streaming + tools).
+- **Dictation** is not in this release.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) still only
+  loads when those files exist in the open workspace. Missing files now say so
+  instead of dumping DuckDB/HTTP errors.
 
 ## 0.6.1 — 2026-09-02
 

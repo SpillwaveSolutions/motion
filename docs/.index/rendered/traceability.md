@@ -2,6 +2,16 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Cut v0.6.2 release
+`01M1M1F33TZPTS93ABPVACF7BY` · status: done
+- targets: release/v0.6.2
+
+### Copy All writes markdown and rich text so paste follows the destination
+`01M1HYST3AR3HYSFABKN6C0V8B` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- lands-in: pr/52
+- targets: release/v0.6.2
+
 ### Cut v0.6.1 release
 `01M1FVGZH0V9MR9GVHDF99VXED` · status: done
 - lands-in: pr/51
@@ -252,6 +262,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Keep README feature list and known limitations current
 - contains: Dev-server publish handlers have no test of their own
 - contains: Syntax highlighting in Markdown and Split source
+- contains: Copy All writes markdown and rich text so paste follows the destination
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### README and user guide claimed markdown tables, which are not supported

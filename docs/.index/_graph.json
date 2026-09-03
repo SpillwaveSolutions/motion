@@ -691,6 +691,26 @@
    "type": "targets"
   },
   {
+   "from": "item/01M1HYST3AR3HYSFABKN6C0V8B",
+   "to": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1HYST3AR3HYSFABKN6C0V8B",
+   "to": "pr/52",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1HYST3AR3HYSFABKN6C0V8B",
+   "to": "release/v0.6.2",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1M1F33TZPTS93ABPVACF7BY",
+   "to": "release/v0.6.2",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -1153,6 +1173,21 @@
   {
    "from": "roadmap-snapshot/2026-09-02_v0.6.1-release",
    "to": "release/v0.6.1",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-03_v0.6.2-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-03_v0.6.2-release",
+   "to": "roadmap-snapshot/2026-09-02_v0.6.1-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-03_v0.6.2-release",
+   "to": "release/v0.6.2",
    "type": "targets"
   }
  ],
@@ -1729,6 +1764,16 @@
    "status": "done",
    "title": "Cut v0.6.1 release"
   },
+  "item/01M1HYST3AR3HYSFABKN6C0V8B": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Copy All writes markdown and rich text so paste follows the destination"
+  },
+  "item/01M1M1F33TZPTS93ABPVACF7BY": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Cut v0.6.2 release"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -1789,6 +1834,9 @@
   "pr/51": {
    "doc_type": "pr"
   },
+  "pr/52": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -1799,6 +1847,9 @@
    "doc_type": "release"
   },
   "release/v0.6.1": {
+   "doc_type": "release"
+  },
+  "release/v0.6.2": {
    "doc_type": "release"
   },
   "roadmap": {
@@ -1822,6 +1873,12 @@
   "roadmap-snapshot/2026-09-02_v0.6.1-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-09-02_v0.6.1-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-09-03_v0.6.2-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-09-03_v0.6.2-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },
