@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "1c7a49a2f978",
+   "render_hash": "b4e002b16183",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "acad44f4d17f",
+   "render_hash": "15090b40faba",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -162,6 +162,26 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-53",
+   "render": "as-is",
+   "render_hash": "202f49a75998",
+   "source": "docs/.index/rendered/prs/53.md",
+   "title": "PR #53",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/53"
+  },
+  {
+   "frozen": false,
+   "page_name": "PR-54",
+   "render": "as-is",
+   "render_hash": "403cda570a9c",
+   "source": "docs/.index/rendered/prs/54.md",
+   "title": "PR #54",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/54"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -204,11 +224,21 @@
    "frozen": false,
    "page_name": "Release-v0.6.2",
    "render": "as-is",
-   "render_hash": "7680b6f889f0",
+   "render_hash": "95fc7e30eab9",
    "source": "docs/.index/rendered/releases/v0.6.2.md",
    "title": "Release v0.6.2",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.2"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.3",
+   "render": "as-is",
+   "render_hash": "67c2fb9a38ee",
+   "source": "docs/.index/rendered/releases/v0.6.3.md",
+   "title": "Release v0.6.3",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.3"
   },
   {
    "frozen": false,
@@ -934,7 +964,7 @@
    "frozen": false,
    "page_name": "Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
    "render": "as-is",
-   "render_hash": "b3afc6c7c171",
+   "render_hash": "51dd48a164d5",
    "source": "docs/.index/rendered/tickets/01KYQYYN3SBWDT25TC6H3G4EAA.md",
    "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
    "truth_state": "open",
@@ -1344,11 +1374,61 @@
    "frozen": false,
    "page_name": "Ticket-01M1M1F33TZPTS93ABPVACF7BY",
    "render": "as-is",
-   "render_hash": "b9f1dc32197a",
+   "render_hash": "616957436d79",
    "source": "docs/.index/rendered/tickets/01M1M1F33TZPTS93ABPVACF7BY.md",
    "title": "Cut v0.6.2 release",
    "truth_state": "done",
    "wiki_key": "item/01M1M1F33TZPTS93ABPVACF7BY"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1M3BKY2BGRF8TKXRPV1GB93",
+   "render": "as-is",
+   "render_hash": "19f1ed718db1",
+   "source": "docs/.index/rendered/tickets/01M1M3BKY2BGRF8TKXRPV1GB93.md",
+   "title": "Restore dragging the desktop window from the header",
+   "truth_state": "done",
+   "wiki_key": "item/01M1M3BKY2BGRF8TKXRPV1GB93"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1M3BKZKAGX5KS4RTXBP5G5A",
+   "render": "as-is",
+   "render_hash": "7f3a34972bf8",
+   "source": "docs/.index/rendered/tickets/01M1M3BKZKAGX5KS4RTXBP5G5A.md",
+   "title": "Zoom with Cmd-plus and Cmd-minus, remembered in settings",
+   "truth_state": "done",
+   "wiki_key": "item/01M1M3BKZKAGX5KS4RTXBP5G5A"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1M3BM12AD4ZEK9TBK2MQV2Z",
+   "render": "as-is",
+   "render_hash": "132f016307f5",
+   "source": "docs/.index/rendered/tickets/01M1M3BM12AD4ZEK9TBK2MQV2Z.md",
+   "title": "Rename a note from the file tree",
+   "truth_state": "done",
+   "wiki_key": "item/01M1M3BM12AD4ZEK9TBK2MQV2Z"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1M3BXAWMB787A29JGMVDWGP",
+   "render": "as-is",
+   "render_hash": "35e55007dcac",
+   "source": "docs/.index/rendered/tickets/01M1M3BXAWMB787A29JGMVDWGP.md",
+   "title": "Restore dragging the desktop window from the header",
+   "truth_state": "done",
+   "wiki_key": "item/01M1M3BXAWMB787A29JGMVDWGP"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1M5KV1YAD0BFFFF9QD02DJJ",
+   "render": "as-is",
+   "render_hash": "5783171d3802",
+   "source": "docs/.index/rendered/tickets/01M1M5KV1YAD0BFFFF9QD02DJJ.md",
+   "title": "Cut v0.6.3 release",
+   "truth_state": "done",
+   "wiki_key": "item/01M1M5KV1YAD0BFFFF9QD02DJJ"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -1366,7 +1446,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "924f33e64011",
+   "render_hash": "e1f42f7023f1",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -1428,11 +1508,11 @@
    "wiki_key": "plan/2026-08-30-native-mac-app"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-03T16:28:15Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-03T17:40:46Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "2b1d1e246468",
+   "render_hash": "e360179ece72",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1483,11 +1563,22 @@
    "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.2-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.3 (2026-09-03) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-09-03_v0.6.3-release",
+   "render": "doc+banner",
+   "render_hash": "b236d9f29277",
+   "source": "docs/roadmap/2026-09-03_v0.6.3-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.3-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "e40d2d9cb731",
+   "render_hash": "fb2bbbea5aaa",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -1495,7 +1586,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "c5c784fca6e5",
+  "render_hash": "a5863fd4cc2c",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

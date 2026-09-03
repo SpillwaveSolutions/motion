@@ -2,6 +2,15 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.3 — 2026-09-03
+
+- Roadmap snapshot: [[Roadmap-2026-09-03_v0.6.3-release]]
+- Shipped: Restore dragging the desktop window from the header
+- Shipped: Zoom with Cmd-plus and Cmd-minus, remembered in settings
+- Shipped: Rename a note from the file tree
+- Shipped: Restore dragging the desktop window from the header
+- Shipped: Cut v0.6.3 release
+
 ## v0.6.2 — 2026-09-03
 
 - Roadmap snapshot: [[Roadmap-2026-09-03_v0.6.2-release]]
