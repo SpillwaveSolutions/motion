@@ -2,8 +2,36 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Cut v0.6.3 release
+`01M1M5KV1YAD0BFFFF9QD02DJJ` · status: done
+- targets: release/v0.6.3
+
+### Restore dragging the desktop window from the header
+`01M1M3BXAWMB787A29JGMVDWGP` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- lands-in: pr/54
+- targets: release/v0.6.3
+
+### Rename a note from the file tree
+`01M1M3BM12AD4ZEK9TBK2MQV2Z` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- lands-in: pr/54
+- targets: release/v0.6.3
+
+### Zoom with Cmd-plus and Cmd-minus, remembered in settings
+`01M1M3BKZKAGX5KS4RTXBP5G5A` · status: done
+- belongs-to: Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups
+- lands-in: pr/54
+- targets: release/v0.6.3
+
+### Restore dragging the desktop window from the header
+`01M1M3BKY2BGRF8TKXRPV1GB93` · status: cancelled
+- belongs-to: item/01KYQYYN3SBWDT25TC6H4EAA
+- targets: release/v0.6.3
+
 ### Cut v0.6.2 release
 `01M1M1F33TZPTS93ABPVACF7BY` · status: done
+- lands-in: pr/53
 - targets: release/v0.6.2
 
 ### Copy All writes markdown and rich text so paste follows the destination
@@ -263,6 +291,9 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: Dev-server publish handlers have no test of their own
 - contains: Syntax highlighting in Markdown and Split source
 - contains: Copy All writes markdown and rich text so paste follows the destination
+- contains: Zoom with Cmd-plus and Cmd-minus, remembered in settings
+- contains: Rename a note from the file tree
+- contains: Restore dragging the desktop window from the header
 - produced-by: [[Plan-save-ux-and-next]]
 
 ### README and user guide claimed markdown tables, which are not supported

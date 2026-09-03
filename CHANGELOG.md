@@ -4,6 +4,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.3 — 2026-09-03
+
+Window drag restored; zoom remembered in settings; rename notes from the tree.
+
 ### Added
 
 - **Zoom.** ⌘+ / ⌘- (and Ctrl on other keyboards) scale the whole window; ⌘0
@@ -21,6 +25,18 @@ All notable changes to Motion are recorded here. Dates are UTC.
   nowhere to grab. The header is a drag region, interactive controls are
   no-drag, and a grab strip sits between the view toggle and the action
   buttons.
+
+### Known issues
+
+- **Mac dogfood** of an unsigned `.app`, Finder Open With a real file, and
+  overlay traffic-light padding still needs a Mac. Linux CI compiles the crate;
+  it cannot click a `.app`.
+- **Packaged Ask AI** is a one-shot `run_llm_cli` until a Bun sidecar hosts the
+  shared TS service (streaming + tools).
+- **Dictation** is not in this release.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) still only
+  loads when those files exist in the open workspace. Missing files now say so
+  instead of dumping DuckDB/HTTP errors.
 
 ## 0.6.2 — 2026-09-03
 

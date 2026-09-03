@@ -30,5 +30,8 @@ returns rows; two-table JOIN in a real note; missing source surfaces an error
 - [[Ticket-01M1ABZH2F573CM32N93NDMAGB]] Dev-server publish handlers have no test of their own — POST /api/publish/gist and /api/publish/notion in src/server.ts are the browser-mode transport, but no test executes them: the E2E specs intercept those routes in the page, and the unit tests cover the pure cores underneath. (open)
 - [[Ticket-01M1FRJ0NDQB3PG4107FR537KK]] Syntax highlighting in Markdown and Split source — Markdown and Split currently show raw source as unstyled mono text. (done)
 - [[Ticket-01M1HYST3AR3HYSFABKN6C0V8B]] Copy All writes markdown and rich text so paste follows the destination — Header Copy All copies the current note (live buffer, unsaved edits included). (done)
+- [[Ticket-01M1M3BKZKAGX5KS4RTXBP5G5A]] Zoom with Cmd-plus and Cmd-minus, remembered in settings — Cmd-plus zooms in, Cmd-minus zooms out, Cmd-0 resets. (done)
+- [[Ticket-01M1M3BM12AD4ZEK9TBK2MQV2Z]] Rename a note from the file tree — After New Note the new file opens in inline rename. (done)
+- [[Ticket-01M1M3BXAWMB787A29JGMVDWGP]] Restore dragging the desktop window from the header — The overlay title bar no longer moves the window. (done)
 
-Progress: 10/15 done
+Progress: 13/18 done
