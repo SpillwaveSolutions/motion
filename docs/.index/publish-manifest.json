@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "08c9297d7fc8",
+   "render_hash": "d8ef7f9e7ef8",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "1079a1d4031c",
+   "render_hash": "f00358f63a07",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "15090b40faba",
+   "render_hash": "264ad3f3a48d",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -182,6 +182,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-55",
+   "render": "as-is",
+   "render_hash": "00eedbe0530f",
+   "source": "docs/.index/rendered/prs/55.md",
+   "title": "PR #55",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/55"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -234,11 +244,21 @@
    "frozen": false,
    "page_name": "Release-v0.6.3",
    "render": "as-is",
-   "render_hash": "67c2fb9a38ee",
+   "render_hash": "f7b2ba052b95",
    "source": "docs/.index/rendered/releases/v0.6.3.md",
    "title": "Release v0.6.3",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.3"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.4",
+   "render": "as-is",
+   "render_hash": "e7d5e305f478",
+   "source": "docs/.index/rendered/releases/v0.6.4.md",
+   "title": "Release v0.6.4",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.4"
   },
   {
    "frozen": false,
@@ -1424,11 +1444,91 @@
    "frozen": false,
    "page_name": "Ticket-01M1M5KV1YAD0BFFFF9QD02DJJ",
    "render": "as-is",
-   "render_hash": "5783171d3802",
+   "render_hash": "6a3f73783e35",
    "source": "docs/.index/rendered/tickets/01M1M5KV1YAD0BFFFF9QD02DJJ.md",
    "title": "Cut v0.6.3 release",
    "truth_state": "done",
    "wiki_key": "item/01M1M5KV1YAD0BFFFF9QD02DJJ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB2ZZFQX90WHGB0CA99RW",
+   "render": "as-is",
+   "render_hash": "b7c5d64143bf",
+   "source": "docs/.index/rendered/tickets/01M1MVB2ZZFQX90WHGB0CA99RW.md",
+   "title": "Replace SKILL.md with a generated folder README",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB2ZZFQX90WHGB0CA99RW"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "render": "as-is",
+   "render_hash": "5e747b7d68df",
+   "source": "docs/.index/rendered/tickets/01M1MVB2ZZGP7FHW2TX6CNA6BE.md",
+   "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB3005Z8WSN5R6KEW5BNN",
+   "render": "as-is",
+   "render_hash": "66ce7a2506e8",
+   "source": "docs/.index/rendered/tickets/01M1MVB3005Z8WSN5R6KEW5BNN.md",
+   "title": "Replace header action labels with standard icons",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB3005Z8WSN5R6KEW5BNN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB300EAR8PX5HKEACTKP1",
+   "render": "as-is",
+   "render_hash": "c00eec93011c",
+   "source": "docs/.index/rendered/tickets/01M1MVB300EAR8PX5HKEACTKP1.md",
+   "title": "Make the header drag the window",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB300EAR8PX5HKEACTKP1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB300KXXJPZ2XACH7A64K",
+   "render": "as-is",
+   "render_hash": "31f23b3b58cb",
+   "source": "docs/.index/rendered/tickets/01M1MVB300KXXJPZ2XACH7A64K.md",
+   "title": "Mac dogfood the header drag",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB300KXXJPZ2XACH7A64K"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB300TGVNPJBG8GJ6KG1T",
+   "render": "as-is",
+   "render_hash": "6996108e4062",
+   "source": "docs/.index/rendered/tickets/01M1MVB300TGVNPJBG8GJ6KG1T.md",
+   "title": "Scale content without scaling chrome",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB300TGVNPJBG8GJ6KG1T"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB300WHXWP5177D3BNDB2",
+   "render": "as-is",
+   "render_hash": "b6c500acba59",
+   "source": "docs/.index/rendered/tickets/01M1MVB300WHXWP5177D3BNDB2.md",
+   "title": "Let the panes grow and be resized",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB300WHXWP5177D3BNDB2"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M1MVB300WYDPA67T9FNDM51R",
+   "render": "as-is",
+   "render_hash": "b6bf71a255b5",
+   "source": "docs/.index/rendered/tickets/01M1MVB300WYDPA67T9FNDM51R.md",
+   "title": "Show the zoom level briefly",
+   "truth_state": "open",
+   "wiki_key": "item/01M1MVB300WYDPA67T9FNDM51R"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -1508,11 +1608,22 @@
    "wiki_key": "plan/2026-08-30-native-mac-app"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-03T17:40:46Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-editor-surface-zoom-layout-icons",
+   "render": "doc+banner",
+   "render_hash": "0a109fed09a3",
+   "source": "docs/plans/2026-09-03-editor-surface-zoom-layout-icons.md",
+   "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-03T23:58:34Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "e360179ece72",
+   "render_hash": "ab2ab944484d",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1586,7 +1697,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "a5863fd4cc2c",
+  "render_hash": "eaa5e559d356",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

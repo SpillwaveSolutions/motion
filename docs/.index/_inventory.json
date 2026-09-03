@@ -184,12 +184,33 @@
    "wiki_key": "plan/2026-08-30-native-mac-app"
   },
   {
+   "canonical_key": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "date": "2026-09-03",
+   "doc_type": "plan",
+   "epic": "01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "items": [
+    "01M1MVB2ZZFQX90WHGB0CA99RW",
+    "01M1MVB300TGVNPJBG8GJ6KG1T",
+    "01M1MVB300WYDPA67T9FNDM51R",
+    "01M1MVB300WHXWP5177D3BNDB2",
+    "01M1MVB3005Z8WSN5R6KEW5BNN",
+    "01M1MVB300EAR8PX5HKEACTKP1",
+    "01M1MVB300KXXJPZ2XACH7A64K"
+   ],
+   "slug": "editor-surface-zoom-layout-icons",
+   "source": "docs/plans/2026-09-03-editor-surface-zoom-layout-icons.md",
+   "status": "planned",
+   "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
+  },
+  {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-09-03T17:40:46Z",
+   "generated_at": "2026-09-03T23:58:34Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "a92d005c",
+   "source_hash": "0ea6a595",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",

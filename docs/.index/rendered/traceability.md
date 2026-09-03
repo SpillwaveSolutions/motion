@@ -2,8 +2,62 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Show the zoom level briefly
+`01M1MVB300WYDPA67T9FNDM51R` · status: todo
+- belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- targets: release/v0.6.4
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Let the panes grow and be resized
+`01M1MVB300WHXWP5177D3BNDB2` · status: todo
+- belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- targets: release/v0.6.4
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Scale content without scaling chrome
+`01M1MVB300TGVNPJBG8GJ6KG1T` · status: todo
+- belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- targets: release/v0.6.4
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Mac dogfood the header drag
+`01M1MVB300KXXJPZ2XACH7A64K` · status: todo
+- belongs-to: Make the header drag the window
+- targets: release/v0.6.4
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Make the header drag the window
+`01M1MVB300EAR8PX5HKEACTKP1` · status: todo
+- belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- targets: release/v0.6.4
+- contains: Mac dogfood the header drag
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Replace header action labels with standard icons
+`01M1MVB3005Z8WSN5R6KEW5BNN` · status: todo
+- belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- targets: release/v0.6.4
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+`01M1MVB2ZZGP7FHW2TX6CNA6BE` · status: todo
+- contains: Replace SKILL.md with a generated folder README
+- contains: Replace header action labels with standard icons
+- contains: Make the header drag the window
+- contains: Scale content without scaling chrome
+- contains: Let the panes grow and be resized
+- contains: Show the zoom level briefly
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
+### Replace SKILL.md with a generated folder README
+`01M1MVB2ZZFQX90WHGB0CA99RW` · status: todo
+- belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- targets: release/v0.6.4
+- produced-by: [[Plan-editor-surface-zoom-layout-icons]]
+
 ### Cut v0.6.3 release
 `01M1M5KV1YAD0BFFFF9QD02DJJ` · status: done
+- lands-in: pr/55
 - targets: release/v0.6.3
 
 ### Restore dragging the desktop window from the header
