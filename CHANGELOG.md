@@ -4,6 +4,24 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Added
+
+- **Zoom.** ⌘+ / ⌘- (and Ctrl on other keyboards) scale the whole window; ⌘0
+  resets. The level is remembered in `~/.config/motion/settings.json`. View
+  menu has the same three actions.
+- **Rename a note from the tree.** New Note opens an inline field on the new
+  file. Existing notes rename from right-click → Rename, F2, or a second click
+  on the already-selected file. `.md` is added if you omit it. A name that
+  already exists is refused.
+
+### Fixed
+
+- **The desktop window can be dragged from the header again.** Overlay title
+  bars never set `-webkit-app-region: drag`, and packed header controls left
+  nowhere to grab. The header is a drag region, interactive controls are
+  no-drag, and a grab strip sits between the view toggle and the action
+  buttons.
+
 ## 0.6.2 — 2026-09-03
 
 Copy All: paste as markdown or as rich text, depending on the destination.

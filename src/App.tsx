@@ -6,6 +6,8 @@ import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 import { parseOpenQuery, resolveOpenQuery } from "./lib/openFile";
 import { loadPersistedWorkspace, persistWorkspace } from "./lib/workspaceMemory";
 import { buildCopyPayload, writeCopyPayload } from "./lib/copyNote";
+import { useZoom } from "./lib/useZoom";
+import { noteStem, renameDestPath, sameNotePath } from "./lib/renameNote";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -121,6 +123,7 @@ function sanitizeFolderName(raw: string): string {
 }
 
 function App() {
+    useZoom();
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
@@ -135,9 +138,15 @@ function App() {
     const [expanded, setExpanded] = useState<Set<string> | null>(null);
     const [notesOpen, setNotesOpen] = useState(false);
     const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
+    const [renamingPath, setRenamingPath] = useState<string | null>(null);
+    const [contextMenu, setContextMenu] = useState<{ x: number; y: number; path: string } | null>(
+        null
+    );
     const liveMarkdownRef = useRef("");
     const currentFilePathRef = useRef(currentFilePath);
     currentFilePathRef.current = currentFilePath;
+    const renameInputRef = useRef<HTMLInputElement>(null);
+    const skipRenameBlurRef = useRef(false);
     const searchRef = useRef<HTMLInputElement>(null);
 
     const handleMarkdownChange = useCallback((md: string) => {
@@ -171,6 +180,41 @@ function App() {
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
     }, []);
+
+    useEffect(() => {
+        if (!renamingPath) return;
+        const el = renameInputRef.current;
+        if (!el) return;
+        el.focus();
+        el.select();
+    }, [renamingPath]);
+
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key !== "F2") return;
+            if (renamingPath) return;
+            const path = currentFilePathRef.current;
+            if (!path) return;
+            e.preventDefault();
+            setRenamingPath(path);
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [renamingPath]);
+
+    useEffect(() => {
+        if (!contextMenu) return;
+        const close = () => setContextMenu(null);
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") close();
+        };
+        window.addEventListener("mousedown", close);
+        window.addEventListener("keydown", onKey);
+        return () => {
+            window.removeEventListener("mousedown", close);
+            window.removeEventListener("keydown", onKey);
+        };
+    }, [contextMenu]);
 
     const filteredFiles = useMemo(() => {
         const q = searchQuery.trim().toLowerCase();
@@ -406,6 +450,7 @@ function App() {
             setFiles((prev) => [...prev, path].sort((a, b) => a.localeCompare(b)));
             setContents((prev) => ({ ...prev, [path]: content }));
             setCurrentFilePath(path);
+            setRenamingPath(path);
             setSearchQuery("");
             setExpanded((prev) => {
                 if (prev === null) return null;
@@ -458,6 +503,47 @@ function App() {
             alert(`Error creating folder: ${message}`);
         }
     };
+
+    const handleRenameCommit = useCallback(
+        async (from: string, typed: string, source: "enter" | "blur"): Promise<boolean> => {
+            const dest = renameDestPath(from, typed);
+            if (!dest) {
+                // Empty Enter stays in the field (Finder/VS Code). Empty blur cancels.
+                if (source === "blur") setRenamingPath(null);
+                return source === "blur";
+            }
+            if (sameNotePath(from, dest)) {
+                setRenamingPath(null);
+                return true;
+            }
+            try {
+                if (dirty && currentFilePathRef.current === from) {
+                    await storage.writeFile(from, liveMarkdownRef.current);
+                }
+                const resolved = await storage.renameFile(from, dest);
+                setFiles((prev) =>
+                    prev.map((p) => (p === from ? resolved : p)).sort((a, b) => a.localeCompare(b))
+                );
+                setContents((prev) => {
+                    const next = { ...prev };
+                    const prevContent = next[from];
+                    if (prevContent !== undefined) {
+                        next[resolved] = prevContent;
+                        delete next[from];
+                    }
+                    return next;
+                });
+                if (currentFilePathRef.current === from) setCurrentFilePath(resolved);
+                setRenamingPath(null);
+                return true;
+            } catch (error) {
+                const message = error instanceof Error ? error.message : String(error);
+                alert(`Could not rename: ${message}`);
+                return false;
+            }
+        },
+        [dirty]
+    );
 
     const handleSaved = useCallback((path: string, content: string) => {
         setContents((prev) => ({ ...prev, [path]: content }));
@@ -516,6 +602,53 @@ function App() {
             );
         }
 
+        if (renamingPath === node.path) {
+            return (
+                <div
+                    key={node.path}
+                    role="treeitem"
+                    aria-selected="true"
+                    className="file-tree-item active"
+                    style={{ paddingLeft: `calc(var(--space-2) + ${depth * 12}px)` }}
+                >
+                    <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    <input
+                        ref={renameInputRef}
+                        className="file-tree-rename"
+                        data-testid="rename-note"
+                        aria-label="Rename note"
+                        defaultValue={noteStem(node.name)}
+                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.preventDefault();
+                                skipRenameBlurRef.current = true;
+                                void handleRenameCommit(node.path, e.currentTarget.value, "enter").then(
+                                    (closed) => {
+                                        if (!closed) skipRenameBlurRef.current = false;
+                                    }
+                                );
+                            } else if (e.key === "Escape") {
+                                e.preventDefault();
+                                skipRenameBlurRef.current = true;
+                                setRenamingPath(null);
+                            }
+                        }}
+                        onBlur={(e) => {
+                            if (skipRenameBlurRef.current) {
+                                skipRenameBlurRef.current = false;
+                                return;
+                            }
+                            void handleRenameCommit(node.path, e.currentTarget.value, "blur");
+                        }}
+                    />
+                </div>
+            );
+        }
+
         return (
             <button
                 key={node.path}
@@ -524,7 +657,23 @@ function App() {
                 aria-selected={currentFilePath === node.path}
                 className={`file-tree-item ${currentFilePath === node.path ? "active" : ""}`}
                 style={{ paddingLeft: `calc(var(--space-2) + ${depth * 12}px)` }}
-                onClick={() => handleFileSelect(node.path)}
+                onClick={(e) => {
+                    // Primary button only. A double-click is two clicks, the
+                    // second with detail=2 — ignore that so a habitual
+                    // double-click does not drop the user into rename after
+                    // the first click selected the file.
+                    if (e.button !== 0 || e.detail > 1) return;
+                    if (currentFilePath === node.path) {
+                        setRenamingPath(node.path);
+                        return;
+                    }
+                    handleFileSelect(node.path);
+                }}
+                onContextMenu={(e) => {
+                    e.preventDefault();
+                    handleFileSelect(node.path);
+                    setContextMenu({ x: e.clientX, y: e.clientY, path: node.path });
+                }}
             >
                 <svg className="file-tree-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -598,7 +747,9 @@ function App() {
                     <button type="button" className={`view-toggle-btn ${viewMode === "split" ? "active" : ""}`} aria-pressed={viewMode === "split"} onClick={() => setViewMode("split")}>Split</button>
                 </div>
 
-                <div style={{ display: "flex", gap: "var(--space-2)" }} data-tauri-drag-region="false">
+                <div className="header-drag-gutter" data-testid="header-drag-gutter" data-tauri-drag-region aria-hidden="true" />
+
+                <div className="header-actions" style={{ display: "flex", gap: "var(--space-2)" }} data-tauri-drag-region="false">
                     <ShareMenu
                         disabled={!currentFilePath}
                         filename={currentFilePath ? getBasename(currentFilePath) : "untitled.md"}
@@ -814,6 +965,27 @@ function App() {
                     onMarkdownChange={handleMarkdownChange}
                 />
             </main>
+
+            {contextMenu && (
+                <div
+                    className="note-context-menu"
+                    role="menu"
+                    data-testid="note-context-menu"
+                    style={{ top: contextMenu.y, left: contextMenu.x }}
+                    onMouseDown={(e) => e.stopPropagation()}
+                >
+                    <button
+                        type="button"
+                        role="menuitem"
+                        onClick={() => {
+                            setRenamingPath(contextMenu.path);
+                            setContextMenu(null);
+                        }}
+                    >
+                        Rename
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

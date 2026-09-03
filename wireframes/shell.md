@@ -41,7 +41,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | Sidebar heading | h3 | Workspace basename, or Documents if none |
 | Empty list | copy | No folder opened or no markdown files found. |
 | No match | copy | No notes match "{query}". |
-| Note tree | tree | role=tree aria-label=Notes. Folders are expandable buttons (aria-expanded). Files are buttons with role=treeitem and aria-selected. Shows basename for files; relative folder segments for directories. A dirty selected note shows a • mark. |
+| Note tree | tree | role=tree aria-label=Notes. Folders are expandable buttons (aria-expanded). Files are buttons with role=treeitem and aria-selected. Shows basename for files; relative folder segments for directories. A dirty selected note shows a • mark. Clicking an already-selected file starts inline rename. Right-click → Rename. F2 on a selected file starts rename. New Note opens the created row in rename. See rename.md. |
 | Notes (mobile) | button | Visible below 768px. Opens a left drawer (`data-testid=notes-drawer`, `role=dialog` `aria-modal`) with the same tree. Escape / backdrop / selecting a file close it. |
 
 ## States
@@ -67,6 +67,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] Synthesis banner is dismissible and uses role=status.
 - [ ] Save is a labeled header button (Save note). Disabled until a note is selected.
 - [ ] Copy All is a labeled header button (Copy all). Disabled until a note is selected. Click writes markdown + HTML to the clipboard and the label becomes Copied.
+- [ ] New Note lands in inline rename; right-click → Rename and F2 do the same for an existing file.
 - [ ] A dirty note autosaves ~1.5s after the last edit and can be saved immediately with the button or ⌘S.
 - [ ] Below 768px a **Notes** button (`data-testid=open-notes`) opens a drawer with the same tree; Escape and selecting a file close it.
 

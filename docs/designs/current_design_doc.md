@@ -1967,7 +1967,7 @@ classDiagram
 - **Lifecycle.** Desktop: set by `set_workspace` from the native dialog, held in
   `WorkspaceState` (`src-tauri/src/lib.rs`, lines 90–92, 109–123). Browser: fixed
   for the process lifetime from `MOTION_WORKSPACE` (`src/server.ts`, lines 34–37).
-- **Operations.** List markdown, list data files, read, write.
+- **Operations.** List markdown, list data files, read, write, rename.
 - **Security.** This *is* the security model.
 
 ### Note
@@ -1978,8 +1978,10 @@ classDiagram
 - **Fields.** Path and UTF-8 content. Nothing else is persisted.
 - **Validation.** Only the jail; the content is arbitrary Markdown.
 - **Lifecycle.** Created by `handleNewNote` with the name
-  `untitled-<ISO timestamp>.md` (`src/App.tsx`, lines 53–55); updated by save;
-  **never deleted or renamed by Motion** — there is no delete or rename feature.
+  `untitled-<ISO timestamp>.md` (`src/App.tsx`); updated by save; **renamed
+  from the tree** (inline field after New Note, right-click → Rename, F2, or a
+  second click on the selected file — `renameWorkspaceFile` / `rename_file`,
+  no overwrite). Motion never deletes a note.
 - **Events produced.** None. There is no event system.
 
 ### DataFile
@@ -2307,6 +2309,7 @@ components are covered in §11 and §8.
 | `listFiles` | `(path: string) => Promise<string[]>` | Markdown files, recursive, sorted, absolute | A workspace exists | Absolute paths | Backend errors |
 | `readFile` | `(path: string) => Promise<string>` | File content | Path inside the workspace | UTF-8 content | `denied`, `not-found` |
 | `writeFile` | `(path: string, content: string) => Promise<void>` | Write content, creating parents | Path inside the workspace | — | `denied` |
+| `renameFile` | `(from: string, to: string) => Promise<string>` | Rename a file inside the workspace | Both paths inside the workspace; dest must not exist | Resolved dest | `denied`, `not-found`, `exists` |
 | `listDataFiles` | `() => Promise<string[]>` | CSV/JSON/JSONL for the Dataset picker | A workspace exists | Absolute paths | Backend errors |
 
 **Idempotency.** All five are idempotent. **Authorization.** None beyond the jail.
@@ -2323,6 +2326,7 @@ components are covered in §11 and §8.
 - `listFiles(path)` → `invoke("list_markdown_files", { path })`.
 - `readFile(path)` → `invoke("read_file", { path })`.
 - `writeFile(path, content)` → `invoke("write_file", { path, content })`.
+- `renameFile(from, to)` → `invoke("rename_file", { from, to })`.
 - `listDataFiles()` → `invoke("list_data_files")` — no arguments; the root is
   server-side state.
 
@@ -2340,6 +2344,7 @@ webview (§28.6).
 | `listFiles(_path)` (82–86) | `GET /api/fs/list` | Argument ignored by design (§6.3) |
 | `readFile(path)` (88–93) | `GET /api/fs/read?path=<encoded>` | Returns `content` |
 | `writeFile(path, content)` (95–102) | `POST /api/fs/write` with a JSON body | Throws on non-OK |
+| `renameFile(from, to)` | `POST /api/fs/rename` | Returns `path`; 409 on collision |
 | `listDataFiles()` (104–108) | `GET /api/fs/data-files` | Array of absolute paths |
 
 **Error surfacing.** Every non-OK response goes through `failed()` (46–55), which
@@ -2622,7 +2627,8 @@ flowchart LR
     C --> B
     C --> D["Listed on the next openFolder"]
     D --> B
-    C -.->|"Motion never does this"| E["deleted / renamed / archived"]
+    C -->|"Rename from the tree"| R["renamed in the same folder"]
+    C -.->|"Motion never does this"| E["deleted / archived"]
 ```
 
 ### Concurrent updates and duplicate prevention
@@ -3479,7 +3485,8 @@ diagnosis, which is the part that transfers.
 | Packaged desktop app shows nothing | `dist/` has no `index.html` | §27.3 | Use `bun tauri dev` |
 
 **Data repair.** There is nothing to repair — the files are plain Markdown on the
-user's disk, and Motion never deletes or renames. **Queue replay, cache flush,
+user's disk, and Motion never deletes. Rename is a same-workspace `rename(2)`
+with no overwrite. **Queue replay, cache flush,
 model fallback:** not applicable; none of those mechanisms exist.
 
 **On-call and escalation:** none. Single-maintainer project.

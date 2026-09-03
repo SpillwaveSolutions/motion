@@ -66,6 +66,10 @@ test("a new note is created, listed, and opens without error", async ({ page }) 
     await page.getByRole("button", { name: "New Note" }).click();
     expect((await write).status()).toBe(200);
 
+    const field = page.getByRole("textbox", { name: "Rename note" });
+    await expect(field).toBeVisible();
+    await field.press("Escape");
+
     const created = page.getByRole("treeitem", { name: /^untitled-/ });
     await expect(created).toBeVisible();
     await expect(created).toHaveAttribute("aria-selected", "true");
@@ -89,6 +93,10 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
     );
     await page.getByRole("button", { name: "New Note" }).click();
     expect((await createWrite).status()).toBe(200);
+
+    const field = page.getByRole("textbox", { name: "Rename note" });
+    await expect(field).toBeVisible();
+    await field.press("Escape");
 
     // Shared workspace may already contain untitled notes from earlier specs;
     // pin the one this click just selected.

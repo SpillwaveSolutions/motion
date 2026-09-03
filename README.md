@@ -27,6 +27,8 @@ natural-language prompts using CLI tools you already have installed.
   page. Tokens stay on this machine (Settings in the Share menu).
 - **Copy All** — copies the current note. Paste into a markdown editor to get
   markdown; paste into Docs, Word, or Mail to get rich text.
+- **Zoom** — ⌘+ / ⌘- / ⌘0. Remembered in the settings file.
+- **Rename** — New Note opens an inline name field. Right-click → Rename, or F2.
 - **Rich markdown** — headings, lists, blockquotes, code blocks with syntax
   highlighting, and **GFM tables**. Insert a 3×3 from the toolbar or `/tab`;
   edit cells; add/delete rows and columns while the caret is in the table.

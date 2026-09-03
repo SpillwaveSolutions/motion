@@ -6,6 +6,8 @@ export interface StorageProvider {
     listFiles(path: string): Promise<string[]>;
     readFile(path: string): Promise<string>;
     writeFile(path: string, content: string): Promise<void>;
+    /** Rename a file inside the opened workspace. Returns the resolved dest. */
+    renameFile(from: string, to: string): Promise<string>;
     /** CSV/JSON/JSONL files in the opened workspace, for the Dataset block's source picker. */
     listDataFiles(): Promise<string[]>;
     /**
@@ -44,6 +46,10 @@ export class TauriStorage implements StorageProvider {
 
     async writeFile(path: string, content: string): Promise<void> {
         await invoke("write_file", { path, content });
+    }
+
+    async renameFile(from: string, to: string): Promise<string> {
+        return await invoke<string>("rename_file", { from, to });
     }
 
     async listDataFiles(): Promise<string[]> {
@@ -114,6 +120,17 @@ export class HttpStorage implements StorageProvider {
             body: JSON.stringify({ path, content }),
         });
         if (!res.ok) await failed(res, `Failed to write "${path}"`);
+    }
+
+    async renameFile(from: string, to: string): Promise<string> {
+        const res = await fetch("/api/fs/rename", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ from, to }),
+        });
+        if (!res.ok) await failed(res, `Failed to rename "${from}"`);
+        const body = await res.json();
+        return body.path as string;
     }
 
     async listDataFiles(): Promise<string[]> {

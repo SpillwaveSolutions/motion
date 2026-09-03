@@ -204,6 +204,14 @@ fn write_file(path: String, content: String, state: State<'_, WorkspaceState>) -
     fs_core::write_workspace_file(&root, &path, &content).map_err(String::from)
 }
 
+#[tauri::command]
+fn rename_file(from: String, to: String, state: State<'_, WorkspaceState>) -> Result<String, String> {
+    let root = workspace_root(&state)?;
+    fs_core::rename_workspace_file(&root, &from, &to)
+        .map(|p| p.to_string_lossy().into_owned())
+        .map_err(String::from)
+}
+
 /// Lists markdown under the opened workspace.
 ///
 /// B14: this used to overwrite the workspace root with whatever directory it was
@@ -226,6 +234,77 @@ fn list_data_files(state: State<'_, WorkspaceState>) -> Result<Vec<String>, Stri
     fs_core::collect_files(&root, fs_core::DATA_EXTENSIONS).map_err(String::from)
 }
 
+const ZOOM_MIN: f64 = 0.75;
+const ZOOM_MAX: f64 = 2.0;
+
+fn settings_path() -> PathBuf {
+    if let Ok(p) = std::env::var("MOTION_SETTINGS_FILE") {
+        let trimmed = p.trim();
+        if !trimmed.is_empty() {
+            return PathBuf::from(trimmed);
+        }
+    }
+    let home = std::env::var("HOME")
+        .or_else(|_| std::env::var("USERPROFILE"))
+        .unwrap_or_else(|_| ".".into());
+    PathBuf::from(home)
+        .join(".config")
+        .join("motion")
+        .join("settings.json")
+}
+
+fn load_settings_value() -> serde_json::Value {
+    match fs::read_to_string(settings_path()) {
+        Ok(text) => serde_json::from_str(&text).unwrap_or_else(|_| serde_json::json!({})),
+        Err(_) => serde_json::json!({}),
+    }
+}
+
+fn zoom_from(value: &serde_json::Value) -> f64 {
+    value
+        .get("zoom")
+        .and_then(|v| v.as_f64())
+        .filter(|z| z.is_finite())
+        .unwrap_or(1.0)
+        .clamp(ZOOM_MIN, ZOOM_MAX)
+}
+
+#[tauri::command]
+fn get_settings() -> Result<serde_json::Value, String> {
+    let raw = load_settings_value();
+    Ok(serde_json::json!({
+        "settings": { "zoom": zoom_from(&raw) },
+        "path": settings_path().to_string_lossy(),
+    }))
+}
+
+#[tauri::command]
+fn set_settings(partial: serde_json::Value) -> Result<serde_json::Value, String> {
+    let mut raw = load_settings_value();
+    if let Some(z) = partial
+        .get("zoom")
+        .and_then(|v| v.as_f64())
+        .filter(|z| z.is_finite())
+    {
+        let clamped = z.clamp(ZOOM_MIN, ZOOM_MAX);
+        match &mut raw {
+            serde_json::Value::Object(map) => {
+                map.insert("zoom".into(), serde_json::json!(clamped));
+            }
+            _ => {
+                raw = serde_json::json!({ "zoom": clamped });
+            }
+        }
+    }
+    let path = settings_path();
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent).map_err(|e| e.to_string())?;
+    }
+    let body = serde_json::to_string_pretty(&raw).map_err(|e| e.to_string())?;
+    fs::write(&path, body + "\n").map_err(|e| e.to_string())?;
+    Ok(serde_json::json!({ "settings": { "zoom": zoom_from(&raw) } }))
+}
+
 fn install_menu(app: &tauri::App) -> tauri::Result<()> {
     use tauri::menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder};
 
@@ -243,6 +322,15 @@ fn install_menu(app: &tauri::App) -> tauri::Result<()> {
     let share_notion = MenuItemBuilder::with_id("share_notion", "Publish to Notion").build(app)?;
     let settings = MenuItemBuilder::with_id("settings", "Settings…")
         .accelerator("CmdOrCtrl+,")
+        .build(app)?;
+    let zoom_in = MenuItemBuilder::with_id("zoom_in", "Zoom In")
+        .accelerator("CmdOrCtrl+Plus")
+        .build(app)?;
+    let zoom_out = MenuItemBuilder::with_id("zoom_out", "Zoom Out")
+        .accelerator("CmdOrCtrl+-")
+        .build(app)?;
+    let zoom_reset = MenuItemBuilder::with_id("zoom_reset", "Actual Size")
+        .accelerator("CmdOrCtrl+0")
         .build(app)?;
 
     let file = SubmenuBuilder::new(app, "File")
@@ -268,7 +356,13 @@ fn install_menu(app: &tauri::App) -> tauri::Result<()> {
         .select_all()
         .build()?;
 
-    let menu = MenuBuilder::new(app).item(&file).item(&edit).build()?;
+    let view = SubmenuBuilder::new(app, "View")
+        .item(&zoom_in)
+        .item(&zoom_out)
+        .item(&zoom_reset)
+        .build()?;
+
+    let menu = MenuBuilder::new(app).item(&file).item(&edit).item(&view).build()?;
     app.set_menu(menu)?;
     Ok(())
 }
@@ -313,8 +407,11 @@ pub fn run() {
             take_pending_open,
             read_file,
             write_file,
+            rename_file,
             list_markdown_files,
             list_data_files,
+            get_settings,
+            set_settings,
             run_llm_cli,
             run_image_cli,
             publish::publish_gist,

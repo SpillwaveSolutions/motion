@@ -17,6 +17,7 @@ test("app boots with the editor mounted and a clean console", async ({ page }) =
     // Shell controls are present.
     await expect(page.getByRole("button", { name: "Open Folder" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Copy all" })).toBeVisible();
+    await expect(page.getByTestId("header-drag-gutter")).toBeVisible();
     await expect(page.getByLabel("Search notes")).toBeVisible();
 
     // The guard fixture asserts zero console errors / failed requests / >=400

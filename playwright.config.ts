@@ -49,6 +49,10 @@ export default defineConfig({
         // pointed at someone's real workspace, not the seeded scratch one.
         reuseExistingServer: false,
         timeout: 120_000,
-        env: { MOTION_WORKSPACE: E2E_WORKSPACE },
+        env: {
+            MOTION_WORKSPACE: E2E_WORKSPACE,
+            // Keep zoom tests from writing ~/.config/motion/settings.json.
+            MOTION_SETTINGS_FILE: `${E2E_WORKSPACE}.settings.json`,
+        },
     },
 });
