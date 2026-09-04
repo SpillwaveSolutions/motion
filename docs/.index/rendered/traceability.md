@@ -5,18 +5,21 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 ### Show the zoom level briefly
 `01M1MVB300WYDPA67T9FNDM51R` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- lands-in: pr/57
 - targets: release/v0.6.4
 - produced-by: [[Plan-editor-surface-zoom-layout-icons]]
 
 ### Let the panes grow and be resized
 `01M1MVB300WHXWP5177D3BNDB2` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- lands-in: pr/57
 - targets: release/v0.6.4
 - produced-by: [[Plan-editor-surface-zoom-layout-icons]]
 
 ### Scale content without scaling chrome
 `01M1MVB300TGVNPJBG8GJ6KG1T` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- lands-in: pr/57
 - targets: release/v0.6.4
 - produced-by: [[Plan-editor-surface-zoom-layout-icons]]
 
@@ -29,6 +32,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 ### Make the header drag the window
 `01M1MVB300EAR8PX5HKEACTKP1` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- lands-in: pr/57
 - targets: release/v0.6.4
 - contains: Mac dogfood the header drag
 - produced-by: [[Plan-editor-surface-zoom-layout-icons]]
@@ -36,12 +40,14 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 ### Replace header action labels with standard icons
 `01M1MVB3005Z8WSN5R6KEW5BNN` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- lands-in: pr/57
 - targets: release/v0.6.4
 - produced-by: [[Plan-editor-surface-zoom-layout-icons]]
 
 ### Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
 `01M1MVB2ZZGP7FHW2TX6CNA6BE` · status: done
 - lands-in: pr/56
+- lands-in: pr/57
 - contains: Replace SKILL.md with a generated folder README
 - contains: Replace header action labels with standard icons
 - contains: Make the header drag the window
@@ -53,6 +59,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 ### Replace SKILL.md with a generated folder README
 `01M1MVB2ZZFQX90WHGB0CA99RW` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag
+- lands-in: pr/57
 - targets: release/v0.6.4
 - produced-by: [[Plan-editor-surface-zoom-layout-icons]]
 
