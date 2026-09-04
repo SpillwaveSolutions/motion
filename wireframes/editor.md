@@ -48,7 +48,7 @@ Highlighted source -- see markdown-source.md.
 | Save | — | Moved to the app header. Toolbar keeps status only. Disabled with no file. Cmd/Ctrl+S. Autosave 1.5s after last edit. View-mode switches on an unedited note do not dirty and do not autosave. |
 | Welcome doc | default | Shown when no file selected: intro, mermaid, dataset, query, image-gen, diagram-gen demo blocks |
 | Markdown source | textarea | aria-label Markdown source. Highlighted (headings, emphasis, code, links, lists). Placeholder Write your markdown here... See markdown-source.md. |
-| Split preview | pre | Right pane is live highlighted markdown (read-only, aria-label Markdown preview). |
+| Split preview | pre | Right pane is live highlighted markdown (read-only, aria-label Markdown preview). A `role=separator` divider between the panes is draggable; see layout.md. The editor surface has **no** max-width cap — it fills the main column. |
 | Find in note | bar | ⌘/Ctrl+F opens. Matches the current note (WYSIWYG selection or markdown source). Enter next, Shift+Enter previous, Escape closes. aria-label Find in note. |
 | Loading | copy | Loading editor... before TipTap mounts |
 

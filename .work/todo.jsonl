@@ -286,3 +286,18 @@
 {"actor":"unknown","ev":"01M1MVBFXPPWX7D59468J2AHNQ","item":"01M1MVB3005Z8WSN5R6KEW5BNN","op":"update","set":{"milestone":"v0.6.4"},"ts":"2026-09-03T23:58:33Z"}
 {"actor":"unknown","ev":"01M1MVBFZ9CM5AE9H3E82GEDVD","item":"01M1MVB300EAR8PX5HKEACTKP1","op":"update","set":{"kind":"bug","milestone":"v0.6.4"},"ts":"2026-09-03T23:58:33Z"}
 {"actor":"unknown","ev":"01M1MVBG0VBN3ZT78N5STC6P8Q","item":"01M1MVB300KXXJPZ2XACH7A64K","op":"update","set":{"kind":"bug","milestone":"v0.6.4"},"ts":"2026-09-03T23:58:34Z"}
+{"actor":"unknown","ev":"01M1PK1AC5J123TT60D0PYRTVE","item":"01M1MVB2ZZGP7FHW2TX6CNA6BE","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:40Z"}
+{"actor":"unknown","ev":"01M1PK1ADPT744CE18GSVS6YCV","item":"01M1MVB300TGVNPJBG8GJ6KG1T","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:40Z"}
+{"actor":"unknown","ev":"01M1PK1AF6PATPD0N6AM8TPKCQ","item":"01M1MVB300WHXWP5177D3BNDB2","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:40Z"}
+{"actor":"unknown","ev":"01M1PK1AGRRFW1VD23XPWJ29H6","item":"01M1MVB300EAR8PX5HKEACTKP1","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:40Z"}
+{"actor":"unknown","ev":"01M1PK1AK108Y1H28QBQFWRGTF","item":"01M1MVB2ZZFQX90WHGB0CA99RW","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:41Z"}
+{"actor":"unknown","ev":"01M1PK1AMJ0M6A94KF7MM9VWAZ","item":"01M1MVB300WYDPA67T9FNDM51R","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:41Z"}
+{"actor":"unknown","ev":"01M1PK1AP3VR7PTBKF8R83MNE9","item":"01M1MVB3005Z8WSN5R6KEW5BNN","op":"update","set":{"status":"in_progress"},"ts":"2026-09-04T16:11:41Z"}
+{"actor":"unknown","ev":"01M1PK1AQNEGT69G2SHKA5T8VE","item":"01M1MVB300KXXJPZ2XACH7A64K","op":"update","set":{"status":"blocked"},"ts":"2026-09-04T16:11:41Z"}
+{"actor":"unknown","ev":"01M1PMDJG77VCMQCHR7M1W76Y1","item":"01M1MVB300TGVNPJBG8GJ6KG1T","op":"close","set":{"resolution":"Zoom writes --zoom; root stays 16px; CSS zoom on editor and tree; header box unchanged in e2e.","status":"done"},"ts":"2026-09-04T16:35:50Z"}
+{"actor":"unknown","ev":"01M1PMDJHSFYBE0B931KRM9SF8","item":"01M1MVB300WYDPA67T9FNDM51R","op":"close","set":{"resolution":"Zoom HUD role=status shows the rounded percent for ~1s; timer resets per step.","status":"done"},"ts":"2026-09-04T16:35:50Z"}
+{"actor":"unknown","ev":"01M1PMDJKA6Y0D0DCJ5RRAK9YT","item":"01M1MVB300WHXWP5177D3BNDB2","op":"close","set":{"resolution":"Dropped 900/1400 caps; sidebar and split separators persist in settings.json.","status":"done"},"ts":"2026-09-04T16:35:51Z"}
+{"actor":"unknown","ev":"01M1PMDJMTJF3VC7EAB2DZJ4WZ","item":"01M1MVB3005Z8WSN5R6KEW5BNN","op":"close","set":{"resolution":"Header actions are Lucide inline SVGs; aria-labels unchanged.","status":"done"},"ts":"2026-09-04T16:35:51Z"}
+{"actor":"unknown","ev":"01M1PMDJPAYM43PVZZRQKQNSGS","item":"01M1MVB300EAR8PX5HKEACTKP1","op":"close","set":{"resolution":"Own isWindowDragTarget + startDragging(); gutter kept. Mac dogfood still blocked.","status":"done"},"ts":"2026-09-04T16:35:51Z"}
+{"actor":"unknown","ev":"01M1PMDJQVVTRM8GCD1BGBCME3","item":"01M1MVB2ZZFQX90WHGB0CA99RW","op":"close","set":{"resolution":"Synthesize writes README.md with a generated marker; collision uses README.motion.md.","status":"done"},"ts":"2026-09-04T16:35:51Z"}
+{"actor":"unknown","ev":"01M1PMDJSC6ETHG5FQCQTPJKVZ","item":"01M1MVB2ZZGP7FHW2TX6CNA6BE","op":"close","set":{"resolution":"v0.6.4 surface: content zoom, pane resize, icon toolbar, JS window drag, folder README. Mac dogfood of drag remains blocked.","status":"done"},"ts":"2026-09-04T16:35:51Z"}

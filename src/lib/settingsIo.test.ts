@@ -17,7 +17,11 @@ function tmpFile(name = "settings.json"): string {
 }
 
 test("loadSettings returns defaults when the file is missing", () => {
-    expect(loadSettings(join(tmpdir(), "motion-no-such-settings.json"))).toEqual({ zoom: 1 });
+    expect(loadSettings(join(tmpdir(), "motion-no-such-settings.json"))).toEqual({
+        zoom: 1,
+        sidebarWidth: 280,
+        splitRatio: 0.5,
+    });
 });
 
 test("saveSettings clamps zoom and round-trips", () => {
@@ -36,4 +40,21 @@ test("saveSettings preserves unknown keys from an older settings file", () => {
     expect(raw.zoom).toBe(1.2);
     expect(raw.launchMode).toBe("desktop");
     expect(raw.port).toBe(3000);
+});
+
+test("a zoom write does not wipe a sidebarWidth already on disk", () => {
+    const file = tmpFile();
+    saveSettings({ sidebarWidth: 320 }, file);
+    saveSettings({ zoom: 1.2 }, file);
+    const loaded = loadSettings(file);
+    expect(loaded.zoom).toBe(1.2);
+    expect(loaded.sidebarWidth).toBe(320);
+});
+
+test("sidebarWidth and splitRatio round-trip", () => {
+    const file = tmpFile();
+    saveSettings({ sidebarWidth: 360, splitRatio: 0.4 }, file);
+    const loaded = loadSettings(file);
+    expect(loaded.sidebarWidth).toBe(360);
+    expect(loaded.splitRatio).toBe(0.4);
 });

@@ -153,7 +153,7 @@ CLI that lives alongside the app but is not part of it), the generated
 | **Atom node** | A Tiptap node with no editable child content. All five block extensions are atoms. |
 | **E2E** | End-to-end tests — Playwright specs driving a real browser against the real dev server. |
 | **DuckDB-WASM** | An analytical SQL engine compiled to WebAssembly, running in a Web Worker inside the page. |
-| **Enrichment modules** | `ContentInjector`, `TopicRefiner`, `TOCGenerator`, `SkillGenerator` — routed through `llmClient`; UI: AI Refine + **Synthesize** (§0.1, was §11.7 dead code). |
+| **Enrichment modules** | `ContentInjector`, `TopicRefiner`, `TOCGenerator`, `ReadmeGenerator` — routed through `llmClient`; UI: AI Refine + **Synthesize** writes `TOC.md` + folder `README.md` (§0.1, was §11.7 dead code). |
 | **Workspace synthesis** | `src/lib/workspaceSynthesis.ts` — summarize notes, cluster topics, write `TOC.md` / `SKILL.md`. |
 | **ULID** | Universally Unique Lexicographically Sortable Identifier — the work-item IDs in `docs/roadmap.md`. |
 

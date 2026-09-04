@@ -3,8 +3,8 @@
  * (text/html) so paste follows the destination. The OS clipboard is stubbed:
  * we assert what Motion handed the Clipboard API, not the host pasteboard.
  *
- * Accessible name stays "Copy all" (aria-label). The visible label becomes
- * Copied — assert that via data-testid, not getByRole({ name: "Copied" }).
+ * Accessible name stays "Copy all" (aria-label). Copied lives in
+ * data-copy-state and title — assert those, not visible text (the control is icon-only).
  */
 import { test, expect, gotoApp } from "./fixtures";
 
@@ -77,7 +77,7 @@ test("Copy All is enabled on the welcome note and becomes Copied", async ({ page
     await expect(page.locator(".ProseMirror")).toContainText("Welcome");
 
     await copy.click();
-    await expect(page.getByTestId("copy-all")).toHaveText("Copied");
+    await expect(page.getByTestId("copy-all")).toHaveAttribute("data-copy-state", "copied");
 
     const payload = await copiedPayload(page);
     expect(payload["text/plain"]).toContain("# Welcome");
@@ -100,7 +100,7 @@ test("Copy All includes unsaved edits from the live buffer", async ({ page, guar
     await source.fill("# Pasted later\n\n**bold live edit**");
     await expect(source).toHaveValue(/Pasted later/);
     await page.getByRole("button", { name: "Copy all" }).click();
-    await expect(page.getByTestId("copy-all")).toHaveText("Copied");
+    await expect(page.getByTestId("copy-all")).toHaveAttribute("data-copy-state", "copied");
 
     const payload = await copiedPayload(page);
     expect(payload["text/plain"]).toContain("# Pasted later");

@@ -236,6 +236,12 @@ fn list_data_files(state: State<'_, WorkspaceState>) -> Result<Vec<String>, Stri
 
 const ZOOM_MIN: f64 = 0.75;
 const ZOOM_MAX: f64 = 2.0;
+const SIDEBAR_MIN: f64 = 180.0;
+const SIDEBAR_MAX: f64 = 480.0;
+const SIDEBAR_DEFAULT: f64 = 280.0;
+const SPLIT_MIN: f64 = 0.25;
+const SPLIT_MAX: f64 = 0.75;
+const SPLIT_DEFAULT: f64 = 0.5;
 
 fn settings_path() -> PathBuf {
     if let Ok(p) = std::env::var("MOTION_SETTINGS_FILE") {
@@ -260,20 +266,62 @@ fn load_settings_value() -> serde_json::Value {
     }
 }
 
-fn zoom_from(value: &serde_json::Value) -> f64 {
+fn number_from(value: &serde_json::Value, key: &str, default: f64, min: f64, max: f64) -> f64 {
     value
+        .get(key)
+        .and_then(|v| v.as_f64())
+        .filter(|n| n.is_finite())
+        .unwrap_or(default)
+        .clamp(min, max)
+}
+
+fn apply_settings_partial(raw: &mut serde_json::Value, partial: &serde_json::Value) {
+    if !raw.is_object() {
+        *raw = serde_json::json!({});
+    }
+    let map = raw.as_object_mut().expect("object after reset");
+    if let Some(z) = partial
         .get("zoom")
         .and_then(|v| v.as_f64())
         .filter(|z| z.is_finite())
-        .unwrap_or(1.0)
-        .clamp(ZOOM_MIN, ZOOM_MAX)
+    {
+        map.insert("zoom".into(), serde_json::json!(z.clamp(ZOOM_MIN, ZOOM_MAX)));
+    }
+    if let Some(w) = partial
+        .get("sidebarWidth")
+        .and_then(|v| v.as_f64())
+        .filter(|w| w.is_finite())
+    {
+        map.insert(
+            "sidebarWidth".into(),
+            serde_json::json!(w.clamp(SIDEBAR_MIN, SIDEBAR_MAX)),
+        );
+    }
+    if let Some(r) = partial
+        .get("splitRatio")
+        .and_then(|v| v.as_f64())
+        .filter(|r| r.is_finite())
+    {
+        map.insert(
+            "splitRatio".into(),
+            serde_json::json!(r.clamp(SPLIT_MIN, SPLIT_MAX)),
+        );
+    }
+}
+
+fn settings_public(raw: &serde_json::Value) -> serde_json::Value {
+    serde_json::json!({
+        "zoom": number_from(raw, "zoom", 1.0, ZOOM_MIN, ZOOM_MAX),
+        "sidebarWidth": number_from(raw, "sidebarWidth", SIDEBAR_DEFAULT, SIDEBAR_MIN, SIDEBAR_MAX),
+        "splitRatio": number_from(raw, "splitRatio", SPLIT_DEFAULT, SPLIT_MIN, SPLIT_MAX),
+    })
 }
 
 #[tauri::command]
 fn get_settings() -> Result<serde_json::Value, String> {
     let raw = load_settings_value();
     Ok(serde_json::json!({
-        "settings": { "zoom": zoom_from(&raw) },
+        "settings": settings_public(&raw),
         "path": settings_path().to_string_lossy(),
     }))
 }
@@ -281,28 +329,14 @@ fn get_settings() -> Result<serde_json::Value, String> {
 #[tauri::command]
 fn set_settings(partial: serde_json::Value) -> Result<serde_json::Value, String> {
     let mut raw = load_settings_value();
-    if let Some(z) = partial
-        .get("zoom")
-        .and_then(|v| v.as_f64())
-        .filter(|z| z.is_finite())
-    {
-        let clamped = z.clamp(ZOOM_MIN, ZOOM_MAX);
-        match &mut raw {
-            serde_json::Value::Object(map) => {
-                map.insert("zoom".into(), serde_json::json!(clamped));
-            }
-            _ => {
-                raw = serde_json::json!({ "zoom": clamped });
-            }
-        }
-    }
+    apply_settings_partial(&mut raw, &partial);
     let path = settings_path();
     if let Some(parent) = path.parent() {
         fs::create_dir_all(parent).map_err(|e| e.to_string())?;
     }
     let body = serde_json::to_string_pretty(&raw).map_err(|e| e.to_string())?;
     fs::write(&path, body + "\n").map_err(|e| e.to_string())?;
-    Ok(serde_json::json!({ "settings": { "zoom": zoom_from(&raw) } }))
+    Ok(serde_json::json!({ "settings": settings_public(&raw) }))
 }
 
 fn install_menu(app: &tauri::App) -> tauri::Result<()> {
@@ -508,5 +542,30 @@ mod tests {
 
         // And the stored root is untouched by the attempt.
         assert_eq!(workspace_root(&state).unwrap(), root);
+    }
+
+    #[test]
+    fn settings_partial_clamps_and_preserves_unknown_keys() {
+        let mut raw = serde_json::json!({ "zoom": 1.0, "launchMode": "desktop" });
+        apply_settings_partial(
+            &mut raw,
+            &serde_json::json!({ "zoom": 9.0, "sidebarWidth": 50.0, "splitRatio": 0.9 }),
+        );
+        assert_eq!(raw["zoom"], 2.0);
+        assert_eq!(raw["sidebarWidth"], 180.0);
+        assert_eq!(raw["splitRatio"], 0.75);
+        assert_eq!(raw["launchMode"], "desktop");
+        let view = settings_public(&raw);
+        assert_eq!(view["zoom"], 2.0);
+        assert_eq!(view["sidebarWidth"], 180.0);
+        assert_eq!(view["splitRatio"], 0.75);
+    }
+
+    #[test]
+    fn settings_public_fills_defaults_for_an_empty_file() {
+        let view = settings_public(&serde_json::json!({}));
+        assert_eq!(view["zoom"], 1.0);
+        assert_eq!(view["sidebarWidth"], 280.0);
+        assert_eq!(view["splitRatio"], 0.5);
     }
 }

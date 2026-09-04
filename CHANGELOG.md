@@ -4,6 +4,42 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+Editor fills the window; zoom scales notes not chrome; icon toolbar; header drag
+owned in JS; Synthesize writes a folder README instead of SKILL.md.
+
+### Added
+
+- **Content zoom.** ⌘+ / ⌘- / ⌘0 scale the editor and the file tree. Header
+  buttons stay the same size. A percentage overlay flashes for about a second.
+  The level is still remembered in `settings.json`.
+- **Resizable panes.** Drag the sidebar's trailing edge (180–480px) or the
+  Split divider (25–75%). Both persist next to zoom. Stretching the window
+  widens the note; the 900px / 1400px caps are gone.
+- **Icon header actions.** Share, Copy All, Open Folder, New Note, New Folder,
+  Save, and Synthesize are icon-only. Accessible names are unchanged, so
+  existing specs keep passing.
+- **Folder README.** Synthesize still writes TOC.md. SKILL.md is retired in
+  favor of a short generated README.md. A hand-written README.md is left
+  intact; the run writes README.motion.md and says so.
+
+### Fixed
+
+- **Window drag from the header.** Tauri 2.9.5 only looks at the event target
+  for `data-tauri-drag-region`, so children of the header swallowed the drag.
+  Motion now walks the ancestor chain and calls `startDragging()` itself.
+  Double-click on header chrome toggles maximize. The grab strip remains.
+
+### Known issues
+
+- **Mac dogfood** of header drag (logo, empty chrome, double-click to zoom the
+  window) still needs a real Mac `.app`. Linux CI cannot click one.
+- **Packaged Ask AI** is a one-shot `run_llm_cli` until a Bun sidecar hosts the
+  shared TS service (streaming + tools).
+- **Dictation** is not in this release.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) still only
+  loads when those files exist in the open workspace. Missing files now say so
+  instead of dumping DuckDB/HTTP errors.
+
 ## 0.6.3 — 2026-09-03
 
 Window drag restored; zoom remembered in settings; rename notes from the tree.

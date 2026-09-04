@@ -3,7 +3,7 @@ import { ZOOM_MAX, ZOOM_MIN } from "./settings";
 export { ZOOM_MAX, ZOOM_MIN };
 
 export const ZOOM_STEP = 0.1;
-/** Matches `html { font-size: 16px }` in src/index.css — the rem anchor. */
+/** Matches `html { font-size: 16px }` in src/index.css — chrome stays here. */
 export const ZOOM_BASE_PX = 16;
 
 export type ZoomDirection = "in" | "out" | "reset";
@@ -12,13 +12,18 @@ export type ZoomDirection = "in" | "out" | "reset";
  * Next scale for a zoom keystroke, clamped to the settings bounds.
  *
  * Rounded to two places because 1 + 0.1 + 0.1 is 1.2000000000000002 in binary
- * floating point, and that lands in the settings file and in a font-size.
+ * floating point, and that lands in the settings file and in CSS.
  */
 export function nextZoom(current: number, direction: ZoomDirection): number {
     if (direction === "reset") return 1;
     const raw = direction === "in" ? current + ZOOM_STEP : current - ZOOM_STEP;
     const clamped = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, raw));
     return Math.round(clamped * 100) / 100;
+}
+
+/** Rounded percentage for the HUD (110, 100, 75, …). */
+export function zoomPercent(scale: number): number {
+    return Math.round(scale * 100);
 }
 
 /**
@@ -41,12 +46,14 @@ export function zoomActionFor(e: {
 }
 
 /**
- * Rescale the whole window.
+ * Scale the editor surface and the file tree, not the chrome.
  *
- * Every size token in src/index.css is rem-anchored to the root font size --
- * --text-xs…--text-3xl and --space-1…--space-12 alike -- so one value rescales
- * text and spacing together, in proportion, the way browser zoom does.
+ * Writes `--zoom` on the root and clears any leftover inline font-size from
+ * v0.6.3, which used to rescale the whole window by changing html font-size.
+ * Content roots opt in with `zoom: var(--zoom)` in CSS.
  */
 export function applyZoom(scale: number): void {
-    document.documentElement.style.fontSize = `${ZOOM_BASE_PX * scale}px`;
+    const root = document.documentElement;
+    root.style.removeProperty("font-size");
+    root.style.setProperty("--zoom", String(scale));
 }

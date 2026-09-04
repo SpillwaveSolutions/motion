@@ -36,6 +36,14 @@ import {
     type AiScope,
     type CannedPrompt,
 } from "../../lib/ai";
+import PaneResizeHandle from "../PaneResizeHandle";
+import {
+    SPLIT_DEFAULT,
+    SPLIT_MAX,
+    SPLIT_MIN,
+    splitRatioFromKey,
+    splitRatioFromPointer,
+} from "../../lib/layout";
 
 const lowlight = createLowlight(common);
 
@@ -60,6 +68,8 @@ interface EditorProps {
     onDirtyChange?: (dirty: boolean) => void;
     onSaved?: (path: string, content: string) => void;
     onMarkdownChange?: (markdown: string) => void;
+    splitRatio?: number;
+    onSplitRatioChange?: (ratio: number) => void;
 }
 
 interface SlashMenuState {
@@ -171,6 +181,8 @@ function Editor({
     onDirtyChange,
     onSaved,
     onMarkdownChange,
+    splitRatio = SPLIT_DEFAULT,
+    onSplitRatioChange,
 }: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
     const rawMarkdownRef = useRef("");
@@ -185,6 +197,7 @@ function Editor({
     const [findIndex, setFindIndex] = useState(0);
     const findInputRef = useRef<HTMLInputElement>(null);
     const markdownRef = useRef<HTMLTextAreaElement>(null);
+    const splitRef = useRef<HTMLDivElement>(null);
     // Tracks the previously active view mode so we can sync content only on
     // an actual mode transition, not on every render.
     const prevViewModeRef = useRef<ViewMode | null>(null);
@@ -981,29 +994,61 @@ function Editor({
                 {toolbar}
                 {findBar}
                 {askAiPanel}
-                <MarkdownSource
-                    textareaRef={markdownRef}
-                    value={rawMarkdown}
-                    onChange={(value) => {
-                        setRawMarkdown(value);
-                        onMarkdownChangeRef.current?.(value);
-                    }}
-                />
+                <div className="editor-zoom">
+                    <MarkdownSource
+                        textareaRef={markdownRef}
+                        value={rawMarkdown}
+                        onChange={(value) => {
+                            setRawMarkdown(value);
+                            onMarkdownChangeRef.current?.(value);
+                        }}
+                    />
+                </div>
             </div>
         );
     }
 
     if (viewMode === "split") {
+        const ratio = splitRatio;
+        const left = `${ratio}fr`;
+        const right = `${1 - ratio}fr`;
         return (
-            <div className="editor-container" style={{ maxWidth: "1400px" }}>
+            <div className="editor-container">
                 {toolbar}
                 {findBar}
                 {askAiPanel}
                 {slashMenuPopup}
                 {askAiBubble}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)", flex: 1 }}>
-                    <EditorContent editor={editor} />
-                    <MarkdownPreview value={rawMarkdown} />
+                <div
+                    ref={splitRef}
+                    className="split-panes"
+                    style={{ gridTemplateColumns: `${left} 6px ${right}` }}
+                >
+                    <div className="editor-zoom">
+                        <EditorContent editor={editor} />
+                    </div>
+                    <PaneResizeHandle
+                        className="pane-resize pane-resize-split"
+                        ariaLabel="Resize split panes"
+                        ariaValuemin={Math.round(SPLIT_MIN * 100)}
+                        ariaValuemax={Math.round(SPLIT_MAX * 100)}
+                        ariaValuenow={Math.round(ratio * 100)}
+                        testId="split-resize"
+                        startValue={ratio}
+                        onPointerDelta={(dx, start) => {
+                            const width = splitRef.current?.getBoundingClientRect().width ?? 0;
+                            onSplitRatioChange?.(splitRatioFromPointer(start, dx, width));
+                        }}
+                        onKeyDown={(key) => {
+                            const next = splitRatioFromKey(ratio, key);
+                            if (next == null) return false;
+                            onSplitRatioChange?.(next);
+                            return true;
+                        }}
+                    />
+                    <div className="editor-zoom">
+                        <MarkdownPreview value={rawMarkdown} />
+                    </div>
                 </div>
             </div>
         );
@@ -1016,7 +1061,9 @@ function Editor({
             {askAiPanel}
             {slashMenuPopup}
             {askAiBubble}
-            <EditorContent editor={editor} />
+            <div className="editor-zoom">
+                <EditorContent editor={editor} />
+            </div>
         </div>
     );
 }

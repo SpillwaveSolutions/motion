@@ -115,7 +115,7 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
     // Visible labeled Save (not icon-only). Accessible name still matches /^Save/.
     const saveBtn = page.getByRole("button", { name: "Save note" });
     await expect(saveBtn).toBeVisible();
-    await expect(saveBtn).toContainText("Save");
+    await expect(saveBtn).toHaveAttribute("aria-label", "Save note");
 
     const saveWrite = page.waitForResponse(
         (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"

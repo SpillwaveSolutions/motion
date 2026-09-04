@@ -59,7 +59,7 @@ test("a pipe table becomes a real table and survives save/reload", async ({ page
     });
     const saveButton = page.getByRole("button", { name: "Save note" });
     await saveButton.click();
-    await expect(saveButton).toHaveText(/Saved/);
+    await expect(saveButton).toHaveAttribute("data-save-state", "saved");
     expect(writes.length).toBeGreaterThan(0);
     expect(writes.every((status) => status === 200)).toBe(true);
 
@@ -82,7 +82,7 @@ test("a pipe table becomes a real table and survives save/reload", async ({ page
     // gate rightly refuses to ignore. The spurious dirty itself is filed
     // separately; this only makes the spec deterministic about it.
     await saveButton.click();
-    await expect(saveButton).toHaveText(/Saved/);
+    await expect(saveButton).toHaveAttribute("data-save-state", "saved");
 });
 
 test("Insert Table creates a 3×3 and Add row grows it", async ({ page }) => {

@@ -14,7 +14,7 @@ async function stubLLM(page: import("@playwright/test").Page) {
         const body = route.request().postDataJSON() as { prompt?: string };
         const prompt = body?.prompt ?? "";
 
-        let content = "# SKILL\n\nHow to work in this workspace.\n";
+        let content = "# Architecture\n\nNotes on this workspace.\n\n## Themes\n- Testing\n";
         if (prompt.includes("summary")) {
             content = "- covers the seeded note\n- mentions testing";
         } else if (prompt.includes("JSON")) {
@@ -35,7 +35,7 @@ async function stubLLM(page: import("@playwright/test").Page) {
     });
 }
 
-test("synthesizing a workspace writes TOC.md and SKILL.md", async ({ page }) => {
+test("synthesizing a workspace writes TOC.md and a generated README", async ({ page }) => {
     await stubLLM(page);
     await gotoApp(page);
     await page.getByRole("button", { name: "Open Folder" }).click();
@@ -47,10 +47,10 @@ test("synthesizing a workspace writes TOC.md and SKILL.md", async ({ page }) => 
     const status = page.getByRole("status", { name: "Workspace synthesis" });
     await expect(status).toContainText(/Synthesized \d+ notes/, { timeout: 60_000 });
     await expect(status).toContainText("Seeded Notes");
+    await expect(status).toContainText("README.md");
 
-    // Both documents exist on disk and are listed.
     await expect(page.getByRole("treeitem", { name: "TOC.md" })).toBeVisible();
-    await expect(page.getByRole("treeitem", { name: "SKILL.md" })).toBeVisible();
+    await expect(page.getByRole("treeitem", { name: "README.md" })).toBeVisible();
 
     const toc = await page.evaluate(async () => {
         const list = (await (await fetch("/api/fs/list")).json()) as string[];
@@ -59,6 +59,52 @@ test("synthesizing a workspace writes TOC.md and SKILL.md", async ({ page }) => 
             .content as string;
     });
     expect(toc).toContain("Table of Contents");
+});
+
+test("a hand-written README.md survives; the run writes README.motion.md instead", async ({ page }) => {
+    await stubLLM(page);
+    await gotoApp(page);
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
+
+    await page.evaluate(async () => {
+        const list = (await (await fetch("/api/fs/list")).json()) as string[];
+        const welcome = list.find((p) => p.endsWith("welcome.md"));
+        if (!welcome) throw new Error("no welcome.md");
+        const sep = welcome.includes("\\") ? "\\" : "/";
+        const dir = welcome.slice(0, welcome.lastIndexOf(sep));
+        const path = `${dir}${sep}README.md`;
+        const res = await fetch("/api/fs/write", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                path,
+                content: "# Hand-written folder notes\n\nDo not overwrite this.\n",
+            }),
+        });
+        if (!res.ok) throw new Error(`write failed ${res.status}`);
+    });
+
+    await page.getByRole("button", { name: "Synthesize" }).click();
+    const status = page.getByRole("status", { name: "Workspace synthesis" });
+    await expect(status).toContainText(/Synthesized \d+ notes/, { timeout: 60_000 });
+    await expect(status).toContainText("README.motion.md");
+    await expect(status).toContainText("already there");
+
+    const files = await page.evaluate(async () => {
+        const list = (await (await fetch("/api/fs/list")).json()) as string[];
+        const readme = list.find((p) => /README\.md$/i.test(p) && !p.endsWith("README.motion.md"));
+        const fallback = list.find((p) => p.endsWith("README.motion.md"));
+        const read = async (path: string | undefined) =>
+            path
+                ? ((await (await fetch(`/api/fs/read?path=${encodeURIComponent(path)}`)).json())
+                      .content as string)
+                : "";
+        return { readme: await read(readme), fallback: await read(fallback) };
+    });
+    expect(files.readme).toContain("Do not overwrite this");
+    expect(files.readme).not.toContain("generated-by: motion-synthesize");
+    expect(files.fallback).toContain("generated-by: motion-synthesize");
 });
 
 test("synthesis reports a readable failure instead of dying silently", async ({ page, guard }) => {

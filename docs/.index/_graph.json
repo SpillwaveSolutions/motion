@@ -787,13 +787,33 @@
   },
   {
    "from": "item/01M1MVB2ZZFQX90WHGB0CA99RW",
+   "to": "pr/57",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1MVB2ZZFQX90WHGB0CA99RW",
    "to": "release/v0.6.4",
    "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "to": "pr/56",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "to": "pr/57",
+   "type": "lands-in"
   },
   {
    "from": "item/01M1MVB3005Z8WSN5R6KEW5BNN",
    "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB3005Z8WSN5R6KEW5BNN",
+   "to": "pr/57",
+   "type": "lands-in"
   },
   {
    "from": "item/01M1MVB3005Z8WSN5R6KEW5BNN",
@@ -804,6 +824,11 @@
    "from": "item/01M1MVB300EAR8PX5HKEACTKP1",
    "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300EAR8PX5HKEACTKP1",
+   "to": "pr/57",
+   "type": "lands-in"
   },
   {
    "from": "item/01M1MVB300EAR8PX5HKEACTKP1",
@@ -827,6 +852,11 @@
   },
   {
    "from": "item/01M1MVB300TGVNPJBG8GJ6KG1T",
+   "to": "pr/57",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1MVB300TGVNPJBG8GJ6KG1T",
    "to": "release/v0.6.4",
    "type": "targets"
   },
@@ -834,6 +864,11 @@
    "from": "item/01M1MVB300WHXWP5177D3BNDB2",
    "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300WHXWP5177D3BNDB2",
+   "to": "pr/57",
+   "type": "lands-in"
   },
   {
    "from": "item/01M1MVB300WHXWP5177D3BNDB2",
@@ -844,6 +879,11 @@
    "from": "item/01M1MVB300WYDPA67T9FNDM51R",
    "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300WYDPA67T9FNDM51R",
+   "to": "pr/57",
+   "type": "lands-in"
   },
   {
    "from": "item/01M1MVB300WYDPA67T9FNDM51R",
@@ -1996,42 +2036,42 @@
   },
   "item/01M1MVB2ZZFQX90WHGB0CA99RW": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Replace SKILL.md with a generated folder README"
   },
   "item/01M1MVB2ZZGP7FHW2TX6CNA6BE": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag"
   },
   "item/01M1MVB3005Z8WSN5R6KEW5BNN": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Replace header action labels with standard icons"
   },
   "item/01M1MVB300EAR8PX5HKEACTKP1": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Make the header drag the window"
   },
   "item/01M1MVB300KXXJPZ2XACH7A64K": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "blocked",
    "title": "Mac dogfood the header drag"
   },
   "item/01M1MVB300TGVNPJBG8GJ6KG1T": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Scale content without scaling chrome"
   },
   "item/01M1MVB300WHXWP5177D3BNDB2": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Let the panes grow and be resized"
   },
   "item/01M1MVB300WYDPA67T9FNDM51R": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Show the zoom level briefly"
   },
   "plan/2026-07-26-motion-next-phase": {
@@ -2110,6 +2150,12 @@
    "doc_type": "pr"
   },
   "pr/55": {
+   "doc_type": "pr"
+  },
+  "pr/56": {
+   "doc_type": "pr"
+  },
+  "pr/57": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {

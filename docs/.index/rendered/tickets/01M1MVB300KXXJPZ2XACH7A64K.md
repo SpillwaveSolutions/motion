@@ -1,6 +1,6 @@
 # Mac dogfood the header drag
 
-`01M1MVB300KXXJPZ2XACH7A64K` · subtask/bug · **open**
+`01M1MVB300KXXJPZ2XACH7A64K` · subtask/bug · **blocked**
 
 On a real Mac .app: drag from the logo and from empty header chrome, confirm
 the window moves, confirm buttons still click, double-click the header to

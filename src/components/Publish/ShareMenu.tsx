@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { publishToGist, publishToNotion, type PublishResult } from "../../lib/publish/client";
 import { loadPublishSettings, savePublishSettings, type PublishSettings } from "../../lib/publish/settings";
+import { IconShare } from "../icons";
 
 type ShareMenuProps = {
     disabled: boolean;
@@ -116,16 +117,22 @@ export default function ShareMenu({ disabled, filename, getContent }: ShareMenuP
         <div className="share-root" ref={rootRef}>
             <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-secondary btn-icon"
                 data-testid="share"
                 aria-haspopup="menu"
                 aria-expanded={open}
                 aria-label="Share"
                 disabled={disabled || result.kind === "working"}
-                title={disabled ? "Select a note to share" : "Publish this note"}
+                title={
+                    result.kind === "working"
+                        ? result.label
+                        : disabled
+                          ? "Select a note to share"
+                          : "Publish this note"
+                }
                 onClick={() => setOpen((v) => !v)}
             >
-                {result.kind === "working" ? result.label : "Share"}
+                <IconShare />
             </button>
 
             {open && (

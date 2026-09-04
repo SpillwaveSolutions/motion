@@ -26,8 +26,12 @@ natural-language prompts using CLI tools you already have installed.
 - **Share** — publish the current note to a **GitHub Gist** or a **Notion**
   page. Tokens stay on this machine (Settings in the Share menu).
 - **Copy All** — copies the current note. Paste into a markdown editor to get
-  markdown; paste into Docs, Word, or Mail to get rich text.
-- **Zoom** — ⌘+ / ⌘- / ⌘0. Remembered in the settings file.
+  markdown; paste into Docs, Word, or Mail to get rich text. Header actions
+  are icon-only; the accessible name is unchanged.
+- **Zoom** — ⌘+ / ⌘- / ⌘0 scale the editor and the file tree, not the header.
+  A brief overlay shows the percentage. Remembered in the settings file.
+- **Layout** — the editor fills the window. Drag the sidebar edge or the Split
+  divider; both widths are remembered.
 - **Rename** — New Note opens an inline name field. Right-click → Rename, or F2.
 - **Rich markdown** — headings, lists, blockquotes, code blocks with syntax
   highlighting, and **GFM tables**. Insert a 3×3 from the toolbar or `/tab`;
@@ -61,10 +65,11 @@ identifiers and a clamped row limit — the query box cannot modify your data.
 ### Workspace synthesis
 
 **Synthesize** summarizes every note in the workspace, clusters them by topic,
-and writes a generated `TOC.md` and `SKILL.md` back into the folder. Its own
-output is excluded from the input, so re-running does not feed the index back to
-itself. Capped at 40 notes per run, and it reports what it skipped. Needs
-`claude` on `PATH`.
+and writes a generated `TOC.md` and a short folder `README.md` back into the
+folder (or `README.motion.md` if a hand-written README.md is already there).
+Its own output is excluded from the input, so re-running does not feed the
+index back to itself. Capped at 40 notes per run, and it reports what it
+skipped. Needs `claude` on `PATH`.
 
 ### Safety
 

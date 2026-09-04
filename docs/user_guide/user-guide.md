@@ -12,10 +12,10 @@ Motion is a local-first technical writing IDE. It edits markdown that lives on
 your own disk, renders diagrams and runs SQL inline, and can generate both from
 plain-language prompts.
 
-This guide covers the app as it behaves **after v0.6.3** (native Mac chrome,
+This guide covers the app as it behaves **after v0.6.4** (native Mac chrome,
 Ask AI, GFM tables, DocCommands, Markdown source highlighting, Copy All,
-labeled Save, new-note persistence, dataset/SQL install coverage, zoom, and
-tree rename). Where something is incomplete, it says so.
+icon header actions, new-note persistence, dataset/SQL install coverage, content
+zoom, resizable panes, and tree rename). Where something is incomplete, it says so.
 
 ---
 
@@ -53,7 +53,7 @@ opens the app.
    the workspace. Use **Search notes** (⌘K / Ctrl+K) to filter by filename or
    by text inside the notes. A content hit shows a short snippet.
 3. Click a note to open it.
-4. Edit, then press **⌘S** (Ctrl+S) or click the labeled **Save** button in the
+4. Edit, then press **⌘S** (Ctrl+S) or click the **Save** icon in the
    header. The status area shows **Saving…** / **Saved** / **Save failed**.
 
 **New Note** creates a timestamped `untitled-*.md` in the parent folder of the
@@ -68,11 +68,17 @@ Tokens never leave this machine.
 
 **Copy All** copies the current note (including unsaved edits). Paste into a
 markdown editor or a terminal to get markdown; paste into Docs, Word, Mail, or
-Slack's rich field to get formatted text. The button reads **Copied** for a
-moment after it works.
+Slack's rich field to get formatted text. The icon's title reads **Copied** for
+a moment after it works.
 
-**⌘+** / **⌘-** zoom the whole window (Ctrl on a non-Mac keyboard). **⌘0**
-resets to 100%. The size is remembered the next time you open Motion.
+**⌘+** / **⌘-** zoom the editor text and the directory listing (Ctrl on a
+non-Mac keyboard). Header buttons stay the same size. **⌘0** resets to 100%.
+A percentage overlay flashes for about a second. The size is remembered the
+next time you open Motion.
+
+Drag the trailing edge of the directory listing to resize it, or the divider
+in Split view. Both widths are remembered. Stretching the window widens the
+note; there is no 900px cap.
 
 A new note opens already in **rename** in the tree. Type a name and press
 Enter. To rename an existing note: right-click it and choose **Rename**, press
@@ -204,11 +210,15 @@ reports the failure rather than silently doing nothing.
 
 ## Workspace synthesis
 
-**Synthesize** (next to New Note) reads every note in the workspace, summarizes
-each one, clusters them by topic, and writes two documents back into the folder:
+**Synthesize** (the sparkle icon in the header) reads every note in the
+workspace, summarizes each one, clusters them by topic, and writes two
+documents back into the folder:
 
 - **`TOC.md`** — a table of contents with a short summary under each note.
-- **`SKILL.md`** — a synthesized guide to what the workspace is about.
+- **`README.md`** — a short folder README (heading, purpose, themes). If you
+  already wrote a README.md, Motion writes **`README.motion.md`** instead and
+  says so in the status bar. It never silently overwrites a README a person
+  wrote.
 
 Progress is reported in a bar under the header, and both files appear in the
 sidebar when it finishes. It re-runs safely: its own output is excluded from the

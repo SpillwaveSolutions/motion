@@ -51,7 +51,12 @@ export function saveSettings(
     const raw = readRaw(filePath);
     const next = mergeSettings({ ...loadSettings(filePath), ...partial });
     // Preserve unknown keys (launchMode, port, …) from an older settings file.
-    const written = { ...raw, zoom: next.zoom };
+    // Only the keys present in `partial` are updated, so a zoom write cannot
+    // clobber a concurrent sidebar write that has already landed on disk.
+    const written: Record<string, unknown> = { ...raw };
+    if ("zoom" in partial) written.zoom = next.zoom;
+    if ("sidebarWidth" in partial) written.sidebarWidth = next.sidebarWidth;
+    if ("splitRatio" in partial) written.splitRatio = next.splitRatio;
     mkdirSync(dirname(filePath), { recursive: true });
     writeFileSync(filePath, JSON.stringify(written, null, 2) + "\n", "utf8");
     return next;

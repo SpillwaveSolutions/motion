@@ -109,9 +109,9 @@ export async function waitForSaveQuiescence(
     try {
         if (await save.count() === 0) return;
         if (!(await save.isVisible().catch(() => false))) return;
-        const label = ((await save.textContent()) ?? "").trim();
-        if (!/Saving/.test(label)) return;
-        await expect(save).not.toContainText("Saving", { timeout: 10_000 });
+        const state = ((await save.getAttribute("data-save-state")) ?? "").trim();
+        if (state !== "saving") return;
+        await expect(save).not.toHaveAttribute("data-save-state", "saving", { timeout: 10_000 });
     } catch {
         // Page already tearing down or the shell never mounted.
     }

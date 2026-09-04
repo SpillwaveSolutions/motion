@@ -1,6 +1,6 @@
 # Make the header drag the window
 
-`01M1MVB300EAR8PX5HKEACTKP1` · task/bug · **open**
+`01M1MVB300EAR8PX5HKEACTKP1` · task/bug · **done**
 
 Regression against 0.6.3.
 
@@ -12,9 +12,13 @@ Regression against 0.6.3.
 
 - [[Ticket-01M1MVB300KXXJPZ2XACH7A64K]] Mac dogfood the header drag — On a real Mac .app: drag from the logo and from empty header chrome, confirm
 the window moves, confirm buttons still click, double-click the header to
-zoom the window. (open)
+zoom the window. (blocked)
 
 Progress: 0/1 done
+
+## Linked PRs
+
+- [[PR-57]]
 
 ## Release
 

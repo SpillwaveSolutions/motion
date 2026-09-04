@@ -1,13 +1,33 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Editor, { type SaveState } from "./components/Editor";
 import ShareMenu from "./components/Publish/ShareMenu";
+import PaneResizeHandle from "./components/PaneResizeHandle";
+import {
+    IconAlert,
+    IconCheck,
+    IconCopy,
+    IconFilePlus,
+    IconFolderOpen,
+    IconFolderPlus,
+    IconSave,
+    IconSynthesize,
+} from "./components/icons";
 import { storage, rememberWorkspaceRoot, relativeToWorkspace, isTauri } from "./lib/storage";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 import { parseOpenQuery, resolveOpenQuery } from "./lib/openFile";
 import { loadPersistedWorkspace, persistWorkspace } from "./lib/workspaceMemory";
 import { buildCopyPayload, writeCopyPayload } from "./lib/copyNote";
 import { useZoom } from "./lib/useZoom";
+import { useLayout } from "./lib/useLayout";
+import { zoomPercent } from "./lib/zoom";
 import { noteStem, renameDestPath, sameNotePath } from "./lib/renameNote";
+import {
+    SIDEBAR_MAX,
+    SIDEBAR_MIN,
+    sidebarWidthFromKey,
+    sidebarWidthFromPointer,
+} from "./lib/layout";
+import { isWindowDragTarget, startWindowDrag, toggleWindowMaximize } from "./lib/windowDrag";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -123,7 +143,8 @@ function sanitizeFolderName(raw: string): string {
 }
 
 function App() {
-    useZoom();
+    const { scale: zoomScale, hudVisible } = useZoom();
+    const { sidebarWidth, splitRatio, setSidebarWidth, setSplitRatio } = useLayout();
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
@@ -414,8 +435,11 @@ function App() {
 
             setFiles(await storage.listFiles(workspacePath));
             await cacheContents(await storage.listFiles(workspacePath));
+            const readmeLabel = result.readmeCollided
+                ? `${result.readmeFilename} (README.md was already there)`
+                : result.readmeFilename;
             setSynthesis(
-                `Synthesized ${result.noteCount} notes into TOC.md and SKILL.md` +
+                `Synthesized ${result.noteCount} notes into TOC.md and ${readmeLabel}` +
                     (result.topic.suggestedLabels.length
                         ? ` — topics: ${result.topic.suggestedLabels.join(", ")}`
                         : ""),
@@ -702,7 +726,20 @@ function App() {
     return (
         <div className="app">
             {/* Header */}
-            <header className="app-header" data-tauri-drag-region>
+            <header
+                className="app-header"
+                data-tauri-drag-region
+                onMouseDown={(e) => {
+                    if (e.button !== 0) return;
+                    if (!isWindowDragTarget(e.target, e.currentTarget)) return;
+                    e.preventDefault();
+                    void startWindowDrag();
+                }}
+                onDoubleClick={(e) => {
+                    if (!isWindowDragTarget(e.target, e.currentTarget)) return;
+                    void toggleWindowMaximize();
+                }}
+            >
                 <div className="logo">
                     <div className="logo-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -757,79 +794,111 @@ function App() {
                     />
                     <button
                         type="button"
-                        className="btn btn-secondary"
+                        className="btn btn-secondary btn-icon"
                         data-testid="copy-all"
+                        data-copy-state={copyState}
                         aria-label="Copy all"
                         aria-live="polite"
                         disabled={!currentFilePath}
                         title={
                             !currentFilePath
                                 ? "Select a note to copy"
-                                : "Copy as markdown or rich text, depending on where you paste"
+                                : copyState === "copied"
+                                  ? "Copied"
+                                  : copyState === "error"
+                                    ? "Copy failed"
+                                    : "Copy as markdown or rich text, depending on where you paste"
                         }
                         onClick={() => void handleCopyAll()}
                     >
-                        {copyState === "copied"
-                            ? "Copied"
-                            : copyState === "error"
-                              ? "Copy failed"
-                              : "Copy All"}
-                    </button>
-                    <button className="btn btn-secondary" onClick={handleOpenFolder}>
-                        Open Folder
+                        {copyState === "copied" ? (
+                            <IconCheck />
+                        ) : copyState === "error" ? (
+                            <IconAlert />
+                        ) : (
+                            <IconCopy />
+                        )}
                     </button>
                     <button
-                        className="btn btn-primary"
+                        type="button"
+                        className="btn btn-secondary btn-icon"
+                        onClick={handleOpenFolder}
+                        aria-label="Open Folder"
+                        title="Open Folder"
+                    >
+                        <IconFolderOpen />
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-primary btn-icon"
                         onClick={handleNewNote}
                         disabled={!workspacePath}
+                        aria-label="New Note"
                         title={workspacePath ? "Create a new markdown note" : "Open a folder first"}
                     >
-                        New Note
+                        <IconFilePlus />
                     </button>
                     <button
-                        className="btn btn-secondary"
+                        type="button"
+                        className="btn btn-secondary btn-icon"
                         onClick={handleNewFolder}
                         disabled={!workspacePath}
                         data-testid="new-folder"
+                        aria-label="New Folder"
                         title={workspacePath ? "Create a folder with a README" : "Open a folder first"}
                     >
-                        New Folder
+                        <IconFolderPlus />
                     </button>
                     <button
-                        className={dirty ? "btn btn-primary" : "btn btn-secondary"}
+                        type="button"
+                        className={dirty ? "btn btn-primary btn-icon" : "btn btn-secondary btn-icon"}
                         onClick={() => setSaveSignal((n) => n + 1)}
                         disabled={!currentFilePath || saveState === "saving"}
+                        data-save-state={saveState}
                         aria-label="Save note"
+                        aria-live="polite"
                         title={
                             !currentFilePath
                                 ? "Select a note to save"
-                                : dirty
-                                  ? "Save note (⌘S)"
-                                  : "All changes saved"
+                                : saveState === "saving"
+                                  ? "Saving…"
+                                  : saveState === "error"
+                                    ? "Save failed"
+                                    : dirty
+                                      ? "Save note (⌘S)"
+                                      : "All changes saved"
                         }
                     >
-                        {saveState === "saving"
-                            ? "Saving…"
-                            : saveState === "saved"
-                              ? "Saved"
-                              : saveState === "error"
-                                ? "Save failed"
-                                : "Save"}
+                        {saveState === "saved" ? (
+                            <IconCheck />
+                        ) : saveState === "error" ? (
+                            <IconAlert />
+                        ) : (
+                            <IconSave />
+                        )}
                     </button>
                     <button
-                        className="btn btn-secondary"
+                        type="button"
+                        className="btn btn-secondary btn-icon"
                         onClick={handleSynthesize}
                         disabled={!workspacePath || synthesis !== null}
+                        aria-label="Synthesize"
                         title={
                             workspacePath
-                                ? "Summarize every note, cluster by topic, and write TOC.md and SKILL.md"
+                                ? "Summarize every note, cluster by topic, and write TOC.md and a folder README"
                                 : "Open a folder first"
                         }
                     >
-                        Synthesize
+                        <IconSynthesize />
                     </button>
                 </div>
             </header>
+
+            {hudVisible && (
+                <div role="status" aria-live="polite" aria-label="Zoom level" className="zoom-hud">
+                    {zoomPercent(zoomScale)}%
+                </div>
+            )}
 
             {synthesis && (
                 <div role="status" aria-live="polite" aria-label="Workspace synthesis" className="synthesis-status">
@@ -845,7 +914,25 @@ function App() {
             )}
 
             {/* Sidebar */}
-            <aside className="app-sidebar">
+            <aside className="app-sidebar" data-testid="app-sidebar">
+                <PaneResizeHandle
+                    className="pane-resize sidebar-resize"
+                    ariaLabel="Resize sidebar"
+                    ariaValuemin={SIDEBAR_MIN}
+                    ariaValuemax={SIDEBAR_MAX}
+                    ariaValuenow={sidebarWidth}
+                    testId="sidebar-resize"
+                    startValue={sidebarWidth}
+                    onPointerDelta={(dx, start) => {
+                        setSidebarWidth(sidebarWidthFromPointer(start, dx));
+                    }}
+                    onKeyDown={(key) => {
+                        const next = sidebarWidthFromKey(sidebarWidth, key);
+                        if (next == null) return false;
+                        setSidebarWidth(next);
+                        return true;
+                    }}
+                />
                 <div className="file-tree">
                     <h3
                         style={{
@@ -963,6 +1050,8 @@ function App() {
                     onDirtyChange={setDirty}
                     onSaved={handleSaved}
                     onMarkdownChange={handleMarkdownChange}
+                    splitRatio={splitRatio}
+                    onSplitRatioChange={setSplitRatio}
                 />
             </main>
 
