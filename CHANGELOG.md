@@ -4,6 +4,8 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.4 — 2026-09-04
+
 Editor fills the window; zoom scales notes not chrome; icon toolbar; header drag
 owned in JS; Synthesize writes a folder README instead of SKILL.md.
 

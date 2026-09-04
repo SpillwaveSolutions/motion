@@ -2,6 +2,11 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### chore(release): v0.6.4 changelog, version bump, roadmap snapshot
+`01M1PMS8ZBVHA4KDG1W0AX5CHM` · status: done
+- lands-in: pr/58
+- targets: release/v0.6.4
+
 ### Show the zoom level briefly
 `01M1MVB300WYDPA67T9FNDM51R` · status: done
 - belongs-to: Editor surface, zoom scope, resizable layout, icon toolbar, and window drag

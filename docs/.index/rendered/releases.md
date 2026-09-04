@@ -2,6 +2,17 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.4 — 2026-09-04
+
+- Roadmap snapshot: [[Roadmap-2026-09-04_v0.6.4-release]]
+- Shipped: Replace SKILL.md with a generated folder README
+- Shipped: Replace header action labels with standard icons
+- Shipped: Make the header drag the window
+- Shipped: Scale content without scaling chrome
+- Shipped: Let the panes grow and be resized
+- Shipped: Show the zoom level briefly
+- Shipped: chore(release): v0.6.4 changelog, version bump, roadmap snapshot
+
 ## v0.6.3 — 2026-09-03
 
 - Roadmap snapshot: [[Roadmap-2026-09-03_v0.6.3-release]]
