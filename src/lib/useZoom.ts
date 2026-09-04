@@ -4,6 +4,8 @@ import { applyZoom, nextZoom, zoomActionFor, type ZoomDirection } from "./zoom";
 
 /** Key repeat while holding Cmd+plus would otherwise write the file per repeat. */
 const PERSIST_DEBOUNCE_MS = 500;
+/** HUD stays up this long after the last step. Holding a key resets it. */
+const HUD_MS = 1000;
 
 /**
  * Cmd+plus / Cmd+minus / Cmd+0 zoom, remembered in the settings file.
@@ -12,11 +14,17 @@ const PERSIST_DEBOUNCE_MS = 500;
  * wherever focus sits. preventDefault also suppresses the browser's own page
  * zoom in web mode. View menu items dispatch the same steps via motion-menu.
  */
-export function useZoom(): void {
+export function useZoom(): { scale: number; hudVisible: boolean } {
     const [scale, setScale] = useState(1);
-    // Skips the write that would otherwise fire immediately for the value we
-    // just read back from disk.
+    const [hudVisible, setHudVisible] = useState(false);
     const loaded = useRef(false);
+    const hudTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+    const flashHud = () => {
+        setHudVisible(true);
+        if (hudTimer.current) clearTimeout(hudTimer.current);
+        hudTimer.current = setTimeout(() => setHudVisible(false), HUD_MS);
+    };
 
     useEffect(() => {
         let cancelled = false;
@@ -34,12 +42,14 @@ export function useZoom(): void {
         })();
         return () => {
             cancelled = true;
+            if (hudTimer.current) clearTimeout(hudTimer.current);
         };
     }, []);
 
     useEffect(() => {
         const step = (direction: ZoomDirection) => {
             setScale((current) => nextZoom(current, direction));
+            flashHud();
         };
         const onKeyDown = (e: KeyboardEvent) => {
             const direction = zoomActionFor(e);
@@ -71,4 +81,6 @@ export function useZoom(): void {
         }, PERSIST_DEBOUNCE_MS);
         return () => clearTimeout(timer);
     }, [scale]);
+
+    return { scale, hudVisible };
 }

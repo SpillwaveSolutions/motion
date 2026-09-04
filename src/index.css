@@ -75,6 +75,8 @@
   /* Layout */
   --sidebar-width: 280px;
   --header-height: 56px;
+  /* Content scale (editor + tree). Chrome stays at the 16px root. */
+  --zoom: 1;
 }
 
 /* Reset & Base */
@@ -182,12 +184,18 @@ pre {
   padding: 0 var(--space-4);
   gap: var(--space-4);
   min-width: 0;
+  user-select: none;
+}
+
+.app-header input {
+  user-select: text;
 }
 
 .app-sidebar {
+  position: relative;
   background: var(--color-bg-secondary);
   border-right: 1px solid var(--color-border-primary);
-  overflow-y: auto;
+  overflow: visible;
   padding: var(--space-4);
 }
 
@@ -304,15 +312,75 @@ pre {
   color: var(--color-text-primary);
 }
 
-/* Editor container */
+/* Editor container — fills the main column. No max-width cap. */
 .editor-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  max-width: 900px;
-  margin: 0 auto;
   padding: var(--space-8);
   width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* CSS zoom on content only. Header chrome stays at the 16px root. */
+.editor-zoom {
+  zoom: var(--zoom, 1);
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.split-panes {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.pane-resize {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 5;
+  background: transparent;
+  touch-action: none;
+}
+
+.pane-resize:hover,
+.pane-resize:focus-visible {
+  background: var(--color-accent-blue);
+}
+
+.pane-resize-split {
+  position: relative;
+  right: auto;
+  width: 6px;
+  height: auto;
+  justify-self: stretch;
+  background: var(--color-border-primary);
+}
+
+.zoom-hud {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 80;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
 }
 
 /* Highlighted markdown source (Markdown mode + Split preview) */
@@ -894,6 +962,9 @@ pre {
 /* File tree */
 .file-tree {
   font-size: var(--text-sm);
+  overflow-y: auto;
+  height: 100%;
+  zoom: var(--zoom, 1);
 }
 
 .file-tree-item {
@@ -1064,6 +1135,11 @@ pre {
   }
 
   .app-sidebar {
+    display: none;
+  }
+
+  .pane-resize.sidebar-resize,
+  [data-testid="sidebar-resize"] {
     display: none;
   }
 
@@ -1275,7 +1351,12 @@ pre {
 }
 
 /* Overlay title bar: traffic lights sit on the header. Browser mode is
-   unchanged. Interactive children are no-drag so clicks still land. */
+   unchanged. Interactive children are no-drag so clicks still land.
+
+   `-webkit-app-region` is a Chromium/Electron feature. WKWebView (the Mac
+   webview) ignores it, so on desktop the JS handler in windowDrag.ts is the
+   path that actually moves the window. These rules remain for any Chromium
+   host and as a hint next to data-tauri-drag-region. */
 html[data-tauri="true"] .app-header {
     padding-left: 88px;
     -webkit-app-region: drag;

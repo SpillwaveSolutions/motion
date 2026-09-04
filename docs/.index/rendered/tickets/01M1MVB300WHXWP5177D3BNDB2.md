@@ -1,6 +1,6 @@
 # Let the panes grow and be resized
 
-`01M1MVB300WHXWP5177D3BNDB2` · task/feature · **open**
+`01M1MVB300WHXWP5177D3BNDB2` · task/feature · **done**
 
 Remove max-width 900px from .editor-container and the inline 1400px split
 override.

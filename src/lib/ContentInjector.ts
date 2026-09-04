@@ -54,7 +54,7 @@ ${content}
     }
 
     /**
-     * Generates a concise bullet-point summary of the content for use in TOCs and SKILL.md.
+     * Generates a concise bullet-point summary of the content for use in TOCs and the folder README.
      */
     async generateSummary(content: string): Promise<string> {
         const prompt = `

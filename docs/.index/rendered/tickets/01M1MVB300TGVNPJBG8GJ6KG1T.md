@@ -1,6 +1,6 @@
 # Scale content without scaling chrome
 
-`01M1MVB300TGVNPJBG8GJ6KG1T` · task/feature · **open**
+`01M1MVB300TGVNPJBG8GJ6KG1T` · task/feature · **done**
 
 Stop writing documentElement.style.fontSize.
 

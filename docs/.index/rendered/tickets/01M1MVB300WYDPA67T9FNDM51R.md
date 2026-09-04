@@ -1,6 +1,6 @@
 # Show the zoom level briefly
 
-`01M1MVB300WYDPA67T9FNDM51R` · task/feature · **open**
+`01M1MVB300WYDPA67T9FNDM51R` · task/feature · **done**
 
 Transient overlay with the rounded percentage on every zoom change, hidden
 after ~1s.

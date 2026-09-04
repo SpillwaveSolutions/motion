@@ -1,6 +1,6 @@
 # Replace SKILL.md with a generated folder README
 
-`01M1MVB2ZZFQX90WHGB0CA99RW` · task/feature · **open**
+`01M1MVB2ZZFQX90WHGB0CA99RW` · task/feature · **done**
 
 Synthesize keeps TOC.md.
 

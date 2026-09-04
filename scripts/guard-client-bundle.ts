@@ -8,10 +8,10 @@
  *
  * A runtime gate cannot catch this. The console/network fixture only sees code
  * that a test actually executes, and the four enrichment modules
- * (TopicRefiner, ContentInjector, TOCGenerator, SkillGenerator) are dead code --
- * no E2E spec would ever run them, so they would stay green right up until the
- * day someone wires them to a button. Their unit tests pass for the same
- * reason: they mock the boundary and run inside Bun.
+ * (TopicRefiner, ContentInjector, TOCGenerator, ReadmeGenerator) used to be
+ * dead code -- no E2E spec would ever run them, so they would stay green
+ * right up until the day someone wired them to a button. Their unit tests
+ * pass for the same reason: they mock the boundary and run inside Bun.
  *
  * So: walk the real import graph from src/main.tsx and fail on any `Bun.` use.
  * Server-only modules (src/server.ts, cliWrappers.ts, imageGen.ts) legitimately

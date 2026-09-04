@@ -4,8 +4,14 @@ import {
     synthesizeWorkspace,
     buildBaseToc,
     TOC_FILENAME,
+    README_FILENAME,
+    README_FALLBACK_FILENAME,
     SKILL_FILENAME,
+    GENERATED_MARKER,
     MAX_NOTES,
+    pickReadmeFilename,
+    wrapGeneratedReadme,
+    isGeneratedReadme,
 } from "./workspaceSynthesis";
 
 /** A workspace in memory, so the orchestration is testable without a disk. */
@@ -43,9 +49,42 @@ function stubLLM() {
         if (prompt.includes("Table of Contents") || prompt.includes("TOC")) {
             return { content: "# Enriched TOC\n\n- note.md", rawOutput: "" };
         }
-        return { content: "# SKILL\n\nGenerated skill body.", rawOutput: "" };
+        return { content: "# Architecture\n\nNotes on the system.\n\n## Themes\n- Testing\n", rawOutput: "" };
     });
 }
+
+describe("pickReadmeFilename", () => {
+    test("uses README.md when none exists or when we generated the last one", () => {
+        expect(pickReadmeFilename(null)).toEqual({ filename: README_FILENAME, collided: false });
+        expect(pickReadmeFilename("")).toEqual({ filename: README_FILENAME, collided: false });
+        expect(pickReadmeFilename(`${GENERATED_MARKER}\n\n# Old\n`)).toEqual({
+            filename: README_FILENAME,
+            collided: false,
+        });
+    });
+
+    test("falls back when a person already wrote README.md", () => {
+        expect(pickReadmeFilename("# My notes\n\nHand written.\n")).toEqual({
+            filename: README_FALLBACK_FILENAME,
+            collided: true,
+        });
+    });
+});
+
+describe("wrapGeneratedReadme", () => {
+    test("prefixes the marker so a later run can see we wrote it", () => {
+        const wrapped = wrapGeneratedReadme("# Hello\n");
+        expect(isGeneratedReadme(wrapped)).toBe(true);
+        expect(wrapped.startsWith(GENERATED_MARKER)).toBe(true);
+        expect(wrapped).toContain("# Hello");
+    });
+
+    test("does not double the marker", () => {
+        const once = wrapGeneratedReadme("# Hello");
+        const twice = wrapGeneratedReadme(once);
+        expect(twice.split(GENERATED_MARKER).length - 1).toBe(1);
+    });
+});
 
 describe("buildBaseToc", () => {
     test("lists each note with its summary bullets", () => {
@@ -62,7 +101,7 @@ describe("buildBaseToc", () => {
 });
 
 describe("synthesizeWorkspace", () => {
-    test("summarizes, clusters, and writes both documents", async () => {
+    test("summarizes, clusters, and writes TOC.md plus a generated README", async () => {
         const llm = stubLLM();
         const ws = fakeWorkspace({ "one.md": "# One\ncontent", "two.md": "# Two\ncontent" });
 
@@ -70,8 +109,11 @@ describe("synthesizeWorkspace", () => {
 
         expect(result.noteCount).toBe(2);
         expect(result.topic.suggestedLabels).toContain("Architecture");
+        expect(result.readmeFilename).toBe(README_FILENAME);
+        expect(result.readmeCollided).toBe(false);
         expect(ws.written[`/ws/${TOC_FILENAME}`]).toContain("Enriched TOC");
-        expect(ws.written[`/ws/${SKILL_FILENAME}`]).toContain("SKILL");
+        expect(ws.written[`/ws/${README_FILENAME}`]).toContain(GENERATED_MARKER);
+        expect(ws.written[`/ws/${README_FILENAME}`]).toContain("Architecture");
         expect(llm).toHaveBeenCalled();
     });
 
@@ -84,11 +126,42 @@ describe("synthesizeWorkspace", () => {
         const ws = fakeWorkspace({
             "note.md": "# Note",
             [TOC_FILENAME]: "# Old TOC",
+            [README_FILENAME]: `${GENERATED_MARKER}\n\n# Old readme\n`,
+            [README_FALLBACK_FILENAME]: `${GENERATED_MARKER}\n\n# Old fallback\n`,
             [SKILL_FILENAME]: "# Old skill",
         });
 
         const result = await synthesizeWorkspace(ws.deps);
         expect(result.noteCount).toBe(1);
+    });
+
+    test("does not overwrite a hand-written README.md", async () => {
+        stubLLM();
+        const hand = "# Team notes\n\nPlease do not clobber this.\n";
+        const ws = fakeWorkspace({
+            "note.md": "# Note",
+            [README_FILENAME]: hand,
+        });
+
+        const result = await synthesizeWorkspace(ws.deps);
+        expect(result.readmeCollided).toBe(true);
+        expect(result.readmeFilename).toBe(README_FALLBACK_FILENAME);
+        expect(ws.written[`/ws/${README_FILENAME}`]).toBeUndefined();
+        expect(ws.written[`/ws/${README_FALLBACK_FILENAME}`]).toContain(GENERATED_MARKER);
+        expect(ws.written[`/ws/${README_FALLBACK_FILENAME}`]).toContain("Architecture");
+    });
+
+    test("overwrites a README.md we generated last time", async () => {
+        stubLLM();
+        const ws = fakeWorkspace({
+            "note.md": "# Note",
+            [README_FILENAME]: `${GENERATED_MARKER}\n\n# Stale\n`,
+        });
+
+        const result = await synthesizeWorkspace(ws.deps);
+        expect(result.readmeCollided).toBe(false);
+        expect(ws.written[`/ws/${README_FILENAME}`]).toContain("Architecture");
+        expect(ws.written[`/ws/${README_FILENAME}`]).not.toContain("# Stale");
     });
 
     test("skips empty notes rather than summarizing whitespace", async () => {

@@ -33,6 +33,20 @@ describe("mergeSettings", () => {
         expect(mergeSettings({ zoom: 0.75 }).zoom).toBe(0.75);
         expect(mergeSettings({ zoom: 2 }).zoom).toBe(2);
     });
+
+    test("sidebarWidth and splitRatio default and clamp", () => {
+        expect(mergeSettings({}).sidebarWidth).toBe(280);
+        expect(mergeSettings({}).splitRatio).toBe(0.5);
+        expect(mergeSettings({ sidebarWidth: 50 }).sidebarWidth).toBe(180);
+        expect(mergeSettings({ sidebarWidth: 900 }).sidebarWidth).toBe(480);
+        expect(mergeSettings({ splitRatio: 0 }).splitRatio).toBe(0.25);
+        expect(mergeSettings({ splitRatio: 1 }).splitRatio).toBe(0.75);
+        expect(mergeSettings({ sidebarWidth: 320, splitRatio: 0.4 })).toEqual({
+            zoom: 1,
+            sidebarWidth: 320,
+            splitRatio: 0.4,
+        });
+    });
 });
 
 describe("settings paths", () => {
@@ -41,9 +55,17 @@ describe("settings paths", () => {
         expect(settingsFilePath("/home/x", join)).toBe("/home/x/.config/motion/settings.json");
     });
 
-    test("parseSettingsJson tolerates garbage", () => {
+    test("parseSettingsJson tolerates garbage and fills layout defaults", () => {
         expect(parseSettingsJson("not-json")).toEqual(DEFAULT_SETTINGS);
-        expect(parseSettingsJson('{"zoom":1.4}')).toEqual({ zoom: 1.4 });
-        expect(parseSettingsJson('{"zoom":1.4,"launchMode":"desktop"}')).toEqual({ zoom: 1.4 });
+        expect(parseSettingsJson('{"zoom":1.4}')).toEqual({
+            zoom: 1.4,
+            sidebarWidth: 280,
+            splitRatio: 0.5,
+        });
+        expect(parseSettingsJson('{"zoom":1.4,"launchMode":"desktop"}')).toEqual({
+            zoom: 1.4,
+            sidebarWidth: 280,
+            splitRatio: 0.5,
+        });
     });
 });

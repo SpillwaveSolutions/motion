@@ -1,6 +1,6 @@
 # Replace header action labels with standard icons
 
-`01M1MVB3005Z8WSN5R6KEW5BNN` · task/feature · **open**
+`01M1MVB3005Z8WSN5R6KEW5BNN` · task/feature · **done**
 
 New src/components/icons.tsx with seven inline SVGs (share, copy, open folder,
 new note, new folder, save, synthesize) from a permissively licensed set;

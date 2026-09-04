@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { nextZoom, zoomActionFor, ZOOM_MAX, ZOOM_MIN } from "./zoom";
+import { nextZoom, zoomActionFor, zoomPercent, ZOOM_MAX, ZOOM_MIN } from "./zoom";
 
 test("stepping in and out moves by one step", () => {
     expect(nextZoom(1, "in")).toBe(1.1);
@@ -24,6 +24,13 @@ test("stays on clean two-decimal values across repeated steps", () => {
     // Naive float addition gives 1.5000000000000002 here, which would reach
     // both the settings file and a CSS font-size.
     expect(z).toBe(1.5);
+});
+
+test("zoomPercent is the rounded HUD value", () => {
+    expect(zoomPercent(1)).toBe(100);
+    expect(zoomPercent(1.1)).toBe(110);
+    expect(zoomPercent(0.75)).toBe(75);
+    expect(zoomPercent(2)).toBe(200);
 });
 
 test("a bare key without a modifier is not a zoom action", () => {

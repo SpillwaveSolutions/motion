@@ -9,6 +9,7 @@ These describe the **current** product, not a redesign. Update the matching file
 | App chrome | [shell.md](./shell.md) |
 | Native Mac chrome | [native-chrome.md](./native-chrome.md) |
 | Zoom | [zoom.md](./zoom.md) |
+| Resizable layout | [layout.md](./layout.md) |
 | Rename a note | [rename.md](./rename.md) |
 | Editor | [editor.md](./editor.md) |
 | Markdown source | [markdown-source.md](./markdown-source.md) |
