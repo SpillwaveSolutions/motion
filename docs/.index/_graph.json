@@ -891,6 +891,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01M1PMS8ZBVHA4KDG1W0AX5CHM",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -1423,6 +1428,21 @@
   {
    "from": "roadmap-snapshot/2026-09-03_v0.6.3-release",
    "to": "release/v0.6.3",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-04_v0.6.4-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-04_v0.6.4-release",
+   "to": "roadmap-snapshot/2026-09-03_v0.6.3-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-04_v0.6.4-release",
+   "to": "release/v0.6.4",
    "type": "targets"
   }
  ],
@@ -2074,6 +2094,11 @@
    "status": "done",
    "title": "Show the zoom level briefly"
   },
+  "item/01M1PMS8ZBVHA4KDG1W0AX5CHM": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "chore(release): v0.6.4 changelog, version bump, roadmap snapshot"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2212,6 +2237,12 @@
   "roadmap-snapshot/2026-09-03_v0.6.3-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-09-03_v0.6.3-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-09-04_v0.6.4-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-09-04_v0.6.4-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },

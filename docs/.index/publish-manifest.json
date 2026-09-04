@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "b4e002b16183",
+   "render_hash": "bce6df44476e",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "1abb435120de",
+   "render_hash": "31e5abdc94d8",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -274,7 +274,7 @@
    "frozen": false,
    "page_name": "Release-v0.6.4",
    "render": "as-is",
-   "render_hash": "bc39b0e7f7ea",
+   "render_hash": "f3381212ce30",
    "source": "docs/.index/rendered/releases/v0.6.4.md",
    "title": "Release v0.6.4",
    "truth_state": "shipped",
@@ -1551,6 +1551,16 @@
    "wiki_key": "item/01M1MVB300WYDPA67T9FNDM51R"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M1PMS8ZBVHA4KDG1W0AX5CHM",
+   "render": "as-is",
+   "render_hash": "16cecc6e06c8",
+   "source": "docs/.index/rendered/tickets/01M1PMS8ZBVHA4KDG1W0AX5CHM.md",
+   "title": "chore(release): v0.6.4 changelog, version bump, roadmap snapshot",
+   "truth_state": "done",
+   "wiki_key": "item/01M1PMS8ZBVHA4KDG1W0AX5CHM"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1639,11 +1649,11 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-04T16:35:51Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-04T16:44:45Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "905ef1048281",
+   "render_hash": "89ca2465ec0c",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1705,6 +1715,17 @@
    "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.3-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.4 (2026-09-04) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-09-04_v0.6.4-release",
+   "render": "doc+banner",
+   "render_hash": "753683d36913",
+   "source": "docs/roadmap/2026-09-04_v0.6.4-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-09-04_v0.6.4-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
@@ -1717,7 +1738,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "eaa5e559d356",
+  "render_hash": "93cf8a8aa0b5",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
