@@ -4,6 +4,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 
 ### chore(release): v0.6.4 changelog, version bump, roadmap snapshot
 `01M1PMS8ZBVHA4KDG1W0AX5CHM` · status: done
+- lands-in: pr/58
 - targets: release/v0.6.4
 
 ### Show the zoom level briefly

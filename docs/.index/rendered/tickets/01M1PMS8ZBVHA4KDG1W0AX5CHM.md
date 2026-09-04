@@ -4,6 +4,10 @@
 
 Stamp CHANGELOG 0.6.4, lockstep Cargo.toml / Cargo.lock / tauri.conf, freeze the roadmap snapshot, tag and GitHub release after merge.
 
+## Linked PRs
+
+- [[PR-58]]
+
 ## Release
 
 - [[Release-v0.6.4]]
