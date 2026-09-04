@@ -772,7 +772,82 @@
   },
   {
    "from": "item/01M1M5KV1YAD0BFFFF9QD02DJJ",
+   "to": "pr/55",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M1M5KV1YAD0BFFFF9QD02DJJ",
    "to": "release/v0.6.3",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB2ZZFQX90WHGB0CA99RW",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB2ZZFQX90WHGB0CA99RW",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB3005Z8WSN5R6KEW5BNN",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB3005Z8WSN5R6KEW5BNN",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB300EAR8PX5HKEACTKP1",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300EAR8PX5HKEACTKP1",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB300KXXJPZ2XACH7A64K",
+   "to": "item/01M1MVB300EAR8PX5HKEACTKP1",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300KXXJPZ2XACH7A64K",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB300TGVNPJBG8GJ6KG1T",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300TGVNPJBG8GJ6KG1T",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB300WHXWP5177D3BNDB2",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300WHXWP5177D3BNDB2",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M1MVB300WYDPA67T9FNDM51R",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M1MVB300WYDPA67T9FNDM51R",
+   "to": "release/v0.6.4",
    "type": "targets"
   },
   {
@@ -1198,6 +1273,46 @@
   {
    "from": "plan/2026-08-30-native-mac-app",
    "to": "item/01M18MN19CSQ7PS762F7TWEXJC",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB2ZZFQX90WHGB0CA99RW",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB2ZZGP7FHW2TX6CNA6BE",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB3005Z8WSN5R6KEW5BNN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB300EAR8PX5HKEACTKP1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB300KXXJPZ2XACH7A64K",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB300TGVNPJBG8GJ6KG1T",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB300WHXWP5177D3BNDB2",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+   "to": "item/01M1MVB300WYDPA67T9FNDM51R",
    "type": "produces"
   },
   {
@@ -1879,6 +1994,46 @@
    "status": "done",
    "title": "Cut v0.6.3 release"
   },
+  "item/01M1MVB2ZZFQX90WHGB0CA99RW": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Replace SKILL.md with a generated folder README"
+  },
+  "item/01M1MVB2ZZGP7FHW2TX6CNA6BE": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag"
+  },
+  "item/01M1MVB3005Z8WSN5R6KEW5BNN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Replace header action labels with standard icons"
+  },
+  "item/01M1MVB300EAR8PX5HKEACTKP1": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Make the header drag the window"
+  },
+  "item/01M1MVB300KXXJPZ2XACH7A64K": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Mac dogfood the header drag"
+  },
+  "item/01M1MVB300TGVNPJBG8GJ6KG1T": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Scale content without scaling chrome"
+  },
+  "item/01M1MVB300WHXWP5177D3BNDB2": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Let the panes grow and be resized"
+  },
+  "item/01M1MVB300WYDPA67T9FNDM51R": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Show the zoom level briefly"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -1907,6 +2062,12 @@
    "doc_type": "plan",
    "source": "docs/plans/2026-08-30-native-mac-app.md",
    "title": "Behave like a native Mac app",
+   "truth_state": "current"
+  },
+  "plan/2026-09-03-editor-surface-zoom-layout-icons": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-09-03-editor-surface-zoom-layout-icons.md",
+   "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
    "truth_state": "current"
   },
   "pr/42": {
@@ -1948,6 +2109,9 @@
   "pr/54": {
    "doc_type": "pr"
   },
+  "pr/55": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -1964,6 +2128,9 @@
    "doc_type": "release"
   },
   "release/v0.6.3": {
+   "doc_type": "release"
+  },
+  "release/v0.6.4": {
    "doc_type": "release"
   },
   "roadmap": {

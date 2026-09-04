@@ -7,7 +7,7 @@
 
 ## What are we working on now?
 [[Roadmap]]
-Active plans: [[Plan-ai-editor]], [[Plan-save-ux-and-next]]
+Active plans: [[Plan-editor-surface-zoom-layout-icons]], [[Plan-ai-editor]], [[Plan-save-ux-and-next]]
 
 ## Why was it built this way?
 [[Index-Decisions]] — ADRs and plans, with supersede chains

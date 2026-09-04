@@ -2,6 +2,7 @@
 
 - [[Roadmap]]
 - [[Design-Doc]] · [[Code-Walkthrough]]
+- Plan: [[Plan-editor-surface-zoom-layout-icons]]
 - Plan: [[Plan-ai-editor]]
 - Plan: [[Plan-save-ux-and-next]]
 
