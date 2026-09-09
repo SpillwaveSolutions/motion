@@ -18,6 +18,7 @@ Edit one markdown note in WYSIWYG, raw Markdown, or Split without losing edits a
 | WYSIWYG: TipTap document (welcome or file)                      |
 |   selection → floating Ask AI bubble                            |
 |   tables are real <table> cells, not pipe text                  |
+|   this pane scrolls; the toolbar above does not                 |
 | Markdown: labeled highlighted source (textarea + color layer)   |
 | Split: TipTap | highlighted read-only markdown (two columns)    |
 +-----------------------------------------------------------------+
@@ -34,7 +35,7 @@ Highlighted source -- see markdown-source.md.
 
 | Element | Type | Behavior / Notes |
 |---------|------|------------------|
-| Format buttons | icon toolbar | Bold, Italic, Strike, Inline Code. aria-label from title. aria-pressed when active. |
+| Format buttons | icon toolbar | Bold, Italic, Strike, Inline Code. aria-label from title. aria-pressed when active. Stays pinned while the note scrolls. |
 | Headings | H1 H2 H3 | Toggle |
 | Lists / quote | icons | Bullet, numbered, blockquote |
 | Code block / HR | icons | |
@@ -68,6 +69,7 @@ Highlighted source -- see markdown-source.md.
 
 ## Acceptance Criteria
 - [ ] Toolbar is visible in all three view modes.
+- [ ] Scrolling a long note does not move the format toolbar or the app header; only the document surface scrolls.
 - [ ] Every icon-only control has an aria-label (not title alone).
 - [ ] Save status is announced via role=status.
 - [ ] Cmd/Ctrl+S saves the current file (header Save note is the visible control).

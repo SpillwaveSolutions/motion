@@ -23,7 +23,8 @@ Give the user a workspace of markdown notes they can find by **filename or conte
 ```
 
 Header action buttons are **icon-only** with the same accessible names as
-before (aria-label + title). WYSIWYG / Markdown / Split stay text.
+before (aria-label + title). WYSIWYG / Markdown / Split stay text. The header
+does not scroll with the note.
 
 Sidebar is a **collapsible directory tree** of every .md under the workspace (not a flat list). Folders show relative path segments; files show basename. Sort is name-only within each folder. Trailing edge is a resize handle (see layout.md).
 

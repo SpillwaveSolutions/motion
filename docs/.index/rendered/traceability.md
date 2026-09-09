@@ -2,6 +2,11 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Keep the format toolbar fixed while the note scrolls
+`01M23KYWDKJPH89J1M3TSRM0DB` · status: done
+- lands-in: pr/60
+- targets: release/v0.6.5
+
 ### Grant the window capability the overlay title bar needs for dragging
 `01M1QN6CE0P31CYJZFG7K9D3K7` · status: todo
 - targets: release/v0.6.4

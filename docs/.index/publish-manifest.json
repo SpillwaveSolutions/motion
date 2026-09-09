@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "50595a2f3ed5",
+   "render_hash": "eeeace256963",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -222,6 +222,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-60",
+   "render": "as-is",
+   "render_hash": "0fdc515063ea",
+   "source": "docs/.index/rendered/prs/60.md",
+   "title": "PR #60",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/60"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -289,6 +299,16 @@
    "title": "Release v0.6.4",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.4"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.5",
+   "render": "as-is",
+   "render_hash": "50c218fec82e",
+   "source": "docs/.index/rendered/releases/v0.6.5.md",
+   "title": "Release v0.6.5",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.5"
   },
   {
    "frozen": false,
@@ -1581,6 +1601,16 @@
    "wiki_key": "item/01M1QN6CE0P31CYJZFG7K9D3K7"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M23KYWDKJPH89J1M3TSRM0DB",
+   "render": "as-is",
+   "render_hash": "431ad35d7186",
+   "source": "docs/.index/rendered/tickets/01M23KYWDKJPH89J1M3TSRM0DB.md",
+   "title": "Keep the format toolbar fixed while the note scrolls",
+   "truth_state": "done",
+   "wiki_key": "item/01M23KYWDKJPH89J1M3TSRM0DB"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1669,11 +1699,11 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-05T02:08:38Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-09T17:43:52Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "02417f3f7604",
+   "render_hash": "c0a79b7afa57",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
