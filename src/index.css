@@ -90,6 +90,8 @@
 
 html {
   font-size: 16px;
+  height: 100%;
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -100,11 +102,13 @@ body {
   line-height: 1.6;
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
 }
 
 #root {
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* Focus styles */
@@ -170,9 +174,9 @@ pre {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   grid-template-rows: var(--header-height) 1fr;
-  min-height: 100vh;
+  height: 100%;
   min-width: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .app-header {
@@ -185,6 +189,7 @@ pre {
   gap: var(--space-4);
   min-width: 0;
   user-select: none;
+  z-index: 10;
 }
 
 .app-header input {
@@ -196,6 +201,7 @@ pre {
   background: var(--color-bg-secondary);
   border-right: 1px solid var(--color-border-primary);
   overflow: visible;
+  min-height: 0;
   padding: var(--space-4);
 }
 
@@ -207,7 +213,9 @@ pre {
 
 .app-main {
   background: var(--color-bg-primary);
-  overflow-y: auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -321,6 +329,7 @@ pre {
   width: 100%;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
 }
 
 /* CSS zoom on content only. Header chrome stays at the 16px root. */
@@ -331,6 +340,7 @@ pre {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .split-panes {
@@ -488,6 +498,7 @@ pre {
   border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-md);
   background: var(--color-bg-secondary);
+  flex-shrink: 0;
 }
 
 .find-bar input {
@@ -528,7 +539,7 @@ pre {
   background: var(--color-bg-secondary);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-primary);
-  min-height: 400px;
+  min-height: 100%;
 }
 
 .tiptap-editor:focus-within {
@@ -718,6 +729,10 @@ pre {
   border-bottom: none;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   flex-wrap: wrap;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 4;
 }
 
 .toolbar-divider {
@@ -829,6 +844,7 @@ pre {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  flex-shrink: 0;
 }
 
 .ask-ai-chips {

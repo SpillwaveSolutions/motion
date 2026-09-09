@@ -4,6 +4,12 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Fixed
+
+- **Format toolbar stays put.** A long note used to grow the window, so the
+  header and the Bold/Italic toolbar scrolled away with the document. The
+  shell is locked to the viewport; only the editor surface scrolls.
+
 ## 0.6.4 — 2026-09-04
 
 Editor fills the window; zoom scales notes not chrome; icon toolbar; header drag

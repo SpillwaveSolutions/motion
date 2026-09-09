@@ -29,7 +29,9 @@ Split default 50/50, clamp 25–75% of the editor column.
 | Settings | config | `sidebarWidth` (px) and `splitRatio` (0–1) next to `zoom` in `settings.json`, through `settingsClient.ts`. Debounced 500ms. Unknown keys preserved. |
 
 ## States
-- **Default**: sidebar 280px, split 50/50, editor fills the main column.
+- **Default**: sidebar 280px, split 50/50, editor fills the main column. The
+  shell is locked to the window; a long note scrolls inside the editor
+  surface, not the page.
 - **Dragging**: live CSS update; persist after debounce.
 - **Reload**: last saved widths apply.
 - **Narrow (~768px)**: sidebar column is 0; handle is not shown; Notes drawer is unchanged.

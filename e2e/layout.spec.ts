@@ -102,3 +102,41 @@ test("mousedown on the logo does not start a text selection", async ({ page }) =
     const selected = await page.evaluate(() => window.getSelection()?.toString() ?? "");
     expect(selected).toBe("");
 });
+
+test("scrolling a long note leaves the header and format toolbar in place", async ({ page }) => {
+    await gotoApp(page);
+    await page.setViewportSize({ width: 1200, height: 560 });
+    const editor = page.locator(".ProseMirror");
+    await expect(editor).toBeVisible();
+    await editor.click();
+    await page.keyboard.insertText(
+        Array.from({ length: 48 }, (_, i) => `Pad line ${i} so the note is taller than the window.`).join("\n\n"),
+    );
+
+    const header = page.locator(".app-header");
+    const toolbar = page.locator(".editor-toolbar");
+    const surface = page.getByTestId("editor-scroll");
+    await expect(toolbar).toBeVisible();
+    await expect(surface).toBeVisible();
+
+    const headerBefore = await header.boundingBox();
+    const toolbarBefore = await toolbar.boundingBox();
+    expect(headerBefore).toBeTruthy();
+    expect(toolbarBefore).toBeTruthy();
+
+    await expect
+        .poll(async () => surface.evaluate((el) => el.scrollHeight - el.clientHeight))
+        .toBeGreaterThan(200);
+
+    await surface.evaluate((el) => {
+        el.scrollTop = 360;
+    });
+
+    await expect.poll(async () => surface.evaluate((el) => el.scrollTop)).toBeGreaterThan(200);
+
+    const headerAfter = await header.boundingBox();
+    const toolbarAfter = await toolbar.boundingBox();
+    expect(headerAfter!.y).toBeCloseTo(headerBefore!.y, 0);
+    expect(toolbarAfter!.y).toBeCloseTo(toolbarBefore!.y, 0);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+});

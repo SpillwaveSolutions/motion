@@ -906,6 +906,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01M23KYWDKJPH89J1M3TSRM0DB",
+   "to": "release/v0.6.5",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -2114,6 +2119,11 @@
    "status": "todo",
    "title": "Grant the window capability the overlay title bar needs for dragging"
   },
+  "item/01M23KYWDKJPH89J1M3TSRM0DB": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Keep the format toolbar fixed while the note scrolls"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2220,6 +2230,9 @@
    "doc_type": "release"
   },
   "release/v0.6.4": {
+   "doc_type": "release"
+  },
+  "release/v0.6.5": {
    "doc_type": "release"
   },
   "roadmap": {

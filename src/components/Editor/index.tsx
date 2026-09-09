@@ -994,7 +994,7 @@ function Editor({
                 {toolbar}
                 {findBar}
                 {askAiPanel}
-                <div className="editor-zoom">
+                <div className="editor-zoom" data-testid="editor-scroll">
                     <MarkdownSource
                         textareaRef={markdownRef}
                         value={rawMarkdown}
@@ -1024,7 +1024,7 @@ function Editor({
                     className="split-panes"
                     style={{ gridTemplateColumns: `${left} 6px ${right}` }}
                 >
-                    <div className="editor-zoom">
+                    <div className="editor-zoom" data-testid="editor-scroll">
                         <EditorContent editor={editor} />
                     </div>
                     <PaneResizeHandle
@@ -1046,7 +1046,7 @@ function Editor({
                             return true;
                         }}
                     />
-                    <div className="editor-zoom">
+                    <div className="editor-zoom" data-testid="editor-scroll">
                         <MarkdownPreview value={rawMarkdown} />
                     </div>
                 </div>
@@ -1061,7 +1061,7 @@ function Editor({
             {askAiPanel}
             {slashMenuPopup}
             {askAiBubble}
-            <div className="editor-zoom">
+            <div className="editor-zoom" data-testid="editor-scroll">
                 <EditorContent editor={editor} />
             </div>
         </div>
