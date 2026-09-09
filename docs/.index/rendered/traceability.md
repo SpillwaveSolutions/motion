@@ -4,6 +4,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 
 ### Keep the format toolbar fixed while the note scrolls
 `01M23KYWDKJPH89J1M3TSRM0DB` · status: done
+- lands-in: pr/60
 - targets: release/v0.6.5
 
 ### Grant the window capability the overlay title bar needs for dragging

@@ -4,6 +4,10 @@
 
 The format toolbar and the app header ride along when a long note scrolls.
 
+## Linked PRs
+
+- [[PR-60]]
+
 ## Release
 
 - [[Release-v0.6.5]]
