@@ -901,6 +901,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01M1QN6CE0P31CYJZFG7K9D3K7",
+   "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -2103,6 +2108,11 @@
    "doc_type": "item",
    "status": "done",
    "title": "chore(release): v0.6.4 changelog, version bump, roadmap snapshot"
+  },
+  "item/01M1QN6CE0P31CYJZFG7K9D3K7": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Grant the window capability the overlay title bar needs for dragging"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",

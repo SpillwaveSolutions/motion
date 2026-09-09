@@ -34,7 +34,7 @@ Motion    File                         Edit                      View
 | Element | Type | Behavior / Notes |
 |---------|------|------------------|
 | Overlay title bar | window | `titleBarStyle: Overlay`, `hiddenTitle`. Traffic lights inset over the header. |
-| Drag region | header | Own handler, not a Tauri upgrade. On header mousedown (primary button), if `isWindowDragTarget` the target is not a button/link/input/textarea/select/label/contenteditable/interactive role/`data-tauri-drag-region=false` subtree, call `startDragging()` behind `isTauri()`. Double-click on a drag target toggles maximize. Keep `.header-drag-gutter`. `data-tauri-drag-region` may remain as a hint; Tauri 2.9.5 reads it from the **event target only**, so it is not sufficient. `-webkit-app-region` is Chromium/Electron; WKWebView ignores it. |
+| Drag region | header | Own handler, not a Tauri upgrade. On header mousedown (primary button), if `isWindowDragTarget` the target is not a button/link/input/textarea/select/label/contenteditable/interactive role/`data-tauri-drag-region=false` subtree, call `startDragging()` behind `isTauri()`. Double-click on a drag target toggles maximize. Keep `.header-drag-gutter`. `data-tauri-drag-region` may remain as a hint; Tauri 2.9.5 reads it from the **event target only**, so it is not sufficient. `-webkit-app-region` is Chromium/Electron; WKWebView ignores it. Both calls are ACL-gated: `core:default` does **not** grant them, so `src-tauri/capabilities/default.json` must list `core:window:allow-start-dragging` and `core:window:allow-toggle-maximize`. A rejected call must warn, never fail silently. |
 | File → New Note | menu | Same handler as the header button. |
 | File → Open Folder… | menu | Same handler as Open Folder. |
 | File → Save | menu | Same handler as Save / ⌘S. |
@@ -55,8 +55,9 @@ Motion    File                         Edit                      View
 
 ## Acceptance Criteria
 - [x] Desktop window default size is at least 1200×760 with a ~720×480 minimum.
-- [ ] Header mousedown on the logo, the Motion wordmark, empty header chrome, or the grab strip starts a window drag on desktop (own `startDragging` handler). Buttons, search, and the view toggle do not.
+- [x] Header mousedown on the logo, the Motion wordmark, empty header chrome, or the grab strip starts a window drag on desktop (own `startDragging` handler). Buttons, search, and the view toggle do not.
 - [ ] Double-click on a drag target toggles maximize on desktop.
+- [x] `src-tauri/capabilities/default.json` grants `core:window:allow-start-dragging` and `core:window:allow-toggle-maximize`. `src/lib/windowDrag.test.ts` fails if either grant is dropped.
 - [ ] `.header-drag-gutter` remains so packed controls cannot eat the grab strip.
 - [ ] Browser: mousedown on the logo does not start a text selection.
 - [x] View menu Zoom In / Out / Actual Size fire the same zoom as ⌘+ / ⌘- / ⌘0.
@@ -65,9 +66,9 @@ Motion    File                         Edit                      View
 - [x] `?open=` in browser mode opens the workspace and selects that note (E2E stand-in for Finder).
 - [x] Light appearance does not keep the GitHub-dark palette.
 - [x] productName is Motion; identifier is com.spillwave.motion.
-- [ ] **Mac dogfood (cannot run in Linux CI):** drag from the logo and from empty header chrome, confirm the window moves, confirm buttons still click, double-click the header to zoom the window.
+- [ ] **Mac dogfood (cannot run in Linux CI):** drag from the logo and from empty header chrome, confirm the window moves, confirm buttons still click, double-click the header to zoom the window. Drag confirmed on the 0.6.4 build with the capability grant. Maximize and button clicks are not re-checked yet.
 
 ## Notes
-- Source: `src/lib/windowDrag.ts`, `src/App.tsx`, `src/index.css`, `src-tauri/tauri.conf.json`.
+- Source: `src/lib/windowDrag.ts`, `src/App.tsx`, `src/index.css`, `src-tauri/tauri.conf.json`, `src-tauri/capabilities/default.json`.
 - Unsigned local builds: right-click → Open once. Documented in `docs/macos.md`.
 - Do not bump Tauri to pick up the 2.11 `deep` drag-region walk. Own the handler instead.

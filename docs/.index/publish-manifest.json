@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "b70e32ff9371",
+   "render_hash": "50595a2f3ed5",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -1571,6 +1571,16 @@
    "wiki_key": "item/01M1PMS8ZBVHA4KDG1W0AX5CHM"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M1QN6CE0P31CYJZFG7K9D3K7",
+   "render": "as-is",
+   "render_hash": "35dd123935cd",
+   "source": "docs/.index/rendered/tickets/01M1QN6CE0P31CYJZFG7K9D3K7.md",
+   "title": "Grant the window capability the overlay title bar needs for dragging",
+   "truth_state": "open",
+   "wiki_key": "item/01M1QN6CE0P31CYJZFG7K9D3K7"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1659,11 +1669,11 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-04T16:44:45Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-05T02:08:38Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "89ca2465ec0c",
+   "render_hash": "02417f3f7604",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

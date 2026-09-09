@@ -1,4 +1,6 @@
 import { describe, expect, test } from "bun:test";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { isWindowDragTarget, type DragNode } from "./windowDrag";
 
 function node(
@@ -76,5 +78,29 @@ describe("isWindowDragTarget", () => {
         expect(isWindowDragTarget(elsewhere, header)).toBe(false);
         expect(isWindowDragTarget(null, header)).toBe(false);
         expect(isWindowDragTarget(header, null)).toBe(false);
+    });
+});
+
+/**
+ * Regression guard for the bug three releases failed to fix (0.6.2, 0.6.3, 0.6.4).
+ *
+ * The frontend was correct the whole time. Tauri 2 gates `startDragging()`
+ * behind `core:window:allow-start-dragging`, and `core:default` does NOT
+ * include it -- `core:window:default` is 26 read-only queries plus
+ * allow-internal-toggle-maximize. Without the grant the invoke is rejected by
+ * the access control list, `startWindowDrag` swallows it, and the window simply
+ * does not move. An overlay title bar has no OS drag surface to fall back on.
+ */
+describe("window capability grants", () => {
+    const capability = JSON.parse(
+        readFileSync(join(import.meta.dir, "../../src-tauri/capabilities/default.json"), "utf8")
+    ) as { permissions: string[] };
+
+    test("start-dragging is granted, or the header cannot move the window", () => {
+        expect(capability.permissions).toContain("core:window:allow-start-dragging");
+    });
+
+    test("toggle-maximize is granted, or double-clicking the header does nothing", () => {
+        expect(capability.permissions).toContain("core:window:allow-toggle-maximize");
     });
 });

@@ -87,13 +87,34 @@ export function isWindowDragTarget(target: unknown, header: unknown): boolean {
     return true;
 }
 
+/**
+ * Report a denied window call once, loudly enough to be found.
+ *
+ * The empty catch that used to sit here hid an access control list rejection
+ * through three releases: the capability file granted only `core:default`,
+ * which does not include `core:window:allow-start-dragging`, so every drag was
+ * rejected and silently discarded. This path only runs under Tauri, and the E2E
+ * console gate runs in browser mode, so warning here costs nothing and would
+ * have saved 0.6.2, 0.6.3 and 0.6.4.
+ */
+let warned = false;
+function reportWindowCallFailure(what: string, error: unknown): void {
+    if (warned) return;
+    warned = true;
+    console.warn(
+        `Motion: window.${what}() was rejected. Check src-tauri/capabilities/default.json ` +
+            `grants core:window:allow-${what === "startDragging" ? "start-dragging" : "toggle-maximize"}.`,
+        error
+    );
+}
+
 export async function startWindowDrag(): Promise<void> {
     if (!isTauri()) return;
     try {
         const { getCurrentWindow } = await import("@tauri-apps/api/window");
         await getCurrentWindow().startDragging();
-    } catch {
-        /* Browser / missing window handle must not console.error (E2E gates on it). */
+    } catch (error) {
+        reportWindowCallFailure("startDragging", error);
     }
 }
 
@@ -102,7 +123,7 @@ export async function toggleWindowMaximize(): Promise<void> {
     try {
         const { getCurrentWindow } = await import("@tauri-apps/api/window");
         await getCurrentWindow().toggleMaximize();
-    } catch {
-        /* same as startWindowDrag */
+    } catch (error) {
+        reportWindowCallFailure("toggleMaximize", error);
     }
 }
