@@ -4,11 +4,32 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.5 — 2026-09-10
+
+Header drag actually works on a Mac; the format toolbar stays put while the note
+scrolls.
+
 ### Fixed
 
+- **Window drag capability.** Overlay title bars never inherited `startDragging`
+  from `core:default`. The capability file now grants
+  `core:window:allow-start-dragging` and `allow-toggle-maximize`. Empty catches
+  that hid ACL rejections are a one-time warning.
 - **Format toolbar stays put.** A long note used to grow the window, so the
   header and the Bold/Italic toolbar scrolled away with the document. The
   shell is locked to the viewport; only the editor surface scrolls.
+
+### Known issues
+
+- **Mac dogfood** of double-click maximize and button clicks on an unsigned
+  `.app` still needs a Mac. Linux CI cannot click one. Header drag should work
+  now that the capability is granted.
+- **Packaged Ask AI** is a one-shot `run_llm_cli` until a Bun sidecar hosts the
+  shared TS service (streaming + tools).
+- **Dictation** is not in this release.
+- **Welcome demo data** (`sample-data.csv`, `sample-events.jsonl`) still only
+  loads when those files exist in the open workspace. Missing files now say so
+  instead of dumping DuckDB/HTTP errors.
 
 ## 0.6.4 — 2026-09-04
 

@@ -902,7 +902,7 @@
   },
   {
    "from": "item/01M1QN6CE0P31CYJZFG7K9D3K7",
-   "to": "release/v0.6.4",
+   "to": "release/v0.6.5",
    "type": "targets"
   },
   {
@@ -912,6 +912,11 @@
   },
   {
    "from": "item/01M23KYWDKJPH89J1M3TSRM0DB",
+   "to": "release/v0.6.5",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M25RY5AM6ZWRGEAJP34X06WN",
    "to": "release/v0.6.5",
    "type": "targets"
   },
@@ -1463,6 +1468,21 @@
   {
    "from": "roadmap-snapshot/2026-09-04_v0.6.4-release",
    "to": "release/v0.6.4",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-10_v0.6.5-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-10_v0.6.5-release",
+   "to": "roadmap-snapshot/2026-09-04_v0.6.4-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-09-10_v0.6.5-release",
+   "to": "release/v0.6.5",
    "type": "targets"
   }
  ],
@@ -2121,13 +2141,18 @@
   },
   "item/01M1QN6CE0P31CYJZFG7K9D3K7": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Grant the window capability the overlay title bar needs for dragging"
   },
   "item/01M23KYWDKJPH89J1M3TSRM0DB": {
    "doc_type": "item",
    "status": "done",
    "title": "Keep the format toolbar fixed while the note scrolls"
+  },
+  "item/01M25RY5AM6ZWRGEAJP34X06WN": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "chore(release): v0.6.5 changelog, version bump, roadmap snapshot"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
@@ -2282,6 +2307,12 @@
   "roadmap-snapshot/2026-09-04_v0.6.4-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-09-04_v0.6.4-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-09-10_v0.6.5-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-09-10_v0.6.5-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },
