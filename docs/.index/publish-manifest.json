@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "bce6df44476e",
+   "render_hash": "993f1e081996",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "eeeace256963",
+   "render_hash": "e34c8294bac6",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -232,6 +232,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-61",
+   "render": "as-is",
+   "render_hash": "6792a28f519a",
+   "source": "docs/.index/rendered/prs/61.md",
+   "title": "PR #61",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/61"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -304,7 +314,7 @@
    "frozen": false,
    "page_name": "Release-v0.6.5",
    "render": "as-is",
-   "render_hash": "50c218fec82e",
+   "render_hash": "bc8ea225d7b4",
    "source": "docs/.index/rendered/releases/v0.6.5.md",
    "title": "Release v0.6.5",
    "truth_state": "shipped",
@@ -1594,10 +1604,10 @@
    "frozen": false,
    "page_name": "Ticket-01M1QN6CE0P31CYJZFG7K9D3K7",
    "render": "as-is",
-   "render_hash": "35dd123935cd",
+   "render_hash": "d71f60bd2ef0",
    "source": "docs/.index/rendered/tickets/01M1QN6CE0P31CYJZFG7K9D3K7.md",
    "title": "Grant the window capability the overlay title bar needs for dragging",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M1QN6CE0P31CYJZFG7K9D3K7"
   },
   {
@@ -1609,6 +1619,16 @@
    "title": "Keep the format toolbar fixed while the note scrolls",
    "truth_state": "done",
    "wiki_key": "item/01M23KYWDKJPH89J1M3TSRM0DB"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M25RY5AM6ZWRGEAJP34X06WN",
+   "render": "as-is",
+   "render_hash": "efc083b6cfde",
+   "source": "docs/.index/rendered/tickets/01M25RY5AM6ZWRGEAJP34X06WN.md",
+   "title": "chore(release): v0.6.5 changelog, version bump, roadmap snapshot",
+   "truth_state": "done",
+   "wiki_key": "item/01M25RY5AM6ZWRGEAJP34X06WN"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -1699,11 +1719,11 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-09T17:43:52Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-10T13:43:56Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "c0a79b7afa57",
+   "render_hash": "5ae901bdd074",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1776,11 +1796,22 @@
    "wiki_key": "roadmap-snapshot/2026-09-04_v0.6.4-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.5 (2026-09-10) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-09-10_v0.6.5-release",
+   "render": "doc+banner",
+   "render_hash": "7ffc60a1b52b",
+   "source": "docs/roadmap/2026-09-10_v0.6.5-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-09-10_v0.6.5-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "c1ba20d5c452",
+   "render_hash": "da2058074062",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -1788,7 +1819,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "93cf8a8aa0b5",
+  "render_hash": "0c03caec95e3",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
