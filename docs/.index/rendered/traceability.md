@@ -4,6 +4,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 
 ### chore(release): v0.6.5 changelog, version bump, roadmap snapshot
 `01M25RY5AM6ZWRGEAJP34X06WN` · status: done
+- lands-in: pr/61
 - targets: release/v0.6.5
 
 ### Keep the format toolbar fixed while the note scrolls
