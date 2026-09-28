@@ -926,6 +926,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01M3M9CAJ08DJKX7T6E0EE8SP3",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -2159,6 +2164,11 @@
    "status": "done",
    "title": "chore(release): v0.6.5 changelog, version bump, roadmap snapshot"
   },
+  "item/01M3M9CAJ08DJKX7T6E0EE8SP3": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Open on-disk markdown links in the editor"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2274,6 +2284,9 @@
    "doc_type": "release"
   },
   "release/v0.6.5": {
+   "doc_type": "release"
+  },
+  "release/v0.6.6": {
    "doc_type": "release"
   },
   "roadmap": {

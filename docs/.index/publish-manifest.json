@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "e34c8294bac6",
+   "render_hash": "dae04acafe4d",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -319,6 +319,16 @@
    "title": "Release v0.6.5",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.5"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.6",
+   "render": "as-is",
+   "render_hash": "0f48ed6ec7ff",
+   "source": "docs/.index/rendered/releases/v0.6.6.md",
+   "title": "Release v0.6.6",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.6"
   },
   {
    "frozen": false,
@@ -1631,6 +1641,16 @@
    "wiki_key": "item/01M25RY5AM6ZWRGEAJP34X06WN"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M3M9CAJ08DJKX7T6E0EE8SP3",
+   "render": "as-is",
+   "render_hash": "dac9420107b6",
+   "source": "docs/.index/rendered/tickets/01M3M9CAJ08DJKX7T6E0EE8SP3.md",
+   "title": "Open on-disk markdown links in the editor",
+   "truth_state": "done",
+   "wiki_key": "item/01M3M9CAJ08DJKX7T6E0EE8SP3"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1719,11 +1739,11 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-10T13:43:56Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-28T15:15:55Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "5ae901bdd074",
+   "render_hash": "62ddeedd6b15",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1811,7 +1831,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "da2058074062",
+   "render_hash": "02928d595135",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",

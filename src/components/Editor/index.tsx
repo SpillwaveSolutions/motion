@@ -21,6 +21,7 @@ import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
 import { tableKit } from "./extensions/tableKit";
 import { htmlToMarkdown, markdownToHtml } from "./markdown";
+import { isNoteLinkUri, resolveNoteLink, type NoteLinkAction, type NoteLinkContext } from "../../lib/noteLink";
 import { storage } from "../../lib/storage";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
 import {
@@ -70,6 +71,11 @@ interface EditorProps {
     onMarkdownChange?: (markdown: string) => void;
     splitRatio?: number;
     onSplitRatioChange?: (ratio: number) => void;
+    /** Open folder, so a relative link can be resolved. */
+    workspaceRoot?: string | null;
+    /** Markdown files in that folder. The click handler will not open anything else in-place. */
+    files?: readonly string[];
+    onOpenLink?: (action: Extract<NoteLinkAction, { action: "open" | "switch" }>) => void;
 }
 
 interface SlashMenuState {
@@ -183,6 +189,9 @@ function Editor({
     onMarkdownChange,
     splitRatio = SPLIT_DEFAULT,
     onSplitRatioChange,
+    workspaceRoot = null,
+    files = [],
+    onOpenLink,
 }: EditorProps) {
     const [rawMarkdown, setRawMarkdown] = useState("");
     const rawMarkdownRef = useRef("");
@@ -205,6 +214,10 @@ function Editor({
     viewModeRef.current = viewMode;
     const filePathRef = useRef(filePath);
     filePathRef.current = filePath;
+    const linkCtxRef = useRef<NoteLinkContext>({ currentFile: filePath, workspaceRoot, files });
+    linkCtxRef.current = { currentFile: filePath, workspaceRoot, files };
+    const onOpenLinkRef = useRef(onOpenLink);
+    onOpenLinkRef.current = onOpenLink;
 
     const [slashMenu, setSlashMenu] = useState<SlashMenuState | null>(null);
     const [inTable, setInTable] = useState(false);
@@ -276,6 +289,16 @@ function Editor({
         extensions: [
             StarterKit.configure({
                 codeBlock: false,
+                link: {
+                    openOnClick: false,
+                    protocols: ["file"],
+                    isAllowedUri: (url) => isNoteLinkUri(url),
+                    HTMLAttributes: {
+                        target: null,
+                        rel: "noopener noreferrer",
+                        class: null,
+                    },
+                },
             }),
             tableKit,
             MermaidExtension,
@@ -333,6 +356,29 @@ function Editor({
                     return false;
                 }
                 return false;
+            },
+            // A markdown link to a file on disk loads that note. Web links
+            // open outside. Anything else must not navigate the webview —
+            // a relative href would otherwise leave the app.
+            handleClick: (_view, _pos, event) => {
+                if (event.button !== 0) return false;
+                const node = event.target;
+                const el = node instanceof Element ? node : node instanceof Node ? node.parentElement : null;
+                const anchor = el?.closest("a");
+                if (!(anchor instanceof HTMLAnchorElement)) return false;
+                const href = anchor.getAttribute("href");
+                if (!href) return false;
+                const decision = resolveNoteLink(href, linkCtxRef.current);
+                if (decision.action === "ignore") return false;
+                event.preventDefault();
+                if (decision.action === "external") {
+                    window.open(decision.url, "_blank", "noopener,noreferrer");
+                    return true;
+                }
+                if (decision.action === "open" || decision.action === "switch") {
+                    onOpenLinkRef.current?.(decision);
+                }
+                return true;
             },
         },
         // Keep rawMarkdown in sync with WYSIWYG/split edits as they happen, so
