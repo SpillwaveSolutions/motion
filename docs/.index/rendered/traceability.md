@@ -2,6 +2,11 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Open on-disk markdown links in the editor
+`01M3M9CAJ08DJKX7T6E0EE8SP3` · status: done
+- lands-in: pr/62
+- targets: release/v0.6.6
+
 ### chore(release): v0.6.5 changelog, version bump, roadmap snapshot
 `01M25RY5AM6ZWRGEAJP34X06WN` · status: done
 - lands-in: pr/61

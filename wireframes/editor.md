@@ -51,6 +51,7 @@ Highlighted source -- see markdown-source.md.
 | Markdown source | textarea | aria-label Markdown source. Highlighted (headings, emphasis, code, links, lists). Placeholder Write your markdown here... See markdown-source.md. |
 | Split preview | pre | Right pane is live highlighted markdown (read-only, aria-label Markdown preview). A `role=separator` divider between the panes is draggable; see layout.md. The editor surface has **no** max-width cap — it fills the main column. |
 | Find in note | bar | ⌘/Ctrl+F opens. Matches the current note (WYSIWYG selection or markdown source). Enter next, Shift+Enter previous, Escape closes. aria-label Find in note. |
+| Note link | anchor in the document | WYSIWYG and the editor side of Split. A click loads another markdown file when the href points at one on disk (relative to the current note, then the folder root; `.md` optional; a folder link opens `README.md` or `index.md`). `http` / `https` / `mailto` open outside the editor. A miss does not navigate the window. Same-document `#anchors` are left alone. Markdown source is text, so links there are not clickable. On the desktop app, an absolute markdown path outside the open folder opens that file's folder. |
 | Loading | copy | Loading editor... before TipTap mounts |
 
 ## States
@@ -78,6 +79,9 @@ Highlighted source -- see markdown-source.md.
 - [ ] Markdown textarea is labeled Markdown source and is syntax-highlighted.
 - [ ] With no file selected, the welcome document (not a blank pane) is shown.
 - [ ] A failed file load shows an error inside the editor, not a blank page.
+- [ ] Clicking a markdown link to a file in the open folder loads that note and selects it in the tree.
+- [ ] Clicking a link that does not resolve to a file does not navigate away from the current note.
+- [ ] A web link is not loaded as a note.
 - [ ] Insert buttons create Table, Mermaid, Dataset, Query, AI Diagram, and AI Image blocks.
 - [ ] Slash menu includes Ask AI first, then Table; toolbar insert buttons do not include Ask AI.
 - [ ] Refine previews before replacing the document; failure is in the panel, not an alert.

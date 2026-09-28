@@ -641,6 +641,7 @@ pre {
 .tiptap-editor a {
   color: var(--color-text-link);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /* GFM tables (wireframes/tables.md) */

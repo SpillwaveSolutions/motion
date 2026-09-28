@@ -15,6 +15,7 @@ import {
 import { storage, rememberWorkspaceRoot, relativeToWorkspace, isTauri } from "./lib/storage";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
 import { parseOpenQuery, resolveOpenQuery } from "./lib/openFile";
+import type { NoteLinkAction } from "./lib/noteLink";
 import { loadPersistedWorkspace, persistWorkspace } from "./lib/workspaceMemory";
 import { buildCopyPayload, writeCopyPayload } from "./lib/copyNote";
 import { useZoom } from "./lib/useZoom";
@@ -455,6 +456,26 @@ function App() {
         setCurrentFilePath(path);
         setNotesOpen(false);
     };
+
+    const handleOpenLink = useCallback(
+        (action: Extract<NoteLinkAction, { action: "open" | "switch" }>) => {
+            if (action.action === "switch") {
+                // Browser mode's workspace is fixed by the server. Only the
+                // desktop app can follow a markdown file outside the folder.
+                if (isTauri()) void activateWorkspace(action.workspace, action.file);
+                return;
+            }
+            setCurrentFilePath(action.path);
+            setNotesOpen(false);
+            setExpanded((prev) => {
+                if (prev === null || !workspacePath) return prev;
+                const next = new Set(prev);
+                for (const folder of ancestorFolders([action.path], workspacePath)) next.add(folder);
+                return next;
+            });
+        },
+        [activateWorkspace, workspacePath],
+    );
 
     const handleNewNote = async () => {
         if (!workspacePath) {
@@ -1052,6 +1073,9 @@ function App() {
                     onMarkdownChange={handleMarkdownChange}
                     splitRatio={splitRatio}
                     onSplitRatioChange={setSplitRatio}
+                    workspaceRoot={workspacePath}
+                    files={files}
+                    onOpenLink={handleOpenLink}
                 />
             </main>
 

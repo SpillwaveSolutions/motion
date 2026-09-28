@@ -52,7 +52,12 @@ opens the app.
 2. The sidebar is a **collapsible directory tree** of every `.md` underneath
    the workspace. Use **Search notes** (⌘K / Ctrl+K) to filter by filename or
    by text inside the notes. A content hit shows a short snippet.
-3. Click a note to open it.
+3. Click a note to open it. In the note itself, click a link and Motion opens
+   that file when it is markdown on disk. `getting-started.md`, `./notes/topic.md`,
+   `../welcome.md`, a name without `.md`, and a folder (its `README.md` or
+   `index.md`) all work. A web address is not opened as a note. A link that
+   does not match a file leaves you where you are. On the Mac app, an absolute
+   path to a markdown file outside the open folder opens that file's folder.
 4. Edit, then press **⌘S** (Ctrl+S) or click the **Save** icon in the
    header. The status area shows **Saving…** / **Saved** / **Save failed**.
 

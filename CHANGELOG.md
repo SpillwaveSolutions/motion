@@ -4,6 +4,13 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Added
+
+- **Note links.** Click a link in the editor and, if it points at a markdown
+  file on disk, that note opens. Relative paths resolve from the current note,
+  then from the folder. Web links stay web links. A link that is not a file
+  does not navigate the window away.
+
 ## 0.6.5 — 2026-09-10
 
 Header drag actually works on a Mac; the format toolbar stays put while the note

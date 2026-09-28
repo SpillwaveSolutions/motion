@@ -36,7 +36,8 @@ export const SEED_FILES: Record<string, string> = {
         "# Scratch: commands\n\nThe quick brown fox jumps over the lazy dog.\n\n| Name | Role |\n| --- | --- |\n| Ada | Engineer |\n",
     // Tight GFM pipes (no padding). The serializer rewrites these to
     // `| Name | Role |` — switching views must not treat that as an edit.
-    "scratch-dirty.md": "# Tight pipes\n\n|Name|Role|\n|---|---|\n|Ada|Engineer|\n",
+    "scratch-links.md":
+        "# Links\n\nSee [Getting started](getting-started.md).\n\nSee [Deeper](nested/deeper.md).\n\nSee [Missing](does-not-exist.md).\n",
 };
 
 export function createWorkspace(): string {
