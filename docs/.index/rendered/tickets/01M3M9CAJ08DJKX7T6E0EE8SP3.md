@@ -4,6 +4,10 @@
 
 Clicking a markdown link that points at a file on disk loads that note in the editor.
 
+## Linked PRs
+
+- [[PR-62]]
+
 ## Release
 
 - [[Release-v0.6.6]]

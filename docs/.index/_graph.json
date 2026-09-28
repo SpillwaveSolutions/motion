@@ -927,6 +927,11 @@
   },
   {
    "from": "item/01M3M9CAJ08DJKX7T6E0EE8SP3",
+   "to": "pr/62",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M3M9CAJ08DJKX7T6E0EE8SP3",
    "to": "release/v0.6.6",
    "type": "targets"
   },
@@ -2260,6 +2265,9 @@
    "doc_type": "pr"
   },
   "pr/61": {
+   "doc_type": "pr"
+  },
+  "pr/62": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {

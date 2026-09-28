@@ -4,6 +4,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 
 ### Open on-disk markdown links in the editor
 `01M3M9CAJ08DJKX7T6E0EE8SP3` · status: done
+- lands-in: pr/62
 - targets: release/v0.6.6
 
 ### chore(release): v0.6.5 changelog, version bump, roadmap snapshot
