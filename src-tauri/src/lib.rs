@@ -437,6 +437,21 @@ pub fn run() {
                         .build(),
                 )?;
             }
+            // Agent-driving MCP bridge, only with `--features mcp-bridge`. Its
+            // capability is added here, not in capabilities/: tauri-build checks
+            // that directory against the compiled plugins, so a static file
+            // naming mcp-bridge:default breaks every build with the feature off.
+            // Bound to 127.0.0.1 because it can drive the app.
+            #[cfg(feature = "mcp-bridge")]
+            {
+                app.handle()
+                    .add_capability(include_str!("../mcp-bridge.capability.json"))?;
+                app.handle().plugin(
+                    tauri_plugin_mcp_bridge::Builder::new()
+                        .bind_address("127.0.0.1")
+                        .build(),
+                )?;
+            }
             install_menu(app)?;
             for arg in std::env::args().skip(1) {
                 if arg.starts_with('-') {
