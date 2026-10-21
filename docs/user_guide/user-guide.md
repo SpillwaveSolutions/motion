@@ -80,6 +80,16 @@ Drag the trailing edge of the directory listing to resize it, or the divider
 in Split view. Both widths are remembered. Stretching the window widens the
 note; there is no 900px cap.
 
+**Themes** in the header edits export themes. Ice Snowstorm and Clay are built
+in. Clay matches Anthropic's ivory page and terracotta accent. New themes are
+saved in settings and can be chosen as the export default.
+
+**Reload note** reads the open file from disk again. If you have unsaved edits,
+Motion asks before it throws them away.
+
+**Export PDF** and **Export Word** open a dialog. Pick a theme, check the
+preview, then download. The preview is the same document the file is built from.
+
 A new note opens already in **rename** in the tree. Type a name and press
 Enter. To rename an existing note: right-click it and choose **Rename**, press
 **F2**, or click it again while it is selected. Escape keeps the old name.

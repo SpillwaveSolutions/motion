@@ -97,6 +97,12 @@ unit → E2E).
    (cap 40 notes; excludes its own outputs from the next run).
 10. **Share** — current buffer to a GitHub Gist or Notion page. Tokens in
     localStorage. Tauri command vs `POST /api/publish/*` (HTTP 200 envelope).
+11. **Reload / export** — Reload re-reads the open file (confirms when dirty).
+    Export PDF and Export Word render the live markdown with a theme (Ice
+    Snowstorm or Clay, plus custom themes in settings). The dialog iframe is
+    the preview; `exportPdf` / `exportDocx` build the download from the same
+    block list. Desktop settings pass `exportThemeId` and `themes` through
+    `get_settings` / `set_settings`.
 
 ---
 

@@ -28,6 +28,13 @@ natural-language prompts using CLI tools you already have installed.
 - **Copy All** — copies the current note. Paste into a markdown editor to get
   markdown; paste into Docs, Word, or Mail to get rich text. Header actions
   are icon-only; the accessible name is unchanged.
+- **Reload note** — re-reads the open file from disk. If the note is dirty,
+  Motion asks before discarding unsaved edits.
+- **Export PDF / Word** — themed download of the current note. The dialog
+  previews the page first. Ice Snowstorm (ice page, black text, navy headings,
+  blue rules) and Clay (Anthropic ivory paper, terracotta accent) are built in.
+  **Themes** adds more and sets the export default. PDF uses standard fonts;
+  Word uses Calibri or Georgia.
 - **Zoom** — ⌘+ / ⌘- / ⌘0 scale the editor and the file tree, not the header.
   A brief overlay shows the percentage. Remembered in the settings file.
 - **Layout** — the editor fills the window. Drag the sidebar edge or the Split
@@ -155,6 +162,9 @@ Recorded here rather than discovered later:
   Generative blocks and **Synthesize** still need `claude` / `imagen`.
 - **Share** needs a GitHub PAT (gist scope) and/or a Notion internal
   integration token plus a parent page the integration can write to.
+- **PDF export** uses Helvetica, Times, or Courier. Word uses Calibri, Georgia,
+  or Consolas. The on-screen preview uses system fonts, so it can look slightly
+  closer to the theme than the PDF does.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
 [docs/roadmap.md](docs/roadmap.md) for what is planned.

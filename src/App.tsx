@@ -9,8 +9,12 @@ import {
     IconFilePlus,
     IconFolderOpen,
     IconFolderPlus,
+    IconPalette,
+    IconPdf,
+    IconReload,
     IconSave,
     IconSynthesize,
+    IconWord,
 } from "./components/icons";
 import { storage, rememberWorkspaceRoot, relativeToWorkspace, isTauri } from "./lib/storage";
 import { synthesizeWorkspace } from "./lib/workspaceSynthesis";
@@ -28,6 +32,9 @@ import {
     sidebarWidthFromPointer,
 } from "./lib/layout";
 import { isWindowDragTarget, startWindowDrag, toggleWindowMaximize } from "./lib/windowDrag";
+import { fetchSettings, updateSettings } from "./lib/settingsClient";
+import type { ExportTheme } from "./lib/themes";
+import { ExportDialog, ThemeSettingsDialog } from "./components/Themes/dialogs";
 
 type ViewMode = "wysiwyg" | "markdown" | "split";
 
@@ -153,6 +160,7 @@ function App() {
     const [contents, setContents] = useState<Record<string, string>>({});
     const [synthesis, setSynthesis] = useState<string | null>(null);
     const [saveSignal, setSaveSignal] = useState(0);
+    const [reloadSignal, setReloadSignal] = useState(0);
     const [saveState, setSaveState] = useState<SaveState>("idle");
     const [dirty, setDirty] = useState(false);
     /** Folder absolute paths that are expanded. Empty set means “all expanded” until user toggles. */
@@ -160,6 +168,10 @@ function App() {
     const [notesOpen, setNotesOpen] = useState(false);
     const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
     const [renamingPath, setRenamingPath] = useState<string | null>(null);
+    const [exportKind, setExportKind] = useState<"pdf" | "docx" | null>(null);
+    const [themesOpen, setThemesOpen] = useState(false);
+    const [customThemes, setCustomThemes] = useState<ExportTheme[]>([]);
+    const [exportThemeId, setExportThemeId] = useState("ice-snowstorm");
     const [contextMenu, setContextMenu] = useState<{ x: number; y: number; path: string } | null>(
         null
     );
@@ -312,6 +324,22 @@ function App() {
         return () => window.removeEventListener("keydown", onEsc);
     }, [notesOpen]);
 
+    useEffect(() => {
+        let cancelled = false;
+        void fetchSettings()
+            .then((res) => {
+                if (cancelled) return;
+                setCustomThemes(res.settings.themes);
+                setExportThemeId(res.settings.exportThemeId);
+            })
+            .catch(() => {
+                /* defaults stay usable if settings cannot be read */
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
     const activateWorkspace = useCallback(async (root: string, selectFile: string | null) => {
         const canonical = await storage.ensureWorkspace(root);
         setWorkspacePath(canonical);
@@ -454,6 +482,12 @@ function App() {
     const handleFileSelect = (path: string) => {
         setCurrentFilePath(path);
         setNotesOpen(false);
+    };
+
+    const handleReload = () => {
+        if (!currentFilePath) return;
+        if (dirty && !window.confirm("Reload this note from disk? Unsaved edits will be lost.")) return;
+        setReloadSignal((n) => n + 1);
     };
 
     const handleNewNote = async () => {
@@ -880,6 +914,46 @@ function App() {
                     <button
                         type="button"
                         className="btn btn-secondary btn-icon"
+                        onClick={handleReload}
+                        disabled={!currentFilePath}
+                        data-testid="reload-note"
+                        aria-label="Reload note"
+                        title={currentFilePath ? "Reload this note from disk" : "Select a note to reload"}
+                    >
+                        <IconReload />
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary btn-icon"
+                        onClick={() => setExportKind("pdf")}
+                        disabled={!currentFilePath}
+                        aria-label="Export PDF"
+                        title={currentFilePath ? "Export this note as PDF" : "Select a note to export"}
+                    >
+                        <IconPdf />
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary btn-icon"
+                        onClick={() => setExportKind("docx")}
+                        disabled={!currentFilePath}
+                        aria-label="Export Word"
+                        title={currentFilePath ? "Export this note as Word" : "Select a note to export"}
+                    >
+                        <IconWord />
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary btn-icon"
+                        onClick={() => setThemesOpen(true)}
+                        aria-label="Themes"
+                        title="Export themes"
+                    >
+                        <IconPalette />
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary btn-icon"
                         onClick={handleSynthesize}
                         disabled={!workspacePath || synthesis !== null}
                         aria-label="Synthesize"
@@ -1052,9 +1126,41 @@ function App() {
                     onMarkdownChange={handleMarkdownChange}
                     splitRatio={splitRatio}
                     onSplitRatioChange={setSplitRatio}
+                    reloadSignal={reloadSignal}
                 />
             </main>
 
+            {exportKind && (
+                <ExportDialog
+                    kind={exportKind}
+                    markdown={liveMarkdownRef.current}
+                    filename={currentFilePath ? getBasename(currentFilePath) : "note.md"}
+                    themes={customThemes}
+                    themeId={exportThemeId}
+                    onClose={(chosen) => {
+                        setExportKind(null);
+                        if (chosen && chosen !== exportThemeId) {
+                            setExportThemeId(chosen);
+                            void updateSettings({ exportThemeId: chosen }).catch(() => {});
+                        }
+                    }}
+                />
+            )}
+            {themesOpen && (
+                <ThemeSettingsDialog
+                    themes={customThemes}
+                    themeId={exportThemeId}
+                    onClose={() => setThemesOpen(false)}
+                    onSave={(next) => {
+                        setCustomThemes(next.themes);
+                        setExportThemeId(next.exportThemeId);
+                        setThemesOpen(false);
+                        void updateSettings(next).catch((error) => {
+                            alert(error instanceof Error ? error.message : String(error));
+                        });
+                    }}
+                />
+            )}
             {contextMenu && (
                 <div
                     className="note-context-menu"
