@@ -2,6 +2,11 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.6 — 2026-10-22
+
+- Roadmap snapshot: [[Roadmap-2026-10-22_v0.6.6-release]]
+- Shipped: Reload a note and export themed PDF and Word
+
 ## v0.6.5 — 2026-09-10
 
 - Roadmap snapshot: [[Roadmap-2026-09-10_v0.6.5-release]]

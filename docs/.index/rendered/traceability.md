@@ -2,6 +2,84 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### chore(release): v0.6.6 changelog, version bump, roadmap snapshot
+`01M5J4C2142M28BJZPBSWJ4Y04` · status: todo
+- targets: release/v0.6.6
+
+### Stop the UI Guard from treating test files as UI source
+`01M5GTCRJQPGX82TS89Y93732Z` · status: todo
+
+### Restore the LLM spy after each workspace synthesis test
+`01M5GRYQY7ZAK975G44M0G6T6N` · status: todo
+
+### Add tests for ImageGen generation and inline storage
+`01M5GQYSTS6MXM432NYSV6JY5G` · status: todo
+
+### Decide where publish tokens are stored
+`01M5GQ20K7RQ0WTFF1973915BP` · status: todo
+
+### Fix the 9 docs-versus-code differences in REQ Appendix F
+`01M5GQ20H070MJFSM16QNX12TY` · status: todo
+
+### Add a LICENSE file to the repository
+`01M5GQ20EM4T0BSWW130VZJVCV` · status: todo
+
+### Export images to PDF and Word instead of the alt text only
+`01M5GQ20CANKH5P50X4QC523WM` · status: todo
+
+### Add tests for the 9 MUST scenarios with no coverage
+`01M5GQ20A1NSA2XAG232KJVGHK` · status: todo
+
+### Round-trip custom themes and exportThemeId through the Rust settings commands
+`01M5GQ207P956J179YGENY9ERT` · status: todo
+- targets: release/v0.6.6
+
+### ArcKit baseline: stakeholders, requirements, journeys, and scenarios
+`01M5FT7DV6ZMNBXWA883G6CDC8` · status: todo
+
+### Dev: Tauri MCP bridge for agent-driven desktop testing
+`01M5FSD7V43Q89K2GM50EMJ6EC` · status: todo
+- targets: release/v0.6.6
+
+### E2E: markdown pane edits do not reach the editor on main
+`01M5FSD7RV6MJ0JZVAT5F3VW3H` · status: todo
+- targets: release/v0.6.6
+
+### Rust settings test: themes array round-trips through apply_settings_partial
+`01M5FSD7PJCJXQ9VE693ACM4B2` · status: todo
+- belongs-to: Reload a note and export themed PDF and Word
+- targets: release/v0.6.6
+
+### PDF export: draw table borders and a header row style
+`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · status: todo
+- belongs-to: Reload a note and export themed PDF and Word
+- targets: release/v0.6.6
+
+### PDF export: add space between the title rule and the first paragraph
+`01M5FSD7J51R65WWC8VF85M0W2` · status: todo
+- belongs-to: Reload a note and export themed PDF and Word
+- targets: release/v0.6.6
+
+### PDF export: keep bold, italic, and inline code
+`01M5FSD7FX4ZP6BR5YQT8KHDAD` · status: todo
+- belongs-to: Reload a note and export themed PDF and Word
+- targets: release/v0.6.6
+
+### Word export: keep line breaks in code blocks
+`01M5FSD7DGETDXNZ9DBQCSTM0T` · status: todo
+- belongs-to: Reload a note and export themed PDF and Word
+- targets: release/v0.6.6
+
+### Reload a note and export themed PDF and Word
+`01M5FP83K2ZA8P1FJ9AF3EK5Y8` · status: done
+- lands-in: pr/63
+- targets: release/v0.6.6
+- contains: Word export: keep line breaks in code blocks
+- contains: PDF export: keep bold, italic, and inline code
+- contains: PDF export: add space between the title rule and the first paragraph
+- contains: PDF export: draw table borders and a header row style
+- contains: Rust settings test: themes array round-trips through apply_settings_partial
+
 ### chore(release): v0.6.5 changelog, version bump, roadmap snapshot
 `01M25RY5AM6ZWRGEAJP34X06WN` · status: done
 - lands-in: pr/61

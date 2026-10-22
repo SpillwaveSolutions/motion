@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "993f1e081996",
+   "render_hash": "6e6b06a8ab99",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "e34c8294bac6",
+   "render_hash": "4f3cbf9dfcc3",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -242,6 +242,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-63",
+   "render": "as-is",
+   "render_hash": "098f9a2efd3e",
+   "source": "docs/.index/rendered/prs/63.md",
+   "title": "PR #63",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/63"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -319,6 +329,16 @@
    "title": "Release v0.6.5",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.5"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.6",
+   "render": "as-is",
+   "render_hash": "10e705c1e389",
+   "source": "docs/.index/rendered/releases/v0.6.6.md",
+   "title": "Release v0.6.6",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.6"
   },
   {
    "frozen": false,
@@ -1631,6 +1651,196 @@
    "wiki_key": "item/01M25RY5AM6ZWRGEAJP34X06WN"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "render": "as-is",
+   "render_hash": "67994ccf2414",
+   "source": "docs/.index/rendered/tickets/01M5FP83K2ZA8P1FJ9AF3EK5Y8.md",
+   "title": "Reload a note and export themed PDF and Word",
+   "truth_state": "done",
+   "wiki_key": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7DGETDXNZ9DBQCSTM0T",
+   "render": "as-is",
+   "render_hash": "ec2128b53532",
+   "source": "docs/.index/rendered/tickets/01M5FSD7DGETDXNZ9DBQCSTM0T.md",
+   "title": "Word export: keep line breaks in code blocks",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7DGETDXNZ9DBQCSTM0T"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7FX4ZP6BR5YQT8KHDAD",
+   "render": "as-is",
+   "render_hash": "3c30bdb05386",
+   "source": "docs/.index/rendered/tickets/01M5FSD7FX4ZP6BR5YQT8KHDAD.md",
+   "title": "PDF export: keep bold, italic, and inline code",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7FX4ZP6BR5YQT8KHDAD"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7J51R65WWC8VF85M0W2",
+   "render": "as-is",
+   "render_hash": "ffa2fc9cd767",
+   "source": "docs/.index/rendered/tickets/01M5FSD7J51R65WWC8VF85M0W2.md",
+   "title": "PDF export: add space between the title rule and the first paragraph",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7J51R65WWC8VF85M0W2"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+   "render": "as-is",
+   "render_hash": "fce1b961f328",
+   "source": "docs/.index/rendered/tickets/01M5FSD7MA4Z0KY4ZRWRV0XJZ3.md",
+   "title": "PDF export: draw table borders and a header row style",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7PJCJXQ9VE693ACM4B2",
+   "render": "as-is",
+   "render_hash": "ec5849447317",
+   "source": "docs/.index/rendered/tickets/01M5FSD7PJCJXQ9VE693ACM4B2.md",
+   "title": "Rust settings test: themes array round-trips through apply_settings_partial",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7PJCJXQ9VE693ACM4B2"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7RV6MJ0JZVAT5F3VW3H",
+   "render": "as-is",
+   "render_hash": "245e004c9218",
+   "source": "docs/.index/rendered/tickets/01M5FSD7RV6MJ0JZVAT5F3VW3H.md",
+   "title": "E2E: markdown pane edits do not reach the editor on main",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7RV6MJ0JZVAT5F3VW3H"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FSD7V43Q89K2GM50EMJ6EC",
+   "render": "as-is",
+   "render_hash": "e4cb2814bad3",
+   "source": "docs/.index/rendered/tickets/01M5FSD7V43Q89K2GM50EMJ6EC.md",
+   "title": "Dev: Tauri MCP bridge for agent-driven desktop testing",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FSD7V43Q89K2GM50EMJ6EC"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5FT7DV6ZMNBXWA883G6CDC8",
+   "render": "as-is",
+   "render_hash": "dade4a826c9c",
+   "source": "docs/.index/rendered/tickets/01M5FT7DV6ZMNBXWA883G6CDC8.md",
+   "title": "ArcKit baseline: stakeholders, requirements, journeys, and scenarios",
+   "truth_state": "open",
+   "wiki_key": "item/01M5FT7DV6ZMNBXWA883G6CDC8"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQ207P956J179YGENY9ERT",
+   "render": "as-is",
+   "render_hash": "dadc4e193873",
+   "source": "docs/.index/rendered/tickets/01M5GQ207P956J179YGENY9ERT.md",
+   "title": "Round-trip custom themes and exportThemeId through the Rust settings commands",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQ207P956J179YGENY9ERT"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQ20A1NSA2XAG232KJVGHK",
+   "render": "as-is",
+   "render_hash": "8db1c8f11037",
+   "source": "docs/.index/rendered/tickets/01M5GQ20A1NSA2XAG232KJVGHK.md",
+   "title": "Add tests for the 9 MUST scenarios with no coverage",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQ20A1NSA2XAG232KJVGHK"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQ20CANKH5P50X4QC523WM",
+   "render": "as-is",
+   "render_hash": "7f5dc8bb7fa0",
+   "source": "docs/.index/rendered/tickets/01M5GQ20CANKH5P50X4QC523WM.md",
+   "title": "Export images to PDF and Word instead of the alt text only",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQ20CANKH5P50X4QC523WM"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQ20EM4T0BSWW130VZJVCV",
+   "render": "as-is",
+   "render_hash": "8f329e0b11b1",
+   "source": "docs/.index/rendered/tickets/01M5GQ20EM4T0BSWW130VZJVCV.md",
+   "title": "Add a LICENSE file to the repository",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQ20EM4T0BSWW130VZJVCV"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQ20H070MJFSM16QNX12TY",
+   "render": "as-is",
+   "render_hash": "8d307f8462da",
+   "source": "docs/.index/rendered/tickets/01M5GQ20H070MJFSM16QNX12TY.md",
+   "title": "Fix the 9 docs-versus-code differences in REQ Appendix F",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQ20H070MJFSM16QNX12TY"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQ20K7RQ0WTFF1973915BP",
+   "render": "as-is",
+   "render_hash": "2b7e668276fe",
+   "source": "docs/.index/rendered/tickets/01M5GQ20K7RQ0WTFF1973915BP.md",
+   "title": "Decide where publish tokens are stored",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQ20K7RQ0WTFF1973915BP"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GQYSTS6MXM432NYSV6JY5G",
+   "render": "as-is",
+   "render_hash": "3c7f772b51b0",
+   "source": "docs/.index/rendered/tickets/01M5GQYSTS6MXM432NYSV6JY5G.md",
+   "title": "Add tests for ImageGen generation and inline storage",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GQYSTS6MXM432NYSV6JY5G"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GRYQY7ZAK975G44M0G6T6N",
+   "render": "as-is",
+   "render_hash": "7a678f656faf",
+   "source": "docs/.index/rendered/tickets/01M5GRYQY7ZAK975G44M0G6T6N.md",
+   "title": "Restore the LLM spy after each workspace synthesis test",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GRYQY7ZAK975G44M0G6T6N"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5GTCRJQPGX82TS89Y93732Z",
+   "render": "as-is",
+   "render_hash": "758f720a1f55",
+   "source": "docs/.index/rendered/tickets/01M5GTCRJQPGX82TS89Y93732Z.md",
+   "title": "Stop the UI Guard from treating test files as UI source",
+   "truth_state": "open",
+   "wiki_key": "item/01M5GTCRJQPGX82TS89Y93732Z"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5J4C2142M28BJZPBSWJ4Y04",
+   "render": "as-is",
+   "render_hash": "f1861bb47b0e",
+   "source": "docs/.index/rendered/tickets/01M5J4C2142M28BJZPBSWJ4Y04.md",
+   "title": "chore(release): v0.6.6 changelog, version bump, roadmap snapshot",
+   "truth_state": "open",
+   "wiki_key": "item/01M5J4C2142M28BJZPBSWJ4Y04"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1646,7 +1856,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "98901bda1315",
+   "render_hash": "895832776055",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -1719,11 +1929,11 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-09-10T13:43:56Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-22T15:41:13Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "5ae901bdd074",
+   "render_hash": "ca10d728e849",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -1807,11 +2017,22 @@
    "wiki_key": "roadmap-snapshot/2026-09-10_v0.6.5-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.6 (2026-10-22) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-10-22_v0.6.6-release",
+   "render": "doc+banner",
+   "render_hash": "7bc5e4b2eea1",
+   "source": "docs/roadmap/2026-10-22_v0.6.6-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-10-22_v0.6.6-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "da2058074062",
+   "render_hash": "4cb07641a268",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -1819,7 +2040,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "0c03caec95e3",
+  "render_hash": "4131676f8111",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
