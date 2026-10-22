@@ -15,6 +15,8 @@ set -euo pipefail
 WIREFRAME_DIR="wireframes"
 STRICT="${UI_GUARD_STRICT:-1}"
 UI_PATTERNS='((^|/)(src|web|app)/.*\.(tsx?|jsx?|css|scss)$|(^|/)(components|pages|views)/)'
+# Unit and spec files sit next to UI source but have no screen to wireframe.
+TEST_PATTERNS='\.(test|spec)\.(tsx?|jsx?)$'
 
 git rev-parse --is-inside-work-tree >/dev/null 2>&1 || {
   echo "Not a git repository"
@@ -109,7 +111,7 @@ if [ -z "$CHANGED" ]; then
   exit 0
 fi
 
-UI_CHANGED=$(echo "$CHANGED" | grep -E "$UI_PATTERNS" || true)
+UI_CHANGED=$(echo "$CHANGED" | grep -E "$UI_PATTERNS" | grep -vE "$TEST_PATTERNS" || true)
 WIREFRAME_CHANGED=$(echo "$CHANGED" | grep -E "^${WIREFRAME_DIR}/" || true)
 
 echo "UI Guard base: ${BASE}"
