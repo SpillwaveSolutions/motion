@@ -1,6 +1,6 @@
 # PDF export: draw table borders and a header row style
 
-`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · task/bug · **open**
+`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · task/bug · **in-progress**
 
 Tables export to PDF as spaced text with no grid and no header style.
 
@@ -10,4 +10,4 @@ Tables export to PDF as spaced text with no grid and no header style.
 
 ## Release
 
-- [[Release-v0.6.6]]
+- [[Release-v0.6.7]]

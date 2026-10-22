@@ -2,6 +2,68 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Wiki publish: no script applies publish-manifest.json to the wiki
+`01M5JKV9HQZ7X83CD6X1SMP6VV` · status: todo
+
+### E2E: new-note and dataset journeys fail at random under load
+`01M5JKR1P3V9VD5TGSFYFXCV6D` · status: todo
+
+### bun tauri build fails at the DMG step (bundle_dmg.sh)
+`01M5JJZRM87A0Y5YFFHE8WF2GR` · status: todo
+
+### Add the five table color fields to ExportTheme and both builtins
+`01M5JJZFC1Y253JZSTV70R3S3P` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Unit and Playwright tests for themed tables
+`01M5JJZFC1QWPY3EV9WCNZVC01` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Update the user guide, README, design doc, changelog, and wiki
+`01M5JJZFC1MD61SVP5QBX9Q9JR` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Use the table fields in the Word export and the HTML preview
+`01M5JJZFC1GTE6MWBQE89529RQ` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Clean up the v0.6.6 branches and file the DMG build failure
+`01M5JJZFC1B9P22KTJF6JS378H` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Add a Tables group to the Themes dialog with a wireframe
+`01M5JJZFC14JQC2NNTQKG2B4GV` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header
+`01M5JJZFC136XTFWX2GB74JF2W` · status: todo
+- belongs-to: Themed tables in PDF export
+- targets: release/v0.6.7
+- produced-by: [[Plan-pdf-tables]]
+
+### Themed tables in PDF export
+`01M5JJZFC11HAXZHJJ6N10S79G` · status: todo
+- contains: Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header
+- contains: Add a Tables group to the Themes dialog with a wireframe
+- contains: Clean up the v0.6.6 branches and file the DMG build failure
+- contains: Use the table fields in the Word export and the HTML preview
+- contains: Update the user guide, README, design doc, changelog, and wiki
+- contains: Unit and Playwright tests for themed tables
+- contains: Add the five table color fields to ExportTheme and both builtins
+- produced-by: [[Plan-pdf-tables]]
+
 ### chore(release): v0.6.6 changelog, version bump, roadmap snapshot
 `01M5J4C2142M28BJZPBSWJ4Y04` · status: todo
 - lands-in: pr/66
@@ -52,9 +114,9 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - targets: release/v0.6.6
 
 ### PDF export: draw table borders and a header row style
-`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · status: todo
+`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · status: in_progress
 - belongs-to: Reload a note and export themed PDF and Word
-- targets: release/v0.6.6
+- targets: release/v0.6.7
 
 ### PDF export: add space between the title rule and the first paragraph
 `01M5FSD7J51R65WWC8VF85M0W2` · status: todo
