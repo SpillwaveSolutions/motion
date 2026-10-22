@@ -64,6 +64,7 @@ interface EditorProps {
     viewMode: ViewMode;
     filePath: string | null;
     saveSignal?: number;
+    reloadSignal?: number;
     onSaveStateChange?: (state: SaveState) => void;
     onDirtyChange?: (dirty: boolean) => void;
     onSaved?: (path: string, content: string) => void;
@@ -177,6 +178,7 @@ function Editor({
     viewMode,
     filePath,
     saveSignal = 0,
+    reloadSignal = 0,
     onSaveStateChange,
     onDirtyChange,
     onSaved,
@@ -791,7 +793,7 @@ function Editor({
             hydrateGenRef.current += 1;
             hydratingRef.current = false;
         };
-    }, [filePath, editor, adoptHydratedBaseline]);
+    }, [filePath, editor, adoptHydratedBaseline, reloadSignal]);
 
     // Sync markdown-mode edits into the editor doc when leaving markdown mode.
     // The reverse direction (wysiwyg/split -> markdown) is already covered by

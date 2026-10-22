@@ -57,6 +57,8 @@ export function saveSettings(
     if ("zoom" in partial) written.zoom = next.zoom;
     if ("sidebarWidth" in partial) written.sidebarWidth = next.sidebarWidth;
     if ("splitRatio" in partial) written.splitRatio = next.splitRatio;
+    if ("exportThemeId" in partial) written.exportThemeId = next.exportThemeId;
+    if ("themes" in partial) written.themes = next.themes;
     mkdirSync(dirname(filePath), { recursive: true });
     writeFileSync(filePath, JSON.stringify(written, null, 2) + "\n", "utf8");
     return next;

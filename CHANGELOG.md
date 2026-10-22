@@ -4,6 +4,16 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Added
+
+- **Reload note.** The header re-reads the open file from disk. A dirty note
+  asks before unsaved edits are dropped.
+- **Export PDF and Word.** Both use a theme. The dialog shows a live preview
+  of the page, then downloads the file.
+- **Themes.** Ice Snowstorm (navy headings, blue rules, black text on an ice
+  page) and Clay (Anthropic's ivory paper, near-black ink, terracotta accent)
+  ship as defaults. Settings can add more themes and pick the export default.
+
 ## 0.6.5 — 2026-09-10
 
 Header drag actually works on a Mac; the format toolbar stays put while the note

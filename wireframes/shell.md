@@ -42,6 +42,10 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | New Folder | icon button | Accessible name **New Folder**. Disabled until a folder is open. Prompts for a folder name, then writes `README.md` inside that folder so the tree can show it. Placement is the same tree-aware parent as New Note. Expands the new folder and selects the README. |
 | Save | icon button | Accessible name **Save note**. `aria-live=polite`. Disabled with no note selected or while saving. Saving / Saved / Save failed live in `title` + `data-save-state`. ⌘/Ctrl+S also saves. Auto-saves 1.5s after the last edit. |
 | Synthesize | icon button | Accessible name **Synthesize**. Disabled with no folder, or while a synthesis status is showing. See synthesize.md. |
+| Reload note | icon button | Accessible name **Reload note**. Disabled until a note is selected. Re-reads that file from disk. If the note is dirty, confirm before discarding unsaved edits. |
+| Export PDF | icon button | Accessible name **Export PDF**. Disabled until a note is selected. Opens a dialog with a theme picker and a live preview, then downloads a PDF. |
+| Export Word | icon button | Accessible name **Export Word**. Same dialog, downloads a .docx. |
+| Themes | icon button | Accessible name **Themes**. Settings dialog for export themes. Ice Snowstorm and Clay are built in. New themes can be added, edited, and chosen as the export default. |
 | Synthesis banner | status | role=status aria-live=polite. Dismiss (x) with aria-label Dismiss synthesis status. |
 | Sidebar heading | h3 | Workspace basename, or Documents if none |
 | Sidebar resize | separator | See layout.md. `data-testid=sidebar-resize`. |
@@ -73,7 +77,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] Synthesis banner is dismissible and uses role=status.
 - [ ] Save is a header button whose accessible name is Save note. Disabled until a note is selected.
 - [ ] Copy All is a header button whose accessible name is Copy all. Disabled until a note is selected. Click writes markdown + HTML to the clipboard and `data-copy-state` becomes copied.
-- [ ] Every header action button (Share, Copy all, Open Folder, New Note, New Folder, Save note, Synthesize) has a non-empty accessible name.
+- [ ] Every header action button (Share, Copy all, Open Folder, New Note, New Folder, Save note, Reload note, Export PDF, Export Word, Themes, Synthesize) has a non-empty accessible name.
 - [ ] Header action buttons are icon-only (no visible Share / Copy All / Open Folder / … text), except the view-mode labels.
 - [ ] New Note lands in inline rename; right-click → Rename and F2 do the same for an existing file.
 - [ ] A dirty note autosaves ~1.5s after the last edit and can be saved immediately with the button or ⌘S.

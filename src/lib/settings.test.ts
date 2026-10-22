@@ -45,6 +45,8 @@ describe("mergeSettings", () => {
             zoom: 1,
             sidebarWidth: 320,
             splitRatio: 0.4,
+            exportThemeId: "ice-snowstorm",
+            themes: [],
         });
     });
 });
@@ -61,11 +63,15 @@ describe("settings paths", () => {
             zoom: 1.4,
             sidebarWidth: 280,
             splitRatio: 0.5,
+            exportThemeId: "ice-snowstorm",
+            themes: [],
         });
         expect(parseSettingsJson('{"zoom":1.4,"launchMode":"desktop"}')).toEqual({
             zoom: 1.4,
             sidebarWidth: 280,
             splitRatio: 0.5,
+            exportThemeId: "ice-snowstorm",
+            themes: [],
         });
     });
 });
