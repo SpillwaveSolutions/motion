@@ -82,3 +82,68 @@ test("export preview uses the theme and downloads PDF and Word", async ({ page }
     expect(wordBytes[1]).toBe(0x4b);
     expect(word.suggestedFilename()).toMatch(/\.docx$/);
 });
+
+test("PDF export draws a themed table with a header row and stripes", async ({ page }) => {
+    await gotoApp(page, "/?open=export-table.md");
+    await expect(page.locator(".ProseMirror")).toContainText("Export table");
+
+    await page.getByRole("button", { name: "Export PDF" }).click();
+    const dialog = page.getByRole("dialog", { name: "Export PDF" });
+    await dialog.getByLabel("Export theme").selectOption({ label: "Clay" });
+    const preview = dialog.frameLocator("iframe[title='Export preview']");
+    await expect(preview.getByRole("columnheader", { name: "Name" })).toHaveCSS("background-color", "rgb(217, 119, 87)");
+    await expect(preview.getByRole("cell", { name: "Ada" })).toHaveCSS("background-color", "rgb(250, 249, 245)");
+    await expect(preview.getByRole("cell", { name: "Grace" })).toHaveCSS("background-color", "rgb(240, 238, 230)");
+    await dialog.screenshot({ path: "/tmp/motion-preview-table-clay.png" });
+
+    const download = page.waitForEvent("download");
+    await dialog.getByRole("button", { name: "Download PDF" }).click();
+    const pdfPath = await (await download).path();
+    const pdf = readFileSync(pdfPath!).toString("latin1");
+    expect(pdf.startsWith("%PDF")).toBe(true);
+    for (const cell of ["Name", "Ada", "Margaret"]) expect(pdf).toContain(`(${cell}) Tj`);
+    expect(pdf).toContain("0.85 0.47 0.34 rg");
+    expect(pdf).toContain("0.94 0.93 0.9 rg");
+});
+
+test("a custom theme saves its table colors and exports with them", async ({ page }) => {
+    await gotoApp(page, "/?open=export-table.md");
+    await expect(page.locator(".ProseMirror")).toContainText("Export table");
+    await page.getByRole("button", { name: "Themes" }).click();
+    let dialog = page.getByRole("dialog", { name: "Theme settings" });
+    await dialog.getByRole("button", { name: "Ice Snowstorm" }).click();
+    await expect(dialog.getByLabel("Table alternate row hex")).toHaveValue("#E4EDF7");
+    await expect(dialog.getByLabel("Table alternate row hex")).toBeDisabled();
+    await dialog.getByRole("button", { name: "Clay" }).click();
+    await expect(dialog.getByRole("heading", { name: "Tables" })).toBeVisible();
+    await expect(dialog.getByLabel("Table header hex")).toHaveValue("#D97757");
+    await expect(dialog.getByLabel("Table header hex")).toBeDisabled();
+    await dialog.screenshot({ path: "/tmp/motion-themes-tables.png" });
+
+    await dialog.getByRole("button", { name: "New theme" }).click();
+    await dialog.getByLabel("Theme name").fill("Striped");
+    await expect(dialog.getByLabel("Table alternate row hex")).toHaveValue("#F0EEE6");
+    await dialog.getByLabel("Table header hex").fill("#123456");
+    const save = page.waitForResponse(
+        (res) => res.url().includes("/api/settings") && res.request().method() === "POST",
+    );
+    await dialog.getByRole("button", { name: "Save themes" }).click();
+    expect((await save).ok()).toBeTruthy();
+
+    await page.getByRole("button", { name: "Themes" }).click();
+    dialog = page.getByRole("dialog", { name: "Theme settings" });
+    await dialog.getByRole("button", { name: "Striped" }).last().click();
+    await expect(dialog.getByLabel("Table header hex")).toHaveValue("#123456");
+    await page.keyboard.press("Escape");
+
+    // The saved color reaches the export, not only the settings file.
+    await page.getByRole("button", { name: "Export PDF" }).click();
+    const exportDialog = page.getByRole("dialog", { name: "Export PDF" });
+    await exportDialog.getByLabel("Export theme").selectOption({ label: "Striped" });
+    const preview = exportDialog.frameLocator("iframe[title='Export preview']");
+    await expect(preview.getByRole("columnheader", { name: "Name" })).toHaveCSS("background-color", "rgb(18, 52, 86)");
+    const download = page.waitForEvent("download");
+    await exportDialog.getByRole("button", { name: "Download PDF" }).click();
+    const pdf = readFileSync((await (await download).path())!).toString("latin1");
+    expect(pdf).toContain("0.07 0.2 0.34 rg");
+});

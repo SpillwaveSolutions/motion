@@ -34,7 +34,9 @@ natural-language prompts using CLI tools you already have installed.
   previews the page first. Ice Snowstorm (ice page, black text, navy headings,
   blue rules) and Clay (Anthropic ivory paper, terracotta accent) are built in.
   **Themes** adds more and sets the export default. PDF uses standard fonts;
-  Word uses Calibri or Georgia.
+  Word uses Calibri or Georgia. Tables export as a bordered grid with a filled
+  header row and striped body rows in both PDF and Word. Each theme sets the
+  table header, header text, row, alternate row, and border colors.
 - **Zoom** — ⌘+ / ⌘- / ⌘0 scale the editor and the file tree, not the header.
   A brief overlay shows the percentage. Remembered in the settings file.
 - **Layout** — the editor fills the window. Drag the sidebar edge or the Split
@@ -165,6 +167,9 @@ Recorded here rather than discovered later:
 - **PDF export** uses Helvetica, Times, or Courier. Word uses Calibri, Georgia,
   or Consolas. The on-screen preview uses system fonts, so it can look slightly
   closer to the theme than the PDF does.
+- **PDF tables** size each column by its longest cell text, counted in
+  characters, so a column of wide letters can wrap early. A single table row
+  taller than a page runs off the page. The header row repeats on each page.
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
 [docs/roadmap.md](docs/roadmap.md) for what is planned.

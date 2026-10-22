@@ -4,6 +4,20 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Added
+
+- **Themed tables in export.** Each theme now sets five table colors: header,
+  header text, row, alternate row, and border. **Themes** has a **Tables**
+  group to edit them. Ice Snowstorm has a navy header and ice stripes. Clay
+  has a terracotta header and warm stripes.
+
+### Fixed
+
+- **PDF tables** were plain spaced text. They are now a grid with borders, a
+  bold filled header row, striped body rows, and text that wraps in each cell.
+  The header row repeats on each new page. Word and the preview use the same
+  theme colors.
+
 ## 0.6.6, 2026-10-22
 
 Reload a note from disk, and export it as a themed PDF or Word file.
