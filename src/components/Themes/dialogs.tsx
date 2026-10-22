@@ -202,6 +202,16 @@ export function ThemeSettingsDialog({
                         <ColorField label="Text" value={current.text} disabled={current.builtin} onChange={(text) => update({ text })} />
                         <ColorField label="Headings" value={current.heading} disabled={current.builtin} onChange={(heading) => update({ heading })} />
                         <ColorField label="Accent" value={current.accent} disabled={current.builtin} onChange={(accent) => update({ accent })} />
+                        <h3 className="theme-group">Tables</h3>
+                        {TABLE_FIELDS.map(([key, label]) => (
+                            <ColorField
+                                key={key}
+                                label={label}
+                                value={current[key]}
+                                disabled={current.builtin}
+                                onChange={(value) => update({ [key]: value })}
+                            />
+                        ))}
                         <label>
                             Body font
                             <select
@@ -262,6 +272,14 @@ export function ThemeSettingsDialog({
         </div>
     );
 }
+
+const TABLE_FIELDS = [
+    ["tableHeaderBg", "Table header"],
+    ["tableHeaderText", "Table header text"],
+    ["tableRowBg", "Table row"],
+    ["tableRowAltBg", "Table alternate row"],
+    ["tableBorder", "Table border"],
+] as const satisfies ReadonlyArray<readonly [keyof ExportTheme, string]>;
 
 function ColorField({
     label,

@@ -32,6 +32,8 @@ export const SEED_FILES: Record<string, string> = {
     "scratch-journeys.md": "# Scratch: journeys\n",
     "scratch-ai.md": "# Scratch: AI\n\nThe quick brown fox jumps over the lazy dog.\n",
     "scratch-tables.md": "# Scratch: tables\n",
+    "export-table.md":
+        "# Export table\n\n| Name | Role |\n| --- | --- |\n| Ada | Engineer |\n| Grace | Admiral |\n| Linus | Kernel |\n| Margaret | Director |\n",
     "scratch-commands.md":
         "# Scratch: commands\n\nThe quick brown fox jumps over the lazy dog.\n\n| Name | Role |\n| --- | --- |\n| Ada | Engineer |\n",
     // Tight GFM pipes (no padding). The serializer rewrites these to

@@ -972,7 +972,12 @@
   },
   {
    "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
-   "to": "release/v0.6.6",
+   "to": "pr/67",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+   "to": "release/v0.6.7",
    "type": "targets"
   },
   {
@@ -1008,6 +1013,81 @@
   {
    "from": "item/01M5J4C2142M28BJZPBSWJ4Y04",
    "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "to": "pr/67",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5JJZFC136XTFWX2GB74JF2W",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC136XTFWX2GB74JF2W",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC14JQC2NNTQKG2B4GV",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC14JQC2NNTQKG2B4GV",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1B9P22KTJF6JS378H",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1B9P22KTJF6JS378H",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1GTE6MWBQE89529RQ",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1GTE6MWBQE89529RQ",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1QWPY3EV9WCNZVC01",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1QWPY3EV9WCNZVC01",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1Y253JZSTV70R3S3P",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1Y253JZSTV70R3S3P",
+   "to": "release/v0.6.7",
    "type": "targets"
   },
   {
@@ -1476,6 +1556,46 @@
    "type": "produces"
   },
   {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC136XTFWX2GB74JF2W",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC14JQC2NNTQKG2B4GV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1B9P22KTJF6JS378H",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1GTE6MWBQE89529RQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1QWPY3EV9WCNZVC01",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1Y253JZSTV70R3S3P",
+   "type": "produces"
+  },
+  {
    "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -1579,6 +1699,11 @@
    "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
    "to": "roadmap",
    "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+   "to": "roadmap-snapshot/2026-09-10_v0.6.5-release",
+   "type": "supersedes"
   },
   {
    "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
@@ -2276,7 +2401,7 @@
   },
   "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "PDF export: draw table borders and a header row style"
   },
   "item/01M5FSD7PJCJXQ9VE693ACM4B2": {
@@ -2349,6 +2474,61 @@
    "status": "todo",
    "title": "chore(release): v0.6.6 changelog, version bump, roadmap snapshot"
   },
+  "item/01M5JJZFC11HAXZHJJ6N10S79G": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Themed tables in PDF export"
+  },
+  "item/01M5JJZFC136XTFWX2GB74JF2W": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header"
+  },
+  "item/01M5JJZFC14JQC2NNTQKG2B4GV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add a Tables group to the Themes dialog with a wireframe"
+  },
+  "item/01M5JJZFC1B9P22KTJF6JS378H": {
+   "doc_type": "item",
+   "status": "in_progress",
+   "title": "Clean up the v0.6.6 branches and file the DMG build failure"
+  },
+  "item/01M5JJZFC1GTE6MWBQE89529RQ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Use the table fields in the Word export and the HTML preview"
+  },
+  "item/01M5JJZFC1MD61SVP5QBX9Q9JR": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Update the user guide, README, design doc, changelog, and wiki"
+  },
+  "item/01M5JJZFC1QWPY3EV9WCNZVC01": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Unit and Playwright tests for themed tables"
+  },
+  "item/01M5JJZFC1Y253JZSTV70R3S3P": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add the five table color fields to ExportTheme and both builtins"
+  },
+  "item/01M5JJZRM87A0Y5YFFHE8WF2GR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "bun tauri build fails at the DMG step (bundle_dmg.sh)"
+  },
+  "item/01M5JKR1P3V9VD5TGSFYFXCV6D": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "E2E: new-note and dataset journeys fail at random under load"
+  },
+  "item/01M5JKV9HQZ7X83CD6X1SMP6VV": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Wiki publish: no script applies publish-manifest.json to the wiki"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2383,6 +2563,12 @@
    "doc_type": "plan",
    "source": "docs/plans/2026-09-03-editor-surface-zoom-layout-icons.md",
    "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
+   "truth_state": "current"
+  },
+  "plan/2026-10-22-pdf-tables": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-10-22-pdf-tables.md",
+   "title": "Themed tables in PDF export",
    "truth_state": "current"
   },
   "pr/42": {
@@ -2448,6 +2634,9 @@
   "pr/66": {
    "doc_type": "pr"
   },
+  "pr/67": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -2473,6 +2662,9 @@
    "doc_type": "release"
   },
   "release/v0.6.6": {
+   "doc_type": "release"
+  },
+  "release/v0.6.7": {
    "doc_type": "release"
   },
   "roadmap": {

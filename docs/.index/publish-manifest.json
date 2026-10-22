@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "d8ef7f9e7ef8",
+   "render_hash": "b7ef0450f3b7",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "03d6da4edbba",
+   "render_hash": "a3f7c62e34aa",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "b2aa254f5316",
+   "render_hash": "fbfeec8a22ea",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -262,6 +262,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-67",
+   "render": "as-is",
+   "render_hash": "11cc69ef6bb7",
+   "source": "docs/.index/rendered/prs/67.md",
+   "title": "PR #67",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/67"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -349,6 +359,16 @@
    "title": "Release v0.6.6",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.6"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.7",
+   "render": "as-is",
+   "render_hash": "9794a21fb5db",
+   "source": "docs/.index/rendered/releases/v0.6.7.md",
+   "title": "Release v0.6.7",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.7"
   },
   {
    "frozen": false,
@@ -1664,7 +1684,7 @@
    "frozen": false,
    "page_name": "Ticket-01M5FP83K2ZA8P1FJ9AF3EK5Y8",
    "render": "as-is",
-   "render_hash": "67994ccf2414",
+   "render_hash": "cf2ee3436737",
    "source": "docs/.index/rendered/tickets/01M5FP83K2ZA8P1FJ9AF3EK5Y8.md",
    "title": "Reload a note and export themed PDF and Word",
    "truth_state": "done",
@@ -1704,10 +1724,10 @@
    "frozen": false,
    "page_name": "Ticket-01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
    "render": "as-is",
-   "render_hash": "fce1b961f328",
+   "render_hash": "d39d9025a683",
    "source": "docs/.index/rendered/tickets/01M5FSD7MA4Z0KY4ZRWRV0XJZ3.md",
    "title": "PDF export: draw table borders and a header row style",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3"
   },
   {
@@ -1851,6 +1871,116 @@
    "wiki_key": "item/01M5J4C2142M28BJZPBSWJ4Y04"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC11HAXZHJJ6N10S79G",
+   "render": "as-is",
+   "render_hash": "39adbfd17b6d",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC11HAXZHJJ6N10S79G.md",
+   "title": "Themed tables in PDF export",
+   "truth_state": "open",
+   "wiki_key": "item/01M5JJZFC11HAXZHJJ6N10S79G"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC136XTFWX2GB74JF2W",
+   "render": "as-is",
+   "render_hash": "4bfae483b4ff",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC136XTFWX2GB74JF2W.md",
+   "title": "Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header",
+   "truth_state": "done",
+   "wiki_key": "item/01M5JJZFC136XTFWX2GB74JF2W"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC14JQC2NNTQKG2B4GV",
+   "render": "as-is",
+   "render_hash": "b9109065edfd",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC14JQC2NNTQKG2B4GV.md",
+   "title": "Add a Tables group to the Themes dialog with a wireframe",
+   "truth_state": "done",
+   "wiki_key": "item/01M5JJZFC14JQC2NNTQKG2B4GV"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC1B9P22KTJF6JS378H",
+   "render": "as-is",
+   "render_hash": "8c45a903f9c2",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC1B9P22KTJF6JS378H.md",
+   "title": "Clean up the v0.6.6 branches and file the DMG build failure",
+   "truth_state": "in-progress",
+   "wiki_key": "item/01M5JJZFC1B9P22KTJF6JS378H"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC1GTE6MWBQE89529RQ",
+   "render": "as-is",
+   "render_hash": "dfded56c6651",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC1GTE6MWBQE89529RQ.md",
+   "title": "Use the table fields in the Word export and the HTML preview",
+   "truth_state": "done",
+   "wiki_key": "item/01M5JJZFC1GTE6MWBQE89529RQ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "render": "as-is",
+   "render_hash": "5618bb91e878",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC1MD61SVP5QBX9Q9JR.md",
+   "title": "Update the user guide, README, design doc, changelog, and wiki",
+   "truth_state": "done",
+   "wiki_key": "item/01M5JJZFC1MD61SVP5QBX9Q9JR"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC1QWPY3EV9WCNZVC01",
+   "render": "as-is",
+   "render_hash": "9f6ac3d55580",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC1QWPY3EV9WCNZVC01.md",
+   "title": "Unit and Playwright tests for themed tables",
+   "truth_state": "done",
+   "wiki_key": "item/01M5JJZFC1QWPY3EV9WCNZVC01"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZFC1Y253JZSTV70R3S3P",
+   "render": "as-is",
+   "render_hash": "ee153485cd23",
+   "source": "docs/.index/rendered/tickets/01M5JJZFC1Y253JZSTV70R3S3P.md",
+   "title": "Add the five table color fields to ExportTheme and both builtins",
+   "truth_state": "done",
+   "wiki_key": "item/01M5JJZFC1Y253JZSTV70R3S3P"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JJZRM87A0Y5YFFHE8WF2GR",
+   "render": "as-is",
+   "render_hash": "b63bd965619a",
+   "source": "docs/.index/rendered/tickets/01M5JJZRM87A0Y5YFFHE8WF2GR.md",
+   "title": "bun tauri build fails at the DMG step (bundle_dmg.sh)",
+   "truth_state": "open",
+   "wiki_key": "item/01M5JJZRM87A0Y5YFFHE8WF2GR"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JKR1P3V9VD5TGSFYFXCV6D",
+   "render": "as-is",
+   "render_hash": "2ca91cf5b68b",
+   "source": "docs/.index/rendered/tickets/01M5JKR1P3V9VD5TGSFYFXCV6D.md",
+   "title": "E2E: new-note and dataset journeys fail at random under load",
+   "truth_state": "open",
+   "wiki_key": "item/01M5JKR1P3V9VD5TGSFYFXCV6D"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M5JKV9HQZ7X83CD6X1SMP6VV",
+   "render": "as-is",
+   "render_hash": "6a12b5047e54",
+   "source": "docs/.index/rendered/tickets/01M5JKV9HQZ7X83CD6X1SMP6VV.md",
+   "title": "Wiki publish: no script applies publish-manifest.json to the wiki",
+   "truth_state": "open",
+   "wiki_key": "item/01M5JKV9HQZ7X83CD6X1SMP6VV"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -1866,7 +1996,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "895832776055",
+   "render_hash": "aa0dc9bbf05f",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -1939,11 +2069,22 @@
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-22T15:41:13Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-pdf-tables",
+   "render": "doc+banner",
+   "render_hash": "29371571d03b",
+   "source": "docs/plans/2026-10-22-pdf-tables.md",
+   "title": "Themed tables in PDF export",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-10-22-pdf-tables"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-22T20:18:03Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "ca10d728e849",
+   "render_hash": "2c2533414ba7",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2042,7 +2183,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "4cb07641a268",
+   "render_hash": "c5ffca301c20",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -2050,7 +2191,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "4131676f8111",
+  "render_hash": "904a7d458a91",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

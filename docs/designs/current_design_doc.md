@@ -102,7 +102,15 @@ unit → E2E).
     Snowstorm or Clay, plus custom themes in settings). The dialog iframe is
     the preview; `exportPdf` / `exportDocx` build the download from the same
     block list. Desktop settings pass `exportThemeId` and `themes` through
-    `get_settings` / `set_settings`.
+    `get_settings` / `set_settings`. Rust stores `themes` as opaque JSON, so
+    `sanitizeTheme` in `src/lib/themes.ts` is the one schema. Tables use five
+    theme colors: `tableHeaderBg`, `tableHeaderText`, `tableRowBg`,
+    `tableRowAltBg`, and `tableBorder`. A theme with no table keys gets its
+    pre-0.6.7 look (header `codeBg` and `heading`, rows `page`, no stripes,
+    border `muted`). A bad hex in one table key falls back to the default
+    table color. The
+    PDF grid is hand-drawn with jsPDF (`drawTable` in `exportPdf.ts`) and
+    repeats the header row after a page break.
 
 ---
 

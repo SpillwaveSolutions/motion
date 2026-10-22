@@ -91,6 +91,21 @@ Motion asks before it throws them away.
 **Export PDF** and **Export Word** open a dialog. Pick a theme, check the
 preview, then download. The preview is the same document the file is built from.
 
+Tables export as a grid with borders, a bold header row, and striped body rows.
+In the PDF, the header row repeats at the top of each page that a long table
+runs onto. To change the table colors, open **Themes**, select **New theme**,
+and set the five colors under **Tables**:
+
+| Field | What it colors |
+|---|---|
+| **Table header** | The header row background |
+| **Table header text** | The header row text |
+| **Table row** | Odd body rows |
+| **Table alternate row** | Even body rows, which make the stripes |
+| **Table border** | The cell borders |
+
+A theme that you saved before these fields existed keeps its old table look.
+
 A new note opens already in **rename** in the tree. Type a name and press
 Enter. To rename an existing note: right-click it and choose **Rename**, press
 **F2**, or click it again while it is selected. Escape keeps the old name.
