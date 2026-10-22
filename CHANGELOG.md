@@ -4,6 +4,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.6, 2026-10-22
+
+Reload a note from disk, and export it as a themed PDF or Word file.
+
 ### Added
 
 - **Reload note.** The header re-reads the open file from disk. A dirty note
@@ -13,6 +17,24 @@ All notable changes to Motion are recorded here. Dates are UTC.
 - **Themes.** Ice Snowstorm (navy headings, blue rules, black text on an ice
   page) and Clay (Anthropic's ivory paper, near-black ink, terracotta accent)
   ship as defaults. Settings can add more themes and pick the export default.
+- **Agent MCP bridge (development only).** `bun run tauri:mcp` starts the
+  desktop app with `tauri-plugin-mcp-bridge` on 127.0.0.1. Release builds do
+  not include it.
+
+### Fixed
+
+- **Unit tests leaked an LLM spy.** The synthesis tests never restored their
+  `callLLMFromUI` spy, so later test files saw its calls. The UI Guard no
+  longer counts test files as UI source.
+
+### Known issues
+
+- **Word code blocks** lose their line breaks (`01M5FSD7DGETDXNZ9DBQCSTM0T`).
+- **PDF export** drops bold, italic, and inline code
+  (`01M5FSD7FX4ZP6BR5YQT8KHDAD`), draws tables with no borders
+  (`01M5FSD7MA4Z0KY4ZRWRV0XJZ3`), and puts the title rule against the first
+  paragraph (`01M5FSD7J51R65WWC8VF85M0W2`).
+- **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
 ## 0.6.5 — 2026-09-10
 
