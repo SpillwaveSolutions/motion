@@ -1,6 +1,6 @@
 # Add the five table color fields to ExportTheme and both builtins
 
-`01M5JJZFC1Y253JZSTV70R3S3P` · task/feature · **open**
+`01M5JJZFC1Y253JZSTV70R3S3P` · task/feature · **done**
 
 Legacy custom themes fall back to their own codeBg, heading, page, and muted colors.
 

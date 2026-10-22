@@ -1,6 +1,6 @@
 # Clean up the v0.6.6 branches and file the DMG build failure
 
-`01M5JJZFC1B9P22KTJF6JS378H` · task/feature · **open**
+`01M5JJZFC1B9P22KTJF6JS378H` · task/feature · **in-progress**
 
 Clean up the v0.6.6 branches and file the DMG build failure
 

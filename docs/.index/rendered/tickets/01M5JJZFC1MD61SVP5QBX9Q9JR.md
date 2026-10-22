@@ -1,6 +1,6 @@
 # Update the user guide, README, design doc, changelog, and wiki
 
-`01M5JJZFC1MD61SVP5QBX9Q9JR` · task/feature · **open**
+`01M5JJZFC1MD61SVP5QBX9Q9JR` · task/feature · **done**
 
 Update the user guide, README, design doc, changelog, and wiki
 

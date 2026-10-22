@@ -1,6 +1,6 @@
 # Unit and Playwright tests for themed tables
 
-`01M5JJZFC1QWPY3EV9WCNZVC01` · task/feature · **open**
+`01M5JJZFC1QWPY3EV9WCNZVC01` · task/feature · **done**
 
 Unit and Playwright tests for themed tables
 

@@ -972,6 +972,11 @@
   },
   {
    "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+   "to": "pr/67",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
    "to": "release/v0.6.7",
    "type": "targets"
   },
@@ -1009,6 +1014,11 @@
    "from": "item/01M5J4C2142M28BJZPBSWJ4Y04",
    "to": "release/v0.6.6",
    "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "to": "pr/67",
+   "type": "lands-in"
   },
   {
    "from": "item/01M5JJZFC136XTFWX2GB74JF2W",
@@ -2391,7 +2401,7 @@
   },
   "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3": {
    "doc_type": "item",
-   "status": "in_progress",
+   "status": "done",
    "title": "PDF export: draw table borders and a header row style"
   },
   "item/01M5FSD7PJCJXQ9VE693ACM4B2": {
@@ -2471,37 +2481,37 @@
   },
   "item/01M5JJZFC136XTFWX2GB74JF2W": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header"
   },
   "item/01M5JJZFC14JQC2NNTQKG2B4GV": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add a Tables group to the Themes dialog with a wireframe"
   },
   "item/01M5JJZFC1B9P22KTJF6JS378H": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Clean up the v0.6.6 branches and file the DMG build failure"
   },
   "item/01M5JJZFC1GTE6MWBQE89529RQ": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Use the table fields in the Word export and the HTML preview"
   },
   "item/01M5JJZFC1MD61SVP5QBX9Q9JR": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Update the user guide, README, design doc, changelog, and wiki"
   },
   "item/01M5JJZFC1QWPY3EV9WCNZVC01": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Unit and Playwright tests for themed tables"
   },
   "item/01M5JJZFC1Y253JZSTV70R3S3P": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add the five table color fields to ExportTheme and both builtins"
   },
   "item/01M5JJZRM87A0Y5YFFHE8WF2GR": {
@@ -2622,6 +2632,9 @@
    "doc_type": "pr"
   },
   "pr/66": {
+   "doc_type": "pr"
+  },
+  "pr/67": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {

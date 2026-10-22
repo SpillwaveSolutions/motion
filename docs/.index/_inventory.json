@@ -220,7 +220,7 @@
    ],
    "slug": "pdf-tables",
    "source": "docs/plans/2026-10-22-pdf-tables.md",
-   "status": "planned",
+   "status": "active",
    "title": "Themed tables in PDF export",
    "truth_state": "current",
    "wiki_key": "plan/2026-10-22-pdf-tables"
@@ -228,10 +228,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-10-22T20:11:41Z",
+   "generated_at": "2026-10-22T20:18:03Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "2016b1d0",
+   "source_hash": "e439eb28",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",

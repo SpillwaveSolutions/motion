@@ -1,6 +1,6 @@
 # Use the table fields in the Word export and the HTML preview
 
-`01M5JJZFC1GTE6MWBQE89529RQ` · task/feature · **open**
+`01M5JJZFC1GTE6MWBQE89529RQ` · task/feature · **done**
 
 Use the table fields in the Word export and the HTML preview
 

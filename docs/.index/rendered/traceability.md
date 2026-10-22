@@ -12,49 +12,50 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 `01M5JJZRM87A0Y5YFFHE8WF2GR` · status: todo
 
 ### Add the five table color fields to ExportTheme and both builtins
-`01M5JJZFC1Y253JZSTV70R3S3P` · status: todo
+`01M5JJZFC1Y253JZSTV70R3S3P` · status: done
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Unit and Playwright tests for themed tables
-`01M5JJZFC1QWPY3EV9WCNZVC01` · status: todo
+`01M5JJZFC1QWPY3EV9WCNZVC01` · status: done
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Update the user guide, README, design doc, changelog, and wiki
-`01M5JJZFC1MD61SVP5QBX9Q9JR` · status: todo
+`01M5JJZFC1MD61SVP5QBX9Q9JR` · status: done
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Use the table fields in the Word export and the HTML preview
-`01M5JJZFC1GTE6MWBQE89529RQ` · status: todo
+`01M5JJZFC1GTE6MWBQE89529RQ` · status: done
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Clean up the v0.6.6 branches and file the DMG build failure
-`01M5JJZFC1B9P22KTJF6JS378H` · status: todo
+`01M5JJZFC1B9P22KTJF6JS378H` · status: in_progress
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Add a Tables group to the Themes dialog with a wireframe
-`01M5JJZFC14JQC2NNTQKG2B4GV` · status: todo
+`01M5JJZFC14JQC2NNTQKG2B4GV` · status: done
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header
-`01M5JJZFC136XTFWX2GB74JF2W` · status: todo
+`01M5JJZFC136XTFWX2GB74JF2W` · status: done
 - belongs-to: Themed tables in PDF export
 - targets: release/v0.6.7
 - produced-by: [[Plan-pdf-tables]]
 
 ### Themed tables in PDF export
 `01M5JJZFC11HAXZHJJ6N10S79G` · status: todo
+- lands-in: pr/67
 - contains: Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header
 - contains: Add a Tables group to the Themes dialog with a wireframe
 - contains: Clean up the v0.6.6 branches and file the DMG build failure
@@ -114,8 +115,9 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - targets: release/v0.6.6
 
 ### PDF export: draw table borders and a header row style
-`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · status: in_progress
+`01M5FSD7MA4Z0KY4ZRWRV0XJZ3` · status: done
 - belongs-to: Reload a note and export themed PDF and Word
+- lands-in: pr/67
 - targets: release/v0.6.7
 
 ### PDF export: add space between the title rule and the first paragraph

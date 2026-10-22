@@ -1,6 +1,6 @@
 # Add a Tables group to the Themes dialog with a wireframe
 
-`01M5JJZFC14JQC2NNTQKG2B4GV` · task/feature · **open**
+`01M5JJZFC14JQC2NNTQKG2B4GV` · task/feature · **done**
 
 Add a Tables group to the Themes dialog with a wireframe
 

@@ -1,6 +1,6 @@
 # Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header
 
-`01M5JJZFC136XTFWX2GB74JF2W` · task/feature · **open**
+`01M5JJZFC136XTFWX2GB74JF2W` · task/feature · **done**
 
 Hand-written with jsPDF.
 
