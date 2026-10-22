@@ -1,4 +1,4 @@
-import { test, expect, describe, spyOn } from "bun:test";
+import { test, expect, describe, spyOn, afterEach, mock } from "bun:test";
 import * as llmClient from "./llmClient";
 import {
     synthesizeWorkspace,
@@ -30,6 +30,10 @@ function fakeWorkspace(files: Record<string, string>) {
         },
     };
 }
+
+// stubLLM() spies on a shared module export; restore it so other test files
+// do not see these calls.
+afterEach(() => mock.restore());
 
 /** Answers shaped by the prompt, so each stage is distinguishable. */
 function stubLLM() {
