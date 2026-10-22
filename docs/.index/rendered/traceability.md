@@ -4,6 +4,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 
 ### chore(release): v0.6.6 changelog, version bump, roadmap snapshot
 `01M5J4C2142M28BJZPBSWJ4Y04` · status: todo
+- lands-in: pr/66
 - targets: release/v0.6.6
 
 ### Stop the UI Guard from treating test files as UI source
