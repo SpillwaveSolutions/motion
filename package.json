@@ -8,6 +8,7 @@
     "build": "bun run scripts/build.ts",
     "typecheck": "tsc --noEmit",
     "tauri": "tauri",
+    "tauri:mcp": "tauri dev --features mcp-bridge --config src-tauri/tauri.mcp.conf.json",
     "test": "bun test src",
     "test:e2e": "playwright test",
     "guard:client": "bun run scripts/guard-client-bundle.ts",

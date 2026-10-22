@@ -29,6 +29,12 @@ tokio = { version = "1", features = ["process", "time"] }
 base64 = "0.22"
 url = "2"
 reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+# Agent-driving MCP bridge for @hypothesi/tauri-mcp-server. Opt-in through the
+# `mcp-bridge` feature so release builds never compile it in.
+tauri-plugin-mcp-bridge = { version = "0.12", optional = true }
+
+[features]
+mcp-bridge = ["dep:tauri-plugin-mcp-bridge"]
 
 [dev-dependencies]
 tempfile = "3.24.0"

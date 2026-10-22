@@ -74,6 +74,17 @@ is not what Motion does, and following it will send you down a dead end.
 - **There is no HMR.** A file watcher rebuilds the bundle on change, but the
   browser is never notified. Reload the page manually.
 - `bun tauri dev` runs the same server inside the Tauri webview via `devUrl`.
+- `bun run tauri:mcp` is `bun tauri dev` plus the agent MCP bridge
+  (`tauri-plugin-mcp-bridge`, Cargo feature `mcp-bridge`, bound to 127.0.0.1,
+  first free port from 9223). An MCP server named `tauri` connects to it, so an
+  agent can screenshot, read the DOM, click, and type in the real desktop app.
+  `.mcp.json` is git-ignored globally, so create it locally with
+  `{"mcpServers":{"tauri":{"command":"npx","args":["-y","@hypothesi/tauri-mcp-server@0.12.0"]}}}`.
+  Start Claude Code after `.mcp.json` exists, or the tools do not load. Release
+  builds never include the bridge. `withGlobalTauri` is on only through
+  `src-tauri/tauri.mcp.conf.json`. Keep the bridge crate and the npm server on
+  the same minor version (0.12). 0.13 needs `tauri` ~2.12 and moves the whole
+  lockfile.
 - Storage is swapped at module load by `isTauri()`: `TauriStorage` (Tauri
   commands) vs `HttpStorage` (the dev server's `/api/fs/*`). Both are real
   filesystems now, jailed to the workspace, and both delegate to a shared core
