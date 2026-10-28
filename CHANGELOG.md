@@ -6,6 +6,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ### Added
 
+- **Note links.** Click a link in the editor and, if it points at a markdown
+  file on disk, that note opens. Relative paths resolve from the current note,
+  then from the folder. Web links stay web links. A link that is not a file
+  does not navigate the window away.
 - **Themed tables in export.** Each theme now sets five table colors: header,
   header text, row, alternate row, and border. **Themes** has a **Tables**
   group to edit them. Ice Snowstorm has a navy header and ice stripes. Clay

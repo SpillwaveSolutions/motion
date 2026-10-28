@@ -926,6 +926,16 @@
    "type": "targets"
   },
   {
+   "from": "item/01M3M9CAJ08DJKX7T6E0EE8SP3",
+   "to": "pr/62",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M3M9CAJ08DJKX7T6E0EE8SP3",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
    "from": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
    "to": "pr/63",
    "type": "lands-in"
@@ -2379,6 +2389,11 @@
    "status": "done",
    "title": "chore(release): v0.6.5 changelog, version bump, roadmap snapshot"
   },
+  "item/01M3M9CAJ08DJKX7T6E0EE8SP3": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Open on-disk markdown links in the editor"
+  },
   "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8": {
    "doc_type": "item",
    "status": "done",
@@ -2626,6 +2641,9 @@
    "doc_type": "pr"
   },
   "pr/61": {
+   "doc_type": "pr"
+  },
+  "pr/62": {
    "doc_type": "pr"
   },
   "pr/63": {

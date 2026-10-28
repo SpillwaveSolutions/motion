@@ -145,6 +145,11 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - contains: PDF export: draw table borders and a header row style
 - contains: Rust settings test: themes array round-trips through apply_settings_partial
 
+### Open on-disk markdown links in the editor
+`01M3M9CAJ08DJKX7T6E0EE8SP3` · status: done
+- lands-in: pr/62
+- targets: release/v0.6.7
+
 ### chore(release): v0.6.5 changelog, version bump, roadmap snapshot
 `01M25RY5AM6ZWRGEAJP34X06WN` · status: done
 - lands-in: pr/61
