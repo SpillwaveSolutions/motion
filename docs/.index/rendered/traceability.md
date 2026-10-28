@@ -2,6 +2,18 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Editor: keep YAML front matter when a note is edited and saved
+`01M625WSXBR94NM1H27PERXTA3` · status: done
+- targets: release/v0.6.8
+
+### Export: add space around headings, paragraphs, and tables in Word and PDF
+`01M625NN8HB9SEM5SKWWY8NXVV` · status: done
+- targets: release/v0.6.8
+
+### Export: drop YAML front matter from PDF, Word, and the preview
+`01M625NN6RWHPR0HHR60BK6E7T` · status: done
+- targets: release/v0.6.8
+
 ### chore(release): v0.6.7 changelog, version bump, roadmap snapshot
 `01M61ZMBTJ98N776ZAKWG0GGXF` · status: done
 - lands-in: pr/68
@@ -126,7 +138,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - targets: release/v0.6.7
 
 ### PDF export: add space between the title rule and the first paragraph
-`01M5FSD7J51R65WWC8VF85M0W2` · status: todo
+`01M5FSD7J51R65WWC8VF85M0W2` · status: done
 - belongs-to: Reload a note and export themed PDF and Word
 - targets: release/v0.6.6
 

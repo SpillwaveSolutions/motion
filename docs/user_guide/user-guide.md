@@ -95,6 +95,8 @@ Motion asks before it throws them away.
 
 **Export PDF** and **Export Word** open a dialog. Pick a theme, check the
 preview, then download. The preview is the same document the file is built from.
+The export leaves out YAML front matter. The note's H1 is the title. If the note
+has no H1, the front matter `title:` becomes the H1.
 
 Tables export as a grid with borders, a bold header row, and striped body rows.
 In the PDF, the header row repeats at the top of each page that a long table
@@ -134,6 +136,10 @@ macOS packaging, Open With, and unsigned local builds:
 
 Switch freely; your edits carry across. Split view shows the markdown *source* (also highlighted),
 not a second rendered preview. Switching views does not count as an edit.
+
+**YAML front matter** (a `---` block on the first line) is note metadata. WYSIWYG
+hides it, and the Markdown view shows it. Edit it in the Markdown view. An edit
+to the body in WYSIWYG saves the file with the front matter unchanged on top.
 
 ---
 

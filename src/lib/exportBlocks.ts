@@ -4,6 +4,7 @@
  * fenced blocks (mermaid, dataset, …) export as code.
  */
 import { marked, type Token, type Tokens } from "marked";
+import { splitFrontmatter } from "./frontmatter";
 
 export interface InlineRun {
     text: string;
@@ -22,9 +23,23 @@ export type ExportBlock =
     | { type: "hr" }
     | { type: "table"; header: string[]; rows: string[][] };
 
+/**
+ * Front matter is note metadata, not page content, so it never exports. A
+ * front matter `title:` becomes the H1 only when the note has no H1 of its own.
+ */
 export function markdownToBlocks(markdown: string): ExportBlock[] {
-    const tokens = marked.lexer(markdown, { gfm: true });
-    return tokensToBlocks(tokens);
+    const { frontmatter, body } = splitFrontmatter(markdown);
+    const blocks = tokensToBlocks(marked.lexer(body, { gfm: true }));
+    const title = frontMatterTitle(frontmatter ?? "");
+    if (title && !blocks.some((block) => block.type === "heading" && block.level === 1)) {
+        blocks.unshift({ type: "heading", level: 1, text: title });
+    }
+    return blocks;
+}
+
+function frontMatterTitle(yaml: string): string {
+    const value = /^title:[ \t]*(.*?)[ \t]*$/m.exec(yaml)?.[1] ?? "";
+    return value.replace(/^(["'])(.*)\1$/, "$2");
 }
 
 function tokensToBlocks(tokens: Token[]): ExportBlock[] {

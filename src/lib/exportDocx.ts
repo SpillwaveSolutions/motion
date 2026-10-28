@@ -54,6 +54,18 @@ export async function exportDocx(markdown: string, theme: ExportTheme, title: st
     return Packer.toBlob(doc);
 }
 
+// Paragraph spacing in twips (1/20 pt). Word adds none by default, so headings
+// touch the text and two tables merge into one.
+const AFTER = 160;
+const HEADING_SPACING: Record<1 | 2 | 3 | 4 | 5 | 6, { before: number; after: number }> = {
+    1: { before: 240, after: 200 },
+    2: { before: 360, after: 120 },
+    3: { before: 280, after: 80 },
+    4: { before: 240, after: 80 },
+    5: { before: 240, after: 80 },
+    6: { before: 240, after: 80 },
+};
+
 function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[] {
     const children: FileChild[] = [];
     for (const block of blocks) {
@@ -61,6 +73,8 @@ function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[
             children.push(
                 new Paragraph({
                     heading: HEADING[block.level],
+                    spacing: HEADING_SPACING[block.level],
+                    keepNext: true,
                     border:
                         block.level === 1
                             ? { bottom: { style: BorderStyle.SINGLE, size: 12, color: hexBare(theme.accent), space: 4 } }
@@ -79,7 +93,7 @@ function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[
             continue;
         }
         if (block.type === "paragraph") {
-            children.push(new Paragraph({ children: runs(block.runs, theme) }));
+            children.push(new Paragraph({ spacing: { after: AFTER }, children: runs(block.runs, theme) }));
             continue;
         }
         if (block.type === "list") {
@@ -87,6 +101,7 @@ function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[
                 const marker = block.ordered ? `${index + 1}. ` : "• ";
                 children.push(
                     new Paragraph({
+                        spacing: { after: index === block.items.length - 1 ? AFTER : 60 },
                         children: [new TextRun({ text: marker, font: FONT[theme.font], color: hexBare(theme.text) }), ...runs(item, theme)],
                     }),
                 );
@@ -102,6 +117,7 @@ function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[
         if (block.type === "code") {
             children.push(
                 new Paragraph({
+                    spacing: { after: AFTER },
                     shading: { type: ShadingType.CLEAR, fill: hexBare(theme.codeBg) },
                     children: [
                         new TextRun({
@@ -118,6 +134,7 @@ function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[
         if (block.type === "hr") {
             children.push(
                 new Paragraph({
+                    spacing: { after: AFTER },
                     border: { bottom: { style: BorderStyle.SINGLE, size: 8, color: hexBare(theme.accent), space: 1 } },
                     children: [new TextRun("")],
                 }),
@@ -125,6 +142,8 @@ function blocksToChildren(blocks: ExportBlock[], theme: ExportTheme): FileChild[
             continue;
         }
         children.push(table(block.header, block.rows, theme));
+        // Word joins two tables that touch. An empty paragraph keeps them apart.
+        children.push(new Paragraph({ spacing: { after: 0 }, children: [] }));
     }
     return children;
 }
@@ -135,6 +154,7 @@ function paragraph(
     opts: { heading?: boolean; size?: number; italic?: boolean; color?: string; indent?: number },
 ): Paragraph {
     return new Paragraph({
+        spacing: { after: AFTER },
         indent: opts.indent ? { left: opts.indent } : undefined,
         children: [
             new TextRun({

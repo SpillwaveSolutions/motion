@@ -18,6 +18,9 @@ const PDF_FONT: Record<ThemeFont, "helvetica" | "times" | "courier"> = {
 
 type Style = "normal" | "bold" | "italic" | "bolditalic";
 
+// Points of space above a heading, by level (4 to 6 use the level 3 value).
+const HEADING_BEFORE: Record<number, number> = { 1: 18, 2: 16, 3: 12 };
+
 interface Cursor {
     doc: jsPDF;
     y: number;
@@ -77,16 +80,20 @@ function writeLines(
 function drawBlock(cursor: Cursor, block: ExportBlock) {
     const theme = cursor.theme;
     if (block.type === "heading") {
-        cursor.y += 6;
         const size = block.level === 1 ? 22 : block.level === 2 ? 16 : 13;
+        // Space above, except at the top of a page. Keep the heading with the next lines.
+        if (cursor.y > MARGIN) cursor.y += HEADING_BEFORE[Math.min(block.level, 3)]!;
+        ensure(cursor, size * 1.35 + 40);
         writeLines(cursor, block.text, size, theme.headingFont, "bold", theme.heading, 0);
         if (block.level === 1) {
-            ensure(cursor, 8);
             const [r, g, b] = hexToRgb(theme.accent);
             cursor.doc.setDrawColor(r, g, b);
             cursor.doc.setLineWidth(1.5);
-            cursor.doc.line(MARGIN, cursor.y, PAGE_W - MARGIN, cursor.y);
-            cursor.y += 10;
+            const rule = cursor.y - size * 0.6;
+            cursor.doc.line(MARGIN, rule, PAGE_W - MARGIN, rule);
+            cursor.y = rule + 22;
+        } else {
+            cursor.y += 4;
         }
         return;
     }
@@ -128,6 +135,8 @@ function drawBlock(cursor: Cursor, block: ExportBlock) {
 const TABLE_SIZE = 10;
 const TABLE_LINE = 1.3;
 const CELL_PAD = 5;
+// Extra space above and below a table, so two tables never touch.
+const TABLE_GAP = 6;
 
 interface TableRowLayout {
     lines: string[][];
@@ -151,7 +160,7 @@ function drawTable(cursor: Cursor, block: ExportBlock & { type: "table" }) {
     const widths = weights.map((weight) => (weight / total) * (PAGE_W - MARGIN * 2));
     const lineH = TABLE_SIZE * TABLE_LINE;
     // cursor.y is the next text baseline. The grid works from the row top.
-    let top = cursor.y - TABLE_SIZE;
+    let top = cursor.y - TABLE_SIZE + TABLE_GAP;
 
     const layout = (cells: string[], style: Style): TableRowLayout => {
         doc.setFont(PDF_FONT[theme.font], style);
@@ -196,7 +205,7 @@ function drawTable(cursor: Cursor, block: ExportBlock & { type: "table" }) {
         }
         paint(row, "normal", i % 2 === 1 ? theme.tableRowAltBg : theme.tableRowBg, theme.text);
     });
-    cursor.y = top + TABLE_SIZE + 10;
+    cursor.y = top + TABLE_SIZE + TABLE_GAP + 10;
 }
 
 function writeRuns(cursor: Cursor, runs: InlineRun[]) {

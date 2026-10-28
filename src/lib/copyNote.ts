@@ -5,6 +5,7 @@
  * Browser-safe: no Bun, no I/O.
  */
 import { markdownToHtml } from "../components/Editor/markdown";
+import { splitFrontmatter } from "./frontmatter";
 import { sanitizeHtml } from "./sanitize";
 
 export type CopyPayload = {
@@ -21,7 +22,8 @@ export async function buildCopyPayload(
     markdown: string,
     sanitize: (html: string) => string = sanitizeHtml
 ): Promise<CopyPayload> {
-    const fragment = sanitize(await markdownToHtml(markdown));
+    // Rich text gets the body only. The markdown copy keeps the front matter.
+    const fragment = sanitize(await markdownToHtml(splitFrontmatter(markdown).body));
     return {
         text: markdown,
         html: wrapHtmlFragment(fragment),

@@ -60,6 +60,8 @@ The **Theme settings** dialog opens from the **Themes** button in the header.
 - [x] **New theme** copies the table colors from the selected theme.
 - [x] A saved table color persists after you reopen the dialog.
 - [x] The export preview, PDF, and Word file all use the saved table colors.
+- [ ] The export preview, PDF, and Word file do not show YAML front matter. The note's H1 is the title.
+- [ ] Headings, paragraphs, and tables have space above and below them in PDF and Word. Two tables in a row stay apart.
 
 ## Notes
 
