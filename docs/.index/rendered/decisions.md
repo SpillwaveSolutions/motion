@@ -11,6 +11,7 @@ _Why things are the way they are: ADRs (rules adopted) and plans (designs execut
 
 | Plan | Lifecycle | Truth | Date |
 |---|---|---|---|
+| [[Plan-pdf-tables]] Themed tables in PDF export | active | current | 2026-10-22 |
 | [[Plan-editor-surface-zoom-layout-icons]] Editor surface, zoom scope, resizable layout, icon toolbar, and window drag | active | current | 2026-09-03 |
 | [[Plan-native-mac-app]] Behave like a native Mac app | completed | current | 2026-08-30 |
 | [[Plan-ai-editor]] AI editor: selection, /ai, preview | active | current | 2026-08-30 |

@@ -164,9 +164,9 @@ function runs(items: InlineRun[], theme: ExportTheme): TextRun[] {
 }
 
 function table(header: string[], rows: string[][], theme: ExportTheme): Table {
-    const cell = (text: string, headerCell: boolean) =>
+    const cell = (text: string, fill: string, color: string, headerCell: boolean) =>
         new TableCell({
-            shading: headerCell ? { type: ShadingType.CLEAR, fill: hexBare(theme.codeBg) } : undefined,
+            shading: { type: ShadingType.CLEAR, fill: hexBare(fill) },
             children: [
                 new Paragraph({
                     children: [
@@ -174,17 +174,29 @@ function table(header: string[], rows: string[][], theme: ExportTheme): Table {
                             text,
                             bold: headerCell,
                             font: FONT[theme.font],
-                            color: hexBare(headerCell ? theme.heading : theme.text),
+                            color: hexBare(color),
                         }),
                     ],
                 }),
             ],
         });
+    const line = { style: BorderStyle.SINGLE, size: 4, color: hexBare(theme.tableBorder) };
     return new Table({
         width: { size: 100, type: WidthType.PERCENTAGE },
+        borders: { top: line, bottom: line, left: line, right: line, insideHorizontal: line, insideVertical: line },
         rows: [
-            new TableRow({ children: header.map((text) => cell(text, true)) }),
-            ...rows.map((row) => new TableRow({ children: row.map((text) => cell(text, false)) })),
+            new TableRow({
+                tableHeader: true,
+                children: header.map((text) => cell(text, theme.tableHeaderBg, theme.tableHeaderText, true)),
+            }),
+            ...rows.map(
+                (row, index) =>
+                    new TableRow({
+                        children: row.map((text) =>
+                            cell(text, index % 2 === 1 ? theme.tableRowAltBg : theme.tableRowBg, theme.text, false),
+                        ),
+                    }),
+            ),
         ],
     });
 }

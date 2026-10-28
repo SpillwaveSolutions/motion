@@ -122,10 +122,81 @@ function drawBlock(cursor: Cursor, block: ExportBlock) {
         cursor.y += 12;
         return;
     }
-    for (const row of [block.header, ...block.rows]) {
-        writeLines(cursor, row.join("   "), 10, theme.font, "normal", theme.text, 0);
-    }
-    cursor.y += 6;
+    drawTable(cursor, block);
+}
+
+const TABLE_SIZE = 10;
+const TABLE_LINE = 1.3;
+const CELL_PAD = 5;
+
+interface TableRowLayout {
+    lines: string[][];
+    height: number;
+}
+
+/**
+ * Bordered grid with a filled header row and striped body rows. The header
+ * repeats at the top of each page the table runs onto.
+ */
+function drawTable(cursor: Cursor, block: ExportBlock & { type: "table" }) {
+    const { doc, theme } = cursor;
+    const cols = Math.max(block.header.length, ...block.rows.map((row) => row.length));
+    if (cols === 0) return;
+    const pad = (row: string[]) => Array.from({ length: cols }, (_, i) => row[i] ?? "");
+    const header = pad(block.header);
+    const rows = block.rows.map(pad);
+    // ponytail: widths follow character counts, not measured text. Weigh by doc.getTextWidth if columns look off.
+    const weights = header.map((_, i) => Math.min(40, Math.max(4, ...[header, ...rows].map((row) => row[i]!.length))));
+    const total = weights.reduce((sum, weight) => sum + weight, 0);
+    const widths = weights.map((weight) => (weight / total) * (PAGE_W - MARGIN * 2));
+    const lineH = TABLE_SIZE * TABLE_LINE;
+    // cursor.y is the next text baseline. The grid works from the row top.
+    let top = cursor.y - TABLE_SIZE;
+
+    const layout = (cells: string[], style: Style): TableRowLayout => {
+        doc.setFont(PDF_FONT[theme.font], style);
+        doc.setFontSize(TABLE_SIZE);
+        const lines = cells.map((cell, i) => doc.splitTextToSize(cell || " ", widths[i]! - CELL_PAD * 2) as string[]);
+        return { lines, height: Math.max(...lines.map((cell) => cell.length)) * lineH + CELL_PAD * 2 };
+    };
+
+    const paint = (row: TableRowLayout, style: Style, fill: string, color: string) => {
+        doc.setFont(PDF_FONT[theme.font], style);
+        doc.setFontSize(TABLE_SIZE);
+        doc.setDrawColor(...hexToRgb(theme.tableBorder));
+        doc.setLineWidth(0.5);
+        let x = MARGIN;
+        row.lines.forEach((lines, i) => {
+            doc.setFillColor(...hexToRgb(fill));
+            doc.rect(x, top, widths[i]!, row.height, "FD");
+            doc.setTextColor(...hexToRgb(color));
+            doc.text(lines, x + CELL_PAD, top + CELL_PAD + TABLE_SIZE * 0.8, { lineHeightFactor: TABLE_LINE });
+            x += widths[i]!;
+        });
+        top += row.height;
+    };
+
+    // ponytail: a single row taller than a page overflows it. Split the cell lines across pages if a note needs that.
+    const fits = (height: number) => top + height <= PAGE_H - MARGIN;
+    const newPage = () => {
+        doc.addPage();
+        paintPage(cursor);
+        top = MARGIN;
+    };
+    const head = layout(header, "bold");
+    const paintHead = () => paint(head, "bold", theme.tableHeaderBg, theme.tableHeaderText);
+    const first = rows[0] ? layout(rows[0], "normal").height : 0;
+    if (!fits(head.height + first)) newPage();
+    paintHead();
+    rows.forEach((cells, i) => {
+        const row = layout(cells, "normal");
+        if (!fits(row.height)) {
+            newPage();
+            paintHead();
+        }
+        paint(row, "normal", i % 2 === 1 ? theme.tableRowAltBg : theme.tableRowBg, theme.text);
+    });
+    cursor.y = top + TABLE_SIZE + 10;
 }
 
 function writeRuns(cursor: Cursor, runs: InlineRun[]) {

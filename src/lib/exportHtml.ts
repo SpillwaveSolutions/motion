@@ -36,8 +36,10 @@ export function renderThemedHtml(markdown: string, theme: ExportTheme, title: st
   hr { border: 0; border-top: 1px solid ${theme.accent}; margin: 1.4em 0; }
   ul, ol { margin: 0.4em 0 0.4em 1.2em; padding: 0; }
   table { border-collapse: collapse; width: 100%; margin: 0.8em 0; }
-  th, td { border: 1px solid ${theme.muted}; padding: 6px 8px; text-align: left; vertical-align: top; }
-  th { background: ${theme.codeBg}; color: ${theme.heading}; }
+  th, td { border: 1px solid ${theme.tableBorder}; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: ${theme.tableHeaderBg}; color: ${theme.tableHeaderText}; }
+  td { background: ${theme.tableRowBg}; }
+  tbody tr:nth-child(even) td { background: ${theme.tableRowAltBg}; }
   .muted { color: ${theme.muted}; }
 </style>
 </head>
