@@ -32,6 +32,12 @@ export const SEED_FILES: Record<string, string> = {
     "scratch-journeys.md": "# Scratch: journeys\n",
     "scratch-ai.md": "# Scratch: AI\n\nThe quick brown fox jumps over the lazy dog.\n",
     "scratch-tables.md": "# Scratch: tables\n",
+    "scratch-frontmatter.md":
+        "---\ntitle: Front matter scratch\ntags: [a, b]\n---\n\n# Visible heading\n\nBody text.\n",
+    "scratch-frontmatter-source.md":
+        "---\ntitle: Source scratch\n---\n\n# Source heading\n\nSource body.\n",
+    "export-frontmatter.md":
+        "---\ndate: 2026-10-28\ntitle: Front matter note\nprevious: docs/old.md\n---\n\n# Front matter note\n\n## Summary\n\nIntro.\n\n| A | B |\n| --- | --- |\n| 1 | 2 |\n\n| C | D |\n| --- | --- |\n| 3 | 4 |\n",
     "export-table.md":
         "# Export table\n\n| Name | Role |\n| --- | --- |\n| Ada | Engineer |\n| Grace | Admiral |\n| Linus | Kernel |\n| Margaret | Director |\n",
     "scratch-commands.md":

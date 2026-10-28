@@ -593,7 +593,8 @@ command fails with that message.
 flowchart TB
     A["User edits in the WYSIWYG pane"] --> B["Tiptap onUpdate fires<br/>Editor/index.tsx 204–207"]
     B --> C["turndown.turndown(editor.getHTML())"]
-    C --> D["rawMarkdown state"]
+    C --> FM["joinFrontmatter(frontmatterRef, body)<br/>lib/frontmatter.ts"]
+    FM --> D["rawMarkdown state"]
     D --> E{"Save button or Cmd/Ctrl+S"}
     E --> F["handleSave()<br/>Editor/index.tsx 220–230"]
     F --> G["storage.writeFile(filePath, rawMarkdown)"]
@@ -607,6 +608,12 @@ flowchart TB
     M -->|"inside"| N[("bytes written to disk")]
     M -->|"outside"| O["FsError denied → HTTP 403 or Err(String) → alert()"]
 ```
+
+**Front matter.** On load, `splitFrontmatter` takes the YAML block off the top of the
+file and stores it in `frontmatterRef`. Tiptap gets the body only. Every
+doc-to-markdown step joins the block back on, so `rawMarkdown`, the save, the
+Markdown view, and the export always have the whole document. Leaving the
+Markdown view splits the text again, so a front matter change made there is kept.
 
 **How to read it.** `rawMarkdown` is kept current continuously by `onUpdate`, not
 computed at save time — deliberately, so switching to Markdown view never shows

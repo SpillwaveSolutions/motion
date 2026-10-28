@@ -21,6 +21,7 @@ import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
 import { tableKit } from "./extensions/tableKit";
 import { htmlToMarkdown, markdownToHtml } from "./markdown";
+import { joinFrontmatter, splitFrontmatter } from "../../lib/frontmatter";
 import { isNoteLinkUri, resolveNoteLink, type NoteLinkAction, type NoteLinkContext } from "../../lib/noteLink";
 import { storage } from "../../lib/storage";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
@@ -202,6 +203,9 @@ function Editor({
     const [dirty, setDirty] = useState(false);
     const snapshotRef = useRef("");
     const hydratingRef = useRef(false);
+    // YAML front matter stays out of the TipTap doc, so WYSIWYG never shows or
+    // rewrites it. Every doc-to-markdown step puts it back on top.
+    const frontmatterRef = useRef<string | null>(null);
     const hydrateGenRef = useRef(0);
     const [findOpen, setFindOpen] = useState(false);
     const [findQuery, setFindQuery] = useState("");
@@ -391,7 +395,7 @@ function Editor({
             // Markdown mode's textarea is the source of truth. A Tiptap
             // onUpdate (setEditable, leftover transactions) must not clobber it.
             if (viewModeRef.current === "markdown") return;
-            const md = htmlToMarkdown(updatedEditor.getHTML());
+            const md = joinFrontmatter(frontmatterRef.current, htmlToMarkdown(updatedEditor.getHTML()));
             if (hydratingRef.current) {
                 const next = applySerializedMarkdown(
                     { snapshot: snapshotRef.current, hydrating: true },
@@ -424,7 +428,7 @@ function Editor({
         const gen = ++hydrateGenRef.current;
         const run = () => {
             if (gen !== hydrateGenRef.current) return;
-            const md = htmlToMarkdown(ed.getHTML());
+            const md = joinFrontmatter(frontmatterRef.current, htmlToMarkdown(ed.getHTML()));
             snapshotRef.current = applySerializedMarkdown(
                 { snapshot: md, hydrating: true },
                 md
@@ -659,8 +663,11 @@ function Editor({
             }
             return;
         }
-        const html = sanitizeHtml(await markdownToHtml(md));
         const plan = planWysiwygApply(scope, mode, range);
+        const { frontmatter, body } = splitFrontmatter(md);
+        // A whole-document reply that carries front matter replaces the stored block.
+        if (frontmatter !== null && plan.kind === "setContent") frontmatterRef.current = frontmatter;
+        const html = sanitizeHtml(await markdownToHtml(body));
         const size = ed.state.doc.content.size;
         const chain = ed.chain().focus();
         if (plan.kind === "setContent") {
@@ -805,7 +812,9 @@ function Editor({
                     snapshotRef.current = content;
                     setDirty(false);
                     hydratingRef.current = true;
-                    const rawHtml = await markdownToHtml(content);
+                    const { frontmatter, body } = splitFrontmatter(content);
+                    frontmatterRef.current = frontmatter;
+                    const rawHtml = await markdownToHtml(body);
                     // Sanitize Markdown→HTML before TipTap to prevent XSS from untrusted .md files
                     const html = sanitizeHtml(rawHtml);
                     if (cancelled) return;
@@ -826,6 +835,7 @@ function Editor({
                 setRawMarkdown("");
                 onMarkdownChangeRef.current?.("");
                 snapshotRef.current = "";
+                frontmatterRef.current = null;
                 setDirty(false);
                 hydratingRef.current = true;
                 editor.commands.setContent(welcomeHTML, { emitUpdate: false });
@@ -857,7 +867,9 @@ function Editor({
         const timer = window.setTimeout(() => {
             void (async () => {
                 if (wasClean) hydratingRef.current = true;
-                const rawHtml = await markdownToHtml(rawMarkdownRef.current);
+                const { frontmatter, body } = splitFrontmatter(rawMarkdownRef.current);
+                frontmatterRef.current = frontmatter;
+                const rawHtml = await markdownToHtml(body);
                 const html = sanitizeHtml(rawHtml);
                 editor.commands.setContent(html, { emitUpdate: false });
                 if (wasClean) adoptHydratedBaseline(editor);

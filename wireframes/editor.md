@@ -87,6 +87,8 @@ Highlighted source -- see markdown-source.md.
 - [ ] Refine previews before replacing the document; failure is in the panel, not an alert.
 - [ ] Pipe tables render as real tables in WYSIWYG and round-trip through save/reload.
 - [ ] ⌘/Ctrl+F opens Find in note; Enter cycles matches; Escape closes.
+- [ ] YAML front matter does not show in WYSIWYG. The Markdown view shows it unchanged.
+- [ ] An edit to the body saves the file with the front matter unchanged on top.
 
 ## Notes
 - Source: src/components/Editor/index.tsx, Toolbar.tsx, MarkdownSource.tsx.

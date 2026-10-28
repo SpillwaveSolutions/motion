@@ -19,6 +19,7 @@ _What shipped, with the frozen evidence for each release. Generated; do not edit
 
 - Roadmap snapshot: [[Roadmap-2026-10-22_v0.6.6-release]]
 - Shipped: Reload a note and export themed PDF and Word
+- Shipped: PDF export: add space between the title rule and the first paragraph
 - Shipped: chore(release): v0.6.6 changelog, version bump, roadmap snapshot
 
 ## v0.6.5 — 2026-09-10

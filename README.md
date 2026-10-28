@@ -37,6 +37,9 @@ natural-language prompts using CLI tools you already have installed.
   Word uses Calibri or Georgia. Tables export as a bordered grid with a filled
   header row and striped body rows in both PDF and Word. Each theme sets the
   table header, header text, row, alternate row, and border colors.
+- **YAML front matter.** WYSIWYG hides a `---` block on the first line, and the
+  Markdown view shows it. Saves keep it unchanged. Export and the rich text
+  part of Copy All leave it out.
 - **Note links.** Click a link to a markdown file on disk, and that note
   opens. Relative paths resolve from the current note, then from the folder.
   Web links stay web links.

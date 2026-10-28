@@ -4,6 +4,19 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Fixed
+
+- **Front matter data loss.** The editor read YAML front matter as a rule and a
+  heading. One keystroke made autosave write that back over the YAML block. The
+  editor now keeps the front matter out of WYSIWYG and puts it back on every
+  save. The Markdown view shows it.
+- **Front matter in export.** PDF, Word, and the preview printed the YAML as a
+  large heading. The export now leaves it out. Copy All leaves it out of the
+  rich text copy.
+- **Export spacing.** Word had no space around headings, paragraphs, and
+  tables, and two tables in a row joined. PDF headings had little space above
+  them, and the title rule touched the next line.
+
 ## 0.6.7, 2026-10-28
 
 Open note links in the editor, draw themed tables in PDF export, and add a license.

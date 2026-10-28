@@ -23,6 +23,15 @@ describe("buildCopyPayload", () => {
         expect(payload.html).not.toContain("# Welcome");
     });
 
+    test("front matter stays in the markdown copy and out of the rich text", async () => {
+        const md = "---\ntitle: T\nprevious: old.md\n---\n\n# Body\n";
+        const payload = await buildCopyPayload(md, passthrough);
+        expect(payload.text).toBe(md);
+        expect(payload.html).toContain("<h1>Body</h1>");
+        expect(payload.html).not.toContain("previous:");
+        expect(payload.html).not.toContain("<hr");
+    });
+
     test("a GFM table becomes a real table in the HTML side", async () => {
         const md = "| Name | Role |\n| --- | --- |\n| Alice | Architect |";
         const payload = await buildCopyPayload(md, passthrough);

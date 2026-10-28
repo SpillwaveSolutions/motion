@@ -147,3 +147,33 @@ test("a custom theme saves its table colors and exports with them", async ({ pag
     const pdf = readFileSync((await (await download).path())!).toString("latin1");
     expect(pdf).toContain("0.07 0.2 0.34 rg");
 });
+
+test("export drops YAML front matter and keeps two tables apart", async ({ page }) => {
+    await gotoApp(page, "/?open=export-frontmatter.md");
+    await expect(page.locator(".ProseMirror")).toContainText("Intro.");
+
+    await page.getByRole("button", { name: "Export PDF" }).click();
+    const dialog = page.getByRole("dialog", { name: "Export PDF" });
+    const preview = dialog.frameLocator("iframe[title='Export preview']");
+    await expect(preview.getByRole("heading", { level: 1 })).toHaveText(["Front matter note"]);
+    await expect(preview.locator("body")).not.toContainText("previous:");
+    await expect(preview.getByRole("table")).toHaveCount(2);
+    await dialog.screenshot({ path: "/tmp/motion-preview-frontmatter.png" });
+
+    const pdfDownload = page.waitForEvent("download");
+    await dialog.getByRole("button", { name: "Download PDF" }).click();
+    const pdf = readFileSync((await (await pdfDownload).path())!).toString("latin1");
+    expect(pdf).toContain("(Front matter note) Tj");
+    expect(pdf).not.toContain("previous:");
+
+    await page.getByRole("button", { name: "Export Word" }).click();
+    const wordDialog = page.getByRole("dialog", { name: "Export Word" });
+    const wordDownload = page.waitForEvent("download");
+    await wordDialog.getByRole("button", { name: "Download Word" }).click();
+    const { unzipSync } = await import("fflate");
+    const files = unzipSync(readFileSync((await (await wordDownload).path())!));
+    const xml = new TextDecoder().decode(files["word/document.xml"]);
+    expect(xml).toContain("Front matter note");
+    expect(xml).not.toContain("previous:");
+    expect(xml).not.toContain("</w:tbl><w:tbl>");
+});

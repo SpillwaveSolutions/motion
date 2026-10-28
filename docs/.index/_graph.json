@@ -1111,6 +1111,21 @@
    "type": "targets"
   },
   {
+   "from": "item/01M625NN6RWHPR0HHR60BK6E7T",
+   "to": "release/v0.6.8",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M625NN8HB9SEM5SKWWY8NXVV",
+   "to": "release/v0.6.8",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M625WSXBR94NM1H27PERXTA3",
+   "to": "release/v0.6.8",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -2436,7 +2451,7 @@
   },
   "item/01M5FSD7J51R65WWC8VF85M0W2": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "PDF export: add space between the title rule and the first paragraph"
   },
   "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3": {
@@ -2573,6 +2588,21 @@
    "doc_type": "item",
    "status": "done",
    "title": "chore(release): v0.6.7 changelog, version bump, roadmap snapshot"
+  },
+  "item/01M625NN6RWHPR0HHR60BK6E7T": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Export: drop YAML front matter from PDF, Word, and the preview"
+  },
+  "item/01M625NN8HB9SEM5SKWWY8NXVV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Export: add space around headings, paragraphs, and tables in Word and PDF"
+  },
+  "item/01M625WSXBR94NM1H27PERXTA3": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Editor: keep YAML front matter when a note is edited and saved"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
@@ -2716,6 +2746,9 @@
    "doc_type": "release"
   },
   "release/v0.6.7": {
+   "doc_type": "release"
+  },
+  "release/v0.6.8": {
    "doc_type": "release"
   },
   "roadmap": {

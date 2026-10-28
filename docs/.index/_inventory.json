@@ -228,10 +228,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-10-28T19:38:49Z",
+   "generated_at": "2026-10-28T21:24:51Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "f2aeeecd",
+   "source_hash": "9e1027a8",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",

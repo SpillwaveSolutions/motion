@@ -32,6 +32,31 @@ code
 | Ada | Engineer |
 `;
 
+const FRONT_MATTER = `---
+date: 2026-10-28
+title: NDQR handoff status
+previous: docs/handoff/old.md
+---
+
+# Status, Wed Oct 28
+
+## Summary
+
+Intro.
+
+## Tables
+
+| A | B |
+| --- | --- |
+| 1 | 2 |
+
+| C | D |
+| --- | --- |
+| 3 | 4 |
+
+After.
+`;
+
 describe("themes", () => {
     test("builtins are ice-snowstorm and clay", () => {
         expect(ICE_SNOWSTORM.heading).toBe("#0B1F4B");
@@ -106,6 +131,27 @@ describe("markdownToBlocks", () => {
         expect(blocks.some((block) => block.type === "code" && block.text === "code")).toBe(true);
         const table = blocks.find((block) => block.type === "table");
         expect(table).toMatchObject({ type: "table", header: ["Name", "Role"], rows: [["Ada", "Engineer"]] });
+    });
+
+    test("drops YAML front matter and keeps the note's own H1", () => {
+        const blocks = markdownToBlocks(FRONT_MATTER);
+        expect(blocks.filter((block) => block.type === "heading" && block.level === 1)).toEqual([
+            { type: "heading", level: 1, text: "Status, Wed Oct 28" },
+        ]);
+        expect(blocks.some((block) => block.type === "hr")).toBe(false);
+        expect(JSON.stringify(blocks)).not.toContain("previous:");
+    });
+
+    test("uses the front matter title as the H1 when the note has none", () => {
+        const blocks = markdownToBlocks(`---\ntitle: "Quoted title"\ndate: 2026-10-28\n---\n\nBody.\n`);
+        expect(blocks[0]).toEqual({ type: "heading", level: 1, text: "Quoted title" });
+        expect(blocks).toHaveLength(2);
+        expect(markdownToBlocks("---\n---\nBody.\n")).toEqual([{ type: "paragraph", runs: [{ text: "Body." }] }]);
+    });
+
+    test("a rule that is not on the first line is not front matter", () => {
+        const blocks = markdownToBlocks("Intro.\n\n---\n\nAfter.\n");
+        expect(blocks.map((block) => block.type)).toEqual(["paragraph", "hr", "paragraph"]);
     });
 });
 
@@ -191,6 +237,43 @@ describe("themed export", () => {
         expect(xml).toContain("<w:tblHeader");
     });
 
+    test("PDF and Word drop the front matter", async () => {
+        const pdf = new TextDecoder().decode(exportPdf(FRONT_MATTER, CLAY, "T"));
+        expect(pdf).toContain("(Status, Wed Oct 28) Tj");
+        expect(pdf).not.toContain("previous:");
+        const xml = await docxXml(await exportDocx(FRONT_MATTER, CLAY, "T"));
+        expect(xml).toContain("Status, Wed Oct 28");
+        expect(xml).not.toContain("previous:");
+    });
+
+    test("Word spaces headings and paragraphs, and keeps two tables apart", async () => {
+        const xml = await docxXml(await exportDocx(FRONT_MATTER, CLAY, "T"));
+        const spacing = (text: string) =>
+            new RegExp(`<w:spacing ([^>]*)/>(?:(?!</w:p>).)*${text}`).exec(xml)?.[1] ?? "";
+        expect(spacing("Summary")).toContain('w:before="360"');
+        expect(spacing("Summary")).toContain('w:after="120"');
+        expect(spacing("Intro\\.")).toContain('w:after="160"');
+        expect(xml).toContain("<w:keepNext/>");
+        // Two tables in a row: a paragraph sits between them, so Word does not merge them.
+        expect(xml.match(/<\/w:tbl><w:p>/g)?.length).toBe(2);
+        expect(xml).not.toContain("</w:tbl><w:tbl>");
+    });
+
+    test("PDF leaves space under the title rule, above headings, and between tables", () => {
+        const pdf = new TextDecoder().decode(exportPdf(FRONT_MATTER, CLAY, "T"));
+        // PDF y grows upward, so a lower line has a smaller y.
+        const baseline = (text: string) => Number(new RegExp(`([\\d.]+) Td\\n\\(${text}\\) Tj`).exec(pdf)?.[1]);
+        const rule = Number(/^[\d.]+ ([\d.]+) m\n[\d.]+ [\d.]+ l\nS$/m.exec(pdf)?.[1]);
+        // Body text is 11 pt, so its top sits about 8 pt above its baseline.
+        expect(rule - (baseline("Summary") + 12)).toBeGreaterThanOrEqual(10);
+        expect(baseline("Intro\\.") - baseline("Tables")).toBeGreaterThanOrEqual(34);
+        // Each table is a header row and one body row of two cells.
+        const cells = pdfCells(pdf);
+        expect(cells).toHaveLength(8);
+        const firstBottom = cells[2]!.y - cells[2]!.h;
+        expect(firstBottom - cells[4]!.y).toBeGreaterThanOrEqual(16);
+    });
+
     test("Word file is a docx zip that names the theme fonts and colors", async () => {
         const blob = await exportDocx(SAMPLE, ICE_SNOWSTORM, "Ice");
         const bytes = new Uint8Array(await blob.arrayBuffer());
@@ -227,6 +310,11 @@ function pdfCells(text: string): Array<{ y: number; h: number; fill: string }> {
         if (rect && lines[i + 1] === "B") cells.push({ y: Number(rect[1]), h: Number(rect[2]), fill });
     });
     return cells;
+}
+
+async function docxXml(blob: Blob): Promise<string> {
+    const entries = await unzipText(new Uint8Array(await blob.arrayBuffer()));
+    return entries.find((entry) => entry.name.endsWith("document.xml"))?.text ?? "";
 }
 
 async function unzipText(bytes: Uint8Array): Promise<Array<{ name: string; text: string }>> {
