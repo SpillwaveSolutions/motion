@@ -12,10 +12,11 @@ Motion is a local-first technical writing IDE. It edits markdown that lives on
 your own disk, renders diagrams and runs SQL inline, and can generate both from
 plain-language prompts.
 
-This guide covers the app as it behaves **after v0.6.5** (native Mac chrome,
+This guide covers the app as it behaves **after v0.6.6** (native Mac chrome,
 Ask AI, GFM tables, DocCommands, Markdown source highlighting, Copy All,
 icon header actions, new-note persistence, dataset/SQL install coverage, content
-zoom, resizable panes, a pinned format toolbar, and tree rename). Where something is incomplete, it says so.
+zoom, resizable panes, a pinned format toolbar, tree rename, note reload, and
+themed PDF and Word export). Where something is incomplete, it says so.
 
 ---
 
@@ -84,6 +85,31 @@ next time you open Motion.
 Drag the trailing edge of the directory listing to resize it, or the divider
 in Split view. Both widths are remembered. Stretching the window widens the
 note; there is no 900px cap.
+
+**Themes** in the header edits export themes. Ice Snowstorm and Clay are built
+in. Clay matches Anthropic's ivory page and terracotta accent. New themes are
+saved in settings and can be chosen as the export default.
+
+**Reload note** reads the open file from disk again. If you have unsaved edits,
+Motion asks before it throws them away.
+
+**Export PDF** and **Export Word** open a dialog. Pick a theme, check the
+preview, then download. The preview is the same document the file is built from.
+
+Tables export as a grid with borders, a bold header row, and striped body rows.
+In the PDF, the header row repeats at the top of each page that a long table
+runs onto. To change the table colors, open **Themes**, select **New theme**,
+and set the five colors under **Tables**:
+
+| Field | What it colors |
+|---|---|
+| **Table header** | The header row background |
+| **Table header text** | The header row text |
+| **Table row** | Odd body rows |
+| **Table alternate row** | Even body rows, which make the stripes |
+| **Table border** | The cell borders |
+
+A theme that you saved before these fields existed keeps its old table look.
 
 A new note opens already in **rename** in the tree. Type a name and press
 Enter. To rename an existing note: right-click it and choose **Rename**, press

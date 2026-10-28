@@ -932,7 +932,172 @@
   },
   {
    "from": "item/01M3M9CAJ08DJKX7T6E0EE8SP3",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "to": "pr/63",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
    "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7DGETDXNZ9DBQCSTM0T",
+   "to": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5FSD7DGETDXNZ9DBQCSTM0T",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7FX4ZP6BR5YQT8KHDAD",
+   "to": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5FSD7FX4ZP6BR5YQT8KHDAD",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7J51R65WWC8VF85M0W2",
+   "to": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5FSD7J51R65WWC8VF85M0W2",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+   "to": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+   "to": "pr/67",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7PJCJXQ9VE693ACM4B2",
+   "to": "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5FSD7PJCJXQ9VE693ACM4B2",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7RV6MJ0JZVAT5F3VW3H",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5FSD7V43Q89K2GM50EMJ6EC",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5GQ207P956J179YGENY9ERT",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5J4C2142M28BJZPBSWJ4Y04",
+   "to": "pr/66",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5J4C2142M28BJZPBSWJ4Y04",
+   "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "to": "pr/67",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M5JJZFC136XTFWX2GB74JF2W",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC136XTFWX2GB74JF2W",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC14JQC2NNTQKG2B4GV",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC14JQC2NNTQKG2B4GV",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1B9P22KTJF6JS378H",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1B9P22KTJF6JS378H",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1GTE6MWBQE89529RQ",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1GTE6MWBQE89529RQ",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1QWPY3EV9WCNZVC01",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1QWPY3EV9WCNZVC01",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M5JJZFC1Y253JZSTV70R3S3P",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M5JJZFC1Y253JZSTV70R3S3P",
+   "to": "release/v0.6.7",
    "type": "targets"
   },
   {
@@ -1401,6 +1566,46 @@
    "type": "produces"
   },
   {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC11HAXZHJJ6N10S79G",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC136XTFWX2GB74JF2W",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC14JQC2NNTQKG2B4GV",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1B9P22KTJF6JS378H",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1GTE6MWBQE89529RQ",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1MD61SVP5QBX9Q9JR",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1QWPY3EV9WCNZVC01",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-10-22-pdf-tables",
+   "to": "item/01M5JJZFC1Y253JZSTV70R3S3P",
+   "type": "produces"
+  },
+  {
    "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -1498,6 +1703,21 @@
   {
    "from": "roadmap-snapshot/2026-09-10_v0.6.5-release",
    "to": "release/v0.6.5",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+   "to": "roadmap-snapshot/2026-09-10_v0.6.5-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+   "to": "release/v0.6.6",
    "type": "targets"
   }
  ],
@@ -2174,6 +2394,156 @@
    "status": "done",
    "title": "Open on-disk markdown links in the editor"
   },
+  "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Reload a note and export themed PDF and Word"
+  },
+  "item/01M5FSD7DGETDXNZ9DBQCSTM0T": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Word export: keep line breaks in code blocks"
+  },
+  "item/01M5FSD7FX4ZP6BR5YQT8KHDAD": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "PDF export: keep bold, italic, and inline code"
+  },
+  "item/01M5FSD7J51R65WWC8VF85M0W2": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "PDF export: add space between the title rule and the first paragraph"
+  },
+  "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "PDF export: draw table borders and a header row style"
+  },
+  "item/01M5FSD7PJCJXQ9VE693ACM4B2": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Rust settings test: themes array round-trips through apply_settings_partial"
+  },
+  "item/01M5FSD7RV6MJ0JZVAT5F3VW3H": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "E2E: markdown pane edits do not reach the editor on main"
+  },
+  "item/01M5FSD7V43Q89K2GM50EMJ6EC": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Dev: Tauri MCP bridge for agent-driven desktop testing"
+  },
+  "item/01M5FT7DV6ZMNBXWA883G6CDC8": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "ArcKit baseline: stakeholders, requirements, journeys, and scenarios"
+  },
+  "item/01M5GQ207P956J179YGENY9ERT": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Round-trip custom themes and exportThemeId through the Rust settings commands"
+  },
+  "item/01M5GQ20A1NSA2XAG232KJVGHK": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add tests for the 9 MUST scenarios with no coverage"
+  },
+  "item/01M5GQ20CANKH5P50X4QC523WM": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Export images to PDF and Word instead of the alt text only"
+  },
+  "item/01M5GQ20EM4T0BSWW130VZJVCV": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add a LICENSE file to the repository"
+  },
+  "item/01M5GQ20H070MJFSM16QNX12TY": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Fix the 9 docs-versus-code differences in REQ Appendix F"
+  },
+  "item/01M5GQ20K7RQ0WTFF1973915BP": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Decide where publish tokens are stored"
+  },
+  "item/01M5GQYSTS6MXM432NYSV6JY5G": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Add tests for ImageGen generation and inline storage"
+  },
+  "item/01M5GRYQY7ZAK975G44M0G6T6N": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Restore the LLM spy after each workspace synthesis test"
+  },
+  "item/01M5GTCRJQPGX82TS89Y93732Z": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Stop the UI Guard from treating test files as UI source"
+  },
+  "item/01M5J4C2142M28BJZPBSWJ4Y04": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "chore(release): v0.6.6 changelog, version bump, roadmap snapshot"
+  },
+  "item/01M5JJZFC11HAXZHJJ6N10S79G": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Themed tables in PDF export"
+  },
+  "item/01M5JJZFC136XTFWX2GB74JF2W": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header"
+  },
+  "item/01M5JJZFC14JQC2NNTQKG2B4GV": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add a Tables group to the Themes dialog with a wireframe"
+  },
+  "item/01M5JJZFC1B9P22KTJF6JS378H": {
+   "doc_type": "item",
+   "status": "in_progress",
+   "title": "Clean up the v0.6.6 branches and file the DMG build failure"
+  },
+  "item/01M5JJZFC1GTE6MWBQE89529RQ": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Use the table fields in the Word export and the HTML preview"
+  },
+  "item/01M5JJZFC1MD61SVP5QBX9Q9JR": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Update the user guide, README, design doc, changelog, and wiki"
+  },
+  "item/01M5JJZFC1QWPY3EV9WCNZVC01": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Unit and Playwright tests for themed tables"
+  },
+  "item/01M5JJZFC1Y253JZSTV70R3S3P": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Add the five table color fields to ExportTheme and both builtins"
+  },
+  "item/01M5JJZRM87A0Y5YFFHE8WF2GR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "bun tauri build fails at the DMG step (bundle_dmg.sh)"
+  },
+  "item/01M5JKR1P3V9VD5TGSFYFXCV6D": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "E2E: new-note and dataset journeys fail at random under load"
+  },
+  "item/01M5JKV9HQZ7X83CD6X1SMP6VV": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Wiki publish: no script applies publish-manifest.json to the wiki"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2208,6 +2578,12 @@
    "doc_type": "plan",
    "source": "docs/plans/2026-09-03-editor-surface-zoom-layout-icons.md",
    "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
+   "truth_state": "current"
+  },
+  "plan/2026-10-22-pdf-tables": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-10-22-pdf-tables.md",
+   "title": "Themed tables in PDF export",
    "truth_state": "current"
   },
   "pr/42": {
@@ -2270,6 +2646,15 @@
   "pr/62": {
    "doc_type": "pr"
   },
+  "pr/63": {
+   "doc_type": "pr"
+  },
+  "pr/66": {
+   "doc_type": "pr"
+  },
+  "pr/67": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -2295,6 +2680,9 @@
    "doc_type": "release"
   },
   "release/v0.6.6": {
+   "doc_type": "release"
+  },
+  "release/v0.6.7": {
    "doc_type": "release"
   },
   "roadmap": {
@@ -2342,6 +2730,12 @@
   "roadmap-snapshot/2026-09-10_v0.6.5-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-09-10_v0.6.5-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-10-22_v0.6.6-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-10-22_v0.6.6-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },

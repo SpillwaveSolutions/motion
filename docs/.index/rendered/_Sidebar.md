@@ -2,6 +2,7 @@
 
 - [[Roadmap]]
 - [[Design-Doc]] · [[Code-Walkthrough]]
+- Plan: [[Plan-pdf-tables]]
 - Plan: [[Plan-editor-surface-zoom-layout-icons]]
 - Plan: [[Plan-ai-editor]]
 - Plan: [[Plan-save-ux-and-next]]
@@ -9,7 +10,7 @@
 ### History
 
 - [[Index-Releases]]
-- Latest snapshot: [[Roadmap-2026-09-10_v0.6.5-release]]
+- Latest snapshot: [[Roadmap-2026-10-22_v0.6.6-release]]
 - [[Index-Status]]
 - [[Index-Decisions]]
 

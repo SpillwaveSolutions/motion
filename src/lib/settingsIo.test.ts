@@ -21,6 +21,8 @@ test("loadSettings returns defaults when the file is missing", () => {
         zoom: 1,
         sidebarWidth: 280,
         splitRatio: 0.5,
+        exportThemeId: "ice-snowstorm",
+        themes: [],
     });
 });
 

@@ -16,6 +16,12 @@ import {
     clampSidebarWidth,
     clampSplitRatio,
 } from "./layout";
+import {
+    DEFAULT_EXPORT_THEME_ID,
+    findTheme,
+    sanitizeCustomThemes,
+    type ExportTheme,
+} from "./themes";
 
 export interface MotionSettings {
     /**
@@ -28,6 +34,10 @@ export interface MotionSettings {
     sidebarWidth: number;
     /** Left pane fraction in Split view, 0.25–0.75. */
     splitRatio: number;
+    /** Theme used the next time a note is exported. */
+    exportThemeId: string;
+    /** User-authored themes. Builtins are not stored here. */
+    themes: ExportTheme[];
 }
 
 /** Bounds for {@link MotionSettings.zoom}. Below 0.75 the UI stops being usable. */
@@ -38,6 +48,8 @@ export const DEFAULT_SETTINGS: MotionSettings = {
     zoom: 1,
     sidebarWidth: SIDEBAR_DEFAULT,
     splitRatio: SPLIT_DEFAULT,
+    exportThemeId: DEFAULT_EXPORT_THEME_ID,
+    themes: [],
 };
 
 function finiteNumber(value: unknown): number | null {
@@ -50,10 +62,14 @@ export function mergeSettings(partial: Partial<MotionSettings> | null | undefine
     const zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, zoomRaw));
     const sidebarRaw = finiteNumber(p.sidebarWidth) ?? DEFAULT_SETTINGS.sidebarWidth;
     const splitRaw = finiteNumber(p.splitRatio) ?? DEFAULT_SETTINGS.splitRatio;
+    const themes = sanitizeCustomThemes(p.themes);
+    const requested = typeof p.exportThemeId === "string" ? p.exportThemeId : DEFAULT_SETTINGS.exportThemeId;
     return {
         zoom,
         sidebarWidth: clampSidebarWidth(sidebarRaw),
         splitRatio: clampSplitRatio(splitRaw),
+        exportThemeId: findTheme(requested, themes).id,
+        themes,
     };
 }
 

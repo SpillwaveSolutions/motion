@@ -10,4 +10,4 @@ Clicking a markdown link that points at a file on disk loads that note in the ed
 
 ## Release
 
-- [[Release-v0.6.6]]
+- [[Release-v0.6.7]]

@@ -307,13 +307,29 @@ fn apply_settings_partial(raw: &mut serde_json::Value, partial: &serde_json::Val
             serde_json::json!(r.clamp(SPLIT_MIN, SPLIT_MAX)),
         );
     }
+    if let Some(id) = partial.get("exportThemeId").and_then(|v| v.as_str()) {
+        if !id.is_empty() {
+            map.insert("exportThemeId".into(), serde_json::json!(id));
+        }
+    }
+    if let Some(themes) = partial.get("themes").filter(|v| v.is_array()) {
+        map.insert("themes".into(), themes.clone());
+    }
 }
 
 fn settings_public(raw: &serde_json::Value) -> serde_json::Value {
+    let themes = raw.get("themes").filter(|v| v.is_array()).cloned().unwrap_or_else(|| serde_json::json!([]));
+    let theme_id = raw
+        .get("exportThemeId")
+        .and_then(|v| v.as_str())
+        .filter(|s| !s.is_empty())
+        .unwrap_or("ice-snowstorm");
     serde_json::json!({
         "zoom": number_from(raw, "zoom", 1.0, ZOOM_MIN, ZOOM_MAX),
         "sidebarWidth": number_from(raw, "sidebarWidth", SIDEBAR_DEFAULT, SIDEBAR_MIN, SIDEBAR_MAX),
         "splitRatio": number_from(raw, "splitRatio", SPLIT_DEFAULT, SPLIT_MIN, SPLIT_MAX),
+        "exportThemeId": theme_id,
+        "themes": themes,
     })
 }
 
@@ -418,6 +434,21 @@ pub fn run() {
                 app.handle().plugin(
                     tauri_plugin_log::Builder::default()
                         .level(log::LevelFilter::Info)
+                        .build(),
+                )?;
+            }
+            // Agent-driving MCP bridge, only with `--features mcp-bridge`. Its
+            // capability is added here, not in capabilities/: tauri-build checks
+            // that directory against the compiled plugins, so a static file
+            // naming mcp-bridge:default breaks every build with the feature off.
+            // Bound to 127.0.0.1 because it can drive the app.
+            #[cfg(feature = "mcp-bridge")]
+            {
+                app.handle()
+                    .add_capability(include_str!("../mcp-bridge.capability.json"))?;
+                app.handle().plugin(
+                    tauri_plugin_mcp_bridge::Builder::new()
+                        .bind_address("127.0.0.1")
                         .build(),
                 )?;
             }
@@ -559,6 +590,7 @@ mod tests {
         assert_eq!(view["zoom"], 2.0);
         assert_eq!(view["sidebarWidth"], 180.0);
         assert_eq!(view["splitRatio"], 0.75);
+        assert_eq!(view["exportThemeId"], "ice-snowstorm");
     }
 
     #[test]
@@ -567,5 +599,7 @@ mod tests {
         assert_eq!(view["zoom"], 1.0);
         assert_eq!(view["sidebarWidth"], 280.0);
         assert_eq!(view["splitRatio"], 0.5);
+        assert_eq!(view["exportThemeId"], "ice-snowstorm");
+        assert!(view["themes"].as_array().unwrap().is_empty());
     }
 }
