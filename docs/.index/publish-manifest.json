@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "983cc4ea9d30",
+   "render_hash": "f8d26e888676",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "a858c4d32787",
+   "render_hash": "510f5016101a",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -2061,6 +2061,16 @@
    "wiki_key": "item/01M625WSXBR94NM1H27PERXTA3"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M62CH1ZEE0CBS8HJJVPZMJD6",
+   "render": "as-is",
+   "render_hash": "e361f4d923af",
+   "source": "docs/.index/rendered/tickets/01M62CH1ZEE0CBS8HJJVPZMJD6.md",
+   "title": "chore(release): v0.6.8 changelog, version bump, roadmap snapshot",
+   "truth_state": "open",
+   "wiki_key": "item/01M62CH1ZEE0CBS8HJJVPZMJD6"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -2160,11 +2170,11 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-28T21:24:51Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-28T23:11:36Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "ff4abf573613",
+   "render_hash": "5db86cc48f9d",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2270,11 +2280,22 @@
    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.7-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.8 (2026-10-28) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-10-28_v0.6.8-release",
+   "render": "doc+banner",
+   "render_hash": "3abd7bc45713",
+   "source": "docs/roadmap/2026-10-28_v0.6.8-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.8-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "8034197884ea",
+   "render_hash": "5e24a1a2d3e1",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -2282,7 +2303,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "9c5228702a5f",
+  "render_hash": "d275f454c40b",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

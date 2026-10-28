@@ -4,6 +4,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.8, 2026-10-28
+
+Keep YAML front matter when you edit a note, leave it out of the export, and space the exported blocks.
+
 ### Fixed
 
 - **Front matter data loss.** The editor read YAML front matter as a rule and a
@@ -16,6 +20,17 @@ All notable changes to Motion are recorded here. Dates are UTC.
 - **Export spacing.** Word had no space around headings, paragraphs, and
   tables, and two tables in a row joined. PDF headings had little space above
   them, and the title rule touched the next line.
+
+### Known issues
+
+- **Notes saved by 0.6.7 or earlier** after an edit may start with `* * *` and
+  an H2 of the YAML text. This release does not repair them. Restore the YAML
+  block by hand, or from git.
+- **Front matter** is not editable in WYSIWYG. Use the Markdown view.
+- **Word code blocks** lose their line breaks (`01M5FSD7DGETDXNZ9DBQCSTM0T`).
+- **PDF export** drops bold, italic, and inline code (`01M5FSD7FX4ZP6BR5YQT8KHDAD`).
+- **Note links** to a markdown file outside the folder are not tested on the desktop.
+- **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
 ## 0.6.7, 2026-10-28
 

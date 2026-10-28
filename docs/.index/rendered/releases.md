@@ -2,6 +2,13 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.8 — 2026-10-28
+
+- Roadmap snapshot: [[Roadmap-2026-10-28_v0.6.8-release]]
+- Shipped: Export: drop YAML front matter from PDF, Word, and the preview
+- Shipped: Export: add space around headings, paragraphs, and tables in Word and PDF
+- Shipped: Editor: keep YAML front matter when a note is edited and saved
+
 ## v0.6.7 — 2026-10-28
 
 - Roadmap snapshot: [[Roadmap-2026-10-28_v0.6.7-release]]
