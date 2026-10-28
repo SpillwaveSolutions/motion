@@ -3,7 +3,8 @@
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
 ### chore(release): v0.6.7 changelog, version bump, roadmap snapshot
-`01M61ZMBTJ98N776ZAKWG0GGXF` · status: todo
+`01M61ZMBTJ98N776ZAKWG0GGXF` · status: done
+- lands-in: pr/68
 - targets: release/v0.6.7
 
 ### Wiki publish: no script applies publish-manifest.json to the wiki

@@ -1102,6 +1102,11 @@
   },
   {
    "from": "item/01M61ZMBTJ98N776ZAKWG0GGXF",
+   "to": "pr/68",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M61ZMBTJ98N776ZAKWG0GGXF",
    "to": "release/v0.6.7",
    "type": "targets"
   },
@@ -2566,7 +2571,7 @@
   },
   "item/01M61ZMBTJ98N776ZAKWG0GGXF": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "chore(release): v0.6.7 changelog, version bump, roadmap snapshot"
   },
   "plan/2026-07-26-motion-next-phase": {
@@ -2678,6 +2683,9 @@
    "doc_type": "pr"
   },
   "pr/67": {
+   "doc_type": "pr"
+  },
+  "pr/68": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {

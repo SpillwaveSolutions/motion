@@ -1,8 +1,12 @@
 # chore(release): v0.6.7 changelog, version bump, roadmap snapshot
 
-`01M61ZMBTJ98N776ZAKWG0GGXF` · task/ops · **open**
+`01M61ZMBTJ98N776ZAKWG0GGXF` · task/ops · **done**
 
 Cut release v0.6.7 with note links, themed PDF tables, and the license.
+
+## Linked PRs
+
+- [[PR-68]]
 
 ## Release
 
