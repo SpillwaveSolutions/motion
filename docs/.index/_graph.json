@@ -1101,6 +1101,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01M61ZMBTJ98N776ZAKWG0GGXF",
+   "to": "release/v0.6.7",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -1718,6 +1723,16 @@
   {
    "from": "roadmap-snapshot/2026-10-22_v0.6.6-release",
    "to": "release/v0.6.6",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-28_v0.6.7-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-28_v0.6.7-release",
+   "to": "release/v0.6.7",
    "type": "targets"
   }
  ],
@@ -2456,7 +2471,7 @@
   },
   "item/01M5GQ20EM4T0BSWW130VZJVCV": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Add a LICENSE file to the repository"
   },
   "item/01M5GQ20H070MJFSM16QNX12TY": {
@@ -2476,17 +2491,17 @@
   },
   "item/01M5GRYQY7ZAK975G44M0G6T6N": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Restore the LLM spy after each workspace synthesis test"
   },
   "item/01M5GTCRJQPGX82TS89Y93732Z": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Stop the UI Guard from treating test files as UI source"
   },
   "item/01M5J4C2142M28BJZPBSWJ4Y04": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "chore(release): v0.6.6 changelog, version bump, roadmap snapshot"
   },
   "item/01M5JJZFC11HAXZHJJ6N10S79G": {
@@ -2543,6 +2558,11 @@
    "doc_type": "item",
    "status": "todo",
    "title": "Wiki publish: no script applies publish-manifest.json to the wiki"
+  },
+  "item/01M61ZMBTJ98N776ZAKWG0GGXF": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "chore(release): v0.6.7 changelog, version bump, roadmap snapshot"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
@@ -2736,6 +2756,12 @@
   "roadmap-snapshot/2026-10-22_v0.6.6-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-10-22_v0.6.6-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-10-28_v0.6.7-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-10-28_v0.6.7-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },

@@ -2,10 +2,23 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.7 — 2026-10-28
+
+- Roadmap snapshot: [[Roadmap-2026-10-28_v0.6.7-release]]
+- Shipped: Open on-disk markdown links in the editor
+- Shipped: PDF export: draw table borders and a header row style
+- Shipped: Draw PDF tables with borders, a header row, stripes, wrapping, and a repeated header
+- Shipped: Add a Tables group to the Themes dialog with a wireframe
+- Shipped: Use the table fields in the Word export and the HTML preview
+- Shipped: Update the user guide, README, design doc, changelog, and wiki
+- Shipped: Unit and Playwright tests for themed tables
+- Shipped: Add the five table color fields to ExportTheme and both builtins
+
 ## v0.6.6 — 2026-10-22
 
 - Roadmap snapshot: [[Roadmap-2026-10-22_v0.6.6-release]]
 - Shipped: Reload a note and export themed PDF and Word
+- Shipped: chore(release): v0.6.6 changelog, version bump, roadmap snapshot
 
 ## v0.6.5 — 2026-09-10
 
