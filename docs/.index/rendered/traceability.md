@@ -2,6 +2,10 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### chore(release): v0.6.8 changelog, version bump, roadmap snapshot
+`01M62CH1ZEE0CBS8HJJVPZMJD6` · status: todo
+- targets: release/v0.6.8
+
 ### Editor: keep YAML front matter when a note is edited and saved
 `01M625WSXBR94NM1H27PERXTA3` · status: done
 - targets: release/v0.6.8

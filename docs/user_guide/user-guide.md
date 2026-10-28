@@ -12,11 +12,11 @@ Motion is a local-first technical writing IDE. It edits markdown that lives on
 your own disk, renders diagrams and runs SQL inline, and can generate both from
 plain-language prompts.
 
-This guide covers the app as it behaves **after v0.6.7** (native Mac chrome,
+This guide covers the app as it behaves **after v0.6.8** (native Mac chrome,
 Ask AI, GFM tables, DocCommands, Markdown source highlighting, Copy All,
 icon header actions, new-note persistence, dataset/SQL install coverage, content
 zoom, resizable panes, a pinned format toolbar, tree rename, note reload,
-themed PDF and Word export with themed tables, and note links). Where something is incomplete, it says so.
+themed PDF and Word export with themed tables, note links, and YAML front matter kept on save). Where something is incomplete, it says so.
 
 ---
 
