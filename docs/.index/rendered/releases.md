@@ -13,6 +13,7 @@ _What shipped, with the frozen evidence for each release. Generated; do not edit
 - Shipped: Update the user guide, README, design doc, changelog, and wiki
 - Shipped: Unit and Playwright tests for themed tables
 - Shipped: Add the five table color fields to ExportTheme and both builtins
+- Shipped: chore(release): v0.6.7 changelog, version bump, roadmap snapshot
 
 ## v0.6.6 — 2026-10-22
 
