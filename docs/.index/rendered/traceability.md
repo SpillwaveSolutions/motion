@@ -2,6 +2,10 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### chore(release): v0.6.7 changelog, version bump, roadmap snapshot
+`01M61ZMBTJ98N776ZAKWG0GGXF` · status: todo
+- targets: release/v0.6.7
+
 ### Wiki publish: no script applies publish-manifest.json to the wiki
 `01M5JKV9HQZ7X83CD6X1SMP6VV` · status: todo
 
@@ -66,15 +70,15 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-pdf-tables]]
 
 ### chore(release): v0.6.6 changelog, version bump, roadmap snapshot
-`01M5J4C2142M28BJZPBSWJ4Y04` · status: todo
+`01M5J4C2142M28BJZPBSWJ4Y04` · status: done
 - lands-in: pr/66
 - targets: release/v0.6.6
 
 ### Stop the UI Guard from treating test files as UI source
-`01M5GTCRJQPGX82TS89Y93732Z` · status: todo
+`01M5GTCRJQPGX82TS89Y93732Z` · status: done
 
 ### Restore the LLM spy after each workspace synthesis test
-`01M5GRYQY7ZAK975G44M0G6T6N` · status: todo
+`01M5GRYQY7ZAK975G44M0G6T6N` · status: done
 
 ### Add tests for ImageGen generation and inline storage
 `01M5GQYSTS6MXM432NYSV6JY5G` · status: todo
@@ -86,7 +90,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 `01M5GQ20H070MJFSM16QNX12TY` · status: todo
 
 ### Add a LICENSE file to the repository
-`01M5GQ20EM4T0BSWW130VZJVCV` · status: todo
+`01M5GQ20EM4T0BSWW130VZJVCV` · status: done
 
 ### Export images to PDF and Word instead of the alt text only
 `01M5GQ20CANKH5P50X4QC523WM` · status: todo

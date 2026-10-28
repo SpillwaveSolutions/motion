@@ -37,6 +37,9 @@ natural-language prompts using CLI tools you already have installed.
   Word uses Calibri or Georgia. Tables export as a bordered grid with a filled
   header row and striped body rows in both PDF and Word. Each theme sets the
   table header, header text, row, alternate row, and border colors.
+- **Note links.** Click a link to a markdown file on disk, and that note
+  opens. Relative paths resolve from the current note, then from the folder.
+  Web links stay web links.
 - **Zoom** — ⌘+ / ⌘- / ⌘0 scale the editor and the file tree, not the header.
   A brief overlay shows the percentage. Remembered in the settings file.
 - **Layout** — the editor fills the window. Drag the sidebar edge or the Split

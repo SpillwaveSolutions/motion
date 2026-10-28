@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "6e6b06a8ab99",
+   "render_hash": "3a3862788df0",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "6f9315ee363c",
+   "render_hash": "5c21da24b0cf",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -364,7 +364,7 @@
    "frozen": false,
    "page_name": "Release-v0.6.6",
    "render": "as-is",
-   "render_hash": "10e705c1e389",
+   "render_hash": "922eceec01e9",
    "source": "docs/.index/rendered/releases/v0.6.6.md",
    "title": "Release v0.6.6",
    "truth_state": "shipped",
@@ -1824,10 +1824,10 @@
    "frozen": false,
    "page_name": "Ticket-01M5GQ20EM4T0BSWW130VZJVCV",
    "render": "as-is",
-   "render_hash": "8f329e0b11b1",
+   "render_hash": "9d24874ca016",
    "source": "docs/.index/rendered/tickets/01M5GQ20EM4T0BSWW130VZJVCV.md",
    "title": "Add a LICENSE file to the repository",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M5GQ20EM4T0BSWW130VZJVCV"
   },
   {
@@ -1864,30 +1864,30 @@
    "frozen": false,
    "page_name": "Ticket-01M5GRYQY7ZAK975G44M0G6T6N",
    "render": "as-is",
-   "render_hash": "7a678f656faf",
+   "render_hash": "86f4bdbc4afd",
    "source": "docs/.index/rendered/tickets/01M5GRYQY7ZAK975G44M0G6T6N.md",
    "title": "Restore the LLM spy after each workspace synthesis test",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M5GRYQY7ZAK975G44M0G6T6N"
   },
   {
    "frozen": false,
    "page_name": "Ticket-01M5GTCRJQPGX82TS89Y93732Z",
    "render": "as-is",
-   "render_hash": "758f720a1f55",
+   "render_hash": "1a508965c83d",
    "source": "docs/.index/rendered/tickets/01M5GTCRJQPGX82TS89Y93732Z.md",
    "title": "Stop the UI Guard from treating test files as UI source",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M5GTCRJQPGX82TS89Y93732Z"
   },
   {
    "frozen": false,
    "page_name": "Ticket-01M5J4C2142M28BJZPBSWJ4Y04",
    "render": "as-is",
-   "render_hash": "f792532adace",
+   "render_hash": "c8d4981f6625",
    "source": "docs/.index/rendered/tickets/01M5J4C2142M28BJZPBSWJ4Y04.md",
    "title": "chore(release): v0.6.6 changelog, version bump, roadmap snapshot",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M5J4C2142M28BJZPBSWJ4Y04"
   },
   {
@@ -2001,6 +2001,16 @@
    "wiki_key": "item/01M5JKV9HQZ7X83CD6X1SMP6VV"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M61ZMBTJ98N776ZAKWG0GGXF",
+   "render": "as-is",
+   "render_hash": "37bb8e297547",
+   "source": "docs/.index/rendered/tickets/01M61ZMBTJ98N776ZAKWG0GGXF.md",
+   "title": "chore(release): v0.6.7 changelog, version bump, roadmap snapshot",
+   "truth_state": "open",
+   "wiki_key": "item/01M61ZMBTJ98N776ZAKWG0GGXF"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -2100,11 +2110,11 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-28T19:08:47Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-10-28T19:26:13Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "d760326f35d3",
+   "render_hash": "94854b02297f",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2199,11 +2209,22 @@
    "wiki_key": "roadmap-snapshot/2026-10-22_v0.6.6-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.7 (2026-10-28) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-10-28_v0.6.7-release",
+   "render": "doc+banner",
+   "render_hash": "c7c81bdc092e",
+   "source": "docs/roadmap/2026-10-28_v0.6.7-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.7-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "202eb7b47838",
+   "render_hash": "5ae9df2c0420",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -2211,7 +2232,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "904a7d458a91",
+  "render_hash": "9c5228702a5f",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

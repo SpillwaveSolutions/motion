@@ -228,10 +228,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-10-28T19:08:47Z",
+   "generated_at": "2026-10-28T19:26:13Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "909c499e",
+   "source_hash": "0f264e49",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
@@ -359,10 +359,26 @@
    "slug": "2026-10-22_v0.6.6-release",
    "source": "docs/roadmap/2026-10-22_v0.6.6-release.md",
    "source_hash": "0cea7d08",
+   "superseded_by": "roadmap-snapshot/2026-10-28_v0.6.7-release",
    "supersedes": "roadmap-snapshot/2026-09-10_v0.6.5-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki_key": "roadmap-snapshot/2026-10-22_v0.6.6-release"
+  },
+  {
+   "canonical_key": "roadmap-snapshot/2026-10-28_v0.6.7-release",
+   "date": "2026-10-28",
+   "doc_type": "roadmap-snapshot",
+   "generated_at": "2026-10-28T19:08:47Z",
+   "name": "v0.6.7-release",
+   "release": "v0.6.7",
+   "slug": "2026-10-28_v0.6.7-release",
+   "source": "docs/roadmap/2026-10-28_v0.6.7-release.md",
+   "source_hash": "909c499e",
+   "supersedes": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.7-release"
   },
   {
    "aliases": [

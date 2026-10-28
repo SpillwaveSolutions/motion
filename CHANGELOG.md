@@ -4,6 +4,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.7, 2026-10-28
+
+Open note links in the editor, draw themed tables in PDF export, and add a license.
+
 ### Added
 
 - **Note links.** Click a link in the editor and, if it points at a markdown
@@ -21,6 +25,19 @@ All notable changes to Motion are recorded here. Dates are UTC.
   bold filled header row, striped body rows, and text that wraps in each cell.
   The header row repeats on each new page. Word and the preview use the same
   theme colors.
+- **License.** The repository now has an MIT `LICENSE` file.
+- **E2E seed.** The note links seed no longer replaces the `scratch-dirty.md`
+  note that two `editor.spec.ts` tests open.
+
+### Known issues
+
+- **Word code blocks** lose their line breaks (`01M5FSD7DGETDXNZ9DBQCSTM0T`).
+- **PDF export** drops bold, italic, and inline code
+  (`01M5FSD7FX4ZP6BR5YQT8KHDAD`), and puts the title rule against the first
+  paragraph (`01M5FSD7J51R65WWC8VF85M0W2`).
+- **Note links** to a markdown file outside the folder switch the workspace
+  in the desktop app only. Nobody tested this path on the desktop yet.
+- **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
 ## 0.6.6, 2026-10-22
 
