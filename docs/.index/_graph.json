@@ -1732,6 +1732,11 @@
   },
   {
    "from": "roadmap-snapshot/2026-10-28_v0.6.7-release",
+   "to": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-10-28_v0.6.7-release",
    "to": "release/v0.6.7",
    "type": "targets"
   }

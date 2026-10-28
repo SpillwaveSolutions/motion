@@ -359,6 +359,7 @@
    "slug": "2026-10-22_v0.6.6-release",
    "source": "docs/roadmap/2026-10-22_v0.6.6-release.md",
    "source_hash": "0cea7d08",
+   "superseded_by": "roadmap-snapshot/2026-10-28_v0.6.7-release",
    "supersedes": "roadmap-snapshot/2026-09-10_v0.6.5-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
@@ -374,6 +375,7 @@
    "slug": "2026-10-28_v0.6.7-release",
    "source": "docs/roadmap/2026-10-28_v0.6.7-release.md",
    "source_hash": "909c499e",
+   "supersedes": "roadmap-snapshot/2026-10-22_v0.6.6-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.7-release"
