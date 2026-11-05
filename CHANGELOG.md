@@ -4,6 +4,10 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+## 0.6.9, 2026-11-05
+
+Show markdown images in the editor, and keep image links when you save.
+
 ### Fixed
 
 - **Images did not show, and a save deleted them.** The editor had no image
@@ -13,6 +17,20 @@ All notable changes to Motion are recorded here. Dates are UTC.
   open folder. Motion reads the image through the workspace jail, so an image
   outside the open folder does not load. A missing image shows as a dashed
   box. (#73)
+
+### Known issues
+
+- **Notes saved by 0.6.8 or earlier** after an edit lost their image links.
+  This release does not repair them. Restore the links from git or a backup.
+- **A save changes list and heading format.** `- item` becomes `*   item` with a
+  blank line between items, and `## 1. Title` becomes `## 1\. Title`. The text
+  does not change (`01M6PVQSBR7GWZFK3W03NARBZZ`).
+- **Images** load only from inside the open folder. The desktop app does not
+  load web images. PDF and Word export show the alt text.
+- **Word code blocks** lose their line breaks (`01M5FSD7DGETDXNZ9DBQCSTM0T`).
+- **PDF export** drops bold, italic, and inline code (`01M5FSD7FX4ZP6BR5YQT8KHDAD`).
+- **Note links** to a markdown file outside the folder are not tested on the desktop.
+- **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
 ## 0.6.8, 2026-10-28
 

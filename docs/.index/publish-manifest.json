@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "8e1ddf7c0b59",
+   "render_hash": "0ee488b6159c",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "0d995d780c22",
+   "render_hash": "1196881946f5",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -302,6 +302,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-74",
+   "render": "as-is",
+   "render_hash": "98355d7dc477",
+   "source": "docs/.index/rendered/prs/74.md",
+   "title": "PR #74",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/74"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -414,7 +424,7 @@
    "frozen": false,
    "page_name": "Release-v0.6.9",
    "render": "as-is",
-   "render_hash": "75f3f5392ddb",
+   "render_hash": "79e359277ceb",
    "source": "docs/.index/rendered/releases/v0.6.9.md",
    "title": "Release v0.6.9",
    "truth_state": "shipped",
@@ -2094,10 +2104,10 @@
    "frozen": false,
    "page_name": "Ticket-01M6PVQSA2JVBR4KMNBPJ6CCNJ",
    "render": "as-is",
-   "render_hash": "0291c455af54",
+   "render_hash": "74f1d646d980",
    "source": "docs/.index/rendered/tickets/01M6PVQSA2JVBR4KMNBPJ6CCNJ.md",
    "title": "fix: show markdown images and keep image links on save",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ"
   },
   {
@@ -2109,6 +2119,16 @@
    "title": "fix: a save rewrites list markers and escapes numbered headings",
    "truth_state": "open",
    "wiki_key": "item/01M6PVQSBR7GWZFK3W03NARBZZ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M6PYPDCFR8Y51B8R1J63G11T",
+   "render": "as-is",
+   "render_hash": "10fcba509376",
+   "source": "docs/.index/rendered/tickets/01M6PYPDCFR8Y51B8R1J63G11T.md",
+   "title": "chore(release): v0.6.9 changelog, version bump, roadmap snapshot",
+   "truth_state": "open",
+   "wiki_key": "item/01M6PYPDCFR8Y51B8R1J63G11T"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -2210,11 +2230,11 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-05T22:02:14Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-05T22:53:55Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "c23cb94ca26a",
+   "render_hash": "217cf5dae205",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2331,11 +2351,22 @@
    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.8-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.9 (2026-11-05) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-11-05_v0.6.9-release",
+   "render": "doc+banner",
+   "render_hash": "ac6764f26556",
+   "source": "docs/roadmap/2026-11-05_v0.6.9-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-11-05_v0.6.9-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "b167cc397342",
+   "render_hash": "1068fc9017fb",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -2343,7 +2374,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "d275f454c40b",
+  "render_hash": "4c6999cd25c8",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
