@@ -8,6 +8,7 @@ _What shipped, with the frozen evidence for each release. Generated; do not edit
 - Shipped: Export: drop YAML front matter from PDF, Word, and the preview
 - Shipped: Export: add space around headings, paragraphs, and tables in Word and PDF
 - Shipped: Editor: keep YAML front matter when a note is edited and saved
+- Shipped: chore(release): v0.6.8 changelog, version bump, roadmap snapshot
 
 ## v0.6.7 — 2026-10-28
 
