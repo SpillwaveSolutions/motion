@@ -52,6 +52,7 @@ Highlighted source -- see markdown-source.md.
 | Split preview | pre | Right pane is live highlighted markdown (read-only, aria-label Markdown preview). A `role=separator` divider between the panes is draggable; see layout.md. The editor surface has **no** max-width cap — it fills the main column. |
 | Find in note | bar | ⌘/Ctrl+F opens. Matches the current note (WYSIWYG selection or markdown source). Enter next, Shift+Enter previous, Escape closes. aria-label Find in note. |
 | Note link | anchor in the document | WYSIWYG and the editor side of Split. A click loads another markdown file when the href points at one on disk (relative to the current note, then the folder root; `.md` optional; a folder link opens `README.md` or `index.md`). `http` / `https` / `mailto` open outside the editor. A miss does not navigate the window. Same-document `#anchors` are left alone. Markdown source is text, so links there are not clickable. On the desktop app, an absolute markdown path outside the open folder opens that file's folder. |
+| Note image | img in the document | `![alt](path)` shows the image. A relative path resolves from the current note's folder, then the folder root. The image is read through the workspace jail (png, jpg, jpeg, gif, webp, svg, avif, bmp, ico). The accessible name is the alt text. Max width is the document column. A missing image shows as a dashed box with the title Image not found: path. `http`, `https`, and `data:` images load as written. Save writes the link back unchanged. |
 | Loading | copy | Loading editor... before TipTap mounts |
 
 ## States
@@ -89,6 +90,9 @@ Highlighted source -- see markdown-source.md.
 - [ ] ⌘/Ctrl+F opens Find in note; Enter cycles matches; Escape closes.
 - [ ] YAML front matter does not show in WYSIWYG. The Markdown view shows it unchanged.
 - [ ] An edit to the body saves the file with the front matter unchanged on top.
+- [ ] A relative `![alt](images/x.png)` shows the image from the note's folder.
+- [ ] An edit saves every image link unchanged.
+- [ ] A missing image shows as missing, and its link stays in the file.
 
 ## Notes
 - Source: src/components/Editor/index.tsx, Toolbar.tsx, MarkdownSource.tsx.

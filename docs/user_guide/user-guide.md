@@ -141,6 +141,17 @@ not a second rendered preview. Switching views does not count as an edit.
 hides it, and the Markdown view shows it. Edit it in the Markdown view. An edit
 to the body in WYSIWYG saves the file with the front matter unchanged on top.
 
+**Images.** A markdown image, `![alt text](images/diagram.png)`, shows in
+WYSIWYG and on the editor side of Split. Motion looks for a relative path in the
+note's folder first, then in the open folder. Motion shows png, jpg, gif, webp,
+svg, avif, bmp, and ico files. An image that Motion cannot find shows as a
+dashed box. Point at it to see the path that Motion tried. Saves keep every
+image link unchanged.
+
+Motion reads images only from inside the open folder. Open the folder that holds
+both the note and its images. The desktop app does not load web (`https`)
+images. PDF and Word export show the alt text in place of each image.
+
 ---
 
 ## Content blocks

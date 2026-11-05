@@ -62,6 +62,52 @@ export function resolveNoteLink(href: string, ctx: NoteLinkContext): NoteLinkAct
     return { action: "missing" };
 }
 
+const IMAGE_MIME: Record<string, string> = {
+    png: "image/png",
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    gif: "image/gif",
+    webp: "image/webp",
+    svg: "image/svg+xml",
+    avif: "image/avif",
+    bmp: "image/bmp",
+    ico: "image/x-icon",
+};
+
+export function imageMimeType(path: string): string {
+    const ext = path.split(".").pop()?.toLowerCase() ?? "";
+    return IMAGE_MIME[ext] ?? "application/octet-stream";
+}
+
+/**
+ * Workspace paths to try for an image `src`, nearest first: the note's folder,
+ * then the workspace root. `null` means the webview loads the URL itself
+ * (web, `data:`, `blob:`). An empty list means there is nothing to load,
+ * including a path with no image extension.
+ */
+export function imagePathCandidates(
+    src: string,
+    ctx: Pick<NoteLinkContext, "currentFile" | "workspaceRoot">,
+): string[] | null {
+    const raw = src.trim();
+    if (/^(https?:|data:|blob:)/i.test(raw) || raw.startsWith("//")) return null;
+    if (!raw || /^(javascript|vbscript):/i.test(raw)) return [];
+    const pathPart = extractLocalPath(raw);
+    if (!pathPart?.trim()) return [];
+    const decoded = decodePath(pathPart).replace(/\\/g, "/");
+    // The image read refuses any other extension, so do not ask.
+    if (imageMimeType(decoded) === "application/octet-stream") return [];
+    if (isAbsolutePath(decoded)) return [normalizePath(decoded)];
+    const rel = decoded.replace(/^\/+/, "");
+    const out: string[] = [];
+    if (ctx.currentFile) {
+        const dir = dirnameOf(normalizePath(ctx.currentFile));
+        if (dir) out.push(normalizePath(joinPath(dir, rel)));
+    }
+    if (ctx.workspaceRoot) out.push(normalizePath(joinPath(stripTrail(normalizePath(ctx.workspaceRoot)), rel)));
+    return [...new Set(out)];
+}
+
 function extractLocalPath(raw: string): string | null {
     if (/^file:/i.test(raw)) {
         try {

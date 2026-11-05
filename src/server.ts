@@ -9,9 +9,11 @@ import { join, dirname, resolve, relative, isAbsolute } from "path";
 import { callLLM, type ModelProvider } from "./lib/cliWrappers";
 import { generateImage } from "./lib/imageGen";
 import { renderShell } from "./shell";
+import { imageMimeType } from "./lib/noteLink";
 import {
     collectFiles,
     readWorkspaceFile,
+    readWorkspaceImage,
     writeWorkspaceFile,
     renameWorkspaceFile,
     FsError,
@@ -363,6 +365,16 @@ const server = Bun.serve({
                         }
                         return Response.json({
                             content: readWorkspaceFile(WORKSPACE_ROOT, target),
+                        });
+                    }
+
+                    case "GET /api/fs/image": {
+                        const target = url.searchParams.get("path");
+                        if (!target) {
+                            return Response.json({ error: "Missing path" }, { status: 400 });
+                        }
+                        return new Response(readWorkspaceImage(WORKSPACE_ROOT, target), {
+                            headers: { "Content-Type": imageMimeType(target) },
                         });
                     }
 

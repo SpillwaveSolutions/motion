@@ -4,6 +4,16 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Fixed
+
+- **Images did not show, and a save deleted them.** The editor had no image
+  node, so it dropped every `![alt](path)` on load, and the next save wrote the
+  note without its images. The editor now shows each image and saves the link
+  unchanged. A relative path resolves from the note's folder, then from the
+  open folder. Motion reads the image through the workspace jail, so an image
+  outside the open folder does not load. A missing image shows as a dashed
+  box. (#73)
+
 ## 0.6.8, 2026-10-28
 
 Keep YAML front matter when you edit a note, leave it out of the export, and space the exported blocks.

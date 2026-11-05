@@ -19,10 +19,17 @@ import { DatasetExtension } from "./extensions/DatasetExtension";
 import { QueryExtension } from "./extensions/QueryExtension";
 import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
+import { NoteImage } from "./extensions/NoteImageExtension";
 import { tableKit } from "./extensions/tableKit";
 import { htmlToMarkdown, markdownToHtml } from "./markdown";
 import { joinFrontmatter, splitFrontmatter } from "../../lib/frontmatter";
-import { isNoteLinkUri, resolveNoteLink, type NoteLinkAction, type NoteLinkContext } from "../../lib/noteLink";
+import {
+    imagePathCandidates,
+    isNoteLinkUri,
+    resolveNoteLink,
+    type NoteLinkAction,
+    type NoteLinkContext,
+} from "../../lib/noteLink";
 import { storage } from "../../lib/storage";
 import { escapeHtmlText, sanitizeHtml } from "../../lib/sanitize";
 import {
@@ -307,6 +314,21 @@ function Editor({
                 },
             }),
             tableKit,
+            NoteImage.configure({
+                // The note's folder first, then the workspace root.
+                loadImage: async (src) => {
+                    const paths = imagePathCandidates(src, linkCtxRef.current);
+                    if (paths === null) return src;
+                    for (const path of paths) {
+                        try {
+                            return URL.createObjectURL(await storage.readImage(path));
+                        } catch {
+                            // Try the next location. The node view marks the image missing.
+                        }
+                    }
+                    return null;
+                },
+            }),
             MermaidExtension,
             DatasetExtension,
             QueryExtension,

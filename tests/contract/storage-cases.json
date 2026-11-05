@@ -26,10 +26,12 @@
       "data/sales.csv": "a,b\n1,2\n",
       "data/events.jsonl": "{\"x\":1}\n",
       "notes.txt": "not markdown\n",
-      ".hidden/secret.md": "# Hidden\n"
+      ".hidden/secret.md": "# Hidden\n",
+      "images/pic.png": "PNG bytes"
     },
     "outside_files": {
-      "secret.md": "# Outside the jail\n"
+      "secret.md": "# Outside the jail\n",
+      "pic.png": "Outside PNG"
     },
     "symlinks": {
       "escape-link.md": "../outside/secret.md"
@@ -94,6 +96,31 @@
       "op": "read",
       "path": "escape-link.md",
       "expect": { "result": "denied" }
+    },
+    {
+      "name": "reads an image inside the workspace as bytes",
+      "op": "read_image",
+      "path": "images/pic.png",
+      "expect": { "result": "ok", "content": "PNG bytes" }
+    },
+    {
+      "name": "refuses an image read of a file that is not an image",
+      "_why": "The byte read serves a note's images only. It must not become a second way to read any file.",
+      "op": "read_image",
+      "path": "note.md",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "refuses an image outside the workspace",
+      "op": "read_image",
+      "path": "../outside/pic.png",
+      "expect": { "result": "denied" }
+    },
+    {
+      "name": "reports a missing image as not-found",
+      "op": "read_image",
+      "path": "images/missing.png",
+      "expect": { "result": "not-found" }
     },
     {
       "name": "writes a new file and reads it back",

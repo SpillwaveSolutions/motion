@@ -198,6 +198,15 @@ fn read_file(path: String, state: State<'_, WorkspaceState>) -> Result<String, S
     fs_core::read_workspace_file(&root, &path).map_err(String::from)
 }
 
+/// Raw bytes, not a JSON number array, so a large image stays cheap.
+#[tauri::command]
+fn read_image(path: String, state: State<'_, WorkspaceState>) -> Result<tauri::ipc::Response, String> {
+    let root = workspace_root(&state)?;
+    fs_core::read_workspace_image(&root, &path)
+        .map(tauri::ipc::Response::new)
+        .map_err(String::from)
+}
+
 #[tauri::command]
 fn write_file(path: String, content: String, state: State<'_, WorkspaceState>) -> Result<(), String> {
     let root = workspace_root(&state)?;
@@ -471,6 +480,7 @@ pub fn run() {
             set_workspace,
             take_pending_open,
             read_file,
+            read_image,
             write_file,
             rename_file,
             list_markdown_files,

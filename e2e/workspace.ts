@@ -9,7 +9,13 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync, realpathSync } from "fs"
 import { tmpdir } from "os";
 import { join, dirname } from "path";
 
-export const SEED_FILES: Record<string, string> = {
+// A 2x2 red PNG: real image bytes, so a spec can check that the image decoded.
+const PNG_2X2 = Buffer.from(
+    "iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAEElEQVR4nGP4z8AARAwQCgAf7gP9i18U1AAAAABJRU5ErkJggg==",
+    "base64",
+);
+
+export const SEED_FILES: Record<string, string | Buffer> = {
     "welcome.md": "# Welcome\n\nA seeded note for end-to-end runs.\n",
     "getting-started.md": "# Getting started\n\nSecond seeded note.\n",
     "nested/deeper.md": "# Deeper\n\nProves recursive listing.\n",
@@ -47,6 +53,12 @@ export const SEED_FILES: Record<string, string> = {
     "scratch-dirty.md": "# Tight pipes\n\n|Name|Role|\n|---|---|\n|Ada|Engineer|\n",
     "scratch-links.md":
         "# Links\n\nSee [Getting started](getting-started.md).\n\nSee [Deeper](nested/deeper.md).\n\nSee [Missing](does-not-exist.md).\n",
+    // Relative image links resolve from the note's folder, like the article
+    // folders people open in Motion.
+    "img-notes/images/context.png": PNG_2X2,
+    "img-notes/view.md": "# Images\n\n![Context diagram](images/context.png)\n\nAfter the image.\n",
+    "img-notes/scratch-edit.md": "# Image edit\n\n![Context diagram](images/context.png)\n\nOutro.\n",
+    "img-notes/missing.md": "# Missing image\n\n![Gone](images/gone.png)\n",
 };
 
 export function createWorkspace(): string {

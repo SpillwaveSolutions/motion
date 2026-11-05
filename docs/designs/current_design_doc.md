@@ -615,6 +615,18 @@ doc-to-markdown step joins the block back on, so `rawMarkdown`, the save, the
 Markdown view, and the export always have the whole document. Leaving the
 Markdown view splits the text again, so a front matter change made there is kept.
 
+**Images.** `NoteImage` (`extensions/NoteImageExtension.ts`) is an inline atom
+node that stores `src` exactly as the markdown has it. Its `renderHTML` writes
+the link to `data-src`, so no HTML that Tiptap renders into the live page makes
+the webview fetch a relative path. The turndown `image` rule in `markdown.ts`
+reads `src` or `data-src` back into `![alt](src)`. Only the node view shows the
+image. It calls `imagePathCandidates` (`lib/noteLink.ts`) for the note's folder
+and then the workspace root, reads each path with `storage.readImage`, and sets
+a `blob:` URL. `readImage` goes to the Tauri `read_image` command (raw bytes in
+an `ipc::Response`) or to `GET /api/fs/image`. Both call the shared jailed core
+(`read_workspace_image` and `readWorkspaceImage`), which also rejects a file
+whose extension is not an image extension. The storage contract covers it.
+
 **How to read it.** `rawMarkdown` is kept current continuously by `onUpdate`, not
 computed at save time — deliberately, so switching to Markdown view never shows
 stale content. The containment check is the same logical gate on both branches,

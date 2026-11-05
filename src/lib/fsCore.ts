@@ -130,6 +130,8 @@ export function collectFiles(root: string, extensions: readonly string[]): strin
 
 export const MARKDOWN_EXTENSIONS = ["md", "markdown", "mdown", "mkd", "mdx"] as const;
 export const DATA_EXTENSIONS = ["csv", "json", "jsonl"] as const;
+/** Images a note can show. The list keeps the byte read from serving any other file. */
+export const IMAGE_EXTENSIONS = ["png", "jpg", "jpeg", "gif", "webp", "svg", "avif", "bmp", "ico"] as const;
 
 export function readWorkspaceFile(root: string, requested: string): string {
     const path = resolveInWorkspace(root, requested);
@@ -137,6 +139,20 @@ export function readWorkspaceFile(root: string, requested: string): string {
         throw new FsError("not-found", `No such file: ${requested}`);
     }
     return readFileSync(path, "utf8");
+}
+
+/** Bytes of an image inside the workspace, for a note's `![alt](path)`. */
+export function readWorkspaceImage(root: string, requested: string): Uint8Array<ArrayBuffer> {
+    const path = resolveInWorkspace(root, requested);
+    const dot = path.lastIndexOf(".");
+    const ext = dot > 0 ? path.slice(dot + 1).toLowerCase() : "";
+    if (!(IMAGE_EXTENSIONS as readonly string[]).includes(ext)) {
+        throw new FsError("denied", `Not an image: ${requested}`);
+    }
+    if (!existsSync(path) || !statSync(path).isFile()) {
+        throw new FsError("not-found", `No such file: ${requested}`);
+    }
+    return readFileSync(path);
 }
 
 export function writeWorkspaceFile(root: string, requested: string, content: string): void {

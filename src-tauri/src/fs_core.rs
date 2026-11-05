@@ -60,6 +60,8 @@ pub type FsResult<T> = Result<T, FsError>;
 
 pub const MARKDOWN_EXTENSIONS: &[&str] = &["md", "markdown", "mdown", "mkd", "mdx"];
 pub const DATA_EXTENSIONS: &[&str] = &["csv", "json", "jsonl"];
+/// Images a note can show. The list keeps the byte read from serving any other file.
+pub const IMAGE_EXTENSIONS: &[&str] = &["png", "jpg", "jpeg", "gif", "webp", "svg", "avif", "bmp", "ico"];
 
 fn real_or_not_found(path: &Path) -> FsResult<PathBuf> {
     fs::canonicalize(path).map_err(|_| {
@@ -178,6 +180,23 @@ pub fn read_workspace_file(root: &Path, requested: &str) -> FsResult<String> {
     }
     fs::read_to_string(&path)
         .map_err(|e| FsError::new(FsErrorCode::NotFound, e.to_string()))
+}
+
+/// Bytes of an image inside the workspace, for a note's `![alt](path)`.
+pub fn read_workspace_image(root: &Path, requested: &str) -> FsResult<Vec<u8>> {
+    let path = resolve_in_workspace(root, requested)?;
+    let ext = path
+        .extension()
+        .and_then(|s| s.to_str())
+        .map(|s| s.to_lowercase())
+        .unwrap_or_default();
+    if !IMAGE_EXTENSIONS.contains(&ext.as_str()) {
+        return Err(FsError::new(FsErrorCode::Denied, format!("Not an image: {requested}")));
+    }
+    if !path.is_file() {
+        return Err(FsError::new(FsErrorCode::NotFound, format!("No such file: {requested}")));
+    }
+    fs::read(&path).map_err(|e| FsError::new(FsErrorCode::NotFound, e.to_string()))
 }
 
 pub fn write_workspace_file(root: &Path, requested: &str, content: &str) -> FsResult<()> {
@@ -399,6 +418,10 @@ mod contract {
             match op {
                 "read" => match read_workspace_file(&f.root, path.as_deref().unwrap()) {
                     Ok(text) => got_text = Some(text),
+                    Err(e) => err_code = Some(e.code.as_str()),
+                },
+                "read_image" => match read_workspace_image(&f.root, path.as_deref().unwrap()) {
+                    Ok(bytes) => got_text = Some(String::from_utf8_lossy(&bytes).into_owned()),
                     Err(e) => err_code = Some(e.code.as_str()),
                 },
                 "write" => {

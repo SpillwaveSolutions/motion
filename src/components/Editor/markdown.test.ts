@@ -68,3 +68,18 @@ describe("GFM table round trip", () => {
         expect(md).toContain("graph TD");
     });
 });
+
+describe("image round trip", () => {
+    test("an image link survives markdown -> HTML -> markdown unchanged", async () => {
+        const md = "Intro.\n\n![C4 context](images/01_C4_L1_System_context.png)\n\n![Spaced](my%20pics/a%20b.png \"Title\")";
+        const html = await markdownToHtml(md);
+        expect(html).toContain('<img src="images/01_C4_L1_System_context.png" alt="C4 context">');
+        expect(htmlToMarkdown(html)).toBe(md);
+    });
+
+    test("the editor's image HTML, with the link in data-src, serializes to a markdown image", () => {
+        expect(htmlToMarkdown('<p><img data-src="images/pic.png" alt="A pic"></p>')).toBe("![A pic](images/pic.png)");
+        expect(htmlToMarkdown('<p><img data-src="a.png" alt="" title="T"></p>')).toBe('![](a.png "T")');
+        expect(htmlToMarkdown('<p><img alt="no link"></p>')).toBe("");
+    });
+});
