@@ -1137,6 +1137,16 @@
   },
   {
    "from": "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ",
+   "to": "pr/74",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ",
+   "to": "release/v0.6.9",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M6PYPDCFR8Y51B8R1J63G11T",
    "to": "release/v0.6.9",
    "type": "targets"
   },
@@ -1788,6 +1798,21 @@
   {
    "from": "roadmap-snapshot/2026-10-28_v0.6.8-release",
    "to": "release/v0.6.8",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-05_v0.6.9-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-05_v0.6.9-release",
+   "to": "roadmap-snapshot/2026-10-28_v0.6.8-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-05_v0.6.9-release",
+   "to": "release/v0.6.9",
    "type": "targets"
   }
  ],
@@ -2641,13 +2666,18 @@
   },
   "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "fix: show markdown images and keep image links on save"
   },
   "item/01M6PVQSBR7GWZFK3W03NARBZZ": {
    "doc_type": "item",
    "status": "todo",
    "title": "fix: a save rewrites list markers and escapes numbered headings"
+  },
+  "item/01M6PYPDCFR8Y51B8R1J63G11T": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "chore(release): v0.6.9 changelog, version bump, roadmap snapshot"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
@@ -2766,6 +2796,9 @@
   "pr/71": {
    "doc_type": "pr"
   },
+  "pr/74": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -2865,6 +2898,12 @@
   "roadmap-snapshot/2026-10-28_v0.6.8-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-10-28_v0.6.8-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-11-05_v0.6.9-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-11-05_v0.6.9-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },

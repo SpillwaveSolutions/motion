@@ -2,6 +2,11 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.9 — 2026-11-05
+
+- Roadmap snapshot: [[Roadmap-2026-11-05_v0.6.9-release]]
+- Shipped: fix: show markdown images and keep image links on save
+
 ## v0.6.8 — 2026-10-28
 
 - Roadmap snapshot: [[Roadmap-2026-10-28_v0.6.8-release]]
