@@ -12,6 +12,7 @@ import { tmpdir } from "os";
 import { join, dirname, isAbsolute, relative, sep } from "path";
 import {
     readWorkspaceFile,
+    readWorkspaceImage,
     writeWorkspaceFile,
     renameWorkspaceFile,
     collectFiles,
@@ -85,6 +86,8 @@ describe("storage contract (TypeScript implementation)", () => {
                     switch (c.op) {
                         case "read":
                             return readWorkspaceFile(f.root, path);
+                        case "read_image":
+                            return new TextDecoder().decode(readWorkspaceImage(f.root, path));
                         case "write":
                             return writeWorkspaceFile(f.root, path, c.content);
                         case "write_then_read":

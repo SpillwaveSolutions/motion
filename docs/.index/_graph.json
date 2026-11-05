@@ -1136,6 +1136,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ",
+   "to": "release/v0.6.9",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -2634,6 +2639,16 @@
    "status": "done",
    "title": "chore(release): v0.6.8 changelog, version bump, roadmap snapshot"
   },
+  "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "fix: show markdown images and keep image links on save"
+  },
+  "item/01M6PVQSBR7GWZFK3W03NARBZZ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "fix: a save rewrites list markers and escapes numbered headings"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2782,6 +2797,9 @@
    "doc_type": "release"
   },
   "release/v0.6.8": {
+   "doc_type": "release"
+  },
+  "release/v0.6.9": {
    "doc_type": "release"
   },
   "roadmap": {

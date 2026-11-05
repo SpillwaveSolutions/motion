@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { isNoteLinkUri, resolveNoteLink } from "./noteLink";
+import { imageMimeType, imagePathCandidates, isNoteLinkUri, resolveNoteLink } from "./noteLink";
 
 const root = "/tmp/ws";
 const files = [
@@ -138,5 +138,55 @@ describe("resolveNoteLink", () => {
         expect(isNoteLinkUri("https://example.com")).toBe(true);
         expect(isNoteLinkUri("javascript:alert(1)")).toBe(false);
         expect(isNoteLinkUri("data:text/html,hi")).toBe(false);
+    });
+});
+
+describe("imagePathCandidates", () => {
+    const ctx = { currentFile: "/ws/articles/l6/article.md", workspaceRoot: "/ws" };
+
+    test("a relative src resolves from the note's folder, then the workspace root", () => {
+        expect(imagePathCandidates("images/01.png", ctx)).toEqual([
+            "/ws/articles/l6/images/01.png",
+            "/ws/images/01.png",
+        ]);
+        expect(imagePathCandidates("./images/01.png", ctx)?.[0]).toBe("/ws/articles/l6/images/01.png");
+        expect(imagePathCandidates("../shared/logo.svg", ctx)?.[0]).toBe("/ws/articles/shared/logo.svg");
+    });
+
+    test("decodes %20, and drops a query or a hash", () => {
+        expect(imagePathCandidates("my%20pics/a%20b.png?v=2#x", ctx)?.[0]).toBe("/ws/articles/l6/my pics/a b.png");
+    });
+
+    test("an absolute path or a file URL is used as is", () => {
+        expect(imagePathCandidates("/elsewhere/pic.png", ctx)).toEqual(["/elsewhere/pic.png"]);
+        expect(imagePathCandidates("file:///Users/me/pic%201.png", ctx)).toEqual(["/Users/me/pic 1.png"]);
+    });
+
+    test("a note at the workspace root gives one candidate", () => {
+        expect(imagePathCandidates("pic.png", { currentFile: "/ws/note.md", workspaceRoot: "/ws" })).toEqual([
+            "/ws/pic.png",
+        ]);
+    });
+
+    test("web, data, and blob URLs load directly, and script URLs load nothing", () => {
+        for (const src of ["https://x.test/a.png", "//cdn.test/a.png", "data:image/png;base64,AA", "blob:abc"]) {
+            expect(imagePathCandidates(src, ctx)).toBeNull();
+        }
+        expect(imagePathCandidates("javascript:alert(1)", ctx)).toEqual([]);
+        expect(imagePathCandidates("  ", ctx)).toEqual([]);
+    });
+
+    test("a path with no image extension loads nothing", () => {
+        expect(imagePathCandidates("x", ctx)).toEqual([]);
+        expect(imagePathCandidates("notes/secret.md", ctx)).toEqual([]);
+    });
+});
+
+describe("imageMimeType", () => {
+    test("maps image extensions, case-insensitive", () => {
+        expect(imageMimeType("a/B.PNG")).toBe("image/png");
+        expect(imageMimeType("x.jpg")).toBe("image/jpeg");
+        expect(imageMimeType("x.svg")).toBe("image/svg+xml");
+        expect(imageMimeType("x.bin")).toBe("application/octet-stream");
     });
 });

@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "b8e5c606e2d1",
+   "render_hash": "0d995d780c22",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -409,6 +409,16 @@
    "title": "Release v0.6.8",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.8"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.9",
+   "render": "as-is",
+   "render_hash": "75f3f5392ddb",
+   "source": "docs/.index/rendered/releases/v0.6.9.md",
+   "title": "Release v0.6.9",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.9"
   },
   {
    "frozen": false,
@@ -2081,6 +2091,26 @@
    "wiki_key": "item/01M62CH1ZEE0CBS8HJJVPZMJD6"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M6PVQSA2JVBR4KMNBPJ6CCNJ",
+   "render": "as-is",
+   "render_hash": "0291c455af54",
+   "source": "docs/.index/rendered/tickets/01M6PVQSA2JVBR4KMNBPJ6CCNJ.md",
+   "title": "fix: show markdown images and keep image links on save",
+   "truth_state": "open",
+   "wiki_key": "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M6PVQSBR7GWZFK3W03NARBZZ",
+   "render": "as-is",
+   "render_hash": "61e681638595",
+   "source": "docs/.index/rendered/tickets/01M6PVQSBR7GWZFK3W03NARBZZ.md",
+   "title": "fix: a save rewrites list markers and escapes numbered headings",
+   "truth_state": "open",
+   "wiki_key": "item/01M6PVQSBR7GWZFK3W03NARBZZ"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -2096,7 +2126,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "e2f984ffe283",
+   "render_hash": "512f740bc01f",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -2180,11 +2210,11 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-05T21:33:55Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-05T22:02:14Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "8bdac1d1216d",
+   "render_hash": "c23cb94ca26a",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2305,7 +2335,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "5e24a1a2d3e1",
+   "render_hash": "b167cc397342",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",

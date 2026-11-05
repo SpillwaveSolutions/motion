@@ -1,10 +1,13 @@
 import { invoke, isTauri as detectTauri } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
+import { imageMimeType } from "../noteLink";
 
 export interface StorageProvider {
     openFolder(): Promise<string | null>;
     listFiles(path: string): Promise<string[]>;
     readFile(path: string): Promise<string>;
+    /** An image inside the workspace, for a note's `![alt](path)`. */
+    readImage(path: string): Promise<Blob>;
     writeFile(path: string, content: string): Promise<void>;
     /** Rename a file inside the opened workspace. Returns the resolved dest. */
     renameFile(from: string, to: string): Promise<string>;
@@ -42,6 +45,11 @@ export class TauriStorage implements StorageProvider {
 
     async readFile(path: string): Promise<string> {
         return await invoke<string>("read_file", { path });
+    }
+
+    async readImage(path: string): Promise<Blob> {
+        const bytes = await invoke<ArrayBuffer>("read_image", { path });
+        return new Blob([bytes], { type: imageMimeType(path) });
     }
 
     async writeFile(path: string, content: string): Promise<void> {
@@ -111,6 +119,12 @@ export class HttpStorage implements StorageProvider {
         if (!res.ok) return await failed(res, `Failed to read "${path}"`);
         const { content } = await res.json();
         return content;
+    }
+
+    async readImage(path: string): Promise<Blob> {
+        const res = await fetch(`/api/fs/image?path=${encodeURIComponent(path)}`);
+        if (!res.ok) return await failed(res, `Failed to read image "${path}"`);
+        return await res.blob();
     }
 
     async writeFile(path: string, content: string): Promise<void> {

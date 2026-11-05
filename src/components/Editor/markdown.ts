@@ -62,6 +62,19 @@ export function createTurndown(): TurndownService {
         },
     });
 
+    // The editor's image node writes its link to data-src (NoteImageExtension).
+    td.addRule("image", {
+        filter: "img",
+        replacement: function (_content, node) {
+            const el = node as HTMLElement;
+            const src = el.getAttribute("src") || el.getAttribute("data-src") || "";
+            if (!src) return "";
+            const clean = (v: string | null) => (v ?? "").replace(/(\n+\s*)+/g, "\n");
+            const title = clean(el.getAttribute("title"));
+            return `![${clean(el.getAttribute("alt"))}](${src}${title ? ` "${title}"` : ""})`;
+        },
+    });
+
     td.addRule("table", {
         filter: "table",
         replacement: function (_content, node) {

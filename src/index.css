@@ -645,6 +645,24 @@ pre {
 }
 
 /* GFM tables (wireframes/tables.md) */
+.tiptap-editor img.note-image {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-radius: var(--radius-md);
+}
+
+.tiptap-editor img.note-image.ProseMirror-selectednode {
+  outline: 2px solid var(--color-accent-blue);
+}
+
+.tiptap-editor img.note-image-missing {
+  display: inline-block;
+  min-width: 8rem;
+  min-height: 2rem;
+  border: 1px dashed var(--color-border-primary);
+}
+
 .tiptap-editor table.motion-table,
 .tiptap-editor table {
   border-collapse: collapse;

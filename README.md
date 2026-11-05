@@ -40,6 +40,8 @@ natural-language prompts using CLI tools you already have installed.
 - **YAML front matter.** WYSIWYG hides a `---` block on the first line, and the
   Markdown view shows it. Saves keep it unchanged. Export and the rich text
   part of Copy All leave it out.
+- **Images.** `![alt](images/x.png)` shows the image. Relative paths resolve
+  from the current note, then from the folder. Saves keep the link unchanged.
 - **Note links.** Click a link to a markdown file on disk, and that note
   opens. Relative paths resolve from the current note, then from the folder.
   Web links stay web links.
@@ -173,6 +175,10 @@ Recorded here rather than discovered later:
 - **PDF export** uses Helvetica, Times, or Courier. Word uses Calibri, Georgia,
   or Consolas. The on-screen preview uses system fonts, so it can look slightly
   closer to the theme than the PDF does.
+- **Images** load only from inside the open folder. The desktop app does not
+  load web images, because its content security policy allows only local,
+  `data:`, and `blob:` images. PDF and Word export show the alt text, not the
+  image.
 - **PDF tables** size each column by its longest cell text, counted in
   characters, so a column of wide letters can wrap early. A single table row
   taller than a page runs off the page. The header row repeats on each page.
