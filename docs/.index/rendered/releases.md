@@ -6,6 +6,7 @@ _What shipped, with the frozen evidence for each release. Generated; do not edit
 
 - Roadmap snapshot: [[Roadmap-2026-11-05_v0.6.9-release]]
 - Shipped: fix: show markdown images and keep image links on save
+- Shipped: chore(release): v0.6.9 changelog, version bump, roadmap snapshot
 
 ## v0.6.8 — 2026-10-28
 

@@ -3,7 +3,8 @@
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
 ### chore(release): v0.6.9 changelog, version bump, roadmap snapshot
-`01M6PYPDCFR8Y51B8R1J63G11T` · status: todo
+`01M6PYPDCFR8Y51B8R1J63G11T` · status: done
+- lands-in: pr/75
 - targets: release/v0.6.9
 
 ### fix: a save rewrites list markers and escapes numbered headings
