@@ -2,6 +2,12 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.10 — 2026-11-11
+
+- Roadmap snapshot: [[Roadmap-2026-11-11_v0.6.10-release]]
+- Shipped: fix: a save rewrites list markers and escapes numbered headings
+- Shipped: fix: a new note made while a folder loads disappears from the tree
+
 ## v0.6.9 — 2026-11-05
 
 - Roadmap snapshot: [[Roadmap-2026-11-05_v0.6.9-release]]

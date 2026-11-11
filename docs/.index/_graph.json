@@ -1146,6 +1146,16 @@
    "type": "targets"
   },
   {
+   "from": "item/01M6PVQSBR7GWZFK3W03NARBZZ",
+   "to": "pr/77",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M6PVQSBR7GWZFK3W03NARBZZ",
+   "to": "release/v0.6.10",
+   "type": "targets"
+  },
+  {
    "from": "item/01M6PYPDCFR8Y51B8R1J63G11T",
    "to": "pr/75",
    "type": "lands-in"
@@ -1153,6 +1163,21 @@
   {
    "from": "item/01M6PYPDCFR8Y51B8R1J63G11T",
    "to": "release/v0.6.9",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M74F6TER7HQJF7MAJWEMXHFJ",
+   "to": "pr/77",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M74F6TER7HQJF7MAJWEMXHFJ",
+   "to": "release/v0.6.10",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M75ZNV600AK4RYDAF2STQFVS",
+   "to": "release/v0.6.10",
    "type": "targets"
   },
   {
@@ -1818,6 +1843,16 @@
   {
    "from": "roadmap-snapshot/2026-11-05_v0.6.9-release",
    "to": "release/v0.6.9",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-11_v0.6.10-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-11_v0.6.10-release",
+   "to": "release/v0.6.10",
    "type": "targets"
   }
  ],
@@ -2676,7 +2711,7 @@
   },
   "item/01M6PVQSBR7GWZFK3W03NARBZZ": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "fix: a save rewrites list markers and escapes numbered headings"
   },
   "item/01M6PYPDCFR8Y51B8R1J63G11T": {
@@ -2691,13 +2726,18 @@
   },
   "item/01M74F6TER7HQJF7MAJWEMXHFJ": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "fix: a new note made while a folder loads disappears from the tree"
   },
   "item/01M74H3ZDA95Y2VHVB95EJWWV1": {
    "doc_type": "item",
    "status": "todo",
    "title": "fix: a save still changes italic inside a word, adjacent lists, and empty list items"
+  },
+  "item/01M75ZNV600AK4RYDAF2STQFVS": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "chore(release): v0.6.10 changelog, version bump, roadmap snapshot"
   },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
@@ -2822,6 +2862,9 @@
   "pr/75": {
    "doc_type": "pr"
   },
+  "pr/77": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -2832,6 +2875,9 @@
    "doc_type": "release"
   },
   "release/v0.6.1": {
+   "doc_type": "release"
+  },
+  "release/v0.6.10": {
    "doc_type": "release"
   },
   "release/v0.6.2": {
@@ -2927,6 +2973,12 @@
   "roadmap-snapshot/2026-11-05_v0.6.9-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-11-05_v0.6.9-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-11-11_v0.6.10-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-11-11_v0.6.10-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },

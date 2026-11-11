@@ -2,7 +2,9 @@
 
 All notable changes to Motion are recorded here. Dates are UTC.
 
-## Unreleased
+## 0.6.10, 2026-11-11
+
+Keep list, heading, and code block format when you save, and keep a note that you make or open while a folder loads.
 
 ### Fixed
 
@@ -24,6 +26,16 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 - **Task list checkboxes** are lost on save. `- [ ] item` becomes `-  item`,
   because the editor has no task list node yet (`01M74DWNZTZX9SX23VCBYMCZ46`).
+- **Some rare markdown still changes on save.** Italic inside a word, two lists
+  next to each other, an empty list item, and `__bold__` change form
+  (`01M74H3ZDA95Y2VHVB95EJWWV1`).
+- **Notes saved by 0.6.9 or earlier** after an edit keep the old list and
+  heading format. This release does not change them back.
+- **Images** load only from inside the open folder. The desktop app does not
+  load web images. PDF and Word export show the alt text.
+- **Word code blocks** lose their line breaks (`01M5FSD7DGETDXNZ9DBQCSTM0T`).
+- **PDF export** drops bold, italic, and inline code (`01M5FSD7FX4ZP6BR5YQT8KHDAD`).
+- **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
 ## 0.6.9, 2026-11-05
 
@@ -148,7 +160,7 @@ Reload a note from disk, and export it as a themed PDF or Word file.
   paragraph (`01M5FSD7J51R65WWC8VF85M0W2`).
 - **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
-## 0.6.5 — 2026-09-10
+## 0.6.5, 2026-09-10
 
 Header drag actually works on a Mac; the format toolbar stays put while the note
 scrolls.
@@ -175,7 +187,7 @@ scrolls.
   loads when those files exist in the open workspace. Missing files now say so
   instead of dumping DuckDB/HTTP errors.
 
-## 0.6.4 — 2026-09-04
+## 0.6.4, 2026-09-04
 
 Editor fills the window; zoom scales notes not chrome; icon toolbar; header drag
 owned in JS; Synthesize writes a folder README instead of SKILL.md.
@@ -185,8 +197,8 @@ owned in JS; Synthesize writes a folder README instead of SKILL.md.
 - **Content zoom.** ⌘+ / ⌘- / ⌘0 scale the editor and the file tree. Header
   buttons stay the same size. A percentage overlay flashes for about a second.
   The level is still remembered in `settings.json`.
-- **Resizable panes.** Drag the sidebar's trailing edge (180–480px) or the
-  Split divider (25–75%). Both persist next to zoom. Stretching the window
+- **Resizable panes.** Drag the sidebar's trailing edge (180, 480px) or the
+  Split divider (25, 75%). Both persist next to zoom. Stretching the window
   widens the note; the 900px / 1400px caps are gone.
 - **Icon header actions.** Share, Copy All, Open Folder, New Note, New Folder,
   Save, and Synthesize are icon-only. Accessible names are unchanged, so
@@ -213,7 +225,7 @@ owned in JS; Synthesize writes a folder README instead of SKILL.md.
   loads when those files exist in the open workspace. Missing files now say so
   instead of dumping DuckDB/HTTP errors.
 
-## 0.6.3 — 2026-09-03
+## 0.6.3, 2026-09-03
 
 Window drag restored; zoom remembered in settings; rename notes from the tree.
 
@@ -247,7 +259,7 @@ Window drag restored; zoom remembered in settings; rename notes from the tree.
   loads when those files exist in the open workspace. Missing files now say so
   instead of dumping DuckDB/HTTP errors.
 
-## 0.6.2 — 2026-09-03
+## 0.6.2, 2026-09-03
 
 Copy All: paste as markdown or as rich text, depending on the destination.
 
@@ -271,7 +283,7 @@ Copy All: paste as markdown or as rich text, depending on the destination.
   loads when those files exist in the open workspace. Missing files now say so
   instead of dumping DuckDB/HTTP errors.
 
-## 0.6.1 — 2026-09-02
+## 0.6.1, 2026-09-02
 
 Editor polish on 0.6.0: syntax highlighting in Markdown/Split, Insert Table
 escapes its table, DocCommands batches resolve against one snapshot, looking
@@ -290,7 +302,7 @@ files are missing.
 
 - **Insert Table no longer nests a table inside a cell.** Table cells accept
   block content, so **Insert Table** and `/tab` with the caret already in a
-  table produced a table-in-a-table — a shape GFM cannot serialize, so the note
+  table produced a table-in-a-table, a shape GFM cannot serialize, so the note
   stopped round-tripping. Both entry points now append a sibling table after the
   enclosing one (the outermost, so an already-nested document escapes fully).
 - **A batch of AI edits now resolves against the document the model saw.**
@@ -339,7 +351,7 @@ files are missing.
   loads when those files exist in the open workspace. Missing files now say so
   instead of dumping DuckDB/HTTP errors.
 
-## 0.6.0 — 2026-08-30
+## 0.6.0, 2026-08-30
 
 Native Mac app behaviour, Ask AI, GFM tables, and DocCommands on top of the
 already-shipping tree sidebar, content search, and real browser filesystem. The
@@ -404,15 +416,15 @@ on `main` before this work.
   DocCommands batch whose later `replace_range` depends on the original
   document (not the post-first-edit document) can fail the later command.
 
-## 0.1.0 — 2026-07-28
+## 0.1.0, 2026-07-28
 
 First tagged release. The application itself has existed since January 2026;
 this release is the point at which it became possible to *know* whether it
 works.
 
-### Added — the validation loop
+### Added, the validation loop
 
-- **`bun run verify`** — one command answers "is the app OK?": typecheck →
+- **`bun run verify`**, one command answers "is the app OK?": typecheck →
   client-bundle guard → unit tests → end-to-end tests.
 - **End-to-end testing with Playwright** (`e2e/`), running against the real Bun
   dev server rather than a separate test build. Locally it drives installed
@@ -421,15 +433,15 @@ works.
   fails on console errors, uncaught exceptions, failed requests, **and**
   responses with status >= 400. The last is not redundant: Playwright's
   `requestfailed` event does not fire for 404 or 500, because those are
-  successful requests carrying an error status — and a 404 is exactly the
+  successful requests carrying an error status, and a 404 is exactly the
   signature of the missing-file bug fixed below.
 - **A static client-bundle guard** (`bun run guard:client`) that walks the real
   import graph from `src/main.tsx` and rejects any use of `Bun.`. One root cause
-  — code assuming a Bun process while running in a browser or webview — had been
+, code assuming a Bun process while running in a browser or webview, had been
   fixed four separate times in this repo. A runtime gate cannot close it: the
   four enrichment modules are unreachable from the UI, so no test executes them
   and they would stay green until the day they were wired to a button.
-- **Tests for the workspace jail** in `src-tauri` — nine, where there were none,
+- **Tests for the workspace jail** in `src-tauri`, nine, where there were none,
   covering parent traversal, symlink escape, the sibling-prefix escape
   (`/x/ws` must not admit `/x/ws-evil`), and writing a file that does not exist
   yet. This is the security boundary for every filesystem command.
@@ -444,7 +456,7 @@ works.
 
 - **Mermaid threw on every page load.** The welcome document serializes an unset
   diagram as `content: null`, which reached `mermaid.render()` as the
-  4-character string `"null"` — truthy, so the render guard let it through.
+  4-character string `"null"`, truthy, so the render guard let it through.
   Three block extensions each carried their own copy of the `key: value` parser,
   so the defect existed in triplicate; they now share one parser that treats a
   serialized null or undefined as unset.
