@@ -21,8 +21,8 @@ import { ImageGenExtension } from "./extensions/ImageGenExtension";
 import { DiagramGenExtension } from "./extensions/DiagramGenExtension";
 import { NoteImage } from "./extensions/NoteImageExtension";
 import { tableKit } from "./extensions/tableKit";
-import { htmlToMarkdown, markdownToHtml } from "./markdown";
-import { joinFrontmatter, splitFrontmatter } from "../../lib/frontmatter";
+import { markdownToHtml, noteMarkdown } from "./markdown";
+import { splitFrontmatter } from "../../lib/frontmatter";
 import {
     imagePathCandidates,
     isNoteLinkUri,
@@ -417,7 +417,7 @@ function Editor({
             // Markdown mode's textarea is the source of truth. A Tiptap
             // onUpdate (setEditable, leftover transactions) must not clobber it.
             if (viewModeRef.current === "markdown") return;
-            const md = joinFrontmatter(frontmatterRef.current, htmlToMarkdown(updatedEditor.getHTML()));
+            const md = noteMarkdown(frontmatterRef.current, updatedEditor.getHTML());
             if (hydratingRef.current) {
                 const next = applySerializedMarkdown(
                     { snapshot: snapshotRef.current, hydrating: true },
@@ -450,7 +450,7 @@ function Editor({
         const gen = ++hydrateGenRef.current;
         const run = () => {
             if (gen !== hydrateGenRef.current) return;
-            const md = joinFrontmatter(frontmatterRef.current, htmlToMarkdown(ed.getHTML()));
+            const md = noteMarkdown(frontmatterRef.current, ed.getHTML());
             snapshotRef.current = applySerializedMarkdown(
                 { snapshot: md, hydrating: true },
                 md

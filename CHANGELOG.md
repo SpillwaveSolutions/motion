@@ -4,6 +4,27 @@ All notable changes to Motion are recorded here. Dates are UTC.
 
 ## Unreleased
 
+### Fixed
+
+- **A save changed list and heading format.** After one edit, `- item` became
+  `*   item` with a blank line between items, `1. item` became `1.  item`,
+  `## 1. Title` became `## 1\. Title`, and `snake_case` became `snake\_case`.
+  Each fenced code block gained a blank line before its closing fence, and a
+  paragraph that started with `1) ` turned into a list on the next load. The
+  file also lost its final newline. A save now writes these as you wrote
+  them, so an edit to one line changes only that line in the file.
+  (`01M6PVQSBR7GWZFK3W03NARBZZ`)
+- **A new note could disappear right after Open Folder.** A note made while the
+  folder loaded was written to disk, but the load then dropped it from the tree
+  and showed the welcome page. A note opened from the tree during the load
+  closed the same way. New Note and New Folder now wait for the load, and a note
+  that you open during the load stays open. (`01M74F6TER7HQJF7MAJWEMXHFJ`)
+
+### Known issues
+
+- **Task list checkboxes** are lost on save. `- [ ] item` becomes `-  item`,
+  because the editor has no task list node yet (`01M74DWNZTZX9SX23VCBYMCZ46`).
+
 ## 0.6.9, 2026-11-05
 
 Show markdown images in the editor, and keep image links when you save.

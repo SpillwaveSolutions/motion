@@ -2,11 +2,11 @@
  * Inline rename in the notes tree. New Note opens the field; right-click and
  * F2 do the same for an existing note. The OS prompt is not used.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 test("New Note opens inline rename; Enter commits a real filename", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
 
     const write = page.waitForResponse(
         (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
@@ -33,7 +33,7 @@ test("New Note opens inline rename; Enter commits a real filename", async ({ pag
 
 test("Escape on a new note keeps the untitled filename", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
 
     await page.getByRole("button", { name: "New Note" }).click();
     const field = page.getByRole("textbox", { name: "Rename note" });
@@ -44,7 +44,7 @@ test("Escape on a new note keeps the untitled filename", async ({ page }) => {
 
 test("right-click Rename starts the same inline field", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name: "scratch-journeys.md" });
     await note.click();
     await note.click({ button: "right" });
@@ -57,7 +57,7 @@ test("right-click Rename starts the same inline field", async ({ page }) => {
 
 test("F2 starts rename on the selected note", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name: "scratch-journeys.md" });
     await note.click();
     await page.keyboard.press("F2");
@@ -73,7 +73,7 @@ test("F2 starts rename on the selected note", async ({ page }) => {
 
 test("a second click on the already-selected file starts rename", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name: "scratch-journeys.md" });
     await note.click();
     await expect(note).toHaveAttribute("aria-selected", "true");

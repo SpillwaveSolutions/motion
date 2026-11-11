@@ -42,6 +42,9 @@ natural-language prompts using CLI tools you already have installed.
   part of Copy All leave it out.
 - **Images.** `![alt](images/x.png)` shows the image. Relative paths resolve
   from the current note, then from the folder. Saves keep the link unchanged.
+- **Markdown kept as written.** A save writes `- item` and `1. item` lists,
+  `## 1. Title` headings, and `snake_case` words as you wrote them, so an edit
+  to one line changes only that line in the file.
 - **Note links.** Click a link to a markdown file on disk, and that note
   opens. Relative paths resolve from the current note, then from the folder.
   Web links stay web links.
@@ -179,6 +182,9 @@ Recorded here rather than discovered later:
   load web images, because its content security policy allows only local,
   `data:`, and `blob:` images. PDF and Word export show the alt text, not the
   image.
+- **Task list checkboxes** (`- [ ] item`) are lost when Motion saves the note.
+  The Markdown view also shows the note without them. Edit those notes in
+  another editor until task lists ship.
 - **PDF tables** size each column by its longest cell text, counted in
   characters, so a column of wide letters can wrap early. A single table row
   taller than a page runs off the page. The header row repeats on each page.

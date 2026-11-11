@@ -4,7 +4,7 @@
  * The LLM is stubbed at `/api/ai/stream` (HTTP 200 SSE even on failure) so the
  * suite stays deterministic and the fixtures.ts >=400 gate does not fire.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 const AI_REPLY = "AI_EDIT_OK the fox is quicker.";
 
@@ -26,7 +26,7 @@ async function stubAiStream(page: import("@playwright/test").Page, content = AI_
 }
 
 async function openScratchAi(page: import("@playwright/test").Page) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name: "scratch-ai.md" });
     await expect(note).toBeVisible();
     await note.click();

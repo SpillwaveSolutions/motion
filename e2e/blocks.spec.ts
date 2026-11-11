@@ -6,7 +6,7 @@
  * marked, real DOMPurify, real parseHTML, real filesystem. Before Phase 1 this
  * spec could not have existed, because saving did not write anything.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 const BLOCK_SELECTORS: Record<string, string> = {
     mermaid: '[data-type="mermaid"], .mermaid-preview',
@@ -15,7 +15,7 @@ const BLOCK_SELECTORS: Record<string, string> = {
 };
 
 async function openWorkspace(page: import("@playwright/test").Page) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await expect(page.getByRole("treeitem", { name: "scratch-blocks.md" })).toBeVisible();
 }
 

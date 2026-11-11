@@ -10,10 +10,10 @@
  * scratch root). The seed matches public/demo so this is the same contract the
  * welcome document ships with.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 async function openScratch(page: import("@playwright/test").Page, name: string) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();

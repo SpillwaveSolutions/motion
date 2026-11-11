@@ -2,10 +2,10 @@
  * GFM tables: pipe markdown becomes a real <table>, survives save/reload,
  * and can be inserted from the toolbar and slash menu.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 async function openScratchTables(page: import("@playwright/test").Page) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("treeitem", { name: "scratch-tables.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
 }

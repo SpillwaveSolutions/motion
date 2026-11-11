@@ -2684,6 +2684,21 @@
    "status": "done",
    "title": "chore(release): v0.6.9 changelog, version bump, roadmap snapshot"
   },
+  "item/01M74DWNZTZX9SX23VCBYMCZ46": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "fix: a save drops task list checkboxes"
+  },
+  "item/01M74F6TER7HQJF7MAJWEMXHFJ": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "fix: a new note made while a folder loads disappears from the tree"
+  },
+  "item/01M74H3ZDA95Y2VHVB95EJWWV1": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "fix: a save still changes italic inside a word, adjacent lists, and empty list items"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",

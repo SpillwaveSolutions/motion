@@ -1,10 +1,10 @@
 /**
  * Editor dirty tracking and Markdown-source highlighting.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 async function openNote(page: import("@playwright/test").Page, name: string) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();

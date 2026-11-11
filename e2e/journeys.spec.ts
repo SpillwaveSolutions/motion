@@ -4,10 +4,10 @@
  * Each spec locks a specific past regression rather than testing a feature in
  * the abstract — the commit that broke it is named in the comment.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 async function openScratch(page: import("@playwright/test").Page, name: string) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();
@@ -93,7 +93,7 @@ test("rapid file switching lands on the file that was clicked last", async ({ pa
     // B13: reads are async and unordered, so a slow read for an earlier
     // selection could land after a fast one and replace it.
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
 
     await page.getByRole("treeitem", { name: "welcome.md" }).click();
     await page.getByRole("treeitem", { name: "getting-started.md" }).click();
@@ -153,7 +153,7 @@ test("a Dataset registers and a Query returns rows from it", async ({ page, guar
 
 test("search matches note contents, not just the filename", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
     const search = page.getByLabel("Search notes");
     await search.fill("seeded note for end-to-end");
@@ -166,7 +166,7 @@ test("search matches note contents, not just the filename", async ({ page }) => 
 
 test("find in note opens with the shortcut and counts matches", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("tree", { name: "Notes" }).getByRole("treeitem", { name: "welcome.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
     await page.getByRole("button", { name: "Find in note (⌘F)" }).click();

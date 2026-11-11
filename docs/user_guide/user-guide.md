@@ -148,6 +148,12 @@ svg, avif, bmp, and ico files. An image that Motion cannot find shows as a
 dashed box. Point at it to see the path that Motion tried. Saves keep every
 image link unchanged.
 
+**Markdown format.** A save writes the markdown the way people write it:
+`- item` and `1. item` lists, nested lists indented under their item,
+`## 1. Title` headings, and `snake_case` words with no escape. When you edit one
+line, only that line changes in the file. Task list checkboxes (`- [ ] item`)
+are the exception, see Known limitations.
+
 Motion reads images only from inside the open folder. Open the folder that holds
 both the note and its images. The desktop app does not load web (`https`)
 images. PDF and Word export show the alt text in place of each image.
@@ -295,6 +301,9 @@ Stated here so you meet them on your terms:
   Synthesize / generative blocks still need `claude` and/or `imagen`.
 - **Share** needs a GitHub PAT with gist scope, and/or a Notion internal
   integration that has been invited to the parent page.
+- **Task list checkboxes** (`- [ ] item`) are lost when Motion saves the note.
+  The Markdown view also shows the note without them. Edit those notes in
+  another editor until task lists ship.
 
 ---
 

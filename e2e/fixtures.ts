@@ -125,3 +125,12 @@ export async function gotoApp(
     await page.goto(path);
     await page.waitForSelector("[data-app-ready]", { timeout: 30_000 });
 }
+
+/**
+ * Click Open Folder and wait for the folder load to end. The load replaces the
+ * open note and the file list when it ends, and New Note stays disabled until then.
+ */
+export async function openFolder(page: import("@playwright/test").Page): Promise<void> {
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await expect(page.getByRole("button", { name: "New Note" })).toBeEnabled();
+}

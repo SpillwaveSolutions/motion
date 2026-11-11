@@ -615,6 +615,28 @@ doc-to-markdown step joins the block back on, so `rawMarkdown`, the save, the
 Markdown view, and the export always have the whole document. Leaving the
 Markdown view splits the text again, so a front matter change made there is kept.
 
+**Markdown format.** `createTurndown` in `markdown.ts` overrides four turndown
+defaults so that a save keeps the markdown people write. The `listItem` rule
+writes `- ` and `1. ` (with the `start` offset) and indents the item's later
+lines by the marker width. The `listParagraph` rule makes the `<p>` that Tiptap
+puts in every list item tight when the item has only one paragraph, so items
+have no blank line between them. The `heading` rule drops the `1\.` and `\-`
+escapes that turndown adds at the start of any text, because an ATX heading
+cannot become a list. A paragraph keeps those escapes. The `escape` override
+drops `\_` between two letters or digits, because CommonMark never reads an
+intraword underscore as emphasis. `noteMarkdown` joins the front matter and adds
+one final newline. `onUpdate` and `adoptHydratedBaseline` both call it, so the
+clean baseline and the saved file have the same form.
+
+**Folder load.** `activateWorkspace` lists the folder, reads every note for
+search, and then sets the open note. Until it ends, the `folderLoads` count is
+above zero, and New Note and New Folder are disabled. The count also covers the
+`storage.openFolder()` call in `handleOpenFolder`, and it is a count because the
+startup load and Open Folder can overlap. If the user opens a note from the tree
+during the load, `activateWorkspace` keeps that note instead of its own choice.
+Each load takes a number from `folderLoadGenRef`. A load that a newer load
+replaced returns before it sets the file list or the open note.
+
 **Images.** `NoteImage` (`extensions/NoteImageExtension.ts`) is an inline atom
 node that stores `src` exactly as the markdown has it. Its `renderHTML` writes
 the link to `data-src`, so no HTML that Tiptap renders into the live page makes
