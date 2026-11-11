@@ -2,6 +2,15 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### fix: a save still changes italic inside a word, adjacent lists, and empty list items
+`01M74H3ZDA95Y2VHVB95EJWWV1` · status: todo
+
+### fix: a new note made while a folder loads disappears from the tree
+`01M74F6TER7HQJF7MAJWEMXHFJ` · status: todo
+
+### fix: a save drops task list checkboxes
+`01M74DWNZTZX9SX23VCBYMCZ46` · status: todo
+
 ### chore(release): v0.6.9 changelog, version bump, roadmap snapshot
 `01M6PYPDCFR8Y51B8R1J63G11T` · status: done
 - lands-in: pr/75

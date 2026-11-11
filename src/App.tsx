@@ -156,6 +156,14 @@ function App() {
     const [viewMode, setViewMode] = useState<ViewMode>("wysiwyg");
     const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
     const [workspacePath, setWorkspacePath] = useState<string | null>(null);
+    // A folder load ends by replacing the file list and the open note. New Note
+    // and New Folder wait for it, or the load drops the note they just made.
+    // A count, because the startup load and Open Folder can overlap.
+    const [folderLoads, setFolderLoads] = useState(0);
+    const folderLoading = folderLoads > 0;
+    // Only the newest load applies its result. An older one that ends later
+    // must not replace the newer folder's files or open note.
+    const folderLoadGenRef = useRef(0);
     const [files, setFiles] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [contents, setContents] = useState<Record<string, string>>({});
@@ -341,33 +349,48 @@ function App() {
         };
     }, []);
 
-    const activateWorkspace = useCallback(async (root: string, selectFile: string | null) => {
-        const canonical = await storage.ensureWorkspace(root);
-        setWorkspacePath(canonical);
-        rememberWorkspaceRoot(canonical);
-        const markdownFiles = await storage.listFiles(canonical);
-        setFiles(markdownFiles);
-        const next: Record<string, string> = {};
-        await Promise.all(
-            markdownFiles.map(async (p) => {
-                try {
-                    next[p] = await storage.readFile(p);
-                } catch {
-                    next[p] = "";
-                }
-            }),
-        );
-        setContents(next);
-        const chosen = selectFile
-            ? (markdownFiles.includes(selectFile)
-                ? selectFile
-                : resolveOpenQuery(selectFile, markdownFiles, canonical))
-            : null;
-        setCurrentFilePath(chosen);
-        setSearchQuery("");
-        setExpanded(null);
-        if (isTauri()) persistWorkspace(canonical, chosen);
-        return chosen;
+    const activateWorkspace = useCallback(async (
+        root: string,
+        selectFile: string | null,
+        shown: string | null = currentFilePathRef.current,
+    ) => {
+        setFolderLoads((n) => n + 1);
+        const gen = ++folderLoadGenRef.current;
+        try {
+            const canonical = await storage.ensureWorkspace(root);
+            setWorkspacePath(canonical);
+            rememberWorkspaceRoot(canonical);
+            const markdownFiles = await storage.listFiles(canonical);
+            if (gen !== folderLoadGenRef.current) return null;
+            setFiles(markdownFiles);
+            const next: Record<string, string> = {};
+            await Promise.all(
+                markdownFiles.map(async (p) => {
+                    try {
+                        next[p] = await storage.readFile(p);
+                    } catch {
+                        next[p] = "";
+                    }
+                }),
+            );
+            if (gen !== folderLoadGenRef.current) return null;
+            setContents(next);
+            // A note the user opened while the notes loaded stays open.
+            const chosen = currentFilePathRef.current !== shown
+                ? currentFilePathRef.current
+                : selectFile
+                ? (markdownFiles.includes(selectFile)
+                    ? selectFile
+                    : resolveOpenQuery(selectFile, markdownFiles, canonical))
+                : null;
+            setCurrentFilePath(chosen);
+            setSearchQuery("");
+            setExpanded(null);
+            if (isTauri()) persistWorkspace(canonical, chosen);
+            return chosen;
+        } finally {
+            setFolderLoads((n) => n - 1);
+        }
     }, []);
 
     useEffect(() => {
@@ -435,15 +458,19 @@ function App() {
     }, [activateWorkspace]);
 
     const handleOpenFolder = async () => {
+        setFolderLoads((n) => n + 1);
+        const shown = currentFilePathRef.current;
         try {
             const path = await storage.openFolder();
             if (path) {
-                await activateWorkspace(path, null);
+                await activateWorkspace(path, null, shown);
             }
         } catch (error) {
             console.error("Failed to open folder:", error);
             const message = error instanceof Error ? error.message : String(error);
             alert(`Error opening folder: ${message}`);
+        } finally {
+            setFolderLoads((n) => n - 1);
         }
     };
 
@@ -512,6 +539,7 @@ function App() {
     };
 
     const handleNewNote = async () => {
+        if (folderLoading) return;
         if (!workspacePath) {
             alert("Open a folder first to create a new note.");
             return;
@@ -546,6 +574,7 @@ function App() {
     };
 
     const handleNewFolder = async () => {
+        if (folderLoading) return;
         if (!workspacePath) {
             alert("Open a folder first to create a new folder.");
             return;
@@ -887,9 +916,9 @@ function App() {
                         type="button"
                         className="btn btn-primary btn-icon"
                         onClick={handleNewNote}
-                        disabled={!workspacePath}
+                        disabled={!workspacePath || folderLoading}
                         aria-label="New Note"
-                        title={workspacePath ? "Create a new markdown note" : "Open a folder first"}
+                        title={folderLoading ? "Loading folder…" : workspacePath ? "Create a new markdown note" : "Open a folder first"}
                     >
                         <IconFilePlus />
                     </button>
@@ -897,10 +926,10 @@ function App() {
                         type="button"
                         className="btn btn-secondary btn-icon"
                         onClick={handleNewFolder}
-                        disabled={!workspacePath}
+                        disabled={!workspacePath || folderLoading}
                         data-testid="new-folder"
                         aria-label="New Folder"
-                        title={workspacePath ? "Create a folder with a README" : "Open a folder first"}
+                        title={folderLoading ? "Loading folder…" : workspacePath ? "Create a folder with a README" : "Open a folder first"}
                     >
                         <IconFolderPlus />
                     </button>

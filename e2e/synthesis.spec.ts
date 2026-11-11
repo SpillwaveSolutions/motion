@@ -6,7 +6,7 @@
  * storage, the real filesystem -- so this proves the wiring, not the mock.
  * Stubbing also keeps the suite deterministic and free.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 /** Shape a plausible answer per stage from the prompt the app actually sends. */
 async function stubLLM(page: import("@playwright/test").Page) {
@@ -38,7 +38,7 @@ async function stubLLM(page: import("@playwright/test").Page) {
 test("synthesizing a workspace writes TOC.md and a generated README", async ({ page }) => {
     await stubLLM(page);
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
 
     await page.getByRole("button", { name: "Synthesize" }).click();
@@ -64,7 +64,7 @@ test("synthesizing a workspace writes TOC.md and a generated README", async ({ p
 test("a hand-written README.md survives; the run writes README.motion.md instead", async ({ page }) => {
     await stubLLM(page);
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
 
     await page.evaluate(async () => {
@@ -121,7 +121,7 @@ test("synthesis reports a readable failure instead of dying silently", async ({ 
     );
 
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("button", { name: "Synthesize" }).click();
 
     await expect(page.getByRole("status", { name: "Workspace synthesis" })).toContainText(/Synthesis failed/, {

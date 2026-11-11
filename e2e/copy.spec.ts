@@ -6,7 +6,7 @@
  * Accessible name stays "Copy all" (aria-label). Copied lives in
  * data-copy-state and title — assert those, not visible text (the control is icon-only).
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 const CLIPBOARD_STUB = `
 (() => {
@@ -89,7 +89,7 @@ test("Copy All is enabled on the welcome note and becomes Copied", async ({ page
 test("Copy All includes unsaved edits from the live buffer", async ({ page, guard }) => {
     guard.allow(/flushSync was called from inside a lifecycle method/);
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("treeitem", { name: "scratch-journeys.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
 

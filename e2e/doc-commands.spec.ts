@@ -4,7 +4,7 @@
  * Stubbed at `/api/ai/stream` (HTTP 200 SSE) so the suite stays deterministic
  * and the fixtures.ts >=400 gate does not fire.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 function sseBody(events: object[]): string {
     return events.map((e) => `data: ${JSON.stringify(e)}\n\n`).join("");
@@ -30,7 +30,7 @@ async function stubCommands(page: import("@playwright/test").Page, commands: obj
 }
 
 async function openScratchCommands(page: import("@playwright/test").Page) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name: "scratch-commands.md" });
     await expect(note).toBeVisible();
     await note.click();

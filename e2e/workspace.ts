@@ -53,6 +53,9 @@ export const SEED_FILES: Record<string, string | Buffer> = {
     "scratch-dirty.md": "# Tight pipes\n\n|Name|Role|\n|---|---|\n|Ada|Engineer|\n",
     "scratch-links.md":
         "# Links\n\nSee [Getting started](getting-started.md).\n\nSee [Deeper](nested/deeper.md).\n\nSee [Missing](does-not-exist.md).\n",
+    // Lists, a numbered heading, and snake_case words: a save must write them back as is.
+    "scratch-format.md":
+        "# Format\n\n## 1. Where\n\n- one\n- two\n  - nested\n- three\n\n1. first\n2. second\n\nStatus: awaiting_approval.\n\nOutro.\n",
     // Relative image links resolve from the note's folder, like the article
     // folders people open in Motion.
     "img-notes/images/context.png": PNG_2X2,

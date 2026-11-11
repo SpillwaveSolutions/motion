@@ -38,8 +38,8 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 | Open Folder | icon button | Accessible name **Open Folder**. Desktop: native picker. Web: MOTION_WORKSPACE via storage. Errors via alert. |
 | Share | icon button | See publish.md. Accessible name **Share**. Disabled until a note is selected. |
 | Copy All | icon button | Accessible name **Copy all**. `data-testid=copy-all`. Disabled until a note is selected. `aria-live=polite`. Visible label is the icon; Copied / Copy failed move into `title` and `data-copy-state`. |
-| New Note | icon button | Accessible name **New Note**. Disabled until a folder is open. Creates untitled-ISO-timestamp.md with # New Note. Placement is **tree-aware**: if a file is selected, the note is created in that file's parent folder; if no file is selected, it falls back to the workspace root. Selects the new note and clears search. |
-| New Folder | icon button | Accessible name **New Folder**. Disabled until a folder is open. Prompts for a folder name, then writes `README.md` inside that folder so the tree can show it. Placement is the same tree-aware parent as New Note. Expands the new folder and selects the README. |
+| New Note | icon button | Accessible name **New Note**. Disabled until a folder is open, and while a folder loads (title **Loading folder…**). Creates untitled-ISO-timestamp.md with # New Note. Placement is **tree-aware**: if a file is selected, the note is created in that file's parent folder; if no file is selected, it falls back to the workspace root. Selects the new note and clears search. |
+| New Folder | icon button | Accessible name **New Folder**. Disabled until a folder is open, and while a folder loads (title **Loading folder…**). Prompts for a folder name, then writes `README.md` inside that folder so the tree can show it. Placement is the same tree-aware parent as New Note. Expands the new folder and selects the README. |
 | Save | icon button | Accessible name **Save note**. `aria-live=polite`. Disabled with no note selected or while saving. Saving / Saved / Save failed live in `title` + `data-save-state`. ⌘/Ctrl+S also saves. Auto-saves 1.5s after the last edit. |
 | Synthesize | icon button | Accessible name **Synthesize**. Disabled with no folder, or while a synthesis status is showing. See synthesize.md. |
 | Reload note | icon button | Accessible name **Reload note**. Disabled until a note is selected. Re-reads that file from disk. If the note is dirty, confirm before discarding unsaved edits. |
@@ -71,6 +71,8 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] Note list is a **tree** (role=tree) of real buttons (not clickable divs) with aria-selected on files and aria-expanded on folders.
 - [ ] Selecting a note loads it in the editor.
 - [ ] New Note writes untitled-{timestamp}.md **in the parent folder of the selected file** (or workspace root when nothing is selected), selects it, and appears in the tree.
+- [ ] New Note and New Folder are disabled while a folder loads. A note made right after the load stays open and listed.
+- [ ] A note opened from the tree while a folder loads stays open when the load ends.
 - [ ] New Folder prompts for a name, writes `README.md` inside the new folder (same parent rule as New Note), expands it, and selects the README (`data-testid=new-folder`).
 - [ ] Sidebar is a collapsible folder tree (not a flat basename list).
 - [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.

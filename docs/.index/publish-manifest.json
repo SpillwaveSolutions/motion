@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "dd35b7ef9775",
+   "render_hash": "af2990883179",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -2141,6 +2141,36 @@
    "wiki_key": "item/01M6PYPDCFR8Y51B8R1J63G11T"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M74DWNZTZX9SX23VCBYMCZ46",
+   "render": "as-is",
+   "render_hash": "4456024965b4",
+   "source": "docs/.index/rendered/tickets/01M74DWNZTZX9SX23VCBYMCZ46.md",
+   "title": "fix: a save drops task list checkboxes",
+   "truth_state": "open",
+   "wiki_key": "item/01M74DWNZTZX9SX23VCBYMCZ46"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M74F6TER7HQJF7MAJWEMXHFJ",
+   "render": "as-is",
+   "render_hash": "c8c833859f5d",
+   "source": "docs/.index/rendered/tickets/01M74F6TER7HQJF7MAJWEMXHFJ.md",
+   "title": "fix: a new note made while a folder loads disappears from the tree",
+   "truth_state": "open",
+   "wiki_key": "item/01M74F6TER7HQJF7MAJWEMXHFJ"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M74H3ZDA95Y2VHVB95EJWWV1",
+   "render": "as-is",
+   "render_hash": "64c3bf74c3fe",
+   "source": "docs/.index/rendered/tickets/01M74H3ZDA95Y2VHVB95EJWWV1.md",
+   "title": "fix: a save still changes italic inside a word, adjacent lists, and empty list items",
+   "truth_state": "open",
+   "wiki_key": "item/01M74H3ZDA95Y2VHVB95EJWWV1"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -2156,7 +2186,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "512f740bc01f",
+   "render_hash": "a8c1d0651dca",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -2240,11 +2270,11 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-10T21:54:15Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-11T05:26:01Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "6a05bd5cf867",
+   "render_hash": "2f5d378d3d60",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2376,7 +2406,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "1068fc9017fb",
+   "render_hash": "4099cb841ed6",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",

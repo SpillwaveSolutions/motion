@@ -7,11 +7,11 @@
  * Now the browser talks to a real filesystem through /api/fs/*, so a broken save
  * is a red test.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 /** Open a seeded note by its accessible name and wait for it to render. */
 async function openNote(page: import("@playwright/test").Page, name: string) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     const note = page.getByRole("treeitem", { name });
     await expect(note).toBeVisible();
     await note.click();
@@ -20,7 +20,7 @@ async function openNote(page: import("@playwright/test").Page, name: string) {
 
 test("lists the seeded workspace, including nested files", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
 
     await expect(page.getByRole("treeitem", { name: "welcome.md" })).toBeVisible();
     await expect(page.getByRole("treeitem", { name: "getting-started.md" })).toBeVisible();
@@ -56,7 +56,7 @@ test("a new note is created, listed, and opens without error", async ({ page }) 
     // file that was never created. The dev server answered that miss with
     // 200 + index.html, so the note "opened" showing a page of HTML.
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
 
     // handleNewNote is async, so the click resolves before the file exists.
     // Wait on the write itself rather than on a redraw.
@@ -79,6 +79,32 @@ test("a new note is created, listed, and opens without error", async ({ page }) 
     // exactly what the old behaviour produced.
 });
 
+test("New Note waits for the folder load, and the new note stays open and listed", async ({ page }) => {
+    await gotoApp(page);
+    // Slow reads keep the folder load in flight.
+    await page.route("**/api/fs/read?*", async (route) => {
+        await new Promise((r) => setTimeout(r, 400));
+        await route.continue();
+    });
+    const listed = page.waitForResponse((r) => r.url().includes("/api/fs/list"));
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await listed;
+    const newNote = page.getByRole("button", { name: "New Note" });
+    const newFolder = page.getByRole("button", { name: "New Folder" });
+    await expect(newNote).toBeDisabled();
+    await expect(newFolder).toBeDisabled();
+    await expect(newNote).toHaveAttribute("title", "Loading folder…");
+    await expect(newNote).toBeEnabled();
+    await expect(newFolder).toBeEnabled();
+    await newNote.click();
+
+    const field = page.getByRole("textbox", { name: "Rename note" });
+    await expect(field).toBeVisible();
+    await field.press("Escape");
+    await expect(page.getByRole("treeitem", { name: /^untitled-/, selected: true })).toBeVisible();
+    await expect(page.locator(".ProseMirror")).toContainText("New Note");
+});
+
 test("a new note can be edited, saved, and reloaded with content intact", async ({ page }) => {
     // Create only wrote the stub; the human path is create → type → Save →
     // come back later. That path was untested, and Save was icon-only so people
@@ -86,7 +112,7 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
     const marker = `newnote-persist-${Date.now()}`;
 
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
 
     const createWrite = page.waitForResponse(
         (r) => r.url().includes("/api/fs/write") && r.request().method() === "POST"
@@ -126,7 +152,7 @@ test("a new note can be edited, saved, and reloaded with content intact", async 
 
     // Full reload — proves the bytes are on disk, not only in React state.
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("treeitem", { name: basename }).click();
     await expect(page.locator(".ProseMirror")).toContainText(marker, { timeout: 15_000 });
 });
@@ -180,4 +206,22 @@ test("the filesystem API refuses a real file outside the workspace", async ({ pa
 
     expect(result.status).toBe(403);
     expect(result.body).not.toContain("root:");
+});
+
+test("a note opened while the folder loads stays open", async ({ page }) => {
+    await gotoApp(page);
+    await page.route("**/api/fs/read?*", async (route) => {
+        await new Promise((r) => setTimeout(r, 400));
+        await route.continue();
+    });
+    const listed = page.waitForResponse((r) => r.url().includes("/api/fs/list"));
+    await page.getByRole("button", { name: "Open Folder" }).click();
+    await listed;
+    await page.getByRole("treeitem", { name: "scratch-links.md" }).click();
+
+    await expect(page.locator(".ProseMirror").getByRole("heading", { name: "Links" })).toBeVisible();
+    // New Note is disabled until the folder load ends. The note must still be open after it.
+    await expect(page.getByRole("button", { name: "New Note" })).toBeEnabled();
+    await expect(page.getByRole("treeitem", { name: "scratch-links.md" })).toHaveAttribute("aria-selected", "true");
+    await expect(page.locator(".ProseMirror").getByRole("heading", { name: "Links" })).toBeVisible();
 });

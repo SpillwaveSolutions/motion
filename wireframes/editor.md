@@ -58,7 +58,7 @@ Highlighted source -- see markdown-source.md.
 ## States
 - **No file**: Welcome document. Header Save is disabled.
 - **Dirty**: header Save enabled (primary); selected note shows •. Autosave after 1.5s idle.
-- **File loaded**: Content from disk, sanitized Markdown to HTML. Serializer hydration is adopted as the clean baseline so looking at the note is not an edit.
+- **File loaded**: Content from disk, sanitized Markdown to HTML. Serializer hydration is adopted as the clean baseline so looking at the note is not an edit. The serializer writes `- item` and `1. item` lists with no blank line between one-paragraph items, `## 1. Title` headings with no escape, `snake_case` words with no escape, fenced code with no blank line before the closing fence, and one final newline.
 - **Dirty after save**: Saved flips back to idle on the next keystroke.
 - **Save error**: Status Save failed plus alert.
 - **Refine in flight**: Refine disabled; title Refining. Docked Ask AI panel shows Asking AI… and live tokens.
@@ -93,6 +93,8 @@ Highlighted source -- see markdown-source.md.
 - [ ] A relative `![alt](images/x.png)` shows the image from the note's folder.
 - [ ] An edit saves every image link unchanged.
 - [ ] A missing image shows as missing, and its link stays in the file.
+- [ ] An edit to one line saves `- item` lists, `1. item` lists, nested lists, `## 1. Title` headings, and `snake_case` words unchanged.
+- [ ] The Markdown view shows those lists and headings as written.
 
 ## Notes
 - Source: src/components/Editor/index.tsx, Toolbar.tsx, MarkdownSource.tsx.

@@ -2,7 +2,7 @@
  * Resizable sidebar / split, editor fills extra width, icon-only header
  * names, and logo mousedown does not select text.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 const HEADER_ACTIONS = [
     "Share",
@@ -74,7 +74,7 @@ test("dragging the sidebar handle changes its width and the value persists", asy
 
 test("split divider is a separator and arrow keys move it", async ({ page }) => {
     await gotoApp(page);
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("treeitem", { name: "welcome.md" }).click();
     await page.getByRole("button", { name: "Split" }).click();
     const handle = page.getByTestId("split-resize");

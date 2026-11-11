@@ -11,11 +11,11 @@
  * malicious document would take: file on disk -> readFile -> marked ->
  * sanitizeHtml -> setContent.
  */
-import { test, expect, gotoApp } from "./fixtures";
+import { test, expect, gotoApp, openFolder } from "./fixtures";
 
 /** Evaluate the app's own sanitizeHtml inside the page. */
 async function renderMarkdown(page: import("@playwright/test").Page, markdown: string) {
-    await page.getByRole("button", { name: "Open Folder" }).click();
+    await openFolder(page);
     await page.getByRole("treeitem", { name: "scratch-sanitize.md" }).click();
     await expect(page.locator(".ProseMirror")).toBeVisible();
 
