@@ -3,7 +3,8 @@
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
 ### chore(release): v0.6.10 changelog, version bump, roadmap snapshot
-`01M75ZNV600AK4RYDAF2STQFVS` · status: todo
+`01M75ZNV600AK4RYDAF2STQFVS` · status: done
+- lands-in: pr/78
 - targets: release/v0.6.10
 
 ### fix: a save still changes italic inside a word, adjacent lists, and empty list items

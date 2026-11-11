@@ -392,3 +392,4 @@
 {"actor":"richardhightower","ev":"01M75ZNZW3P73701C2BTVZY90X","item":"01M6PVQSBR7GWZFK3W03NARBZZ","op":"close","set":{"resolution":"Fixed in PR 77 (df544a5), shipped in v0.6.10.","status":"done"},"ts":"2026-11-11T18:59:46Z"}
 {"actor":"richardhightower","ev":"01M75ZNZYZYJMR3QX1N94CAFB8","item":"01M74F6TER7HQJF7MAJWEMXHFJ","op":"update","set":{"milestone":"v0.6.10"},"ts":"2026-11-11T18:59:46Z"}
 {"actor":"richardhightower","ev":"01M75ZP0367P61H4R35SFC938R","item":"01M74F6TER7HQJF7MAJWEMXHFJ","op":"close","set":{"resolution":"Fixed in PR 77 (df544a5), shipped in v0.6.10.","status":"done"},"ts":"2026-11-11T18:59:46Z"}
+{"actor":"richardhightower","ev":"01M76BMNM8MXX7VFB2Y6SF9RHZ","item":"01M75ZNV600AK4RYDAF2STQFVS","op":"close","set":{"resolution":"Released v0.6.10: PR 78 merged as c4e9763, tag v0.6.10 and the GitHub release exist, and the app is installed.","status":"done"},"ts":"2026-11-11T22:28:46Z"}

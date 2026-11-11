@@ -1177,6 +1177,11 @@
   },
   {
    "from": "item/01M75ZNV600AK4RYDAF2STQFVS",
+   "to": "pr/78",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M75ZNV600AK4RYDAF2STQFVS",
    "to": "release/v0.6.10",
    "type": "targets"
   },
@@ -2736,7 +2741,7 @@
   },
   "item/01M75ZNV600AK4RYDAF2STQFVS": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "chore(release): v0.6.10 changelog, version bump, roadmap snapshot"
   },
   "plan/2026-07-26-motion-next-phase": {
@@ -2863,6 +2868,9 @@
    "doc_type": "pr"
   },
   "pr/77": {
+   "doc_type": "pr"
+  },
+  "pr/78": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {
