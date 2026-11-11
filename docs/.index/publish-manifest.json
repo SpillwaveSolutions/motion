@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "39ddcb42820a",
+   "render_hash": "1a75e4308a3c",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "af2990883179",
+   "render_hash": "175df83cfadf",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -322,6 +322,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-77",
+   "render": "as-is",
+   "render_hash": "935e7e3998fa",
+   "source": "docs/.index/rendered/prs/77.md",
+   "title": "PR #77",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/77"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -359,6 +369,16 @@
    "title": "Release v0.6.1",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.10",
+   "render": "as-is",
+   "render_hash": "12eaed42ee5f",
+   "source": "docs/.index/rendered/releases/v0.6.10.md",
+   "title": "Release v0.6.10",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.10"
   },
   {
    "frozen": false,
@@ -2124,10 +2144,10 @@
    "frozen": false,
    "page_name": "Ticket-01M6PVQSBR7GWZFK3W03NARBZZ",
    "render": "as-is",
-   "render_hash": "61e681638595",
+   "render_hash": "22b8cf75559d",
    "source": "docs/.index/rendered/tickets/01M6PVQSBR7GWZFK3W03NARBZZ.md",
    "title": "fix: a save rewrites list markers and escapes numbered headings",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M6PVQSBR7GWZFK3W03NARBZZ"
   },
   {
@@ -2154,10 +2174,10 @@
    "frozen": false,
    "page_name": "Ticket-01M74F6TER7HQJF7MAJWEMXHFJ",
    "render": "as-is",
-   "render_hash": "c8c833859f5d",
+   "render_hash": "c97e1b9aa78b",
    "source": "docs/.index/rendered/tickets/01M74F6TER7HQJF7MAJWEMXHFJ.md",
    "title": "fix: a new note made while a folder loads disappears from the tree",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M74F6TER7HQJF7MAJWEMXHFJ"
   },
   {
@@ -2169,6 +2189,16 @@
    "title": "fix: a save still changes italic inside a word, adjacent lists, and empty list items",
    "truth_state": "open",
    "wiki_key": "item/01M74H3ZDA95Y2VHVB95EJWWV1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M75ZNV600AK4RYDAF2STQFVS",
+   "render": "as-is",
+   "render_hash": "0365349c6e78",
+   "source": "docs/.index/rendered/tickets/01M75ZNV600AK4RYDAF2STQFVS.md",
+   "title": "chore(release): v0.6.10 changelog, version bump, roadmap snapshot",
+   "truth_state": "open",
+   "wiki_key": "item/01M75ZNV600AK4RYDAF2STQFVS"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -2270,11 +2300,11 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-11T05:26:01Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-11T18:59:46Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "2f5d378d3d60",
+   "render_hash": "63509532261f",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2402,11 +2432,22 @@
    "wiki_key": "roadmap-snapshot/2026-11-05_v0.6.9-release"
   },
   {
+   "banner": "> **Snapshot** of release v0.6.10 (2026-11-11) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-11-11_v0.6.10-release",
+   "render": "doc+banner",
+   "render_hash": "8776352b907b",
+   "source": "docs/roadmap/2026-11-11_v0.6.10-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-11-11_v0.6.10-release"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "4099cb841ed6",
+   "render_hash": "97a191735475",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -2414,7 +2455,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "4c6999cd25c8",
+  "render_hash": "36b608293538",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
