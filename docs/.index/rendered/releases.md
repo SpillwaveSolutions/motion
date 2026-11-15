@@ -2,6 +2,16 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.6.11 — 2026-11-15
+
+- Roadmap snapshot: [[Roadmap-2026-11-15_v0.6.11-release]]
+- Shipped: Unit, Rust, and Playwright tests for the workspace watch
+- Shipped: Watch the workspace in the Tauri app and emit motion://fs-changed
+- Shipped: Add the shared watch filter to fsCore.ts and fs_core.rs, with contract cases
+- Shipped: Re-list the sidebar files when the workspace changes
+- Shipped: Update the user guide, README, design doc, and wiki
+- Shipped: Stream workspace changes from the dev server on GET /api/fs/events
+
 ## v0.6.10 — 2026-11-11
 
 - Roadmap snapshot: [[Roadmap-2026-11-11_v0.6.10-release]]

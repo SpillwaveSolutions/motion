@@ -1186,9 +1186,19 @@
    "type": "targets"
   },
   {
+   "from": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "to": "pr/81",
+   "type": "lands-in"
+  },
+  {
    "from": "item/01M7G6232437NHRFH5M392PDN9",
    "to": "item/01M7G62323WBZ2GKE42W294Q7W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G6232437NHRFH5M392PDN9",
+   "to": "pr/81",
+   "type": "lands-in"
   },
   {
    "from": "item/01M7G6232437NHRFH5M392PDN9",
@@ -1209,6 +1219,11 @@
    "from": "item/01M7G62324ATG0NMRRGGCQSY6F",
    "to": "item/01M7G62323WBZ2GKE42W294Q7W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324ATG0NMRRGGCQSY6F",
+   "to": "pr/81",
+   "type": "lands-in"
   },
   {
    "from": "item/01M7G62324ATG0NMRRGGCQSY6F",
@@ -1219,6 +1234,11 @@
    "from": "item/01M7G62324CPMT49A3TK5FHAT3",
    "to": "item/01M7G62323WBZ2GKE42W294Q7W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324CPMT49A3TK5FHAT3",
+   "to": "pr/81",
+   "type": "lands-in"
   },
   {
    "from": "item/01M7G62324CPMT49A3TK5FHAT3",
@@ -1229,6 +1249,11 @@
    "from": "item/01M7G62324JEE4YPVSFMSY84P1",
    "to": "item/01M7G62323WBZ2GKE42W294Q7W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324JEE4YPVSFMSY84P1",
+   "to": "pr/81",
+   "type": "lands-in"
   },
   {
    "from": "item/01M7G62324JEE4YPVSFMSY84P1",
@@ -1239,6 +1264,11 @@
    "from": "item/01M7G62324V378E3WD04P9R60H",
    "to": "item/01M7G62323WBZ2GKE42W294Q7W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324V378E3WD04P9R60H",
+   "to": "pr/81",
+   "type": "lands-in"
   },
   {
    "from": "item/01M7G62324V378E3WD04P9R60H",
@@ -1249,6 +1279,11 @@
    "from": "item/01M7G62324XZJ1J3NRZS7RQR4V",
    "to": "item/01M7G62323WBZ2GKE42W294Q7W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324XZJ1J3NRZS7RQR4V",
+   "to": "pr/81",
+   "type": "lands-in"
   },
   {
    "from": "item/01M7G62324XZJ1J3NRZS7RQR4V",
@@ -1973,6 +2008,21 @@
   {
    "from": "roadmap-snapshot/2026-11-11_v0.6.10-release",
    "to": "release/v0.6.10",
+   "type": "targets"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-15_v0.6.11-release",
+   "to": "roadmap",
+   "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-15_v0.6.11-release",
+   "to": "roadmap-snapshot/2026-11-11_v0.6.10-release",
+   "type": "supersedes"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-15_v0.6.11-release",
+   "to": "release/v0.6.11",
    "type": "targets"
   }
  ],
@@ -2866,37 +2916,37 @@
   },
   "item/01M7G6232437NHRFH5M392PDN9": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Unit, Rust, and Playwright tests for the workspace watch"
   },
   "item/01M7G62324ASWXPNMA4D2YQGJN": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "in_progress",
    "title": "Release v0.6.11"
   },
   "item/01M7G62324ATG0NMRRGGCQSY6F": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Watch the workspace in the Tauri app and emit motion://fs-changed"
   },
   "item/01M7G62324CPMT49A3TK5FHAT3": {
    "doc_type": "item",
-   "status": "in_progress",
+   "status": "done",
    "title": "Add the shared watch filter to fsCore.ts and fs_core.rs, with contract cases"
   },
   "item/01M7G62324JEE4YPVSFMSY84P1": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Re-list the sidebar files when the workspace changes"
   },
   "item/01M7G62324V378E3WD04P9R60H": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Update the user guide, README, design doc, and wiki"
   },
   "item/01M7G62324XZJ1J3NRZS7RQR4V": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Stream workspace changes from the dev server on GET /api/fs/events"
   },
   "item/01M7G7N6W5H69DQWAGT72YKSRG": {
@@ -3044,6 +3094,9 @@
   "pr/78": {
    "doc_type": "pr"
   },
+  "pr/81": {
+   "doc_type": "pr"
+  },
   "release/v0.1.0": {
    "doc_type": "release"
   },
@@ -3161,6 +3214,12 @@
   "roadmap-snapshot/2026-11-11_v0.6.10-release": {
    "doc_type": "roadmap-snapshot",
    "source": "docs/roadmap/2026-11-11_v0.6.10-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot"
+  },
+  "roadmap-snapshot/2026-11-15_v0.6.11-release": {
+   "doc_type": "roadmap-snapshot",
+   "source": "docs/roadmap/2026-11-15_v0.6.11-release.md",
    "title": "Roadmap",
    "truth_state": "snapshot"
   },
