@@ -255,10 +255,16 @@
       "expect": { "result": "ok", "watched": true }
     },
     {
-      "name": "watches a dot folder appearing at the root, which changes nothing listed",
+      "name": "ignores an event on a dot folder itself",
       "op": "watched_change",
       "path": "$ROOT/.cache",
-      "expect": { "result": "ok", "watched": true }
+      "expect": { "result": "ok", "watched": false }
+    },
+    {
+      "name": "ignores a dot-named file that is not a note",
+      "op": "watched_change",
+      "path": "$ROOT/.DS_Store",
+      "expect": { "result": "ok", "watched": false }
     },
     {
       "name": "ignores a change outside the workspace",

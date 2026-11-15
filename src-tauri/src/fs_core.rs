@@ -145,20 +145,30 @@ pub fn collect_files(root: &Path, extensions: &[&str]) -> FsResult<Vec<String>> 
 }
 
 /// Does a file event at `changed` (absolute) change what the sidebar lists?
-/// Mirrors isWatchedChange in fsCore.ts. Events outside the root, and events
-/// inside a dot folder (`.git/index`), are skipped -- collect_files never walks
-/// into a dot folder. The last segment may start with a dot: collect_files
-/// lists `.draft.md`. Both paths must already be canonical.
+/// Mirrors isWatchedChange in fsCore.ts. Skipped: events outside the root,
+/// events inside a dot folder (`.git/index`), and a dot-named entry that is not
+/// a markdown file (`.git`, `.DS_Store`). collect_files never walks into a dot
+/// folder, but it lists a dot-named note such as `.draft.md`. The rule uses the
+/// path only, because a deleted path cannot be checked on disk. Both paths
+/// must already be canonical.
 pub fn is_watched_change(root: &Path, changed: &Path) -> bool {
     let Ok(rel) = changed.strip_prefix(root) else { return false };
-    let parts: Vec<Component> = rel.components().collect();
-    if !parts.iter().all(|c| matches!(c, Component::Normal(_))) {
+    let mut names = Vec::new();
+    for c in rel.components() {
+        let Component::Normal(name) = c else { return false };
+        names.push(name.to_string_lossy().into_owned());
+    }
+    let Some((last, folders)) = names.split_last() else { return true };
+    if folders.iter().any(|f| f.starts_with('.')) {
         return false;
     }
-    let folders = &parts[..parts.len().saturating_sub(1)];
-    !folders
-        .iter()
-        .any(|c| c.as_os_str().to_string_lossy().starts_with('.'))
+    if !last.starts_with('.') {
+        return true;
+    }
+    match last.rfind('.') {
+        Some(dot) if dot > 0 => MARKDOWN_EXTENSIONS.contains(&last[dot + 1..].to_lowercase().as_str()),
+        _ => false,
+    }
 }
 
 fn walk(dir: &Path, extensions: &[&str], out: &mut Vec<String>) -> FsResult<()> {

@@ -662,8 +662,10 @@ already has.
 | Browser | `workspaceEvents` in `src/server.ts`: one shared recursive `fs.watch` for the server's life, fanned out to all streams by `createChangeHub` (`src/lib/changeHub.ts`) | `GET /api/fs/events`, Server-Sent Events, `data: changed` |
 
 Both watchers filter with `is_watched_change` and `isWatchedChange`, which skip
-events outside the root and inside a dot folder. A dot-named file such as
-`.draft.md` counts, because `collectFiles` lists it. The storage contract pins
+events outside the root, inside a dot folder, and on a dot-named entry that is
+not a markdown file. A dot-named note such as `.draft.md` counts, because
+`collectFiles` lists it. On Linux, inotify also reports the dot folder itself,
+so the rule must skip `.hidden` as well as `.hidden/x.md`. The storage contract pins
 that rule. `StorageProvider.watch` subscribes, and the effect in `App.tsx` runs
 the re-list. A refresh that a folder load or a newer refresh overtakes drops
 its result. The dev server calls `server.timeout(req, 0)` so that Bun does not
@@ -840,7 +842,7 @@ purely to emit the fixture's wire names.
 | lists markdown recursively, sorted, skipping dotdirs and other extensions | 134–141 | Listing shape |
 | lists data files by extension, sorted | 142–149 | Dataset picker |
 | listing returns absolute paths | 150–155 | Web used to return bare filenames while Tauri returned absolute paths |
-| watches a note change, ignores dot folders and paths outside the root | 221–274 | The live sidebar refresh lists `.git` churn, or reacts to a sibling folder |
+| watches a note change, ignores dot folders and paths outside the root | 221–280 | The live sidebar refresh lists `.git` churn, or reacts to a sibling folder |
 
 ### 6.1.4 The fixture harnesses
 
