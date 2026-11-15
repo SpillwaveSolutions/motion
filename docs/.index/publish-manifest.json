@@ -2411,11 +2411,11 @@
    "wiki_key": "plan/2026-11-15-workspace-watch"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-11T22:28:46Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-15T18:03:46Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "17187323a361",
+   "render_hash": "793c042d162d",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
