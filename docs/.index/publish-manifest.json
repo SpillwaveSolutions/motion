@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "3fb5d9f586c1",
+   "render_hash": "8c4676e31cf4",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -2301,6 +2301,26 @@
    "wiki_key": "item/01M7G62324XZJ1J3NRZS7RQR4V"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M7G7N6W5H69DQWAGT72YKSRG",
+   "render": "as-is",
+   "render_hash": "5ae0218f715f",
+   "source": "docs/.index/rendered/tickets/01M7G7N6W5H69DQWAGT72YKSRG.md",
+   "title": "Open note deleted or renamed by another program is written back on the next save",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G7N6W5H69DQWAGT72YKSRG"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G7N6YAP1RX5K53YZF5WA72",
+   "render": "as-is",
+   "render_hash": "2063e622c95b",
+   "source": "docs/.index/rendered/tickets/01M7G7N6YAP1RX5K53YZF5WA72.md",
+   "title": "Search notes uses old text after another program edits a note",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G7N6YAP1RX5K53YZF5WA72"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -2316,7 +2336,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "86ebc8c96d6a",
+   "render_hash": "9436cf135310",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -2411,11 +2431,11 @@
    "wiki_key": "plan/2026-11-15-workspace-watch"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-15T18:03:46Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-15T18:31:34Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "793c042d162d",
+   "render_hash": "455f476ee245",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

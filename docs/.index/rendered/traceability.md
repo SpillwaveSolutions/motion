@@ -2,6 +2,12 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Search notes uses old text after another program edits a note
+`01M7G7N6YAP1RX5K53YZF5WA72` · status: todo
+
+### Open note deleted or renamed by another program is written back on the next save
+`01M7G7N6W5H69DQWAGT72YKSRG` · status: todo
+
 ### Stream workspace changes from the dev server on GET /api/fs/events
 `01M7G62324XZJ1J3NRZS7RQR4V` · status: todo
 - belongs-to: Refresh the file list when the workspace folder changes

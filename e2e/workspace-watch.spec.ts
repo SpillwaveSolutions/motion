@@ -36,6 +36,41 @@ test("a note added outside Motion shows in the sidebar, and goes when deleted", 
     await expect(page.getByRole("treeitem", { name })).toHaveCount(0, { timeout: 5000 });
 });
 
+test("a dot-named note added outside shows, as Open Folder would list it", async ({ page }) => {
+    await gotoApp(page);
+    await openFolder(page);
+    const root = await workspaceRoot(page);
+    const name = `.draft-${Date.now()}.md`;
+    writeFileSync(join(root, name), "# Draft\n");
+    try {
+        await expect(page.getByRole("treeitem", { name })).toBeVisible({ timeout: 5000 });
+    } finally {
+        rmSync(join(root, name), { force: true });
+    }
+    await expect(page.getByRole("treeitem", { name })).toHaveCount(0, { timeout: 5000 });
+});
+
+test("a note added while another file changes nonstop still shows", async ({ page }) => {
+    await gotoApp(page);
+    await openFolder(page);
+    const root = await workspaceRoot(page);
+    const log = join(root, `churn-${Date.now()}.log`);
+    const name = `during-churn-${Date.now()}.md`;
+    // A file that changes every 100 ms, faster than the 300 ms window. A
+    // trailing debounce never fired while this ran.
+    let n = 0;
+    const churn = setInterval(() => writeFileSync(log, `line ${n++}\n`, { flag: "a" }), 100);
+    try {
+        await page.waitForTimeout(500);
+        writeFileSync(join(root, name), "# During churn\n");
+        await expect(page.getByRole("treeitem", { name })).toBeVisible({ timeout: 5000 });
+    } finally {
+        clearInterval(churn);
+        rmSync(log, { force: true });
+        rmSync(join(root, name), { force: true });
+    }
+});
+
 test("a note added inside a dot folder stays out of the sidebar", async ({ page }) => {
     await gotoApp(page);
     await openFolder(page);

@@ -146,14 +146,19 @@ pub fn collect_files(root: &Path, extensions: &[&str]) -> FsResult<Vec<String>> 
 
 /// Does a file event at `changed` (absolute) change what the sidebar lists?
 /// Mirrors isWatchedChange in fsCore.ts. Events outside the root, and events
-/// under any dot segment (`.git`, `.DS_Store`), are skipped -- the same entries
-/// collect_files skips. Both paths must already be canonical.
+/// inside a dot folder (`.git/index`), are skipped -- collect_files never walks
+/// into a dot folder. The last segment may start with a dot: collect_files
+/// lists `.draft.md`. Both paths must already be canonical.
 pub fn is_watched_change(root: &Path, changed: &Path) -> bool {
     let Ok(rel) = changed.strip_prefix(root) else { return false };
-    rel.components().all(|c| match c {
-        Component::Normal(name) => !name.to_string_lossy().starts_with('.'),
-        _ => false,
-    })
+    let parts: Vec<Component> = rel.components().collect();
+    if !parts.iter().all(|c| matches!(c, Component::Normal(_))) {
+        return false;
+    }
+    let folders = &parts[..parts.len().saturating_sub(1)];
+    !folders
+        .iter()
+        .any(|c| c.as_os_str().to_string_lossy().starts_with('.'))
 }
 
 fn walk(dir: &Path, extensions: &[&str], out: &mut Vec<String>) -> FsResult<()> {

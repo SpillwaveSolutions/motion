@@ -2899,6 +2899,16 @@
    "status": "todo",
    "title": "Stream workspace changes from the dev server on GET /api/fs/events"
   },
+  "item/01M7G7N6W5H69DQWAGT72YKSRG": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Open note deleted or renamed by another program is written back on the next save"
+  },
+  "item/01M7G7N6YAP1RX5K53YZF5WA72": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Search notes uses old text after another program edits a note"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",

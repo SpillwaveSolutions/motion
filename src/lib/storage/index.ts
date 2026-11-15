@@ -173,8 +173,10 @@ export class HttpStorage implements StorageProvider {
     }
 
     watch(onChange: () => void): () => void {
-        // EventSource reconnects by itself if the dev server restarts.
+        // EventSource reconnects by itself if the dev server restarts. Each
+        // open also refreshes, for changes made while the stream was down.
         const events = new EventSource("/api/fs/events");
+        events.onopen = () => onChange();
         events.onmessage = () => onChange();
         return () => events.close();
     }

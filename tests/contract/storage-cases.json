@@ -249,10 +249,16 @@
       "expect": { "result": "ok", "watched": false }
     },
     {
-      "name": "ignores a dotfile",
+      "name": "watches a dot-named note, which the listing shows",
       "op": "watched_change",
-      "path": "$ROOT/.DS_Store",
-      "expect": { "result": "ok", "watched": false }
+      "path": "$ROOT/.draft.md",
+      "expect": { "result": "ok", "watched": true }
+    },
+    {
+      "name": "watches a dot folder appearing at the root, which changes nothing listed",
+      "op": "watched_change",
+      "path": "$ROOT/.cache",
+      "expect": { "result": "ok", "watched": true }
     },
     {
       "name": "ignores a change outside the workspace",

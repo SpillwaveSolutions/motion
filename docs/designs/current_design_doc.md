@@ -650,7 +650,7 @@ an `ipc::Response`) or to `GET /api/fs/image`. Both call the shared jailed core
 whose extension is not an image extension. The storage contract covers it.
 
 **Live workspace refresh.** The backend watches the workspace root with OS file
-events and sends one signal per 300 ms burst. The client does not apply single
+events and sends at most one signal per 300 ms window. The client does not apply single
 events. It calls `listFiles` again, reads only the new notes, and drops the
 gone ones from the search cache. A full re-list keeps add, delete, and rename
 correct, and it uses the jail and dot-directory rules that `collectFiles`
@@ -659,14 +659,19 @@ already has.
 | Runtime | Watcher | Signal |
 |---|---|---|
 | Tauri | `watch_workspace` in `src-tauri/src/lib.rs` (`notify-debouncer-mini`, FSEvents on macOS). `set_workspace` replaces the watch held in `WorkspaceWatch`. | `motion://fs-changed` event |
-| Browser | `workspaceEvents` in `src/server.ts` (`fs.watch`, recursive), one watch per open stream | `GET /api/fs/events`, Server-Sent Events, `data: changed` |
+| Browser | `workspaceEvents` in `src/server.ts`: one shared recursive `fs.watch` for the server's life, fanned out to all streams by `createChangeHub` (`src/lib/changeHub.ts`) | `GET /api/fs/events`, Server-Sent Events, `data: changed` |
 
 Both watchers filter with `is_watched_change` and `isWatchedChange`, which skip
-events outside the root and under any dot segment. The storage contract pins
+events outside the root and inside a dot folder. A dot-named file such as
+`.draft.md` counts, because `collectFiles` lists it. The storage contract pins
 that rule. `StorageProvider.watch` subscribes, and the effect in `App.tsx` runs
 the re-list. A refresh that a folder load or a newer refresh overtakes drops
 its result. The dev server calls `server.timeout(req, 0)` so that Bun does not
-close a quiet stream after 10 seconds.
+close a quiet stream after 10 seconds. The hub throttles rather than debounces,
+because a debounce that restarts on each event never fires while a file changes
+nonstop. A watch per stream leaked: Bun 1.3.6 does not release a closed watch
+handle on macOS. `HttpStorage.watch` also refreshes on each `EventSource` open,
+for changes made while the dev server was down.
 
 **How to read it.** `rawMarkdown` is kept current continuously by `onUpdate`, not
 computed at save time — deliberately, so switching to Markdown view never shows
@@ -833,7 +838,7 @@ purely to emit the fixture's wire names.
 | lists markdown recursively, sorted, skipping dotdirs and other extensions | 134–141 | Listing shape |
 | lists data files by extension, sorted | 142–149 | Dataset picker |
 | listing returns absolute paths | 150–155 | Web used to return bare filenames while Tauri returned absolute paths |
-| watches a note change, ignores dot directories and paths outside the root | 221–268 | The live sidebar refresh lists `.git` churn, or reacts to a sibling folder |
+| watches a note change, ignores dot folders and paths outside the root | 221–274 | The live sidebar refresh lists `.git` churn, or reacts to a sibling folder |
 
 ### 6.1.4 The fixture harnesses
 

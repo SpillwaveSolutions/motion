@@ -424,6 +424,7 @@ function App() {
                 );
                 if (stale()) return;
                 setFiles(listed);
+                setRenamingPath((prev) => (prev && !listed.includes(prev) ? null : prev));
                 setContents((prev) => {
                     const next: Record<string, string> = {};
                     for (const p of listed) next[p] = fresh[p] ?? prev[p] ?? "";

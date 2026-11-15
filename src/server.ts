@@ -26,6 +26,7 @@ import { publishGist } from "./lib/publish/gist";
 import { publishNotion } from "./lib/publish/notion";
 import { streamAiToSseResponse } from "./lib/ai/service";
 import { encodeSse } from "./lib/ai/protocol";
+import { createChangeHub } from "./lib/changeHub";
 
 const ALLOWED_LLM_PROVIDERS: ModelProvider[] = ["opencode", "claude", "qwen"];
 
@@ -137,45 +138,31 @@ const watcher = watch(join(PROJECT_ROOT, "src"), { recursive: true }, (_event, f
     }
 });
 
-/** Burst window: a `git checkout` or an unzip becomes one sidebar refresh. */
-const WATCH_DEBOUNCE_MS = 300;
+/** One signal per window: a `git checkout` or an unzip becomes one sidebar refresh. */
+const workspaceChanges = createChangeHub(300);
+let workspaceWatch: ReturnType<typeof watch> | null = null;
 
 /**
- * GET /api/fs/events: Server-Sent Events. Sends `data: changed` once per burst
- * of workspace changes the sidebar lists. Browser-mode counterpart to the
- * Tauri `motion://fs-changed` event. Each open stream owns one fs.watch, which
- * closes when the client goes away.
+ * GET /api/fs/events: Server-Sent Events. Sends `data: changed` at most once
+ * per 300 ms while the workspace changes in ways the sidebar lists.
+ * Browser-mode counterpart to the Tauri `motion://fs-changed` event. All
+ * streams share one fs.watch, started on the first request (see changeHub.ts).
  */
 function workspaceEvents(req: Request): Response {
-    const encoder = new TextEncoder();
-    let stop = () => {};
+    workspaceWatch ??= watch(WORKSPACE_ROOT, { recursive: true }, (_event, filename) => {
+        if (filename && isWatchedChange(WORKSPACE_ROOT, join(WORKSPACE_ROOT, filename.toString()))) {
+            workspaceChanges.notify();
+        }
+    });
+    const message = new TextEncoder().encode("data: changed\n\n");
+    let unsubscribe = () => {};
     const stream = new ReadableStream<Uint8Array>({
         start(controller) {
-            let timer: ReturnType<typeof setTimeout> | null = null;
-            const fsWatch = watch(WORKSPACE_ROOT, { recursive: true }, (_event, filename) => {
-                if (!filename) return;
-                if (!isWatchedChange(WORKSPACE_ROOT, join(WORKSPACE_ROOT, filename.toString()))) return;
-                if (timer) clearTimeout(timer);
-                timer = setTimeout(() => {
-                    timer = null;
-                    controller.enqueue(encoder.encode("data: changed\n\n"));
-                }, WATCH_DEBOUNCE_MS);
-            });
-            stop = () => {
-                fsWatch.close();
-                if (timer) clearTimeout(timer);
-            };
-            req.signal.addEventListener("abort", () => {
-                stop();
-                try {
-                    controller.close();
-                } catch {
-                    /* already closed by cancel() */
-                }
-            });
+            unsubscribe = workspaceChanges.subscribe(() => controller.enqueue(message));
+            req.signal.addEventListener("abort", () => unsubscribe());
         },
         cancel() {
-            stop();
+            unsubscribe();
         },
     });
     return new Response(stream, {
@@ -525,6 +512,7 @@ console.log(`
 process.on("SIGINT", () => {
     if (rebuildTimer) clearTimeout(rebuildTimer);
     watcher.close();
+    workspaceWatch?.close();
     server.stop();
     process.exit(0);
 });
