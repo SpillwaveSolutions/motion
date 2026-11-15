@@ -1,6 +1,6 @@
 # Release v0.6.11
 
-`01M7G62324ASWXPNMA4D2YQGJN` · task/feature · **open**
+`01M7G62324ASWXPNMA4D2YQGJN` · task/feature · **in-progress**
 
 Release v0.6.11
 

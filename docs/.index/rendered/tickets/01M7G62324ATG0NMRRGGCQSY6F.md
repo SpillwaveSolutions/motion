@@ -1,12 +1,16 @@
 # Watch the workspace in the Tauri app and emit motion://fs-changed
 
-`01M7G62324ATG0NMRRGGCQSY6F` · task/feature · **open**
+`01M7G62324ATG0NMRRGGCQSY6F` · task/feature · **done**
 
 Watch the workspace in the Tauri app and emit motion://fs-changed
 
 ## Hierarchy
 
 - epic: [[Ticket-01M7G62323WBZ2GKE42W294Q7W]] Refresh the file list when the workspace folder changes — When another program adds, deletes, or renames a note in the open folder, the sidebar shows the change without a reload.
+
+## Linked PRs
+
+- [[PR-81]]
 
 ## Release
 

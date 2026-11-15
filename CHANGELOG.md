@@ -2,7 +2,9 @@
 
 All notable changes to Motion are recorded here. Dates are UTC.
 
-## Unreleased
+## 0.6.11, 2026-11-15
+
+The sidebar shows notes that another program adds, deletes, or renames in the open folder.
 
 ### Added
 
@@ -12,6 +14,25 @@ All notable changes to Motion are recorded here. Dates are UTC.
   app uses OS file events (FSEvents on macOS), and the browser dev server sends
   them on `GET /api/fs/events`. Files in dot folders such as `.git` stay hidden.
   (`01M7G62323WBZ2GKE42W294Q7W`, issue 80)
+
+### Known issues
+
+- **The open note is written back after an outside delete or rename.** If
+  another program deletes or renames the note that is open, the next save
+  writes it again under the old name (`01M7G7N6W5H69DQWAGT72YKSRG`).
+- **Search notes uses old text after an outside edit.** The refresh reads only
+  new notes, so an edit made by another program is not searched until you
+  reopen the folder (`01M7G7N6YAP1RX5K53YZF5WA72`).
+- **Task list checkboxes** are lost on save. `- [ ] item` becomes `-  item`,
+  because the editor has no task list node yet (`01M74DWNZTZX9SX23VCBYMCZ46`).
+- **Some rare markdown still changes on save.** Italic inside a word, two lists
+  next to each other, an empty list item, and `__bold__` change form
+  (`01M74H3ZDA95Y2VHVB95EJWWV1`).
+- **Images** load only from inside the open folder. The desktop app does not
+  load web images. PDF and Word export show the alt text.
+- **Word code blocks** lose their line breaks (`01M5FSD7DGETDXNZ9DBQCSTM0T`).
+- **PDF export** drops bold, italic, and inline code (`01M5FSD7FX4ZP6BR5YQT8KHDAD`).
+- **Export saves** go straight to `~/Downloads`. There is no Save dialog.
 
 ## 0.6.10, 2026-11-11
 
