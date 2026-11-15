@@ -2,7 +2,7 @@
   "_sidebar": {
     "page_id": "_Sidebar",
     "render_hash": "ae340f7f69f7",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/_Sidebar.md",
     "source_hash": "ae340f7f69f7",
     "title": "Sidebar",
@@ -13,10 +13,10 @@
     "canonical_key": "design/current-code-walkthrough",
     "doc_type": "design",
     "page_id": "Code-Walkthrough",
-    "render_hash": "691275c5c2af",
-    "rev": "9c1109ea56e44034fd183e3b3871b68ccc830f1b",
+    "render_hash": "0adf631047aa",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/designs/current_code_walkthrough.md",
-    "source_hash": "4add3684aae5",
+    "source_hash": "cf55ac2e12ad",
     "title": "Motion \u2014 Current Code Walkthrough",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Code-Walkthrough",
@@ -26,10 +26,10 @@
     "canonical_key": "design/current-design-doc",
     "doc_type": "design",
     "page_id": "Design-Doc",
-    "render_hash": "dd6ceba2b397",
-    "rev": "9c1109ea56e44034fd183e3b3871b68ccc830f1b",
+    "render_hash": "002fe97828d7",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/designs/current_design_doc.md",
-    "source_hash": "39178d30ec6c",
+    "source_hash": "b957224d5a0c",
     "title": "Motion \u2014 Current Design Document",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Design-Doc",
@@ -39,10 +39,10 @@
     "canonical_key": "home",
     "doc_type": null,
     "page_id": "Home",
-    "render_hash": "c9a1c31e0e32",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "render_hash": "b7ef0450f3b7",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/home.md",
-    "source_hash": "c9a1c31e0e32",
+    "source_hash": "b7ef0450f3b7",
     "title": "Home",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Home",
@@ -52,10 +52,10 @@
     "canonical_key": "index/decisions",
     "doc_type": null,
     "page_id": "Index-Decisions",
-    "render_hash": "e5a1358e3789",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "render_hash": "b10531ac4cbe",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/decisions.md",
-    "source_hash": "e5a1358e3789",
+    "source_hash": "b10531ac4cbe",
     "title": "Decisions Index",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Decisions",
@@ -63,10 +63,10 @@
   },
   "index/releases": {
     "page_id": "Index-Releases",
-    "render_hash": "3ea847255eb5",
-    "rev": "7abaee76cd1eb1c0cced42c6969f067d5da3946d",
+    "render_hash": "a89378f8228d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/releases.md",
-    "source_hash": "3ea847255eb5",
+    "source_hash": "a89378f8228d",
     "title": "Releases Index",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Releases"
   },
@@ -83,10 +83,10 @@
     "canonical_key": "index/traceability",
     "doc_type": null,
     "page_id": "Index-Traceability",
-    "render_hash": "fc345a47bba6",
-    "rev": "139fb50b45706b8bd0418384010f4ca9f5550fc7",
+    "render_hash": "518b42d9b830",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/traceability.md",
-    "source_hash": "fc345a47bba6",
+    "source_hash": "518b42d9b830",
     "title": "Traceability Index",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Index-Traceability",
@@ -860,10 +860,10 @@
     "canonical_key": "item/01KYQYYN3SBWDT25TC6H3G4EAA",
     "doc_type": null,
     "page_id": "Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
-    "render_hash": "7ed0659187ab",
-    "rev": "c4c2464745ec2071b8516e5c679c010773272b34",
+    "render_hash": "51dd48a164d5",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/tickets/01KYQYYN3SBWDT25TC6H3G4EAA.md",
-    "source_hash": "7ed0659187ab",
+    "source_hash": "51dd48a164d5",
     "title": "Save discoverability, new-note persistence E2E, and post-v0.1 follow-ups",
     "truth_state": "open",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3SBWDT25TC6H3G4EAA",
@@ -886,10 +886,10 @@
     "canonical_key": "item/01KYQYYN3T3VB8RCTMJJ13FK2H",
     "doc_type": null,
     "page_id": "Ticket-01KYQYYN3T3VB8RCTMJJ13FK2H",
-    "render_hash": "6161a1cd48fe",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "render_hash": "49f3a70b20db",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/tickets/01KYQYYN3T3VB8RCTMJJ13FK2H.md",
-    "source_hash": "6161a1cd48fe",
+    "source_hash": "49f3a70b20db",
     "title": "Welcome / demo datasets resolve when the open folder is not Motion",
     "truth_state": "open",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T3VB8RCTMJJ13FK2H",
@@ -912,10 +912,10 @@
     "canonical_key": "item/01KYQYYN3T5W49QH05WCCYX7CE",
     "doc_type": null,
     "page_id": "Ticket-01KYQYYN3T5W49QH05WCCYX7CE",
-    "render_hash": "82d4fa2a6cc7",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "render_hash": "5bdf835499d0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/tickets/01KYQYYN3T5W49QH05WCCYX7CE.md",
-    "source_hash": "82d4fa2a6cc7",
+    "source_hash": "5bdf835499d0",
     "title": "Sidebar: directory tree view alongside flat markdown list",
     "truth_state": "open",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQYYN3T5W49QH05WCCYX7CE",
@@ -1025,6 +1025,798 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01KYQZ49A7NWRQZK83658CT4QT",
     "wiki_key": "item/01KYQZ49A7NWRQZK83658CT4QT"
   },
+  "item/01M18MN19C0DPY7PXRGDRX6Y6G": {
+    "page_id": "Ticket-01M18MN19C0DPY7PXRGDRX6Y6G",
+    "render_hash": "5deaccb732cc",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19C0DPY7PXRGDRX6Y6G.md",
+    "source_hash": "5deaccb732cc",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19C0DPY7PXRGDRX6Y6G"
+  },
+  "item/01M18MN19C0WR6KZ3X63M1CX2R": {
+    "page_id": "Ticket-01M18MN19C0WR6KZ3X63M1CX2R",
+    "render_hash": "e9be23024cc8",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19C0WR6KZ3X63M1CX2R.md",
+    "source_hash": "e9be23024cc8",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19C0WR6KZ3X63M1CX2R"
+  },
+  "item/01M18MN19C8FQKQ9NVNT4162CX": {
+    "page_id": "Ticket-01M18MN19C8FQKQ9NVNT4162CX",
+    "render_hash": "6057b687fa1e",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19C8FQKQ9NVNT4162CX.md",
+    "source_hash": "6057b687fa1e",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19C8FQKQ9NVNT4162CX"
+  },
+  "item/01M18MN19CA20B51FR0ND643M4": {
+    "page_id": "Ticket-01M18MN19CA20B51FR0ND643M4",
+    "render_hash": "8eb26807a32f",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19CA20B51FR0ND643M4.md",
+    "source_hash": "8eb26807a32f",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19CA20B51FR0ND643M4"
+  },
+  "item/01M18MN19CBF3A5JXZHVANGT5Y": {
+    "page_id": "Ticket-01M18MN19CBF3A5JXZHVANGT5Y",
+    "render_hash": "3ab721976afe",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19CBF3A5JXZHVANGT5Y.md",
+    "source_hash": "3ab721976afe",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19CBF3A5JXZHVANGT5Y"
+  },
+  "item/01M18MN19CBNRDAYCJ0RTMWJV4": {
+    "page_id": "Ticket-01M18MN19CBNRDAYCJ0RTMWJV4",
+    "render_hash": "62c6020eaf59",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19CBNRDAYCJ0RTMWJV4.md",
+    "source_hash": "62c6020eaf59",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19CBNRDAYCJ0RTMWJV4"
+  },
+  "item/01M18MN19CSQ7PS762F7TWEXJC": {
+    "page_id": "Ticket-01M18MN19CSQ7PS762F7TWEXJC",
+    "render_hash": "f985f651c8ea",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18MN19CSQ7PS762F7TWEXJC.md",
+    "source_hash": "f985f651c8ea",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18MN19CSQ7PS762F7TWEXJC"
+  },
+  "item/01M18NBZ8T4G92HM091NQ1Z4B5": {
+    "page_id": "Ticket-01M18NBZ8T4G92HM091NQ1Z4B5",
+    "render_hash": "aea3b5cfca6b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18NBZ8T4G92HM091NQ1Z4B5.md",
+    "source_hash": "aea3b5cfca6b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18NBZ8T4G92HM091NQ1Z4B5"
+  },
+  "item/01M18Q560MPAYQJTA0W6F4DAW3": {
+    "page_id": "Ticket-01M18Q560MPAYQJTA0W6F4DAW3",
+    "render_hash": "c9428cf7c123",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18Q560MPAYQJTA0W6F4DAW3.md",
+    "source_hash": "c9428cf7c123",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18Q560MPAYQJTA0W6F4DAW3"
+  },
+  "item/01M18R79ZM3BMYZ56C7P874YN1": {
+    "page_id": "Ticket-01M18R79ZM3BMYZ56C7P874YN1",
+    "render_hash": "c14cecd9c616",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZM3BMYZ56C7P874YN1.md",
+    "source_hash": "c14cecd9c616",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZM3BMYZ56C7P874YN1"
+  },
+  "item/01M18R79ZM90HJ0MBG3CX6VW7E": {
+    "page_id": "Ticket-01M18R79ZM90HJ0MBG3CX6VW7E",
+    "render_hash": "55ca9e95f2f1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZM90HJ0MBG3CX6VW7E.md",
+    "source_hash": "55ca9e95f2f1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZM90HJ0MBG3CX6VW7E"
+  },
+  "item/01M18R79ZMD6BCM0CQGSSAEM05": {
+    "page_id": "Ticket-01M18R79ZMD6BCM0CQGSSAEM05",
+    "render_hash": "2658bed632d7",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMD6BCM0CQGSSAEM05.md",
+    "source_hash": "2658bed632d7",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMD6BCM0CQGSSAEM05"
+  },
+  "item/01M18R79ZMERNNHSH0KYY819SN": {
+    "page_id": "Ticket-01M18R79ZMERNNHSH0KYY819SN",
+    "render_hash": "ae9b98edb834",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMERNNHSH0KYY819SN.md",
+    "source_hash": "ae9b98edb834",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMERNNHSH0KYY819SN"
+  },
+  "item/01M18R79ZMGXNJ9D8JJ5P4W96J": {
+    "page_id": "Ticket-01M18R79ZMGXNJ9D8JJ5P4W96J",
+    "render_hash": "88133d01c565",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMGXNJ9D8JJ5P4W96J.md",
+    "source_hash": "88133d01c565",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMGXNJ9D8JJ5P4W96J"
+  },
+  "item/01M18R79ZMK0DX0PE2DPWMZ60D": {
+    "page_id": "Ticket-01M18R79ZMK0DX0PE2DPWMZ60D",
+    "render_hash": "5a4a2989b344",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMK0DX0PE2DPWMZ60D.md",
+    "source_hash": "5a4a2989b344",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMK0DX0PE2DPWMZ60D"
+  },
+  "item/01M18R79ZMKBXK2PGWR6911MJQ": {
+    "page_id": "Ticket-01M18R79ZMKBXK2PGWR6911MJQ",
+    "render_hash": "0123bbb47fa4",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMKBXK2PGWR6911MJQ.md",
+    "source_hash": "0123bbb47fa4",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMKBXK2PGWR6911MJQ"
+  },
+  "item/01M18R79ZMN53CMV76JFHKVEFN": {
+    "page_id": "Ticket-01M18R79ZMN53CMV76JFHKVEFN",
+    "render_hash": "bd8d6582d23a",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMN53CMV76JFHKVEFN.md",
+    "source_hash": "bd8d6582d23a",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMN53CMV76JFHKVEFN"
+  },
+  "item/01M18R79ZMSX2XFW3N4RG4X4DP": {
+    "page_id": "Ticket-01M18R79ZMSX2XFW3N4RG4X4DP",
+    "render_hash": "8940513ac8dc",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M18R79ZMSX2XFW3N4RG4X4DP.md",
+    "source_hash": "8940513ac8dc",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M18R79ZMSX2XFW3N4RG4X4DP"
+  },
+  "item/01M19Z6Z3XQZ03EYNXKKBG5WK7": {
+    "page_id": "Ticket-01M19Z6Z3XQZ03EYNXKKBG5WK7",
+    "render_hash": "39e64e6d19d0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M19Z6Z3XQZ03EYNXKKBG5WK7.md",
+    "source_hash": "39e64e6d19d0",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M19Z6Z3XQZ03EYNXKKBG5WK7"
+  },
+  "item/01M19Z6Z5DJ54227R1WYVVX2GF": {
+    "page_id": "Ticket-01M19Z6Z5DJ54227R1WYVVX2GF",
+    "render_hash": "818eac4bfbf5",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M19Z6Z5DJ54227R1WYVVX2GF.md",
+    "source_hash": "818eac4bfbf5",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M19Z6Z5DJ54227R1WYVVX2GF"
+  },
+  "item/01M19Z6Z6X06VRZM95741Y2748": {
+    "page_id": "Ticket-01M19Z6Z6X06VRZM95741Y2748",
+    "render_hash": "1edb09c9ccf5",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M19Z6Z6X06VRZM95741Y2748.md",
+    "source_hash": "1edb09c9ccf5",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M19Z6Z6X06VRZM95741Y2748"
+  },
+  "item/01M1A5MN90SK807JPBFKZCA5YW": {
+    "page_id": "Ticket-01M1A5MN90SK807JPBFKZCA5YW",
+    "render_hash": "657a31d56eb3",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1A5MN90SK807JPBFKZCA5YW.md",
+    "source_hash": "657a31d56eb3",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1A5MN90SK807JPBFKZCA5YW"
+  },
+  "item/01M1ABYDSANE2N1W2HDTF350EV": {
+    "page_id": "Ticket-01M1ABYDSANE2N1W2HDTF350EV",
+    "render_hash": "22837ec01bda",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1ABYDSANE2N1W2HDTF350EV.md",
+    "source_hash": "22837ec01bda",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1ABYDSANE2N1W2HDTF350EV"
+  },
+  "item/01M1ABZH14RJDDJ7M7HT3TZKYW": {
+    "page_id": "Ticket-01M1ABZH14RJDDJ7M7HT3TZKYW",
+    "render_hash": "82c2d22f5b0b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1ABZH14RJDDJ7M7HT3TZKYW.md",
+    "source_hash": "82c2d22f5b0b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1ABZH14RJDDJ7M7HT3TZKYW"
+  },
+  "item/01M1ABZH2F573CM32N93NDMAGB": {
+    "page_id": "Ticket-01M1ABZH2F573CM32N93NDMAGB",
+    "render_hash": "e1f6c5ebf461",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1ABZH2F573CM32N93NDMAGB.md",
+    "source_hash": "e1f6c5ebf461",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1ABZH2F573CM32N93NDMAGB"
+  },
+  "item/01M1FRJ0NDQB3PG4107FR537KK": {
+    "page_id": "Ticket-01M1FRJ0NDQB3PG4107FR537KK",
+    "render_hash": "05fc6681c75c",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1FRJ0NDQB3PG4107FR537KK.md",
+    "source_hash": "05fc6681c75c",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1FRJ0NDQB3PG4107FR537KK"
+  },
+  "item/01M1FVGZH0V9MR9GVHDF99VXED": {
+    "page_id": "Ticket-01M1FVGZH0V9MR9GVHDF99VXED",
+    "render_hash": "2de1b0b386ba",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1FVGZH0V9MR9GVHDF99VXED.md",
+    "source_hash": "2de1b0b386ba",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1FVGZH0V9MR9GVHDF99VXED"
+  },
+  "item/01M1HYST3AR3HYSFABKN6C0V8B": {
+    "page_id": "Ticket-01M1HYST3AR3HYSFABKN6C0V8B",
+    "render_hash": "e6e6773e25a5",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1HYST3AR3HYSFABKN6C0V8B.md",
+    "source_hash": "e6e6773e25a5",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1HYST3AR3HYSFABKN6C0V8B"
+  },
+  "item/01M1M1F33TZPTS93ABPVACF7BY": {
+    "page_id": "Ticket-01M1M1F33TZPTS93ABPVACF7BY",
+    "render_hash": "616957436d79",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1M1F33TZPTS93ABPVACF7BY.md",
+    "source_hash": "616957436d79",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1M1F33TZPTS93ABPVACF7BY"
+  },
+  "item/01M1M3BKY2BGRF8TKXRPV1GB93": {
+    "page_id": "Ticket-01M1M3BKY2BGRF8TKXRPV1GB93",
+    "render_hash": "19f1ed718db1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1M3BKY2BGRF8TKXRPV1GB93.md",
+    "source_hash": "19f1ed718db1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1M3BKY2BGRF8TKXRPV1GB93"
+  },
+  "item/01M1M3BKZKAGX5KS4RTXBP5G5A": {
+    "page_id": "Ticket-01M1M3BKZKAGX5KS4RTXBP5G5A",
+    "render_hash": "7f3a34972bf8",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1M3BKZKAGX5KS4RTXBP5G5A.md",
+    "source_hash": "7f3a34972bf8",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1M3BKZKAGX5KS4RTXBP5G5A"
+  },
+  "item/01M1M3BM12AD4ZEK9TBK2MQV2Z": {
+    "page_id": "Ticket-01M1M3BM12AD4ZEK9TBK2MQV2Z",
+    "render_hash": "132f016307f5",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1M3BM12AD4ZEK9TBK2MQV2Z.md",
+    "source_hash": "132f016307f5",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1M3BM12AD4ZEK9TBK2MQV2Z"
+  },
+  "item/01M1M3BXAWMB787A29JGMVDWGP": {
+    "page_id": "Ticket-01M1M3BXAWMB787A29JGMVDWGP",
+    "render_hash": "35e55007dcac",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1M3BXAWMB787A29JGMVDWGP.md",
+    "source_hash": "35e55007dcac",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1M3BXAWMB787A29JGMVDWGP"
+  },
+  "item/01M1M5KV1YAD0BFFFF9QD02DJJ": {
+    "page_id": "Ticket-01M1M5KV1YAD0BFFFF9QD02DJJ",
+    "render_hash": "6a3f73783e35",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1M5KV1YAD0BFFFF9QD02DJJ.md",
+    "source_hash": "6a3f73783e35",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1M5KV1YAD0BFFFF9QD02DJJ"
+  },
+  "item/01M1MVB2ZZFQX90WHGB0CA99RW": {
+    "page_id": "Ticket-01M1MVB2ZZFQX90WHGB0CA99RW",
+    "render_hash": "68a9ba5f8939",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB2ZZFQX90WHGB0CA99RW.md",
+    "source_hash": "68a9ba5f8939",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB2ZZFQX90WHGB0CA99RW"
+  },
+  "item/01M1MVB2ZZGP7FHW2TX6CNA6BE": {
+    "page_id": "Ticket-01M1MVB2ZZGP7FHW2TX6CNA6BE",
+    "render_hash": "07eafb24654b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB2ZZGP7FHW2TX6CNA6BE.md",
+    "source_hash": "07eafb24654b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB2ZZGP7FHW2TX6CNA6BE"
+  },
+  "item/01M1MVB3005Z8WSN5R6KEW5BNN": {
+    "page_id": "Ticket-01M1MVB3005Z8WSN5R6KEW5BNN",
+    "render_hash": "f01052669c6b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB3005Z8WSN5R6KEW5BNN.md",
+    "source_hash": "f01052669c6b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB3005Z8WSN5R6KEW5BNN"
+  },
+  "item/01M1MVB300EAR8PX5HKEACTKP1": {
+    "page_id": "Ticket-01M1MVB300EAR8PX5HKEACTKP1",
+    "render_hash": "478ee72311c1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB300EAR8PX5HKEACTKP1.md",
+    "source_hash": "478ee72311c1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB300EAR8PX5HKEACTKP1"
+  },
+  "item/01M1MVB300KXXJPZ2XACH7A64K": {
+    "page_id": "Ticket-01M1MVB300KXXJPZ2XACH7A64K",
+    "render_hash": "ca2061fba4a3",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB300KXXJPZ2XACH7A64K.md",
+    "source_hash": "ca2061fba4a3",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB300KXXJPZ2XACH7A64K"
+  },
+  "item/01M1MVB300TGVNPJBG8GJ6KG1T": {
+    "page_id": "Ticket-01M1MVB300TGVNPJBG8GJ6KG1T",
+    "render_hash": "40f1b9fd98a1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB300TGVNPJBG8GJ6KG1T.md",
+    "source_hash": "40f1b9fd98a1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB300TGVNPJBG8GJ6KG1T"
+  },
+  "item/01M1MVB300WHXWP5177D3BNDB2": {
+    "page_id": "Ticket-01M1MVB300WHXWP5177D3BNDB2",
+    "render_hash": "043e58beefae",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB300WHXWP5177D3BNDB2.md",
+    "source_hash": "043e58beefae",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB300WHXWP5177D3BNDB2"
+  },
+  "item/01M1MVB300WYDPA67T9FNDM51R": {
+    "page_id": "Ticket-01M1MVB300WYDPA67T9FNDM51R",
+    "render_hash": "bddce6754919",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1MVB300WYDPA67T9FNDM51R.md",
+    "source_hash": "bddce6754919",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1MVB300WYDPA67T9FNDM51R"
+  },
+  "item/01M1PMS8ZBVHA4KDG1W0AX5CHM": {
+    "page_id": "Ticket-01M1PMS8ZBVHA4KDG1W0AX5CHM",
+    "render_hash": "f013c4ff1549",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1PMS8ZBVHA4KDG1W0AX5CHM.md",
+    "source_hash": "f013c4ff1549",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1PMS8ZBVHA4KDG1W0AX5CHM"
+  },
+  "item/01M1QN6CE0P31CYJZFG7K9D3K7": {
+    "page_id": "Ticket-01M1QN6CE0P31CYJZFG7K9D3K7",
+    "render_hash": "d71f60bd2ef0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M1QN6CE0P31CYJZFG7K9D3K7.md",
+    "source_hash": "d71f60bd2ef0",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M1QN6CE0P31CYJZFG7K9D3K7"
+  },
+  "item/01M23KYWDKJPH89J1M3TSRM0DB": {
+    "page_id": "Ticket-01M23KYWDKJPH89J1M3TSRM0DB",
+    "render_hash": "431ad35d7186",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M23KYWDKJPH89J1M3TSRM0DB.md",
+    "source_hash": "431ad35d7186",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M23KYWDKJPH89J1M3TSRM0DB"
+  },
+  "item/01M25RY5AM6ZWRGEAJP34X06WN": {
+    "page_id": "Ticket-01M25RY5AM6ZWRGEAJP34X06WN",
+    "render_hash": "efc083b6cfde",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M25RY5AM6ZWRGEAJP34X06WN.md",
+    "source_hash": "efc083b6cfde",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M25RY5AM6ZWRGEAJP34X06WN"
+  },
+  "item/01M3M9CAJ08DJKX7T6E0EE8SP3": {
+    "page_id": "Ticket-01M3M9CAJ08DJKX7T6E0EE8SP3",
+    "render_hash": "64a8a2aad61a",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M3M9CAJ08DJKX7T6E0EE8SP3.md",
+    "source_hash": "64a8a2aad61a",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M3M9CAJ08DJKX7T6E0EE8SP3"
+  },
+  "item/01M5FP83K2ZA8P1FJ9AF3EK5Y8": {
+    "page_id": "Ticket-01M5FP83K2ZA8P1FJ9AF3EK5Y8",
+    "render_hash": "7d0e8b33782c",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FP83K2ZA8P1FJ9AF3EK5Y8.md",
+    "source_hash": "7d0e8b33782c",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FP83K2ZA8P1FJ9AF3EK5Y8"
+  },
+  "item/01M5FSD7DGETDXNZ9DBQCSTM0T": {
+    "page_id": "Ticket-01M5FSD7DGETDXNZ9DBQCSTM0T",
+    "render_hash": "ec2128b53532",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7DGETDXNZ9DBQCSTM0T.md",
+    "source_hash": "ec2128b53532",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7DGETDXNZ9DBQCSTM0T"
+  },
+  "item/01M5FSD7FX4ZP6BR5YQT8KHDAD": {
+    "page_id": "Ticket-01M5FSD7FX4ZP6BR5YQT8KHDAD",
+    "render_hash": "3c30bdb05386",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7FX4ZP6BR5YQT8KHDAD.md",
+    "source_hash": "3c30bdb05386",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7FX4ZP6BR5YQT8KHDAD"
+  },
+  "item/01M5FSD7J51R65WWC8VF85M0W2": {
+    "page_id": "Ticket-01M5FSD7J51R65WWC8VF85M0W2",
+    "render_hash": "6be46fb67a54",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7J51R65WWC8VF85M0W2.md",
+    "source_hash": "6be46fb67a54",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7J51R65WWC8VF85M0W2"
+  },
+  "item/01M5FSD7MA4Z0KY4ZRWRV0XJZ3": {
+    "page_id": "Ticket-01M5FSD7MA4Z0KY4ZRWRV0XJZ3",
+    "render_hash": "d39d9025a683",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7MA4Z0KY4ZRWRV0XJZ3.md",
+    "source_hash": "d39d9025a683",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7MA4Z0KY4ZRWRV0XJZ3"
+  },
+  "item/01M5FSD7PJCJXQ9VE693ACM4B2": {
+    "page_id": "Ticket-01M5FSD7PJCJXQ9VE693ACM4B2",
+    "render_hash": "ec5849447317",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7PJCJXQ9VE693ACM4B2.md",
+    "source_hash": "ec5849447317",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7PJCJXQ9VE693ACM4B2"
+  },
+  "item/01M5FSD7RV6MJ0JZVAT5F3VW3H": {
+    "page_id": "Ticket-01M5FSD7RV6MJ0JZVAT5F3VW3H",
+    "render_hash": "245e004c9218",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7RV6MJ0JZVAT5F3VW3H.md",
+    "source_hash": "245e004c9218",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7RV6MJ0JZVAT5F3VW3H"
+  },
+  "item/01M5FSD7V43Q89K2GM50EMJ6EC": {
+    "page_id": "Ticket-01M5FSD7V43Q89K2GM50EMJ6EC",
+    "render_hash": "e4cb2814bad3",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FSD7V43Q89K2GM50EMJ6EC.md",
+    "source_hash": "e4cb2814bad3",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FSD7V43Q89K2GM50EMJ6EC"
+  },
+  "item/01M5FT7DV6ZMNBXWA883G6CDC8": {
+    "page_id": "Ticket-01M5FT7DV6ZMNBXWA883G6CDC8",
+    "render_hash": "dade4a826c9c",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5FT7DV6ZMNBXWA883G6CDC8.md",
+    "source_hash": "dade4a826c9c",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5FT7DV6ZMNBXWA883G6CDC8"
+  },
+  "item/01M5GQ207P956J179YGENY9ERT": {
+    "page_id": "Ticket-01M5GQ207P956J179YGENY9ERT",
+    "render_hash": "dadc4e193873",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQ207P956J179YGENY9ERT.md",
+    "source_hash": "dadc4e193873",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQ207P956J179YGENY9ERT"
+  },
+  "item/01M5GQ20A1NSA2XAG232KJVGHK": {
+    "page_id": "Ticket-01M5GQ20A1NSA2XAG232KJVGHK",
+    "render_hash": "8db1c8f11037",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQ20A1NSA2XAG232KJVGHK.md",
+    "source_hash": "8db1c8f11037",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQ20A1NSA2XAG232KJVGHK"
+  },
+  "item/01M5GQ20CANKH5P50X4QC523WM": {
+    "page_id": "Ticket-01M5GQ20CANKH5P50X4QC523WM",
+    "render_hash": "7f5dc8bb7fa0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQ20CANKH5P50X4QC523WM.md",
+    "source_hash": "7f5dc8bb7fa0",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQ20CANKH5P50X4QC523WM"
+  },
+  "item/01M5GQ20EM4T0BSWW130VZJVCV": {
+    "page_id": "Ticket-01M5GQ20EM4T0BSWW130VZJVCV",
+    "render_hash": "9d24874ca016",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQ20EM4T0BSWW130VZJVCV.md",
+    "source_hash": "9d24874ca016",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQ20EM4T0BSWW130VZJVCV"
+  },
+  "item/01M5GQ20H070MJFSM16QNX12TY": {
+    "page_id": "Ticket-01M5GQ20H070MJFSM16QNX12TY",
+    "render_hash": "8d307f8462da",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQ20H070MJFSM16QNX12TY.md",
+    "source_hash": "8d307f8462da",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQ20H070MJFSM16QNX12TY"
+  },
+  "item/01M5GQ20K7RQ0WTFF1973915BP": {
+    "page_id": "Ticket-01M5GQ20K7RQ0WTFF1973915BP",
+    "render_hash": "2b7e668276fe",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQ20K7RQ0WTFF1973915BP.md",
+    "source_hash": "2b7e668276fe",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQ20K7RQ0WTFF1973915BP"
+  },
+  "item/01M5GQYSTS6MXM432NYSV6JY5G": {
+    "page_id": "Ticket-01M5GQYSTS6MXM432NYSV6JY5G",
+    "render_hash": "3c7f772b51b0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GQYSTS6MXM432NYSV6JY5G.md",
+    "source_hash": "3c7f772b51b0",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GQYSTS6MXM432NYSV6JY5G"
+  },
+  "item/01M5GRYQY7ZAK975G44M0G6T6N": {
+    "page_id": "Ticket-01M5GRYQY7ZAK975G44M0G6T6N",
+    "render_hash": "86f4bdbc4afd",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GRYQY7ZAK975G44M0G6T6N.md",
+    "source_hash": "86f4bdbc4afd",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GRYQY7ZAK975G44M0G6T6N"
+  },
+  "item/01M5GTCRJQPGX82TS89Y93732Z": {
+    "page_id": "Ticket-01M5GTCRJQPGX82TS89Y93732Z",
+    "render_hash": "1a508965c83d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5GTCRJQPGX82TS89Y93732Z.md",
+    "source_hash": "1a508965c83d",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5GTCRJQPGX82TS89Y93732Z"
+  },
+  "item/01M5J4C2142M28BJZPBSWJ4Y04": {
+    "page_id": "Ticket-01M5J4C2142M28BJZPBSWJ4Y04",
+    "render_hash": "c8d4981f6625",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5J4C2142M28BJZPBSWJ4Y04.md",
+    "source_hash": "c8d4981f6625",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5J4C2142M28BJZPBSWJ4Y04"
+  },
+  "item/01M5JJZFC11HAXZHJJ6N10S79G": {
+    "page_id": "Ticket-01M5JJZFC11HAXZHJJ6N10S79G",
+    "render_hash": "39adbfd17b6d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC11HAXZHJJ6N10S79G.md",
+    "source_hash": "39adbfd17b6d",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC11HAXZHJJ6N10S79G"
+  },
+  "item/01M5JJZFC136XTFWX2GB74JF2W": {
+    "page_id": "Ticket-01M5JJZFC136XTFWX2GB74JF2W",
+    "render_hash": "4bfae483b4ff",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC136XTFWX2GB74JF2W.md",
+    "source_hash": "4bfae483b4ff",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC136XTFWX2GB74JF2W"
+  },
+  "item/01M5JJZFC14JQC2NNTQKG2B4GV": {
+    "page_id": "Ticket-01M5JJZFC14JQC2NNTQKG2B4GV",
+    "render_hash": "b9109065edfd",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC14JQC2NNTQKG2B4GV.md",
+    "source_hash": "b9109065edfd",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC14JQC2NNTQKG2B4GV"
+  },
+  "item/01M5JJZFC1B9P22KTJF6JS378H": {
+    "page_id": "Ticket-01M5JJZFC1B9P22KTJF6JS378H",
+    "render_hash": "8c45a903f9c2",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC1B9P22KTJF6JS378H.md",
+    "source_hash": "8c45a903f9c2",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC1B9P22KTJF6JS378H"
+  },
+  "item/01M5JJZFC1GTE6MWBQE89529RQ": {
+    "page_id": "Ticket-01M5JJZFC1GTE6MWBQE89529RQ",
+    "render_hash": "dfded56c6651",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC1GTE6MWBQE89529RQ.md",
+    "source_hash": "dfded56c6651",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC1GTE6MWBQE89529RQ"
+  },
+  "item/01M5JJZFC1MD61SVP5QBX9Q9JR": {
+    "page_id": "Ticket-01M5JJZFC1MD61SVP5QBX9Q9JR",
+    "render_hash": "5618bb91e878",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC1MD61SVP5QBX9Q9JR.md",
+    "source_hash": "5618bb91e878",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC1MD61SVP5QBX9Q9JR"
+  },
+  "item/01M5JJZFC1QWPY3EV9WCNZVC01": {
+    "page_id": "Ticket-01M5JJZFC1QWPY3EV9WCNZVC01",
+    "render_hash": "9f6ac3d55580",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC1QWPY3EV9WCNZVC01.md",
+    "source_hash": "9f6ac3d55580",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC1QWPY3EV9WCNZVC01"
+  },
+  "item/01M5JJZFC1Y253JZSTV70R3S3P": {
+    "page_id": "Ticket-01M5JJZFC1Y253JZSTV70R3S3P",
+    "render_hash": "ee153485cd23",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZFC1Y253JZSTV70R3S3P.md",
+    "source_hash": "ee153485cd23",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZFC1Y253JZSTV70R3S3P"
+  },
+  "item/01M5JJZRM87A0Y5YFFHE8WF2GR": {
+    "page_id": "Ticket-01M5JJZRM87A0Y5YFFHE8WF2GR",
+    "render_hash": "b63bd965619a",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JJZRM87A0Y5YFFHE8WF2GR.md",
+    "source_hash": "b63bd965619a",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JJZRM87A0Y5YFFHE8WF2GR"
+  },
+  "item/01M5JKR1P3V9VD5TGSFYFXCV6D": {
+    "page_id": "Ticket-01M5JKR1P3V9VD5TGSFYFXCV6D",
+    "render_hash": "2ca91cf5b68b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JKR1P3V9VD5TGSFYFXCV6D.md",
+    "source_hash": "2ca91cf5b68b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JKR1P3V9VD5TGSFYFXCV6D"
+  },
+  "item/01M5JKV9HQZ7X83CD6X1SMP6VV": {
+    "page_id": "Ticket-01M5JKV9HQZ7X83CD6X1SMP6VV",
+    "render_hash": "6a12b5047e54",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M5JKV9HQZ7X83CD6X1SMP6VV.md",
+    "source_hash": "6a12b5047e54",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M5JKV9HQZ7X83CD6X1SMP6VV"
+  },
+  "item/01M61ZMBTJ98N776ZAKWG0GGXF": {
+    "page_id": "Ticket-01M61ZMBTJ98N776ZAKWG0GGXF",
+    "render_hash": "611f0d6eaf4a",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M61ZMBTJ98N776ZAKWG0GGXF.md",
+    "source_hash": "611f0d6eaf4a",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M61ZMBTJ98N776ZAKWG0GGXF"
+  },
+  "item/01M625NN6RWHPR0HHR60BK6E7T": {
+    "page_id": "Ticket-01M625NN6RWHPR0HHR60BK6E7T",
+    "render_hash": "340fd5ea6677",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M625NN6RWHPR0HHR60BK6E7T.md",
+    "source_hash": "340fd5ea6677",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M625NN6RWHPR0HHR60BK6E7T"
+  },
+  "item/01M625NN8HB9SEM5SKWWY8NXVV": {
+    "page_id": "Ticket-01M625NN8HB9SEM5SKWWY8NXVV",
+    "render_hash": "0e15de0d8070",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M625NN8HB9SEM5SKWWY8NXVV.md",
+    "source_hash": "0e15de0d8070",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M625NN8HB9SEM5SKWWY8NXVV"
+  },
+  "item/01M625WSXBR94NM1H27PERXTA3": {
+    "page_id": "Ticket-01M625WSXBR94NM1H27PERXTA3",
+    "render_hash": "c61100a0f4e0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M625WSXBR94NM1H27PERXTA3.md",
+    "source_hash": "c61100a0f4e0",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M625WSXBR94NM1H27PERXTA3"
+  },
+  "item/01M62CH1ZEE0CBS8HJJVPZMJD6": {
+    "page_id": "Ticket-01M62CH1ZEE0CBS8HJJVPZMJD6",
+    "render_hash": "af585a435079",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M62CH1ZEE0CBS8HJJVPZMJD6.md",
+    "source_hash": "af585a435079",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M62CH1ZEE0CBS8HJJVPZMJD6"
+  },
+  "item/01M6PVQSA2JVBR4KMNBPJ6CCNJ": {
+    "page_id": "Ticket-01M6PVQSA2JVBR4KMNBPJ6CCNJ",
+    "render_hash": "74f1d646d980",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M6PVQSA2JVBR4KMNBPJ6CCNJ.md",
+    "source_hash": "74f1d646d980",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M6PVQSA2JVBR4KMNBPJ6CCNJ"
+  },
+  "item/01M6PVQSBR7GWZFK3W03NARBZZ": {
+    "page_id": "Ticket-01M6PVQSBR7GWZFK3W03NARBZZ",
+    "render_hash": "22b8cf75559d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M6PVQSBR7GWZFK3W03NARBZZ.md",
+    "source_hash": "22b8cf75559d",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M6PVQSBR7GWZFK3W03NARBZZ"
+  },
+  "item/01M6PYPDCFR8Y51B8R1J63G11T": {
+    "page_id": "Ticket-01M6PYPDCFR8Y51B8R1J63G11T",
+    "render_hash": "8b8523745205",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M6PYPDCFR8Y51B8R1J63G11T.md",
+    "source_hash": "8b8523745205",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M6PYPDCFR8Y51B8R1J63G11T"
+  },
+  "item/01M74DWNZTZX9SX23VCBYMCZ46": {
+    "page_id": "Ticket-01M74DWNZTZX9SX23VCBYMCZ46",
+    "render_hash": "4456024965b4",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M74DWNZTZX9SX23VCBYMCZ46.md",
+    "source_hash": "4456024965b4",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M74DWNZTZX9SX23VCBYMCZ46"
+  },
+  "item/01M74F6TER7HQJF7MAJWEMXHFJ": {
+    "page_id": "Ticket-01M74F6TER7HQJF7MAJWEMXHFJ",
+    "render_hash": "c97e1b9aa78b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M74F6TER7HQJF7MAJWEMXHFJ.md",
+    "source_hash": "c97e1b9aa78b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M74F6TER7HQJF7MAJWEMXHFJ"
+  },
+  "item/01M74H3ZDA95Y2VHVB95EJWWV1": {
+    "page_id": "Ticket-01M74H3ZDA95Y2VHVB95EJWWV1",
+    "render_hash": "64c3bf74c3fe",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M74H3ZDA95Y2VHVB95EJWWV1.md",
+    "source_hash": "64c3bf74c3fe",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M74H3ZDA95Y2VHVB95EJWWV1"
+  },
+  "item/01M75ZNV600AK4RYDAF2STQFVS": {
+    "page_id": "Ticket-01M75ZNV600AK4RYDAF2STQFVS",
+    "render_hash": "40235b4c5530",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M75ZNV600AK4RYDAF2STQFVS.md",
+    "source_hash": "40235b4c5530",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M75ZNV600AK4RYDAF2STQFVS"
+  },
+  "item/01M7G62323WBZ2GKE42W294Q7W": {
+    "page_id": "Ticket-01M7G62323WBZ2GKE42W294Q7W",
+    "render_hash": "04653e6ef108",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62323WBZ2GKE42W294Q7W.md",
+    "source_hash": "04653e6ef108",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62323WBZ2GKE42W294Q7W"
+  },
+  "item/01M7G6232437NHRFH5M392PDN9": {
+    "page_id": "Ticket-01M7G6232437NHRFH5M392PDN9",
+    "render_hash": "b666cdfb7593",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G6232437NHRFH5M392PDN9.md",
+    "source_hash": "b666cdfb7593",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G6232437NHRFH5M392PDN9"
+  },
+  "item/01M7G62324ASWXPNMA4D2YQGJN": {
+    "page_id": "Ticket-01M7G62324ASWXPNMA4D2YQGJN",
+    "render_hash": "95844d143241",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62324ASWXPNMA4D2YQGJN.md",
+    "source_hash": "95844d143241",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62324ASWXPNMA4D2YQGJN"
+  },
+  "item/01M7G62324ATG0NMRRGGCQSY6F": {
+    "page_id": "Ticket-01M7G62324ATG0NMRRGGCQSY6F",
+    "render_hash": "304615c03f2e",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62324ATG0NMRRGGCQSY6F.md",
+    "source_hash": "304615c03f2e",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62324ATG0NMRRGGCQSY6F"
+  },
+  "item/01M7G62324CPMT49A3TK5FHAT3": {
+    "page_id": "Ticket-01M7G62324CPMT49A3TK5FHAT3",
+    "render_hash": "8ba77396ab4e",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62324CPMT49A3TK5FHAT3.md",
+    "source_hash": "8ba77396ab4e",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62324CPMT49A3TK5FHAT3"
+  },
+  "item/01M7G62324JEE4YPVSFMSY84P1": {
+    "page_id": "Ticket-01M7G62324JEE4YPVSFMSY84P1",
+    "render_hash": "0b0c5817cf47",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62324JEE4YPVSFMSY84P1.md",
+    "source_hash": "0b0c5817cf47",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62324JEE4YPVSFMSY84P1"
+  },
+  "item/01M7G62324V378E3WD04P9R60H": {
+    "page_id": "Ticket-01M7G62324V378E3WD04P9R60H",
+    "render_hash": "8854598f884d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62324V378E3WD04P9R60H.md",
+    "source_hash": "8854598f884d",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62324V378E3WD04P9R60H"
+  },
+  "item/01M7G62324XZJ1J3NRZS7RQR4V": {
+    "page_id": "Ticket-01M7G62324XZJ1J3NRZS7RQR4V",
+    "render_hash": "61dd6b8d2585",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G62324XZJ1J3NRZS7RQR4V.md",
+    "source_hash": "61dd6b8d2585",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G62324XZJ1J3NRZS7RQR4V"
+  },
+  "item/01M7G7N6W5H69DQWAGT72YKSRG": {
+    "page_id": "Ticket-01M7G7N6W5H69DQWAGT72YKSRG",
+    "render_hash": "5ae0218f715f",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G7N6W5H69DQWAGT72YKSRG.md",
+    "source_hash": "5ae0218f715f",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G7N6W5H69DQWAGT72YKSRG"
+  },
+  "item/01M7G7N6YAP1RX5K53YZF5WA72": {
+    "page_id": "Ticket-01M7G7N6YAP1RX5K53YZF5WA72",
+    "render_hash": "2063e622c95b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/tickets/01M7G7N6YAP1RX5K53YZF5WA72.md",
+    "source_hash": "2063e622c95b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Ticket-01M7G7N6YAP1RX5K53YZF5WA72"
+  },
   "macos": {
     "rev": null,
     "source": "docs/macos.md",
@@ -1071,6 +1863,314 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-save-ux-and-next",
     "wiki_key": "plan/2026-07-29-save-ux-and-next"
   },
+  "plan/2026-08-30-ai-editor": {
+    "canonical_key": "plan/2026-08-30-ai-editor",
+    "doc_type": "plan",
+    "page_id": "Plan-ai-editor",
+    "render_hash": "7757193aab95",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/plans/2026-08-30-ai-editor.md",
+    "source_hash": "8d8810bf5dd8",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-ai-editor",
+    "wiki_key": "plan/2026-08-30-ai-editor"
+  },
+  "plan/2026-08-30-native-mac-app": {
+    "canonical_key": "plan/2026-08-30-native-mac-app",
+    "doc_type": "plan",
+    "page_id": "Plan-native-mac-app",
+    "render_hash": "0b8fecf787c4",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/plans/2026-08-30-native-mac-app.md",
+    "source_hash": "94d24fad2894",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-native-mac-app",
+    "wiki_key": "plan/2026-08-30-native-mac-app"
+  },
+  "plan/2026-09-03-editor-surface-zoom-layout-icons": {
+    "canonical_key": "plan/2026-09-03-editor-surface-zoom-layout-icons",
+    "doc_type": "plan",
+    "page_id": "Plan-editor-surface-zoom-layout-icons",
+    "render_hash": "0a109fed09a3",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/plans/2026-09-03-editor-surface-zoom-layout-icons.md",
+    "source_hash": "384fb4b43d34",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-editor-surface-zoom-layout-icons",
+    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
+  },
+  "plan/2026-10-22-pdf-tables": {
+    "canonical_key": "plan/2026-10-22-pdf-tables",
+    "doc_type": "plan",
+    "page_id": "Plan-pdf-tables",
+    "render_hash": "29371571d03b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/plans/2026-10-22-pdf-tables.md",
+    "source_hash": "012cf6d84604",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-pdf-tables",
+    "wiki_key": "plan/2026-10-22-pdf-tables"
+  },
+  "plan/2026-11-15-workspace-watch": {
+    "canonical_key": "plan/2026-11-15-workspace-watch",
+    "doc_type": "plan",
+    "page_id": "Plan-workspace-watch",
+    "render_hash": "871e745abd5d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/plans/2026-11-15-workspace-watch.md",
+    "source_hash": "501efe3399f2",
+    "truth_state": "current",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-workspace-watch",
+    "wiki_key": "plan/2026-11-15-workspace-watch"
+  },
+  "pr/42": {
+    "page_id": "PR-42",
+    "render_hash": "a293c66c94c1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/42.md",
+    "source_hash": "a293c66c94c1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-42"
+  },
+  "pr/43": {
+    "page_id": "PR-43",
+    "render_hash": "7fcafef71524",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/43.md",
+    "source_hash": "7fcafef71524",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-43"
+  },
+  "pr/44": {
+    "page_id": "PR-44",
+    "render_hash": "55af55aaa5c2",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/44.md",
+    "source_hash": "55af55aaa5c2",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-44"
+  },
+  "pr/45": {
+    "page_id": "PR-45",
+    "render_hash": "8383e2784502",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/45.md",
+    "source_hash": "8383e2784502",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-45"
+  },
+  "pr/46": {
+    "page_id": "PR-46",
+    "render_hash": "2551b915c4ad",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/46.md",
+    "source_hash": "2551b915c4ad",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-46"
+  },
+  "pr/47": {
+    "page_id": "PR-47",
+    "render_hash": "611bb5d9ce90",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/47.md",
+    "source_hash": "611bb5d9ce90",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-47"
+  },
+  "pr/48": {
+    "page_id": "PR-48",
+    "render_hash": "d8a1de3a91f1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/48.md",
+    "source_hash": "d8a1de3a91f1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-48"
+  },
+  "pr/49": {
+    "page_id": "PR-49",
+    "render_hash": "f6708960a5cb",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/49.md",
+    "source_hash": "f6708960a5cb",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-49"
+  },
+  "pr/50": {
+    "page_id": "PR-50",
+    "render_hash": "2606407c54b5",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/50.md",
+    "source_hash": "2606407c54b5",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-50"
+  },
+  "pr/51": {
+    "page_id": "PR-51",
+    "render_hash": "307d05db9612",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/51.md",
+    "source_hash": "307d05db9612",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-51"
+  },
+  "pr/52": {
+    "page_id": "PR-52",
+    "render_hash": "cbc8e447bf56",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/52.md",
+    "source_hash": "cbc8e447bf56",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-52"
+  },
+  "pr/53": {
+    "page_id": "PR-53",
+    "render_hash": "202f49a75998",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/53.md",
+    "source_hash": "202f49a75998",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-53"
+  },
+  "pr/54": {
+    "page_id": "PR-54",
+    "render_hash": "403cda570a9c",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/54.md",
+    "source_hash": "403cda570a9c",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-54"
+  },
+  "pr/55": {
+    "page_id": "PR-55",
+    "render_hash": "00eedbe0530f",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/55.md",
+    "source_hash": "00eedbe0530f",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-55"
+  },
+  "pr/56": {
+    "page_id": "PR-56",
+    "render_hash": "02d8dd5a6479",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/56.md",
+    "source_hash": "02d8dd5a6479",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-56"
+  },
+  "pr/57": {
+    "page_id": "PR-57",
+    "render_hash": "4d4b389a8361",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/57.md",
+    "source_hash": "4d4b389a8361",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-57"
+  },
+  "pr/58": {
+    "page_id": "PR-58",
+    "render_hash": "c48db22f1cee",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/58.md",
+    "source_hash": "c48db22f1cee",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-58"
+  },
+  "pr/60": {
+    "page_id": "PR-60",
+    "render_hash": "0fdc515063ea",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/60.md",
+    "source_hash": "0fdc515063ea",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-60"
+  },
+  "pr/61": {
+    "page_id": "PR-61",
+    "render_hash": "6792a28f519a",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/61.md",
+    "source_hash": "6792a28f519a",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-61"
+  },
+  "pr/62": {
+    "page_id": "PR-62",
+    "render_hash": "2a912dc8e14b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/62.md",
+    "source_hash": "2a912dc8e14b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-62"
+  },
+  "pr/63": {
+    "page_id": "PR-63",
+    "render_hash": "098f9a2efd3e",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/63.md",
+    "source_hash": "098f9a2efd3e",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-63"
+  },
+  "pr/66": {
+    "page_id": "PR-66",
+    "render_hash": "ab799ed78f07",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/66.md",
+    "source_hash": "ab799ed78f07",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-66"
+  },
+  "pr/67": {
+    "page_id": "PR-67",
+    "render_hash": "11cc69ef6bb7",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/67.md",
+    "source_hash": "11cc69ef6bb7",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-67"
+  },
+  "pr/68": {
+    "page_id": "PR-68",
+    "render_hash": "114ea1872de6",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/68.md",
+    "source_hash": "114ea1872de6",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-68"
+  },
+  "pr/71": {
+    "page_id": "PR-71",
+    "render_hash": "248d9ef1768b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/71.md",
+    "source_hash": "248d9ef1768b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-71"
+  },
+  "pr/74": {
+    "page_id": "PR-74",
+    "render_hash": "98355d7dc477",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/74.md",
+    "source_hash": "98355d7dc477",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-74"
+  },
+  "pr/75": {
+    "page_id": "PR-75",
+    "render_hash": "e281d3c71e04",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/75.md",
+    "source_hash": "e281d3c71e04",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-75"
+  },
+  "pr/77": {
+    "page_id": "PR-77",
+    "render_hash": "935e7e3998fa",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/77.md",
+    "source_hash": "935e7e3998fa",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-77"
+  },
+  "pr/78": {
+    "page_id": "PR-78",
+    "render_hash": "9ec18338f784",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/78.md",
+    "source_hash": "9ec18338f784",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-78"
+  },
+  "pr/81": {
+    "page_id": "PR-81",
+    "render_hash": "7bb71dbcd8e1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/81.md",
+    "source_hash": "7bb71dbcd8e1",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-81"
+  },
+  "pr/82": {
+    "page_id": "PR-82",
+    "render_hash": "fa8e7163e98b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/prs/82.md",
+    "source_hash": "fa8e7163e98b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/PR-82"
+  },
   "release-checklist": {
     "rev": null,
     "source": "docs/release-checklist.md",
@@ -1087,14 +2187,118 @@
     "title": "Release v0.1.0",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.1.0"
   },
+  "release/v0.1.0+dogfood": {
+    "page_id": "Release-v0.1.0+dogfood",
+    "render_hash": "0b2f1e3772c9",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.1.0+dogfood.md",
+    "source_hash": "0b2f1e3772c9",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.1.0+dogfood"
+  },
+  "release/v0.6.0": {
+    "page_id": "Release-v0.6.0",
+    "render_hash": "f9a3ce45581c",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.0.md",
+    "source_hash": "f9a3ce45581c",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.0"
+  },
+  "release/v0.6.1": {
+    "page_id": "Release-v0.6.1",
+    "render_hash": "67239a610709",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.1.md",
+    "source_hash": "67239a610709",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.1"
+  },
+  "release/v0.6.10": {
+    "page_id": "Release-v0.6.10",
+    "render_hash": "8daba7434446",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.10.md",
+    "source_hash": "8daba7434446",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.10"
+  },
+  "release/v0.6.11": {
+    "page_id": "Release-v0.6.11",
+    "render_hash": "ef16b7741f8b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.11.md",
+    "source_hash": "ef16b7741f8b",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.11"
+  },
+  "release/v0.6.2": {
+    "page_id": "Release-v0.6.2",
+    "render_hash": "95fc7e30eab9",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.2.md",
+    "source_hash": "95fc7e30eab9",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.2"
+  },
+  "release/v0.6.3": {
+    "page_id": "Release-v0.6.3",
+    "render_hash": "f7b2ba052b95",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.3.md",
+    "source_hash": "f7b2ba052b95",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.3"
+  },
+  "release/v0.6.4": {
+    "page_id": "Release-v0.6.4",
+    "render_hash": "5fcc1c43d1c3",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.4.md",
+    "source_hash": "5fcc1c43d1c3",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.4"
+  },
+  "release/v0.6.5": {
+    "page_id": "Release-v0.6.5",
+    "render_hash": "bc8ea225d7b4",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.5.md",
+    "source_hash": "bc8ea225d7b4",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.5"
+  },
+  "release/v0.6.6": {
+    "page_id": "Release-v0.6.6",
+    "render_hash": "7a1056433308",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.6.md",
+    "source_hash": "7a1056433308",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.6"
+  },
+  "release/v0.6.7": {
+    "page_id": "Release-v0.6.7",
+    "render_hash": "76b1cfbe2afc",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.7.md",
+    "source_hash": "76b1cfbe2afc",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.7"
+  },
+  "release/v0.6.8": {
+    "page_id": "Release-v0.6.8",
+    "render_hash": "8c1bbd6a476d",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.8.md",
+    "source_hash": "8c1bbd6a476d",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.8"
+  },
+  "release/v0.6.9": {
+    "page_id": "Release-v0.6.9",
+    "render_hash": "ea5745cac22e",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/.index/rendered/releases/v0.6.9.md",
+    "source_hash": "ea5745cac22e",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Release-v0.6.9"
+  },
   "roadmap": {
     "canonical_key": "roadmap",
     "doc_type": "roadmap",
     "page_id": "Roadmap",
-    "render_hash": "a298a215c956",
-    "rev": "139fb50b45706b8bd0418384010f4ca9f5550fc7",
+    "render_hash": "b16d3e67bfab",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/roadmap.md",
-    "source_hash": "c7f71e8a8cd9",
+    "source_hash": "788ee9d5c18a",
     "title": "Roadmap",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
@@ -1113,12 +2317,156 @@
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-07-28_v0.1.0-release",
     "wiki_key": "roadmap-snapshot/2026-07-28_v0.1.0-release"
   },
+  "roadmap-snapshot/2026-08-30_v0.6.0-release": {
+    "canonical_key": "roadmap-snapshot/2026-08-30_v0.6.0-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-08-30_v0.6.0-release",
+    "render_hash": "ac9462e0d605",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-08-30_v0.6.0-release.md",
+    "source_hash": "859e127729d6",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-08-30_v0.6.0-release",
+    "wiki_key": "roadmap-snapshot/2026-08-30_v0.6.0-release"
+  },
+  "roadmap-snapshot/2026-09-02_v0.6.1-release": {
+    "canonical_key": "roadmap-snapshot/2026-09-02_v0.6.1-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-09-02_v0.6.1-release",
+    "render_hash": "525200181830",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-09-02_v0.6.1-release.md",
+    "source_hash": "950d4aea6910",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-02_v0.6.1-release",
+    "wiki_key": "roadmap-snapshot/2026-09-02_v0.6.1-release"
+  },
+  "roadmap-snapshot/2026-09-03_v0.6.2-release": {
+    "canonical_key": "roadmap-snapshot/2026-09-03_v0.6.2-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-09-03_v0.6.2-release",
+    "render_hash": "a99fcecfefd0",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-09-03_v0.6.2-release.md",
+    "source_hash": "7b5b51b7facb",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-03_v0.6.2-release",
+    "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.2-release"
+  },
+  "roadmap-snapshot/2026-09-03_v0.6.3-release": {
+    "canonical_key": "roadmap-snapshot/2026-09-03_v0.6.3-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-09-03_v0.6.3-release",
+    "render_hash": "b236d9f29277",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-09-03_v0.6.3-release.md",
+    "source_hash": "523c77950e47",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-03_v0.6.3-release",
+    "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.3-release"
+  },
+  "roadmap-snapshot/2026-09-04_v0.6.4-release": {
+    "canonical_key": "roadmap-snapshot/2026-09-04_v0.6.4-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-09-04_v0.6.4-release",
+    "render_hash": "753683d36913",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-09-04_v0.6.4-release.md",
+    "source_hash": "073137a76727",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-04_v0.6.4-release",
+    "wiki_key": "roadmap-snapshot/2026-09-04_v0.6.4-release"
+  },
+  "roadmap-snapshot/2026-09-10_v0.6.5-release": {
+    "canonical_key": "roadmap-snapshot/2026-09-10_v0.6.5-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-09-10_v0.6.5-release",
+    "render_hash": "7ffc60a1b52b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-09-10_v0.6.5-release.md",
+    "source_hash": "51a297d7526a",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-10_v0.6.5-release",
+    "wiki_key": "roadmap-snapshot/2026-09-10_v0.6.5-release"
+  },
+  "roadmap-snapshot/2026-10-22_v0.6.6-release": {
+    "canonical_key": "roadmap-snapshot/2026-10-22_v0.6.6-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-10-22_v0.6.6-release",
+    "render_hash": "7bc5e4b2eea1",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-10-22_v0.6.6-release.md",
+    "source_hash": "14460f5d2b16",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-10-22_v0.6.6-release",
+    "wiki_key": "roadmap-snapshot/2026-10-22_v0.6.6-release"
+  },
+  "roadmap-snapshot/2026-10-28_v0.6.7-release": {
+    "canonical_key": "roadmap-snapshot/2026-10-28_v0.6.7-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-10-28_v0.6.7-release",
+    "render_hash": "c7c81bdc092e",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-10-28_v0.6.7-release.md",
+    "source_hash": "32b2b942687e",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-10-28_v0.6.7-release",
+    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.7-release"
+  },
+  "roadmap-snapshot/2026-10-28_v0.6.8-release": {
+    "canonical_key": "roadmap-snapshot/2026-10-28_v0.6.8-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-10-28_v0.6.8-release",
+    "render_hash": "3abd7bc45713",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-10-28_v0.6.8-release.md",
+    "source_hash": "3b0de6ca9ec9",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-10-28_v0.6.8-release",
+    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.8-release"
+  },
+  "roadmap-snapshot/2026-11-05_v0.6.9-release": {
+    "canonical_key": "roadmap-snapshot/2026-11-05_v0.6.9-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-11-05_v0.6.9-release",
+    "render_hash": "ac6764f26556",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-11-05_v0.6.9-release.md",
+    "source_hash": "238fcfd342b2",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-11-05_v0.6.9-release",
+    "wiki_key": "roadmap-snapshot/2026-11-05_v0.6.9-release"
+  },
+  "roadmap-snapshot/2026-11-11_v0.6.10-release": {
+    "canonical_key": "roadmap-snapshot/2026-11-11_v0.6.10-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-11-11_v0.6.10-release",
+    "render_hash": "8776352b907b",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-11-11_v0.6.10-release.md",
+    "source_hash": "d2428c5b91f6",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-11-11_v0.6.10-release",
+    "wiki_key": "roadmap-snapshot/2026-11-11_v0.6.10-release"
+  },
+  "roadmap-snapshot/2026-11-15_v0.6.11-release": {
+    "canonical_key": "roadmap-snapshot/2026-11-15_v0.6.11-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-11-15_v0.6.11-release",
+    "render_hash": "2f7c7bb988d9",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
+    "source": "docs/roadmap/2026-11-15_v0.6.11-release.md",
+    "source_hash": "f7b4ee172f24",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-11-15_v0.6.11-release",
+    "wiki_key": "roadmap-snapshot/2026-11-15_v0.6.11-release"
+  },
   "sidebar": {
     "page_id": "_Sidebar",
-    "render_hash": "0233da90a37a",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "render_hash": "32866a887992",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/.index/rendered/_Sidebar.md",
-    "source_hash": "0233da90a37a",
+    "source_hash": "32866a887992",
     "title": "_Sidebar",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/_Sidebar"
   },
@@ -1129,10 +2477,10 @@
     "canonical_key": "guide/user-guide",
     "doc_type": "guide",
     "page_id": "User-Guide",
-    "render_hash": "25e98b73f2eb",
-    "rev": "740da3b5852aaa573e5a862171afbd06204dc00a",
+    "render_hash": "727385b76f77",
+    "rev": "ad2781c712ef7a6e84e6a0609cb1dcf4c73d6a8b",
     "source": "docs/user_guide/user-guide.md",
-    "source_hash": "0608eeac7402",
+    "source_hash": "1153adf08b18",
     "title": "User Guide",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/motion/wiki/User-Guide",
