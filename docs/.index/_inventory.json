@@ -161,6 +161,7 @@
    "status": "active",
    "title": "AI editor: selection, /ai, preview",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-ai-editor",
    "wiki_key": "plan/2026-08-30-ai-editor"
   },
   {
@@ -181,6 +182,7 @@
    "status": "completed",
    "title": "Behave like a native Mac app",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-native-mac-app",
    "wiki_key": "plan/2026-08-30-native-mac-app"
   },
   {
@@ -202,6 +204,7 @@
    "status": "active",
    "title": "Editor surface, zoom scope, resizable layout, icon toolbar, and window drag",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-editor-surface-zoom-layout-icons",
    "wiki_key": "plan/2026-09-03-editor-surface-zoom-layout-icons"
   },
   {
@@ -223,6 +226,7 @@
    "status": "active",
    "title": "Themed tables in PDF export",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-pdf-tables",
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
@@ -244,6 +248,7 @@
    "status": "completed",
    "title": "Refresh the file list when the workspace folder changes",
    "truth_state": "current",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Plan-workspace-watch",
    "wiki_key": "plan/2026-11-15-workspace-watch"
   },
   {
@@ -288,6 +293,7 @@
    "supersedes": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-08-30_v0.6.0-release",
    "wiki_key": "roadmap-snapshot/2026-08-30_v0.6.0-release"
   },
   {
@@ -304,6 +310,7 @@
    "supersedes": "roadmap-snapshot/2026-08-30_v0.6.0-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-02_v0.6.1-release",
    "wiki_key": "roadmap-snapshot/2026-09-02_v0.6.1-release"
   },
   {
@@ -320,6 +327,7 @@
    "supersedes": "roadmap-snapshot/2026-09-02_v0.6.1-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-03_v0.6.2-release",
    "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.2-release"
   },
   {
@@ -336,6 +344,7 @@
    "supersedes": "roadmap-snapshot/2026-09-03_v0.6.2-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-03_v0.6.3-release",
    "wiki_key": "roadmap-snapshot/2026-09-03_v0.6.3-release"
   },
   {
@@ -352,6 +361,7 @@
    "supersedes": "roadmap-snapshot/2026-09-03_v0.6.3-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-04_v0.6.4-release",
    "wiki_key": "roadmap-snapshot/2026-09-04_v0.6.4-release"
   },
   {
@@ -368,6 +378,7 @@
    "supersedes": "roadmap-snapshot/2026-09-04_v0.6.4-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-09-10_v0.6.5-release",
    "wiki_key": "roadmap-snapshot/2026-09-10_v0.6.5-release"
   },
   {
@@ -384,6 +395,7 @@
    "supersedes": "roadmap-snapshot/2026-09-10_v0.6.5-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-10-22_v0.6.6-release",
    "wiki_key": "roadmap-snapshot/2026-10-22_v0.6.6-release"
   },
   {
@@ -400,6 +412,7 @@
    "supersedes": "roadmap-snapshot/2026-10-22_v0.6.6-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-10-28_v0.6.7-release",
    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.7-release"
   },
   {
@@ -416,6 +429,7 @@
    "supersedes": "roadmap-snapshot/2026-10-28_v0.6.7-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-10-28_v0.6.8-release",
    "wiki_key": "roadmap-snapshot/2026-10-28_v0.6.8-release"
   },
   {
@@ -432,6 +446,7 @@
    "supersedes": "roadmap-snapshot/2026-10-28_v0.6.8-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-11-05_v0.6.9-release",
    "wiki_key": "roadmap-snapshot/2026-11-05_v0.6.9-release"
   },
   {
@@ -448,6 +463,7 @@
    "supersedes": "roadmap-snapshot/2026-11-05_v0.6.9-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-11-11_v0.6.10-release",
    "wiki_key": "roadmap-snapshot/2026-11-11_v0.6.10-release"
   },
   {
@@ -463,6 +479,7 @@
    "supersedes": "roadmap-snapshot/2026-11-11_v0.6.10-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
+   "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap-2026-11-15_v0.6.11-release",
    "wiki_key": "roadmap-snapshot/2026-11-15_v0.6.11-release"
   },
   {
