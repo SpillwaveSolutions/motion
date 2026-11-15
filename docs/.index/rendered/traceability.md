@@ -2,6 +2,65 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Search notes uses old text after another program edits a note
+`01M7G7N6YAP1RX5K53YZF5WA72` · status: todo
+
+### Open note deleted or renamed by another program is written back on the next save
+`01M7G7N6W5H69DQWAGT72YKSRG` · status: todo
+
+### Stream workspace changes from the dev server on GET /api/fs/events
+`01M7G62324XZJ1J3NRZS7RQR4V` · status: todo
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Update the user guide, README, design doc, and wiki
+`01M7G62324V378E3WD04P9R60H` · status: todo
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Re-list the sidebar files when the workspace changes
+`01M7G62324JEE4YPVSFMSY84P1` · status: todo
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Add the shared watch filter to fsCore.ts and fs_core.rs, with contract cases
+`01M7G62324CPMT49A3TK5FHAT3` · status: in_progress
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Watch the workspace in the Tauri app and emit motion://fs-changed
+`01M7G62324ATG0NMRRGGCQSY6F` · status: todo
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Release v0.6.11
+`01M7G62324ASWXPNMA4D2YQGJN` · status: todo
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Unit, Rust, and Playwright tests for the workspace watch
+`01M7G6232437NHRFH5M392PDN9` · status: todo
+- belongs-to: Refresh the file list when the workspace folder changes
+- targets: release/v0.6.11
+- produced-by: [[Plan-workspace-watch]]
+
+### Refresh the file list when the workspace folder changes
+`01M7G62323WBZ2GKE42W294Q7W` · status: todo
+- contains: Unit, Rust, and Playwright tests for the workspace watch
+- contains: Release v0.6.11
+- contains: Watch the workspace in the Tauri app and emit motion://fs-changed
+- contains: Add the shared watch filter to fsCore.ts and fs_core.rs, with contract cases
+- contains: Re-list the sidebar files when the workspace changes
+- contains: Update the user guide, README, design doc, and wiki
+- contains: Stream workspace changes from the dev server on GET /api/fs/events
+- produced-by: [[Plan-workspace-watch]]
+
 ### chore(release): v0.6.10 changelog, version bump, roadmap snapshot
 `01M75ZNV600AK4RYDAF2STQFVS` · status: done
 - lands-in: pr/78

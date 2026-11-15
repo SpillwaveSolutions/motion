@@ -58,6 +58,7 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - **No folder**: Documents heading, empty copy, New Note, New Folder, and Synthesize disabled.
 - **Folder, no .md**: Empty copy.
 - **Folder with notes**: Collapsible tree; selected file has active + aria-selected. Folders default expanded.
+- **Outside change**: Another program adds, deletes, or renames a note in the open folder. The tree shows the change in about one second, with no reload and no message. Notes under dot folders (`.git`, `.cache`) stay hidden. A deleted open note stays in the editor until the user opens another note.
 - **Filter miss**: No-match copy, tree empty (or only empty folders collapsed away).
 - **Synthesis in flight / done / failed**: Banner; Synthesize stays disabled until dismiss.
 - **Open / create error**: window.alert (current).
@@ -73,6 +74,9 @@ Sidebar is a **collapsible directory tree** of every .md under the workspace (no
 - [ ] New Note writes untitled-{timestamp}.md **in the parent folder of the selected file** (or workspace root when nothing is selected), selects it, and appears in the tree.
 - [ ] New Note and New Folder are disabled while a folder loads. A note made right after the load stays open and listed.
 - [ ] A note opened from the tree while a folder loads stays open when the load ends.
+- [ ] A note that another program adds to the open folder appears in the tree within 5 seconds, with no reload, and opens with its content.
+- [ ] A note that another program deletes leaves the tree within 5 seconds.
+- [ ] A note that another program adds under a dot folder never appears in the tree.
 - [ ] New Folder prompts for a name, writes `README.md` inside the new folder (same parent rule as New Note), expands it, and selects the README (`data-testid=new-folder`).
 - [ ] Sidebar is a collapsible folder tree (not a flat basename list).
 - [ ] WYSIWYG / Markdown / Split toggle is a labelled group; the active mode has aria-pressed.

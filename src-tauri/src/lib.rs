@@ -2,6 +2,8 @@ mod fs_core;
 mod publish;
 
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
+use notify_debouncer_mini::notify::{RecommendedWatcher, RecursiveMode};
+use notify_debouncer_mini::{new_debouncer, DebounceEventResult, Debouncer};
 use std::collections::VecDeque;
 use std::fs;
 use std::path::{Path, PathBuf};
@@ -111,6 +113,40 @@ struct WorkspaceState {
     root: Mutex<Option<PathBuf>>,
 }
 
+/// The OS file watch on the open workspace. `set_workspace` replaces it, and
+/// dropping the old `Debouncer` stops the old watch.
+struct WorkspaceWatch(Mutex<Option<Debouncer<RecommendedWatcher>>>);
+
+/// Burst window: a `git checkout` or an unzip becomes one sidebar refresh.
+const WATCH_DEBOUNCE_MS: u64 = 300;
+
+/// Watch `root` recursively. Calls `on_change` once per debounced batch that
+/// holds a change the sidebar lists (fs_core::is_watched_change). `root` must
+/// be canonical, as the OS reports canonical event paths.
+fn watch_workspace(
+    root: PathBuf,
+    on_change: impl Fn() + Send + 'static,
+) -> Result<Debouncer<RecommendedWatcher>, String> {
+    let filter_root = root.clone();
+    let mut debouncer = new_debouncer(
+        Duration::from_millis(WATCH_DEBOUNCE_MS),
+        move |res: DebounceEventResult| match res {
+            Ok(events) => {
+                if events.iter().any(|e| fs_core::is_watched_change(&filter_root, &e.path)) {
+                    on_change();
+                }
+            }
+            Err(err) => log::warn!("workspace watch error: {err}"),
+        },
+    )
+    .map_err(|e| e.to_string())?;
+    debouncer
+        .watcher()
+        .watch(&root, RecursiveMode::Recursive)
+        .map_err(|e| e.to_string())?;
+    Ok(debouncer)
+}
+
 /// Files handed over by Finder / `open` before React has mounted.
 struct PendingOpen {
     paths: Mutex<VecDeque<PathBuf>>,
@@ -161,18 +197,36 @@ fn workspace_root(state: &WorkspaceState) -> Result<PathBuf, String> {
 }
 
 #[tauri::command]
-fn set_workspace(path: String, state: State<'_, WorkspaceState>) -> Result<String, String> {
+fn set_workspace(
+    app: tauri::AppHandle,
+    path: String,
+    state: State<'_, WorkspaceState>,
+    watch: State<'_, WorkspaceWatch>,
+) -> Result<String, String> {
     let root = fs::canonicalize(Path::new(&path))
         .map_err(|e| format!("Invalid path {path}: {e}"))?;
     if !root.is_dir() {
         return Err("Workspace path is not a directory".to_string());
     }
     let display = root.to_string_lossy().into_owned();
-    let mut guard = state
-        .root
-        .lock()
-        .map_err(|_| "Workspace lock poisoned".to_string())?;
-    *guard = Some(root);
+    {
+        let mut guard = state
+            .root
+            .lock()
+            .map_err(|_| "Workspace lock poisoned".to_string())?;
+        *guard = Some(root.clone());
+    }
+    // A failed watch costs only the live refresh, so the folder still opens.
+    let next = match watch_workspace(root, move || {
+        let _ = app.emit("motion://fs-changed", ());
+    }) {
+        Ok(debouncer) => Some(debouncer),
+        Err(err) => {
+            log::warn!("Could not watch {display}: {err}");
+            None
+        }
+    };
+    *watch.0.lock().map_err(|_| "Workspace watch lock poisoned".to_string())? = next;
     Ok(display)
 }
 
@@ -434,6 +488,7 @@ pub fn run() {
         .manage(WorkspaceState {
             root: Mutex::new(None),
         })
+        .manage(WorkspaceWatch(Mutex::new(None)))
         .manage(PendingOpen {
             paths: Mutex::new(VecDeque::new()),
             frontend_ready: AtomicBool::new(false),
@@ -517,6 +572,39 @@ mod tests {
     use super::*;
     use std::fs;
     use tempfile::TempDir;
+
+    /// Starts a real OS watch on a temp workspace and reports each signal on a channel.
+    fn watched_workspace() -> (TempDir, PathBuf, Debouncer<RecommendedWatcher>, std::sync::mpsc::Receiver<()>) {
+        let dir = TempDir::new().unwrap();
+        let root = fs::canonicalize(dir.path()).unwrap();
+        fs::create_dir(root.join(".hidden")).unwrap();
+        let (tx, rx) = std::sync::mpsc::channel();
+        let watch = watch_workspace(root.clone(), move || {
+            let _ = tx.send(());
+        })
+        .expect("watch starts");
+        // FSEvents can need a moment before the stream is live.
+        std::thread::sleep(Duration::from_millis(200));
+        (dir, root, watch, rx)
+    }
+
+    #[test]
+    fn watch_reports_a_note_added_by_another_program() {
+        let (_dir, root, _watch, rx) = watched_workspace();
+        fs::write(root.join("added.md"), "# Added\n").unwrap();
+        rx.recv_timeout(Duration::from_secs(5))
+            .expect("a new note must signal a sidebar refresh");
+    }
+
+    #[test]
+    fn watch_ignores_changes_inside_a_dot_directory() {
+        let (_dir, root, _watch, rx) = watched_workspace();
+        fs::write(root.join(".hidden/x.md"), "# Hidden\n").unwrap();
+        assert!(
+            rx.recv_timeout(Duration::from_millis(1500)).is_err(),
+            "a change under a dot directory must not refresh the sidebar"
+        );
+    }
 
     #[test]
     fn refuses_every_operation_until_a_workspace_is_opened() {

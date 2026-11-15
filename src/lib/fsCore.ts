@@ -213,3 +213,23 @@ export function toWorkspaceRelative(root: string, absolutePath: string): string 
     const rel = relative(realOrThrow(root), absolutePath);
     return rel === "" ? "." : rel;
 }
+
+/**
+ * Does a file event at `changedPath` (absolute) change what the sidebar lists?
+ * Mirrors is_watched_change in fs_core.rs. Skipped: events outside the root,
+ * events inside a dot folder (`.git/index`), and a dot-named entry that is not
+ * a markdown file (`.git`, `.DS_Store`). collectFiles never walks into a dot
+ * folder, but it lists a dot-named note such as `.draft.md`. The rule uses the
+ * path only, because a deleted path cannot be checked on disk. Both paths must
+ * already be canonical; the watcher reports canonical paths for a canonical root.
+ */
+export function isWatchedChange(root: string, changedPath: string): boolean {
+    const rel = relative(root, changedPath);
+    if (rel.startsWith("..") || isAbsolute(rel)) return false;
+    const segments = rel.split(/[\\/]/);
+    const name = segments.pop() ?? "";
+    if (segments.some((segment) => segment.startsWith("."))) return false;
+    if (!name.startsWith(".")) return true;
+    const ext = name.slice(name.lastIndexOf(".") + 1).toLowerCase();
+    return name.lastIndexOf(".") > 0 && (MARKDOWN_EXTENSIONS as readonly string[]).includes(ext);
+}

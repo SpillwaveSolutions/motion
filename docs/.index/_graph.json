@@ -1186,6 +1186,76 @@
    "type": "targets"
   },
   {
+   "from": "item/01M7G6232437NHRFH5M392PDN9",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G6232437NHRFH5M392PDN9",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M7G62324ASWXPNMA4D2YQGJN",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324ASWXPNMA4D2YQGJN",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M7G62324ATG0NMRRGGCQSY6F",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324ATG0NMRRGGCQSY6F",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M7G62324CPMT49A3TK5FHAT3",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324CPMT49A3TK5FHAT3",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M7G62324JEE4YPVSFMSY84P1",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324JEE4YPVSFMSY84P1",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M7G62324V378E3WD04P9R60H",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324V378E3WD04P9R60H",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
+   "from": "item/01M7G62324XZJ1J3NRZS7RQR4V",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01M7G62324XZJ1J3NRZS7RQR4V",
+   "to": "release/v0.6.11",
+   "type": "targets"
+  },
+  {
    "from": "plan/2026-07-26-motion-next-phase",
    "to": "item/01KYFZ6RBH4J746JDANTQKYVSN",
    "type": "produces"
@@ -1691,6 +1761,46 @@
    "type": "produces"
   },
   {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62323WBZ2GKE42W294Q7W",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G6232437NHRFH5M392PDN9",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62324ASWXPNMA4D2YQGJN",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62324ATG0NMRRGGCQSY6F",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62324CPMT49A3TK5FHAT3",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62324JEE4YPVSFMSY84P1",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62324V378E3WD04P9R60H",
+   "type": "produces"
+  },
+  {
+   "from": "plan/2026-11-15-workspace-watch",
+   "to": "item/01M7G62324XZJ1J3NRZS7RQR4V",
+   "type": "produces"
+  },
+  {
    "from": "roadmap-snapshot/2026-07-28_v0.1.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -1854,6 +1964,11 @@
    "from": "roadmap-snapshot/2026-11-11_v0.6.10-release",
    "to": "roadmap",
    "type": "snapshot-of"
+  },
+  {
+   "from": "roadmap-snapshot/2026-11-11_v0.6.10-release",
+   "to": "roadmap-snapshot/2026-11-05_v0.6.9-release",
+   "type": "supersedes"
   },
   {
    "from": "roadmap-snapshot/2026-11-11_v0.6.10-release",
@@ -2744,6 +2859,56 @@
    "status": "done",
    "title": "chore(release): v0.6.10 changelog, version bump, roadmap snapshot"
   },
+  "item/01M7G62323WBZ2GKE42W294Q7W": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Refresh the file list when the workspace folder changes"
+  },
+  "item/01M7G6232437NHRFH5M392PDN9": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Unit, Rust, and Playwright tests for the workspace watch"
+  },
+  "item/01M7G62324ASWXPNMA4D2YQGJN": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Release v0.6.11"
+  },
+  "item/01M7G62324ATG0NMRRGGCQSY6F": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Watch the workspace in the Tauri app and emit motion://fs-changed"
+  },
+  "item/01M7G62324CPMT49A3TK5FHAT3": {
+   "doc_type": "item",
+   "status": "in_progress",
+   "title": "Add the shared watch filter to fsCore.ts and fs_core.rs, with contract cases"
+  },
+  "item/01M7G62324JEE4YPVSFMSY84P1": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Re-list the sidebar files when the workspace changes"
+  },
+  "item/01M7G62324V378E3WD04P9R60H": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Update the user guide, README, design doc, and wiki"
+  },
+  "item/01M7G62324XZJ1J3NRZS7RQR4V": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Stream workspace changes from the dev server on GET /api/fs/events"
+  },
+  "item/01M7G7N6W5H69DQWAGT72YKSRG": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Open note deleted or renamed by another program is written back on the next save"
+  },
+  "item/01M7G7N6YAP1RX5K53YZF5WA72": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Search notes uses old text after another program edits a note"
+  },
   "plan/2026-07-26-motion-next-phase": {
    "doc_type": "plan",
    "source": "docs/plans/2026-07-26-motion-next-phase.md",
@@ -2784,6 +2949,12 @@
    "doc_type": "plan",
    "source": "docs/plans/2026-10-22-pdf-tables.md",
    "title": "Themed tables in PDF export",
+   "truth_state": "current"
+  },
+  "plan/2026-11-15-workspace-watch": {
+   "doc_type": "plan",
+   "source": "docs/plans/2026-11-15-workspace-watch.md",
+   "title": "Refresh the file list when the workspace folder changes",
    "truth_state": "current"
   },
   "pr/42": {
@@ -2886,6 +3057,9 @@
    "doc_type": "release"
   },
   "release/v0.6.10": {
+   "doc_type": "release"
+  },
+  "release/v0.6.11": {
    "doc_type": "release"
   },
   "release/v0.6.2": {

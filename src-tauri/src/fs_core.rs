@@ -8,7 +8,7 @@
 //! tests/contract/storage-cases.json, which both sides run.
 
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::{Component, Path, PathBuf};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum FsErrorCode {
@@ -142,6 +142,33 @@ pub fn collect_files(root: &Path, extensions: &[&str]) -> FsResult<Vec<String>> 
     walk(&root_real, extensions, &mut out)?;
     out.sort();
     Ok(out)
+}
+
+/// Does a file event at `changed` (absolute) change what the sidebar lists?
+/// Mirrors isWatchedChange in fsCore.ts. Skipped: events outside the root,
+/// events inside a dot folder (`.git/index`), and a dot-named entry that is not
+/// a markdown file (`.git`, `.DS_Store`). collect_files never walks into a dot
+/// folder, but it lists a dot-named note such as `.draft.md`. The rule uses the
+/// path only, because a deleted path cannot be checked on disk. Both paths
+/// must already be canonical.
+pub fn is_watched_change(root: &Path, changed: &Path) -> bool {
+    let Ok(rel) = changed.strip_prefix(root) else { return false };
+    let mut names = Vec::new();
+    for c in rel.components() {
+        let Component::Normal(name) = c else { return false };
+        names.push(name.to_string_lossy().into_owned());
+    }
+    let Some((last, folders)) = names.split_last() else { return true };
+    if folders.iter().any(|f| f.starts_with('.')) {
+        return false;
+    }
+    if !last.starts_with('.') {
+        return true;
+    }
+    match last.rfind('.') {
+        Some(dot) if dot > 0 => MARKDOWN_EXTENSIONS.contains(&last[dot + 1..].to_lowercase().as_str()),
+        _ => false,
+    }
 }
 
 fn walk(dir: &Path, extensions: &[&str], out: &mut Vec<String>) -> FsResult<()> {
@@ -414,6 +441,7 @@ mod contract {
             let mut err_code: Option<&'static str> = None;
             let mut got_text: Option<String> = None;
             let mut got_list: Option<Vec<String>> = None;
+            let mut got_bool: Option<bool> = None;
 
             match op {
                 "read" => match read_workspace_file(&f.root, path.as_deref().unwrap()) {
@@ -472,6 +500,9 @@ mod contract {
                         },
                     }
                 },
+                "watched_change" => {
+                    got_bool = Some(is_watched_change(&f.root, Path::new(path.as_deref().unwrap())));
+                }
                 other => panic!("unknown op in contract: {other}"),
             }
 
@@ -487,6 +518,12 @@ mod contract {
             if let Some(code) = err_code {
                 failures.push(format!("{name}: expected ok, got error {code}"));
                 continue;
+            }
+
+            if let Some(expected) = case["expect"].get("watched").and_then(|w| w.as_bool()) {
+                if got_bool != Some(expected) {
+                    failures.push(format!("{name}: watched {got_bool:?} != {expected}"));
+                }
             }
 
             if let Some(expected) = case["expect"].get("content").and_then(|c| c.as_str()) {

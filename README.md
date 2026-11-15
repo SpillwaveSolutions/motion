@@ -15,6 +15,8 @@ natural-language prompts using CLI tools you already have installed.
 - **Workspace management** — open a folder and Motion lists every markdown file
   under it as a **collapsible directory tree**. **Search notes** filters by
   filename or file contents (⌘K / Ctrl+K). Nested folders keep their shape.
+  The tree follows the disk: when another program adds, deletes, or renames a
+  note in the folder, the sidebar shows the change in about one second.
 - **Finder Open With** (desktop) — right-click a `.md` in Finder → Open With
   Motion. The workspace is the file's parent directory; the note is selected.
   Last folder and last file are restored on the next desktop launch.
