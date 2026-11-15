@@ -16,6 +16,7 @@ import {
     writeWorkspaceFile,
     renameWorkspaceFile,
     collectFiles,
+    isWatchedChange,
     FsError,
     MARKDOWN_EXTENSIONS,
     DATA_EXTENSIONS,
@@ -103,6 +104,8 @@ describe("storage contract (TypeScript implementation)", () => {
                         case "rename_then_read":
                             renameWorkspaceFile(f.root, path, dest);
                             return readWorkspaceFile(f.root, dest);
+                        case "watched_change":
+                            return isWatchedChange(f.root, path);
                         default:
                             throw new Error(`unknown op: ${c.op}`);
                     }
@@ -120,6 +123,9 @@ describe("storage contract (TypeScript implementation)", () => {
 
                 const got = run();
 
+                if (c.expect.watched !== undefined) {
+                    expect(got).toBe(c.expect.watched);
+                }
                 if (c.expect.content !== undefined) {
                     expect(got).toBe(c.expect.content);
                 }

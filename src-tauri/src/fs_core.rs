@@ -8,7 +8,7 @@
 //! tests/contract/storage-cases.json, which both sides run.
 
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::{Component, Path, PathBuf};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum FsErrorCode {
@@ -142,6 +142,18 @@ pub fn collect_files(root: &Path, extensions: &[&str]) -> FsResult<Vec<String>> 
     walk(&root_real, extensions, &mut out)?;
     out.sort();
     Ok(out)
+}
+
+/// Does a file event at `changed` (absolute) change what the sidebar lists?
+/// Mirrors isWatchedChange in fsCore.ts. Events outside the root, and events
+/// under any dot segment (`.git`, `.DS_Store`), are skipped -- the same entries
+/// collect_files skips. Both paths must already be canonical.
+pub fn is_watched_change(root: &Path, changed: &Path) -> bool {
+    let Ok(rel) = changed.strip_prefix(root) else { return false };
+    rel.components().all(|c| match c {
+        Component::Normal(name) => !name.to_string_lossy().starts_with('.'),
+        _ => false,
+    })
 }
 
 fn walk(dir: &Path, extensions: &[&str], out: &mut Vec<String>) -> FsResult<()> {
@@ -414,6 +426,7 @@ mod contract {
             let mut err_code: Option<&'static str> = None;
             let mut got_text: Option<String> = None;
             let mut got_list: Option<Vec<String>> = None;
+            let mut got_bool: Option<bool> = None;
 
             match op {
                 "read" => match read_workspace_file(&f.root, path.as_deref().unwrap()) {
@@ -472,6 +485,9 @@ mod contract {
                         },
                     }
                 },
+                "watched_change" => {
+                    got_bool = Some(is_watched_change(&f.root, Path::new(path.as_deref().unwrap())));
+                }
                 other => panic!("unknown op in contract: {other}"),
             }
 
@@ -487,6 +503,12 @@ mod contract {
             if let Some(code) = err_code {
                 failures.push(format!("{name}: expected ok, got error {code}"));
                 continue;
+            }
+
+            if let Some(expected) = case["expect"].get("watched").and_then(|w| w.as_bool()) {
+                if got_bool != Some(expected) {
+                    failures.push(format!("{name}: watched {got_bool:?} != {expected}"));
+                }
             }
 
             if let Some(expected) = case["expect"].get("content").and_then(|c| c.as_str()) {

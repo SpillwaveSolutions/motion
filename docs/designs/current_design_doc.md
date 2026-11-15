@@ -649,6 +649,25 @@ an `ipc::Response`) or to `GET /api/fs/image`. Both call the shared jailed core
 (`read_workspace_image` and `readWorkspaceImage`), which also rejects a file
 whose extension is not an image extension. The storage contract covers it.
 
+**Live workspace refresh.** The backend watches the workspace root with OS file
+events and sends one signal per 300 ms burst. The client does not apply single
+events. It calls `listFiles` again, reads only the new notes, and drops the
+gone ones from the search cache. A full re-list keeps add, delete, and rename
+correct, and it uses the jail and dot-directory rules that `collectFiles`
+already has.
+
+| Runtime | Watcher | Signal |
+|---|---|---|
+| Tauri | `watch_workspace` in `src-tauri/src/lib.rs` (`notify-debouncer-mini`, FSEvents on macOS). `set_workspace` replaces the watch held in `WorkspaceWatch`. | `motion://fs-changed` event |
+| Browser | `workspaceEvents` in `src/server.ts` (`fs.watch`, recursive), one watch per open stream | `GET /api/fs/events`, Server-Sent Events, `data: changed` |
+
+Both watchers filter with `is_watched_change` and `isWatchedChange`, which skip
+events outside the root and under any dot segment. The storage contract pins
+that rule. `StorageProvider.watch` subscribes, and the effect in `App.tsx` runs
+the re-list. A refresh that a folder load or a newer refresh overtakes drops
+its result. The dev server calls `server.timeout(req, 0)` so that Bun does not
+close a quiet stream after 10 seconds.
+
 **How to read it.** `rawMarkdown` is kept current continuously by `onUpdate`, not
 computed at save time — deliberately, so switching to Markdown view never shows
 stale content. The containment check is the same logical gate on both branches,
@@ -814,6 +833,7 @@ purely to emit the fixture's wire names.
 | lists markdown recursively, sorted, skipping dotdirs and other extensions | 134–141 | Listing shape |
 | lists data files by extension, sorted | 142–149 | Dataset picker |
 | listing returns absolute paths | 150–155 | Web used to return bare filenames while Tauri returned absolute paths |
+| watches a note change, ignores dot directories and paths outside the root | 221–268 | The live sidebar refresh lists `.git` churn, or reacts to a sibling folder |
 
 ### 6.1.4 The fixture harnesses
 

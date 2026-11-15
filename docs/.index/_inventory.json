@@ -226,6 +226,27 @@
    "wiki_key": "plan/2026-10-22-pdf-tables"
   },
   {
+   "canonical_key": "plan/2026-11-15-workspace-watch",
+   "date": "2026-11-15",
+   "doc_type": "plan",
+   "epic": "01M7G62323WBZ2GKE42W294Q7W",
+   "items": [
+    "01M7G62324CPMT49A3TK5FHAT3",
+    "01M7G62324ATG0NMRRGGCQSY6F",
+    "01M7G62324XZJ1J3NRZS7RQR4V",
+    "01M7G62324JEE4YPVSFMSY84P1",
+    "01M7G6232437NHRFH5M392PDN9",
+    "01M7G62324V378E3WD04P9R60H",
+    "01M7G62324ASWXPNMA4D2YQGJN"
+   ],
+   "slug": "workspace-watch",
+   "source": "docs/plans/2026-11-15-workspace-watch.md",
+   "status": "active",
+   "title": "Refresh the file list when the workspace folder changes",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-11-15-workspace-watch"
+  },
+  {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
    "generated_at": "2026-11-11T22:28:46Z",
@@ -407,6 +428,7 @@
    "slug": "2026-11-05_v0.6.9-release",
    "source": "docs/roadmap/2026-11-05_v0.6.9-release.md",
    "source_hash": "792865be",
+   "superseded_by": "roadmap-snapshot/2026-11-11_v0.6.10-release",
    "supersedes": "roadmap-snapshot/2026-10-28_v0.6.8-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
@@ -422,6 +444,7 @@
    "slug": "2026-11-11_v0.6.10-release",
    "source": "docs/roadmap/2026-11-11_v0.6.10-release.md",
    "source_hash": "6bd494a7",
+   "supersedes": "roadmap-snapshot/2026-11-05_v0.6.9-release",
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki_key": "roadmap-snapshot/2026-11-11_v0.6.10-release"

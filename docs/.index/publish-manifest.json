@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "b7ef0450f3b7",
+   "render_hash": "a9773669a834",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "a3f7c62e34aa",
+   "render_hash": "0da8299feb77",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "74d873a8ac1e",
+   "render_hash": "3fb5d9f586c1",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -389,6 +389,16 @@
    "title": "Release v0.6.10",
    "truth_state": "shipped",
    "wiki_key": "release/v0.6.10"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.6.11",
+   "render": "as-is",
+   "render_hash": "9716a2349e68",
+   "source": "docs/.index/rendered/releases/v0.6.11.md",
+   "title": "Release v0.6.11",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.6.11"
   },
   {
    "frozen": false,
@@ -2211,6 +2221,86 @@
    "wiki_key": "item/01M75ZNV600AK4RYDAF2STQFVS"
   },
   {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62323WBZ2GKE42W294Q7W",
+   "render": "as-is",
+   "render_hash": "72c060628cfd",
+   "source": "docs/.index/rendered/tickets/01M7G62323WBZ2GKE42W294Q7W.md",
+   "title": "Refresh the file list when the workspace folder changes",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G62323WBZ2GKE42W294Q7W"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G6232437NHRFH5M392PDN9",
+   "render": "as-is",
+   "render_hash": "acdee7192c56",
+   "source": "docs/.index/rendered/tickets/01M7G6232437NHRFH5M392PDN9.md",
+   "title": "Unit, Rust, and Playwright tests for the workspace watch",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G6232437NHRFH5M392PDN9"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62324ASWXPNMA4D2YQGJN",
+   "render": "as-is",
+   "render_hash": "eb45e3319b0a",
+   "source": "docs/.index/rendered/tickets/01M7G62324ASWXPNMA4D2YQGJN.md",
+   "title": "Release v0.6.11",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G62324ASWXPNMA4D2YQGJN"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62324ATG0NMRRGGCQSY6F",
+   "render": "as-is",
+   "render_hash": "eae195450fba",
+   "source": "docs/.index/rendered/tickets/01M7G62324ATG0NMRRGGCQSY6F.md",
+   "title": "Watch the workspace in the Tauri app and emit motion://fs-changed",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G62324ATG0NMRRGGCQSY6F"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62324CPMT49A3TK5FHAT3",
+   "render": "as-is",
+   "render_hash": "a0d16d35727e",
+   "source": "docs/.index/rendered/tickets/01M7G62324CPMT49A3TK5FHAT3.md",
+   "title": "Add the shared watch filter to fsCore.ts and fs_core.rs, with contract cases",
+   "truth_state": "in-progress",
+   "wiki_key": "item/01M7G62324CPMT49A3TK5FHAT3"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62324JEE4YPVSFMSY84P1",
+   "render": "as-is",
+   "render_hash": "27f0ac5f28cc",
+   "source": "docs/.index/rendered/tickets/01M7G62324JEE4YPVSFMSY84P1.md",
+   "title": "Re-list the sidebar files when the workspace changes",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G62324JEE4YPVSFMSY84P1"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62324V378E3WD04P9R60H",
+   "render": "as-is",
+   "render_hash": "5ab604bba6b9",
+   "source": "docs/.index/rendered/tickets/01M7G62324V378E3WD04P9R60H.md",
+   "title": "Update the user guide, README, design doc, and wiki",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G62324V378E3WD04P9R60H"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01M7G62324XZJ1J3NRZS7RQR4V",
+   "render": "as-is",
+   "render_hash": "5c27a8c7a970",
+   "source": "docs/.index/rendered/tickets/01M7G62324XZJ1J3NRZS7RQR4V.md",
+   "title": "Stream workspace changes from the dev server on GET /api/fs/events",
+   "truth_state": "open",
+   "wiki_key": "item/01M7G62324XZJ1J3NRZS7RQR4V"
+  },
+  {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-07-29T23:00:00Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Code-Walkthrough",
@@ -2226,7 +2316,7 @@
    "frozen": false,
    "page_name": "Design-Doc",
    "render": "doc+banner",
-   "render_hash": "a8c1d0651dca",
+   "render_hash": "86ebc8c96d6a",
    "source": "docs/designs/current_design_doc.md",
    "title": "Motion \u2014 Current Design Document",
    "truth_state": "current",
@@ -2308,6 +2398,17 @@
    "title": "Themed tables in PDF export",
    "truth_state": "current",
    "wiki_key": "plan/2026-10-22-pdf-tables"
+  },
+  {
+   "banner": "> **Current** \u2014 the latest status report. Reports freeze once published; corrections appear in later reports.",
+   "frozen": true,
+   "page_name": "Plan-workspace-watch",
+   "render": "doc+banner",
+   "render_hash": "871e745abd5d",
+   "source": "docs/plans/2026-11-15-workspace-watch.md",
+   "title": "Refresh the file list when the workspace folder changes",
+   "truth_state": "current",
+   "wiki_key": "plan/2026-11-15-workspace-watch"
   },
   {
    "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-11T22:28:46Z. Historical snapshots are linked from [[Index-Releases]].",
@@ -2457,7 +2558,7 @@
    "frozen": false,
    "page_name": "User-Guide",
    "render": "doc+banner",
-   "render_hash": "97a191735475",
+   "render_hash": "a48d41a7b7b6",
    "source": "docs/user_guide/user-guide.md",
    "title": "User Guide",
    "truth_state": "current",
@@ -2465,7 +2566,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "36b608293538",
+  "render_hash": "9cbaf864b25f",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

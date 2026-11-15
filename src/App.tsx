@@ -167,6 +167,8 @@ function App() {
     const [files, setFiles] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [contents, setContents] = useState<Record<string, string>>({});
+    const contentsRef = useRef(contents);
+    contentsRef.current = contents;
     const [synthesis, setSynthesis] = useState<string | null>(null);
     const [saveSignal, setSaveSignal] = useState(0);
     const [reloadSignal, setReloadSignal] = useState(0);
@@ -397,6 +399,41 @@ function App() {
         if (!isTauri() || !workspacePath) return;
         persistWorkspace(workspacePath, currentFilePath);
     }, [workspacePath, currentFilePath]);
+
+    // Another program added, deleted, or renamed files in the workspace:
+    // re-list, read only the new notes, and drop the gone ones from the cache.
+    // The open note stays open even if its file is gone.
+    useEffect(() => {
+        if (!workspacePath) return;
+        let seq = 0;
+        return storage.watch(async () => {
+            const mine = ++seq;
+            const gen = folderLoadGenRef.current;
+            const stale = () => mine !== seq || gen !== folderLoadGenRef.current;
+            try {
+                const listed = await storage.listFiles(workspacePath);
+                if (stale()) return;
+                const known = contentsRef.current;
+                const fresh: Record<string, string> = {};
+                await Promise.all(
+                    listed
+                        .filter((p) => !(p in known))
+                        .map(async (p) => {
+                            fresh[p] = await storage.readFile(p).catch(() => "");
+                        }),
+                );
+                if (stale()) return;
+                setFiles(listed);
+                setContents((prev) => {
+                    const next: Record<string, string> = {};
+                    for (const p of listed) next[p] = fresh[p] ?? prev[p] ?? "";
+                    return next;
+                });
+            } catch (err) {
+                console.warn("Could not refresh the file list", err);
+            }
+        });
+    }, [workspacePath]);
 
     useEffect(() => {
         let cancelled = false;

@@ -52,7 +52,12 @@ opens the app.
    folder and the note is selected. Desktop remembers the last folder.
 2. The sidebar is a **collapsible directory tree** of every `.md` underneath
    the workspace. Use **Search notes** (⌘K / Ctrl+K) to filter by filename or
-   by text inside the notes. A content hit shows a short snippet.
+   by text inside the notes. A content hit shows a short snippet. The tree
+   follows the disk. When another program, a terminal, or `git` adds, deletes,
+   or renames a note in the folder, the sidebar shows the change in about one
+   second. You do not need to reopen the folder. Files in dot folders such as
+   `.git` stay hidden. If you delete the note that is open, it stays in the
+   editor until you open another note.
 3. Click a note to open it. In the note itself, click a link and Motion opens
    that file when it is markdown on disk. `getting-started.md`, `./notes/topic.md`,
    `../welcome.md`, a name without `.md`, and a folder (its `README.md` or

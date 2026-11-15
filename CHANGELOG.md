@@ -2,6 +2,17 @@
 
 All notable changes to Motion are recorded here. Dates are UTC.
 
+## Unreleased
+
+### Added
+
+- **The sidebar follows the disk.** When another program, a terminal, or `git`
+  adds, deletes, or renames a note in the open folder, the sidebar shows the
+  change in about one second. You do not need to reopen the folder. The desktop
+  app uses OS file events (FSEvents on macOS), and the browser dev server sends
+  them on `GET /api/fs/events`. Files in dot folders such as `.git` stay hidden.
+  (`01M7G62323WBZ2GKE42W294Q7W`, issue 80)
+
 ## 0.6.10, 2026-11-11
 
 Keep list, heading, and code block format when you save, and keep a note that you make or open while a folder loads.

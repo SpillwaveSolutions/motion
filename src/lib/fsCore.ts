@@ -213,3 +213,16 @@ export function toWorkspaceRelative(root: string, absolutePath: string): string 
     const rel = relative(realOrThrow(root), absolutePath);
     return rel === "" ? "." : rel;
 }
+
+/**
+ * Does a file event at `changedPath` (absolute) change what the sidebar lists?
+ * Mirrors is_watched_change in fs_core.rs. Events outside the root, and events
+ * under any dot segment (`.git`, `.DS_Store`), are skipped -- the same entries
+ * collectFiles skips. Both paths must already be canonical; the watcher reports
+ * canonical paths for a canonical root.
+ */
+export function isWatchedChange(root: string, changedPath: string): boolean {
+    const rel = relative(root, changedPath);
+    if (rel.startsWith("..") || isAbsolute(rel)) return false;
+    return !rel.split(/[\\/]/).some((segment) => segment.startsWith("."));
+}

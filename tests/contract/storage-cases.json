@@ -16,7 +16,10 @@
     "Paths in `setup` are workspace-relative. `outside/` is a sibling directory",
     "created next to the workspace, used for escape cases.",
     "",
-    "expect.result: ok | denied | not-found | not-a-directory | exists"
+    "expect.result: ok | denied | not-found | not-a-directory | exists",
+    "",
+    "op watched_change takes an absolute `path` from a file event and asserts",
+    "expect.watched: whether the workspace watcher reports that event."
   ],
 
   "setup": {
@@ -214,6 +217,54 @@
       "path": "no-such-note.md",
       "dest": "gone.md",
       "expect": { "result": "not-found" }
+    },
+    {
+      "name": "watches a new note at the workspace root",
+      "op": "watched_change",
+      "path": "$ROOT/new.md",
+      "expect": { "result": "ok", "watched": true }
+    },
+    {
+      "name": "watches a note in a nested folder",
+      "op": "watched_change",
+      "path": "$ROOT/nested/new.md",
+      "expect": { "result": "ok", "watched": true }
+    },
+    {
+      "name": "watches a folder change",
+      "op": "watched_change",
+      "path": "$ROOT/nested",
+      "expect": { "result": "ok", "watched": true }
+    },
+    {
+      "name": "ignores a change inside a dot directory",
+      "op": "watched_change",
+      "path": "$ROOT/.git/index",
+      "expect": { "result": "ok", "watched": false }
+    },
+    {
+      "name": "ignores a change deep inside a dot directory",
+      "op": "watched_change",
+      "path": "$ROOT/notes/.cache/x.md",
+      "expect": { "result": "ok", "watched": false }
+    },
+    {
+      "name": "ignores a dotfile",
+      "op": "watched_change",
+      "path": "$ROOT/.DS_Store",
+      "expect": { "result": "ok", "watched": false }
+    },
+    {
+      "name": "ignores a change outside the workspace",
+      "op": "watched_change",
+      "path": "$OUTSIDE/secret.md",
+      "expect": { "result": "ok", "watched": false }
+    },
+    {
+      "name": "ignores a sibling folder that shares the workspace prefix",
+      "op": "watched_change",
+      "path": "$ROOT-evil/planted.md",
+      "expect": { "result": "ok", "watched": false }
     }
   ]
 }

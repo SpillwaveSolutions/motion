@@ -1,4 +1,5 @@
 import { invoke, isTauri as detectTauri } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/plugin-dialog";
 import { imageMimeType } from "../noteLink";
 
@@ -18,6 +19,11 @@ export interface StorageProvider {
      * Used when Finder / `?open=` already knows the directory.
      */
     ensureWorkspace(path: string): Promise<string>;
+    /**
+     * Call `onChange` when another program adds, deletes, or renames files in
+     * the open workspace. The backend debounces bursts. Returns the unsubscribe.
+     */
+    watch(onChange: () => void): () => void;
 }
 
 export class TauriStorage implements StorageProvider {
@@ -62,6 +68,19 @@ export class TauriStorage implements StorageProvider {
 
     async listDataFiles(): Promise<string[]> {
         return await invoke<string[]>("list_data_files");
+    }
+
+    watch(onChange: () => void): () => void {
+        let unlisten: (() => void) | null = null;
+        let stopped = false;
+        void listen("motion://fs-changed", () => onChange()).then((u) => {
+            if (stopped) u();
+            else unlisten = u;
+        });
+        return () => {
+            stopped = true;
+            unlisten?.();
+        };
     }
 }
 
@@ -151,6 +170,13 @@ export class HttpStorage implements StorageProvider {
         const res = await fetch("/api/fs/data-files");
         if (!res.ok) return await failed(res, "Failed to list data files");
         return await res.json();
+    }
+
+    watch(onChange: () => void): () => void {
+        // EventSource reconnects by itself if the dev server restarts.
+        const events = new EventSource("/api/fs/events");
+        events.onmessage = () => onChange();
+        return () => events.close();
     }
 }
 

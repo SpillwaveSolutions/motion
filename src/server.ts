@@ -16,6 +16,7 @@ import {
     readWorkspaceImage,
     writeWorkspaceFile,
     renameWorkspaceFile,
+    isWatchedChange,
     FsError,
     MARKDOWN_EXTENSIONS,
     DATA_EXTENSIONS,
@@ -136,6 +137,52 @@ const watcher = watch(join(PROJECT_ROOT, "src"), { recursive: true }, (_event, f
     }
 });
 
+/** Burst window: a `git checkout` or an unzip becomes one sidebar refresh. */
+const WATCH_DEBOUNCE_MS = 300;
+
+/**
+ * GET /api/fs/events: Server-Sent Events. Sends `data: changed` once per burst
+ * of workspace changes the sidebar lists. Browser-mode counterpart to the
+ * Tauri `motion://fs-changed` event. Each open stream owns one fs.watch, which
+ * closes when the client goes away.
+ */
+function workspaceEvents(req: Request): Response {
+    const encoder = new TextEncoder();
+    let stop = () => {};
+    const stream = new ReadableStream<Uint8Array>({
+        start(controller) {
+            let timer: ReturnType<typeof setTimeout> | null = null;
+            const fsWatch = watch(WORKSPACE_ROOT, { recursive: true }, (_event, filename) => {
+                if (!filename) return;
+                if (!isWatchedChange(WORKSPACE_ROOT, join(WORKSPACE_ROOT, filename.toString()))) return;
+                if (timer) clearTimeout(timer);
+                timer = setTimeout(() => {
+                    timer = null;
+                    controller.enqueue(encoder.encode("data: changed\n\n"));
+                }, WATCH_DEBOUNCE_MS);
+            });
+            stop = () => {
+                fsWatch.close();
+                if (timer) clearTimeout(timer);
+            };
+            req.signal.addEventListener("abort", () => {
+                stop();
+                try {
+                    controller.close();
+                } catch {
+                    /* already closed by cancel() */
+                }
+            });
+        },
+        cancel() {
+            stop();
+        },
+    });
+    return new Response(stream, {
+        headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-cache" },
+    });
+}
+
 // Serve the app
 const server = Bun.serve({
     port: PORT,
@@ -146,7 +193,7 @@ const server = Bun.serve({
     // WHERE a write can land; it says nothing about who may ask for one.
     // Override only if you know why you need to.
     hostname: process.env["MOTION_HOST"] ?? "127.0.0.1",
-    async fetch(req) {
+    async fetch(req, server) {
         const url = new URL(req.url);
         const pathname = url.pathname;
 
@@ -349,6 +396,11 @@ const server = Bun.serve({
                 switch (`${req.method} ${pathname}`) {
                     case "GET /api/fs/workspace":
                         return Response.json({ root: WORKSPACE_ROOT });
+
+                    case "GET /api/fs/events":
+                        // A quiet stream must outlive Bun's 10 s idle timeout.
+                        server.timeout(req, 0);
+                        return workspaceEvents(req);
 
                     case "GET /api/fs/list":
                         return Response.json(
