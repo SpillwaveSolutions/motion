@@ -158,6 +158,10 @@ function workspaceEvents(req: Request): Response {
     let unsubscribe = () => {};
     const stream = new ReadableStream<Uint8Array>({
         start(controller) {
+            // Bun holds the headers until the first bytes. A comment line
+            // flushes them now, so EventSource fires `open` on each connect
+            // and the client refreshes after a reconnect.
+            controller.enqueue(new TextEncoder().encode(": open\n\n"));
             unsubscribe = workspaceChanges.subscribe(() => controller.enqueue(message));
             req.signal.addEventListener("abort", () => unsubscribe());
         },

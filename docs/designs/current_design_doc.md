@@ -671,7 +671,9 @@ close a quiet stream after 10 seconds. The hub throttles rather than debounces,
 because a debounce that restarts on each event never fires while a file changes
 nonstop. A watch per stream leaked: Bun 1.3.6 does not release a closed watch
 handle on macOS. `HttpStorage.watch` also refreshes on each `EventSource` open,
-for changes made while the dev server was down.
+for changes made while the dev server was down. The stream starts with the
+comment `: open`, because Bun holds the headers until the first bytes and the
+browser fires `open` only when they arrive.
 
 **How to read it.** `rawMarkdown` is kept current continuously by `onUpdate`, not
 computed at save time — deliberately, so switching to Markdown view never shows

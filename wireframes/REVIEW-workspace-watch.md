@@ -2,7 +2,7 @@
 
 **Wireframe:** `wireframes/shell.md` (the Outside change state and the three new criteria)
 **Branch:** `feat/workspace-watch` (PR 81)
-**Verdict:** FAIL
+**Verdict:** PASS WITH NOTES (re-review of b130924; the first review was FAIL)
 
 The feature works in the normal case. A new note shows in about 330 ms, a deleted note leaves in about 325 ms, and dot folders stay hidden. Two defects in the dev server path block a PASS. A file that another program writes more often than every 300 ms stops all sidebar refreshes. Each closed `/api/fs/events` stream leaks one `fs.watch`.
 
@@ -66,7 +66,29 @@ Recommended:
 - **Churn starvation.** The dev server now throttles instead of debouncing. `createChangeHub` (`src/lib/changeHub.ts`) sends at most one signal per 300 ms window and does not restart the window on each event. A unit test sends an event every 10 ms and gets a signal in each window. The new E2E case "a note added while another file changes nonstop still shows" appends to a log file every 100 ms, and the note shows.
 - **Watcher leak.** All event streams now share one `fs.watch`, started on the first request and closed on exit. A closed stream only removes its sender from the hub, and a sender that throws is dropped. With 10 streams open, then 20 streams opened and closed, the server holds one handle on the workspace root. A probe confirmed that Bun 1.3.6 does fire `abort` and `cancel` on a closed stream, but does not release a closed watch handle on macOS. The per-stream watch therefore leaked whatever the cleanup did.
 - **Dot-named notes.** `isWatchedChange` and `is_watched_change` now skip a dot segment only when it is a folder, as `collectFiles` does. `.draft.md` at the root refreshes the tree. The contract case for `.DS_Store` is replaced by cases for `.draft.md` and a new `.cache` folder. The new E2E case "a dot-named note added outside shows" adds and deletes one.
-- **Reconnect.** `HttpStorage.watch` refreshes on each `EventSource` open, so a change made while the dev server was down shows after the reconnect.
+- **Reconnect.** `HttpStorage.watch` refreshes on each `EventSource` open. The first version did not work, because `open` fired only with the first event. See the Re-review and Fixes after re-review sections.
 - **Inline rename.** The refresh clears the rename field when its note leaves the list.
 - **Filed, not fixed:** the open note deleted or renamed outside and then written back on save (`01M7G7N6W5H69DQWAGT72YKSRG`), and **Search notes** using old text after an outside edit (`01M7G7N6YAP1RX5K53YZF5WA72`). Both are part of the non-goal "reload the open note when another program changes it".
 - **Not changed:** a refresh that starts during a folder load can lose the new note's text from the search cache, by code reading. The note itself stays listed.
+
+## Re-review
+
+Commit `b130924`. Same method: a dev server on port 3127, a temp workspace in the session scratchpad, and Playwright Chromium.
+
+**Verdict:** PASS WITH NOTES. Both required items are fixed. The dotfile and inline rename findings are fixed. The reconnect fix does not work, and it adds one console error when the dev server stops. Both effects are in the dev server only.
+
+- [x] Churn. A log file appended every 250 ms for 15 s: a new note shows in 411 ms (before: never). Appended every 100 ms: a new note shows in 166 ms. During 5 s of 100 ms churn the page makes 15 `/api/fs/list` calls, one per 300 ms window. This cost is expected.
+- [x] Watcher leak. After 20 pages and 20 reloads were closed, the server held 43 file handles, the same as before the pages. The workspace root has one handle. Five `curl` streams that ended on the client side left it at one. A standalone Bun 1.3.6 probe of the same subscribe pattern shows that `abort` and `cancel` both fire for each closed stream, and the sender set goes back to 0.
+- [x] Dot-named notes. `.another.md` added alone shows in 595 ms. Deleted alone, it leaves in 321 ms. A deleted `.ghost.md` no longer stays as a stale item.
+- [x] Inline rename. When another program removes the note under rename, the field goes away. When the file comes back, the field stays closed and `alpha.md` is listed.
+- [ ] Reconnect. FAIL. A note written while the server was down did not show in 30 s after the restart. It showed only after the next change. The cause: Bun sends the status line and headers of `/api/fs/events` but holds back the blank line that ends them until the first event. A raw socket read got `HTTP/1.1 200 OK ... Cache-Control: no-cache\r\n` and nothing more for 3 s. The browser therefore fires `open` only with the first event, not on connect. The trace shows the reconnect request at 6.1 s and the next `/api/fs/list` at 34.6 s, when a new file was written.
+- [ ] New side effect. When the server stops, the browser finishes the held response, fires `open` and then `error`, and the `onopen` refresh calls `/api/fs/list` against the dead server. Seen: `requestfailed /api/fs/events net::ERR_INCOMPLETE_CHUNKED_ENCODING`, `requestfailed /api/fs/list net::ERR_CONNECTION_REFUSED`, two `console.error` lines, and the warning "Could not refresh the file list". The first review saw one failed request and one console error on a restart. Now there are two of each.
+
+Gates: `bun test src` gives 368 pass and 0 fail. `bunx playwright test e2e/workspace-watch.spec.ts` gives 4 passed. No spec covers the reconnect.
+
+Recommended fix for the reconnect: send an SSE comment such as `: open\n\n` in `start()` before any event. The headers then end at once, and `open` fires on connect. Add an E2E case that restarts the stream and writes a note during the outage. The "Reconnect" line under Fixes after review is not correct until this lands.
+
+## Fixes after re-review
+
+- **Reconnect.** `workspaceEvents` now sends the comment line `: open` in `start()`, before any event. The headers end at once, and `EventSource` fires `open` on each connect. A reconnect after a dev server restart therefore refreshes the tree. The refresh no longer fires when the server stops, so the two extra console errors are gone.
+- **Test.** The new E2E case "the change stream opens at once, so a reconnect refreshes the tree" opens an `EventSource` and expects `open` within 2 s. Without the `: open` line it fails with `Received: false`. The case does not restart the dev server, because Playwright owns that process. It tests the cause that the re-review found.

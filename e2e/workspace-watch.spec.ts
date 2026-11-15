@@ -36,6 +36,28 @@ test("a note added outside Motion shows in the sidebar, and goes when deleted", 
     await expect(page.getByRole("treeitem", { name })).toHaveCount(0, { timeout: 5000 });
 });
 
+test("the change stream opens at once, so a reconnect refreshes the tree", async ({ page, guard }) => {
+    // The probe closes its own stream, which Chromium reports as aborted.
+    guard.allow(/request failed: GET .*\/api\/fs\/events -- net::ERR_ABORTED/);
+    await gotoApp(page);
+    // HttpStorage.watch refreshes on `open`. Bun used to hold the headers
+    // until the first change, so `open` came late and a reconnect after a
+    // dev server restart never refreshed.
+    const opened = await page.evaluate(
+        () =>
+            new Promise<boolean>((resolve) => {
+                const events = new EventSource("/api/fs/events");
+                const done = (ok: boolean) => {
+                    events.close();
+                    resolve(ok);
+                };
+                events.onopen = () => done(true);
+                setTimeout(() => done(false), 2000);
+            }),
+    );
+    expect(opened).toBe(true);
+});
+
 test("a dot-named note added outside shows, as Open Folder would list it", async ({ page }) => {
     await gotoApp(page);
     await openFolder(page);
