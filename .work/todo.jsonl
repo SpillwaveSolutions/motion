@@ -418,3 +418,5 @@
 {"actor":"richardhightower","ev":"01M7GAGFF9DJ484RHZT4BC2A6Q","item":"01M7G6232437NHRFH5M392PDN9","op":"close","set":{"resolution":"Done in PR 81 (1a43eea), shipped in v0.6.11.","status":"done"},"ts":"2026-11-15T19:21:24Z"}
 {"actor":"richardhightower","ev":"01M7GAGFKE88BXDTAH36QF4F7A","item":"01M7G62324V378E3WD04P9R60H","op":"close","set":{"resolution":"Done in PR 81 (1a43eea), shipped in v0.6.11.","status":"done"},"ts":"2026-11-15T19:21:24Z"}
 {"actor":"richardhightower","ev":"01M7GAGFSYPA05A70AHXNEASZZ","item":"01M7G62324ASWXPNMA4D2YQGJN","op":"update","set":{"status":"in_progress"},"ts":"2026-11-15T19:21:25Z"}
+{"actor":"richardhightower","ev":"01M7GMQJB4AZ96RQQ7V27HZVHS","item":"01M7G62324ASWXPNMA4D2YQGJN","op":"close","set":{"resolution":"Released v0.6.11: PR 82 merged as 3c2a485, tag and GitHub release created.","status":"done"},"ts":"2026-11-15T22:20:02Z"}
+{"actor":"richardhightower","ev":"01M7GMQJEW5XA9X3H5ZP858368","item":"01M7G62323WBZ2GKE42W294Q7W","op":"close","set":{"resolution":"Shipped in v0.6.11 (PR 81, 1a43eea). Issue 80.","status":"done"},"ts":"2026-11-15T22:20:02Z"}

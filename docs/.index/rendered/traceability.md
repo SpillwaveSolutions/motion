@@ -44,8 +44,9 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-workspace-watch]]
 
 ### Release v0.6.11
-`01M7G62324ASWXPNMA4D2YQGJN` · status: in_progress
+`01M7G62324ASWXPNMA4D2YQGJN` · status: done
 - belongs-to: Refresh the file list when the workspace folder changes
+- lands-in: pr/82
 - targets: release/v0.6.11
 - produced-by: [[Plan-workspace-watch]]
 
@@ -57,7 +58,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - produced-by: [[Plan-workspace-watch]]
 
 ### Refresh the file list when the workspace folder changes
-`01M7G62323WBZ2GKE42W294Q7W` · status: todo
+`01M7G62323WBZ2GKE42W294Q7W` · status: done
 - lands-in: pr/81
 - contains: Unit, Rust, and Playwright tests for the workspace watch
 - contains: Release v0.6.11

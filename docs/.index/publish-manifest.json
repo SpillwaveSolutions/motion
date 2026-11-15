@@ -4,7 +4,7 @@
    "frozen": false,
    "page_name": "Home",
    "render": "as-is",
-   "render_hash": "a9773669a834",
+   "render_hash": "b7ef0450f3b7",
    "source": "docs/.index/rendered/home.md",
    "title": "Home",
    "truth_state": "current",
@@ -14,7 +14,7 @@
    "frozen": false,
    "page_name": "Index-Decisions",
    "render": "as-is",
-   "render_hash": "0da8299feb77",
+   "render_hash": "b10531ac4cbe",
    "source": "docs/.index/rendered/decisions.md",
    "title": "Decisions Index",
    "truth_state": "current",
@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "fd80f94f32a4",
+   "render_hash": "a89378f8228d",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "1069e5229f67",
+   "render_hash": "518b42d9b830",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -352,6 +352,16 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-82",
+   "render": "as-is",
+   "render_hash": "fa8e7163e98b",
+   "source": "docs/.index/rendered/prs/82.md",
+   "title": "PR #82",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/82"
+  },
+  {
+   "frozen": false,
    "page_name": "Release-v0.1.0+dogfood",
    "render": "as-is",
    "render_hash": "0b2f1e3772c9",
@@ -404,7 +414,7 @@
    "frozen": false,
    "page_name": "Release-v0.6.11",
    "render": "as-is",
-   "render_hash": "e2bd01401dc3",
+   "render_hash": "ef16b7741f8b",
    "source": "docs/.index/rendered/releases/v0.6.11.md",
    "title": "Release v0.6.11",
    "truth_state": "shipped",
@@ -2234,10 +2244,10 @@
    "frozen": false,
    "page_name": "Ticket-01M7G62323WBZ2GKE42W294Q7W",
    "render": "as-is",
-   "render_hash": "537ff9ddede7",
+   "render_hash": "04653e6ef108",
    "source": "docs/.index/rendered/tickets/01M7G62323WBZ2GKE42W294Q7W.md",
    "title": "Refresh the file list when the workspace folder changes",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01M7G62323WBZ2GKE42W294Q7W"
   },
   {
@@ -2254,10 +2264,10 @@
    "frozen": false,
    "page_name": "Ticket-01M7G62324ASWXPNMA4D2YQGJN",
    "render": "as-is",
-   "render_hash": "3b06728463a7",
+   "render_hash": "95844d143241",
    "source": "docs/.index/rendered/tickets/01M7G62324ASWXPNMA4D2YQGJN.md",
    "title": "Release v0.6.11",
-   "truth_state": "in-progress",
+   "truth_state": "done",
    "wiki_key": "item/01M7G62324ASWXPNMA4D2YQGJN"
   },
   {
@@ -2441,11 +2451,11 @@
    "wiki_key": "plan/2026-11-15-workspace-watch"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-15T19:21:25Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-11-15T22:20:02Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "bc969a3163d7",
+   "render_hash": "b16d3e67bfab",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -2607,7 +2617,7 @@
   }
  ],
  "sidebar": {
-  "render_hash": "65b1742638b4",
+  "render_hash": "32866a887992",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1

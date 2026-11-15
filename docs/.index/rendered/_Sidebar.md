@@ -2,7 +2,6 @@
 
 - [[Roadmap]]
 - [[Design-Doc]] · [[Code-Walkthrough]]
-- Plan: [[Plan-workspace-watch]]
 - Plan: [[Plan-pdf-tables]]
 - Plan: [[Plan-editor-surface-zoom-layout-icons]]
 - Plan: [[Plan-ai-editor]]

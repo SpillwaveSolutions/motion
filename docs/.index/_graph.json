@@ -1212,6 +1212,11 @@
   },
   {
    "from": "item/01M7G62324ASWXPNMA4D2YQGJN",
+   "to": "pr/82",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01M7G62324ASWXPNMA4D2YQGJN",
    "to": "release/v0.6.11",
    "type": "targets"
   },
@@ -2911,7 +2916,7 @@
   },
   "item/01M7G62323WBZ2GKE42W294Q7W": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Refresh the file list when the workspace folder changes"
   },
   "item/01M7G6232437NHRFH5M392PDN9": {
@@ -2921,7 +2926,7 @@
   },
   "item/01M7G62324ASWXPNMA4D2YQGJN": {
    "doc_type": "item",
-   "status": "in_progress",
+   "status": "done",
    "title": "Release v0.6.11"
   },
   "item/01M7G62324ATG0NMRRGGCQSY6F": {
@@ -3095,6 +3100,9 @@
    "doc_type": "pr"
   },
   "pr/81": {
+   "doc_type": "pr"
+  },
+  "pr/82": {
    "doc_type": "pr"
   },
   "release/v0.1.0": {

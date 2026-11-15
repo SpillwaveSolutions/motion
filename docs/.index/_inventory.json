@@ -241,7 +241,7 @@
    ],
    "slug": "workspace-watch",
    "source": "docs/plans/2026-11-15-workspace-watch.md",
-   "status": "active",
+   "status": "completed",
    "title": "Refresh the file list when the workspace folder changes",
    "truth_state": "current",
    "wiki_key": "plan/2026-11-15-workspace-watch"
@@ -249,10 +249,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-11-15T19:21:25Z",
+   "generated_at": "2026-11-15T22:20:02Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "f9dba905",
+   "source_hash": "0fab9b88",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/motion/wiki/Roadmap",
